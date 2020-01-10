@@ -40,6 +40,7 @@
         "drupal/imce": "^1.7",
         "drupal/inline_entity_form": "^1.0@RC",
         "drupal/ludwig": "^1.0",
+        "drupal/paragraphs": "^1.10",
         "drupal/pathauto": "^1.6",
         "drupal/profile": "^1.0",
         "drupal/recaptcha": "^2.4",
