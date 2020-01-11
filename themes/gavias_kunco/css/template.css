@@ -1,4 +1,45 @@
 /****/
+#col-btm-padding .item-columns,
+.col-btm-padding .item-columns{
+    margin: 0 0 50px;
+}
+
+.video-title {
+    font-size: 13px;
+    font-weight: 600;
+}
+.video-date {
+    font-size: 12px;
+}
+
+.video-link a,
+.video-link {
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    color: #ae9142 !important;
+}
+
+#views-exposed-form-name-and-address-block-1 {
+    background:#f5f5f5;
+    margin: 0 0 20px;
+    padding: 10px 0 1px 15px;
+}
+
+.given-name,
+.family-name {
+    font-weight: 600;
+}
+
+
+.gold-line {
+    border-top: 6px solid #eaeaea;
+}
+
+
+.organization {
+    font-weight: 400;
+}
+
 .article {
     font-size: 14px;
     line-height: 1.3;
@@ -90,6 +131,7 @@ html {
 
 body {
     overflow-x: hidden;
+    line-height: inherit;
 }
 
 h2 {
@@ -10707,13 +10749,15 @@ ul[data-drupal-views-infinite-scroll-pager].pager a:hover, ul[data-drupal-views-
 
 .gsc-button.large {
     font-size: 16px !important;
+    font-weight: 500 !important;
     padding: 0 !important;
-    margin: 10px 0 !important;
+    margin: 8px 0 !important;
     background: transparent !important;
     border: none !important;
     text-transform: inherit;
     color: #026BB0 !important;
     line-height: 1.4;
+    letter-spacing: 1px!important;
 }
 
 .gsc-button.large:hover {
