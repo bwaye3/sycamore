@@ -288,6 +288,12 @@ ul ul {
 ul li {
     list-style: inherit;
     font-size: 90%;
+    line-height: 1.7;
+    font-weight: 300;
+    /* color: #262626; */
+}
+#content li {
+    margin: 5px 0;
 }
 
 ul li i {
@@ -10849,6 +10855,11 @@ ul[data-drupal-views-infinite-scroll-pager].pager a:hover, ul[data-drupal-views-
     margin-right: auto;
 }
 
+#sidebar .gsc-image-content.skin-v1 {
+    border-bottom: 1px solid #ccc;
+    padding: 0 0 10px 0;
+}
+
 .gsc-image-content.skin-v1 .box-content {
     padding: 10px 15px 0;
 }
@@ -14347,4 +14358,5 @@ input[type="radio"], input[type="checkbox"] {
 .node--view-mode-full p {
     margin-top: 10px;
     margin-bottom: 10px;
+    line-height: 1.8;
 }
