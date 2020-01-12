@@ -1,4 +1,18 @@
 /****/
+#block-simplenewssubscription {
+    margin: 0 0 25px;
+    background: #0c2340;
+    padding: 10px 15px 20px 15px;
+    color: #fff;
+}
+#block-simplenewssubscription span {
+    color: #fff !important;
+}
+
+.sidebar .widget.gsc-image.text-none {
+    margin: 0 0 20px;
+}
+
 #col-btm-padding .item-columns,
 .col-btm-padding .item-columns{
     margin: 0 0 50px;
@@ -14302,8 +14316,9 @@ ul[data-drupal-views-infinite-scroll-pager].pager a:hover, ul[data-drupal-views-
 }
 
 .sidebar p {
-    line-height: 1.5;
+    line-height: 1.3;
     font-size: 90%;
+    color: #656464;
 }
 
 .webform-submission-form hr {
