@@ -1,9 +1,9 @@
 /****/
 img.alignnone,
- img.alignleft {
-     float: left;
-     margin: 3rem 3rem 3rem 0;
- }
+img.alignleft {
+    float: left;
+    margin: 3rem 3rem 3rem 0;
+}
 
 img.alignright {
     float: right;
@@ -11,9 +11,10 @@ img.alignright {
 }
 
 .node--type-article .breadcrumbs,
-.path-bulletins .breadcrumbs{
+.path-bulletins .breadcrumbs {
     display: none !important;
 }
+
 .node--type-article .js-form-item.form-item,
 .path-bulletins .js-form-item.form-item {
     background: #f5f5f5;
@@ -39,6 +40,7 @@ img.alignright {
     padding: 10px 15px 20px 15px;
     color: #fff;
 }
+
 #block-simplenewssubscription span {
     color: #fff !important;
 }
@@ -48,7 +50,7 @@ img.alignright {
 }
 
 #col-btm-padding .item-columns,
-.col-btm-padding .item-columns{
+.col-btm-padding .item-columns {
     margin: 0 0 50px;
 }
 
@@ -56,6 +58,7 @@ img.alignright {
     font-size: 13px;
     font-weight: 600;
 }
+
 .video-date {
     font-size: 12px;
 }
@@ -68,7 +71,7 @@ img.alignright {
 }
 
 #views-exposed-form-name-and-address-block-1 {
-    background:#f5f5f5;
+    background: #f5f5f5;
     margin: 0 0 20px;
     padding: 10px 0 1px 15px;
 }
@@ -162,7 +165,7 @@ img.alignright {
 }
 
 .m-10 {
-   margin: 10px;
+    margin: 10px;
 }
 
 .m-20 {
@@ -340,6 +343,7 @@ ul li {
     font-weight: 300;
     /* color: #262626; */
 }
+
 #content li {
     margin: 5px 0;
 }
@@ -1281,6 +1285,7 @@ header.header-v4 .quick-menu .icon a {
 #page-main-content {
     min-height: 360px;
     margin-bottom: 5rem;
+    margin-top: 21px;
 }
 
 @media (max-width: 991px) {
@@ -10811,7 +10816,7 @@ ul[data-drupal-views-infinite-scroll-pager].pager a:hover, ul[data-drupal-views-
     text-transform: inherit;
     color: #026BB0 !important;
     line-height: 1.4;
-    letter-spacing: 1px!important;
+    letter-spacing: 1px !important;
 }
 
 .gsc-button.large:hover {
