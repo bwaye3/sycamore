@@ -1,4 +1,38 @@
 /****/
+img.alignnone,
+ img.alignleft {
+     float: left;
+     margin: 3rem 3rem 3rem 0;
+ }
+
+img.alignright {
+    float: right;
+    margin: 3rem 0 3rem 3rem;
+}
+
+.node--type-article .breadcrumbs,
+.path-bulletins .breadcrumbs{
+    display: none !important;
+}
+.node--type-article .js-form-item.form-item,
+.path-bulletins .js-form-item.form-item {
+    background: #f5f5f5;
+    padding: 10px;
+    margin: 0 0 21px;
+}
+
+.sidebar .js-form-item.form-item {
+    background: transparent !important;
+}
+
+.path-bulletins .sidebar {
+    margin: 60px 0 0 0;
+}
+
+.sidebar {
+    margin: 20px 0 0 0;
+}
+
 #block-simplenewssubscription {
     margin: 0 0 25px;
     background: #0c2340;
