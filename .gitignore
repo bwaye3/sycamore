@@ -13,6 +13,8 @@ _sql
 /wp-content
 /wp-content/*/uploads
 /wp-content/*/uploads/
+ wp-content/uploads
+/wp-content/uploads
 
 # Ignore paths that may contain user-generated content
 /sites/*/files
