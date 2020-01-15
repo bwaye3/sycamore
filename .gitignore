@@ -48,6 +48,7 @@ robots.txt
 #/.eslintrc.json
 #/.gitattributes
 /.htaccess
+.htaccess
 #/autoload.php
 #/composer.lock
 #/index.php
