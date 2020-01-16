@@ -1,21 +1,38 @@
 /****/
 
 ul li.comment-forbidden {
-
     list-style: none;
     font-size: 100%;
     line-height: 1.7;
     font-weight: 300;
     color: #262626;
+    padding-left: 0 !important;
 }
 
 li.comment-forbidden a {
-    font-size: 12px;
     padding: 12px 35px;
-    background: #fff;
-    color: #262626 !important;
-    border: 2px solid #262626 !important;
+    background: #254e77;
+    color: #fff !important;
+    border: 0 solid #262626 !important;
     margin: 0 10px 0;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+li.comment-forbidden a:hover {
+    background: #254e77;
+    color: #ae9142 !important;
+    border: 0 solid #262626 !important;
+    margin: 0 10px 0;
+}
+
+ul.links.inline {
+    padding: 0 !important;
+    list-style: none;
+}
+
+xul xli {
+    list-style: none;
 }
 
 img.alignnone,
