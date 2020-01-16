@@ -1,4 +1,23 @@
 /****/
+
+ul li.comment-forbidden {
+
+    list-style: none;
+    font-size: 100%;
+    line-height: 1.7;
+    font-weight: 300;
+    color: #262626;
+}
+
+li.comment-forbidden a {
+    font-size: 12px;
+    padding: 12px 35px;
+    background: #fff;
+    color: #262626 !important;
+    border: 2px solid #262626 !important;
+    margin: 0 10px 0;
+}
+
 img.alignnone,
 img.alignleft {
     float: left;
