@@ -79,14 +79,10 @@
         <br>
         {{ content.field_post_gallery }}
       </div>
-      <div id="bulletin-donate">
+
+      <div id="bulletin" class="block-donate">
         <hr>
-        <h3>Leave a Reply</h3>
-          <p>Let us know what you think about the issues we've raised in this bulletin in the “Leave a Reply” section below.</p>
-        <br>
-        <h3>Every Penny Helps!</h3>
-        <p>If like us, you want to see an authentic Catholic renewal at Notre Dame, please consider making a donation to Sycamore Trust.</p>
-        <a class="gsc-button medium" href="/take-action/donation">Donation</a>
+        {{ drupal_block('leaveareply') }}
       </div>
 
       <div id="node-single-comment">

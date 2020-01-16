@@ -1772,6 +1772,59 @@
         }
     },
     {
+        "name": "drupal/addtoany",
+        "version": "1.12.0",
+        "version_normalized": "1.12.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/addtoany.git",
+            "reference": "8.x-1.12"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/addtoany-8.x-1.12.zip",
+            "reference": "8.x-1.12",
+            "shasum": "f66b3cb0a95b500e4802e8ff9c29af04554327d8"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.12",
+                "datestamp": "1554702781",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "AddToAny",
+                "homepage": "https://www.drupal.org/user/2640913"
+            },
+            {
+                "name": "micropat",
+                "homepage": "https://www.drupal.org/user/260224"
+            }
+        ],
+        "description": "Share buttons by AddToAny, including the AddToAny universal sharing button, Facebook, Twitter, Google+, Pinterest, and over 100 more on the <a href=\"https://www.addtoany.com/\" target=\"_blank\">AddToAny</a> platform.",
+        "homepage": "https://www.drupal.org/project/addtoany",
+        "support": {
+            "source": "https://git.drupalcode.org/project/addtoany"
+        }
+    },
+    {
         "name": "drupal/admin_toolbar",
         "version": "2.0.0",
         "version_normalized": "2.0.0.0",
@@ -2215,6 +2268,55 @@
         "homepage": "https://www.drupal.org/project/captcha",
         "support": {
             "source": "https://git.drupalcode.org/project/captcha"
+        }
+    },
+    {
+        "name": "drupal/checklistapi",
+        "version": "1.10.0",
+        "version_normalized": "1.10.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/checklistapi.git",
+            "reference": "8.x-1.10"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/checklistapi-8.x-1.10.zip",
+            "reference": "8.x-1.10",
+            "shasum": "9f9e39613e50f649b0a0e06b7ec5d056c795c27b"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.10",
+                "datestamp": "1553692687",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "TravisCarden",
+                "homepage": "https://www.drupal.org/user/236758"
+            }
+        ],
+        "description": "Provides an API for creating fillable, persistent checklists.",
+        "homepage": "https://www.drupal.org/project/checklistapi",
+        "support": {
+            "source": "https://git.drupalcode.org/project/checklistapi"
         }
     },
     {
@@ -3731,6 +3833,64 @@
         }
     },
     {
+        "name": "drupal/google_analytics",
+        "version": "3.0.0",
+        "version_normalized": "3.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/google_analytics.git",
+            "reference": "8.x-3.0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/google_analytics-8.x-3.0.zip",
+            "reference": "8.x-3.0",
+            "shasum": "18179854152cae44be2a5ed5de5550bc6e131c70"
+        },
+        "require": {
+            "drupal/core": "~8.5"
+        },
+        "require-dev": {
+            "drupal/php": "*",
+            "drupal/token": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-3.x": "3.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-3.0",
+                "datestamp": "1548968580",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "hass",
+                "homepage": "https://www.drupal.org/u/hass"
+            },
+            {
+                "name": "See other contributors",
+                "homepage": "https://www.drupal.org/node/49388/committers"
+            }
+        ],
+        "description": "Allows your site to be tracked by Google Analytics by adding a Javascript tracking code to every page.",
+        "homepage": "https://www.drupal.org/project/google_analytics",
+        "support": {
+            "source": "https://git.drupal.org/project/google_analytics.git",
+            "issues": "https://www.drupal.org/project/issues/google_analytics"
+        }
+    },
+    {
         "name": "drupal/image_url_formatter",
         "version": "1.0.0-beta1",
         "version_normalized": "1.0.0.0-beta1",
@@ -4335,6 +4495,59 @@
         }
     },
     {
+        "name": "drupal/protected_pages",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/protected_pages.git",
+            "reference": "8.x-1.1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/protected_pages-8.x-1.1.zip",
+            "reference": "8.x-1.1",
+            "shasum": "9bce09a0d06776839ee449b195781e6e973b3200"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.1",
+                "datestamp": "1528110654",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Unsupported Projects",
+                "homepage": "https://www.drupal.org/user/291168"
+            },
+            {
+                "name": "oksana-c",
+                "homepage": "https://www.drupal.org/user/2916547"
+            }
+        ],
+        "description": "Allow you to protect pages, private files by secure password.",
+        "homepage": "https://www.drupal.org/project/protected_pages",
+        "support": {
+            "source": "https://git.drupalcode.org/project/protected_pages"
+        }
+    },
+    {
         "name": "drupal/recaptcha",
         "version": "2.4.0",
         "version_normalized": "2.4.0.0",
@@ -4399,6 +4612,127 @@
         "support": {
             "source": "https://git.drupal.org/project/recaptcha.git",
             "issues": "https://www.drupal.org/project/issues/recaptcha"
+        }
+    },
+    {
+        "name": "drupal/seo_checklist",
+        "version": "4.1.0",
+        "version_normalized": "4.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/seo_checklist.git",
+            "reference": "8.x-4.1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/seo_checklist-8.x-4.1.zip",
+            "reference": "8.x-4.1",
+            "shasum": "b290b4a681b37ffc5785e75c0125b983e379158a"
+        },
+        "require": {
+            "drupal/checklistapi": "*",
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-4.x": "4.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-4.1",
+                "datestamp": "1512797885",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Ben Finklea",
+                "homepage": "https://www.drupal.org/user/46676"
+            },
+            {
+                "name": "TravisCarden",
+                "homepage": "https://www.drupal.org/user/236758"
+            }
+        ],
+        "description": "Uses best practices to check for proper search engine optimization.",
+        "homepage": "https://www.drupal.org/project/seo_checklist",
+        "keywords": [
+            "SEO"
+        ],
+        "support": {
+            "source": "http://drupalcode.org/seo_checklist",
+            "issues": "https://www.drupal.org/project/issues/seo_checklist"
+        }
+    },
+    {
+        "name": "drupal/simple_sitemap",
+        "version": "3.5.0",
+        "version_normalized": "3.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/simple_sitemap.git",
+            "reference": "8.x-3.5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/simple_sitemap-8.x-3.5.zip",
+            "reference": "8.x-3.5",
+            "shasum": "8e93d4dcf483b1558b800570af1d3b231b8fa6f3"
+        },
+        "require": {
+            "drupal/core": "^8 || ^9",
+            "ext-xmlwriter": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-3.x": "3.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-3.5",
+                "datestamp": "1576429387",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            },
+            "drush": {
+                "services": {
+                    "drush.services.yml": "^9"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Pawel Ginalski (gbyte.co)",
+                "homepage": "https://www.drupal.org/u/gbyte.co",
+                "email": "contact@gbyte.co",
+                "role": "Maintainer"
+            },
+            {
+                "name": "gbyte.co",
+                "homepage": "https://www.drupal.org/user/2381352"
+            }
+        ],
+        "description": "Creates a standard conform hreflang XML sitemap of the site content and provides a framework for developing other sitemap types.",
+        "homepage": "https://drupal.org/project/simple_sitemap",
+        "support": {
+            "source": "https://cgit.drupalcode.org/simple_sitemap",
+            "issues": "https://drupal.org/project/issues/simple_sitemap",
+            "irc": "irc://irc.freenode.org/drupal-contribute"
         }
     },
     {
@@ -4768,6 +5102,55 @@
         }
     },
     {
+        "name": "drupal/tweetext",
+        "version": "1.4.0",
+        "version_normalized": "1.4.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/tweetext.git",
+            "reference": "8.x-1.4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/tweetext-8.x-1.4.zip",
+            "reference": "8.x-1.4",
+            "shasum": "eaf4aebaca263950254fc190439cb22bb7ff2141"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.4",
+                "datestamp": "1553420285",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Project has not opted into security advisory coverage!"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "gaurav.kapoor",
+                "homepage": "https://www.drupal.org/user/3495331"
+            }
+        ],
+        "description": "Provides an input filter and WYSIWYG plugin for making text in content tweetable, just by clicking on the sentence or phrase itself!",
+        "homepage": "https://www.drupal.org/project/tweetext",
+        "support": {
+            "source": "https://git.drupalcode.org/project/tweetext"
+        }
+    },
+    {
         "name": "drupal/twitter_block",
         "version": "2.1.0",
         "version_normalized": "2.1.0.0",
@@ -5069,6 +5452,84 @@
             "issues": "https://www.drupal.org/project/issues/webform?version=8.x",
             "docs": "https://www.drupal.org/docs/8/modules/webform",
             "forum": "https://drupal.stackexchange.com/questions/tagged/webform"
+        }
+    },
+    {
+        "name": "drupal/yoast_seo",
+        "version": "1.5.0",
+        "version_normalized": "1.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/yoast_seo.git",
+            "reference": "8.x-1.5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/yoast_seo-8.x-1.5.zip",
+            "reference": "8.x-1.5",
+            "shasum": "e2b361277e44af50d4f560cf7fca83a192ca2345"
+        },
+        "require": {
+            "drupal/core": "*",
+            "drupal/metatag": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.5",
+                "datestamp": "1544198284",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "GoalGorilla",
+                "homepage": "https://www.drupal.org/user/272162"
+            },
+            {
+                "name": "Kingdutch",
+                "homepage": "https://www.drupal.org/user/1868952"
+            },
+            {
+                "name": "RobertRagas",
+                "homepage": "https://www.drupal.org/user/2723261"
+            },
+            {
+                "name": "bramtenhove",
+                "homepage": "https://www.drupal.org/user/1549848"
+            },
+            {
+                "name": "jaapjan",
+                "homepage": "https://www.drupal.org/user/555428"
+            },
+            {
+                "name": "jochemvn",
+                "homepage": "https://www.drupal.org/user/2521788"
+            },
+            {
+                "name": "naveenvalecha",
+                "homepage": "https://www.drupal.org/user/2665733"
+            },
+            {
+                "name": "ronaldtebrake",
+                "homepage": "https://www.drupal.org/user/2314038"
+            }
+        ],
+        "description": "Adds Real-time SEO page analysis and configuration.",
+        "homepage": "https://www.drupal.org/project/yoast_seo",
+        "support": {
+            "source": "https://git.drupalcode.org/project/yoast_seo"
         }
     },
     {
