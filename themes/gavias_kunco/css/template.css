@@ -1,4 +1,7 @@
 /****/
+.contextual .trigger {
+    border: 2px solid #09d934;
+}
 
 ul li.comment-forbidden {
     list-style: none;
