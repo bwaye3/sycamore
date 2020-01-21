@@ -1,4 +1,33 @@
 /****/
+/** PDF ***/
+.print__wrapper.print__wrapper--pdf {
+    margin: 25px 0 25px;
+}
+
+a.pdf,
+.print__wrapper.print__wrapper--pdf a{
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin: 0 0 20px;
+}
+
+a.pdf::before,
+.print__wrapper.print__wrapper--pdf a::before{
+    color: #cc0000;
+    content: "\f1c1";
+    font-family: "FontAwesome";
+    font-size: 120%;
+    padding: 0 5px 0;
+}
+
+a:hover.pdf,
+.print__wrapper.print__wrapper--pdf a:hover {
+    color: #cc0000;
+    text-decoration: none;
+}
+/****/
 .contextual .trigger {
     border: 2px solid #09d934;
 }

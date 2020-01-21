@@ -2388,6 +2388,63 @@
         }
     },
     {
+        "name": "drupal/ckeditor_tweetthis",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/ckeditor_tweetthis.git",
+            "reference": "8.x-1.0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/ckeditor_tweetthis-8.x-1.0.zip",
+            "reference": "8.x-1.0",
+            "shasum": "1fc702071bd90ac4f10ed16170e1122dd8bc2444"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0",
+                "datestamp": "1486369384",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "sajiniantony",
+                "homepage": "https://www.drupal.org/user/2603884"
+            },
+            {
+                "name": "santhoshkk",
+                "homepage": "https://www.drupal.org/user/2217056"
+            },
+            {
+                "name": "sreerajp",
+                "homepage": "https://www.drupal.org/user/2779199"
+            }
+        ],
+        "description": "This plugin adds a Tweet link insert feature to the editor.",
+        "homepage": "https://www.drupal.org/project/ckeditor_tweetthis",
+        "support": {
+            "source": "https://git.drupalcode.org/project/ckeditor_tweetthis"
+        }
+    },
+    {
         "name": "drupal/commerce",
         "version": "2.16.0",
         "version_normalized": "2.16.0.0",
@@ -7276,6 +7333,136 @@
         ]
     },
     {
+        "name": "mikehaertl/php-shellcommand",
+        "version": "1.6.1",
+        "version_normalized": "1.6.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mikehaertl/php-shellcommand.git",
+            "reference": "8d98d8536e05abafe76a491da87296d824939076"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mikehaertl/php-shellcommand/zipball/8d98d8536e05abafe76a491da87296d824939076",
+            "reference": "8d98d8536e05abafe76a491da87296d824939076",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">= 5.4.0"
+        },
+        "time": "2019-12-20T08:48:10+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "mikehaertl\\shellcommand\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Härtl",
+                "email": "haertl.mike@gmail.com"
+            }
+        ],
+        "description": "An object oriented interface to shell commands",
+        "keywords": [
+            "shell"
+        ]
+    },
+    {
+        "name": "mikehaertl/php-tmpfile",
+        "version": "1.1.1",
+        "version_normalized": "1.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mikehaertl/php-tmpfile.git",
+            "reference": "0ff48ed52ffee46d0f21fc34e8806f15467eb9b1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mikehaertl/php-tmpfile/zipball/0ff48ed52ffee46d0f21fc34e8806f15467eb9b1",
+            "reference": "0ff48ed52ffee46d0f21fc34e8806f15467eb9b1",
+            "shasum": ""
+        },
+        "time": "2017-08-28T11:21:51+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "mikehaertl\\tmp\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Härtl",
+                "email": "haertl.mike@gmail.com"
+            }
+        ],
+        "description": "A convenience class for temporary files",
+        "keywords": [
+            "files"
+        ]
+    },
+    {
+        "name": "mikehaertl/phpwkhtmltopdf",
+        "version": "2.4.1",
+        "version_normalized": "2.4.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mikehaertl/phpwkhtmltopdf.git",
+            "reference": "82ed9ee7394b1d88055f294aede4b1851ea27c7c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mikehaertl/phpwkhtmltopdf/zipball/82ed9ee7394b1d88055f294aede4b1851ea27c7c",
+            "reference": "82ed9ee7394b1d88055f294aede4b1851ea27c7c",
+            "shasum": ""
+        },
+        "require": {
+            "mikehaertl/php-shellcommand": "^1.5.0",
+            "mikehaertl/php-tmpfile": "^1.1.0",
+            "php": ">=5.0.0"
+        },
+        "time": "2019-08-17T07:53:19+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "mikehaertl\\wkhtmlto\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Haertl",
+                "email": "haertl.mike@gmail.com"
+            }
+        ],
+        "description": "A slim PHP wrapper around wkhtmltopdf with an easy to use and clean OOP interface",
+        "homepage": "http://mikehaertl.github.com/phpwkhtmltopdf/",
+        "keywords": [
+            "pdf",
+            "wkhtmltoimage",
+            "wkhtmltopdf"
+        ]
+    },
+    {
         "name": "nikic/php-parser",
         "version": "v4.3.0",
         "version_normalized": "4.3.0.0",
@@ -8543,24 +8730,24 @@
     },
     {
         "name": "symfony/filesystem",
-        "version": "v4.4.2",
-        "version_normalized": "4.4.2.0",
+        "version": "v4.4.3",
+        "version_normalized": "4.4.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/filesystem.git",
-            "reference": "40c2606131d56eff6f193b6e2ceb92414653b591"
+            "reference": "266c9540b475f26122b61ef8b23dd9198f5d1cfd"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/filesystem/zipball/40c2606131d56eff6f193b6e2ceb92414653b591",
-            "reference": "40c2606131d56eff6f193b6e2ceb92414653b591",
+            "url": "https://api.github.com/repos/symfony/filesystem/zipball/266c9540b475f26122b61ef8b23dd9198f5d1cfd",
+            "reference": "266c9540b475f26122b61ef8b23dd9198f5d1cfd",
             "shasum": ""
         },
         "require": {
             "php": "^7.1.3",
             "symfony/polyfill-ctype": "~1.8"
         },
-        "time": "2019-11-26T23:16:41+00:00",
+        "time": "2020-01-21T08:20:44+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -8595,23 +8782,23 @@
     },
     {
         "name": "symfony/finder",
-        "version": "v4.4.2",
-        "version_normalized": "4.4.2.0",
+        "version": "v4.4.3",
+        "version_normalized": "4.4.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/finder.git",
-            "reference": "ce8743441da64c41e2a667b8eb66070444ed911e"
+            "reference": "3a50be43515590faf812fbd7708200aabc327ec3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/finder/zipball/ce8743441da64c41e2a667b8eb66070444ed911e",
-            "reference": "ce8743441da64c41e2a667b8eb66070444ed911e",
+            "url": "https://api.github.com/repos/symfony/finder/zipball/3a50be43515590faf812fbd7708200aabc327ec3",
+            "reference": "3a50be43515590faf812fbd7708200aabc327ec3",
             "shasum": ""
         },
         "require": {
             "php": "^7.1.3"
         },
-        "time": "2019-11-17T21:56:56+00:00",
+        "time": "2020-01-04T13:00:46+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -9641,17 +9828,17 @@
     },
     {
         "name": "symfony/var-dumper",
-        "version": "v4.4.2",
-        "version_normalized": "4.4.2.0",
+        "version": "v4.4.3",
+        "version_normalized": "4.4.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/var-dumper.git",
-            "reference": "be330f919bdb395d1e0c3f2bfb8948512d6bdd99"
+            "reference": "7cfa470bc3b1887a7b2a47c0a702a84ad614fa92"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/var-dumper/zipball/be330f919bdb395d1e0c3f2bfb8948512d6bdd99",
-            "reference": "be330f919bdb395d1e0c3f2bfb8948512d6bdd99",
+            "url": "https://api.github.com/repos/symfony/var-dumper/zipball/7cfa470bc3b1887a7b2a47c0a702a84ad614fa92",
+            "reference": "7cfa470bc3b1887a7b2a47c0a702a84ad614fa92",
             "shasum": ""
         },
         "require": {
@@ -9674,7 +9861,7 @@
             "ext-intl": "To show region name in time zone dump",
             "symfony/console": "To use the ServerDumpCommand and/or the bin/var-dump-server script"
         },
-        "time": "2019-12-18T13:41:29+00:00",
+        "time": "2020-01-04T13:00:46+00:00",
         "bin": [
             "Resources/bin/var-dump-server"
         ],
@@ -9777,6 +9964,70 @@
         ],
         "description": "Symfony Yaml Component",
         "homepage": "https://symfony.com"
+    },
+    {
+        "name": "tecnickcom/tcpdf",
+        "version": "6.3.2",
+        "version_normalized": "6.3.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/tecnickcom/TCPDF.git",
+            "reference": "9fde7bb9b404b945e7ea88fb7eccd23d9a4e324b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/9fde7bb9b404b945e7ea88fb7eccd23d9a4e324b",
+            "reference": "9fde7bb9b404b945e7ea88fb7eccd23d9a4e324b",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2019-09-20T09:35:01+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "config",
+                "include",
+                "tcpdf.php",
+                "tcpdf_parser.php",
+                "tcpdf_import.php",
+                "tcpdf_barcodes_1d.php",
+                "tcpdf_barcodes_2d.php",
+                "include/tcpdf_colors.php",
+                "include/tcpdf_filters.php",
+                "include/tcpdf_font_data.php",
+                "include/tcpdf_fonts.php",
+                "include/tcpdf_images.php",
+                "include/tcpdf_static.php",
+                "include/barcodes/datamatrix.php",
+                "include/barcodes/pdf417.php",
+                "include/barcodes/qrcode.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-3.0"
+        ],
+        "authors": [
+            {
+                "name": "Nicola Asuni",
+                "email": "info@tecnick.com",
+                "role": "lead"
+            }
+        ],
+        "description": "TCPDF is a PHP class for generating PDF documents and barcodes.",
+        "homepage": "http://www.tcpdf.org/",
+        "keywords": [
+            "PDFD32000-2008",
+            "TCPDF",
+            "barcodes",
+            "datamatrix",
+            "pdf",
+            "pdf417",
+            "qrcode"
+        ]
     },
     {
         "name": "twig/twig",
