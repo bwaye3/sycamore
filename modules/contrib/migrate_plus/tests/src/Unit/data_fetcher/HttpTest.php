@@ -151,8 +151,7 @@ class HttpTest extends MigrateTestCase {
     $plugin = new TestHttp($migration_config, $this->dataFetcherPluginId, $this->pluginDefinition);
     $plugin->mockHttpClient([[403, 'text/html', 'Forbidden']], $this->basicAuthenticator);
 
-    $this->expectException(MigrateException::class);
-    $this->expectExceptionMessage('Error message: Client error: `GET http://example.org/http_fetcher_test` resulted in a `403 Forbidden');
+    $this->setExpectedException(MigrateException::class, 'Error message: Client error: `GET http://example.org/http_fetcher_test` resulted in a `403 Forbidden');
     $plugin->getResponseContent($migration_config['urls'][0]);
   }
 
@@ -165,8 +164,7 @@ class HttpTest extends MigrateTestCase {
     $plugin = new TestHttp($migration_config, $this->dataFetcherPluginId, $this->pluginDefinition);
     $plugin->mockHttpClient([[500, 'text/html', 'Internal Server Error']], $this->basicAuthenticator);
 
-    $this->expectException(MigrateException::class);
-    $this->expectExceptionMessage('GET http://example.org/http_fetcher_test` resulted in a `500 Internal Server Error');
+    $this->setExpectedException(MigrateException::class, 'GET http://example.org/http_fetcher_test` resulted in a `500 Internal Server Error');
     $plugin->getResponseContent($migration_config['urls'][0]);
   }
 

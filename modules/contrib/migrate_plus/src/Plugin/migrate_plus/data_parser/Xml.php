@@ -135,7 +135,7 @@ class Xml extends DataParserPluginBase {
    *   A \SimpleXmlElement when the document is parseable, or false if a
    *   parsing error occurred.
    *
-   * @throws \Drupal\migrate\MigrateException
+   * @throws MigrateException
    */
   protected function getSimpleXml() {
     $node = $this->reader->expand();

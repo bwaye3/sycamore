@@ -178,8 +178,7 @@ class FileTest extends MigrateTestCase {
       ->at($this->baseDir);
 
     // Trigger exception trying to read the non-readable file.
-    $this->expectException(MigrateException::class);
-    $this->expectExceptionMessage('file parser plugin: could not retrieve data from vfs://migration_data/file.json');
+    $this->setExpectedException(MigrateException::class, 'file parser plugin: could not retrieve data from vfs://migration_data/file.json');
     $plugin->getResponseContent($file_path);
   }
 

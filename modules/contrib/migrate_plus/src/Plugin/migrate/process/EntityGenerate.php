@@ -2,8 +2,10 @@
 
 namespace Drupal\migrate_plus\Plugin\migrate\process;
 
-use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface;
 use Drupal\migrate\MigrateExecutableInterface;
+use Drupal\migrate\Plugin\MigratePluginManager;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Row;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -51,18 +53,11 @@ class EntityGenerate extends EntityLookup {
   protected $row;
 
   /**
-   * The migrate executable.
+   * The MigrateExecutable instance.
    *
-   * @var \Drupal\migrate\MigrateExecutableInterface
+   * @var \Drupal\migrate\MigrateExecutable
    */
   protected $migrateExecutable;
-
-  /**
-   * The MigratePluginManager instance.
-   *
-   * @var \Drupal\migrate\Plugin\MigratePluginManagerInterface
-   */
-  protected $processPluginManager;
 
   /**
    * The get process plugin instance.
@@ -72,12 +67,43 @@ class EntityGenerate extends EntityLookup {
   protected $getProcessPlugin;
 
   /**
+   * EntityGenerate constructor.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $pluginId
+   *   The plugin_id for the plugin instance.
+   * @param mixed $pluginDefinition
+   *   The plugin implementation definition.
+   * @param \Drupal\migrate\Plugin\MigrationInterface $migration
+   *   The migration.
+   * @param \Drupal\Core\Entity\EntityManagerInterface $entityManager
+   *   The $entityManager instance.
+   * @param \Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface $selectionPluginManager
+   *   The $selectionPluginManager instance.
+   * @param \Drupal\migrate\Plugin\MigratePluginManager $migratePluginManager
+   *   The MigratePluginManager instance.
+   */
+  public function __construct(array $configuration, $pluginId, $pluginDefinition, MigrationInterface $migration, EntityManagerInterface $entityManager, SelectionPluginManagerInterface $selectionPluginManager, MigratePluginManager $migratePluginManager) {
+    parent::__construct($configuration, $pluginId, $pluginDefinition, $migration, $entityManager, $selectionPluginManager);
+    if (isset($configuration['values'])) {
+      $this->getProcessPlugin = $migratePluginManager->createInstance('get', ['source' => $configuration['values']]);
+    }
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $pluginId, $pluginDefinition, MigrationInterface $migration = NULL) {
-    $instance = parent::create($container, $configuration, $pluginId, $pluginDefinition, $migration);
-    $instance->processPluginManager = $container->get('plugin.manager.migrate.process');
-    return $instance;
+    return new static(
+      $configuration,
+      $pluginId,
+      $pluginDefinition,
+      $migration,
+      $container->get('entity.manager'),
+      $container->get('plugin.manager.entity_reference_selection'),
+      $container->get('plugin.manager.migrate.process')
+    );
   }
 
   /**
@@ -105,7 +131,7 @@ class EntityGenerate extends EntityLookup {
    */
   protected function generateEntity($value) {
     if (!empty($value)) {
-      $entity = $this->entityTypeManager
+      $entity = $this->entityManager
         ->getStorage($this->lookupEntityType)
         ->create($this->entity($value));
       $entity->save();
@@ -142,8 +168,8 @@ class EntityGenerate extends EntityLookup {
     // Gather any additional properties/fields.
     if (isset($this->configuration['values']) && is_array($this->configuration['values'])) {
       foreach ($this->configuration['values'] as $key => $property) {
-        $source_value = $this->row->get($property);
-        NestedArray::setValue($entity_values, explode(Row::PROPERTY_SEPARATOR, $key), $source_value, TRUE);
+        $source_value = $this->getProcessPlugin->transform(NULL, $this->migrateExecutable, $this->row, $property);
+        $entity_values[$key] = $source_value;
       }
     }
 

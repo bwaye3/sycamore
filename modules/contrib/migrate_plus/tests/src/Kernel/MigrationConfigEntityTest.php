@@ -14,9 +14,6 @@ use Drupal\Tests\migrate\Kernel\MigrateTestBase;
  */
 class MigrationConfigEntityTest extends MigrateTestBase {
 
-  /**
-   * {@inheritdoc}
-   */
   public static $modules = [
     'migrate',
     'migrate_plus',
@@ -60,7 +57,7 @@ class MigrationConfigEntityTest extends MigrateTestBase {
     ]);
     $config->save();
 
-    $this->assertNotEmpty($this->pluginManager->getDefinition('test'));
+    $this->assertTrue($this->pluginManager->getDefinition('test'));
     $this->assertSame('Label A', $this->pluginManager->getDefinition('test')['label']);
 
     // Clear static cache in the plugin manager, the cache tag take care of the
@@ -107,8 +104,7 @@ class MigrationConfigEntityTest extends MigrateTestBase {
     $this->assertCount(1, $definitions);
     $this->assertArrayHasKey('test_active', $definitions);
 
-    $this->expectException(PluginNotFoundException::class);
-    $this->expectExceptionMessage('The "test_inactive" plugin does not exist.');
+    $this->setExpectedException(PluginNotFoundException::class, 'The "test_inactive" plugin does not exist.');
     $this->pluginManager->getDefinition('test_inactive');
   }
 

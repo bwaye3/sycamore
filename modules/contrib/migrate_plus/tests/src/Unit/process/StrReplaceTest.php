@@ -2,7 +2,6 @@
 
 namespace Drupal\Tests\migrate_plus\Unit\process;
 
-use Drupal\migrate\MigrateException;
 use Drupal\migrate_plus\Plugin\migrate\process\StrReplace;
 use Drupal\Tests\migrate\Unit\process\MigrateProcessTestCase;
 
@@ -61,8 +60,7 @@ class StrReplaceTest extends MigrateProcessTestCase {
     $value = 'vero eos et accusam et justo vero';
     $configuration['replace'] = 'that';
     $plugin = new StrReplace($configuration, 'str_replace', []);
-    $this->expectException(MigrateException::class);
-    $this->expectExceptionMessage('"search" must be configured.');
+    $this->setExpectedException('\Drupal\migrate\MigrateException', '"search" must be configured.');
     $plugin->transform($value, $this->migrateExecutable, $this->row, 'destinationproperty');
   }
 
@@ -73,8 +71,7 @@ class StrReplaceTest extends MigrateProcessTestCase {
     $value = 'vero eos et accusam et justo vero';
     $configuration['search'] = 'et';
     $plugin = new StrReplace($configuration, 'str_replace', []);
-    $this->expectException(MigrateException::class);
-    $this->expectExceptionMessage('"replace" must be configured.');
+    $this->setExpectedException('\Drupal\migrate\MigrateException', '"replace" must be configured.');
     $plugin->transform($value, $this->migrateExecutable, $this->row, 'destinationproperty');
   }
 

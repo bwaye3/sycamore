@@ -22,7 +22,7 @@ class SkipOnValueTest extends MigrateProcessTestCase {
   public function testProcessSkipsOnValue() {
     $configuration['method'] = 'process';
     $configuration['value'] = 86;
-    $this->expectException(MigrateSkipProcessException::class);
+    $this->setExpectedException(MigrateSkipProcessException::class);
     (new SkipOnValue($configuration, 'skip_on_value', []))
       ->transform('86', $this->migrateExecutable, $this->row, 'destinationproperty');
   }
@@ -33,7 +33,7 @@ class SkipOnValueTest extends MigrateProcessTestCase {
   public function testProcessSkipsOnMultipleValue() {
     $configuration['method'] = 'process';
     $configuration['value'] = [1, 1, 2, 3, 5, 8];
-    $this->expectException(MigrateSkipProcessException::class);
+    $this->setExpectedException(MigrateSkipProcessException::class);
     (new SkipOnValue($configuration, 'skip_on_value', []))
       ->transform('5', $this->migrateExecutable, $this->row, 'destinationproperty');
   }
@@ -101,7 +101,7 @@ class SkipOnValueTest extends MigrateProcessTestCase {
   public function testRowSkipsOnValue() {
     $configuration['method'] = 'row';
     $configuration['value'] = 86;
-    $this->expectException(MigrateSkipRowException::class);
+    $this->setExpectedException(MigrateSkipRowException::class);
     (new SkipOnValue($configuration, 'skip_on_value', []))
       ->transform('86', $this->migrateExecutable, $this->row, 'destinationproperty');
   }
@@ -127,7 +127,7 @@ class SkipOnValueTest extends MigrateProcessTestCase {
    */
   public function testRequiredRowConfiguration() {
     $configuration['method'] = 'row';
-    $this->expectException(MigrateException::class);
+    $this->setExpectedException(MigrateException::class);
     (new SkipOnValue($configuration, 'skip_on_value', []))
       ->transform('sourcevalue', $this->migrateExecutable, $this->row, 'destinationproperty');
   }
@@ -137,7 +137,7 @@ class SkipOnValueTest extends MigrateProcessTestCase {
    */
   public function testRequiredProcessConfiguration() {
     $configuration['method'] = 'process';
-    $this->expectException(MigrateException::class);
+    $this->setExpectedException(MigrateException::class);
     (new SkipOnValue($configuration, 'skip_on_value', []))
       ->transform('sourcevalue', $this->migrateExecutable, $this->row, 'destinationproperty');
   }
