@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b244e9d3f8179b267ba96244c2c876cf",
+    "content-hash": "22af82b243c0f2c6fe51ac6d0c96539e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1658,6 +1658,72 @@
             "time": "2019-06-08T11:03:04+00:00"
         },
         {
+            "name": "dompdf/dompdf",
+            "version": "v0.8.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dompdf/dompdf.git",
+                "reference": "8f49b3b01693f51037dd50da81090beba1b5c005"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/8f49b3b01693f51037dd50da81090beba1b5c005",
+                "reference": "8f49b3b01693f51037dd50da81090beba1b5c005",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-mbstring": "*",
+                "phenx/php-font-lib": "^0.5.1",
+                "phenx/php-svg-lib": "^0.3.3",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "suggest": {
+                "ext-gd": "Needed to process images",
+                "ext-gmagick": "Improves image processing performance",
+                "ext-imagick": "Improves image processing performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "0.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dompdf\\": "src/"
+                },
+                "classmap": [
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Ménager",
+                    "email": "fabien.menager@gmail.com"
+                },
+                {
+                    "name": "Brian Sweeney",
+                    "email": "eclecticgeek@gmail.com"
+                },
+                {
+                    "name": "Gabriel Bull",
+                    "email": "me@gabrielbull.com"
+                }
+            ],
+            "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
+            "homepage": "https://github.com/dompdf/dompdf",
+            "time": "2020-01-20T17:00:46+00:00"
+        },
+        {
             "name": "drupal/address",
             "version": "1.7.0",
             "source": {
@@ -1862,20 +1928,20 @@
         },
         {
             "name": "drupal/back_to_top",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/back_to_top.git",
-                "reference": "8.x-1.0"
+                "reference": "8.x-1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/back_to_top-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "28e17327f779bad5140ab55ef071a5f6727adbd7"
+                "url": "https://ftp.drupal.org/files/projects/back_to_top-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "5698e1c440561fdb109bb15816bdf6332f9bbb8f"
             },
             "require": {
-                "drupal/core": "~8.0"
+                "drupal/core": "^8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
@@ -1883,8 +1949,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1536664080",
+                    "version": "8.x-1.1",
+                    "datestamp": "1579012388",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3351,6 +3417,67 @@
             }
         },
         {
+            "name": "drupal/entity_print",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/entity_print.git",
+                "reference": "8.x-2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_print-8.x-2.1.zip",
+                "reference": "8.x-2.1",
+                "shasum": "fea398bd6f088bc4a7064fce46f28aa241fb1a34"
+            },
+            "require": {
+                "dompdf/dompdf": "~0.8.0",
+                "drupal/core": "~8.0"
+            },
+            "suggest": {
+                "mikehaertl/phpwkhtmltopdf": "PhpWkhtmlToPdf provides the PHP library to use Wkhtmltopdf"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.1",
+                    "datestamp": "1533220070",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Dougherty",
+                    "homepage": "https://www.drupal.org/u/benjy"
+                },
+                {
+                    "name": "pameeela",
+                    "homepage": "https://www.drupal.org/user/1431110"
+                }
+            ],
+            "description": "PDF print solution for any Drupal entity.",
+            "homepage": "http://drupal.org/project/entity_print",
+            "keywords": [
+                "PDF",
+                "drupal",
+                "print",
+                "web"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/entity_print"
+            }
+        },
+        {
             "name": "drupal/entity_reference_revisions",
             "version": "1.7.0",
             "source": {
@@ -3410,6 +3537,101 @@
             "homepage": "https://www.drupal.org/project/entity_reference_revisions",
             "support": {
                 "source": "https://git.drupalcode.org/project/entity_reference_revisions"
+            }
+        },
+        {
+            "name": "drupal/eu_cookie_compliance",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/eu-cookie-compliance.git",
+                "reference": "8.x-1.8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/eu_cookie_compliance-8.x-1.8.zip",
+                "reference": "8.x-1.8",
+                "shasum": "f4b5c48d0d4347c414b91eaa59acad88707b5907"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.8",
+                    "datestamp": "1563997434",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Marcin Pajdzik",
+                    "homepage": "https://www.drupal.org/u/marcin-pajdzik",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Sven Berg Ryen",
+                    "homepage": "https://www.drupal.org/u/svenryen",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/1538032/committers"
+                },
+                {
+                    "name": "dakku",
+                    "homepage": "https://www.drupal.org/user/97634"
+                },
+                {
+                    "name": "grzegorz.bartman",
+                    "homepage": "https://www.drupal.org/user/363120"
+                },
+                {
+                    "name": "id.tornado",
+                    "homepage": "https://www.drupal.org/user/2754049"
+                },
+                {
+                    "name": "killua99",
+                    "homepage": "https://www.drupal.org/user/699418"
+                },
+                {
+                    "name": "mibfire",
+                    "homepage": "https://www.drupal.org/user/155136"
+                },
+                {
+                    "name": "naveenvalecha",
+                    "homepage": "https://www.drupal.org/user/2665733"
+                },
+                {
+                    "name": "svenryen",
+                    "homepage": "https://www.drupal.org/user/667244"
+                }
+            ],
+            "description": "This module aims at making the website compliant with the new EU cookie regulation.",
+            "homepage": "https://drupal.org/project/eu_cookie_compliance",
+            "keywords": [
+                "Cookie",
+                "CookieCompliance",
+                "Drupal",
+                "GDPR"
+            ],
+            "support": {
+                "source": "https://cgit.drupalcode.org/eu-cookie-compliance",
+                "docs": "https://www.drupal.org/project/eu_cookie_compliance",
+                "forum": "https://drupal.stackexchange.com/search?q=eu+cookie+compliance",
+                "issues": "https://www.drupal.org/project/issues/eu_cookie_compliance?version=8.x",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
             }
         },
         {
@@ -3792,6 +4014,70 @@
             }
         },
         {
+            "name": "drupal/honeypot",
+            "version": "1.30.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/honeypot.git",
+                "reference": "8.x-1.30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/honeypot-8.x-1.30.zip",
+                "reference": "8.x-1.30",
+                "shasum": "1d7983e8e07feee4f13e4b05c9a10db15ae2097e"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.30",
+                    "datestamp": "1576274288",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Jeff Geerling",
+                    "homepage": "https://www.drupal.org/user/213194",
+                    "email": "geerlingguy@mac.com"
+                },
+                {
+                    "name": "geerlingguy",
+                    "homepage": "https://www.drupal.org/user/389011"
+                },
+                {
+                    "name": "vijaycs85",
+                    "homepage": "https://www.drupal.org/user/93488"
+                }
+            ],
+            "description": "Mitigates spam form submissions using the honeypot method.",
+            "homepage": "https://www.drupal.org/project/honeypot",
+            "keywords": [
+                "deterrent",
+                "form",
+                "honeypot",
+                "honeytrap",
+                "php",
+                "spam"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/honeypot"
+            }
+        },
+        {
             "name": "drupal/image_url_formatter",
             "version": "1.0.0-beta1",
             "source": {
@@ -4094,6 +4380,53 @@
             }
         },
         {
+            "name": "drupal/media_entity_file_replace",
+            "version": "1.0.0-beta2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/media_entity_file_replace.git",
+                "reference": "8.x-1.0-beta2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/media_entity_file_replace-8.x-1.0-beta2.zip",
+                "reference": "8.x-1.0-beta2",
+                "shasum": "9fb1fb6e585d26f8ccd289400f4c3b0b1ec9e1c8"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta2",
+                    "datestamp": "1578875043",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "bkosborne",
+                    "homepage": "https://www.drupal.org/user/788032"
+                }
+            ],
+            "description": "Allows content editors to easily replace source files associated with any file-based media entity, preserving the original filename.",
+            "homepage": "https://www.drupal.org/project/media_entity_file_replace",
+            "support": {
+                "source": "https://git.drupalcode.org/project/media_entity_file_replace"
+            }
+        },
+        {
             "name": "drupal/metatag",
             "version": "1.11.0",
             "source": {
@@ -4162,6 +4495,71 @@
             }
         },
         {
+            "name": "drupal/migrate_plus",
+            "version": "4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/migrate_plus.git",
+                "reference": "8.x-4.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/migrate_plus-8.x-4.2.zip",
+                "reference": "8.x-4.2",
+                "shasum": "5736a43e39cc5c091d54ceef2849ea35ba979af3"
+            },
+            "require": {
+                "drupal/core": "^8.3"
+            },
+            "require-dev": {
+                "drupal/entity": "*",
+                "drupal/migrate_example_advanced_setup": "*",
+                "drupal/migrate_example_setup": "*",
+                "drupal/migrate_tools": "*",
+                "drupal/profile": "*"
+            },
+            "suggest": {
+                "ext-soap": "*",
+                "sainsburys/guzzle-oauth2-plugin": "3.0 required for the OAuth2 authentication plugin"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-4.x": "4.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-4.2",
+                    "datestamp": "1555683487",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Mike Ryan",
+                    "homepage": "https://www.drupal.org/u/mikeryan",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "mikeryan",
+                    "homepage": "https://www.drupal.org/user/4420"
+                }
+            ],
+            "description": "Enhancements to core migration support.",
+            "homepage": "https://www.drupal.org/project/migrate_plus",
+            "support": {
+                "source": "https://cgit.drupalcode.org/migrate_plus",
+                "issues": "https://www.drupal.org/project/issues/migrate_plus",
+                "irc": "irc://irc.freenode.org/drupal-migrate"
+            }
+        },
+        {
             "name": "drupal/migrate_source_csv",
             "version": "3.2.0",
             "source": {
@@ -4216,6 +4614,74 @@
             "support": {
                 "source": "https://cgit.drupalcode.org/migrate_source_csv",
                 "issues": "https://www.drupal.org/project/issues/migrate_source_csv",
+                "irc": "irc://irc.freenode.org/drupal-migrate"
+            }
+        },
+        {
+            "name": "drupal/migrate_tools",
+            "version": "4.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/migrate_tools.git",
+                "reference": "8.x-4.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/migrate_tools-8.x-4.5.zip",
+                "reference": "8.x-4.5",
+                "shasum": "06390b359bf53c50a30f2d6dc4c7542bfb1fe7ca"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/migrate_plus": "^4 || ^5"
+            },
+            "require-dev": {
+                "drupal/migrate_plus": "4.x-dev",
+                "drupal/migrate_source_csv": "^2.2",
+                "drush/drush": "^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-4.x": "4.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-4.5",
+                    "datestamp": "1574693285",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "heddn",
+                    "homepage": "https://www.drupal.org/user/1463982"
+                },
+                {
+                    "name": "mikeryan",
+                    "homepage": "https://www.drupal.org/user/4420"
+                },
+                {
+                    "name": "moshe weitzman",
+                    "homepage": "https://www.drupal.org/user/23"
+                }
+            ],
+            "description": "Tools to assist in developing and running migrations.",
+            "homepage": "http://drupal.org/project/migrate_tools",
+            "support": {
+                "source": "http://cgit.drupalcode.org/migrate_tools",
+                "issues": "http://drupal.org/project/migrate_tools",
                 "irc": "irc://irc.freenode.org/drupal-migrate"
             }
         },
@@ -4740,6 +5206,71 @@
             }
         },
         {
+            "name": "drupal/sitemap",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/sitemap.git",
+                "reference": "8.x-1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/sitemap-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "aa6f0189eba189c9f6c1a1e24505f1ce802eeea1"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.5",
+                    "datestamp": "1541693881",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Nik Alexandrov",
+                    "homepage": "https://www.drupal.org/u/nafes",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Anna Kalata",
+                    "homepage": "https://www.drupal.org/u/akalata",
+                    "role": "Co-maintainer"
+                },
+                {
+                    "name": "killes@www.drop.org",
+                    "homepage": "https://www.drupal.org/u/killeswww.drop.org",
+                    "role": "Co-maintainer"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/3295/committers",
+                    "role": "contributor"
+                }
+            ],
+            "description": "Display a sitemap.",
+            "homepage": "http://drupal.org/project/sitemap",
+            "support": {
+                "source": "http://cgit.drupalcode.org/sitemap",
+                "issues": "http://drupal.org/project/issues/sitemap",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
             "name": "drupal/state_machine",
             "version": "1.0.0-rc1",
             "source": {
@@ -5252,20 +5783,20 @@
         },
         {
             "name": "drupal/webform",
-            "version": "5.6.0",
+            "version": "5.7.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/webform.git",
-                "reference": "8.x-5.6"
+                "reference": "8.x-5.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.6.zip",
-                "reference": "8.x-5.6",
-                "shasum": "58d77d2df011c25eb5086cab6d12743d63442cf5"
+                "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.7.zip",
+                "reference": "8.x-5.7",
+                "shasum": "b7ff506daeff15d2edcdc01b2c4881c0fdaf3fff"
             },
             "require": {
-                "drupal/core": "*"
+                "drupal/core": "^8"
             },
             "require-dev": {
                 "drupal/address": "~1.4",
@@ -5297,8 +5828,8 @@
                     "dev-5.x": "5.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-5.6",
-                    "datestamp": "1575331086",
+                    "version": "8.x-5.7",
+                    "datestamp": "1579208583",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5365,6 +5896,205 @@
                 "issues": "https://www.drupal.org/project/issues/webform?version=8.x",
                 "docs": "https://www.drupal.org/docs/8/modules/webform",
                 "forum": "https://drupal.stackexchange.com/questions/tagged/webform"
+            }
+        },
+        {
+            "name": "drupal/wordpress_migrate",
+            "version": "3.0.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/wordpress_migrate.git",
+                "reference": "8.x-3.0-alpha3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/wordpress_migrate-8.x-3.0-alpha3.zip",
+                "reference": "8.x-3.0-alpha3",
+                "shasum": "23ae7947811d981e095d649852a6e856619de68d"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/migrate_plus": "*"
+            },
+            "require-dev": {
+                "drupal/ctools": "*",
+                "drupal/migrate_tools": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0-alpha3",
+                    "datestamp": "1551288780",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "HongPong",
+                    "homepage": "https://www.drupal.org/user/60005"
+                },
+                {
+                    "name": "mikeryan",
+                    "homepage": "https://www.drupal.org/user/4420"
+                },
+                {
+                    "name": "moshe weitzman",
+                    "homepage": "https://www.drupal.org/user/23"
+                }
+            ],
+            "description": "Support for importing WordPress sites into Drupal",
+            "homepage": "https://www.drupal.org/project/wordpress_migrate",
+            "support": {
+                "source": "https://git.drupalcode.org/project/wordpress_migrate"
+            }
+        },
+        {
+            "name": "drupal/wordpress_migrate_ui",
+            "version": "3.0.0-alpha3",
+            "require": {
+                "drupal/core": "*",
+                "drupal/ctools": "*",
+                "drupal/migrate_tools": "*",
+                "drupal/wordpress_migrate": "self.version"
+            },
+            "type": "metapackage",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0-alpha3",
+                    "datestamp": "1551288780",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "HongPong",
+                    "homepage": "https://www.drupal.org/user/60005"
+                },
+                {
+                    "name": "mikeryan",
+                    "homepage": "https://www.drupal.org/user/4420"
+                },
+                {
+                    "name": "moshe weitzman",
+                    "homepage": "https://www.drupal.org/user/23"
+                }
+            ],
+            "description": "Wizard UI for configuring WordPress imports into Drupal",
+            "homepage": "https://www.drupal.org/project/wordpress_migrate",
+            "support": {
+                "source": "https://git.drupalcode.org/project/wordpress_migrate"
+            }
+        },
+        {
+            "name": "drupal/xmlsitemap",
+            "version": "1.0.0-rc1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/xmlsitemap.git",
+                "reference": "8.x-1.0-rc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/xmlsitemap-8.x-1.0-rc1.zip",
+                "reference": "8.x-1.0-rc1",
+                "shasum": "9b88caa55f9a45b8c89a1284d2db739fbf0c830f"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "ext-xmlwriter": "*"
+            },
+            "require-dev": {
+                "drupal/robotstxt": "^1.0"
+            },
+            "suggest": {
+                "drush/drush": "Command-line regenerating and rebuilding sitemaps."
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-rc1",
+                    "datestamp": "1576705928",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
+                    "name": "RenatoG",
+                    "homepage": "https://www.drupal.org/user/3326031"
+                },
+                {
+                    "name": "amateescu",
+                    "homepage": "https://www.drupal.org/user/729614"
+                },
+                {
+                    "name": "andrei.dincu",
+                    "homepage": "https://www.drupal.org/user/2628879"
+                },
+                {
+                    "name": "juampynr",
+                    "homepage": "https://www.drupal.org/user/682736"
+                },
+                {
+                    "name": "paulmckibben",
+                    "homepage": "https://www.drupal.org/user/279003"
+                },
+                {
+                    "name": "pifagor",
+                    "homepage": "https://www.drupal.org/user/2375692"
+                },
+                {
+                    "name": "tadityar",
+                    "homepage": "https://www.drupal.org/user/3094465"
+                },
+                {
+                    "name": "th_tushar",
+                    "homepage": "https://www.drupal.org/user/1835276"
+                }
+            ],
+            "description": "Creates XML sitemaps for the site",
+            "homepage": "https://www.drupal.org/project/xmlsitemap",
+            "support": {
+                "source": "http://cgit.drupalcode.org/xmlsitemap",
+                "issues": "http://drupal.org/project/issues/xmlsitemap"
             }
         },
         {
@@ -6655,6 +7385,83 @@
             "time": "2015-02-10T20:07:52+00:00"
         },
         {
+            "name": "phenx/php-font-lib",
+            "version": "0.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PhenX/php-font-lib.git",
+                "reference": "760148820110a1ae0936e5cc35851e25a938bc97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PhenX/php-font-lib/zipball/760148820110a1ae0936e5cc35851e25a938bc97",
+                "reference": "760148820110a1ae0936e5cc35851e25a938bc97",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "FontLib\\": "src/FontLib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Ménager",
+                    "email": "fabien.menager@gmail.com"
+                }
+            ],
+            "description": "A library to read, parse, export and make subsets of different types of font files.",
+            "homepage": "https://github.com/PhenX/php-font-lib",
+            "time": "2017-09-13T16:14:37+00:00"
+        },
+        {
+            "name": "phenx/php-svg-lib",
+            "version": "v0.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PhenX/php-svg-lib.git",
+                "reference": "5fa61b65e612ce1ae15f69b3d223cb14ecc60e32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PhenX/php-svg-lib/zipball/5fa61b65e612ce1ae15f69b3d223cb14ecc60e32",
+                "reference": "5fa61b65e612ce1ae15f69b3d223cb14ecc60e32",
+                "shasum": ""
+            },
+            "require": {
+                "sabberworm/php-css-parser": "^8.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.5|^6.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Svg\\": "src/Svg"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Ménager",
+                    "email": "fabien.menager@gmail.com"
+                }
+            ],
+            "description": "A library to read, parse and export to PDF SVG files.",
+            "homepage": "https://github.com/PhenX/php-svg-lib",
+            "time": "2019-09-11T20:02:13+00:00"
+        },
+        {
             "name": "psr/container",
             "version": "1.0.0",
             "source": {
@@ -6913,6 +7720,51 @@
             ],
             "description": "A polyfill for getallheaders.",
             "time": "2019-03-08T08:55:37+00:00"
+        },
+        {
+            "name": "sabberworm/php-css-parser",
+            "version": "8.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sabberworm/PHP-CSS-Parser.git",
+                "reference": "91bcc3e3fdb7386c9a2e0e0aa09ca75cc43f121f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/91bcc3e3fdb7386c9a2e0e0aa09ca75cc43f121f",
+                "reference": "91bcc3e3fdb7386c9a2e0e0aa09ca75cc43f121f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "codacy/coverage": "^1.4",
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Sabberworm\\CSS": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raphael Schweikert"
+                }
+            ],
+            "description": "Parser for CSS Files written in PHP",
+            "homepage": "http://www.sabberworm.com/blog/2010/6/10/php-css-parser",
+            "keywords": [
+                "css",
+                "parser",
+                "stylesheet"
+            ],
+            "time": "2019-02-22T07:42:52+00:00"
         },
         {
             "name": "sainsburys/guzzle-oauth2-plugin",
@@ -9122,10 +9974,14 @@
         "drupal/faq": 15,
         "drupal/image_url_formatter": 10,
         "drupal/inline_entity_form": 5,
+        "drupal/media_entity_file_replace": 10,
         "drupal/simplenews": 10,
         "drupal/state_machine": 5,
         "drupal/swiftmailer": 10,
-        "drupal/tvi": 10
+        "drupal/tvi": 10,
+        "drupal/wordpress_migrate": 15,
+        "drupal/wordpress_migrate_ui": 15,
+        "drupal/xmlsitemap": 5
     },
     "prefer-stable": true,
     "prefer-lowest": false,
