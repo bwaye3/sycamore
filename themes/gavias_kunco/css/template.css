@@ -42,11 +42,10 @@ ul li.comment-forbidden {
 }
 
 li.comment-forbidden a {
-    padding: 12px 35px;
+    padding: 8px 35px;
     background: #254e77;
     color: #fff !important;
     border: 0 solid #262626 !important;
-    margin: 0 10px 0;
     font-weight: bold;
     text-decoration: none;
 }
@@ -55,13 +54,14 @@ li.comment-forbidden a:hover {
     background: #254e77;
     color: #ae9142 !important;
     border: 0 solid #262626 !important;
-    margin: 0 10px 0;
 }
 
 ul.links.inline {
     padding: 0 !important;
     list-style: none;
+    margin: 25px 0 0;
 }
+
 
 xul xli {
     list-style: none;
