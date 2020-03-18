@@ -1,8 +1,9 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/sycamore/public_html/staging
+    - export DEPLOYPATH=/home/sycamore/public_html/
     - /bin/cp -R * $DEPLOYPATH
+
 
 #deployment:
 #tasks:
