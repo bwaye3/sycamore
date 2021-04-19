@@ -71,13 +71,23 @@ class PromotionTest extends CommerceWebDriverTestBase {
     $this->getSession()->getPage()->fillField('conditions[form][order][order_total_price][configuration][form][amount][number]', '50.00');
 
     // Confirm that the usage limit widget works properly.
-    $this->getSession()->getPage()->hasCheckedField(' Unlimited');
+    $this->assertSession()->fieldExists('usage_limit[0][limit]');
+    $this->assertSession()->fieldValueEquals('usage_limit[0][limit]', 0);
     $usage_limit_xpath = '//input[@type="number" and @name="usage_limit[0][usage_limit]"]';
     $this->assertFalse($this->getSession()->getDriver()->isVisible($usage_limit_xpath));
     // Select 'Limited number of uses'.
     $this->getSession()->getPage()->selectFieldOption('usage_limit[0][limit]', '1');
     $this->assertTrue($this->getSession()->getDriver()->isVisible($usage_limit_xpath));
     $this->getSession()->getPage()->fillField('usage_limit[0][usage_limit]', '99');
+
+    // Confirm that the customer usage limit widget works properly.
+    $this->assertSession()->fieldExists('usage_limit_customer[0][limit_customer]');
+    $this->assertSession()->fieldValueEquals('usage_limit_customer[0][limit_customer]', 0);
+    $customer_usage_limit_xpath = '//input[@type="number" and @name="usage_limit_customer[0][usage_limit_customer]"]';
+    $this->assertFalse($this->getSession()->getDriver()->isVisible($customer_usage_limit_xpath));
+    $this->getSession()->getPage()->selectFieldOption('usage_limit_customer[0][limit_customer]', '1');
+    $this->assertTrue($this->getSession()->getDriver()->isVisible($customer_usage_limit_xpath));
+    $this->getSession()->getPage()->fillField('usage_limit_customer[0][usage_limit_customer]', '5');
 
     $this->setRawFieldValue('start_date[0][value][date]', '2019-11-29');
     $this->setRawFieldValue('start_date[0][value][time]', '10:30:00');
@@ -96,12 +106,18 @@ class PromotionTest extends CommerceWebDriverTestBase {
     $condition = reset($conditions);
     $this->assertEquals('50.00', $condition->getConfiguration()['amount']['number']);
     $this->assertEquals('99', $promotion->getUsageLimit());
+    $this->assertEquals('5', $promotion->getCustomerUsageLimit());
     $this->assertEquals('2019-11-29 10:30:00', $promotion->getStartDate()->format('Y-m-d H:i:s'));
     $this->assertNull($promotion->getEndDate());
 
     $this->drupalGet($promotion->toUrl('edit-form'));
-    $this->getSession()->getPage()->hasCheckedField('Limited number of uses');
+
+    $this->assertSession()->fieldExists('usage_limit[0][limit]');
+    $this->assertSession()->fieldValueEquals('usage_limit[0][limit]', 1);
     $this->assertTrue($this->getSession()->getDriver()->isVisible($usage_limit_xpath));
+    $this->assertSession()->fieldExists('usage_limit_customer[0][limit_customer]');
+    $this->assertSession()->fieldValueEquals('usage_limit_customer[0][limit_customer]', 1);
+    $this->assertTrue($this->getSession()->getDriver()->isVisible($customer_usage_limit_xpath));
   }
 
   /**
@@ -159,6 +175,28 @@ class PromotionTest extends CommerceWebDriverTestBase {
     $this->assertEquals('0.10', $offer->getConfiguration()['percentage']);
     $storage_format = DateTimeItemInterface::DATETIME_STORAGE_FORMAT;
     $this->assertEquals($end_date->format($storage_format), $promotion->getEndDate()->format($storage_format));
+  }
+
+  /**
+   * Tests updating the offer type when creating a promotion.
+   */
+  public function testCreatePromotionOfferTypeSelection() {
+    $this->drupalGet('admin/commerce/promotions');
+    $this->clickLink('Add promotion');
+
+    $offer_config_xpath = '//div[@data-drupal-selector="edit-offer-0-target-plugin-configuration"]';
+    $offer_config_container = $this->xpath($offer_config_xpath);
+    $this->assertEmpty($offer_config_container);
+
+    $this->getSession()->getPage()->selectFieldOption('offer[0][target_plugin_id]', 'order_item_percentage_off');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+    $offer_config_container = $this->xpath($offer_config_xpath);
+    $this->assertNotEmpty($offer_config_container);
+
+    $this->getSession()->getPage()->selectFieldOption('offer[0][target_plugin_id]', '');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+    $offer_config_container = $this->xpath($offer_config_xpath);
+    $this->assertEmpty($offer_config_container);
   }
 
   /**
@@ -283,6 +321,63 @@ class PromotionTest extends CommerceWebDriverTestBase {
     $this->container->get('entity_type.manager')->getStorage('commerce_promotion')->resetCache([$promotion->id()]);
     $promotion_exists = (bool) Promotion::load($promotion->id());
     $this->assertEmpty($promotion_exists);
+  }
+
+  /**
+   * Tests disabling a promotion.
+   */
+  public function testDisablePromotion() {
+    /** @var \Drupal\commerce_promotion\Entity\PromotionInterface $promotion */
+    $promotion = $this->createEntity('commerce_promotion', [
+      'name' => $this->randomMachineName(8),
+    ]);
+    $this->assertTrue($promotion->isEnabled());
+    $this->drupalGet($promotion->toUrl('disable-form'));
+    $this->assertSession()->pageTextContains(t('Are you sure you want to disable the promotion @label?', ['@label' => $promotion->label()]));
+    $this->submitForm([], t('Disable'));
+
+    $promotion = $this->reloadEntity($promotion);
+    $this->assertFalse($promotion->isEnabled());
+  }
+
+  /**
+   * Tests enabling a promotion.
+   */
+  public function testEnablePromotion() {
+    /** @var \Drupal\commerce_promotion\Entity\PromotionInterface $promotion */
+    $promotion = $this->createEntity('commerce_promotion', [
+      'name' => $this->randomMachineName(8),
+      'status' => FALSE,
+    ]);
+    $this->assertFalse($promotion->isEnabled());
+    $this->drupalGet($promotion->toUrl('enable-form'));
+    $this->assertSession()->pageTextContains(t('Are you sure you want to enable the promotion @label?', ['@label' => $promotion->label()]));
+    $this->submitForm([], t('Enable'));
+
+    $promotion = $this->reloadEntity($promotion);
+    $this->assertTrue($promotion->isEnabled());
+  }
+
+  /**
+   * Tests viewing the admin/commerce/promotions page.
+   */
+  public function testAdminPromotions() {
+    /** @var \Drupal\commerce_promotion\Entity\PromotionInterface $promotion */
+    $promotion = $this->createEntity('commerce_promotion', [
+      'name' => $this->randomMachineName(8),
+    ]);
+    $this->drupalGet('admin/commerce/promotions');
+    $this->assertNotEmpty($this->getSession()->getPage()->hasLink('Add promotion'));
+    $this->assertSession()->pageTextNotContains('There are no enabled promotions yet.');
+    $this->assertSession()->pageTextContains('There are no disabled promotions.');
+    $this->assertTrue($this->getSession()->getPage()->hasLink('Disable'));
+    $this->assertFalse($this->getSession()->getPage()->hasLink('Enable'));
+    $this->assertTrue($this->getSession()->getPage()->hasLink('Delete'));
+    $this->drupalGet($promotion->toUrl('disable-form'));
+    $this->submitForm([], t('Disable'));
+    $this->assertSession()->pageTextContains('There are no enabled promotions yet.');
+    $this->assertSession()->pageTextNotContains('There are no disabled promotions.');
+    $this->assertTrue($this->getSession()->getPage()->hasLink('Enable'));
   }
 
 }

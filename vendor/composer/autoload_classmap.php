@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'ArithmeticError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
     'AssertionError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
+    'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Datamatrix' => $vendorDir . '/tecnickcom/tcpdf/include/barcodes/datamatrix.php',
     'DivisionByZeroError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
     'Dompdf\\Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
@@ -26,9 +27,11 @@ return array(
     'HTML5_Tokenizer' => $vendorDir . '/dompdf/dompdf/lib/html5lib/Tokenizer.php',
     'HTML5_TreeBuilder' => $vendorDir . '/dompdf/dompdf/lib/html5lib/TreeBuilder.php',
     'PDF417' => $vendorDir . '/tecnickcom/tcpdf/include/barcodes/pdf417.php',
+    'PEAR_Exception' => $vendorDir . '/pear/pear_exception/PEAR/Exception.php',
     'ParseError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
     'QRcode' => $vendorDir . '/tecnickcom/tcpdf/include/barcodes/qrcode.php',
     'SessionUpdateTimestampHandlerInterface' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/SessionUpdateTimestampHandlerInterface.php',
+    'Stringable' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
     'TCPDF' => $vendorDir . '/tecnickcom/tcpdf/tcpdf.php',
     'TCPDF2DBarcode' => $vendorDir . '/tecnickcom/tcpdf/tcpdf_barcodes_2d.php',
     'TCPDFBarcode' => $vendorDir . '/tecnickcom/tcpdf/tcpdf_barcodes_1d.php',
@@ -41,4 +44,6 @@ return array(
     'TCPDF_PARSER' => $vendorDir . '/tecnickcom/tcpdf/tcpdf_parser.php',
     'TCPDF_STATIC' => $vendorDir . '/tecnickcom/tcpdf/include/tcpdf_static.php',
     'TypeError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
+    'UnhandledMatchError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
+    'ValueError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
 );

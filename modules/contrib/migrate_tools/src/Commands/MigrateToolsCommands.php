@@ -23,11 +23,6 @@ use Drush\Commands\DrushCommands;
 class MigrateToolsCommands extends DrushCommands {
 
   /**
-   * Default ID list delimiter.
-   */
-  public const DEFAULT_ID_LIST_DELIMITER = ':';
-
-  /**
    * Migration plugin manager service.
    *
    * @var \Drupal\migrate\Plugin\MigrationPluginManager
@@ -298,7 +293,7 @@ class MigrateToolsCommands extends DrushCommands {
     'limit' => self::REQ,
     'feedback' => self::REQ,
     'idlist' => self::REQ,
-    'idlist-delimiter' => self::DEFAULT_ID_LIST_DELIMITER,
+    'idlist-delimiter' => MigrateTools::DEFAULT_ID_LIST_DELIMITER,
     'update' => FALSE,
     'force' => FALSE,
     'continue-on-failure' => FALSE,
@@ -375,7 +370,7 @@ class MigrateToolsCommands extends DrushCommands {
     'tag' => self::REQ,
     'feedback' => self::REQ,
     'idlist' => self::REQ,
-    'idlist-delimiter' => self::DEFAULT_ID_LIST_DELIMITER,
+    'idlist-delimiter' => MigrateTools::DEFAULT_ID_LIST_DELIMITER,
     'skip-progress-bar' => FALSE,
     'continue-on-failure' => FALSE,
   ]) {
@@ -415,13 +410,14 @@ class MigrateToolsCommands extends DrushCommands {
         $result = drush_op([$executable, 'rollback']);
         if ($result == MigrationInterface::RESULT_FAILED) {
           $has_failure = TRUE;
+          $errored_migration_id = $migration_id;
         }
       }
     }
 
     // If any rollbacks failed, throw an exception to generate exit status.
     if ($has_failure) {
-      $error_message = dt('!name migration failed.', ['!name' => $migration_id]);
+      $error_message = dt('!name migration failed.', ['!name' => $errored_migration_id]);
       if ($options['continue-on-failure']) {
         $this->logger()->error($error_message);
       }
@@ -558,7 +554,7 @@ class MigrateToolsCommands extends DrushCommands {
   public function messages($migration_id, array $options = [
     'csv' => FALSE,
     'idlist' => self::REQ,
-    'idlist-delimiter' => self::DEFAULT_ID_LIST_DELIMITER,
+    'idlist-delimiter' => MigrateTools::DEFAULT_ID_LIST_DELIMITER,
   ]) {
     /** @var \Drupal\migrate\Plugin\MigrationInterface $migration */
     $migration = $this->migrationPluginManager->createInstance(
@@ -698,20 +694,34 @@ class MigrateToolsCommands extends DrushCommands {
     $filter['migration_tags'] = explode(',', $options['tag']);
 
     $manager = $this->migrationPluginManager;
-    $plugins = $manager->createInstances([]);
+
     $matched_migrations = [];
 
-    // Get the set of migrations that may be filtered.
     if (empty($migration_ids)) {
+      // Get all migrations.
+      $plugins = $manager->createInstances([]);
       $matched_migrations = $plugins;
     }
     else {
       // Get the requested migrations.
       $migration_ids = explode(',', mb_strtolower($migration_ids));
-      foreach ($plugins as $id => $migration) {
-        if (in_array(mb_strtolower($id), $migration_ids)) {
-          $matched_migrations[$id] = $migration;
+
+      $definitions = $manager->getDefinitions();
+
+      foreach ($migration_ids as $given_migration_id) {
+        if (isset($definitions[$given_migration_id])) {
+          $matched_migrations[$given_migration_id] = $manager->createInstance($given_migration_id);
         }
+        else {
+          $error_message = dt('Migration @id does not exist', ['@id' => $given_migration_id]);
+          if ($options['continue-on-failure']) {
+            $this->logger()->error($error_message);
+          }
+          else {
+            throw new \Exception($error_message);
+          }
+        }
+
       }
     }
 
@@ -800,8 +810,7 @@ class MigrateToolsCommands extends DrushCommands {
     static $executed_migrations = [];
 
     if ($options['execute-dependencies']) {
-      $definition = $migration->getPluginDefinition();
-      $required_migrations = $definition['requirements'] ?? [];
+      $required_migrations = $this->getMigrationRequirements($migration);
       $required_migrations = array_filter($required_migrations, function ($value) use ($executed_migrations) {
         return !isset($executed_migrations[$value]);
       });
@@ -883,6 +892,34 @@ class MigrateToolsCommands extends DrushCommands {
       $this->migrateMessage = new Drush9LogMigrateMessage($this->logger());
     }
     return $this->migrateMessage;
+  }
+
+  /**
+   * Returns the migration requirements for the provided migration.
+   *
+   * @param \Drupal\migrate\Plugin\MigrationInterface $migration
+   *   The migration instance.
+   *
+   * @return array
+   *   Array of migration requirements.
+   *
+   * @throws \ReflectionException
+   */
+  protected function getMigrationRequirements(MigrationInterface $migration) {
+    if (method_exists($migration, 'getRequirements')) {
+      // Use the getRequirements method on Drupal 9.1.x and newer.
+      return $migration->getRequirements();
+    }
+
+    // FIXME: Don't use reflection.
+    // @see https://www.drupal.org/project/migrate_tools/issues/3117485
+    // Maintain Drupal 8.x and 9.0.x compatibility using Reflection until an appropriate
+    // interface method or reimplementation is available.
+    $reflection = new \ReflectionClass($migration);
+    $property = $reflection->getProperty('requirements');
+    $property->setAccessible(TRUE);
+
+    return $property->getValue($migration);
   }
 
 }

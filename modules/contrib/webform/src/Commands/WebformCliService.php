@@ -7,8 +7,10 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Mail\MailFormatHelper;
 use Drupal\Core\Serialization\Yaml;
+use Drupal\Core\Site\Settings;
 use Drupal\webform\Controller\WebformResultsExportController;
 use Drupal\webform\Entity\Webform;
+use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\Form\WebformResultsClearForm;
 use Drupal\webform\Form\WebformSubmissionsPurgeForm;
 use Drupal\webform\Utility\WebformObjectHelper;
@@ -267,6 +269,16 @@ class WebformCliService implements WebformCliServiceInterface {
       'aliases' => ['wfr'],
     ];
 
+    $items['webform-remove-orphans'] = [
+      'description' => "Removes orphaned submissions where the submission's webform was deleted.",
+      'core' => ['8+'],
+      'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_ROOT,
+      'examples' => [
+        'webform-remove-orphans' => "Removes orphaned submissions where the submission's webform was deleted.",
+      ],
+      'aliases' => ['wfro'],
+    ];
+
     /* Docs */
 
     $items['webform-docs'] = [
@@ -446,7 +458,7 @@ class WebformCliService implements WebformCliServiceInterface {
    */
   public function drush_webform_purge_validate($webform_id = NULL) {
     // If webform id is set to 'all' or not included skip validation.
-    if ($this->drush_get_option('all') || $webform_id == NULL) {
+    if ($this->drush_get_option('all') || $webform_id === NULL) {
       return;
     }
 
@@ -472,7 +484,7 @@ class WebformCliService implements WebformCliServiceInterface {
     }
 
     // Set the webform.
-    $webform = ($webform_id == 'all') ? NULL : Webform::load($webform_id);
+    $webform = ($webform_id === 'all') ? NULL : Webform::load($webform_id);
 
     /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager */
     $entity_type_manager = \Drupal::service('entity_type.manager');
@@ -536,7 +548,8 @@ class WebformCliService implements WebformCliServiceInterface {
 
     $target = $target ?: 'webform';
 
-    if (!isset($config_directories[$target])
+    if (empty(Settings::get('config_' . $target . '_directory', FALSE))
+      && !(isset($config_directories) && isset($config_directories[$target]))
       && !(\Drupal::moduleHandler()->moduleExists($target) && file_exists(drupal_get_path('module', $target) . '/config'))
       && !file_exists(realpath($target))) {
       $t_args = ['@target' => $target];
@@ -553,7 +566,15 @@ class WebformCliService implements WebformCliServiceInterface {
     $target = $target ?: 'webform';
     $prefix = $this->drush_get_option('prefix', 'webform');
 
-    if (isset($config_directories[$target])) {
+    // [Drupal 8.8+] The sync directory is defined in $settings
+    // and not $config_directories.
+    // @see https://www.drupal.org/node/3018145
+    $config_directory = Settings::get('config_' . $target . '_directory');
+    if ($config_directory) {
+      $file_directory_path = DRUPAL_ROOT . '/' . $config_directory;
+      $dependencies = $this->drush_get_option('dependencies');
+    }
+    elseif (isset($config_directories) && isset($config_directories[$target])) {
       $file_directory_path = DRUPAL_ROOT . '/' . $config_directories[$target];
       $dependencies = $this->drush_get_option('dependencies');
     }
@@ -566,7 +587,7 @@ class WebformCliService implements WebformCliServiceInterface {
       $dependencies = FALSE;
     }
 
-    $files = file_scan_directory($file_directory_path, ($prefix) ? '/^' . preg_quote($prefix, '/.') . '.*\.yml$/' : '/.*\.yml$/');
+    $files = \Drupal::service('file_system')->scanDirectory($file_directory_path, ($prefix) ? '/^' . preg_quote($prefix, '/.') . '.*\.yml$/' : '/.*\.yml$/');
     $this->drush_print($this->dt("Reviewing @count YAML configuration '@prefix.*' files in '@module'.", ['@count' => count($files), '@module' => $target, '@prefix' => $prefix]));
 
     $total = 0;
@@ -608,7 +629,7 @@ class WebformCliService implements WebformCliServiceInterface {
 
       // Tidy and add new line to the end of the tidied file.
       $tidied_yaml = WebformYaml::encode($data) . PHP_EOL;
-      if ($tidied_yaml != $original_yaml) {
+      if ($tidied_yaml !== $original_yaml) {
         $this->drush_print($this->dt('Tidying @file…', ['@file' => $file->filename]));
         file_put_contents($file->uri, $tidied_yaml);
         $total++;
@@ -769,7 +790,7 @@ class WebformCliService implements WebformCliServiceInterface {
       $files = scandir($temp_location);
       // Remove directories (. ..)
       unset($files[0], $files[1]);
-      if ((count($files) == 1) && is_dir($temp_location . '/' . current($files))) {
+      if ((count($files) === 1) && is_dir($temp_location . '/' . current($files))) {
         $temp_location .= '/' . current($files);
       }
       $this->drush_move_dir($temp_location, $download_location);
@@ -884,6 +905,43 @@ class WebformCliService implements WebformCliServiceInterface {
     \Drupal::service('cache.discovery')->deleteAll();
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @see \Drupal\webform\Form\AdminConfig\WebformAdminConfigAdvancedForm::submitForm
+   */
+  public function drush_webform_remove_orphans() {
+    $webform_ids = [];
+    $config_factory = \Drupal::configFactory();
+    foreach ($config_factory->listAll('webform.webform.') as $webform_config_name) {
+      $webform_id = str_replace('webform.webform.', '', $webform_config_name);
+      $webform_ids[$webform_id] = $webform_id;
+    }
+
+   $sids = \Drupal::database()->select('webform_submission')
+      ->fields('webform_submission', ['sid'])
+      ->condition('webform_id', $webform_ids, 'NOT IN')
+      ->orderBy('sid')
+      ->execute()
+      ->fetchCol();
+
+    if (!$sids) {
+      $this->drush_print($this->dt('No orphaned submission found.'));
+      return;
+    }
+
+    $t_args = ['@total' => count($sids)];
+    if (!$this->drush_confirm($this->dt("Are you sure you want remove @total orphaned webform submissions?", $t_args))) {
+      return $this->drush_user_abort();
+    }
+
+    $this->drush_print($this->dt('Deleting @total orphaned webform submissions…', $t_args));
+    $submissions = WebformSubmission::loadMultiple($sids);
+    foreach ($submissions as $submission) {
+      $submission->delete();
+    }
+  }
+
   /******************************************************************************/
   // Docs.
   /******************************************************************************/
@@ -945,7 +1003,7 @@ class WebformCliService implements WebformCliServiceInterface {
       $help_html = \Drupal::service('renderer')->renderPlain($help_section);
       $help_html = $this->_drush_webform_docs_tidy($help_html);
 
-      if ($help_name == 'videos') {
+      if ($help_name === 'videos') {
         // Download YouTube thumbnails so that they can be updated to
         // https://www.drupal.org/files/
         preg_match_all('#https://img.youtube.com/vi/([^/]+)/0.jpg#', $help_html, $matches);
@@ -1266,7 +1324,7 @@ function $command_hook() {
 // @codingStandardsIgnoreFile
 
 /**
- * This is file was generated using Drush. DO NOT EDIT. 
+ * This is file was generated using Drush. DO NOT EDIT.
  *
  * @see drush webform-generate-commands
  * @see \Drupal\webform\Commands\DrushCliServiceBase::generate_commands_drush8
@@ -1404,7 +1462,7 @@ $command_annotations
 // @codingStandardsIgnoreFile
 
 /**
- * This is file was generated using Drush. DO NOT EDIT. 
+ * This is file was generated using Drush. DO NOT EDIT.
  *
  * @see drush webform-generate-commands
  * @see \Drupal\webform\Commands\DrushCliServiceBase::generate_commands_drush9
@@ -1464,7 +1522,7 @@ $methods
         return $this->drush_set_error($this->dt("'@title' (@entity_type:@entity_id) does not reference a webform.", $dt_args));
       }
 
-      if ($source_entity->webform->target_id != $webform_id) {
+      if ($source_entity->webform->target_id !== $webform_id) {
         return $this->drush_set_error($this->dt("'@title' (@entity_type:@entity_id) does not have a '@webform_id' webform associated with it.", $dt_args));
       }
     }

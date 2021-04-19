@@ -7,6 +7,8 @@ use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
 
 /**
  * Class MediaEntityFileReplaceTest.
+ *
+ * @group media
  */
 class MediaEntityFileReplaceTest extends BrowserTestBase {
 
@@ -166,6 +168,42 @@ class MediaEntityFileReplaceTest extends BrowserTestBase {
     // old revision still references the old document.
     $originalFile = $this->loadFileEntity($originalFile->id());
     $this->assertFalse($originalFile->isTemporary());
+
+    // Verify that when uploading a replacement and overwriting the original,
+    // the file extension is forced to be the same.
+    // Now upload another replacement document, but this time don't overwrite
+    // the original.
+    $originalDocument = $this->loadMediaEntityByName('Foobar');
+    $uri = 'temporary://foo.pdf';
+    file_put_contents($uri, 'pdf contents');
+    $this->drupalGet("/media/{$originalDocument->id()}/edit");
+    $page = $this->getSession()->getPage();
+    $this->assertSession()->fieldExists('files[replacement_file]');
+    $page->attachFileToField('File', $this->container->get('file_system')->realpath($uri));
+    $page->checkField('keep_original_filename');
+    $page->pressButton('Save');
+    $this->assertSession()->pageTextContains('Only files with the following extensions are allowed: txt');
+    $this->assertSession()->addressEquals("/media/{$originalDocument->id()}/edit");
+    // It should be allowed if we opt NOT to overwrite the original though.
+    $originalDocument = $this->loadMediaEntityByName('Foobar');
+    $page = $this->getSession()->getPage();
+    $page->attachFileToField('File', $this->container->get('file_system')->realpath($uri));
+    $page->uncheckField('keep_original_filename');
+    $page->pressButton('Save');
+    $this->assertSession()->pageTextNotContains('Only files with the following extensions are allowed: txt');
+    $this->assertSession()->addressEquals("/admin/content/media");
+    $this->assertSession()->pageTextNotContains('foo.pdf');
+    unlink($uri);
+
+    // Simulate deleting the file and then revisit the media entity. Since
+    // there is no longer a file associated to the media entity, there is
+    // nothing to replace and therefore the replace file widget should not show.
+    $originalDocument = $this->loadMediaEntityByName('Foobar');
+    $fileToDelete = $this->loadFileEntity($originalDocument->getSource()->getSourceFieldValue($originalDocument));
+    $fileToDelete->delete();
+    $this->drupalGet("/media/{$originalDocument->id()}/edit");
+    $page = $this->getSession()->getPage();
+    $this->assertSession()->fieldNotExists('files[replacement_file]');
   }
 
   /**
@@ -174,7 +212,7 @@ class MediaEntityFileReplaceTest extends BrowserTestBase {
   protected function loadMediaEntityByName($name) {
     $mediaStorage = \Drupal::entityTypeManager()->getStorage('media');
     $mediaStorage->resetCache();
-    $entities = $mediaStorage->loadByProperties(['name' => 'Foobar']);
+    $entities = $mediaStorage->loadByProperties(['name' => $name]);
     $this->assertNotEmpty($entities, "No media entity with name $name was found.");
     return array_pop($entities);
   }

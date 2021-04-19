@@ -1,7 +1,7 @@
 name: Simplenews Demo
 type: module
 description: Demo module for Simplenews.
-# core: 8.x
+core: 8.x
 dependencies:
   - drupal:block
   - drupal:views
@@ -10,8 +10,7 @@ dependencies:
 hidden: false
 package: Mail
 
-# Information added by Drupal.org packaging script on 2019-04-23
-version: '8.x-1.0-beta1'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2020-09-06
+version: '8.x-1.0-beta2'
 project: 'simplenews'
-datestamp: 1556010489
+datestamp: 1599415338

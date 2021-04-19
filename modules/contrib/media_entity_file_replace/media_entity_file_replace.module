@@ -74,14 +74,23 @@ function media_entity_file_replace_form_media_form_alter(&$form, FormStateInterf
       return;
     }
 
+    $sourceFieldDefinition = $mediaType->getSource()->getSourceFieldDefinition($mediaType);
+    $sourceFieldName = $sourceFieldDefinition->getName();
+    // Make sure we have a file field item and that the file entity exists.
+    // It's possible the file field item still exists (the reference to it)
+    // but that the file entity was deleted.
+    /** @var \Drupal\file\Plugin\Field\FieldType\FileItem $fileFieldItem */
+    $fileFieldItem = $media->get($sourceFieldName)->first();
+    if (!$fileFieldItem || !$fileFieldItem->entity) {
+      return;
+    }
+
     $form['replace_file'] = [
       '#type' => 'fieldset',
       '#title' => t('Replace file'),
     ];
 
-    $sourceFieldDefinition = $mediaType->getSource()->getSourceFieldDefinition($mediaType);
-    $sourceFieldName = $sourceFieldDefinition->getName();
-    $uploadValidators = $media->get($sourceFieldName)->first()->getUploadValidators();
+    $uploadValidators = $fileFieldItem->getUploadValidators();
     $form['replace_file']['replacement_file'] = [
       '#title' => t('File'),
       '#type' => 'file',
@@ -113,7 +122,20 @@ function media_entity_file_replace_form_media_form_alter(&$form, FormStateInterf
     ];
 
     $form['#validate'][] = '_media_entity_file_replace_validate';
-    $form['actions']['submit']['#submit'][] = '_media_entity_file_replace_submit';
+
+    // We need a submit callback to handle our processing. We want it to run
+    // just before the normal MediaForm::save() callback is called, so that
+    // the various entity lifecycle hooks that are called there will have
+    // access to the changes we make.
+    $saveCallbackPosition = array_search('::save', $form['actions']['submit']['#submit']);
+    if ($saveCallbackPosition !== FALSE) {
+      array_splice($form['actions']['submit']['#submit'], $saveCallbackPosition, 0, '_media_entity_file_replace_submit');
+    }
+    else {
+      // If for some reason we cannot find the normal save callback in the list,
+      // then just insert our callback at the end.
+      $form['actions']['submit']['#submit'][] = '_media_entity_file_replace_submit';
+    }
 
     // If the normal file/image widget is on the form, then we want to hide
     // the action buttons that users would normally use to manage the file.
@@ -147,8 +169,14 @@ function _media_entity_file_replace_disable_remove_button(&$element, FormStateIn
  * Custom validate handler for media entity edit form submissions.
  */
 function _media_entity_file_replace_validate($form, FormStateInterface $formState) {
+  // Nothing to do if the replace file widget was not enabled for this form.
+  if (isset($form['replace_file']['#access']) && !$form['replace_file']['#access']) {
+    return;
+  }
+
   /** @var \Drupal\media\Entity\Media $media */
   $media = $formState->getFormObject()->getEntity();
+  $sourceFieldName = $form['replace_file']['replacement_file']['#source_field_name'];
 
   /** @var \Drupal\Core\File\FileSystem $fileSystem */
   $fileSystem = \Drupal::service('file_system');
@@ -166,12 +194,22 @@ function _media_entity_file_replace_validate($form, FormStateInterface $formStat
     // For whatever reason, the interface for getting the upload location of the
     // file field is on the field item object and not on the source field
     // definition object.
-    $sourceFieldName = $form['replace_file']['replacement_file']['#source_field_name'];
     $uploadDestination = $media->get($sourceFieldName)->first()->getUploadLocation();
     $fileSystem->prepareDirectory($uploadDestination, FileSystemInterface::CREATE_DIRECTORY);
   }
 
   $uploadValidators = $form['replace_file']['replacement_file']['#upload_validators'];
+
+  // If the user is overwriting the original file, we want to make sure the same
+  // file extension is used on the replacement. This is important because web
+  // servers usually set the content type header based on the filename of the
+  // file, and browsers use that content type when interpretting the data.
+  if ($formState->getValue('keep_original_filename')) {
+    $originalFileEntity = $media->get($sourceFieldName)->first()->entity;
+    $originalExtension = pathinfo($originalFileEntity->getFilename(), PATHINFO_EXTENSION);
+    $uploadValidators['file_validate_extensions'] = [$originalExtension];
+  }
+
   $replacementFile = file_save_upload('replacement_file', $uploadValidators, $uploadDestination, 0, FileSystemInterface::EXISTS_RENAME);
 
   // Return value is NULL if no replacement file was submitted.
@@ -207,6 +245,13 @@ function _media_entity_file_replace_submit($form, FormStateInterface $formState)
     // Copy the uploaded file (which is in temporary storage) to the existing
     // file location, overwriting it.
     $fileSystem = \Drupal::service('file_system');
+
+    // Make sure the destination dir exists. It may not in rare situations like
+    // when copying a database from one env to another without also copying the
+    // files.
+    $destination = $fileSystem->dirname($originalFile->getFileUri());
+    $fileSystem->prepareDirectory($destination, FileSystemInterface::CREATE_DIRECTORY);
+
     if (!$fileSystem->copy($replacementFile->getFileUri(), $originalFile->getFileUri(), FileSystemInterface::EXISTS_REPLACE)) {
       \Drupal::messenger()->addError(t('Unable to overwrite original file with the replacement.'));
       return;
@@ -215,6 +260,10 @@ function _media_entity_file_replace_submit($form, FormStateInterface $formState)
     // The file entity must be saved to force it to recalculate metadata about
     // the file (like size).
     $originalFile->save();
+
+    // Delete image style derivatives for this file. If it's not an image, this
+    // is harmless.
+    image_path_flush($originalFile->getFileUri());
 
     // The replacement file is marked as temporary and will typically be
     // automatically deleted on cron after a certain period of time, but
@@ -228,8 +277,9 @@ function _media_entity_file_replace_submit($form, FormStateInterface $formState)
     // one. The old file that was referenced will automatically have its usage
     // counter decremented, which will likely mark it as temporary (and thus
     // automatic deletion on cron) if nothing else references it.
+    // Note that we don't need to save the media entity. The next form submit
+    // callback is the MediaForm::save() one which will save it.
     $sourceFieldName = $form['replace_file']['replacement_file']['#source_field_name'];
     $media->set($sourceFieldName, $replacementFile);
-    $media->save();
   }
 }

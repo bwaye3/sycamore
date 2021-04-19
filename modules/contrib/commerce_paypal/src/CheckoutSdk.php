@@ -10,7 +10,6 @@ use Drupal\commerce_paypal\Event\PayPalEvents;
 use Drupal\commerce_price\Calculator;
 use Drupal\commerce_product\Entity\ProductVariationInterface;
 use Drupal\Component\Datetime\TimeInterface;
-use Drupal\Component\Serialization\Json;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use GuzzleHttp\ClientInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -103,11 +102,8 @@ class CheckoutSdk implements CheckoutSdkInterface {
    * {@inheritdoc}
    */
   public function getClientToken() {
-    $response = $this->getAccessToken();
-    $body = Json::decode($response->getBody()->getContents());
     return $this->client->post('/v1/identity/generate-token', [
       'headers' => [
-        'Authorization' => $body['access_token'],
         'Content-Type' => 'application/json',
       ],
     ]);
@@ -254,11 +250,33 @@ class CheckoutSdk implements CheckoutSdkInterface {
 
       $purchased_entity = $order_item->getPurchasedEntity();
       if ($purchased_entity instanceof ProductVariationInterface) {
-        $line_item['sku'] = mb_substr($purchased_entity->getSku(), 127);
+        $item['sku'] = mb_substr($purchased_entity->getSku(), 0, 127);
       }
       $items[] = $item;
     }
+
+    // Now, pass adjustments that are not "supported" by PayPal such as fees
+    // and "custom" adjustments.
+    // We could pass fees under "handling", but we can't make that assumption.
     $adjustments = $order->collectAdjustments();
+    $adjustments = $this->adjustmentTransformer->processAdjustments($adjustments);
+    foreach ($adjustments as $adjustment) {
+      // Skip included adjustments and the adjustment types we're handling
+      // below such as "shipping" and "tax".
+      if ($adjustment->isIncluded() ||
+        in_array($adjustment->getType(), ['tax', 'shipping', 'promotion'])) {
+        continue;
+      }
+      $item_total = $item_total ? $item_total->add($adjustment->getAmount()) : $adjustment->getAmount();
+      $items[] = [
+        'name' => mb_substr($adjustment->getLabel(), 0, 127),
+        'unit_amount' => [
+          'currency_code' => $adjustment->getAmount()->getCurrencyCode(),
+          'value' => Calculator::trim($adjustment->getAmount()->getNumber()),
+        ],
+        'quantity' => 1,
+      ];
+    }
 
     $breakdown = [
       'item_total' => [

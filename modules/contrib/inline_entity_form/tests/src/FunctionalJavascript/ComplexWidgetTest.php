@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\inline_entity_form\FunctionalJavascript;
 
+use Behat\Mink\Element\NodeElement;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\TestFileCreationTrait;
@@ -22,7 +23,7 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'inline_entity_form_test',
     'field',
     'field_ui',
@@ -45,7 +46,7 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->user = $this->createUser([
@@ -74,17 +75,30 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
    * Tests if form behaves correctly when field is empty.
    */
   public function testEmptyField() {
+    // Get the xpath selectors for the input fields in this test.
+    $inner_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 2);
+    $first_name_field_xpath = $this->getXpathForNthInputByLabelText('First name', 1);
+    $last_name_field_xpath = $this->getXpathForNthInputByLabelText('Last name', 1);
+
+    // Get the xpath selectors for the fieldset labels in this test.
+    $fieldset_label_all_bundles_xpath = $this->getXpathForFieldsetLabel('All bundles', 1);
+    $fieldset_label_multi_xpath = $this->getXpathForFieldsetLabel('Multiple nodes', 1);
+
     $assert_session = $this->assertSession();
     // Don't allow addition of existing nodes.
     $this->updateSetting('allow_existing', FALSE);
     $this->drupalGet($this->formContentAddUrl);
 
+    // Assert fieldset title on inline form exists.
+    $assert_session->elementExists('xpath', $fieldset_label_all_bundles_xpath);
+    $assert_session->elementExists('xpath', $fieldset_label_multi_xpath);
+
     // Assert title field on inline form exists.
-    $assert_session->fieldExists('multi[form][inline_entity_form][title][0][value]');
+    $assert_session->elementExists('xpath', $inner_title_field_xpath);
     // Assert first name field on inline form exists.
-    $assert_session->fieldExists('multi[form][inline_entity_form][first_name][0][value]');
+    $assert_session->elementExists('xpath', $first_name_field_xpath);
     // Assert last name field on inline form exists.
-    $assert_session->fieldExists('multi[form][inline_entity_form][last_name][0][value]');
+    $assert_session->elementExists('xpath', $last_name_field_xpath);
     $assert_session->buttonExists('Create node');
 
     // Allow addition of existing nodes.
@@ -94,21 +108,25 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     $this->drupalGet($this->formContentAddUrl);
     $multi_fieldset = $assert_session
       ->elementExists('css', 'fieldset[data-drupal-selector="edit-multi"]');
+    // Assert fieldset titles.
+    $assert_session->elementExists('xpath', $fieldset_label_multi_xpath);
     // Assert title field does not appear.
-    $assert_session->fieldNotExists('multi[form][inline_entity_form][title][0][value]');
+    $assert_session->elementNotExists('xpath', $inner_title_field_xpath);
     // Assert first name field does not appear.
-    $assert_session->fieldNotExists('multi[form][inline_entity_form][first_name][0][value]');
+    $assert_session->elementNotExists('xpath', $first_name_field_xpath);
     // Assert last name field does not appear.
-    $assert_session->fieldNotExists('multi[form][inline_entity_form][last_name][0][value]');
+    $assert_session->elementNotExists('xpath', $last_name_field_xpath);
     $assert_session->buttonExists('Add existing node', $multi_fieldset);
     // Now submit 'Add new node' button in the 'Multiple nodes' fieldset.
     $multi_fieldset->pressButton('Add new node');
+    // Assert fieldset title.
+    $assert_session->elementExists('xpath', $fieldset_label_multi_xpath);
     // Assert title field on inline form exists.
-    $this->assertNotEmpty($assert_session->waitForField('multi[form][inline_entity_form][title][0][value]'));
+    $this->assertNotEmpty($assert_session->waitForElement('xpath', $inner_title_field_xpath));
     // Assert first name field on inline form exists.
-    $assert_session->fieldExists('multi[form][inline_entity_form][first_name][0][value]');
+    $assert_session->elementExists('xpath', $first_name_field_xpath);
     // Assert second name field on inline form exists.
-    $assert_session->fieldExists('multi[form][inline_entity_form][last_name][0][value]');
+    $assert_session->elementExists('xpath', $last_name_field_xpath);
     $assert_session->buttonExists('Create node');
     $assert_session->buttonExists('Cancel');
 
@@ -117,7 +135,7 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     $multi_fieldset = $assert_session->elementExists('css', 'fieldset[data-drupal-selector="edit-multi"]');
     $multi_fieldset->pressButton('Add existing node');
     // Assert existing entity reference autocomplete field appears.
-    $this->assertNotEmpty($assert_session->waitForField('multi[form][entity_id]'));
+    $this->assertNotEmpty($assert_session->waitForElement('xpath', $this->getXpathForAutoCompleteInput()));
     $assert_session->buttonExists('Add node');
     $assert_session->buttonExists('Cancel');
   }
@@ -126,6 +144,12 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
    * Tests creation of entities.
    */
   public function testEntityCreation() {
+    // Get the xpath selectors for the input fields in this test.
+    $first_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 1);
+    $inner_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 2);
+    $first_name_field_xpath = $this->getXpathForNthInputByLabelText('First name', 1);
+    $last_name_field_xpath = $this->getXpathForNthInputByLabelText('Last name', 1);
+
     $assert_session = $this->assertSession();
     $page = $this->getSession()->getPage();
 
@@ -148,10 +172,10 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     $multi_fieldset = $assert_session
       ->elementExists('css', 'fieldset[data-drupal-selector="edit-multi"]');
     $multi_fieldset->pressButton('Add new node');
-    $this->assertNotEmpty($assert_session->waitForField('multi[form][inline_entity_form][title][0][value]'));
-    $page->fillField('multi[form][inline_entity_form][title][0][value]', 'Some reference');
-    $page->fillField('multi[form][inline_entity_form][first_name][0][value]', 'John');
-    $page->fillField('multi[form][inline_entity_form][last_name][0][value]', 'Doe');
+    $this->assertNotEmpty($assert_session->waitForElement('xpath', $inner_title_field_xpath));
+    $assert_session->elementExists('xpath', $inner_title_field_xpath)->setValue('Some reference');
+    $assert_session->elementExists('xpath', $first_name_field_xpath)->setValue('John');
+    $assert_session->elementExists('xpath', $last_name_field_xpath)->setValue('Doe');
     $page->pressButton('Create node');
     $this->assertNotEmpty($assert_session->waitForElement('css', '.ief-row-entity'));
 
@@ -167,8 +191,8 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
 
     // Test edit functionality.
     $assert_session->buttonExists('Edit', $multi_fieldset)->press();
-    $this->assertNotEmpty($assert_session->waitForField('multi[form][inline_entity_form][entities][0][form][title][0][value]'));
-    $page->fillField('multi[form][inline_entity_form][entities][0][form][title][0][value]', 'Some changed reference');
+    $this->assertNotEmpty($assert_session->waitForElement('xpath', $inner_title_field_xpath));
+    $assert_session->elementExists('xpath', $inner_title_field_xpath)->setValue('Some changed reference');
     $page->pressButton('Update node');
     $this->waitForRowByTitle('Some changed reference');
     // Tests if correct fields appear in the table.
@@ -183,7 +207,7 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     // Make sure unrelated AJAX submit doesn't save the referenced entity.
     // @todo restore this test.
     // @see https://www.drupal.org/project/inline_entity_form/issues/3088453
-    $page->fillField('title[0][value]', 'Some title');
+    $assert_session->elementExists('xpath', $first_title_field_xpath)->setValue('Some title');
     $page->pressButton('Save');
     $assert_session->pageTextContains('IEF test complex Some title has been created.');
 
@@ -204,17 +228,27 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
    * Ief_test_nested1 -> ief_test_nested2 -> ief_test_nested3
    */
   public function testNestedEntityCreationWithDifferentBundlesAjaxSubmit() {
+    // Get the xpath selectors for the input fields in this test.
+    $top_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 1);
+    $nested_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 2);
+    $double_nested_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 3);
+
+    // Get the xpath selectors for the fieldset labels in this test.
+    $top_fieldset_label_xpath = $this->getXpathForFieldsetLabel('Multiple nodes', 1);
+    $nested_fieldset_label_xpath = $this->getXpathForFieldsetLabel('Multiple nodes', 2);
+
     $page = $this->getSession()->getPage();
     $assert_session = $this->assertSession();
 
     foreach ([FALSE, TRUE] as $required) {
       $this->setupNestedComplexForm($required);
+      $assert_session->elementExists('xpath', $top_fieldset_label_xpath);
+      $assert_session->elementExists('xpath', $nested_fieldset_label_xpath);
       $required_string = ($required) ? ' required' : ' unrequired';
       $double_nested_title = 'Dream within a dream' . $required_string;
       $nested_title = 'Dream' . $required_string;
       $top_level_title = 'Reality' . $required_string;
-      $third_title_field = 'test_ref_nested1[form][inline_entity_form][test_ref_nested2][form][inline_entity_form][title][0][value]';
-      $this->assertNotEmpty($field = $assert_session->waitForField($third_title_field));
+      $this->assertNotEmpty($field = $assert_session->waitForElement('xpath', $double_nested_title_field_xpath));
       $field->setValue($double_nested_title);
       $page->pressButton('Create node 3');
       $this->waitForRowByTitle($double_nested_title);
@@ -222,13 +256,12 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
       // Assert title of second nested node found.
       $this->assertNoNodeByTitle($double_nested_title, 'Second nested entity is not saved yet.');
 
-      $second_title_field = 'test_ref_nested1[form][inline_entity_form][title][0][value]';
-      $page->fillField($second_title_field, $nested_title);
+      $assert_session->elementExists('xpath', $nested_title_field_xpath)->setValue($nested_title);
       $page->pressButton('Create node 2');
       $this->waitForRowByTitle($nested_title);
       $this->assertNoNodeByTitle($nested_title, 'First nested entity is not saved yet.');
 
-      $page->fillField('title[0][value]', $top_level_title);
+      $assert_session->elementExists('xpath', $top_title_field_xpath)->setValue($top_level_title);
       $page->pressButton('Save');
       $assert_session->pageTextContains("IEF test nested 1 $top_level_title has been created.");
       $top_level_node = $this->drupalGetNodeByTitle($top_level_title);
@@ -247,17 +280,28 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
    * Ief_test_nested1 -> ief_test_nested2 -> ief_test_nested3
    */
   public function testNestedEntityCreationWithDifferentBundlesNoAjaxSubmit() {
+    // Get the xpath selectors for the input fields in this test.
+    $top_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 1);
+    $nested_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 2);
+    $double_nested_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 3);
+
+    // Get the xpath selectors for the fieldset labels in this test.
+    $top_fieldset_label_xpath = $this->getXpathForFieldsetLabel('Multiple nodes', 1);
+    $nested_fieldset_label_xpath = $this->getXpathForFieldsetLabel('Multiple nodes', 2);
+
     $page = $this->getSession()->getPage();
     $assert_session = $this->assertSession();
     foreach ([FALSE, TRUE] as $required) {
       $this->setupNestedComplexForm($required);
+      $assert_session->elementExists('xpath', $top_fieldset_label_xpath);
+      $assert_session->elementExists('xpath', $nested_fieldset_label_xpath);
       $required_string = ($required) ? ' required' : ' unrequired';
       $double_nested_title = 'Dream within a dream' . $required_string;
       $nested_title = 'Dream' . $required_string;
       $top_level_title = 'Reality' . $required_string;
-      $page->fillField('title[0][value]', $top_level_title);
-      $page->fillField('test_ref_nested1[form][inline_entity_form][title][0][value]', $nested_title);
-      $page->fillField('test_ref_nested1[form][inline_entity_form][test_ref_nested2][form][inline_entity_form][title][0][value]', $double_nested_title);
+      $assert_session->elementExists('xpath', $top_title_field_xpath)->setValue($top_level_title);
+      $assert_session->elementExists('xpath', $nested_title_field_xpath)->setValue($nested_title);
+      $assert_session->elementExists('xpath', $double_nested_title_field_xpath)->setValue($double_nested_title);
       $page->pressButton('Save');
       $assert_session->pageTextContains("IEF test nested 1 $top_level_title has been created.");
       $top_level_node = $this->drupalGetNodeByTitle($top_level_title);
@@ -274,6 +318,12 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
    * Tests if editing and removing entities work.
    */
   public function testEntityEditingAndRemoving() {
+    // Get the xpath selectors for the fields in this test.
+    $inner_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 2);
+    $first_name_field_xpath = $this->getXpathForNthInputByLabelText('First name', 1);
+    $last_name_field_xpath = $this->getXpathForNthInputByLabelText('Last name', 1);
+    $first_delete_checkbox_xpath = $this->getXpathForNthInputByLabelText('Delete this node from the system.', 1);
+
     $assert_session = $this->assertSession();
     $page = $this->getSession()->getPage();
     // Allow addition of existing nodes.
@@ -292,11 +342,11 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     // Edit the second entity.
     $this->drupalGet('node/' . $parent_node->id() . '/edit');
     $assert_session->elementExists('xpath', '(//input[@value="Edit"])[2]')->press();
-    $this->assertNotEmpty($assert_session->waitForField('multi[form][inline_entity_form][entities][1][form][first_name][0][value]'));
-    $page->fillField('multi[form][inline_entity_form][entities][1][form][first_name][0][value]', 'John');
-    $page->fillField('multi[form][inline_entity_form][entities][1][form][last_name][0][value]', 'Doe');
+    $this->assertNotEmpty($assert_session->waitForElement('xpath', $inner_title_field_xpath));
+    $assert_session->elementExists('xpath', $first_name_field_xpath)->setValue('John');
+    $assert_session->elementExists('xpath', $last_name_field_xpath)->setValue('Doe');
     $page->pressButton('Update node');
-    $this->assertNotEmpty($this->waitForElementRemoved('css', 'div[data-drupal-selector="edit-multi-form-inline-entity-form-entities-1-form"]'));
+    $this->assertNotEmpty($assert_session->waitForElementRemoved('css', 'div[data-drupal-selector="edit-multi-form-inline-entity-form-entities-1-form"]'));
     $this->waitForRowByTitle('Some reference 2');
 
     // Save the ief_test_complex node.
@@ -312,7 +362,7 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     $this->drupalGet('node/' . $parent_node->id() . '/edit');
     $assert_session->elementsCount('css', 'tr.ief-row-entity', 3);
     $assert_session->elementExists('xpath', '(//input[@value="Remove"])[2]')->press();
-    $this->assertNotEmpty($confirm_checkbox = $assert_session->waitForField('multi[form][entities][1][form][delete]'));
+    $this->assertNotEmpty($confirm_checkbox = $assert_session->waitForElement('xpath', $first_delete_checkbox_xpath));
     $assert_session->pageTextContains('Are you sure you want to remove Some reference 2?');
     $confirm_checkbox->check();
     $assert_session->elementExists('xpath', '(//input[@value="Remove"])[2]')->press();
@@ -341,7 +391,7 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     $this->drupalGet('node/' . $parent_node->id() . '/edit');
     $assert_session->elementsCount('css', 'tr.ief-row-entity', 2);
     $assert_session->elementExists('xpath', '(//input[@value="Remove"])[2]')->press();
-    $this->assertNotEmpty($confirm_checkbox = $assert_session->waitForField('multi[form][entities][1][form][delete]'));
+    $this->assertNotEmpty($confirm_checkbox = $assert_session->waitForElement('xpath', $first_delete_checkbox_xpath));
     $assert_session->pageTextContains('Are you sure you want to remove Some reference 3?');
     $assert_session->elementExists('xpath', '(//input[@value="Remove"])[2]')->press();
     $this->waitForRowRemovedByTitle('Some reference 3');
@@ -364,6 +414,9 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
    * Tests if referencing existing entities work.
    */
   public function testReferencingExistingEntities() {
+    // Get the xpath selectors for the input fields in this test.
+    $node_field_xpath = $this->getXpathForNthInputByLabelText('Node', 1);
+
     $assert_session = $this->assertSession();
     $page = $this->getSession()->getPage();
     // Allow addition of existing nodes.
@@ -393,7 +446,7 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     for ($i = 2; $i <= 3; $i++) {
       $this->openMultiExistingForm();
       $title = 'Some reference ' . $i;
-      $page->fillField('multi[form][entity_id]', $title . ' (' . $referenceNodes[$title] . ')');
+      $assert_session->elementExists('xpath', $node_field_xpath)->setValue($title . ' (' . $referenceNodes[$title] . ')');
       $page->pressButton('Add node');
       $this->waitForRowByTitle($title);
     }
@@ -402,8 +455,8 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
       $all_bundles_fieldset = $assert_session
         ->elementExists('css', 'fieldset[data-drupal-selector="edit-all-bundles"]');
       $assert_session->buttonExists('Add existing node', $all_bundles_fieldset)->press();
-      $this->assertNotEmpty($assert_session->waitForField('all_bundles[form][entity_id]'));
-      $page->fillField('all_bundles[form][entity_id]', $title . ' (' . $id . ')');
+      $this->assertNotEmpty($assert_session->waitForElement('xpath', $node_field_xpath));
+      $assert_session->elementExists('xpath', $node_field_xpath)->setValue($title . ' (' . $id . ')');
       $page->pressButton('Add node');
       $this->waitForRowByTitle($title);
     }
@@ -430,6 +483,10 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
    * Tests if referencing an existing entity works without submitting the form.
    */
   public function testReferencingExistingEntitiesNoSubmit() {
+    // Get the xpath selectors for the input fields in this test.
+    $node_field_xpath = $this->getXpathForNthInputByLabelText('Node', 1);
+    $title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 1);
+
     // Allow addition of existing nodes.
     $this->updateSetting('allow_existing', TRUE);
     $title = $this->randomMachineName();
@@ -447,9 +504,9 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     $assert_session = $this->assertSession();
     $page = $this->getSession()->getPage();
     $this->openMultiExistingForm();
-    $page->fillField('multi[form][entity_id]', $node->getTitle() . ' (' . $node->id() . ')');
+    $assert_session->elementExists('xpath', $node_field_xpath)->setValue($node->getTitle() . ' (' . $node->id() . ')');
     $parent_title = $this->randomMachineName();
-    $page->fillField('title[0][value]', $parent_title);
+    $assert_session->elementExists('xpath', $title_field_xpath)->setValue($parent_title);
     $page->pressButton('Save');
     $assert_session->pageTextContains("IEF test complex $parent_title has been created.");
     $assert_session->pageTextNotContains('This value should not be null.');
@@ -464,6 +521,9 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
    * existing entity reference form can be canceled.
    */
   public function testReferenceExistingValidation() {
+    // Get the xpath selectors for the input fields in this test.
+    $node_field_xpath = $this->getXpathForNthInputByLabelText('Node', 1);
+
     $page = $this->getSession()->getPage();
     $assert_session = $this->assertSession();
     $this->updateSetting('allow_existing', TRUE);
@@ -482,10 +542,10 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     foreach ($this->createReferenceContent(2) as $title => $id) {
       $this->openMultiExistingForm();
       $current_title = "$title ($id)";
-      $page->fillField('multi[form][entity_id]', $current_title);
+      $assert_session->elementExists('xpath', $node_field_xpath)->setValue($current_title);
       $page->pressButton('Add node');
       $this->waitForRowByTitle($title);
-      $assert_session->fieldNotExists('multi[form][entity_id]');
+      $assert_session->elementNotExists('xpath', $node_field_xpath);
       // Try to add the same node again.
       $this->checkExistingValidationExpectation($current_title, 'The selected node has already been added.');
     }
@@ -495,6 +555,10 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
    * Tests if duplicating entities works.
    */
   public function testDuplicatingEntities() {
+    // Get the xpath selectors for the input fields in this test.
+    $title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 2);
+    $first_name_field_xpath = $this->getXpathForNthInputByLabelText('First name', 1);
+
     $page = $this->getSession()->getPage();
     $assert_session = $this->assertSession();
     $this->updateSetting('allow_duplicate', TRUE);
@@ -512,8 +576,8 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     $this->assertNotEmpty($multi_fieldset = $assert_session->waitForElement('css', 'fieldset[data-drupal-selector="edit-multi"]'));
     $assert_session->buttonExists('Duplicate', $multi_fieldset)->press();
     $this->assertNotEmpty($create_node_button = $assert_session->waitForButton('Duplicate node'));
-    $page->fillField('multi[form][inline_entity_form][entities][0][form][title][0][value]', 'Duplicate!');
-    $page->fillField('multi[form][inline_entity_form][entities][0][form][first_name][0][value]', 'Bojan');
+    $assert_session->elementExists('xpath', $title_field_xpath)->setValue('Duplicate!');
+    $assert_session->elementExists('xpath', $first_name_field_xpath)->setValue('Bojan');
     $create_node_button->press();
 
     $this->waitForRowByTitle('Duplicate!');
@@ -534,6 +598,10 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
    * test if a referenced content can be edited.
    */
   public function testEditedInlineEntityValidation() {
+    // Get the xpath selectors for the input fields in this test.
+    $nested_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 2);
+    $title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 1);
+
     $page = $this->getSession()->getPage();
     $assert_session = $this->assertSession();
     $this->updateSetting('allow_existing', TRUE);
@@ -560,14 +628,14 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     // Edit referenced content in first node.
     $this->drupalGet('node/' . $first_node->id() . '/edit');
     $page->pressButton('Edit');
-    $this->assertNotEmpty($nested_title = $assert_session->waitForField('multi[form][inline_entity_form][entities][0][form][title][0][value]'));
+    $this->assertNotEmpty($nested_title = $assert_session->waitForElement('xpath', $nested_title_field_xpath));
     $nested_title->setValue('Some reference updated');
     $page->pressButton('Update node');
     $this->waitForRowByTitle('Some reference updated');
     $assert_session->elementsCount('css', 'tr.ief-row-entity', 1);
 
     // Save the first node after editing the reference.
-    $page->fillField('title[0][value]', 'First node updated');
+    $assert_session->elementExists('xpath', $title_field_xpath)->setValue('First node updated');
     $page->pressButton('Save');
     $assert_session->pageTextContains('IEF test complex First node updated has been updated.');
 
@@ -578,14 +646,14 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
 
     // Edit referenced node.
     $page->pressButton('Edit');
-    $this->assertNotEmpty($nested_title = $assert_session->waitForField('multi[form][inline_entity_form][entities][0][form][title][0][value]'));
+    $this->assertNotEmpty($nested_title = $assert_session->waitForElement('xpath', $nested_title_field_xpath));
     $nested_title->setValue('Some reference updated the second time');
     $page->pressButton('Update node');
     $this->waitForRowByTitle('Some reference updated the second time');
     $assert_session->elementsCount('css', 'tr.ief-row-entity', 1);
 
     // Save the second node after editing the reference.
-    $page->fillField('title[0][value]', 'Second node updated');
+    $assert_session->elementExists('xpath', $title_field_xpath)->setValue('Second node updated');
     $page->pressButton('Save');
     $assert_session->pageTextContains('IEF test complex Second node updated has been updated.');
 
@@ -600,6 +668,10 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
    *   Top level node of type ief_test_nested1 to check.
    */
   protected function checkNestedNodeEditing(NodeInterface $node) {
+    // Get the xpath selectors for the input fields in this test.
+    $double_nested_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 3);
+    $title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 1);
+
     $assert_session = $this->assertSession();
     $page = $this->getSession()->getPage();
     $nested_node = $node->test_ref_nested1->entity;
@@ -612,14 +684,14 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     $page->pressButton('Edit');
     $this->assertNotEmpty($assert_session->waitforButton('Update node 3'));
     $double_nested_node_update_title = $double_nested_node->getTitle() . ' - updated';
-    $page->fillField('test_ref_nested1[form][inline_entity_form][entities][0][form][test_ref_nested2][form][inline_entity_form][entities][0][form][title][0][value]', $double_nested_node_update_title);
+    $assert_session->elementExists('xpath', $double_nested_title_field_xpath)->setValue($double_nested_node_update_title);
     // Close the double nested IEF form.
     $page->pressButton('Update node 3');
     $this->waitForRowByTitle($double_nested_node_update_title);
 
     // Close the nested IEF form.
     $page->pressButton('Update node 2');
-    $this->assertNotEmpty($this->waitForElementRemoved('css', 'div[data-drupal-selector="edit-test-ref-nested1-form-inline-entity-form-entities-0-form"]'));
+    $this->assertNotEmpty($assert_session->waitForElementRemoved('css', 'div[data-drupal-selector="edit-test-ref-nested1-form-inline-entity-form-entities-0-form"]'));
     $this->waitForRowByTitle($nested_node->label());
     // Save the top level node.
     $page->pressButton('Save');
@@ -631,7 +703,7 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     $page->pressButton('Edit');
     $this->waitForRowByTitle($double_nested_node_update_title);
     $this->drupalGet("node/{$double_nested_node->id()}/edit");
-    $assert_session->fieldValueEquals('title[0][value]', $double_nested_node_update_title);
+    $this->assertSame($double_nested_node_update_title, $assert_session->elementExists('xpath', $title_field_xpath)->getValue());
   }
 
   /**
@@ -735,7 +807,7 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     $assert_session = $this->assertSession();
     $this->assertNotEmpty($multi_fieldset = $assert_session->waitForElement('css', 'fieldset[data-drupal-selector="edit-multi"]'));
     $assert_session->buttonExists('Add existing node', $multi_fieldset)->press();
-    $this->assertNotEmpty($assert_session->waitForField('multi[form][entity_id]'));
+    $this->assertNotEmpty($assert_session->waitForElement('xpath', $this->getXpathForAutoCompleteInput()));
   }
 
   /**
@@ -753,17 +825,21 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     $page = $this->getSession()->getPage();
     $assert_session = $this->assertSession();
     $this->openMultiExistingForm();
-    $page->fillField('multi[form][entity_id]', $existing_node_text);
+    $field = $assert_session->waitForElement('xpath', $this->getXpathForAutoCompleteInput());
+    $field->setValue($existing_node_text);
     $page->pressButton('Add node');
-    $this->assertNotEmpty($assert_session->waitForText($expected_error));
+    $this->assertNotNull($assert_session->waitForText($expected_error));
     $assert_session->buttonExists('Cancel')->press();
-    $this->assertNotEmpty($this->waitForElementRemoved('css', 'input[name="multi[form][entity_id]"]'));
+    $this->assertNotEmpty($assert_session->waitForElementRemoved('xpath', $this->getXpathForAutoCompleteInput()));
   }
 
   /**
    * Tests create access on IEF Complex content type.
    */
   public function testComplexEntityCreate() {
+    // Get the xpath selectors for the input fields in this test.
+    $nested_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 2);
+
     $user = $this->createUser([
       'create ief_test_complex content',
     ]);
@@ -772,7 +848,7 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
     $this->drupalGet('node/add/ief_test_complex');
     $assert_session = $this->assertSession();
     $assert_session->fieldNotExists('all_bundles[actions][bundle]');
-    $assert_session->fieldNotExists('multi[form][inline_entity_form][title][0][value]');
+    $assert_session->elementNotExists('xpath', $nested_title_field_xpath);
 
     $user = $this->createUser([
       'create ief_test_complex content',
@@ -782,9 +858,9 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
 
     $this->drupalGet('node/add/ief_test_complex');
     $assert_session->fieldExists('all_bundles[actions][bundle]');
-    $this->assertOption('edit-all-bundles-actions-bundle', 'ief_reference_type');
-    $this->assertOption('edit-all-bundles-actions-bundle', 'ief_test_complex');
-    $assert_session->fieldExists('multi[form][inline_entity_form][title][0][value]');
+    $this->assertSession()->optionExists('edit-all-bundles-actions-bundle', 'ief_reference_type');
+    $this->assertSession()->optionExists('edit-all-bundles-actions-bundle', 'ief_test_complex');
+    $assert_session->elementExists('xpath', $nested_title_field_xpath);
   }
 
   /**
@@ -812,6 +888,211 @@ class ComplexWidgetTest extends InlineEntityFormTestBase {
         $this->checkNestedNodeEditing($top_level_node);
       }
     }
+  }
+
+  /**
+   * Tests the separation of nested data.
+   *
+   * Using entity creation with different bundles nested in each other.
+   * Ief_test_nested1 -> ief_test_nested2 -> ief_test_nested3
+   *
+   * When creating a second ief_test_nested2 it should be empty and not be
+   * prefilled with the ief_test_nested3 of the first ief_test_nested2.
+   */
+  public function testSeparateNestedDataMultiValueFields() {
+    // Get the xpath selectors for the input fields in this test.
+    $top_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 1);
+    $nested_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 2);
+    $double_nested_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 3);
+
+    $page = $this->getSession()->getPage();
+    $assert_session = $this->assertSession();
+    foreach ([FALSE, TRUE] as $required) {
+      $this->setupNestedComplexForm($required);
+      $required_string = ($required) ? ' required' : ' unrequired';
+      $double_nested_title = 'Dream within a dream' . $required_string;
+      $nested_title = 'Dream' . $required_string;
+      $top_level_title = 'Reality' . $required_string;
+      $assert_session->elementExists('xpath', $top_title_field_xpath)
+        ->setValue($top_level_title);
+      $assert_session->elementExists('xpath', $nested_title_field_xpath)
+        ->setValue($nested_title);
+      $assert_session->elementExists('xpath', $double_nested_title_field_xpath)
+        ->setValue($double_nested_title);
+      $page->pressButton('Create node 3');
+      $assert_session->waitForButton('Add new node 3');
+      $page->pressButton('Create node 2');
+      $assert_session->waitForButton('Add new node 2');
+      $page->pressButton('Add new node 2');
+      $assert_session->waitForButton('Add new node 3');
+      // The new node 2 should be empty and not already have a
+      // double_nested_title present.
+      $this->assertNoRowByTitle($double_nested_title);
+    }
+  }
+
+  /**
+   * Tests that create and edit of nested data won#t clash.
+   *
+   * When creating, then editing a nested IEF, the internal widget state must
+   * use the same IEF ID on create and edit. Otherwise on saving, the entity
+   * will be saved twice, and cause a WSOD.
+   *
+   * @dataProvider simpleFalseTrueDataProvider
+   */
+  public function testNestedCreateAndEditWontClash(bool $required) {
+    // Get the xpath selectors for the input fields in this test.
+    $top_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 1);
+    $nested_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 2);
+    $double_nested_title_field_xpath = $this->getXpathForNthInputByLabelText('Title', 3);
+
+    $second_edit_button_xpath = $this->getXpathForButtonWithValue('Edit', 2);
+
+    $page = $this->getSession()->getPage();
+    $assert_session = $this->assertSession();
+
+    $this->setupNestedComplexForm($required);
+    $required_string = ($required) ? ' required' : ' unrequired';
+    $title_1 = 'Rationality' . $required_string;
+    $title_1_2 = 'Drain' . $required_string;
+    $title_1_2_3 = 'Drain within a drain' . $required_string;
+    $title_i_2_3a = "Drone within a drain" . $required_string;
+    $title_1_2a = 'Drone' . $required_string;
+    $title_1_2a_3 = 'Drain within a drone' . $required_string;
+    $title_i_2a_3a = "Drone within a drain" . $required_string;
+
+    $this->elementWithXpath($top_title_field_xpath)
+      ->setValue($title_1);
+    $this->elementWithXpath($nested_title_field_xpath)
+      ->setValue($title_1_2);
+    $this->elementWithXpath($double_nested_title_field_xpath)
+      ->setValue($title_1_2_3);
+
+    // Close all subforms.
+    $this->elementWithXpath($this->buttonXpath('Create node 3'))->press();
+    $this->waitForXpath($this->buttonXpath('Add new node 3'));
+    $this->elementWithXpath($this->buttonXpath('Create node 2'))->press();
+    $this->waitForXpath($this->buttonXpath('Add new node 2'));
+
+    // Re-open all subforms and add a second node 3.
+    $this->elementWithXpath($this->buttonXpath('Edit'))->press();
+    $this->waitForXpath($this->buttonXpath('Update node 2'));
+    $this->elementWithXpath($this->buttonXpath('Add new node 3'))->press();
+    $this->assertNotNull($assert_session->waitForButton('Create node 3'));
+    $assert_session->elementExists('xpath', $double_nested_title_field_xpath)
+      ->setValue($title_i_2_3a);
+    $this->elementWithXpath($this->buttonXpath('Create node 3'))->press();
+    $this->waitForXpath($this->buttonXpath('Add new node 3'));
+    $this->elementWithXpath($this->buttonXpath('Update node 2'))->press();
+    $this->waitForXpathRemoved($this->buttonXpath('Update node 2'));
+
+    // Repeat. Add node 2a and 2a_3
+    $this->elementWithXpath($this->buttonXpath('Add new node 2'))->press();
+    $this->waitForXpath($this->buttonXpath('Create node 2'));
+    if (!$required) {
+      $this->elementWithXpath($this->buttonXpath('Add new node 3'))->press();
+      $this->waitForXpath($this->buttonXpath('Create node 3'));
+    }
+
+    $assert_session->elementExists('xpath', $nested_title_field_xpath)
+      ->setValue($title_1_2a);
+    $assert_session->elementExists('xpath', $double_nested_title_field_xpath)
+      ->setValue($title_1_2a_3);
+
+    // Close all subforms.
+    $this->elementWithXpath($this->buttonXpath('Create node 3'))->press();
+    $this->waitForXpath($this->buttonXpath('Add new node 3'));
+    $this->elementWithXpath($this->buttonXpath('Create node 2'))->press();
+    $this->waitForXpathRemoved($this->buttonXpath('Create node 2'));
+
+    // Re-open all subforms and add a second node 2a_3a.
+    $this->waitForXpath($second_edit_button_xpath)->press();
+    $this->waitForXpath($this->buttonXpath('Update node 2'));
+    $this->elementWithXpath($this->buttonXpath('Add new node 3'))->press();
+    $this->waitForXpath($this->buttonXpath('Create node 3'));
+    $assert_session->elementExists('xpath', $double_nested_title_field_xpath)
+      ->setValue($title_i_2a_3a);
+    $this->elementWithXpath($this->buttonXpath('Create node 3'))->press();
+    $this->waitForXpath($this->buttonXpath('Add new node 3'));
+
+    // Save everything and assert message.
+    $this->elementWithXpath($this->buttonXpath('Save'))->press();
+    $this->htmlOutput();
+    $assert_session->pageTextContains("IEF test nested 1 $title_1 has been created.");
+  }
+
+  /**
+   * Data provider: FALSE, TRUE.
+   */
+  public function simpleFalseTrueDataProvider() {
+    return [
+      [FALSE],
+      [TRUE],
+    ];
+  }
+
+  /**
+   * Assert and return an element via XPath. On fail, save output and throw.
+   *
+   * @param string $xpath
+   *   The XPath.
+   * @return \Behat\Mink\Element\NodeElement
+   *   The element.
+   */
+  public function elementWithXpath(string $xpath): NodeElement {
+    return $this->waitForXpath($xpath, 0);
+  }
+
+  /**
+   * Wait, assert, and return an element via XPath. On fail, save output and throw.
+   *
+   * @param string $xpath
+   *   The XPath.
+   * @param int $timeout
+   *   The timeout in milliseconds.
+   * @return \Behat\Mink\Element\NodeElement
+   *   The element.
+   */
+  public function waitForXpath(string $xpath, int $timeout = 10000): NodeElement {
+    $element = $this->assertSession()->waitForElement('xpath', $xpath, $timeout);
+    if (!$element) {
+      $this->htmlOutput();
+      $this->assertNotNull($element);
+    }
+    return $element;
+  }
+
+  /**
+   * Wait and assert removal of an element via XPath. On fail, save output and throw.
+   *
+   * @param string $xpath
+   *   The XPath.
+   * @param int $timeout
+   *   The timeout in milliseconds.
+   * @return bool
+   *   Returna always true (else throws).
+   */
+  public function waitForXpathRemoved(string $xpath, int $timeout = 10000): bool {
+    $removed = $this->assertSession()->waitForElementRemoved('xpath', $xpath, $timeout);
+    if (!$removed) {
+      $this->htmlOutput();
+      $this->assert($removed);
+    }
+    return $removed;
+  }
+
+  /**
+   * Get xpath for a button.
+   *
+   * @param string $label
+   *  The button's label.
+   * @param int $index
+   *   The button's index, defaults to 1.
+   * @return string
+   *   The XPath.
+   */
+  protected function buttonXpath(string $label, int $index = 1): string {
+    return $this->getXpathForButtonWithValue($label, $index);
   }
 
 }

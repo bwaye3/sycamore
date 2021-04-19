@@ -1,11 +1,11 @@
 PHP WkHtmlToPdf
 ===============
 
-[![Build Status](https://secure.travis-ci.org/mikehaertl/phpwkhtmltopdf.png)](http://travis-ci.org/mikehaertl/phpwkhtmltopdf)
-[![Latest Stable Version](https://poser.pugx.org/mikehaertl/phpwkhtmltopdf/v/stable.svg)](https://packagist.org/packages/mikehaertl/phpwkhtmltopdf)
-[![Total Downloads](https://poser.pugx.org/mikehaertl/phpwkhtmltopdf/downloads)](https://packagist.org/packages/mikehaertl/phpwkhtmltopdf)
-[![Latest Unstable Version](https://poser.pugx.org/mikehaertl/phpwkhtmltopdf/v/unstable.svg)](https://packagist.org/packages/mikehaertl/phpwkhtmltopdf)
-[![License](https://poser.pugx.org/mikehaertl/phpwkhtmltopdf/license.svg)](https://packagist.org/packages/mikehaertl/phpwkhtmltopdf)
+[![GitHub Tests](https://github.com/mikehaertl/phpwkhtmltopdf/workflows/Tests/badge.svg)](https://github.com/mikehaertl/phpwkhtmltopdf/actions)
+[![Packagist Version](https://img.shields.io/packagist/v/mikehaertl/phpwkhtmltopdf?label=version)](https://packagist.org/packages/mikehaertl/phpwkhtmltopdf)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/mikehaertl/phpwkhtmltopdf)](https://packagist.org/packages/mikehaertl/phpwkhtmltopdf)
+[![GitHub license](https://img.shields.io/github/license/mikehaertl/phpwkhtmltopdf)](https://github.com/mikehaertl/phpwkhtmltopdf/blob/master/LICENSE)
+[![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/mikehaertl/phpwkhtmltopdf)](https://packagist.org/packages/mikehaertl/phpwkhtmltopdf)
 
 PHP WkHtmlToPdf provides a simple and clean interface to ease PDF and image creation with
 [wkhtmltopdf](http://wkhtmltopdf.org). **The `wkhtmltopdf` and - optionally - `wkhtmltoimage`
@@ -130,8 +130,8 @@ $options = array(
 
     // Repeatable options with 2 arguments
     'replace' => array(
-        '{page}' => $page++,
-        '{title}' => $pageTitle,
+        'number' => $page++,      // Replace '[number]'
+        'title' => $pageTitle,    // Replace '[title]'
     ),
 );
 ```
@@ -181,9 +181,9 @@ $pdf = new Pdf(array(
     'binary' => '/obscure/path/to/wkhtmltopdf',
     'ignoreWarnings' => true,
     'commandOptions' => array(
-        'useExec' => true,      // Can help if generation fails without a useful error message
+        'useExec' => true,      // Can help on Windows systems
         'procEnv' => array(
-            // Check the output of 'locale' on your system to find supported languages
+            // Check the output of 'locale -a' on your system to find supported languages
             'LANG' => 'en_US.utf-8',
         ),
     ),

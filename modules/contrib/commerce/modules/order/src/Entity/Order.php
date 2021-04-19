@@ -6,6 +6,7 @@ use Drupal\commerce\Entity\CommerceContentEntityBase;
 use Drupal\commerce_order\Adjustment;
 use Drupal\commerce_order\Event\OrderEvents;
 use Drupal\commerce_order\Event\OrderProfilesEvent;
+use Drupal\commerce_order\OrderBalanceFieldItemList;
 use Drupal\commerce_price\Price;
 use Drupal\commerce_store\Entity\StoreInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
@@ -35,6 +36,7 @@ use Drupal\profile\Entity\ProfileInterface;
  *   handlers = {
  *     "event" = "Drupal\commerce_order\Event\OrderEvent",
  *     "storage" = "Drupal\commerce_order\OrderStorage",
+ *     "storage_schema" = "Drupal\commerce\CommerceContentEntityStorageSchema",
  *     "access" = "Drupal\commerce_order\OrderAccessControlHandler",
  *     "query_access" = "Drupal\commerce_order\OrderQueryAccessHandler",
  *     "permission_provider" = "Drupal\commerce_order\OrderPermissionProvider",
@@ -55,10 +57,14 @@ use Drupal\profile\Entity\ProfileInterface;
  *       "default" = "Drupal\commerce_order\OrderRouteProvider",
  *       "delete-multiple" = "Drupal\entity\Routing\DeleteMultipleRouteProvider",
  *     },
+ *     "entity_print" = "Drupal\commerce_order\EntityPrint\OrderRenderer"
  *   },
  *   base_table = "commerce_order",
  *   admin_permission = "administer commerce_order",
  *   permission_granularity = "bundle",
+ *   field_indexes = {
+ *     "order_number"
+ *   },
  *   entity_keys = {
  *     "id" = "order_id",
  *     "label" = "order_number",
@@ -769,7 +775,7 @@ class Order extends CommerceContentEntityBase implements OrderInterface {
       ->setDescription(t('Billing profile'))
       ->setSetting('target_type', 'profile')
       ->setSetting('handler', 'default')
-      ->setSetting('handler_settings', ['target_bundles' => ['customer']])
+      ->setSetting('handler_settings', ['target_bundles' => ['customer' => 'customer']])
       ->setTranslatable(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'commerce_billing_profile',
@@ -827,6 +833,15 @@ class Order extends CommerceContentEntityBase implements OrderInterface {
     $fields['total_paid'] = BaseFieldDefinition::create('commerce_price')
       ->setLabel(t('Total paid'))
       ->setDescription(t('The total paid price of the order.'))
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['balance'] = BaseFieldDefinition::create('commerce_price')
+      ->setLabel(t('Order balance'))
+      ->setDescription(t('The order balance.'))
+      ->setReadOnly(TRUE)
+      ->setComputed(TRUE)
+      ->setClass(OrderBalanceFieldItemList::class)
       ->setDisplayConfigurable('form', FALSE)
       ->setDisplayConfigurable('view', TRUE);
 

@@ -60,7 +60,7 @@ class CommerceEntityViewsData extends EntityViewsData {
     // Add missing reverse relationships. Workaround for core issue #2706431.
     $base_fields = $this->getEntityFieldManager()->getBaseFieldDefinitions($entity_type_id);
     $entity_reference_fields = array_filter($base_fields, function (BaseFieldDefinition $field) {
-      return $field->getType() == 'entity_reference';
+      return $field->getType() === 'entity_reference' && !$field->isComputed();
     });
     if (in_array($entity_type_id, ['commerce_order', 'commerce_product'])) {
       // Product variations and order items have reference fields pointing
@@ -181,7 +181,7 @@ class CommerceEntityViewsData extends EntityViewsData {
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   protected function mapFieldDefinition($table, $field_name, FieldDefinitionInterface $field_definition, TableMappingInterface $table_mapping, &$table_data) {
     $field_column_mapping = $table_mapping->getColumnNames($field_name);
@@ -223,7 +223,7 @@ class CommerceEntityViewsData extends EntityViewsData {
       $label = $field_definition->getLabel();
 
       $table_data['delta'] = [
-        'title' => t('@label (@name:delta)', ['@label' => $label, '@name' => $field_name]),
+        'title' => $this->t('@label (@name:delta)', ['@label' => $label, '@name' => $field_name]),
         'title short' => t('@label:delta', ['@label' => $label]),
       ];
       $table_data['delta']['field'] = [

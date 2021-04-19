@@ -34,4 +34,13 @@ final class PayPalEvents {
    */
   const CHECKOUT_UPDATE_ORDER_REQUEST = 'commerce_paypal.checkout_update_order_request';
 
+  /**
+   * Name of the event fired when performing the Payflow Link requests.
+   *
+   * @Event
+   *
+   * @see \Drupal\commerce_paypal\Event\PayflowLinkRequestEvent.php
+   */
+  const PAYFLOW_LINK_REQUEST = 'commerce_paypal.payflow_link_request';
+
 }

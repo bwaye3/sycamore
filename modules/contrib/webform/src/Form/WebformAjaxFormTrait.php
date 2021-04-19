@@ -200,6 +200,12 @@ trait WebformAjaxFormTrait {
       // Announce validation errors.
       $this->announce($this->t('Form validation errors have been found.'));
     }
+    elseif ($form_state->getResponse() instanceof AjaxResponse) {
+      // Allow developers via form_alter hooks to set their own Ajax response.
+      // The custom Ajax response could be used to close modals and refresh
+      // selected regions and blocks on the page.
+      $response = $form_state->getResponse();
+    }
     elseif ($form_state->isRebuilding()) {
       // Rebuild form.
       $response = $this->replaceForm($form, $form_state);
@@ -402,12 +408,11 @@ trait WebformAjaxFormTrait {
    * @see \Drupal\webform\Form\WebformAjaxFormTrait::submitAjaxForm
    */
   protected function announce($text, $priority = 'polite') {
-    $announcements = $this->getAnnouncements();
+    $announcements =& drupal_static('webform_announcements', []);
     $announcements[] = [
       'text' => $text,
       'priority' => $priority,
     ];
-    $this->setAnnouncements($announcements);
   }
 
   /**
@@ -417,8 +422,7 @@ trait WebformAjaxFormTrait {
    *   An associative array of announcements.
    */
   protected function getAnnouncements() {
-    $session = $this->getRequest()->getSession();
-    return $session->get('announcements') ?: [];
+    return drupal_static('webform_announcements', []);
   }
 
   /**
@@ -428,18 +432,15 @@ trait WebformAjaxFormTrait {
    *   An associative array of announcements.
    */
   protected function setAnnouncements(array $announcements) {
-    $session = $this->getRequest()->getSession();
-    $session->set('announcements', $announcements);
-    $session->save();
+    $this->resetAnnouncements();
+    drupal_static('webform_announcements', $announcements);
   }
 
   /**
    * Reset announcements.
    */
   protected function resetAnnouncements() {
-    $session = $this->getRequest()->getSession();
-    $session->remove('announcements');
-    $session->save();
+    drupal_static_reset('webform_announcements');
   }
 
 }

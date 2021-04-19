@@ -24,22 +24,12 @@ class TwitterBlock extends BlockBase {
 
     $config = $this->getConfiguration();
 
-    $form['widget_id'] = [
+    $form['username'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Widget ID'),
-      '#default_value' => $config['widget_id'],
+      '#title' => $this->t('Username'),
+      '#default_value' => $config['username'],
       '#required' => TRUE,
-      '#description' => $this->t('Each Twitter Block block requires a unique
-        widget ID which determines, among other things, the source (user
-        timeline, favourites, list or search) of the tweets to display. You can
-        view a list of your existing embedded timeline widgets (and their widget
-        IDs) or create new embedded timeline widgets by visiting the
-        <a href="@widgets_section">widgets section of your Twitter settings
-        page</a> (make sure that you\'re logged in). You can determine a
-        widget\'s ID by editing it and inspecting the URL (which should be in
-        the form of twitter.com/settings/widgets/WIDGET_ID/edit) or by looking
-        at the widget\'s embed code (look for data-widget-id="WIDGET_ID").',
-        ['@widgets_section' => 'https://twitter.com/settings/widgets']),
+      '#field_prefix' => '@',
     ];
     $form['appearance'] = [
       '#type' => 'fieldset',
@@ -105,13 +95,16 @@ class TwitterBlock extends BlockBase {
       '#type' => 'select',
       '#title' => $this->t('Tweet limit'),
       '#default_value' => $config['tweet_limit'],
-      '#options' => ['' => $this->t('Auto')] + [array_combine(range(1, 20), range(1, 20))],
+      '#options' => ['' => $this->t('Auto')],
       '#description' => $this->t('Fix the size of a timeline to a preset number
         of Tweets between 1 and 20. The timeline will render the specified number
         of Tweets from the timeline, expanding the height of the widget to
         display all Tweets without scrolling. Since the widget is of a fixed
         size, it will not poll for updates when using this option.'),
     ];
+    $form['functionality']['tweet_limit']['#options'] +=
+      array_combine(range(1, 20), range(1, 20));
+
     $form['size'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Size'),
@@ -182,7 +175,7 @@ class TwitterBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
-    $this->setConfigurationValue('widget_id', $form_state->getValue('widget_id'));
+    $this->setConfigurationValue('username', $form_state->getValue('username'));
     foreach (['appearance', 'functionality', 'size', 'accessibility'] as $fieldset) {
       $fieldset_values = $form_state->getValue($fieldset);
       foreach ($fieldset_values as $key => $value) {
@@ -200,11 +193,10 @@ class TwitterBlock extends BlockBase {
 
     $render['block'] = [
       '#type' => 'link',
-      '#title' => 'Twitter feed',
-      '#url' => Url::fromUri('https://twitter.com/twitterapi'),
+      '#title' => $this->t('Tweets by @@username', ['@username' => $config['username']]),
+      '#url' => Url::fromUri('https://twitter.com/' . $config['username']),
       '#attributes' => [
         'class' => ['twitter-timeline'],
-        'data-widget-id' => $config['widget_id'],
       ],
       '#attached' => [
         'library' => ['twitter_block/widgets'],
@@ -220,11 +212,11 @@ class TwitterBlock extends BlockBase {
     }
 
     if (!empty($config['width'])) {
-      $render['block']['#attributes']['width'] = $config['width'];
+      $render['block']['#attributes']['data-width'] = $config['width'];
     }
 
     if (!empty($config['height'])) {
-      $render['block']['#attributes']['height'] = $config['height'];
+      $render['block']['#attributes']['data-height'] = $config['height'];
     }
 
     if (!empty($config['chrome'])) {
@@ -263,7 +255,7 @@ class TwitterBlock extends BlockBase {
    */
   public function defaultConfiguration() {
     return [
-      'widget_id' => '',
+      'username' => '',
       'theme' => '',
       'link_color' => '',
       'width' => '',

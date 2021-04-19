@@ -43,7 +43,7 @@ class Tweetbutton extends CKEditorPluginBase {
   public function getButtons() {
     return [
       'TweetableText' => [
-        'label' => t('Tweet Button'),
+        'label' => $this->t('Tweet Button'),
         'image' => base_path() . 'libraries/tweetable_text/icons/tweetabletext.png',
       ],
     ];

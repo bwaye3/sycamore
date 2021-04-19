@@ -87,3 +87,51 @@ commerce_payment.commerce_payment_gateway.plugin.paypal_payflow:
     password:
       type: string
       label: 'Password'
+commerce_payment.commerce_payment_gateway.plugin.paypal_payflow_link:
+  type: commerce_payment_gateway_configuration
+  mapping:
+    partner:
+      type: string
+      label: 'Partner'
+    vendor:
+      type: string
+      label: 'Vendor'
+    user:
+      type: string
+      label: 'User'
+    password:
+      type: string
+      label: 'Password'
+    trxtype:
+      type: string
+      label: 'Default transaction type'
+    redirect_mode:
+      type: string
+      label: 'Checkout redirect mode'
+    reference_transactions:
+      type: boolean
+      label: 'Enable reference transactions'
+    emailcustomer:
+      type: boolean
+      label: 'Instruct PayPal to e-mail payment receipts'
+    log:
+      type: mapping
+      label: 'Log API messages'
+      mapping:
+        request:
+          type: string
+          label: 'API request messages'
+        response:
+          type: string
+          label: 'API response messages'
+
+commerce_paypal.credit_messaging_settings:
+  type: config_object
+  label: 'PayPal Credit messaging settings'
+  mapping:
+    client_id:
+      type: string
+      label: 'Client ID'
+    add_to_cart:
+      type: boolean
+      label: 'Enable on add to cart'

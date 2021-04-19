@@ -38,7 +38,7 @@ abstract class InlineEntityFormTestBase extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
     $this->fieldStorageConfigStorage = $this->container->get('entity_type.manager')->getStorage('field_storage_config');
     $this->fieldConfigStorage = $this->container->get('entity_type.manager')->getStorage('field_config');
@@ -113,7 +113,7 @@ abstract class InlineEntityFormTestBase extends WebDriverTestBase {
     $node = $this->getNodeByTitle($title, TRUE);
     $this->assertNotEmpty($node, $message);
     if ($content_type) {
-      $this->assertEqual($node->bundle(), $content_type, "Node is correct content type: $content_type");
+      $this->assertEquals($node->bundle(), $content_type, "Node is correct content type: $content_type");
     }
   }
 
@@ -209,20 +209,20 @@ abstract class InlineEntityFormTestBase extends WebDriverTestBase {
   }
 
   /**
-   * Wait for an IEF table row to appear.
+   * Wait for an IEF table row to disappear.
    *
    * @param string $title
    *   The title of the row for which to wait.
    */
   protected function waitForRowRemovedByTitle($title) {
-    $this->assertNotEmpty($this->waitForElementRemoved('xpath', '//td[@class="inline-entity-form-node-label" and text()="' . $title . '"]'));
+    $this->assertNotEmpty($this->assertSession()->waitForElementRemoved('xpath', '//td[@class="inline-entity-form-node-label" and text()="' . $title . '"]'));
   }
 
   /**
-   * Asserts that an IEF table row appears.
+   * Asserts that an IEF table row exists.
    *
    * @param string $title
-   *   The title of the row for which to wait.
+   *   The title of the row to check.
    *
    * @return \Behat\Mink\Element\NodeElement
    *   The <td> element containing the label for the IEF row.
@@ -233,43 +233,72 @@ abstract class InlineEntityFormTestBase extends WebDriverTestBase {
   }
 
   /**
-   * Asserts that an IEF table row appears.
+   * Asserts that an IEF table row does not exist.
    *
    * @param string $title
-   *   The title of the row for which to wait.
+   *   The title of the row to check.
    */
   protected function assertNoRowByTitle($title) {
     $this->assertSession()->elementNotExists('xpath', '//td[@class="inline-entity-form-node-label" and text()="' . $title . '"]');
   }
 
   /**
-   * Looks for the specified selector and returns TRUE when it is unavailable.
+   * Returns xpath selector to the index-th input with label.
    *
-   * @todo Remove when tests are running on Drupal 8.8. or greater. Then
-   * we can use $assert_session->waitForElementRemoved(). This is will be when
-   * Drupal 8.7 reaches EOL (which is when 8.9 is released in June 2020).
+   * Note: index starts at 1.
    *
-   * @param string $selector
-   *   The selector engine name. See ElementInterface::findAll() for the
-   *   supported selectors.
-   * @param string|array $locator
-   *   The selector locator.
-   * @param int $timeout
-   *   (Optional) Timeout in milliseconds, defaults to 10000.
+   * @param string $label
+   *   The label text to select.
+   * @param int $index
+   *   The index of the input to select.
    *
-   * @return bool
-   *   TRUE if not found, FALSE if found.
-   *
-   * @see \Drupal\FunctionalJavascriptTests\JSWebAssert::waitForElementRemoved
+   * @return string
+   *   The xpath selector for the input to select.
    */
-  public function waitForElementRemoved($selector, $locator, $timeout = 10000) {
-    $page = $this->getSession()->getPage();
+  protected function getXpathForNthInputByLabelText($label, $index) {
+    return "(//*[@id=string((//label[.='{$label}']/@for)[{$index}])])";
+  }
 
-    $result = $page->waitFor($timeout / 1000, function () use ($page, $selector, $locator) {
-      return !$page->find($selector, $locator);
-    });
+  /**
+   * Returns xpath selector to the first input with an auto-complete.
+   *
+   * @return string
+   *   The xpath selector for the first input with an auto-complete.
+   */
+  protected function getXpathForAutoCompleteInput() {
+    return '(//input[@data-autocomplete-path])';
+  }
 
-    return $result;
+  /**
+   * Returns xpath selector to the index-th button with button text value.
+   *
+   * Note: index starts at 1.
+   *
+   * @param string @value
+   *   The text on the button to select.
+   * @param int $index
+   *   The index of the button to select.
+   *
+   * @return string
+   *   The xpath selector for the button to select.
+   */
+  protected function getXpathForButtonWithValue($value, $index) {
+    return "(//input[@type='submit' and @value='{$value}'])[{$index}]";
+  }
+
+  /**
+   * Returns xpath selector for fieldset label.
+   *
+   * @param string $label
+   *   The label text to select.
+   * @param int $index
+   *   The index of the fieldset label to select.
+   *
+   * @return string
+   *   The xpath selector for the fieldset label to select.
+   */
+  protected function getXpathForFieldsetLabel($label, $index) {
+    return "(//fieldset/legend/span[.='{$label}'])[{$index}]";
   }
 
 }
