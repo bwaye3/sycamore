@@ -4,12 +4,12 @@
 #_logo
 #_sql
 # Ignore configuration files that may contain sensitive information
-#/sites/*/*settings*.php
-#/sites/*/*services*.yml
-#/sites/development.services.yml
-#/sites/default/settings.local.php
-#/sites/default/settings.php
-#/sites/default/files/php/twig/
+/sites/*/*settings*.php
+/sites/*/*services*.yml
+/sites/development.services.yml
+/sites/default/settings.local.php
+/sites/default/settings.php
+/sites/default/files/php/twig/
 #/wp-content
 #/wp-content/*/uploads
 #/wp-content/*/uploads/
@@ -17,16 +17,16 @@
 #/wp-content/uploads
 
 # Ignore paths that may contain user-generated content
-#/sites/*/files
-#/sites/*/public
-#/sites/*/private
-#/sites/*/files-public
-#/sites/*/files-private
-#/sites/default/files/php/
-#/sites/default/files/css/
-#/sites/default/files/js/
-#/sites/default/files/tmp/
-#/profiles/
+/sites/*/files
+/sites/*/public
+/sites/*/private
+/sites/*/files-public
+/sites/*/files-private
+/sites/default/files/php/
+/sites/default/files/css/
+/sites/default/files/js/
+/sites/default/files/tmp/
+/profiles/
 
 
 # Ignore paths that may contain temporary files
@@ -48,12 +48,13 @@
 #/.eslintrc.json
 #/.gitattributes
 _SQL
+/_SQL
 /.htaccess
 .htaccess
 #/autoload.php
 #/composer.lock
 #/index.php
-#/robots.txt
+/robots.txt
 #/update.php
 #.config
 /example.gitignore
