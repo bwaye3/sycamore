@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/sycamore/public_html/
+    - export DEPLOYPATH=/home/sycamore/drupal/
     - /bin/cp -R * $DEPLOYPATH
 
 
