@@ -56,7 +56,7 @@
         "drupal/profile": "^1.0",
         "drupal/protected_pages": "^1.1",
         "drupal/recaptcha": "^2.4",
-        "drupal/seo_checklist": "^4.1",
+        "drupal/seo_checklist": "^4.0",
         "drupal/simple_sitemap": "^3.5",
         "drupal/simplenews": "^1.0@beta",
         "drupal/sitemap": "^1.5",
