@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => 'f2aeed0c4cc7dae8465a40788ba14715d4fb70e0',
         'name' => 'drupal/recommended-project',
         'dev' => true,
     ),
@@ -311,12 +311,12 @@
             ),
         ),
         'drupal/better_exposed_filters' => array(
-            'pretty_version' => '5.0.0-beta1',
-            'version' => '5.0.0.0-beta1',
+            'pretty_version' => '5.0.0-beta2',
+            'version' => '5.0.0.0-beta2',
             'type' => 'drupal-module',
             'install_path' => __DIR__ . '/../../web/modules/contrib/better_exposed_filters',
             'aliases' => array(),
-            'reference' => '8.x-5.0-beta1',
+            'reference' => '8.x-5.0-beta2',
             'dev_requirement' => false,
         ),
         'drupal/big_pipe' => array(
@@ -1258,12 +1258,12 @@
             'dev_requirement' => false,
         ),
         'drupal/recommended-project' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => 'f2aeed0c4cc7dae8465a40788ba14715d4fb70e0',
             'dev_requirement' => false,
         ),
         'drupal/responsive_image' => array(
@@ -1363,12 +1363,12 @@
             ),
         ),
         'drupal/state_machine' => array(
-            'pretty_version' => '1.2.0',
-            'version' => '1.2.0.0',
+            'pretty_version' => '1.3.0',
+            'version' => '1.3.0.0',
             'type' => 'drupal-module',
             'install_path' => __DIR__ . '/../../web/modules/contrib/state_machine',
             'aliases' => array(),
-            'reference' => '8.x-1.2',
+            'reference' => '8.x-1.3',
             'dev_requirement' => false,
         ),
         'drupal/statistics' => array(
