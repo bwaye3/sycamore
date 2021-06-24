@@ -65,6 +65,12 @@ _SQL
 /themes/README.txt
 /LICENSE.txt
 /README.txt
+web/README.txt
+web/example.gitignore
+web/profiles/
+web/robots.txt
+web/sites/
+web/themes/README.txt
 
 # Ignore OS garbage
 .DS_Store
