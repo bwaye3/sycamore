@@ -239,6 +239,8 @@ $databases = [];
  */
 # $settings['config_sync_directory'] = '/directory/outside/webroot';
 
+$settings['config_sync_directory'] = '../config/sync';
+
 /**
  * Settings:
  *
@@ -764,5 +766,3 @@ $databases['default']['default'] = array (
     'driver' => 'mysql',
 );
 
-
-$config_directories['sync'] = '../config/sync';
