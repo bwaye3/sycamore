@@ -3,6 +3,7 @@ use CommerceGuys\Intl\Currency\CurrencyRepository;
 use CommerceGuys\Intl\NumberFormat\NumberFormatRepository;
 use CommerceGuys\Intl\Formatter\NumberFormatter;
 use CommerceGuys\Intl\Formatter\CurrencyFormatter;
+use Drupal\Core\Database\Query\Condition;
 
 function gavias_kunco_preprocess_campaign(&$vars){
   $vars['#cache']['max-age'] = 0;
@@ -52,14 +53,15 @@ function gavias_kunco_preprocess_campaign(&$vars){
     }
   }
 
-  $results = db_select('{commerce_order_item}', 'oi');
+  $results = Drupal::database()->select('{commerce_order_item}', 'oi');
   $results->leftJoin('{commerce_order}', 'o', 'oi.order_id = o.order_id');
   $results->leftJoin('{commerce_product_variation_field_data}', 'v', 'oi.purchased_entity = v.variation_id');
   $results->fields('v', array('product_id'));
   $results->fields('o', array('state'));
   $results->fields('oi', array('unit_price__number', 'total_price__number'));
+
   $results->condition(
-    db_or()
+    (new Condition('OR'))
       ->condition('o.state', 'payment_received', '=')
       ->condition('o.state', 'completed', '=')
   );

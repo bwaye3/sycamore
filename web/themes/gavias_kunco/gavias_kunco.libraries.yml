@@ -9,7 +9,6 @@ global-styling:
       css/font-awesome/css/font-awesome.min.css: {}
       css/icon.css: {}
       css/animate.css: {}
-      css/bootstrap-card.css: {}
       vendor/owl-carousel/assets/owl.carousel.min.css: {}
       vendor/owl-carousel/assets/owl.theme.default.min.css: {}
       vendor/prettyphoto/css/prettyPhoto.css: {}
@@ -37,6 +36,7 @@ global-styling:
     vendor/perfect-scrollbar.jquery.min.js: {}
     vendor/magnific/jquery.magnific-popup.min.js: {}
     vendor/popup-gallery/js/lightgallery.min.js: {}
+    vendor/InstagramFeed.js: {}
     js/main.js: {}
   dependencies:
     - core/jquery
@@ -155,7 +155,6 @@ gavias-kunco-admin:
     theme: 
       css/theme-settings.css: {}
       vendor/colorpicker/css/colorpicker.css: {}
-      vendor/codemirror/lib/codemirror.css: {}
       vendor/codemirror/lib/codemirror.css: {}
       vendor/codemirror/addon/hint/show-hint.css: {}
   js:

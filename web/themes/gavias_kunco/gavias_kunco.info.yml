@@ -1,7 +1,7 @@
 name: Gavias Kunco
 type: theme
 description: 'A flexible, recolorable theme with many regions and a responsive, mobile-first layout.'
-package: gaviasthemes
+base theme: false
 libraries:
   - gavias_kunco/global-styling
   - core/jquery
@@ -38,6 +38,6 @@ regions:
   copyright: 'Copyright'
   other: 'Other'
 
-version: '8.x'
-core: '8.x'
+version: '9.x'
+core_version_requirement: ^8.8 || ^9
 project: 'drupal'

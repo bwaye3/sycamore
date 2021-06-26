@@ -42,14 +42,13 @@ function _gavias_kunco_attributes_get_attributes(MenuLinkInterface $menu_link_co
     return $attributes;
   }
   list($entity_type, $uuid) = explode(':', $plugin_id, 2);
+
   if ($entity_type == 'menu_link_content') {
-    $entity = \Drupal::entityManager()->loadEntityByUuid($entity_type, $uuid);
-    if ($entity) {
-      $options = $entity->link->first()->options;
+    $entity = \Drupal::entityTypeManager()->getStorage('menu_link_content')->loadByProperties(['uuid' => $uuid]);
+    if (count($entity)) {
+      $entity_values = array_values($entity)[0];
+      $options = $entity_values->link->first()->options;
       $attributes = isset($options['attributes']) ? $options['attributes'] : [];
-      if (isset($attributes['gva_class'])) {
-        $attributes['gva_class'] = explode(' ', $attributes['gva_class']);
-      }
     }
   }
   return $attributes;
