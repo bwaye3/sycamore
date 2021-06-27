@@ -26,8 +26,6 @@ order-header-js-command:
   header: true
   js:
     header.js: {}
-<<<<<<< HEAD
-=======
 
 focus.first:
   js:
@@ -35,4 +33,3 @@ focus.first:
   dependencies:
     - core/drupal
     - core/once
->>>>>>> dev

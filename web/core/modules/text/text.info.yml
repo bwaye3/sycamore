@@ -3,10 +3,6 @@ type: module
 description: 'Defines simple text field types.'
 package: Field types
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 dependencies:
   - drupal:field
   - drupal:filter

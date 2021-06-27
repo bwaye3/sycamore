@@ -2,10 +2,6 @@ name: 'Test legacy theme'
 type: theme
 description: 'Test theme to test deprecated functionality.'
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-base theme: test_theme
-=======
 package: Testing
 base theme: test_theme
 
@@ -18,4 +14,3 @@ libraries-override:
 libraries-extend:
   theme_test/another_deprecated_library:
     - test_legacy_theme/library
->>>>>>> dev

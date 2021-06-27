@@ -69,11 +69,7 @@ class WorkflowStateTransitionOperationsAccessCheck implements AccessInterface {
   }
 
   /**
-<<<<<<< HEAD
-   * Get the operation that will be used for the access check
-=======
    * Get the operation that will be used for the access check.
->>>>>>> dev
    *
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
    *   The parametrized route

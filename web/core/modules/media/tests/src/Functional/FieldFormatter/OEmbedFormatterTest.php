@@ -21,11 +21,7 @@ class OEmbedFormatterTest extends MediaFunctionalTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'field_ui',
     'link',
     'media_test_oembed',
@@ -39,11 +35,7 @@ class OEmbedFormatterTest extends MediaFunctionalTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->lockHttpClientToFixtures();
 
@@ -163,13 +155,8 @@ class OEmbedFormatterTest extends MediaFunctionalTestBase {
    * @param string $url
    *   The canonical URL of the media asset to test.
    * @param string $resource_url
-<<<<<<< HEAD
-   *   The oEmebd resource URL of the media asset to test.
-   * @param mixed $formatter_settings
-=======
    *   The oEmbed resource URL of the media asset to test.
    * @param array $formatter_settings
->>>>>>> dev
    *   Settings for the oEmbed field formatter.
    * @param array $selectors
    *   An array of arrays. Each key is a CSS selector targeting an element in

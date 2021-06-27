@@ -14,11 +14,7 @@ class LayoutBuilderToolbarTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'block',
     'node',
     'layout_builder',
@@ -34,11 +30,7 @@ class LayoutBuilderToolbarTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalPlaceBlock('local_tasks_block');
@@ -79,11 +71,7 @@ class LayoutBuilderToolbarTest extends WebDriverTestBase {
     $field_ui_prefix = 'admin/structure/types/manage/bundle_with_section_field';
     // From the manage display page, go to manage the layout.
     $this->drupalGet("$field_ui_prefix/display/default");
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, ['layout[enabled]' => TRUE], 'Save');
-=======
     $this->submitForm(['layout[enabled]' => TRUE], 'Save');
->>>>>>> dev
     $assert_session->linkExists('Manage layout');
     $this->clickLink('Manage layout');
     // Save the defaults.

@@ -3,11 +3,7 @@
  * Text behaviors.
  */
 
-<<<<<<< HEAD
-(function($, Drupal) {
-=======
 (function ($, Drupal) {
->>>>>>> dev
   /**
    * Auto-hide summary textarea if empty and show hide and unhide links.
    *
@@ -21,11 +17,7 @@
       $(context)
         .find('.js-text-summary')
         .once('text-summary')
-<<<<<<< HEAD
-        .each(function() {
-=======
         .each(function () {
->>>>>>> dev
           const $widget = $(this).closest('.js-text-format-wrapper');
 
           const $summary = $widget.find('.js-text-summary-wrapper');
@@ -48,11 +40,7 @@
           const $button = $link.find('button');
           let toggleClick = true;
           $link
-<<<<<<< HEAD
-            .on('click', e => {
-=======
             .on('click', (e) => {
->>>>>>> dev
               if (toggleClick) {
                 $summary.hide();
                 $button.html(Drupal.t('Edit summary'));

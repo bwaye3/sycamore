@@ -57,11 +57,7 @@ class PermissionHandlerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->stringTranslation = new TestTranslationManager();
@@ -129,14 +125,6 @@ EOF
 EOF
     );
     $modules = ['module_a', 'module_b', 'module_c'];
-<<<<<<< HEAD
-    $extensions = [
-      'module_a' => $this->mockModuleExtension('module_a', 'Module a'),
-      'module_b' => $this->mockModuleExtension('module_b', 'Module b'),
-      'module_c' => $this->mockModuleExtension('module_c', 'Module c'),
-    ];
-=======
->>>>>>> dev
     $this->moduleHandler->expects($this->any())
       ->method('getImplementations')
       ->with('permission')
@@ -259,14 +247,6 @@ EOF
     );
 
     $modules = ['module_a', 'module_b', 'module_c'];
-<<<<<<< HEAD
-    $extensions = [
-      'module_a' => $this->mockModuleExtension('module_a', 'Module a'),
-      'module_b' => $this->mockModuleExtension('module_b', 'Module b'),
-      'module_c' => $this->mockModuleExtension('module_c', 'Module c'),
-    ];
-=======
->>>>>>> dev
 
     $this->moduleHandler->expects($this->any())
       ->method('getImplementations')
@@ -327,12 +307,6 @@ EOF
     );
 
     $modules = ['module_a'];
-<<<<<<< HEAD
-    $extensions = [
-      'module_a' => $this->mockModuleExtension('module_a', 'Module a'),
-    ];
-=======
->>>>>>> dev
 
     $this->moduleHandler->expects($this->any())
       ->method('getImplementations')

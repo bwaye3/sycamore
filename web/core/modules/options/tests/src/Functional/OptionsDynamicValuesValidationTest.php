@@ -15,11 +15,7 @@ class OptionsDynamicValuesValidationTest extends OptionsDynamicValuesTestBase {
   protected $defaultTheme = 'stark';
 
   /**
-<<<<<<< HEAD
-   * Test that allowed values function gets the entity.
-=======
    * Tests that allowed values function gets the entity.
->>>>>>> dev
    */
   public function testDynamicAllowedValues() {
     // Verify that validation passes against every value we had.

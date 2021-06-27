@@ -13,11 +13,7 @@ abstract class ShortcutSetResourceTestBase extends EntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['shortcut'];
-=======
   protected static $modules = ['shortcut'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -93,13 +89,6 @@ abstract class ShortcutSetResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
-<<<<<<< HEAD
-    if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
-      return parent::getExpectedUnauthorizedAccessMessage($method);
-    }
-
-=======
->>>>>>> dev
     switch ($method) {
       case 'GET':
         return "The 'access shortcuts' permission is required.";

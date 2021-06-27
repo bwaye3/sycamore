@@ -17,20 +17,12 @@ class MigrateFileStubTest extends MigrateDrupalTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['file'];
-=======
   protected static $modules = ['file'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('file');
   }

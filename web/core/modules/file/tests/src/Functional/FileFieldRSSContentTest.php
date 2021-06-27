@@ -16,11 +16,7 @@ class FileFieldRSSContentTest extends FileFieldTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'views'];
-=======
   protected static $modules = ['node', 'views'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -42,11 +38,7 @@ class FileFieldRSSContentTest extends FileFieldTestBase {
     $edit = [
       "display_modes_custom[rss]" => '1',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save'));
-=======
     $this->submitForm($edit, 'Save');
->>>>>>> dev
 
     // Change the format to 'RSS enclosure'.
     $this->drupalGet("admin/structure/types/manage/$type_name/display/rss");
@@ -54,11 +46,7 @@ class FileFieldRSSContentTest extends FileFieldTestBase {
       "fields[$field_name][type]" => 'file_rss_enclosure',
       "fields[$field_name][region]" => 'content',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save'));
-=======
     $this->submitForm($edit, 'Save');
->>>>>>> dev
 
     // Create a new node with a file field set. Promote to frontpage
     // needs to be set so this node will appear in the RSS feed.

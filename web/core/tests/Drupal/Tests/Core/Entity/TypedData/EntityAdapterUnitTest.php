@@ -120,11 +120,7 @@ class EntityAdapterUnitTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->id = 1;
     $values = [
       'id' => $this->id,
@@ -337,13 +333,8 @@ class EntityAdapterUnitTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
- * @covers ::getProperties
- */
-=======
    * @covers ::getProperties
    */
->>>>>>> dev
   public function testGetProperties() {
     $fields = $this->entityAdapter->getProperties();
     $this->assertInstanceOf('Drupal\Core\Field\FieldItemListInterface', $fields['id']);

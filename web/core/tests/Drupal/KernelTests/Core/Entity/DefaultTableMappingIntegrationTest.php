@@ -29,20 +29,12 @@ class DefaultTableMappingIntegrationTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['entity_test_extra'];
-=======
   protected static $modules = ['entity_test_extra'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Setup some fields for entity_test_extra to create.
@@ -86,8 +78,6 @@ class DefaultTableMappingIntegrationTest extends EntityKernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * @covers ::getAllFieldTableNames
    */
   public function testGetAllFieldTableNames() {
@@ -125,7 +115,6 @@ class DefaultTableMappingIntegrationTest extends EntityKernelTestBase {
   }
 
   /**
->>>>>>> dev
    * Tests DefaultTableMapping::getTableNames().
    *
    * @covers ::getTableNames

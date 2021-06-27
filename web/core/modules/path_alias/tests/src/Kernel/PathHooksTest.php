@@ -17,20 +17,12 @@ class PathHooksTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['path_alias'];
-=======
   protected static $modules = ['path_alias'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('path_alias');
@@ -48,11 +40,7 @@ class PathHooksTest extends KernelTestBase {
       'alias' => '/' . $this->randomMachineName(),
     ]);
 
-<<<<<<< HEAD
-    // Check \Drupal\Core\Path\Entity\PathAlias::postSave() for new path alias
-=======
     // Check \Drupal\path_alias\Entity\PathAlias::postSave() for new path alias
->>>>>>> dev
     // entities.
     $alias_manager = $this->prophesize(AliasManagerInterface::class);
     $alias_manager->cacheClear(Argument::any())->shouldBeCalledTimes(1);
@@ -62,11 +50,7 @@ class PathHooksTest extends KernelTestBase {
 
     $new_source = '/' . $this->randomMachineName();
 
-<<<<<<< HEAD
-    // Check \Drupal\Core\Path\Entity\PathAlias::postSave() for existing path
-=======
     // Check \Drupal\path_alias\Entity\PathAlias::postSave() for existing path
->>>>>>> dev
     // alias entities.
     $alias_manager = $this->prophesize(AliasManagerInterface::class);
     $alias_manager->cacheClear(Argument::any())->shouldBeCalledTimes(2);
@@ -76,11 +60,7 @@ class PathHooksTest extends KernelTestBase {
     $path_alias->setPath($new_source);
     $path_alias->save();
 
-<<<<<<< HEAD
-    // Check \Drupal\Core\Path\Entity\PathAlias::postDelete().
-=======
     // Check \Drupal\path_alias\Entity\PathAlias::postDelete().
->>>>>>> dev
     $alias_manager = $this->prophesize(AliasManagerInterface::class);
     $alias_manager->cacheClear(Argument::any())->shouldBeCalledTimes(1);
     $alias_manager->cacheClear($new_source)->shouldBeCalledTimes(1);

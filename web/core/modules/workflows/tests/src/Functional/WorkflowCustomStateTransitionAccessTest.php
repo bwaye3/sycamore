@@ -15,11 +15,7 @@ class WorkflowCustomStateTransitionAccessTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'workflows',
     'workflow_type_test',
   ];
@@ -46,11 +42,7 @@ class WorkflowCustomStateTransitionAccessTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->adminUser = $this->createUser(['administer workflows']);
     $this->testWorkflow = Workflow::create([
@@ -62,11 +54,7 @@ class WorkflowCustomStateTransitionAccessTest extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the custom state/transition operation access rules.
-=======
    * Tests the custom state/transition operation access rules.
->>>>>>> dev
    */
   public function testCustomWorkflowAccessOperations() {
     $this->drupalLogin($this->adminUser);

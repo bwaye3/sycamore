@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-// @codingStandardsIgnoreFile
-=======
 // phpcs:ignoreFile
->>>>>>> dev
 
 /**
  * This file was generated via php core/scripts/generate-proxy-class.php 'Drupal\Core\Lock\PersistentDatabaseLockBackend' "core/lib/Drupal/Core".
@@ -74,11 +70,7 @@ namespace Drupal\Core\ProxyClass\Lock {
         /**
          * {@inheritdoc}
          */
-<<<<<<< HEAD
-        public function acquire($name, $timeout = 30)
-=======
         public function acquire($name, $timeout = 30.0)
->>>>>>> dev
         {
             return $this->lazyLoadItself()->acquire($name, $timeout);
         }

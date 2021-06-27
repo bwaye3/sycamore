@@ -13,23 +13,12 @@
     "Drupal": true,
     "drupalSettings": true,
     "drupalTranslations": true,
-<<<<<<< HEAD
-    "domready": true,
     "jQuery": true,
     "_": true,
-    "matchMedia": true,
-=======
-    "jQuery": true,
-    "_": true,
->>>>>>> dev
     "Cookies": true,
     "Backbone": true,
     "Modernizr": true,
     "Popper": true,
-<<<<<<< HEAD
-    "Sortable": true,
-    "CKEDITOR": true
-=======
     "Shepherd": true,
     "Sortable": true,
     "once": true,
@@ -40,7 +29,6 @@
     "react": {
       "version": "latest"
     }
->>>>>>> dev
   },
   "rules": {
     "prettier/prettier": "error",

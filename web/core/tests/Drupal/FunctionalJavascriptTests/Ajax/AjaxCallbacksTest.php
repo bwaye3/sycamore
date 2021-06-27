@@ -14,11 +14,7 @@ class AjaxCallbacksTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['ajax_forms_test'];
-=======
   protected static $modules = ['ajax_forms_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

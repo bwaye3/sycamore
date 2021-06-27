@@ -10,11 +10,7 @@ use Drupal\Tests\UnitTestCase;
 use Drupal\workspaces\EventSubscriber\WorkspaceRequestSubscriber;
 use Drupal\workspaces\WorkspaceInterface;
 use Drupal\workspaces\WorkspaceManagerInterface;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-=======
 use Symfony\Component\HttpKernel\Event\RequestEvent;
->>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\workspaces\EventSubscriber\WorkspaceRequestSubscriber
@@ -41,11 +37,7 @@ class WorkspaceRequestSubscriberTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->aliasManager = $this->prophesize(AliasManagerInterface::class)->reveal();
@@ -69,11 +61,7 @@ class WorkspaceRequestSubscriberTest extends UnitTestCase {
     // addExtraCacheKeyPart() on a route provider that implements
     // CacheableRouteProviderInterface.
     $workspace_request_subscriber = new WorkspaceRequestSubscriber($this->aliasManager, $this->currentPath, $route_provider->reveal(), $this->workspaceManager->reveal());
-<<<<<<< HEAD
-    $event = $this->prophesize(GetResponseEvent::class)->reveal();
-=======
     $event = $this->prophesize(RequestEvent::class)->reveal();
->>>>>>> dev
     $this->assertNull($workspace_request_subscriber->onKernelRequest($event));
   }
 
@@ -87,11 +75,7 @@ class WorkspaceRequestSubscriberTest extends UnitTestCase {
     // addExtraCacheKeyPart() on a route provider that does not implement
     // CacheableRouteProviderInterface.
     $workspace_request_subscriber = new WorkspaceRequestSubscriber($this->aliasManager, $this->currentPath, $route_provider->reveal(), $this->workspaceManager->reveal());
-<<<<<<< HEAD
-    $event = $this->prophesize(GetResponseEvent::class)->reveal();
-=======
     $event = $this->prophesize(RequestEvent::class)->reveal();
->>>>>>> dev
     $this->assertNull($workspace_request_subscriber->onKernelRequest($event));
   }
 

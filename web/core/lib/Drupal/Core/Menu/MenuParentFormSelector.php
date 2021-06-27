@@ -4,11 +4,6 @@ namespace Drupal\Core\Menu;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Component\Utility\Unicode;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-use Drupal\Core\Entity\EntityManagerInterface;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
@@ -20,15 +15,6 @@ use Drupal\Core\StringTranslation\TranslationInterface;
  */
 class MenuParentFormSelector implements MenuParentFormSelectorInterface {
   use StringTranslationTrait;
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * The menu link tree service.
@@ -45,11 +31,7 @@ class MenuParentFormSelector implements MenuParentFormSelectorInterface {
   protected $entityTypeManager;
 
   /**
-<<<<<<< HEAD
-   * Constructs a \Drupal\Core\Menu\MenuParentFormSelector
-=======
    * Constructs a \Drupal\Core\Menu\MenuParentFormSelector.
->>>>>>> dev
    *
    * @param \Drupal\Core\Menu\MenuLinkTreeInterface $menu_link_tree
    *   The menu link tree service.
@@ -60,17 +42,7 @@ class MenuParentFormSelector implements MenuParentFormSelectorInterface {
    */
   public function __construct(MenuLinkTreeInterface $menu_link_tree, EntityTypeManagerInterface $entity_type_manager, TranslationInterface $string_translation) {
     $this->menuLinkTree = $menu_link_tree;
-<<<<<<< HEAD
-    if ($entity_type_manager instanceof EntityManagerInterface) {
-      @trigger_error('Passing the entity.manager service to MenuParentFormSelector::__construct() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. Pass the new dependencies instead. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $this->entityTypeManager = \Drupal::entityTypeManager();
-    }
-    else {
-      $this->entityTypeManager = $entity_type_manager;
-    }
-=======
     $this->entityTypeManager = $entity_type_manager;
->>>>>>> dev
     $this->stringTranslation = $string_translation;
   }
 

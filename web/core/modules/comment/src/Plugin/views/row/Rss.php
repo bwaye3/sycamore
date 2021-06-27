@@ -73,20 +73,12 @@ class Rss extends RssPluginBase {
     }
 
     // Load the specified comment and its associated node:
-<<<<<<< HEAD
-    /** @var $comment \Drupal\comment\CommentInterface */
-=======
     /** @var \Drupal\comment\CommentInterface $comment */
->>>>>>> dev
     $comment = $this->comments[$cid];
     if (empty($comment)) {
       return;
     }
 
-<<<<<<< HEAD
-    $comment->link = $comment->toUrl('canonical', ['absolute' => TRUE])->toString();
-=======
->>>>>>> dev
     $comment->rss_namespaces = [];
     $comment->rss_elements = [
       [
@@ -119,11 +111,7 @@ class Rss extends RssPluginBase {
       $item->description = $build;
     }
     $item->title = $comment->label();
-<<<<<<< HEAD
-    $item->link = $comment->link;
-=======
     $item->link = $comment->toUrl('canonical', ['absolute' => TRUE])->toString();
->>>>>>> dev
     // Provide a reference so that the render call in
     // template_preprocess_views_view_row_rss() can still access it.
     $item->elements = &$comment->rss_elements;

@@ -47,11 +47,7 @@ class FieldBlockTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->entityFieldManager = $this->prophesize(EntityFieldManagerInterface::class);
@@ -105,11 +101,7 @@ class FieldBlockTest extends EntityKernelTestBase {
     $entity->access('view', $account->reveal(), TRUE)->willReturn(AccessResult::allowed());
 
     $access = $block->access($account->reveal(), TRUE);
-<<<<<<< HEAD
-    $this->assertSame(FALSE, $access->isAllowed());
-=======
     $this->assertFalse($access->isAllowed());
->>>>>>> dev
   }
 
   /**
@@ -127,11 +119,7 @@ class FieldBlockTest extends EntityKernelTestBase {
     $entity->get('the_field_name')->shouldNotBeCalled();
 
     $access = $block->access($account->reveal(), TRUE);
-<<<<<<< HEAD
-    $this->assertSame(FALSE, $access->isAllowed());
-=======
     $this->assertFalse($access->isAllowed());
->>>>>>> dev
   }
 
   /**

@@ -40,10 +40,7 @@ class PhpTransliterationTest extends TestCase {
    *   self::testRemoveDiacritics().
    */
   public function providerTestPhpTransliterationRemoveDiacritics() {
-<<<<<<< HEAD
-=======
     // cSpell:disable
->>>>>>> dev
     return [
       // Test all characters in the Unicode range 0x00bf to 0x017f.
       ['ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏ', 'AAAAAAÆCEEEEIIII'],
@@ -70,10 +67,7 @@ class PhpTransliterationTest extends TestCase {
       ['ȰȱȲȳȴȵȶȷȸȹȺȻȼȽȾȿ', 'OoYylntjȸȹACcLTs'],
       ['ɀɁɂɃɄɅɆɇɈɉɊɋɌɍɎɏ', 'zɁɂBUɅEeJjQqRrYy'],
     ];
-<<<<<<< HEAD
-=======
     // cSpell:enable
->>>>>>> dev
   }
 
   /**
@@ -113,10 +107,7 @@ class PhpTransliterationTest extends TestCase {
     $random = $random_generator->string(10);
     // Make some strings with two, three, and four-byte characters for testing.
     // Note that the 3-byte character is overridden by the 'kg' language.
-<<<<<<< HEAD
-=======
     // cSpell:disable-next-line
->>>>>>> dev
     $two_byte = 'Ä Ö Ü Å Ø äöüåøhello';
     // This is a Cyrillic character that looks something like a "u". See
     // http://www.unicode.org/charts/PDF/U0400.pdf
@@ -129,64 +120,6 @@ class PhpTransliterationTest extends TestCase {
     // They are not in our tables, but should at least give us '?' (unknown).
     $five_byte = html_entity_decode('&#x10330;&#x10338;', ENT_NOQUOTES, 'UTF-8');
 
-<<<<<<< HEAD
-    return [
-      // Each test case is language code, input, output, unknown character, max
-      // length.
-      // Test ASCII in English.
-      ['en', $random, $random],
-      // Test ASCII in some other language with no overrides.
-      ['fr', $random, $random],
-      // Test 3 and 4-byte characters in a language without overrides.
-      // Note: if the data tables change, these will need to change too! They
-      // are set up to test that data table loading works, so values come
-      // directly from the data files.
-      ['fr', $three_byte, 'c'],
-      ['fr', $four_byte, 'wii'],
-      // Test 5-byte characters.
-      ['en', $five_byte, '??'],
-      // Test a language with no overrides.
-      ['en', $two_byte, 'A O U A O aouaohello'],
-      // Test language overrides provided by core.
-      ['de', $two_byte, 'Ae Oe Ue A O aeoeueaohello'],
-      ['de', $random, $random],
-      ['da', $two_byte, 'A O U Aa Oe aouaaoehello'],
-      ['da', $random, $random],
-      ['kg', $three_byte, 'ts'],
-      // Test strings in some other languages.
-      // Ukrainian pangram.
-      ['uk', 'На подушечці форми любої є й ґудзик щоб пірʼя геть жовте сховати.', 'Na podushechtsi formy lyuboyi ye y gudzyk shchob pirya het zhovte skhovaty.'],
-      // Turkish, provided by drupal.org user Kartagis.
-      ['tr', 'Abayı serdiler bize. Söyleyeceğim yüzlerine. Sanırım hepimiz aynı şeyi düşünüyoruz.', 'Abayi serdiler bize. Soyleyecegim yuzlerine. Sanirim hepimiz ayni seyi dusunuyoruz.'],
-      // Max length.
-      ['de', $two_byte, 'Ae Oe Ue A O aeoe', '?', 17],
-      // Do not split up the transliteration of a single character.
-      ['de', $two_byte, 'Ae Oe Ue A O aeoe', '?', 18],
-      // Illegal/unknown unicode.
-      ['en', chr(0xF8) . chr(0x80) . chr(0x80) . chr(0x80) . chr(0x80), '?????'],
-      ['en', chr(0xF8) . chr(0x80) . chr(0x80) . chr(0x80) . chr(0x80), '-----', '-'],
-      ['en', 'Hel' . chr(0x80) . 'o World', 'Hel?o World'],
-      ['en', 'Hell' . chr(0x80) . ' World', 'Hell? World'],
-      // Non default replacement.
-      ['en', chr(0x80) . 'ello World', '_ello World', '_'],
-      // Keep the original question marks.
-      ['en', chr(0xF8) . '?' . chr(0x80), '???'],
-      ['en', chr(0x80) . 'ello ? World?', '_ello ? World?', '_'],
-      ['pl', 'aąeę' . chr(0x80) . 'oółżźz ?', 'aaee?oolzzz ?'],
-      // Non-US-ASCII replacement.
-      ['en', chr(0x80) . 'ello World?', 'Oello World?', 'Ö'],
-      ['pl', chr(0x80) . 'óóść', 'ooosc', 'ó'],
-      // Ensure question marks are replaced when max length used.
-      ['en', chr(0x80) . 'ello ? World?', '_ello ?', '_', 7],
-      // Empty replacement.
-      ['en', chr(0x80) . 'ello World' . chr(0xF8), 'ello World', ''],
-      // Not affecting spacing from the beginning and end of a string.
-      ['en', ' Hello Abventor! ', ' Hello Abventor! '],
-      ['pl', ' Drupal Kraków Community', ' Drupal Krakow ', '?', 15],
-      // Keep many spaces between words.
-      ['en', 'Too    many    spaces between words !', 'Too    many    spaces between words !'],
-    ];
-=======
     // cSpell:disable
     return [
       // Each test case is language code, input, output, unknown character, max
@@ -283,7 +216,6 @@ class PhpTransliterationTest extends TestCase {
       ],
     ];
     // cSpell:enable
->>>>>>> dev
   }
 
   /**

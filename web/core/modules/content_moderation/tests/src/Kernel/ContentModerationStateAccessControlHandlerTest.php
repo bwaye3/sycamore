@@ -16,11 +16,7 @@ class ContentModerationStateAccessControlHandlerTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'content_moderation',
     'workflows',
     'user',
@@ -36,11 +32,7 @@ class ContentModerationStateAccessControlHandlerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('content_moderation_state');
     $this->installEntitySchema('user');

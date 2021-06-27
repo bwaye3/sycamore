@@ -19,11 +19,7 @@ class EntityReferenceAutoCreateTest extends BrowserTestBase {
 
   use EntityReferenceTestTrait;
 
-<<<<<<< HEAD
-  public static $modules = ['node', 'taxonomy', 'entity_test'];
-=======
   protected static $modules = ['node', 'taxonomy', 'entity_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -44,11 +40,7 @@ class EntityReferenceAutoCreateTest extends BrowserTestBase {
    */
   protected $referencedType;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create "referencing" and "referenced" node types.
@@ -113,21 +105,13 @@ class EntityReferenceAutoCreateTest extends BrowserTestBase {
    */
   public function testAutoCreate() {
     $this->drupalGet('node/add/' . $this->referencingType);
-<<<<<<< HEAD
-    $this->assertFieldByXPath('//input[@id="edit-test-field-0-target-id" and contains(@class, "form-autocomplete")]', NULL, 'The autocomplete input element appears.');
-=======
     $target = $this->assertSession()->fieldExists("edit-test-field-0-target-id");
     $this->assertTrue($target->hasClass("form-autocomplete"));
->>>>>>> dev
 
     $new_title = $this->randomMachineName();
 
     // Assert referenced node does not exist.
-<<<<<<< HEAD
-    $base_query = \Drupal::entityQuery('node');
-=======
     $base_query = \Drupal::entityQuery('node')->accessCheck(FALSE);
->>>>>>> dev
     $base_query
       ->condition('type', $this->referencedType)
       ->condition('title', $new_title);
@@ -140,12 +124,8 @@ class EntityReferenceAutoCreateTest extends BrowserTestBase {
       'title[0][value]' => $this->randomMachineName(),
       'test_field[0][target_id]' => $new_title,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm("node/add/$this->referencingType", $edit, 'Save');
-=======
     $this->drupalGet("node/add/{$this->referencingType}");
     $this->submitForm($edit, 'Save');
->>>>>>> dev
 
     // Assert referenced node was created.
     $query = clone $base_query;
@@ -156,30 +136,18 @@ class EntityReferenceAutoCreateTest extends BrowserTestBase {
 
     // Assert the referenced node is associated with referencing node.
     $result = \Drupal::entityQuery('node')
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->condition('type', $this->referencingType)
       ->execute();
 
     $referencing_nid = key($result);
     $referencing_node = Node::load($referencing_nid);
-<<<<<<< HEAD
-    $this->assertEqual($referenced_nid, $referencing_node->test_field->target_id, 'Newly created node is referenced from the referencing node.');
-
-    // Now try to view the node and check that the referenced node is shown.
-    $this->drupalGet('node/' . $referencing_node->id());
-    $this->assertText($referencing_node->label(), 'Referencing node label found.');
-    $this->assertText($referenced_node->label(), 'Referenced node label found.');
-=======
     $this->assertEquals($referenced_nid, $referencing_node->test_field->target_id, 'Newly created node is referenced from the referencing node.');
 
     // Now try to view the node and check that the referenced node is shown.
     $this->drupalGet('node/' . $referencing_node->id());
     $this->assertSession()->pageTextContains($referencing_node->label());
     $this->assertSession()->pageTextContains($referenced_node->label());
->>>>>>> dev
   }
 
   /**
@@ -223,22 +191,14 @@ class EntityReferenceAutoCreateTest extends BrowserTestBase {
       'title[0][value]' => $this->randomString(),
     ];
 
-<<<<<<< HEAD
-    $this->drupalPostForm('node/add/' . $this->referencingType, $edit, 'Save');
-=======
     $this->drupalGet('node/add/' . $this->referencingType);
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     /** @var \Drupal\taxonomy\Entity\Term $term */
     $term = taxonomy_term_load_multiple_by_name($term_name);
     $term = reset($term);
 
     // The new term is expected to be stored in the second vocabulary.
-<<<<<<< HEAD
-    $this->assertEqual($vocabularies[1]->id(), $term->bundle());
-=======
     $this->assertEquals($vocabularies[1]->id(), $term->bundle());
->>>>>>> dev
 
     /** @var \Drupal\field\Entity\FieldConfig $field_config */
     $field_config = FieldConfig::loadByName('node', $this->referencingType, $field_name);
@@ -256,22 +216,14 @@ class EntityReferenceAutoCreateTest extends BrowserTestBase {
       'title[0][value]' => $this->randomString(),
     ];
 
-<<<<<<< HEAD
-    $this->drupalPostForm('node/add/' . $this->referencingType, $edit, 'Save');
-=======
     $this->drupalGet('node/add/' . $this->referencingType);
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     /** @var \Drupal\taxonomy\Entity\Term $term */
     $term = taxonomy_term_load_multiple_by_name($term_name);
     $term = reset($term);
 
     // The second term is expected to be stored in the first vocabulary.
-<<<<<<< HEAD
-    $this->assertEqual($vocabularies[0]->id(), $term->bundle());
-=======
     $this->assertEquals($vocabularies[0]->id(), $term->bundle());
->>>>>>> dev
 
     // @todo Re-enable this test when WebTestBase::curlHeaderCallback() provides
     //   a way to catch and assert user-triggered errors.
@@ -318,19 +270,12 @@ class EntityReferenceAutoCreateTest extends BrowserTestBase {
       'title[0][value]' => $node_title,
     ];
 
-<<<<<<< HEAD
-    $this->drupalPostForm('node/add/' . $this->referencingType, $edit, 'Save');
-
-    // Assert referenced entity was created.
-    $result = \Drupal::entityQuery('entity_test_no_bundle_with_label')
-=======
     $this->drupalGet('node/add/' . $this->referencingType);
     $this->submitForm($edit, 'Save');
 
     // Assert referenced entity was created.
     $result = \Drupal::entityQuery('entity_test_no_bundle_with_label')
       ->accessCheck(FALSE)
->>>>>>> dev
       ->condition('name', $name)
       ->execute();
     $this->assertNotEmpty($result, 'Referenced entity was created.');
@@ -338,20 +283,13 @@ class EntityReferenceAutoCreateTest extends BrowserTestBase {
 
     // Assert the referenced entity is associated with referencing node.
     $result = \Drupal::entityQuery('node')
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->condition('type', $this->referencingType)
       ->execute();
     $this->assertCount(1, $result);
     $referencing_nid = key($result);
     $referencing_node = Node::load($referencing_nid);
-<<<<<<< HEAD
-    $this->assertEqual($referenced_id, $referencing_node->$field_name->target_id, 'Newly created node is referenced from the referencing entity.');
-=======
     $this->assertEquals($referenced_id, $referencing_node->$field_name->target_id, 'Newly created node is referenced from the referencing entity.');
->>>>>>> dev
   }
 
 }

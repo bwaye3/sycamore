@@ -23,11 +23,7 @@ class MessengerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->messenger = \Drupal::service('messenger');
   }
@@ -53,11 +49,7 @@ class MessengerTest extends KernelTestBase {
 
     // Check we only have the second one.
     $this->assertCount(1, $this->messenger->messagesByType(MessengerInterface::TYPE_STATUS));
-<<<<<<< HEAD
-    $this->assertContains('Second message with <em>markup!</em> (not removed).', $this->messenger->deleteByType(MessengerInterface::TYPE_STATUS));
-=======
     $this->assertContainsEquals('Second message with <em>markup!</em> (not removed).', $this->messenger->deleteByType(MessengerInterface::TYPE_STATUS));
->>>>>>> dev
 
   }
 
@@ -132,11 +124,7 @@ class MessengerTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test adding markup.
-=======
    * Tests adding markup.
->>>>>>> dev
    *
    * @covers ::addStatus
    * @covers ::deleteByType

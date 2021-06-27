@@ -233,11 +233,7 @@ class BaseFieldOverride extends FieldConfigBase {
    * @param string $field_name
    *   Name of the field.
    *
-<<<<<<< HEAD
-   * @return static
-=======
    * @return \Drupal\Core\Field\FieldConfigInterface|null
->>>>>>> dev
    *   The base field bundle override config entity if one exists for the
    *   provided field name, otherwise NULL.
    */

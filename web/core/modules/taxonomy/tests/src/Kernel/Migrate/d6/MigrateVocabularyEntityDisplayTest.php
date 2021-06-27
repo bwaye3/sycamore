@@ -15,20 +15,12 @@ class MigrateVocabularyEntityDisplayTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['field', 'taxonomy', 'menu_ui'];
-=======
   protected static $modules = ['field', 'taxonomy', 'menu_ui'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Execute Dependency Migrations.

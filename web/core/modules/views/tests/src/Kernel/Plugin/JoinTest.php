@@ -30,11 +30,7 @@ class JoinTest extends RelationshipJoinTestBase {
    */
   protected $manager;
 
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp();
 
     // Add a join plugin manager which can be used in all of the tests.
@@ -104,17 +100,10 @@ class JoinTest extends RelationshipJoinTestBase {
 
     $tables = $query->getTables();
     $join_info = $tables['users_field_data'];
-<<<<<<< HEAD
-    $this->assertEqual($join_info['join type'], 'LEFT', 'Make sure the default join type is LEFT');
-    $this->assertEqual($join_info['table'], $configuration['table']);
-    $this->assertEqual($join_info['alias'], 'users_field_data');
-    $this->assertEqual($join_info['condition'], 'views_test_data.uid = users_field_data.uid');
-=======
     $this->assertEquals('LEFT', $join_info['join type'], 'Make sure the default join type is LEFT');
     $this->assertEquals($configuration['table'], $join_info['table']);
     $this->assertEquals('users_field_data', $join_info['alias']);
     $this->assertEquals('views_test_data.uid = users_field_data.uid', $join_info['condition']);
->>>>>>> dev
 
     // Set a different alias and make sure table info is as expected.
     $join = $this->manager->createInstance('standard', $configuration);
@@ -123,11 +112,7 @@ class JoinTest extends RelationshipJoinTestBase {
 
     $tables = $query->getTables();
     $join_info = $tables['users1'];
-<<<<<<< HEAD
-    $this->assertEqual($join_info['alias'], 'users1');
-=======
     $this->assertEquals('users1', $join_info['alias']);
->>>>>>> dev
 
     // Set a different join type (INNER) and make sure it is used.
     $configuration['type'] = 'INNER';
@@ -137,11 +122,7 @@ class JoinTest extends RelationshipJoinTestBase {
 
     $tables = $query->getTables();
     $join_info = $tables['users2'];
-<<<<<<< HEAD
-    $this->assertEqual($join_info['join type'], 'INNER');
-=======
     $this->assertEquals('INNER', $join_info['join type']);
->>>>>>> dev
 
     // Setup addition conditions and make sure it is used.
     $random_name_1 = $this->randomMachineName();
@@ -166,11 +147,7 @@ class JoinTest extends RelationshipJoinTestBase {
     $this->assertStringContainsString("views_test_data.uid = users3.uid", $join_info['condition'], 'Make sure the join condition appears in the query.');
     $this->assertStringContainsString("users3.name = :views_join_condition_0", $join_info['condition'], 'Make sure the first extra join condition appears in the query and uses the first placeholder.');
     $this->assertStringContainsString("users3.name <> :views_join_condition_1", $join_info['condition'], 'Make sure the second extra join condition appears in the query and uses the second placeholder.');
-<<<<<<< HEAD
-    $this->assertEqual(array_values($join_info['arguments']), [$random_name_1, $random_name_2], 'Make sure the arguments are in the right order');
-=======
     $this->assertEquals([$random_name_1, $random_name_2], array_values($join_info['arguments']), 'Make sure the arguments are in the right order');
->>>>>>> dev
 
     // Test that 'IN' conditions are properly built.
     $random_name_1 = $this->randomMachineName();
@@ -196,11 +173,7 @@ class JoinTest extends RelationshipJoinTestBase {
     $this->assertStringContainsString("views_test_data.uid = users4.uid", $join_info['condition'], 'Make sure the join condition appears in the query.');
     $this->assertStringContainsString("users4.name = :views_join_condition_2", $join_info['condition'], 'Make sure the first extra join condition appears in the query.');
     $this->assertStringContainsString("users4.name IN ( :views_join_condition_3[] )", $join_info['condition'], 'The IN condition for the join is properly formed.');
-<<<<<<< HEAD
-    $this->assertEqual($join_info['arguments'][':views_join_condition_3[]'], [$random_name_2, $random_name_3, $random_name_4], 'Make sure the IN arguments are still part of an array.');
-=======
     $this->assertEquals([$random_name_2, $random_name_3, $random_name_4], $join_info['arguments'][':views_join_condition_3[]'], 'Make sure the IN arguments are still part of an array.');
->>>>>>> dev
 
     // Test that all the conditions are properly built.
     $configuration['extra'] = [
@@ -228,11 +201,7 @@ class JoinTest extends RelationshipJoinTestBase {
     $this->assertStringContainsString("users5.langcode = :views_join_condition_4", $join_info['condition'], 'Make sure the first extra join condition appears in the query.');
     $this->assertStringContainsString("views_test_data.status = :views_join_condition_5", $join_info['condition'], 'Make sure the second extra join condition appears in the query.');
     $this->assertStringContainsString("users5.name = views_test_data.name", $join_info['condition'], 'Make sure the third extra join condition appears in the query.');
-<<<<<<< HEAD
-    $this->assertEqual(array_values($join_info['arguments']), ['en', 0], 'Make sure the arguments are in the right order');
-=======
     $this->assertEquals(['en', 0], array_values($join_info['arguments']), 'Make sure the arguments are in the right order');
->>>>>>> dev
 
     // Test that joins using 'left_formula' are properly built.
     $configuration['left_formula'] = 'MAX(views_test_data.uid)';
@@ -246,11 +215,7 @@ class JoinTest extends RelationshipJoinTestBase {
     $this->assertStringContainsString("users6.langcode = :views_join_condition_7", $join_info['condition'], 'Make sure the first extra join condition appears in the query.');
     $this->assertStringContainsString("views_test_data.status = :views_join_condition_8", $join_info['condition'], 'Make sure the second extra join condition appears in the query.');
     $this->assertStringContainsString("users6.name = views_test_data.name", $join_info['condition'], 'Make sure the third extra join condition appears in the query.');
-<<<<<<< HEAD
-    $this->assertEqual(array_values($join_info['arguments']), ['en', 0], 'Make sure the arguments are in the right order');
-=======
     $this->assertEquals(['en', 0], array_values($join_info['arguments']), 'Make sure the arguments are in the right order');
->>>>>>> dev
   }
 
 }

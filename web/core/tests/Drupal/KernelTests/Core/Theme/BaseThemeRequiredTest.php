@@ -14,11 +14,7 @@ class BaseThemeRequiredTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['system'];
-=======
   protected static $modules = ['system'];
->>>>>>> dev
 
   /**
    * The theme installer.
@@ -37,11 +33,7 @@ class BaseThemeRequiredTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->themeInstaller = $this->container->get('theme_installer');

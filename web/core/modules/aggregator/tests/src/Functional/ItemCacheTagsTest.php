@@ -19,11 +19,7 @@ class ItemCacheTagsTest extends EntityCacheTagsTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['aggregator'];
-=======
   protected static $modules = ['aggregator'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -33,11 +29,7 @@ class ItemCacheTagsTest extends EntityCacheTagsTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Give anonymous users permission to access feeds, so that we can verify

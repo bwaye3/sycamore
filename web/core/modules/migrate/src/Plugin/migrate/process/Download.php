@@ -79,11 +79,7 @@ class Download extends FileProcessBase implements ContainerFactoryPluginInterfac
    *   The plugin configuration.
    * @param string $plugin_id
    *   The plugin ID.
-<<<<<<< HEAD
-   * @param mixed $plugin_definition
-=======
    * @param array $plugin_definition
->>>>>>> dev
    *   The plugin definition.
    * @param \Drupal\Core\File\FileSystemInterface $file_system
    *   The file system service.

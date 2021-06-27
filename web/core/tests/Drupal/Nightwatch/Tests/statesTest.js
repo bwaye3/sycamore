@@ -14,11 +14,7 @@ module.exports = {
   after(browser) {
     browser.drupalUninstall();
   },
-<<<<<<< HEAD
-  'Test form with state API': browser => {
-=======
   'Test form with state API': (browser) => {
->>>>>>> dev
     browser
       .drupalRelativeURL('/form-test/javascript-states-form')
       .waitForElementVisible('body', 1000)

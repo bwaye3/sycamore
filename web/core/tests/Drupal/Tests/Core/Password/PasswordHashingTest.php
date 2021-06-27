@@ -57,11 +57,7 @@ class PasswordHashingTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->password = $this->randomMachineName();
     $this->passwordHasher = new PhpassHashedPassword(1);
@@ -81,11 +77,7 @@ class PasswordHashingTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test a password needs update.
-=======
    * Tests a password needs update.
->>>>>>> dev
    *
    * @covers ::needsRehash
    */
@@ -95,11 +87,7 @@ class PasswordHashingTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test password hashing.
-=======
    * Tests password hashing.
->>>>>>> dev
    *
    * @covers ::hash
    * @covers ::getCountLog2

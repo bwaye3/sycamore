@@ -35,11 +35,7 @@ class ChainResponsePolicyTest extends UnitTestCase {
    */
   protected $response;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->policy = new ChainResponsePolicy();
     $this->response = new Response();
     $this->request = new Request();
@@ -132,11 +128,7 @@ class ChainResponsePolicyTest extends UnitTestCase {
     $this->policy->addPolicy($ignored_rule);
 
     $actual_result = $this->policy->check($this->response, $this->request);
-<<<<<<< HEAD
-    $this->assertsame(ResponsePolicyInterface::DENY, $actual_result);
-=======
     $this->assertSame(ResponsePolicyInterface::DENY, $actual_result);
->>>>>>> dev
   }
 
 }

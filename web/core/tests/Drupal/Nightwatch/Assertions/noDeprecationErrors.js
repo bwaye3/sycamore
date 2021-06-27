@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-module.exports.assertion = function() {
-  this.message = 'Ensuring no deprecation errors have been triggered';
-  this.expected = '';
-  this.pass = deprecationMessages => deprecationMessages.length === 0;
-  this.value = result => {
-    const sessionStorageEntries = JSON.parse(result.value);
-    const deprecationMessages =
-      sessionStorageEntries !== null
-        ? sessionStorageEntries.filter(message =>
-=======
 module.exports.assertion = function () {
   this.message = 'Ensuring no deprecation errors have been triggered';
   this.expected = '';
@@ -18,20 +7,10 @@ module.exports.assertion = function () {
     const deprecationMessages =
       sessionStorageEntries !== null
         ? sessionStorageEntries.filter((message) =>
->>>>>>> dev
             new RegExp('[Deprecation]').test(message),
           )
         : [];
 
-<<<<<<< HEAD
-    return deprecationMessages.map(message =>
-      message.replace('[Deprecation] ', ''),
-    );
-  };
-  this.command = callback =>
-    // eslint-disable-next-line prefer-arrow-callback
-    this.api.execute(function() {
-=======
     return deprecationMessages.map((message) =>
       message.replace('[Deprecation] ', ''),
     );
@@ -39,7 +18,6 @@ module.exports.assertion = function () {
   this.command = (callback) =>
     // eslint-disable-next-line prefer-arrow-callback
     this.api.execute(function () {
->>>>>>> dev
       return window.sessionStorage.getItem('js_deprecation_log_test.warnings');
     }, callback);
 };

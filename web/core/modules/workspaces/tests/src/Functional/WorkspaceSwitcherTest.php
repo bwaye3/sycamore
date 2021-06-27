@@ -18,11 +18,7 @@ class WorkspaceSwitcherTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['block', 'workspaces'];
-=======
   protected static $modules = ['block', 'workspaces'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -32,11 +28,7 @@ class WorkspaceSwitcherTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $permissions = [
@@ -53,11 +45,7 @@ class WorkspaceSwitcherTest extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test switching workspace via the switcher block and admin page.
-=======
    * Tests switching workspace via the switcher block and admin page.
->>>>>>> dev
    */
   public function testSwitchingWorkspaces() {
     $vultures = $this->createWorkspaceThroughUi('Vultures', 'vultures');
@@ -79,11 +67,7 @@ class WorkspaceSwitcherTest extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test switching workspace via a query parameter.
-=======
    * Tests switching workspace via a query parameter.
->>>>>>> dev
    */
   public function testQueryParameterNegotiator() {
     $web_assert = $this->assertSession();

@@ -2,10 +2,6 @@
 
 namespace Drupal\views\EventSubscriber;
 
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\EntityTypeEventSubscriberTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeListenerInterface;
@@ -22,15 +18,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class ViewsEntitySchemaSubscriber implements EntityTypeListenerInterface, EventSubscriberInterface {
 
   use EntityTypeEventSubscriberTrait;
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * Indicates that a base table got renamed.
@@ -104,17 +91,8 @@ class ViewsEntitySchemaSubscriber implements EntityTypeListenerInterface, EventS
    * @param \Psr\Log\LoggerInterface $logger
    *   A logger instance.
    */
-<<<<<<< HEAD
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerInterface $logger = NULL) {
-    $this->entityTypeManager = $entity_type_manager;
-    if (!$logger) {
-      @trigger_error('Calling ViewsEntitySchemaSubscriber::__construct() with the $logger argument is supported in drupal:8.7.1 and will be required before drupal:9.0.0. See https://www.drupal.org/project/drupal/issues/3052492.', E_USER_DEPRECATED);
-      $logger = \Drupal::service('logger.channel.default');
-    }
-=======
   public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerInterface $logger) {
     $this->entityTypeManager = $entity_type_manager;
->>>>>>> dev
     $this->logger = $logger;
   }
 
@@ -421,11 +399,7 @@ class ViewsEntitySchemaSubscriber implements EntityTypeListenerInterface, EventS
   }
 
   /**
-<<<<<<< HEAD
-   * Updates views if revision support is removed
-=======
    * Updates views if revision support is removed.
->>>>>>> dev
    *
    * @param \Drupal\views\Entity\View[] $all_views
    *   All views.

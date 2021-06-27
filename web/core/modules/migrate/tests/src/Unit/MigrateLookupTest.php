@@ -2,10 +2,7 @@
 
 namespace Drupal\Tests\migrate\Unit;
 
-<<<<<<< HEAD
-=======
 use Drupal\Component\Plugin\Exception\PluginException;
->>>>>>> dev
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\migrate\MigrateLookup;
 use Drupal\migrate\Plugin\MigrateDestinationInterface;
@@ -51,16 +48,6 @@ class MigrateLookupTest extends MigrateTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests that an appropriate message is logged if a PluginException is thrown.
-   */
-  public function testExceptionOnMigrationNotFound() {
-    $migration_plugin_manager = $this->prophesize(MigrationPluginManagerInterface::class);
-    $migration_plugin_manager->createInstances('bad_plugin')->willReturn([]);
-    $this->expectException(PluginNotFoundException::class);
-    $lookup = new MigrateLookup($migration_plugin_manager->reveal());
-    $lookup->lookup('bad_plugin', [1]);
-=======
    * Tests message logged when a single migration is not found.
    *
    * @dataProvider providerExceptionOnMigrationNotFound
@@ -118,7 +105,6 @@ class MigrateLookupTest extends MigrateTestCase {
         "Plugin IDs '' were not found.",
       ],
     ];
->>>>>>> dev
   }
 
 }

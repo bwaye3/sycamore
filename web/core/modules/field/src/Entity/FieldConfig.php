@@ -90,12 +90,9 @@ class FieldConfig extends FieldConfigBase implements FieldConfigInterface {
    *   bundle to which the field is attached to. Other array elements will be
    *   used to set the corresponding properties on the class; see the class
    *   property documentation for details.
-<<<<<<< HEAD
-=======
    * @param string $entity_type
    *   (optional) The entity type on which the field should be created.
    *   Defaults to "field_config".
->>>>>>> dev
    */
   public function __construct(array $values, $entity_type = 'field_config') {
     // Allow either an injected FieldStorageConfig object, or a field_name and
@@ -372,11 +369,7 @@ class FieldConfig extends FieldConfigBase implements FieldConfigInterface {
    * @param string $field_name
    *   Name of the field.
    *
-<<<<<<< HEAD
-   * @return static
-=======
    * @return Drupal\field\FieldConfigInterface|null
->>>>>>> dev
    *   The field config entity if one exists for the provided field
    *   name, otherwise NULL.
    */

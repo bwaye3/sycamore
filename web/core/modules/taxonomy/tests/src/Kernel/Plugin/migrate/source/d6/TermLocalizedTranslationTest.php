@@ -15,11 +15,7 @@ class TermLocalizedTranslationTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['taxonomy', 'migrate_drupal'];
-=======
   protected static $modules = ['taxonomy', 'migrate_drupal'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -185,8 +181,6 @@ class TermLocalizedTranslationTest extends MigrateSqlSourceTestBase {
     // Empty configuration will return terms for all vocabularies.
     $tests[0]['configuration'] = [];
 
-<<<<<<< HEAD
-=======
     // Test that only i18n_strings of type 'term' are returned.
     $tests[1] = $tests[0];
     $tests[0]['source_data']['i18n_strings'] = [
@@ -251,7 +245,6 @@ class TermLocalizedTranslationTest extends MigrateSqlSourceTestBase {
       ],
     ];
 
->>>>>>> dev
     return $tests;
   }
 

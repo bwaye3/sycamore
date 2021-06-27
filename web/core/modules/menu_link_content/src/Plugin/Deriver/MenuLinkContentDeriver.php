@@ -3,10 +3,6 @@
 namespace Drupal\menu_link_content\Plugin\Deriver;
 
 use Drupal\Component\Plugin\Derivative\DeriverBase;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Menu\MenuLinkManagerInterface;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
@@ -19,15 +15,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * compared to entity referenced ones.
  */
 class MenuLinkContentDeriver extends DeriverBase implements ContainerDeriverInterface {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * The entity type manager.
@@ -72,10 +59,7 @@ class MenuLinkContentDeriver extends DeriverBase implements ContainerDeriverInte
   public function getDerivativeDefinitions($base_plugin_definition) {
     // Get all custom menu links which should be rediscovered.
     $entity_ids = $this->entityTypeManager->getStorage('menu_link_content')->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->condition('rediscover', TRUE)
       ->execute();
     $plugin_definitions = [];

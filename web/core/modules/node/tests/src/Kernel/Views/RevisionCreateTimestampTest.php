@@ -18,11 +18,7 @@ class RevisionCreateTimestampTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node_test_views', 'node', 'views', 'user'];
-=======
   protected static $modules = ['node_test_views', 'node', 'views', 'user'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -32,11 +28,7 @@ class RevisionCreateTimestampTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->installSchema('node', 'node_access');
@@ -44,11 +36,7 @@ class RevisionCreateTimestampTest extends ViewsKernelTestBase {
     $this->installEntitySchema('user');
 
     if ($import_test_views) {
-<<<<<<< HEAD
-      ViewTestData::createTestViews(get_class($this), ['node_test_views']);
-=======
       ViewTestData::createTestViews(static::class, ['node_test_views']);
->>>>>>> dev
     }
   }
 

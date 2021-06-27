@@ -52,11 +52,8 @@ use Drupal\Core\Plugin\Discovery\ContainerDerivativeDiscoveryDecorator;
  *   deriver: 'Drupal\mymodule\Plugin\Deriver\HelpTopicDeriver'
  * @endcode
  *
-<<<<<<< HEAD
-=======
  * @ingroup help_docs
  *
->>>>>>> dev
  * @see \Drupal\help_topics\HelpTopicDiscovery
  * @see \Drupal\help_topics\HelpTopicTwig
  * @see \Drupal\help_topics\HelpTopicTwigLoader

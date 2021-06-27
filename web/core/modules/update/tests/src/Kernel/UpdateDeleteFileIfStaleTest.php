@@ -27,21 +27,6 @@ class UpdateDeleteFileIfStaleTest extends KernelTestBase {
 
     $file_name = $file_system->saveData($this->randomMachineName(), 'public://');
     $this->assertNotNull($file_name);
-<<<<<<< HEAD
-
-    // During testing the file change and the stale checking occurs in the same
-    // request, so the beginning of request will be before the file changes and
-    // REQUEST_TIME - $filectime is negative or zero. Set the maximum age to a
-    // number even smaller than that.
-    $this->config('system.file')
-      ->set('temporary_maximum_age', -100000)
-      ->save();
-
-    $file_path = $file_system->realpath($file_name);
-    update_delete_file_if_stale($file_path);
-
-    $this->assertFileNotExists($file_path);
-=======
     $file_path = $file_system->realpath($file_name);
 
     // During testing, the file change and the stale checking occurs in the same
@@ -67,7 +52,6 @@ class UpdateDeleteFileIfStaleTest extends KernelTestBase {
     $deleted = update_delete_file_if_stale($file_path);
     $this->assertTrue($deleted);
     $this->assertFileDoesNotExist($file_path);
->>>>>>> dev
   }
 
 }

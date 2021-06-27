@@ -120,8 +120,6 @@ interface TableMappingInterface {
    */
   public function getFieldTableName($field_name);
 
-<<<<<<< HEAD
-=======
   /**
    * Gets all the table names in which an entity field is stored.
    *
@@ -144,5 +142,4 @@ interface TableMappingInterface {
    */
   public function getAllFieldTableNames($field_name);
 
->>>>>>> dev
 }

@@ -46,23 +46,12 @@ class SystemListingTest extends KernelTestBase {
     foreach ($expected_directories as $module => $directories) {
       $expected_directory = array_shift($directories);
       $expected_uri = "$expected_directory/$module/$module.info.yml";
-<<<<<<< HEAD
-      $this->assertEqual($files[$module]->getPathname(), $expected_uri, new FormattableMarkup('Module @actual was found at @expected.', [
-        '@actual' => $files[$module]->getPathname(),
-        '@expected' => $expected_uri,
-      ]));
-=======
       $this->assertEquals($expected_uri, $files[$module]->getPathname(), new FormattableMarkup('Module @actual was found at @expected.', ['@actual' => $files[$module]->getPathname(), '@expected' => $expected_uri]));
->>>>>>> dev
     }
   }
 
   /**
-<<<<<<< HEAD
-   * Tests that directories matching file_scan_ignore_directories are ignored
-=======
    * Tests that directories matching file_scan_ignore_directories are ignored.
->>>>>>> dev
    */
   public function testFileScanIgnoreDirectory() {
     $listing = new ExtensionDiscovery($this->root, FALSE);

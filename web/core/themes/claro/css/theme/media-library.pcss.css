@@ -4,26 +4,6 @@
  * Styling for Media Library.
  */
 
-<<<<<<< HEAD
-.media-library-wrapper {
-  display: flex;
-  margin: -1em;
-}
-
-/**
- * @todo Reuse or build on vertical tabs styling for the media library menu.
- *   https://www.drupal.org/project/drupal/issues/3023767
- */
-.media-library-menu {
-  display: block;
-  width: 600px;
-  max-width: 20%;
-  margin: 0; /* LTR */
-  padding: 0;
-  border-bottom: 1px solid #ccc;
-  background-color: #e6e5e1;
-  line-height: 1;
-=======
 @import "../base/variables.pcss.css";
 
 /**
@@ -53,22 +33,11 @@
   padding-top: var(--vertical-tabs-menu-item-shadow-extraspace);
   list-style: none;
   color: var(--color-text);
->>>>>>> dev
 }
 [dir="rtl"] .media-library-menu {
   margin: 0;
 }
 
-<<<<<<< HEAD
-/**
- * @todo Use a class instead of the li element.
- *   https://www.drupal.org/project/drupal/issues/3029227
- */
-.media-library-menu li {
-  display: block;
-  padding: 0;
-  list-style: none;
-=======
 .media-library-menu__item {
   overflow: hidden;
   margin: var(--vertical-tabs-menu-item--top-margin) var(--vertical-tabs-menu-item--right-margin) var(--vertical-tabs-menu-item--bottom-margin) var(--vertical-tabs-menu-item--left-margin); /* LTR */
@@ -87,48 +56,11 @@
   margin-top: calc(var(--vertical-tabs-menu-separator-size) * -1);
   content: "";
   border-top: var(--vertical-tabs-menu-separator-size) solid var(--vertical-tabs-menu-separator-color);
->>>>>>> dev
 }
 
 .media-library-menu__link {
   position: relative;
   display: block;
-<<<<<<< HEAD
-  box-sizing: border-box;
-  padding: 15px;
-  text-decoration: none;
-  border-bottom: 1px solid #b3b2ad;
-  background-color: #f2f2f0;
-  text-shadow: 0 1px hsla(0, 0%, 100%, 0.6);
-}
-
-.media-library-menu__link:active,
-.media-library-menu__link:hover,
-.media-library-menu__link:focus {
-  background: #fcfcfa;
-  text-shadow: none;
-}
-
-.media-library-menu__link:focus,
-.media-library-menu__link:active {
-  outline: none;
-}
-
-.media-library-menu__link.active {
-  z-index: 1;
-  margin-right: -1px; /* LTR */
-  color: #000;
-  border-right: 1px solid #fcfcfa; /* LTR */
-  border-bottom: 1px solid #b3b2ad;
-  background-color: #fff;
-  box-shadow: 0 5px 5px -5px hsla(0, 0%, 0%, 0.3);
-}
-[dir="rtl"] .media-library-menu__link.active {
-  margin-right: 0;
-  margin-left: -1px;
-  border-right: 0;
-  border-left: 1px solid #fcfcfa;
-=======
   margin-top: calc(var(--vertical-tabs-border-size) * -1);
   padding: var(--space-s) var(--space-s) var(--space-s) calc(var(--space-l) - var(--vertical-tabs-menu-link--active-border-size)); /* LTR */
   text-decoration: none;
@@ -225,19 +157,11 @@
 
 .media-library-menu__link.active:hover::before {
   background: none;
->>>>>>> dev
 }
 
 .media-library-content {
   width: 100%;
   padding: 1em;
-<<<<<<< HEAD
-  border-left: 1px solid #b3b2ad; /* LTR */
-  outline: none;
-}
-[dir="rtl"] .media-library-content {
-  border-right: 1px solid #b3b2ad;
-=======
   outline: none;
 }
 
@@ -249,17 +173,12 @@
 
 [dir="rtl"] .media-library-menu + .media-library-content {
   border-right: var(--vertical-tabs-border);
->>>>>>> dev
   border-left: 0;
 }
 
 /* Generic media add form styles. */
 .media-library-add-form--without-input .form-item {
-<<<<<<< HEAD
-  margin: 0 0 1em;
-=======
   margin-right: 1rem;
->>>>>>> dev
 }
 
 /**
@@ -274,13 +193,6 @@
   outline: none;
 }
 
-<<<<<<< HEAD
-.media-library-add-form__input-wrapper {
-  padding: 16px;
-  border: 1px solid #bfbfbf;
-  border-radius: 2px;
-  background: #fcfcfa;
-=======
 /**
  * This Media Library form is an exception to the extrasmall button pattern.
  * Additional padding is needed to accommodate the remove button icon. The
@@ -303,15 +215,12 @@
   border-radius: var(--base-border-radius);
   background-color: var(--color-white);
   box-shadow: var(--details-box-shadow);
->>>>>>> dev
 }
 
 /* Style the media add upload form. */
 .media-library-add-form--upload.media-library-add-form--without-input .form-item-upload {
   margin-bottom: 0;
 }
-<<<<<<< HEAD
-=======
 .media-library-add-form--upload.media-library-add-form--with-input .form-managed-file__main,
 .media-library-add-form--upload.media-library-add-form--with-input .form-managed-file.no-upload {
   display: block;
@@ -321,17 +230,11 @@
 .media-library-add-form__added-media:focus {
   box-shadow: 0 0 0 calc(var(--focus-border-offset-size) + 2px) var(--color-white), 0 0 0 calc(var(--focus-border-size) + var(--focus-border-offset-size) + 2px) var(--color-focus);
 }
->>>>>>> dev
 
 .media-library-add-form .file-upload-help {
   margin: 8px 0 0;
 }
 
-<<<<<<< HEAD
-/* Style the media add oEmbed form. */
-.media-library-add-form--oembed .media-library-add-form__input-wrapper {
-  display: flex;
-=======
 /* Align remove buttons with with Save button and compensate for IE scrollbar and focus padding. */
 @media all and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .ui-dialog > .ui-dialog-content {
@@ -346,7 +249,6 @@
 .media-library-add-form--oembed .media-library-add-form__input-wrapper {
   display: flex;
   align-items: center;
->>>>>>> dev
 }
 
 @media screen and (max-width: 37.5em) {
@@ -363,17 +265,6 @@
   width: 100%;
 }
 
-<<<<<<< HEAD
-/**
- * @todo Remove .button when styles are moved to the seven theme in
- *   https://www.drupal.org/project/drupal/issues/2980769
- */
-.button.media-library-add-form-oembed-submit {
-  align-self: center;
-}
-
-=======
->>>>>>> dev
 /* Media add form selection styles. */
 .media-library-add-form__selected-media {
   margin-top: 1em;
@@ -404,10 +295,6 @@
 .media-library-views-form,
 .media-library-selection,
 .media-library-add-form__selected-media .details-wrapper,
-<<<<<<< HEAD
-.media-library-views-form__bulk_form,
-=======
->>>>>>> dev
 .media-library-view .form--inline {
   display: flex;
   flex-wrap: wrap;
@@ -504,12 +391,6 @@
 }
 
 /**
-<<<<<<< HEAD
-* The media library item container receives screen reader focus when items are
-* removed. Since it is not an interactive element, it does not need an
-* outline.
-*/
-=======
  * Ajax throbbers inside a media library item.
  */
 .media-library-item .ajax-progress.ajax-progress.ajax-progress {
@@ -540,7 +421,6 @@
   display: none;
 }
 
->>>>>>> dev
 .media-library-item--grid {
   justify-content: center;
   box-sizing: border-box;
@@ -561,8 +441,6 @@
   transition: border-color 0.2s, color 0.2s, background 0.2s;
   pointer-events: none;
   border: 1px solid #dbdbdb;
-<<<<<<< HEAD
-=======
   border-radius: 2px;
   box-shadow: var(--details-box-shadow);
 }
@@ -579,7 +457,6 @@
 .media-library-item--grid:focus .media-library-item__preview-wrapper {
   outline: var(--focus-outline);
   box-shadow: var(--focus-box-shadow);
->>>>>>> dev
 }
 
 /* Media library widget weight field styles. */
@@ -678,14 +555,6 @@
   top: 5px;
   left: 5px;
   border-width: 3px;
-<<<<<<< HEAD
-  border-color: #40b6ff;
-  border-radius: 3px;
-}
-
-.media-library-item--grid.checked:before {
-  border-color: #0076c0;
-=======
   border-radius: 3px;
 }
 .media-library-item--grid.is-hover:before,
@@ -704,7 +573,6 @@
 .media-library-item--grid .form-boolean--type-checkbox:checked {
   border-color: var(--button--focus-border-color);
   background-color: var(--button--focus-border-color);
->>>>>>> dev
 }
 
 .media-library-item__click-to-select-checkbox {
@@ -743,11 +611,6 @@
 /* Media library entity view display styles. */
 .media-library-item__preview {
   padding-bottom: 34px;
-<<<<<<< HEAD
-  cursor: move;
-}
-
-=======
 }
 
 .field--widget-media-library-widget .media-library-item__preview {
@@ -763,7 +626,6 @@
   cursor: inherit;
 }
 
->>>>>>> dev
 .media-library-item__status {
   position: absolute;
   top: 40px;
@@ -792,24 +654,12 @@
 }
 
 .media-library-item__name {
-<<<<<<< HEAD
-  font-size: 14px;
-}
-
-.media-library-item__name {
-  display: block;
-  overflow: hidden;
-  margin: 2px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-=======
   display: block;
   overflow: hidden;
   margin: calc(var(--space-xs) / 2) var(--space-xs);
   white-space: nowrap;
   text-overflow: ellipsis;
   font-size: 14px;
->>>>>>> dev
 }
 
 .media-library-item__attributes:hover .media-library-item__name,
@@ -833,29 +683,6 @@
   position: relative;
 }
 
-<<<<<<< HEAD
-/**
- * @todo Change to .media-library-open-button when styles are moved to the
- *   seven theme in https://www.drupal.org/project/drupal/issues/2980769
- */
-.button.media-library-open-button {
-  margin-bottom: 1em;
-  margin-left: 0; /* LTR */
-}
-[dir="rtl"] .button.media-library-open-button {
-  margin-right: 0;
-  margin-left: 1em;
-}
-
-.media-library-widget__toggle-weight {
-  position: absolute;
-  top: 5px;
-  right: 5px; /* LTR */
-}
-[dir="rtl"] .media-library-widget__toggle-weight {
-  right: auto;
-  left: 5px;
-=======
 .media-library-widget__toggle-weight.media-library-widget__toggle-weight {
   position: absolute;
   top: var(--space-s);
@@ -865,7 +692,6 @@
 [dir="rtl"] .media-library-widget__toggle-weight.media-library-widget__toggle-weight {
   right: auto;
   left: var(--space-m);
->>>>>>> dev
 }
 
 /* Add negative margin for flex grid. */
@@ -895,24 +721,13 @@
   z-index: 1;
   top: 10px;
   overflow: hidden;
-<<<<<<< HEAD
-  width: 21px;
-  height: 21px;
-=======
   width: 24px;
   height: 24px;
->>>>>>> dev
   margin: 5px;
   padding: 0;
   transition: 0.2s border-color;
   color: transparent;
-<<<<<<< HEAD
-  border: 2px solid #ccc;
-  border-radius: 20px;
-  background-size: 13px;
-=======
   background-size: 12px;
->>>>>>> dev
   text-shadow: none;
   font-size: 0;
 }
@@ -934,10 +749,6 @@
 }
 
 .media-library-item__edit {
-<<<<<<< HEAD
-  background: url("../../../../misc/icons/787878/pencil.svg") #fff center no-repeat;
-  background-size: 13px;
-=======
   /* !important to override button class border. */
   border: 1px solid var(--color-lightgray) !important;
   background-image: url("../../images/icons/545560/pencil.svg");
@@ -947,7 +758,6 @@
 }
 .media-library-item__edit:active {
   background-image: url("../../../../misc/icons/ffffff/pencil.svg");
->>>>>>> dev
 }
 .media-library-item__remove,
 .media-library-item__remove.button,
@@ -956,49 +766,6 @@
 .media-library-item__remove.button:disabled:active,
 .media-library-item__remove.button:hover,
 .media-library-item__remove.button:focus {
-<<<<<<< HEAD
-  background: url("../../../../misc/icons/787878/ex.svg") #fff center no-repeat;
-  background-size: 13px;
-}
-.media-library-item__edit:hover,
-.media-library-item__edit:focus,
-.media-library-item__remove:hover,
-.media-library-item__remove:focus,
-.media-library-item__remove.button:hover,
-.media-library-item__remove.button:focus,
-.media-library-item__remove.button:disabled:active {
-  border-color: #40b6ff;
-}
-
-/**
- * Style the added media item container.
- *
- * The added media container receives screen reader focus since it has the role
- * 'listitem'. Since it is not an interactive element, it does not need an
- * outline.
- */
-.media-library-add-form__media {
-  position: relative;
-  display: flex;
-  padding: 1em 0;
-  border-bottom: 1px solid #c0c0c0;
-  outline: none;
-}
-
-/* Do not show the top padding for the first item. */
-.media-library-add-form__media:first-child {
-  padding-top: 0;
-}
-
-/**
- * Change the position of the remove button for the first item.
- *
- * The first item doesn't have a top padding, change the location of the remove
- * button as well.
- */
-.media-library-add-form__media:first-child .media-library-add-form__remove-button[type="submit"] {
-  top: 5px;
-=======
   /* !important to override button class border. */
   border: 1px solid var(--color-lightgray) !important;
   background-image: url("../../../../misc/icons/545560/ex.svg");
@@ -1020,7 +787,6 @@
   position: relative;
   display: flex;
   border-bottom: 1px solid #c0c0c0;
->>>>>>> dev
 }
 
 /* Do not show the bottom border and padding for the last item. */
@@ -1035,11 +801,7 @@
   justify-content: center;
   width: 220px;
   margin-right: 20px; /* LTR */
-<<<<<<< HEAD
-  background: #ebebeb;
-=======
   background: var(--color-whitesmoke-o-40);
->>>>>>> dev
 }
 [dir="rtl"] .media-library-add-form__preview {
   margin-right: 0;
@@ -1050,22 +812,6 @@
   flex-grow: 1;
 }
 
-<<<<<<< HEAD
-/**
- * @todo Remove [type="submit"] when styles are moved to the seven theme in
- *   https://www.drupal.org/project/drupal/issues/2980769
- */
-.media-library-add-form__remove-button[type="submit"] {
-  position: absolute;
-  top: 25px;
-  right: 6px;
-  margin-right: 0;
-}
-[dir="rtl"] .media-library-add-form__remove-button[type="submit"] {
-  right: auto;
-  left: 13px;
-  margin-left: 0;
-=======
 .media-library-add-form__remove-button {
   position: absolute;
   right: 0; /* LTR */
@@ -1080,7 +826,6 @@
 }
 .media-library-add-form__remove-button.button:disabled {
   background-image: url("../../../../misc/icons/8e929c/ex.svg");
->>>>>>> dev
 }
 
 /* @todo Remove in https://www.drupal.org/project/drupal/issues/3064914 */

@@ -3,11 +3,7 @@
  * Responsive table functionality.
  */
 
-<<<<<<< HEAD
-(function($, Drupal, window) {
-=======
 (function ($, Drupal, window) {
->>>>>>> dev
   /**
    * The TableResponsive object optimizes table presentation for screen size.
    *
@@ -143,26 +139,6 @@
         this.$revealedCells = this.$revealedCells || $();
         // Reveal hidden columns.
         if ($hiddenHeaders.length > 0) {
-<<<<<<< HEAD
-          $hiddenHeaders.each(function(index, element) {
-            const $header = $(this);
-            const position = $header.prevAll('th').length;
-            self.$table.find('tbody tr').each(function() {
-              const $cells = $(this)
-                .find('td')
-                .eq(position);
-              $cells.show();
-              // Keep track of the revealed cells, so they can be hidden later.
-              self.$revealedCells = $()
-                .add(self.$revealedCells)
-                .add($cells);
-            });
-            $header.show();
-            // Keep track of the revealed headers, so they can be hidden later.
-            self.$revealedCells = $()
-              .add(self.$revealedCells)
-              .add($header);
-=======
           $hiddenHeaders.each(function (index, element) {
             const $header = $(this);
             const position = $header.prevAll('th').length;
@@ -175,7 +151,6 @@
             $header.show();
             // Keep track of the revealed headers, so they can be hidden later.
             self.$revealedCells = $().add(self.$revealedCells).add($header);
->>>>>>> dev
           });
           this.$link.text(this.hideText).data('pegged', 1);
         }
@@ -184,11 +159,7 @@
           this.$revealedCells.hide();
           // Strip the 'display:none' declaration from the style attributes of
           // the table cells that .hide() added.
-<<<<<<< HEAD
-          this.$revealedCells.each(function(index, element) {
-=======
           this.$revealedCells.each(function (index, element) {
->>>>>>> dev
             const $cell = $(this);
             const properties = $cell.attr('style').split(';');
             const newProps = [];

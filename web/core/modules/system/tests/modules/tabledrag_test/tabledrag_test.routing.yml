@@ -5,8 +5,6 @@ tabledrag_test.test_form:
     _title: 'Draggable table test'
   requirements:
     _access: 'TRUE'
-<<<<<<< HEAD
-=======
 
 tabledrag_test.nested_tabledrag_test_form:
   path: '/tabledrag_test_nested'
@@ -15,4 +13,3 @@ tabledrag_test.nested_tabledrag_test_form:
     _title: 'Nested draggable table test'
   requirements:
     _access: 'TRUE'
->>>>>>> dev

@@ -29,11 +29,7 @@ class MigrateControllerTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Log in as user 1. Migrations in the UI can only be performed as user 1.

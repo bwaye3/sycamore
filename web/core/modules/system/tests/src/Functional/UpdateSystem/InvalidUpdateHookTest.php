@@ -20,11 +20,7 @@ class InvalidUpdateHookTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'update_test_invalid_hook',
     'update_script_test',
     'dblog',
@@ -49,11 +45,7 @@ class InvalidUpdateHookTest extends BrowserTestBase {
    */
   private $updateUser;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     require_once $this->root . '/core/includes/update.inc';
 
@@ -69,11 +61,7 @@ class InvalidUpdateHookTest extends BrowserTestBase {
     $this->drupalGet($this->updateUrl);
     $this->updateRequirementsProblem();
     $this->clickLink(t('Continue'));
-<<<<<<< HEAD
-    $this->assertText(t('Some of the pending updates cannot be applied because their dependencies were not met.'));
-=======
     $this->assertSession()->pageTextContains('Some of the pending updates cannot be applied because their dependencies were not met.');
->>>>>>> dev
   }
 
 }

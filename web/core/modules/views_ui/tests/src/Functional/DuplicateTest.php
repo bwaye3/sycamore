@@ -14,11 +14,7 @@ class DuplicateTest extends UITestBase {
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->placeBlock('page_title_block');
@@ -40,15 +36,6 @@ class DuplicateTest extends UITestBase {
     $view['id'] = strtolower($this->randomMachineName(128));
 
     // Duplicate view.
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/view/' . $random_view['id'] . '/duplicate', $view, t('Duplicate'));
-
-    // Assert that the page url is correct.
-    $this->assertUrl('admin/structure/views/view/' . $view['id'], [], 'Make sure the view saving was successful and the browser got redirected to the edit page.');
-
-    // Assert that the page title is correctly displayed.
-    $this->assertText($view['label']);
-=======
     $this->drupalGet('admin/structure/views/view/' . $random_view['id'] . '/duplicate');
     $this->submitForm($view, 'Duplicate');
 
@@ -57,7 +44,6 @@ class DuplicateTest extends UITestBase {
 
     // Assert that the page title is correctly displayed.
     $this->assertSession()->pageTextContains($view['label']);
->>>>>>> dev
   }
 
 }

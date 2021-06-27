@@ -5,10 +5,7 @@ namespace Drupal\Core\KeyValueStore;
 use Drupal\Component\Serialization\SerializationInterface;
 use Drupal\Core\Database\Query\Merge;
 use Drupal\Core\Database\Connection;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Database\SchemaObjectExistsException;
->>>>>>> dev
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 
 /**
@@ -65,12 +62,6 @@ class DatabaseStorage extends StorageBase {
    * {@inheritdoc}
    */
   public function has($key) {
-<<<<<<< HEAD
-    return (bool) $this->connection->query('SELECT 1 FROM {' . $this->connection->escapeTable($this->table) . '} WHERE collection = :collection AND name = :key', [
-      ':collection' => $this->collection,
-      ':key' => $key,
-    ])->fetchField();
-=======
     try {
       return (bool) $this->connection->query('SELECT 1 FROM {' . $this->connection->escapeTable($this->table) . '} WHERE [collection] = :collection AND [name] = :key', [
         ':collection' => $this->collection,
@@ -81,7 +72,6 @@ class DatabaseStorage extends StorageBase {
       $this->catchException($e);
       return FALSE;
     }
->>>>>>> dev
   }
 
   /**
@@ -90,11 +80,7 @@ class DatabaseStorage extends StorageBase {
   public function getMultiple(array $keys) {
     $values = [];
     try {
-<<<<<<< HEAD
-      $result = $this->connection->query('SELECT name, value FROM {' . $this->connection->escapeTable($this->table) . '} WHERE name IN ( :keys[] ) AND collection = :collection', [':keys[]' => $keys, ':collection' => $this->collection])->fetchAllAssoc('name');
-=======
       $result = $this->connection->query('SELECT [name], [value] FROM {' . $this->connection->escapeTable($this->table) . '} WHERE [name] IN ( :keys[] ) AND [collection] = :collection', [':keys[]' => $keys, ':collection' => $this->collection])->fetchAllAssoc('name');
->>>>>>> dev
       foreach ($keys as $key) {
         if (isset($result[$key])) {
           $values[$key] = $this->serializer->decode($result[$key]->value);
@@ -113,11 +99,6 @@ class DatabaseStorage extends StorageBase {
    * {@inheritdoc}
    */
   public function getAll() {
-<<<<<<< HEAD
-    $result = $this->connection->query('SELECT name, value FROM {' . $this->connection->escapeTable($this->table) . '} WHERE collection = :collection', [':collection' => $this->collection]);
-    $values = [];
-
-=======
     try {
       $result = $this->connection->query('SELECT [name], [value] FROM {' . $this->connection->escapeTable($this->table) . '} WHERE [collection] = :collection', [':collection' => $this->collection]);
     }
@@ -127,7 +108,6 @@ class DatabaseStorage extends StorageBase {
     }
 
     $values = [];
->>>>>>> dev
     foreach ($result as $item) {
       if ($item) {
         $values[$item->name] = $this->serializer->decode($item->value);
@@ -137,11 +117,6 @@ class DatabaseStorage extends StorageBase {
   }
 
   /**
-<<<<<<< HEAD
-   * {@inheritdoc}
-   */
-  public function set($key, $value) {
-=======
    * Saves a value for a given key.
    *
    * This will be called by set() within a try block.
@@ -152,7 +127,6 @@ class DatabaseStorage extends StorageBase {
    *   The data to store.
    */
   protected function doSet($key, $value) {
->>>>>>> dev
     $this->connection->merge($this->table)
       ->keys([
         'name' => $key,
@@ -165,9 +139,6 @@ class DatabaseStorage extends StorageBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setIfNotExists($key, $value) {
-=======
   public function set($key, $value) {
     try {
       $this->doSet($key, $value);
@@ -197,7 +168,6 @@ class DatabaseStorage extends StorageBase {
    *   TRUE if the data was set, FALSE if it already existed.
    */
   public function doSetIfNotExists($key, $value) {
->>>>>>> dev
     $result = $this->connection->merge($this->table)
       ->insertFields([
         'collection' => $this->collection,
@@ -213,14 +183,6 @@ class DatabaseStorage extends StorageBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function rename($key, $new_key) {
-    $this->connection->update($this->table)
-      ->fields(['name' => $new_key])
-      ->condition('collection', $this->collection)
-      ->condition('name', $key)
-      ->execute();
-=======
   public function setIfNotExists($key, $value) {
     try {
       return $this->doSetIfNotExists($key, $value);
@@ -250,7 +212,6 @@ class DatabaseStorage extends StorageBase {
     catch (\Exception $e) {
       $this->catchException($e);
     }
->>>>>>> dev
   }
 
   /**
@@ -259,22 +220,6 @@ class DatabaseStorage extends StorageBase {
   public function deleteMultiple(array $keys) {
     // Delete in chunks when a large array is passed.
     while ($keys) {
-<<<<<<< HEAD
-      $this->connection->delete($this->table)
-        ->condition('name', array_splice($keys, 0, 1000), 'IN')
-        ->condition('collection', $this->collection)
-        ->execute();
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function deleteAll() {
-    $this->connection->delete($this->table)
-      ->condition('collection', $this->collection)
-      ->execute();
-=======
       try {
         $this->connection->delete($this->table)
           ->condition('name', array_splice($keys, 0, 1000), 'IN')
@@ -370,7 +315,6 @@ class DatabaseStorage extends StorageBase {
       ],
       'primary key' => ['collection', 'name'],
     ];
->>>>>>> dev
   }
 
 }

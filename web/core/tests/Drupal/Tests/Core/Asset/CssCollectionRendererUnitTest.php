@@ -30,11 +30,7 @@ class CssCollectionRendererUnitTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $state = $this->prophesize(StateInterface::class);
     $state->get('system.css_js_query_string', '0')->shouldBeCalledOnce()->willReturn(NULL);

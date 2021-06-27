@@ -12,11 +12,7 @@ class MigrateUrlAliasNoTranslationTest extends MigrateUrlAliasTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->executeMigration('d7_url_alias');
   }

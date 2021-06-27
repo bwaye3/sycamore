@@ -22,20 +22,12 @@ class PathValidatorTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['path', 'entity_test', 'system', 'user'];
-=======
   protected static $modules = ['path', 'entity_test', 'system', 'user'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->setUpCurrentUser();
     $this->installEntitySchema('entity_test');

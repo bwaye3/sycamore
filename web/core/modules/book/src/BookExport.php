@@ -2,10 +2,7 @@
 
 namespace Drupal\book;
 
-<<<<<<< HEAD
-=======
 use Drupal\Core\Entity\EntityRepositoryInterface;
->>>>>>> dev
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\node\NodeInterface;
 
@@ -38,8 +35,6 @@ class BookExport {
   protected $bookManager;
 
   /**
-<<<<<<< HEAD
-=======
    * The entity repository service.
    *
    * @var \Drupal\Core\Entity\EntityRepositoryInterface
@@ -47,20 +42,12 @@ class BookExport {
   protected $entityRepository;
 
   /**
->>>>>>> dev
    * Constructs a BookExport object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    * @param \Drupal\book\BookManagerInterface $book_manager
    *   The book manager.
-<<<<<<< HEAD
-   */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, BookManagerInterface $book_manager) {
-    $this->nodeStorage = $entity_type_manager->getStorage('node');
-    $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
-    $this->bookManager = $book_manager;
-=======
    * @param \Drupal\Core\Entity\EntityRepositoryInterface|null $entity_repository
    *   The entity repository service.
    */
@@ -73,7 +60,6 @@ class BookExport {
       $entity_repository = \Drupal::service('entity.repository');
     }
     $this->entityRepository = $entity_repository;
->>>>>>> dev
   }
 
   /**
@@ -103,10 +89,7 @@ class BookExport {
 
     $tree = $this->bookManager->bookSubtreeData($node->book);
     $contents = $this->exportTraverse($tree, [$this, 'bookNodeExport']);
-<<<<<<< HEAD
-=======
     $node = $this->entityRepository->getTranslationFromContext($node);
->>>>>>> dev
     return [
       '#theme' => 'book_export_html',
       '#title' => $node->label(),
@@ -129,13 +112,8 @@ class BookExport {
    * @param callable $callable
    *   A callback to be called upon visiting a node in the tree.
    *
-<<<<<<< HEAD
-   * @return string
-   *   The output generated in visiting each node.
-=======
    * @return array
    *   The render array generated in visiting each node.
->>>>>>> dev
    */
   protected function exportTraverse(array $tree, $callable) {
     // If there is no valid callable, use the default callback.
@@ -143,14 +121,9 @@ class BookExport {
 
     $build = [];
     foreach ($tree as $data) {
-<<<<<<< HEAD
-      // Note- access checking is already performed when building the tree.
-      if ($node = $this->nodeStorage->load($data['link']['nid'])) {
-=======
       // Access checking is already performed when building the tree.
       if ($node = $this->nodeStorage->load($data['link']['nid'])) {
         $node = $this->entityRepository->getTranslationFromContext($node);
->>>>>>> dev
         $children = $data['below'] ? $this->exportTraverse($data['below'], $callable) : '';
         $build[] = call_user_func($callable, $node, $children);
       }

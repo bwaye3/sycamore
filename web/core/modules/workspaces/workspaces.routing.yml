@@ -16,15 +16,6 @@ entity.workspace.activate_form:
   requirements:
     _entity_access: 'workspace.view'
 
-<<<<<<< HEAD
-entity.workspace.deploy_form:
-  path: '/admin/config/workflow/workspaces/manage/{workspace}/deploy'
-  defaults:
-    _entity_form: 'workspace.deploy'
-    _title: 'Deploy Workspace'
-  options:
-    _admin_route: TRUE
-=======
 entity.workspace.publish_form:
   path: '/admin/config/workflow/workspaces/manage/{workspace}/publish'
   defaults:
@@ -35,7 +26,6 @@ entity.workspace.publish_form:
     parameters:
       workspace:
         type: entity:workspace
->>>>>>> dev
   requirements:
     _permission: 'administer workspaces'
 

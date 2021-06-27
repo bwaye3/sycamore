@@ -18,11 +18,7 @@ class MetadataGeneratorTest extends QuickEditTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['quickedit_test'];
-=======
   protected static $modules = ['quickedit_test'];
->>>>>>> dev
 
   /**
    * The manager for editor plugins.
@@ -52,11 +48,7 @@ class MetadataGeneratorTest extends QuickEditTestBase {
    */
   protected $accessChecker;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->editorManager = $this->container->get('plugin.manager.quickedit.editor');
@@ -111,11 +103,7 @@ class MetadataGeneratorTest extends QuickEditTestBase {
       'label' => 'Plain text field',
       'editor' => 'plain_text',
     ];
-<<<<<<< HEAD
-    $this->assertEqual($expected_1, $metadata_1, 'The correct metadata is generated for the first field.');
-=======
     $this->assertEquals($expected_1, $metadata_1, 'The correct metadata is generated for the first field.');
->>>>>>> dev
 
     // Verify metadata for field 2.
     $items_2 = $entity->get($field_2_name);
@@ -125,11 +113,7 @@ class MetadataGeneratorTest extends QuickEditTestBase {
       'label' => 'Simple number field',
       'editor' => 'form',
     ];
-<<<<<<< HEAD
-    $this->assertEqual($expected_2, $metadata_2, 'The correct metadata is generated for the second field.');
-=======
     $this->assertEquals($expected_2, $metadata_2, 'The correct metadata is generated for the second field.');
->>>>>>> dev
   }
 
   /**
@@ -188,11 +172,7 @@ class MetadataGeneratorTest extends QuickEditTestBase {
         'format' => 'full_html',
       ],
     ];
-<<<<<<< HEAD
-    $this->assertEqual($expected, $metadata, 'The correct metadata (including custom metadata) is generated.');
-=======
     $this->assertEquals($expected, $metadata, 'The correct metadata (including custom metadata) is generated.');
->>>>>>> dev
   }
 
 }

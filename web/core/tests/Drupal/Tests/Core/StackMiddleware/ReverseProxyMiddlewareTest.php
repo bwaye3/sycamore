@@ -4,10 +4,6 @@ namespace Drupal\Tests\Core\StackMiddleware;
 
 use Drupal\Core\Site\Settings;
 use Drupal\Core\StackMiddleware\ReverseProxyMiddleware;
-<<<<<<< HEAD
-use Drupal\Tests\Traits\ExpectDeprecationTrait;
-=======
->>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -17,10 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
  * @group StackMiddleware
  */
 class ReverseProxyMiddlewareTest extends UnitTestCase {
-<<<<<<< HEAD
-  use ExpectDeprecationTrait;
-=======
->>>>>>> dev
 
   /**
    * @var \Symfony\Component\HttpKernel\HttpKernelInterface|\PHPUnit\Framework\MockObject\MockObject
@@ -30,11 +22,7 @@ class ReverseProxyMiddlewareTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->mockHttpKernel = $this->createMock('Symfony\Component\HttpKernel\HttpKernelInterface');
   }
 
@@ -75,11 +63,7 @@ class ReverseProxyMiddlewareTest extends UnitTestCase {
     return [
       'Proxy with default trusted headers' => [
         ['reverse_proxy_addresses' => ['127.0.0.2', '127.0.0.3']],
-<<<<<<< HEAD
-        Request::HEADER_FORWARDED | Request::HEADER_X_FORWARDED_ALL,
-=======
         Request::HEADER_FORWARDED | Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_HOST | Request::HEADER_X_FORWARDED_PORT | Request::HEADER_X_FORWARDED_PROTO,
->>>>>>> dev
       ],
       'Proxy with AWS trusted headers' => [
         [
@@ -99,61 +83,6 @@ class ReverseProxyMiddlewareTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests that subscriber sets trusted headers when reverse proxy is set.
-   *
-   * @dataProvider reverseProxyEnabledProviderLegacy
-   * @group legacy
-   */
-  public function testReverseProxyEnabledLegacy($provided_settings, $expected_trusted_header_set, array $expected_deprecations) {
-    if (!method_exists(Request::class, 'setTrustedHeaderName')) {
-      $this->markTestSkipped('The method \Symfony\Component\HttpFoundation\Request::setTrustedHeaderName() does not exist therefore testing on Symfony 4 or greater.');
-    }
-    $this->expectedDeprecations($expected_deprecations);
-    // Enable reverse proxy and add test values.
-    $settings = new Settings(['reverse_proxy' => 1] + $provided_settings);
-    $this->trustedHeadersAreSet($settings, $expected_trusted_header_set);
-  }
-
-  /**
-   * Data provider for testReverseProxyEnabled.
-   */
-  public function reverseProxyEnabledProviderLegacy() {
-    return [
-      'Proxy with deprecated custom headers' => [
-        [
-          'reverse_proxy_addresses' => ['127.0.0.2', '127.0.0.3'],
-          'reverse_proxy_host_header' => NULL,
-          'reverse_proxy_forwarded_header' => NULL,
-        ],
-        // For AWS configuration forwarded and x_forwarded_host headers are not
-        // trusted.
-        Request::HEADER_X_FORWARDED_AWS_ELB,
-        [
-          'The \'reverse_proxy_host_header\' setting in settings.php is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. Use the \'reverse_proxy_trusted_headers\' setting instead. See https://www.drupal.org/node/3030558',
-          'The \'reverse_proxy_forwarded_header\' setting in settings.php is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. Use the \'reverse_proxy_trusted_headers\' setting instead. See https://www.drupal.org/node/3030558',
-          'The "Symfony\Component\HttpFoundation\Request::setTrustedHeaderName()" method is deprecated since Symfony 3.3 and will be removed in 4.0. Use the $trustedHeaderSet argument of the Request::setTrustedProxies() method instead.',
-        ],
-      ],
-      'Proxy with deprecated custom header' => [
-        [
-          'reverse_proxy_addresses' => ['127.0.0.2', '127.0.0.3'],
-          'reverse_proxy_forwarded_header' => NULL,
-        ],
-        // The forwarded header is not trusted which is the same as trusting all
-        // the x_forwarded headers.
-        Request::HEADER_X_FORWARDED_ALL,
-        [
-          'The \'reverse_proxy_forwarded_header\' setting in settings.php is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. Use the \'reverse_proxy_trusted_headers\' setting instead. See https://www.drupal.org/node/3030558',
-          'The "Symfony\Component\HttpFoundation\Request::setTrustedHeaderName()" method is deprecated since Symfony 3.3 and will be removed in 4.0. Use the $trustedHeaderSet argument of the Request::setTrustedProxies() method instead.',
-        ],
-      ],
-    ];
-  }
-
-  /**
-=======
->>>>>>> dev
    * Tests that trusted headers are set correctly.
    *
    * \Symfony\Component\HttpFoundation\Request::setTrustedProxies() should

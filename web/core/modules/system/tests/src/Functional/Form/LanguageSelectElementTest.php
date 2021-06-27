@@ -2,10 +2,6 @@
 
 namespace Drupal\Tests\system\Functional\Form;
 
-<<<<<<< HEAD
-use Drupal\Component\Render\FormattableMarkup;
-=======
->>>>>>> dev
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\language\Entity\ConfigurableLanguage;
@@ -24,11 +20,7 @@ class LanguageSelectElementTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['form_test', 'language'];
-=======
   protected static $modules = ['form_test', 'language'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -61,15 +53,9 @@ class LanguageSelectElementTest extends BrowserTestBase {
         'edit-languages-config-and-locked' => LanguageInterface::STATE_CONFIGURABLE | LanguageInterface::STATE_LOCKED,
     ];
     foreach ($ids as $id => $flags) {
-<<<<<<< HEAD
-      $this->assertField($id, new FormattableMarkup('The @id field was found on the page.', ['@id' => $id]));
-      $options = [];
-      /* @var $language_manager \Drupal\Core\Language\LanguageManagerInterface */
-=======
       $this->assertSession()->fieldExists($id);
       $options = [];
       /** @var \Drupal\Core\Language\LanguageManagerInterface $language_manager */
->>>>>>> dev
       $language_manager = $this->container->get('language_manager');
       foreach ($language_manager->getLanguages($flags) as $langcode => $language) {
         $options[$langcode] = $language->isLocked() ? t('- @name -', ['@name' => $language->getName()]) : $language->getName();
@@ -78,11 +64,7 @@ class LanguageSelectElementTest extends BrowserTestBase {
     }
 
     // Test that the #options were not altered by #languages.
-<<<<<<< HEAD
-    $this->assertField('edit-language-custom-options', new FormattableMarkup('The @id field was found on the page.', ['@id' => 'edit-language-custom-options']));
-=======
     $this->assertSession()->fieldExists('edit-language-custom-options');
->>>>>>> dev
     $this->_testLanguageSelectElementOptions('edit-language-custom-options', ['opt1' => 'First option', 'opt2' => 'Second option', 'opt3' => 'Third option']);
   }
 
@@ -99,25 +81,12 @@ class LanguageSelectElementTest extends BrowserTestBase {
     // Check that the language fields were rendered on the page.
     $ids = ['edit-languages-all', 'edit-languages-configurable', 'edit-languages-locked', 'edit-languages-config-and-locked'];
     foreach ($ids as $id) {
-<<<<<<< HEAD
-      $this->assertNoField($id, new FormattableMarkup('The @id field was not found on the page.', ['@id' => $id]));
-=======
       $this->assertSession()->fieldNotExists($id);
->>>>>>> dev
     }
 
     // Check that the submitted values were the default values of the language
     // field elements.
     $edit = [];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Submit'));
-    $values = Json::decode($this->getSession()->getPage()->getContent());
-    $this->assertEqual($values['languages_all'], 'xx');
-    $this->assertEqual($values['languages_configurable'], 'en');
-    $this->assertEqual($values['languages_locked'], LanguageInterface::LANGCODE_NOT_SPECIFIED);
-    $this->assertEqual($values['languages_config_and_locked'], 'dummy_value');
-    $this->assertEqual($values['language_custom_options'], 'opt2');
-=======
     $this->submitForm($edit, 'Submit');
     $values = Json::decode($this->getSession()->getPage()->getContent());
     $this->assertEquals('xx', $values['languages_all']);
@@ -125,7 +94,6 @@ class LanguageSelectElementTest extends BrowserTestBase {
     $this->assertEquals(LanguageInterface::LANGCODE_NOT_SPECIFIED, $values['languages_locked']);
     $this->assertEquals('dummy_value', $values['languages_config_and_locked']);
     $this->assertEquals('opt2', $values['language_custom_options']);
->>>>>>> dev
   }
 
   /**
@@ -133,34 +101,17 @@ class LanguageSelectElementTest extends BrowserTestBase {
    *
    * @param string $id
    *   The id of the language select element to check.
-<<<<<<< HEAD
-   *
-=======
->>>>>>> dev
    * @param array $options
    *   An array with options to compare with.
    */
   protected function _testLanguageSelectElementOptions($id, $options) {
     // Check that the options in the language field are exactly the same,
     // including the order, as the languages sent as a parameter.
-<<<<<<< HEAD
-    $elements = $this->xpath("//select[@id='" . $id . "']");
-    $count = 0;
-    /** @var \Behat\Mink\Element\NodeElement $option */
-    foreach ($elements[0]->findAll('css', 'option') as $option) {
-      $count++;
-      $option_title = current($options);
-      $this->assertEqual($option->getText(), $option_title);
-      next($options);
-    }
-    $this->assertEqual($count, count($options), new FormattableMarkup('The number of languages and the number of options shown by the language element are the same: @languages languages, @number options', ['@languages' => count($options), '@number' => $count]));
-=======
     $found_options = $this->assertSession()->selectExists($id)->findAll('css', 'option');
     $found_options = array_map(function ($item) {
       return $item->getText();
     }, $found_options);
     $this->assertEquals(array_values($options), $found_options);
->>>>>>> dev
   }
 
 }

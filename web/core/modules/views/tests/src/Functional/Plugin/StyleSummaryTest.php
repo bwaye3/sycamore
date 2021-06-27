@@ -15,11 +15,7 @@ class StyleSummaryTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['entity_test', 'views_ui'];
-=======
   protected static $modules = ['entity_test', 'views_ui'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -39,11 +35,7 @@ class StyleSummaryTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     // Create 5 entities per bundle, to allow a summary overview per bundle.
@@ -74,21 +66,13 @@ class StyleSummaryTest extends ViewTestBase {
     $this->assertCount(4, $summary_list);
 
     foreach ($summary_list as $summary_list_item) {
-<<<<<<< HEAD
-      $this->assertEqual('(5)', trim(explode(' ', $summary_list_item->getText())[1]));
-=======
       $this->assertEquals('(5)', trim(explode(' ', $summary_list_item->getText())[1]));
->>>>>>> dev
     }
 
     $summary_links = $this->cssSelect('ul.views-summary a');
     $this->assertCount(4, $summary_links);
     foreach ($summary_links as $index => $summary_link) {
-<<<<<<< HEAD
-      $this->assertEqual('type' . $index, trim($summary_link->getText()));
-=======
       $this->assertEquals('type' . $index, trim($summary_link->getText()));
->>>>>>> dev
     }
 
     $this->clickLink('type1');
@@ -99,14 +83,9 @@ class StyleSummaryTest extends ViewTestBase {
     $edit = [
       'options[summary][options][default_summary][base_path]' => 'test-summary',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/nojs/handler/test_summary/page_1/argument/type', $edit, t('Apply'));
-    $this->drupalPostForm(NULL, [], t('Save'));
-=======
     $this->drupalGet('admin/structure/views/nojs/handler/test_summary/page_1/argument/type');
     $this->submitForm($edit, 'Apply');
     $this->submitForm([], 'Save');
->>>>>>> dev
 
     // Test that the links still work.
     $this->drupalGet('test-summary');
@@ -120,14 +99,9 @@ class StyleSummaryTest extends ViewTestBase {
       'options[summary][options][unformatted_summary][override]' => '1',
       'options[summary][options][unformatted_summary][items_per_page]' => '3',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/nojs/handler/test_summary/page_1/argument/type', $edit, t('Apply'));
-    $this->drupalPostForm(NULL, [], t('Save'));
-=======
     $this->drupalGet('admin/structure/views/nojs/handler/test_summary/page_1/argument/type');
     $this->submitForm($edit, 'Apply');
     $this->submitForm([], 'Save');
->>>>>>> dev
 
     $this->drupalGet('admin/structure/views/nojs/handler/test_summary/page_1/argument/type');
     $this->drupalGet('test-summary');
@@ -136,21 +110,13 @@ class StyleSummaryTest extends ViewTestBase {
     $this->assertCount(3, $summary_list);
 
     foreach ($summary_list as $summary_list_item) {
-<<<<<<< HEAD
-      $this->assertEqual('(5)', trim(explode(' ', $summary_list_item->getText())[1]));
-=======
       $this->assertEquals('(5)', trim(explode(' ', $summary_list_item->getText())[1]));
->>>>>>> dev
     }
 
     $summary_links = $this->cssSelect('.views-summary-unformatted a');
     $this->assertCount(3, $summary_links);
     foreach ($summary_links as $index => $summary_link) {
-<<<<<<< HEAD
-      $this->assertEqual('type' . $index, trim($summary_link->getText()));
-=======
       $this->assertEquals('type' . $index, trim($summary_link->getText()));
->>>>>>> dev
     }
 
     $this->clickLink('type1');
@@ -161,14 +127,9 @@ class StyleSummaryTest extends ViewTestBase {
     $edit = [
       'options[summary][options][unformatted_summary][base_path]' => 'test-summary',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/nojs/handler/test_summary/page_1/argument/type', $edit, t('Apply'));
-    $this->drupalPostForm(NULL, [], t('Save'));
-=======
     $this->drupalGet('admin/structure/views/nojs/handler/test_summary/page_1/argument/type');
     $this->submitForm($edit, 'Apply');
     $this->submitForm([], 'Save');
->>>>>>> dev
 
     // Test that the links still work.
     $this->drupalGet('test-summary');
@@ -181,18 +142,11 @@ class StyleSummaryTest extends ViewTestBase {
     $edit = [
       'options[summary][options][unformatted_summary][base_path]' => 'unknown-path',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/nojs/handler/test_summary/page_1/argument/type', $edit, t('Apply'));
-    $this->drupalPostForm(NULL, [], t('Save'));
-    $this->drupalGet('test-summary');
-    $this->assertLinkByHref('/');
-=======
     $this->drupalGet('admin/structure/views/nojs/handler/test_summary/page_1/argument/type');
     $this->submitForm($edit, 'Apply');
     $this->submitForm([], 'Save');
     $this->drupalGet('test-summary');
     $this->assertSession()->linkByHrefExists('/');
->>>>>>> dev
   }
 
 }

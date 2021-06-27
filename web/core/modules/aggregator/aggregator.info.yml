@@ -3,10 +3,6 @@ type: module
 description: 'Gathers and displays syndicated content (RSS, RDF, and Atom feeds) from external sources.'
 package: Core
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 configure: aggregator.admin_settings
 dependencies:
   - drupal:file

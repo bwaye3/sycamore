@@ -2,10 +2,7 @@
 
 namespace Drupal\content_moderation\Entity\Handler;
 
-<<<<<<< HEAD
-=======
 use Drupal\Core\Entity\ContentEntityInterface;
->>>>>>> dev
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -33,8 +30,6 @@ class BlockContentModerationHandler extends ModerationHandler {
     $form['revision']['#description'] = $this->t('Revisions must be required when moderation is enabled.');
   }
 
-<<<<<<< HEAD
-=======
   /**
    * {@inheritdoc}
    */
@@ -45,5 +40,4 @@ class BlockContentModerationHandler extends ModerationHandler {
     return $entity->isReusable();
   }
 
->>>>>>> dev
 }

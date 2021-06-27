@@ -66,11 +66,7 @@ function () {
     })[0]
     .get('fieldID')
   return document.querySelector('[data-quickedit-field-id="' + activeFieldID + '"] .quickedit-image-dropzone') === null;
-<<<<<<< HEAD
-}();
-=======
 }()
->>>>>>> dev
 JS;
 
     $this->assertJsCondition($js_condition, 20000);

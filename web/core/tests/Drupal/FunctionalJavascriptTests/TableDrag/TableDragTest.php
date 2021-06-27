@@ -36,11 +36,6 @@ class TableDragTest extends WebDriverTestBase {
   protected $state;
 
   /**
-<<<<<<< HEAD
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-=======
    * Xpath selector for finding tabledrag indentation elements in a table row.
    *
    * @var string
@@ -58,7 +53,6 @@ class TableDragTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->state = $this->container->get('state');
@@ -150,11 +144,6 @@ class TableDragTest extends WebDriverTestBase {
    * Tests accessibility through keyboard of the tabledrag functionality.
    */
   public function testKeyboardAccessibility() {
-<<<<<<< HEAD
-    $this->state->set('tabledrag_test_table', array_flip(range(1, 5)));
-
-    $expected_table = [
-=======
     $this->assertKeyboardAccessibility();
   }
 
@@ -170,21 +159,16 @@ class TableDragTest extends WebDriverTestBase {
    */
   protected function assertKeyboardAccessibility($drupal_path = 'tabledrag_test', $structure = NULL) {
     $expected_table = $structure ?: [
->>>>>>> dev
       ['id' => 1, 'weight' => 0, 'parent' => '', 'indentation' => 0, 'changed' => FALSE],
       ['id' => 2, 'weight' => 0, 'parent' => '', 'indentation' => 0, 'changed' => FALSE],
       ['id' => 3, 'weight' => 0, 'parent' => '', 'indentation' => 0, 'changed' => FALSE],
       ['id' => 4, 'weight' => 0, 'parent' => '', 'indentation' => 0, 'changed' => FALSE],
       ['id' => 5, 'weight' => 0, 'parent' => '', 'indentation' => 0, 'changed' => FALSE],
     ];
-<<<<<<< HEAD
-    $this->drupalGet('tabledrag_test');
-=======
     if (!empty($drupal_path)) {
       $this->state->set('tabledrag_test_table', array_flip(range(1, 5)));
       $this->drupalGet($drupal_path);
     }
->>>>>>> dev
     $this->assertDraggableTable($expected_table);
 
     // Nest the row with id 2 as child of row 1.
@@ -353,8 +337,6 @@ class TableDragTest extends WebDriverTestBase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Tests nested draggable tables through keyboard.
    */
   public function testNestedDraggableTables() {
@@ -488,7 +470,6 @@ class TableDragTest extends WebDriverTestBase {
   }
 
   /**
->>>>>>> dev
    * Asserts the whole structure of the draggable test table.
    *
    * @param array $structure
@@ -498,15 +479,6 @@ class TableDragTest extends WebDriverTestBase {
    *   - parent: the expected parent ID for the row.
    *   - indentation: how many indents the row should have.
    *   - changed: whether or not the row should have been marked as changed.
-<<<<<<< HEAD
-   */
-  protected function assertDraggableTable(array $structure) {
-    $rows = $this->getSession()->getPage()->findAll('xpath', '//table[@id="tabledrag-test-table"]/tbody/tr');
-    $this->assertSession()->elementsCount('xpath', '//table[@id="tabledrag-test-table"]/tbody/tr', count($structure));
-
-    foreach ($structure as $delta => $expected) {
-      $this->assertTableRow($rows[$delta], $expected['id'], $expected['weight'], $expected['parent'], $expected['indentation'], $expected['changed']);
-=======
    * @param string $table_id
    *   The ID of the table. Defaults to 'tabledrag-test-table'.
    * @param bool $skip_missing
@@ -519,7 +491,6 @@ class TableDragTest extends WebDriverTestBase {
 
     foreach ($structure as $delta => $expected) {
       $this->assertTableRow($rows[$delta], $expected['id'], $expected['weight'], $expected['parent'], $expected['indentation'], $expected['changed'], $skip_missing);
->>>>>>> dev
     }
   }
 
@@ -536,20 +507,6 @@ class TableDragTest extends WebDriverTestBase {
    *   The expected parent ID.
    * @param int $indentation
    *   The expected indentation of the row.
-<<<<<<< HEAD
-   * @param bool $changed
-   *   Whether or not the row should have been marked as changed.
-   */
-  protected function assertTableRow(NodeElement $row, $id, $weight, $parent = '', $indentation = 0, $changed = FALSE) {
-    // Assert that the row position is correct by checking that the id
-    // corresponds.
-    $this->assertSession()->hiddenFieldValueEquals("table[$id][id]", $id, $row);
-    $this->assertSession()->hiddenFieldValueEquals("table[$id][parent]", $parent, $row);
-    $this->assertSession()->fieldValueEquals("table[$id][weight]", $weight, $row);
-    $this->assertSession()->elementsCount('css', '.js-indentation.indentation', $indentation, $row);
-    // A row is marked as changed when the related markup is present.
-    $this->assertSession()->elementsCount('css', 'abbr.tabledrag-changed', (int) $changed, $row);
-=======
    * @param bool|null $changed
    *   Whether or not the row should have been marked as changed. NULL means
    *   that this assertion should be skipped.
@@ -574,7 +531,6 @@ class TableDragTest extends WebDriverTestBase {
     if ($changed !== NULL) {
       $this->assertSession()->elementsCount('xpath', static::$tabledragChangedXpathSelector, (int) $changed, $row);
     }
->>>>>>> dev
   }
 
   /**
@@ -582,22 +538,14 @@ class TableDragTest extends WebDriverTestBase {
    *
    * @param string $id
    *   The ID of the row.
-<<<<<<< HEAD
-=======
    * @param string $table_id
    *   The ID of the parent table. Defaults to 'tabledrag-test-table'.
->>>>>>> dev
    *
    * @return \Behat\Mink\Element\NodeElement
    *   The row element.
    */
-<<<<<<< HEAD
-  protected function findRowById($id) {
-    $xpath = "//table[@id='tabledrag-test-table']/tbody/tr[.//input[@name='table[$id][id]']]";
-=======
   protected function findRowById($id, $table_id = 'tabledrag-test-table') {
     $xpath = "//table[@id='$table_id']/tbody/tr[.//input[@name='table[$id][id]']]";
->>>>>>> dev
     $row = $this->getSession()->getPage()->find('xpath', $xpath);
     $this->assertNotEmpty($row);
     return $row;

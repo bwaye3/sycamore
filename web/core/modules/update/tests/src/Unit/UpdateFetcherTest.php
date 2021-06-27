@@ -2,10 +2,6 @@
 
 namespace Drupal\Tests\update\Unit;
 
-<<<<<<< HEAD
-use Drupal\Tests\UnitTestCase;
-use Drupal\update\UpdateFetcher;
-=======
 use Drupal\Core\Logger\LoggerChannelFactory;
 use Drupal\Core\Logger\RfcLoggerTrait;
 use Drupal\Core\Site\Settings;
@@ -17,23 +13,16 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use Psr\Log\LoggerInterface;
->>>>>>> dev
 
 /**
  * Tests update functionality unrelated to the database.
  *
-<<<<<<< HEAD
- * @group update
- */
-class UpdateFetcherTest extends UnitTestCase {
-=======
  * @coversDefaultClass \Drupal\update\UpdateFetcher
  *
  * @group update
  */
 class UpdateFetcherTest extends UnitTestCase implements LoggerInterface {
   use RfcLoggerTrait;
->>>>>>> dev
 
   /**
    * The update fetcher to use.
@@ -43,14 +32,6 @@ class UpdateFetcherTest extends UnitTestCase implements LoggerInterface {
   protected $updateFetcher;
 
   /**
-<<<<<<< HEAD
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    $config_factory = $this->getConfigFactoryStub(['update.settings' => ['fetch_url' => 'http://www.example.com']]);
-    $http_client_mock = $this->createMock('\GuzzleHttp\ClientInterface');
-    $this->updateFetcher = new UpdateFetcher($config_factory, $http_client_mock);
-=======
    * History of requests/responses.
    *
    * @var array
@@ -112,7 +93,6 @@ class UpdateFetcherTest extends UnitTestCase implements LoggerInterface {
       ->with('logger.factory')
       ->will($this->returnValue($logger_factory));
     \Drupal::setContainer($container);
->>>>>>> dev
   }
 
   /**
@@ -133,10 +113,7 @@ class UpdateFetcherTest extends UnitTestCase implements LoggerInterface {
   public function testUpdateBuildFetchUrl(array $project, $site_key, $expected) {
     $url = $this->updateFetcher->buildFetchUrl($project, $site_key);
     $this->assertEquals($url, $expected);
-<<<<<<< HEAD
-=======
     $this->assertSame([], $this->logMessages);
->>>>>>> dev
   }
 
   /**
@@ -188,8 +165,6 @@ class UpdateFetcherTest extends UnitTestCase implements LoggerInterface {
     return $data;
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Mocks the HTTP client.
    *
@@ -272,5 +247,4 @@ class UpdateFetcherTest extends UnitTestCase implements LoggerInterface {
     $this->logMessages[] = $context['@message'];
   }
 
->>>>>>> dev
 }

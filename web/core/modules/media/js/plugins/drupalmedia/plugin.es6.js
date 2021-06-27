@@ -3,11 +3,7 @@
  * Drupal Media embed plugin.
  */
 
-<<<<<<< HEAD
-(function(jQuery, Drupal, CKEDITOR) {
-=======
 (function (jQuery, Drupal, CKEDITOR) {
->>>>>>> dev
   /**
    * Gets the focused widget, if of the type specific for this plugin.
    *
@@ -39,11 +35,7 @@
 
     CKEDITOR.plugins.drupallink.registerLinkableWidget('drupalmedia');
 
-<<<<<<< HEAD
-    editor.getCommand('drupalunlink').on('exec', function(evt) {
-=======
     editor.getCommand('drupalunlink').on('exec', function (evt) {
->>>>>>> dev
       const widget = getFocusedWidget(editor);
 
       if (!widget) {
@@ -57,11 +49,7 @@
       evt.cancel();
     });
 
-<<<<<<< HEAD
-    editor.getCommand('drupalunlink').on('refresh', function(evt) {
-=======
     editor.getCommand('drupalunlink').on('refresh', function (evt) {
->>>>>>> dev
       const widget = getFocusedWidget(editor);
 
       if (!widget) {
@@ -106,11 +94,7 @@
       dtd['drupal-media'] = { '#': 1 };
       // Register drupal-media element as an allowed child in each tag that can
       // contain a div element and as an allowed child of the a tag.
-<<<<<<< HEAD
-      Object.keys(dtd).forEach(tagName => {
-=======
       Object.keys(dtd).forEach((tagName) => {
->>>>>>> dev
         if (dtd[tagName].div) {
           dtd[tagName]['drupal-media'] = 1;
         }
@@ -184,21 +168,13 @@
           if (element.parent.name === 'a') {
             data.link = CKEDITOR.tools.copy(element.parent.attributes);
             // Omit CKEditor-internal attributes.
-<<<<<<< HEAD
-            Object.keys(element.parent.attributes).forEach(attrName => {
-=======
             Object.keys(element.parent.attributes).forEach((attrName) => {
->>>>>>> dev
               if (attrName.indexOf('data-cke-') !== -1) {
                 delete data.link[attrName];
               }
             });
           }
-<<<<<<< HEAD
-          // @see media_field_widget_form_alter()
-=======
           // @see media_field_widget_single_element_form_alter()
->>>>>>> dev
           const hostEntityLangcode = document
             .getElementById(editor.name)
             .getAttribute('data-media-embed-host-entity-langcode');
@@ -242,11 +218,7 @@
             editor.fire('lockSnapshot');
             this._tearDownDynamicEditables();
 
-<<<<<<< HEAD
-            this._loadPreview(widget => {
-=======
             this._loadPreview((widget) => {
->>>>>>> dev
               widget._setUpDynamicEditables();
               widget._setUpEditButton();
               editor.fire('unlockSnapshot');
@@ -255,11 +227,7 @@
 
           // Remove old attributes from drupal-media element within the widget.
           if (this.oldData) {
-<<<<<<< HEAD
-            Object.keys(this.oldData.attributes).forEach(attrName => {
-=======
             Object.keys(this.oldData.attributes).forEach((attrName) => {
->>>>>>> dev
               this.element.removeAttribute(attrName);
             });
           }
@@ -348,11 +316,7 @@
            *
            * @see https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR.html#property-NODE_ELEMENT
            */
-<<<<<<< HEAD
-          const isElementNode = function(n) {
-=======
           const isElementNode = function (n) {
->>>>>>> dev
             return n.type === CKEDITOR.NODE_ELEMENT;
           };
 
@@ -379,13 +343,8 @@
           const widget = this;
           this.element
             .findOne('.media-library-item__edit')
-<<<<<<< HEAD
-            .on('click', event => {
-              const saveCallback = function(values) {
-=======
             .on('click', (event) => {
               const saveCallback = function (values) {
->>>>>>> dev
                 event.cancel();
                 editor.fire('saveSnapshot');
                 if (values.hasOwnProperty('attributes')) {
@@ -399,11 +358,7 @@
                   );
                   // Allow the dialog to delete attributes by setting them
                   // to `false` or `none`. For example: `alt`.
-<<<<<<< HEAD
-                  Object.keys(values.attributes).forEach(prop => {
-=======
                   Object.keys(values.attributes).forEach((prop) => {
->>>>>>> dev
                     if (
                       values.attributes[prop] === false ||
                       (prop === 'data-align' &&
@@ -436,11 +391,7 @@
           // the edit button.
           this.element
             .findOne('.media-library-item__edit')
-<<<<<<< HEAD
-            .on('keydown', event => {
-=======
             .on('keydown', (event) => {
->>>>>>> dev
               // The character code for the return key.
               const returnKey = 13;
               // The character code for the space bar.

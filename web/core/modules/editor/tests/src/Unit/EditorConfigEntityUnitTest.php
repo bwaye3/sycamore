@@ -21,11 +21,7 @@ class EditorConfigEntityUnitTest extends UnitTestCase {
   protected $entityType;
 
   /**
-<<<<<<< HEAD
-   * The entity manager used for testing.
-=======
    * The entity type manager used for testing.
->>>>>>> dev
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface|\PHPUnit\Framework\MockObject\MockObject
    */
@@ -62,11 +58,7 @@ class EditorConfigEntityUnitTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->editorId = $this->randomMachineName();
     $this->entityTypeId = $this->randomMachineName();
 

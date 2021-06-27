@@ -35,16 +35,6 @@ class TaxonomyFieldAllTermsTest extends TaxonomyTestBase {
 
     $actual = $this->xpath('//a[@href="' . $this->term1->toUrl()->toString() . '"]');
     $this->assertCount(2, $actual, 'Correct number of taxonomy term1 links');
-<<<<<<< HEAD
-    $this->assertEqual($actual[0]->getText(), $this->term1->label());
-    $this->assertEqual($actual[1]->getText(), $this->term1->label());
-    $this->assertEscaped($this->term1->label());
-
-    $actual = $this->xpath('//a[@href="' . $this->term2->toUrl()->toString() . '"]');
-    $this->assertCount(2, $actual, 'Correct number of taxonomy term2 links');
-    $this->assertEqual($actual[0]->getText(), $this->term2->label());
-    $this->assertEqual($actual[1]->getText(), $this->term2->label());
-=======
     $this->assertEquals($this->term1->label(), $actual[0]->getText());
     $this->assertEquals($this->term1->label(), $actual[1]->getText());
     $this->assertSession()->assertEscaped($this->term1->label());
@@ -53,7 +43,6 @@ class TaxonomyFieldAllTermsTest extends TaxonomyTestBase {
     $this->assertCount(2, $actual, 'Correct number of taxonomy term2 links');
     $this->assertEquals($this->term2->label(), $actual[0]->getText());
     $this->assertEquals($this->term2->label(), $actual[1]->getText());
->>>>>>> dev
   }
 
   /**
@@ -64,22 +53,6 @@ class TaxonomyFieldAllTermsTest extends TaxonomyTestBase {
     $this->drupalGet('taxonomy_all_terms_token_test');
 
     // Term itself: {{ term_node_tid }}
-<<<<<<< HEAD
-    $this->assertText('Term: ' . $this->term1->getName());
-
-    // The taxonomy term ID for the term: {{ term_node_tid__tid }}
-    $this->assertText('The taxonomy term ID for the term: ' . $this->term1->id());
-
-    // The taxonomy term name for the term: {{ term_node_tid__name }}
-    $this->assertText('The taxonomy term name for the term: ' . $this->term1->getName());
-
-    // The machine name for the vocabulary the term belongs to: {{ term_node_tid__vocabulary_vid }}
-    $this->assertText('The machine name for the vocabulary the term belongs to: ' . $this->term1->bundle());
-
-    // The name for the vocabulary the term belongs to: {{ term_node_tid__vocabulary }}
-    $vocabulary = Vocabulary::load($this->term1->bundle());
-    $this->assertText('The name for the vocabulary the term belongs to: ' . $vocabulary->label());
-=======
     $this->assertSession()->pageTextContains('Term: ' . $this->term1->getName());
 
     // The taxonomy term ID for the term: {{ term_node_tid__tid }}
@@ -94,7 +67,6 @@ class TaxonomyFieldAllTermsTest extends TaxonomyTestBase {
     // The name for the vocabulary the term belongs to: {{ term_node_tid__vocabulary }}
     $vocabulary = Vocabulary::load($this->term1->bundle());
     $this->assertSession()->pageTextContains('The name for the vocabulary the term belongs to: ' . $vocabulary->label());
->>>>>>> dev
   }
 
 }

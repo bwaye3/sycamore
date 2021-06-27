@@ -3,11 +3,5 @@ type: module
 description: 'Test functionality for the RDF module.'
 package: Testing
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-dependencies:
-  - rdf
-=======
 dependencies:
   - drupal:rdf
->>>>>>> dev

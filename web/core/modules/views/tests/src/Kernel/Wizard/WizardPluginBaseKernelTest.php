@@ -20,11 +20,7 @@ class WizardPluginBaseKernelTest extends ViewsKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['language', 'system', 'user', 'views_ui'];
-=======
   protected static $modules = ['language', 'system', 'user', 'views_ui'];
->>>>>>> dev
 
   /**
    * Contains thw wizard plugin manager.
@@ -33,11 +29,7 @@ class WizardPluginBaseKernelTest extends ViewsKernelTestBase {
    */
   protected $wizard;
 
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installConfig(['language']);
@@ -72,19 +64,11 @@ class WizardPluginBaseKernelTest extends ViewsKernelTestBase {
     $this->wizard->validateView($form, $form_state);
     $view = $this->wizard->createView($form, $form_state);
     $this->assertInstanceOf(ViewUI::class, $view);
-<<<<<<< HEAD
-    $this->assertEqual($view->get('id'), $random_id);
-    $this->assertEqual($view->get('label'), $random_label);
-    $this->assertEqual($view->get('description'), $random_description);
-    $this->assertEqual($view->get('base_table'), 'views_test_data');
-    $this->assertEqual($view->get('langcode'), 'it');
-=======
     $this->assertEquals($random_id, $view->get('id'));
     $this->assertEquals($random_label, $view->get('label'));
     $this->assertEquals($random_description, $view->get('description'));
     $this->assertEquals('views_test_data', $view->get('base_table'));
     $this->assertEquals('it', $view->get('langcode'));
->>>>>>> dev
   }
 
 }

@@ -358,11 +358,7 @@ function locale_cron() {
   // Update translations only when an update frequency was set by the admin
   // and a translatable language was set.
   // Update tasks are added to the queue here but processed by Drupal's cron.
-<<<<<<< HEAD
-  if ($frequency = \Drupal::config('locale.settings')->get('translation.update_interval_days') && locale_translatable_language_list()) {
-=======
   if (\Drupal::config('locale.settings')->get('translation.update_interval_days') && locale_translatable_language_list()) {
->>>>>>> dev
     module_load_include('translation.inc', 'locale');
     locale_cron_fill_queue();
   }
@@ -456,11 +452,7 @@ function locale_system_update(array $components) {
 function locale_system_remove($components) {
   $components += ['module' => [], 'theme' => []];
   $list = array_merge($components['module'], $components['theme']);
-<<<<<<< HEAD
-  if ($language_list = locale_translatable_language_list()) {
-=======
   if (locale_translatable_language_list()) {
->>>>>>> dev
     module_load_include('compare.inc', 'locale');
     \Drupal::moduleHandler()->loadInclude('locale', 'bulk.inc');
 
@@ -545,11 +537,7 @@ function locale_js_translate(array $files = []) {
   $language_interface = \Drupal::languageManager()->getCurrentLanguage();
 
   $dir = 'public://' . \Drupal::config('locale.settings')->get('javascript.directory');
-<<<<<<< HEAD
-  $parsed = \Drupal::state()->get('system.javascript_parsed') ?: [];
-=======
   $parsed = \Drupal::state()->get('system.javascript_parsed', []);
->>>>>>> dev
   $new_files = FALSE;
 
   foreach ($files as $filepath) {
@@ -587,11 +575,7 @@ function locale_js_translate(array $files = []) {
   }
 
   // Add the translation JavaScript file to the page.
-<<<<<<< HEAD
-  $locale_javascripts = \Drupal::state()->get('locale.translation.javascript') ?: [];
-=======
   $locale_javascripts = \Drupal::state()->get('locale.translation.javascript', []);
->>>>>>> dev
   $translation_file = NULL;
   if (!empty($files) && !empty($locale_javascripts[$language_interface->getId()])) {
     // Add the translation JavaScript file to the page.
@@ -603,23 +587,9 @@ function locale_js_translate(array $files = []) {
 /**
  * Implements hook_library_info_alter().
  *
-<<<<<<< HEAD
- * Provides the language support for the jQuery UI Date Picker.
- */
-function locale_library_info_alter(array &$libraries, $module) {
-  if ($module === 'core' && isset($libraries['jquery.ui.datepicker'])) {
-    $libraries['jquery.ui.datepicker']['dependencies'][] = 'locale/drupal.locale.datepicker';
-    $libraries['jquery.ui.datepicker']['drupalSettings']['jquery']['ui']['datepicker'] = [
-      'isRTL' => NULL,
-      'firstDay' => NULL,
-    ];
-  }
-
-=======
  * Provides language support.
  */
 function locale_library_info_alter(array &$libraries, $module) {
->>>>>>> dev
   // When the locale module is enabled, we update the core/drupal library to
   // have a dependency on the locale/translations library, which provides
   // window.drupalTranslations, containing the translations for all strings in
@@ -631,22 +601,6 @@ function locale_library_info_alter(array &$libraries, $module) {
 }
 
 /**
-<<<<<<< HEAD
- * Implements hook_js_settings_alter().
- *
- * Generates the values for the altered core/jquery.ui.datepicker library.
- */
-function locale_js_settings_alter(&$settings, AttachedAssetsInterface $assets) {
-  if (isset($settings['jquery']['ui']['datepicker'])) {
-    $language_interface = \Drupal::languageManager()->getCurrentLanguage();
-    $settings['jquery']['ui']['datepicker']['isRTL'] = $language_interface->getDirection() == LanguageInterface::DIRECTION_RTL;
-    $settings['jquery']['ui']['datepicker']['firstDay'] = \Drupal::config('system.date')->get('first_day');
-  }
-}
-
-/**
-=======
->>>>>>> dev
  * Implements hook_form_FORM_ID_alter() for language_admin_overview_form().
  */
 function locale_form_language_admin_overview_form_alter(&$form, FormStateInterface $form_state) {
@@ -814,11 +768,7 @@ function locale_system_file_system_settings_submit(&$form, FormStateInterface $f
  * Implements hook_preprocess_HOOK() for node templates.
  */
 function locale_preprocess_node(&$variables) {
-<<<<<<< HEAD
-  /* @var $node \Drupal\node\NodeInterface */
-=======
   /** @var \Drupal\node\NodeInterface $node */
->>>>>>> dev
   $node = $variables['node'];
   if ($node->language()->getId() != LanguageInterface::LANGCODE_NOT_SPECIFIED) {
     $interface_language = \Drupal::languageManager()->getCurrentLanguage();
@@ -849,11 +799,7 @@ function locale_translation_get_file_history() {
 
   if (empty($history)) {
     // Get file history from the database.
-<<<<<<< HEAD
-    $result = \Drupal::database()->query('SELECT project, langcode, filename, version, uri, timestamp, last_checked FROM {locale_file}');
-=======
     $result = \Drupal::database()->query('SELECT [project], [langcode], [filename], [version], [uri], [timestamp], [last_checked] FROM {locale_file}');
->>>>>>> dev
     foreach ($result as $file) {
       $file->type = $file->timestamp ? LOCALE_TRANSLATION_CURRENT : '';
       $history[$file->project][$file->langcode] = $file;
@@ -1050,11 +996,7 @@ function locale_translation_use_remote_source() {
  * not have any false positives. But it is only a test, not a transformation,
  * as it destroys valid HTML. We cannot reliably filter translation strings
  * on import because some strings are irreversibly corrupted. For example,
-<<<<<<< HEAD
- * a &amp; in the translation would get encoded to &amp;amp; by
-=======
  * an &amp; in the translation would get encoded to &amp;amp; by
->>>>>>> dev
  * \Drupal\Component\Utility\Xss::filter() before being put in the database,
  * and thus would be displayed incorrectly.
  *
@@ -1115,11 +1057,7 @@ function _locale_refresh_translations($langcodes, $lids = []) {
   }
 
   // Throw locale.save_translation event.
-<<<<<<< HEAD
-  \Drupal::service('event_dispatcher')->dispatch(LocaleEvents::SAVE_TRANSLATION, new LocaleEvent($langcodes, $lids));
-=======
   \Drupal::service('event_dispatcher')->dispatch(new LocaleEvent($langcodes, $lids), LocaleEvents::SAVE_TRANSLATION);
->>>>>>> dev
 }
 
 /**
@@ -1257,11 +1195,7 @@ function _locale_parse_js_file($filepath) {
  *   New content of the 'system.javascript_parsed' variable.
  */
 function _locale_invalidate_js($langcode = NULL) {
-<<<<<<< HEAD
-  $parsed = \Drupal::state()->get('system.javascript_parsed') ?: [];
-=======
   $parsed = \Drupal::state()->get('system.javascript_parsed', []);
->>>>>>> dev
 
   if (empty($langcode)) {
     // Invalidate all languages.
@@ -1335,11 +1269,7 @@ function _locale_rebuild_js($langcode = NULL) {
 
   // Delete old file, if we have no translations anymore, or a different file to
   // be saved.
-<<<<<<< HEAD
-  $locale_javascripts = \Drupal::state()->get('locale.translation.javascript') ?: [];
-=======
   $locale_javascripts = \Drupal::state()->get('locale.translation.javascript', []);
->>>>>>> dev
   $changed_hash = !isset($locale_javascripts[$language->getId()]) || ($locale_javascripts[$language->getId()] != $data_hash);
 
   /** @var \Drupal\Core\File\FileSystemInterface $file_system */

@@ -2,14 +2,9 @@
 
 namespace Drupal\Core\Database\Driver\mysql\Install;
 
-<<<<<<< HEAD
-use Drupal\Core\Database\Install\Tasks as InstallTasks;
-use Drupal\Core\Database\Database;
-=======
 use Drupal\Core\Database\ConnectionNotDefinedException;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Database\Install\Tasks as InstallTasks;
->>>>>>> dev
 use Drupal\Core\Database\Driver\mysql\Connection;
 use Drupal\Core\Database\DatabaseNotFoundException;
 
@@ -19,8 +14,6 @@ use Drupal\Core\Database\DatabaseNotFoundException;
 class Tasks extends InstallTasks {
 
   /**
-<<<<<<< HEAD
-=======
    * Minimum required MySQL version.
    *
    * 5.7.8 is the minimum version that supports the JSON datatype.
@@ -37,7 +30,6 @@ class Tasks extends InstallTasks {
   const MARIADB_MINIMUM_VERSION = '10.3.7';
 
   /**
->>>>>>> dev
    * Minimum required MySQLnd version.
    */
   const MYSQLND_MINIMUM_VERSION = '5.0.9';
@@ -68,9 +60,6 @@ class Tasks extends InstallTasks {
    * {@inheritdoc}
    */
   public function name() {
-<<<<<<< HEAD
-    return t('MySQL, MariaDB, Percona Server, or equivalent');
-=======
     try {
       if (!$this->isConnectionActive() || !$this->getConnection() instanceof Connection) {
         throw new ConnectionNotDefinedException('The database connection is not active or not a MySql connection');
@@ -83,25 +72,16 @@ class Tasks extends InstallTasks {
     catch (ConnectionNotDefinedException $e) {
       return $this->t('MySQL, MariaDB, Percona Server, or equivalent');
     }
->>>>>>> dev
   }
 
   /**
    * {@inheritdoc}
    */
   public function minimumVersion() {
-<<<<<<< HEAD
-    // This can not be increased above '5.5.5' without dropping support for all
-    // MariaDB versions. MariaDB prefixes its version string with '5.5.5-'. For
-    // more information, see
-    // https://github.com/MariaDB/server/blob/f6633bf058802ad7da8196d01fd19d75c53f7274/include/mysql_com.h#L42.
-    return '5.5.3';
-=======
     if ($this->getConnection()->isMariaDb()) {
       return static::MARIADB_MINIMUM_VERSION;
     }
     return static::MYSQL_MINIMUM_VERSION;
->>>>>>> dev
   }
 
   /**
@@ -177,13 +157,8 @@ class Tasks extends InstallTasks {
         }
       }
       else {
-<<<<<<< HEAD
-        // Database connection failed for some other reason than the database
-        // not existing.
-=======
         // Database connection failed for some other reason than a non-existent
         // database.
->>>>>>> dev
         $this->fail(t('Failed to connect to your database server. The server reports the following message: %error.<ul><li>Is the database server running?</li><li>Does the database exist or does the database user have sufficient privileges to create the database?</li><li>Have you entered the correct database name?</li><li>Have you entered the correct username and password?</li><li>Have you entered the correct database hostname and port number?</li></ul>', ['%error' => $e->getMessage()]));
         return FALSE;
       }

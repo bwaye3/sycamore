@@ -14,18 +14,12 @@ use Drupal\KernelTests\KernelTestBase;
 class DatabaseExceptionWrapperTest extends KernelTestBase {
 
   /**
-<<<<<<< HEAD
-   * Tests the expected database exception thrown for prepared statements.
-   */
-  public function testPreparedStatement() {
-=======
    * Tests deprecation of Connection::prepare.
    *
    * @group legacy
    */
   public function testPrepare() {
     $this->expectDeprecation('Connection::prepare() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Database drivers should instantiate \PDOStatement objects by calling \PDO::prepare in their Connection::prepareStatement method instead. \PDO::prepare should not be called outside of driver code. See https://www.drupal.org/node/3137786');
->>>>>>> dev
     $connection = Database::getConnection();
     try {
       // SQLite validates the syntax upon preparing a statement already.
@@ -44,8 +38,6 @@ class DatabaseExceptionWrapperTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Tests deprecation of Connection::prepareQuery.
    *
    * @group legacy
@@ -126,7 +118,6 @@ class DatabaseExceptionWrapperTest extends KernelTestBase {
   }
 
   /**
->>>>>>> dev
    * Tests the expected database exception thrown for inexistent tables.
    */
   public function testQueryThrowsDatabaseExceptionWrapperException() {

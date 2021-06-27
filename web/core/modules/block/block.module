@@ -6,10 +6,7 @@
  */
 
 use Drupal\Component\Utility\Html;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Installer\InstallerKernel;
->>>>>>> dev
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
@@ -90,10 +87,6 @@ function block_page_top(array &$page_top) {
  *
  * @param $theme_list
  *   An array of theme names.
-<<<<<<< HEAD
- */
-function block_themes_installed($theme_list) {
-=======
  *
  * @see block_modules_installed()
  */
@@ -106,7 +99,6 @@ function block_themes_installed($theme_list) {
     return;
   }
 
->>>>>>> dev
   foreach ($theme_list as $theme) {
     // Don't initialize themes that are not displayed in the UI.
     if (\Drupal::service('theme_handler')->hasUi($theme)) {
@@ -153,8 +145,6 @@ function block_theme_initialize($theme) {
 }
 
 /**
-<<<<<<< HEAD
-=======
  * Implements hook_modules_installed().
  *
  * @see block_themes_installed()
@@ -173,7 +163,6 @@ function block_modules_installed($modules) {
 }
 
 /**
->>>>>>> dev
  * Implements hook_rebuild().
  */
 function block_rebuild() {
@@ -285,11 +274,7 @@ function template_preprocess_block(&$variables) {
  */
 function block_user_role_delete($role) {
   foreach (Block::loadMultiple() as $block) {
-<<<<<<< HEAD
-    /** @var $block \Drupal\block\BlockInterface */
-=======
     /** @var \Drupal\block\BlockInterface $block */
->>>>>>> dev
     $visibility = $block->getVisibility();
     if (isset($visibility['user_role']['roles'][$role->id()])) {
       unset($visibility['user_role']['roles'][$role->id()]);
@@ -320,11 +305,7 @@ function block_menu_delete(Menu $menu) {
 function block_configurable_language_delete(ConfigurableLanguageInterface $language) {
   // Remove the block visibility settings for the deleted language.
   foreach (Block::loadMultiple() as $block) {
-<<<<<<< HEAD
-    /** @var $block \Drupal\block\BlockInterface */
-=======
     /** @var \Drupal\block\BlockInterface $block */
->>>>>>> dev
     $visibility = $block->getVisibility();
     if (isset($visibility['language']['langcodes'][$language->id()])) {
       unset($visibility['language']['langcodes'][$language->id()]);

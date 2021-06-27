@@ -4,11 +4,7 @@ namespace Drupal\Tests\Core\Enhancer;
 
 use Drupal\Core\Routing\Enhancer\ParamConversionEnhancer;
 use Drupal\Tests\UnitTestCase;
-<<<<<<< HEAD
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
-=======
 use Drupal\Core\Routing\RouteObjectInterface;
->>>>>>> dev
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route;
@@ -32,11 +28,7 @@ class ParamConversionEnhancerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->paramConverterManager = $this->createMock('Drupal\Core\ParamConverter\ParamConverterManagerInterface');

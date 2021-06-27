@@ -16,11 +16,7 @@ class NodeTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'user', 'migrate_drupal'];
-=======
   protected static $modules = ['node', 'user', 'migrate_drupal'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -589,8 +585,6 @@ class NodeTest extends MigrateSqlSourceTestBase {
     ];
     $tests[2]['expected_data'] = $tests[1]['expected_data'];
 
-<<<<<<< HEAD
-=======
     // Tests retrieval of only the page content type.
     $tests[3]['source_data'] = $tests[0]['source_data'];
 
@@ -668,7 +662,6 @@ class NodeTest extends MigrateSqlSourceTestBase {
     unset($tests[5]['configuration']);
     $tests[5]['expected_data'] = $tests[0]['expected_data'];
 
->>>>>>> dev
     return $tests;
   }
 

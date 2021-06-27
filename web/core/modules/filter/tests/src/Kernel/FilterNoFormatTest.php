@@ -14,11 +14,7 @@ class FilterNoFormatTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['filter'];
-=======
   protected static $modules = ['filter'];
->>>>>>> dev
 
   /**
    * Tests text without format.

@@ -3,10 +3,6 @@
 namespace Drupal\comment\Plugin\Field\FieldFormatter;
 
 use Drupal\comment\Plugin\Field\FieldType\CommentItemInterface;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityFormBuilderInterface;
@@ -16,10 +12,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FormatterBase;
-<<<<<<< HEAD
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-=======
->>>>>>> dev
 use Drupal\Core\Routing\RouteMatchInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -38,17 +30,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
-<<<<<<< HEAD
-class CommentDefaultFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
 class CommentDefaultFormatter extends FormatterBase {
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -148,24 +130,13 @@ class CommentDefaultFormatter extends FormatterBase {
    * @param \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entity_display_repository
    *   The entity display repository.
    */
-<<<<<<< HEAD
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, AccountInterface $current_user, EntityTypeManagerInterface $entity_type_manager, EntityFormBuilderInterface $entity_form_builder, RouteMatchInterface $route_match, EntityDisplayRepositoryInterface $entity_display_repository = NULL) {
-=======
   public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, AccountInterface $current_user, EntityTypeManagerInterface $entity_type_manager, EntityFormBuilderInterface $entity_form_builder, RouteMatchInterface $route_match, EntityDisplayRepositoryInterface $entity_display_repository) {
->>>>>>> dev
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
     $this->viewBuilder = $entity_type_manager->getViewBuilder('comment');
     $this->storage = $entity_type_manager->getStorage('comment');
     $this->currentUser = $current_user;
     $this->entityFormBuilder = $entity_form_builder;
     $this->routeMatch = $route_match;
-<<<<<<< HEAD
-    if (!$entity_display_repository) {
-      @trigger_error('Calling RssPluginBase::__construct() with the $entity_repository argument is supported in drupal:8.7.0 and will be required before drupal:9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $entity_display_repository = \Drupal::service('entity_display.repository');
-    }
-=======
->>>>>>> dev
     $this->entityDisplayRepository = $entity_display_repository;
   }
 

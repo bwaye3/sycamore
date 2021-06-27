@@ -2,10 +2,6 @@
 
 namespace Drupal\views;
 
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\ContentEntityType;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityHandlerInterface;
@@ -26,15 +22,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class EntityViewsData implements EntityHandlerInterface, EntityViewsDataInterface {
 
   use StringTranslationTrait;
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * Entity type for this views data handler instance.
@@ -101,23 +88,12 @@ class EntityViewsData implements EntityHandlerInterface, EntityViewsDataInterfac
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
    *   The entity field manager.
    */
-<<<<<<< HEAD
-  public function __construct(EntityTypeInterface $entity_type, SqlEntityStorageInterface $storage_controller, EntityTypeManagerInterface $entity_type_manager, ModuleHandlerInterface $module_handler, TranslationInterface $translation_manager, EntityFieldManagerInterface $entity_field_manager = NULL) {
-=======
   public function __construct(EntityTypeInterface $entity_type, SqlEntityStorageInterface $storage_controller, EntityTypeManagerInterface $entity_type_manager, ModuleHandlerInterface $module_handler, TranslationInterface $translation_manager, EntityFieldManagerInterface $entity_field_manager) {
->>>>>>> dev
     $this->entityType = $entity_type;
     $this->entityTypeManager = $entity_type_manager;
     $this->storage = $storage_controller;
     $this->moduleHandler = $module_handler;
     $this->setStringTranslation($translation_manager);
-<<<<<<< HEAD
-    if (!$entity_field_manager) {
-      @trigger_error('Calling EntityViewsData::__construct() with the $entity_field_manager argument is supported in drupal:8.8.0 and will be required before drupal:9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $entity_field_manager = \Drupal::service('entity_field.manager');
-    }
-=======
->>>>>>> dev
     $this->entityFieldManager = $entity_field_manager;
   }
 
@@ -313,11 +289,7 @@ class EntityViewsData implements EntityHandlerInterface, EntityViewsDataInterfac
       $duplicate_fields = array_intersect_key($entity_keys, array_flip(['id', 'revision', 'bundle']));
       // Iterate over each table we have so far and collect field data for each.
       // Based on whether the field is in the field_definitions provided by the
-<<<<<<< HEAD
-      // entity manager.
-=======
       // entity field manager.
->>>>>>> dev
       // @todo We should better just rely on information coming from the entity
       //   storage.
       // @todo https://www.drupal.org/node/2337511

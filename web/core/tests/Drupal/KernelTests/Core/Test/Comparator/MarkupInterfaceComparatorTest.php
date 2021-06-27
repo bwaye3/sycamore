@@ -7,10 +7,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\TestTools\Comparator\MarkupInterfaceComparator;
 use PHPUnit\Framework\Error\Notice;
-<<<<<<< HEAD
-=======
 use PHPUnit\Framework\Error\Warning;
->>>>>>> dev
 use SebastianBergmann\Comparator\Factory;
 use SebastianBergmann\Comparator\ComparisonFailure;
 
@@ -39,11 +36,7 @@ class MarkupInterfaceComparatorTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->factory = new Factory();
     $this->comparator = new MarkupInterfaceComparator();
@@ -116,11 +109,7 @@ class MarkupInterfaceComparatorTest extends KernelTestBase {
         new FormattableMarkup('goldfinger', []),
         ['goldfinger'],
         FALSE,
-<<<<<<< HEAD
-        Notice::class,
-=======
         PHP_VERSION_ID >= 80000 ? Warning::class : Notice::class,
->>>>>>> dev
       ],
       'stdClass vs TranslatableMarkup' => [
         (object) ['goldfinger'],

@@ -29,11 +29,7 @@ class BackendCompilerPassTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->backendPass = new BackendCompilerPass();
   }
 
@@ -91,8 +87,6 @@ class BackendCompilerPassTest extends UnitTestCase {
     $container->setParameter('default_backend', '');
     $data[] = [$prefix . 'Default', $container];
 
-<<<<<<< HEAD
-=======
     // Set the mysql and the DrivertestMysql service, now the DrivertestMysql
     // service, as it is the driver override, should be used.
     $container = $this->getDrivertestMysqlContainer($service);
@@ -112,7 +106,6 @@ class BackendCompilerPassTest extends UnitTestCase {
     $container->setDefinition('DrivertestMysql.service', new Definition(__NAMESPACE__ . '\\ServiceClassDrivertestMysql'));
     $data[] = [$prefix . 'DrivertestMysql', $container];
 
->>>>>>> dev
     return $data;
   }
 
@@ -152,8 +145,6 @@ class BackendCompilerPassTest extends UnitTestCase {
     return $container;
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Creates a container with a DrivertestMysql database mock definition in it.
    *
@@ -172,7 +163,6 @@ class BackendCompilerPassTest extends UnitTestCase {
     return $container;
   }
 
->>>>>>> dev
 }
 
 class ServiceClassDefault {
@@ -186,9 +176,6 @@ class ServiceClassMariaDb extends ServiceClassMysql {
 
 class ServiceClassSqlite extends ServiceClassDefault {
 }
-<<<<<<< HEAD
-=======
 
 class ServiceClassDrivertestMysql extends ServiceClassDefault {
 }
->>>>>>> dev

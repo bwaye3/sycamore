@@ -11,20 +11,12 @@ use Drupal\Tests\migrate_drupal\Kernel\d7\MigrateDrupal7TestBase;
  */
 class MigrateMenuSettingsTest extends MigrateDrupal7TestBase {
 
-<<<<<<< HEAD
-  public static $modules = ['menu_ui'];
-=======
   protected static $modules = ['menu_ui'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installConfig(['menu_ui']);
     $this->executeMigration('menu_settings');

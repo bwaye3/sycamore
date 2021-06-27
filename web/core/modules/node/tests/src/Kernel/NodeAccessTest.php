@@ -114,11 +114,7 @@ class NodeAccessTest extends NodeAccessTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test operations not supported by node grants.
-=======
    * Tests operations not supported by node grants.
->>>>>>> dev
    */
   public function testUnsupportedOperation() {
     $this->enableModules(['node_access_test_empty']);

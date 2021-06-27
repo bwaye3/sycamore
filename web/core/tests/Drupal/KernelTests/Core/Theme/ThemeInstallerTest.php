@@ -21,11 +21,7 @@ class ThemeInstallerTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['system'];
-=======
   protected static $modules = ['system'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -38,11 +34,7 @@ class ThemeInstallerTest extends KernelTestBase {
       ->register('router.dumper', 'Drupal\Core\Routing\NullMatcherDumper');
   }
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installConfig(['system']);
   }
@@ -60,11 +52,7 @@ class ThemeInstallerTest extends KernelTestBase {
     $this->assertNotEmpty($this->themeHandler()->rebuildThemeData()['stark'], 'ThemeHandler::rebuildThemeData() yields all available themes.');
 
     // theme_get_setting() should return global default theme settings.
-<<<<<<< HEAD
-    $this->assertIdentical(theme_get_setting('features.favicon'), TRUE);
-=======
     $this->assertTrue(theme_get_setting('features.favicon'));
->>>>>>> dev
   }
 
   /**
@@ -78,18 +66,6 @@ class ThemeInstallerTest extends KernelTestBase {
 
     $this->themeInstaller()->install([$name]);
 
-<<<<<<< HEAD
-    $this->assertIdentical($this->extensionConfig()->get("theme.$name"), 0);
-
-    $themes = $this->themeHandler()->listInfo();
-    $this->assertTrue(isset($themes[$name]));
-    $this->assertEqual($themes[$name]->getName(), $name);
-
-    // Verify that test_basetheme.settings is active.
-    $this->assertIdentical(theme_get_setting('features.favicon', $name), FALSE);
-    $this->assertEqual(theme_get_setting('base', $name), 'only');
-    $this->assertEqual(theme_get_setting('override', $name), 'base');
-=======
     $this->assertSame(0, $this->extensionConfig()->get("theme.{$name}"));
 
     $themes = $this->themeHandler()->listInfo();
@@ -100,7 +76,6 @@ class ThemeInstallerTest extends KernelTestBase {
     $this->assertFalse(theme_get_setting('features.favicon', $name));
     $this->assertEquals('only', theme_get_setting('base', $name));
     $this->assertEquals('base', theme_get_setting('override', $name));
->>>>>>> dev
   }
 
   /**
@@ -377,11 +352,7 @@ class ThemeInstallerTest extends KernelTestBase {
     $this->themeInstaller()->install([$name]);
     $themes = $this->themeHandler()->listInfo();
     $this->assertTrue(isset($themes[$name]));
-<<<<<<< HEAD
-    $this->assertEqual($themes[$name]->getName(), $name);
-=======
     $this->assertEquals($name, $themes[$name]->getName());
->>>>>>> dev
     $this->assertNotEmpty($this->config("$name.settings")->get());
   }
 

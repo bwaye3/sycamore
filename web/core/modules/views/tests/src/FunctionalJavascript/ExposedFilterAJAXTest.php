@@ -19,11 +19,7 @@ class ExposedFilterAJAXTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'views', 'views_test_modal'];
-=======
   protected static $modules = ['node', 'views', 'views_test_modal'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -33,11 +29,7 @@ class ExposedFilterAJAXTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Enable AJAX on the /admin/content View.
@@ -75,11 +67,7 @@ class ExposedFilterAJAXTest extends WebDriverTestBase {
     $this->assertStringContainsString('Page Two', $html);
 
     // Search for "Page One".
-<<<<<<< HEAD
-    $this->submitForm(['title' => 'Page One'], t('Filter'));
-=======
     $this->submitForm(['title' => 'Page One'], 'Filter');
->>>>>>> dev
     $this->assertSession()->assertWaitOnAjaxRequest();
 
     // Verify that only the "Page One" Node is present.
@@ -88,11 +76,7 @@ class ExposedFilterAJAXTest extends WebDriverTestBase {
     $this->assertStringNotContainsString('Page Two', $html);
 
     // Search for "Page Two".
-<<<<<<< HEAD
-    $this->submitForm(['title' => 'Page Two'], t('Filter'));
-=======
     $this->submitForm(['title' => 'Page Two'], 'Filter');
->>>>>>> dev
     $this->assertSession()->assertWaitOnAjaxRequest();
 
     // Verify that only the "Page Two" Node is present.
@@ -105,21 +89,13 @@ class ExposedFilterAJAXTest extends WebDriverTestBase {
     $this->submitForm([
       'action' => 'node_make_sticky_action',
       'node_bulk_form[0]' => TRUE,
-<<<<<<< HEAD
-    ], t('Apply to selected items'));
-=======
     ], 'Apply to selected items');
->>>>>>> dev
 
     // Verify that the action was performed.
     $this->assertSession()->pageTextContains('Make content sticky was applied to 1 item.');
 
     // Reset the form.
-<<<<<<< HEAD
-    $this->submitForm([], t('Reset'));
-=======
     $this->submitForm([], 'Reset');
->>>>>>> dev
     $this->assertSession()->assertWaitOnAjaxRequest();
 
     $this->assertSession()->pageTextContains('Page One');

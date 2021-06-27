@@ -16,11 +16,7 @@ class ContentTranslationStandardFieldsTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'language',
     'content_translation',
     'node',
@@ -37,11 +33,7 @@ class ContentTranslationStandardFieldsTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $admin_user = $this->drupalCreateUser([
@@ -66,24 +58,6 @@ class ContentTranslationStandardFieldsTest extends BrowserTestBase {
     $this->drupalGet($path);
 
     // Check content block fields.
-<<<<<<< HEAD
-    $this->assertFieldByXPath("//input[@id='edit-settings-block-content-basic-fields-body' and @checked='checked']");
-
-    // Check comment fields.
-    $this->assertFieldByXPath("//input[@id='edit-settings-comment-comment-fields-comment-body' and @checked='checked']");
-
-    // Check node fields.
-    $this->assertFieldByXPath("//input[@id='edit-settings-node-article-fields-comment' and @checked='checked']");
-    $this->assertFieldByXPath("//input[@id='edit-settings-node-article-fields-field-image' and @checked='checked']");
-    $this->assertFieldByXPath("//input[@id='edit-settings-node-article-fields-field-tags' and @checked='checked']");
-
-    // Check user fields.
-    $this->assertFieldByXPath("//input[@id='edit-settings-user-user-fields-user-picture' and @checked='checked']");
-  }
-
-  /**
-   * Test that revision_log is not translatable.
-=======
     $this->assertSession()->checkboxChecked('edit-settings-block-content-basic-fields-body');
 
     // Check comment fields.
@@ -100,16 +74,11 @@ class ContentTranslationStandardFieldsTest extends BrowserTestBase {
 
   /**
    * Tests that revision_log is not translatable.
->>>>>>> dev
    */
   public function testRevisionLogNotTranslatable() {
     $path = 'admin/config/regional/content-language';
     $this->drupalGet($path);
-<<<<<<< HEAD
-    $this->assertNoFieldByXPath("//input[@id='edit-settings-node-article-fields-revision-log']");
-=======
     $this->assertSession()->fieldNotExists('edit-settings-node-article-fields-revision-log');
->>>>>>> dev
   }
 
 }

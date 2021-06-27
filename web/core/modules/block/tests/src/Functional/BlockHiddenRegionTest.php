@@ -22,22 +22,14 @@ class BlockHiddenRegionTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['block', 'block_test', 'search'];
-=======
   protected static $modules = ['block', 'block_test', 'search'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'classy';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create administrative user.
@@ -60,11 +52,7 @@ class BlockHiddenRegionTest extends BrowserTestBase {
 
     // Ensure that the search form block is displayed.
     $this->drupalGet('');
-<<<<<<< HEAD
-    $this->assertText('Search', 'Block was displayed on the front page.');
-=======
     $this->assertSession()->pageTextContains('Search');
->>>>>>> dev
 
     // Install "block_test_theme" and set it as the default theme.
     $theme = 'block_test_theme';
@@ -80,19 +68,11 @@ class BlockHiddenRegionTest extends BrowserTestBase {
 
     // Ensure that "block_test_theme" is set as the default theme.
     $this->drupalGet('admin/structure/block');
-<<<<<<< HEAD
-    $this->assertText('Block test theme(' . t('active tab') . ')', 'Default local task on blocks admin page is the block test theme.');
-
-    // Ensure that the search form block is displayed.
-    $this->drupalGet('');
-    $this->assertText('Search', 'Block was displayed on the front page.');
-=======
     $this->assertSession()->pageTextContains('Block test theme(active tab)');
 
     // Ensure that the search form block is displayed.
     $this->drupalGet('');
     $this->assertSession()->pageTextContains('Search');
->>>>>>> dev
   }
 
 }

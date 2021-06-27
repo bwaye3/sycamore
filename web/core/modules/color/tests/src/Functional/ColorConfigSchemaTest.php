@@ -16,11 +16,7 @@ class ColorConfigSchemaTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['color'];
-=======
   protected static $modules = ['color'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -37,11 +33,7 @@ class ColorConfigSchemaTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     \Drupal::service('theme_installer')->install(['bartik']);
 
@@ -57,12 +49,8 @@ class ColorConfigSchemaTest extends BrowserTestBase {
     $settings_path = 'admin/appearance/settings/bartik';
     $edit['scheme'] = '';
     $edit['palette[bg]'] = '#123456';
-<<<<<<< HEAD
-    $this->drupalPostForm($settings_path, $edit, t('Save configuration'));
-=======
     $this->drupalGet($settings_path);
     $this->submitForm($edit, 'Save configuration');
->>>>>>> dev
   }
 
 }

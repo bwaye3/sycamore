@@ -21,11 +21,7 @@ class HistoryTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'history'];
-=======
   protected static $modules = ['node', 'history'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -46,21 +42,14 @@ class HistoryTest extends BrowserTestBase {
    */
   protected $testNode;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalCreateContentType(['type' => 'page', 'name' => 'Basic page']);
 
     $this->user = $this->drupalCreateUser([
       'create page content',
-<<<<<<< HEAD
-=======
       'edit own page content',
->>>>>>> dev
       'access content',
     ]);
     $this->drupalLogin($this->user);
@@ -115,23 +104,16 @@ class HistoryTest extends BrowserTestBase {
   public function testHistory() {
     $nid = $this->testNode->id();
 
-<<<<<<< HEAD
-=======
     // Verify that previews of new entities do not create the history.
     $this->drupalGet("node/add/page");
     $this->submitForm(['title[0][value]' => 'Unsaved page'], 'Preview');
     $this->assertArrayNotHasKey('ajaxPageState', $this->getDrupalSettings());
 
->>>>>>> dev
     // Retrieve "last read" timestamp for test node, for the current user.
     $response = $this->getNodeReadTimestamps([$nid]);
     $this->assertEquals(200, $response->getStatusCode());
     $json = Json::decode($response->getBody());
-<<<<<<< HEAD
-    $this->assertIdentical([1 => 0], $json, 'The node has not yet been read.');
-=======
     $this->assertSame([1 => 0], $json, 'The node has not yet been read.');
->>>>>>> dev
 
     // View the node.
     $this->drupalGet('node/' . $nid);
@@ -140,11 +122,7 @@ class HistoryTest extends BrowserTestBase {
     $settings = $this->getDrupalSettings();
     $libraries = explode(',', $settings['ajaxPageState']['libraries']);
     $this->assertContains('history/mark-as-read', $libraries, 'history/mark-as-read library is present.');
-<<<<<<< HEAD
-    $this->assertEqual([$nid => TRUE], $settings['history']['nodesToMarkAsRead'], 'drupalSettings to mark node as read are present.');
-=======
     $this->assertEquals([$nid => TRUE], $settings['history']['nodesToMarkAsRead'], 'drupalSettings to mark node as read are present.');
->>>>>>> dev
 
     // Simulate JavaScript: perform HTTP request to mark node as read.
     $response = $this->markNodeAsRead($nid);
@@ -156,24 +134,17 @@ class HistoryTest extends BrowserTestBase {
     $response = $this->getNodeReadTimestamps([$nid]);
     $this->assertEquals(200, $response->getStatusCode());
     $json = Json::decode($response->getBody());
-<<<<<<< HEAD
-    $this->assertIdentical([1 => $timestamp], $json, 'The node has been read.');
-=======
     $this->assertSame([1 => $timestamp], $json, 'The node has been read.');
->>>>>>> dev
 
     // Failing to specify node IDs for the first endpoint should return a 404.
     $response = $this->getNodeReadTimestamps([]);
     $this->assertEquals(404, $response->getStatusCode());
 
-<<<<<<< HEAD
-=======
     // Verify that previews of existing entities do not update the history.
     $this->drupalGet("node/$nid/edit");
     $this->submitForm([], 'Preview');
     $this->assertArrayNotHasKey('ajaxPageState', $this->getDrupalSettings());
 
->>>>>>> dev
     // Accessing either endpoint as the anonymous user should return a 403.
     $this->drupalLogout();
     $response = $this->getNodeReadTimestamps([$nid]);
@@ -182,8 +153,6 @@ class HistoryTest extends BrowserTestBase {
     $this->assertEquals(403, $response->getStatusCode());
     $response = $this->markNodeAsRead($nid);
     $this->assertEquals(403, $response->getStatusCode());
-<<<<<<< HEAD
-=======
 
     // Additional check to ensure that we did not forget to verify anything.
     $rows = \Drupal::database()->query('SELECT * FROM {history}')->fetchAll();
@@ -191,7 +160,6 @@ class HistoryTest extends BrowserTestBase {
     $this->assertSame($this->user->id(), $rows[0]->uid);
     $this->assertSame($this->testNode->id(), $rows[0]->nid);
     $this->assertSame($timestamp, (int) $rows[0]->timestamp);
->>>>>>> dev
   }
 
 }

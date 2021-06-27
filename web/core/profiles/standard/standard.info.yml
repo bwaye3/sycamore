@@ -2,10 +2,6 @@ name: Standard
 type: profile
 description: 'Install with commonly used features pre-configured.'
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 install:
   - node
   - history

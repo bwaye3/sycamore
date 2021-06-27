@@ -1,8 +1,4 @@
 type: module
 name: 'Trusted hosts test module'
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 package: Testing
 version: VERSION

@@ -5,11 +5,7 @@ namespace Drupal\big_pipe\EventSubscriber;
 use Drupal\Core\Render\HtmlResponse;
 use Drupal\big_pipe\Render\BigPipe;
 use Drupal\big_pipe\Render\BigPipeResponse;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -42,17 +38,10 @@ class HtmlResponseBigPipeSubscriber implements EventSubscriberInterface {
   /**
    * Adds markers to the response necessary for the BigPipe render strategy.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\FilterResponseEvent $event
-   *   The event to process.
-   */
-  public function onRespondEarly(FilterResponseEvent $event) {
-=======
    * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
    *   The event to process.
    */
   public function onRespondEarly(ResponseEvent $event) {
->>>>>>> dev
     $response = $event->getResponse();
     if (!$response instanceof HtmlResponse) {
       return;
@@ -74,17 +63,10 @@ class HtmlResponseBigPipeSubscriber implements EventSubscriberInterface {
   /**
    * Transforms a HtmlResponse to a BigPipeResponse.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\FilterResponseEvent $event
-   *   The event to process.
-   */
-  public function onRespond(FilterResponseEvent $event) {
-=======
    * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
    *   The event to process.
    */
   public function onRespond(ResponseEvent $event) {
->>>>>>> dev
     $response = $event->getResponse();
     if (!$response instanceof HtmlResponse) {
       return;
@@ -117,21 +99,13 @@ class HtmlResponseBigPipeSubscriber implements EventSubscriberInterface {
   /**
    * Returns the BigPipe service to use to send the current response.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\FilterResponseEvent $event
-=======
    * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
->>>>>>> dev
    *   A response event.
    *
    * @return \Drupal\big_pipe\Render\BigPipe
    *   The BigPipe service.
    */
-<<<<<<< HEAD
-  protected function getBigPipeService(FilterResponseEvent $event) {
-=======
   protected function getBigPipeService(ResponseEvent $event) {
->>>>>>> dev
     return $this->bigPipe;
   }
 

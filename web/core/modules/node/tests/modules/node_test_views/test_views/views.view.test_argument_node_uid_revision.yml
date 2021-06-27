@@ -90,11 +90,7 @@ display:
           entity_type: node
           plugin_id: node_uid_revision
     display_plugin: default
-<<<<<<< HEAD
-    display_title: Master
-=======
     display_title: Default
->>>>>>> dev
     id: default
     position: 0
     cache_metadata:

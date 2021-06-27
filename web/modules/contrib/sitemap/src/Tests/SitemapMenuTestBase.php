@@ -2,21 +2,6 @@
 
 namespace Drupal\sitemap\Tests;
 
-<<<<<<< HEAD
-use Drupal\simpletest\WebTestBase;
-
-/**
- * Test the display of menus based on sitemap settings.
- */
-abstract class SitemapMenuTestBase extends WebTestBase {
-
-  /**
-   * Modules to enable.
-   *
-   * @var array
-   */
-  public static $modules = array('sitemap', 'node', 'menu_ui');
-=======
 /**
  * Test the display of menus based on sitemap settings.
  */
@@ -26,7 +11,6 @@ abstract class SitemapMenuTestBase extends SitemapBrowserTestBase {
    * {@inheritdoc}
    */
   public static $modules = ['sitemap', 'node', 'menu_ui'];
->>>>>>> dev
 
   /**
    * Admin user.
@@ -50,33 +34,16 @@ abstract class SitemapMenuTestBase extends SitemapBrowserTestBase {
 
     // Create an Article node type.
     if ($this->profile != 'standard') {
-<<<<<<< HEAD
-      $this->drupalCreateContentType(array('type' => 'article', 'name' => 'Article'));
-    }
-
-    // Create user then login.
-    $this->adminUser = $this->drupalCreateUser(array(
-=======
       $this->drupalCreateContentType(['type' => 'article', 'name' => 'Article']);
     }
 
     // Create user then login.
     $this->adminUser = $this->drupalCreateUser([
->>>>>>> dev
       'administer sitemap',
       'access sitemap',
       'administer menu',
       'administer nodes',
       'create article content',
-<<<<<<< HEAD
-    ));
-    $this->drupalLogin($this->adminUser);
-
-    // Create anonymous user for use too.
-    $this->anonUser = $this->drupalCreateUser(array(
-      'access sitemap',
-    ));
-=======
     ]);
     $this->drupalLogin($this->adminUser);
 
@@ -100,7 +67,6 @@ abstract class SitemapMenuTestBase extends SitemapBrowserTestBase {
       'menu[menu_parent]' => $menu_id . ':',
     ];
     $this->drupalPostForm('node/add/article', $edit, t('Save'));
->>>>>>> dev
   }
 
 }

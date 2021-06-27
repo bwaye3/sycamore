@@ -3,10 +3,6 @@
 namespace Drupal\migrate\Plugin;
 
 use Drupal\Core\Cache\CacheBackendInterface;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 
@@ -21,15 +17,6 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
  * @ingroup migration
  */
 class MigrateDestinationPluginManager extends MigratePluginManager {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * The entity type manager.

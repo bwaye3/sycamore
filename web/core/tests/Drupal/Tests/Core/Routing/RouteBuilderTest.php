@@ -47,11 +47,7 @@ class RouteBuilderTest extends UnitTestCase {
   /**
    * The mocked event dispatcher.
    *
-<<<<<<< HEAD
-   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface|\PHPUnit\Framework\MockObject\MockObject
-=======
    * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface|\PHPUnit\Framework\MockObject\MockObject
->>>>>>> dev
    */
   protected $dispatcher;
 
@@ -81,17 +77,10 @@ class RouteBuilderTest extends UnitTestCase {
    */
   protected $checkProvider;
 
-<<<<<<< HEAD
-  protected function setUp() {
-    $this->dumper = $this->createMock('Drupal\Core\Routing\MatcherDumperInterface');
-    $this->lock = $this->createMock('Drupal\Core\Lock\LockBackendInterface');
-    $this->dispatcher = $this->createMock('\Symfony\Component\EventDispatcher\EventDispatcherInterface');
-=======
   protected function setUp(): void {
     $this->dumper = $this->createMock('Drupal\Core\Routing\MatcherDumperInterface');
     $this->lock = $this->createMock('Drupal\Core\Lock\LockBackendInterface');
     $this->dispatcher = $this->createMock('\Symfony\Contracts\EventDispatcher\EventDispatcherInterface');
->>>>>>> dev
     $this->moduleHandler = $this->createMock('Drupal\Core\Extension\ModuleHandlerInterface');
     $this->controllerResolver = $this->createMock('Drupal\Core\Controller\ControllerResolverInterface');
     $this->yamlDiscovery = $this->getMockBuilder('\Drupal\Core\Discovery\YamlDiscovery')
@@ -172,19 +161,11 @@ class RouteBuilderTest extends UnitTestCase {
     // Ensure that the alter routes events are fired.
     $this->dispatcher->expects($this->at(0))
       ->method('dispatch')
-<<<<<<< HEAD
-      ->with(RoutingEvents::DYNAMIC, $route_build_event);
-
-    $this->dispatcher->expects($this->at(1))
-      ->method('dispatch')
-      ->with(RoutingEvents::ALTER, $route_build_event);
-=======
       ->with($route_build_event, RoutingEvents::DYNAMIC);
 
     $this->dispatcher->expects($this->at(1))
       ->method('dispatch')
       ->with($route_build_event, RoutingEvents::ALTER);
->>>>>>> dev
 
     // Ensure that access checks are set.
     $this->checkProvider->expects($this->once())
@@ -250,19 +231,11 @@ class RouteBuilderTest extends UnitTestCase {
     // Ensure that the alter routes events are fired.
     $this->dispatcher->expects($this->at(0))
       ->method('dispatch')
-<<<<<<< HEAD
-      ->with(RoutingEvents::DYNAMIC, $route_build_event);
-
-    $this->dispatcher->expects($this->at(1))
-      ->method('dispatch')
-      ->with(RoutingEvents::ALTER, $route_build_event);
-=======
       ->with($route_build_event, RoutingEvents::DYNAMIC);
 
     $this->dispatcher->expects($this->at(1))
       ->method('dispatch')
       ->with($route_build_event, RoutingEvents::ALTER);
->>>>>>> dev
 
     // Ensure that access checks are set.
     $this->checkProvider->expects($this->once())
@@ -341,11 +314,7 @@ class RouteBuilderTest extends UnitTestCase {
     $route_build_event = new RouteBuildEvent($route_collection_filled);
     $this->dispatcher->expects($this->at(0))
       ->method('dispatch')
-<<<<<<< HEAD
-      ->with(RoutingEvents::DYNAMIC, $route_build_event);
-=======
       ->with($route_build_event, RoutingEvents::DYNAMIC);
->>>>>>> dev
 
     $this->assertTrue($this->routeBuilder->rebuild());
   }

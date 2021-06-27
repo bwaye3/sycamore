@@ -2,10 +2,6 @@ name: 'Testing config import'
 type: profile
 description: 'Tests install profiles in the config importer.'
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 hidden: true
 install:
   - syslog

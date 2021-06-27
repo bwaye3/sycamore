@@ -2,11 +2,8 @@
 
 namespace Drupal\KernelTests\Core\Database;
 
-<<<<<<< HEAD
-=======
 use Drupal\Core\Database\Database;
 
->>>>>>> dev
 /**
  * Tests the sequences API.
  *
@@ -19,20 +16,12 @@ class NextIdTest extends DatabaseTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['database_test', 'system'];
-=======
   protected static $modules = ['database_test', 'system'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installSchema('system', 'sequences');
   }
@@ -46,11 +35,6 @@ class NextIdTest extends DatabaseTestBase {
     // We can test for exact increase in here because we know there is no
     // other process operating on these tables -- normally we could only
     // expect $second > $first.
-<<<<<<< HEAD
-    $this->assertEqual($first + 1, $second, 'The second call from a sequence provides a number increased by one.');
-    $result = $this->connection->nextId(1000);
-    $this->assertEqual($result, 1001, 'Sequence provides a larger number than the existing ID.');
-=======
     $this->assertEquals($first + 1, $second, 'The second call from a sequence provides a number increased by one.');
     $result = $this->connection->nextId(1000);
     $this->assertEquals(1001, $result, 'Sequence provides a larger number than the existing ID.');
@@ -87,7 +71,6 @@ class NextIdTest extends DatabaseTestBase {
     // successfully trims the sequences table if the connection is closed.
     $count = $this->connection->select('sequences')->countQuery()->execute()->fetchField();
     $this->assertEquals(1, $count);
->>>>>>> dev
   }
 
 }

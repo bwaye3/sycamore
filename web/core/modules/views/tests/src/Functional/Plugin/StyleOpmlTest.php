@@ -24,11 +24,7 @@ class StyleOpmlTest extends ViewTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['aggregator'];
-=======
   protected static $modules = ['aggregator'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -38,11 +34,7 @@ class StyleOpmlTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();

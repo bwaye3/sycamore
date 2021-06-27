@@ -17,54 +17,31 @@ use Drupal\user\UserInterface;
  *
  * @coversDefaultClass \Drupal\Core\Entity\RevisionableContentEntityBase
  * @group Entity
-<<<<<<< HEAD
- * @group legacy
-=======
->>>>>>> dev
  */
 class RevisionableContentEntityBaseTest extends EntityKernelTestBase {
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['entity_test_revlog', 'system', 'user'];
-=======
   protected static $modules = ['entity_test_revlog', 'system', 'user'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('entity_test_mul_revlog');
   }
 
   /**
    * Tests the correct functionality CRUD operations of entity revisions.
-<<<<<<< HEAD
-   *
-   * @expectedDeprecation The revision_user revision metadata key is not set for entity type: entity_test_mul_revlog See: https://www.drupal.org/node/2831499
-   * @expectedDeprecation The revision_created revision metadata key is not set for entity type: entity_test_mul_revlog See: https://www.drupal.org/node/2831499
-   * @expectedDeprecation The revision_log_message revision metadata key is not set for entity type: entity_test_mul_revlog See: https://www.drupal.org/node/2831499
-=======
->>>>>>> dev
    */
   public function testRevisionableContentEntity() {
     $entity_type = 'entity_test_mul_revlog';
     $definition = \Drupal::entityTypeManager()->getDefinition($entity_type);
     $user = User::create(['name' => 'test name']);
     $user->save();
-<<<<<<< HEAD
-    /** @var \Drupal\entity_test_mul_revlog\Entity\EntityTestMulWithRevisionLog $entity */
-=======
     /** @var \Drupal\entity_test_revlog\Entity\EntityTestMulWithRevisionLog $entity */
->>>>>>> dev
     $entity = EntityTestMulWithRevisionLog::create([
       'type' => $entity_type,
     ]);
@@ -118,13 +95,6 @@ class RevisionableContentEntityBaseTest extends EntityKernelTestBase {
    * Tests the behavior of the "revision_default" flag.
    *
    * @covers \Drupal\Core\Entity\ContentEntityBase::wasDefaultRevision
-<<<<<<< HEAD
-   *
-   * @expectedDeprecation The revision_user revision metadata key is not set for entity type: entity_test_mul_revlog See: https://www.drupal.org/node/2831499
-   * @expectedDeprecation The revision_created revision metadata key is not set for entity type: entity_test_mul_revlog See: https://www.drupal.org/node/2831499
-   * @expectedDeprecation The revision_log_message revision metadata key is not set for entity type: entity_test_mul_revlog See: https://www.drupal.org/node/2831499
-=======
->>>>>>> dev
    */
   public function testWasDefaultRevision() {
     $entity_type_id = 'entity_test_mul_revlog';
@@ -199,18 +169,11 @@ class RevisionableContentEntityBaseTest extends EntityKernelTestBase {
    */
   protected function assertItemsTableCount($count, EntityTypeInterface $definition) {
     $connection = Database::getConnection();
-<<<<<<< HEAD
-    $this->assertEqual(1, $connection->query('SELECT COUNT(*) FROM {' . $definition->getBaseTable() . '}')->fetchField());
-    $this->assertEqual(1, $connection->query('SELECT COUNT(*) FROM {' . $definition->getDataTable() . '}')->fetchField());
-    $this->assertEqual($count, $connection->query('SELECT COUNT(*) FROM {' . $definition->getRevisionTable() . '}')->fetchField());
-    $this->assertEqual($count, $connection->query('SELECT COUNT(*) FROM {' . $definition->getRevisionDataTable() . '}')->fetchField());
-=======
     $this->assertEquals(1, (int) $connection->select($definition->getBaseTable())->countQuery()->execute()->fetchField());
     $this->assertEquals(1, (int) $connection->select($definition->getDataTable())->countQuery()->execute()->fetchField());
     $this->assertEquals($count, (int) $connection->select($definition->getRevisionTable())->countQuery()->execute()->fetchField());
     $this->assertEquals($count, (int) $connection->select($definition->getRevisionDataTable())->countQuery()->execute()->fetchField());
 
->>>>>>> dev
   }
 
   /**

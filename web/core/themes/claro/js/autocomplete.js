@@ -5,17 +5,6 @@
 * @preserve
 **/
 
-<<<<<<< HEAD
-(function ($, Drupal) {
-  Drupal.behaviors.claroAutoCompete = {
-    attach: function attach(context) {
-      $(context).find('input.form-autocomplete').once('claroAutoComplete').each(function (index, value) {
-        var $input = $(value);
-        var timeout = 400;
-        var classRemoveTimeout = void 0;
-        var classRemove = function classRemove($autoCompleteElem) {
-          $autoCompleteElem.removeClass('is-autocompleting');
-=======
 (function ($, Drupal, once) {
   Drupal.behaviors.claroAutoCompete = {
     attach: function attach(context) {
@@ -27,27 +16,18 @@
         var classRemove = function classRemove($autoCompleteElem) {
           $autoCompleteElem.removeClass('is-autocompleting');
           $autoCompleteElem.siblings('[data-drupal-selector="autocomplete-message"]').addClass('hidden');
->>>>>>> dev
         };
 
         $input.on('input autocompletesearch autocompleteresponses', function (event) {
           if (event && event.type && event.type === 'autocompletesearch') {
             $(event.target).addClass('is-autocompleting');
-<<<<<<< HEAD
-          }
-=======
             $(event.target).siblings('[data-drupal-selector="autocomplete-message"]').removeClass('hidden');
           }
 
->>>>>>> dev
           clearTimeout(classRemoveTimeout);
           classRemoveTimeout = setTimeout(classRemove, timeout, $(event.target));
         });
       });
     }
   };
-<<<<<<< HEAD
-})(jQuery, Drupal);
-=======
 })(jQuery, Drupal, once);
->>>>>>> dev

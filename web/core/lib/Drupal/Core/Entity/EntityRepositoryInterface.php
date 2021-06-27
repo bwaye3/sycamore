@@ -114,11 +114,7 @@ interface EntityRepositoryInterface {
    *   entity will be edited in keyed by fully qualified context ID. Defaults to
    *   the currently available contexts.
    *
-<<<<<<< HEAD
-   * @return \Drupal\Core\Entity\EntityInterface
-=======
    * @return \Drupal\Core\Entity\EntityInterface[]
->>>>>>> dev
    *   An array of entity object variants keyed by entity ID.
    *
    * @see getActive()
@@ -164,11 +160,7 @@ interface EntityRepositoryInterface {
    *   entity will be edited in keyed by fully qualified context ID. Defaults to
    *   the currently available contexts.
    *
-<<<<<<< HEAD
-   * @return \Drupal\Core\Entity\EntityInterface
-=======
    * @return \Drupal\Core\Entity\EntityInterface[]
->>>>>>> dev
    *   An array of entity object variants keyed by entity ID.
    *
    * @see getCanonical()

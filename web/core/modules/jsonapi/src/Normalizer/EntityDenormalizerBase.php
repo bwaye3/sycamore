@@ -85,11 +85,7 @@ abstract class EntityDenormalizerBase extends NormalizerBase implements Denormal
     if (empty($context['resource_type']) || !$context['resource_type'] instanceof ResourceType) {
       throw new PreconditionFailedHttpException('Missing context during denormalization.');
     }
-<<<<<<< HEAD
-    /* @var \Drupal\jsonapi\ResourceType\ResourceType $resource_type */
-=======
     /** @var \Drupal\jsonapi\ResourceType\ResourceType $resource_type */
->>>>>>> dev
     $resource_type = $context['resource_type'];
     $entity_type_id = $resource_type->getEntityTypeId();
     $bundle = $resource_type->getBundle();

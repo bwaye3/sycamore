@@ -5,10 +5,6 @@ namespace Drupal\Core\Plugin\Context;
 use Drupal\Component\Plugin\Definition\ContextAwarePluginDefinitionInterface;
 use Drupal\Component\Plugin\Exception\ContextException;
 use Drupal\Component\Plugin\Exception\MissingValueContextException;
-<<<<<<< HEAD
-use Drupal\Component\Plugin\Exception\PluginException;
-=======
->>>>>>> dev
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 
@@ -85,11 +81,7 @@ class ContextHandler implements ContextHandlerInterface {
    * {@inheritdoc}
    */
   public function applyContextMapping(ContextAwarePluginInterface $plugin, $contexts, $mappings = []) {
-<<<<<<< HEAD
-    /** @var $contexts \Drupal\Core\Plugin\Context\ContextInterface[] */
-=======
     /** @var \Drupal\Core\Plugin\Context\ContextInterface[] $contexts */
->>>>>>> dev
     $mappings += $plugin->getContextMapping();
     // Loop through each of the expected contexts.
 
@@ -129,13 +121,6 @@ class ContextHandler implements ContextHandlerInterface {
       catch (ContextException $e) {
         $context = NULL;
       }
-<<<<<<< HEAD
-      // @todo Remove in https://www.drupal.org/project/drupal/issues/3046342.
-      catch (PluginException $e) {
-        $context = NULL;
-      }
-=======
->>>>>>> dev
 
       if ($context && $context->hasContextValue()) {
         // Ignore mappings if the plugin has a value for a missing context.

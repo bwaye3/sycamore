@@ -18,11 +18,7 @@ class TermEntityReferenceTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'entity_test',
     'field',
     'system',
@@ -34,11 +30,7 @@ class TermEntityReferenceTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('entity_test');
@@ -115,11 +107,7 @@ class TermEntityReferenceTest extends KernelTestBase {
       ],
     ];
 
-<<<<<<< HEAD
-    $this->assertIdentical($result, $expected_result, 'Terms selection restricted to a single vocabulary.');
-=======
     $this->assertSame($expected_result, $result, 'Terms selection restricted to a single vocabulary.');
->>>>>>> dev
   }
 
 }

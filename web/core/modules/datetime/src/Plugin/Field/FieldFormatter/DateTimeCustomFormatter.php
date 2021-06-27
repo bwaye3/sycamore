@@ -16,11 +16,7 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
  *   field_types = {
  *     "datetime"
  *   }
-<<<<<<< HEAD
- *)
-=======
  * )
->>>>>>> dev
  */
 class DateTimeCustomFormatter extends DateTimeFormatterBase {
 
@@ -72,11 +68,7 @@ class DateTimeCustomFormatter extends DateTimeFormatterBase {
     $form['date_format'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Date/time format'),
-<<<<<<< HEAD
-      '#description' => $this->t('See <a href="http://php.net/manual/function.date.php" target="_blank">the documentation for PHP date formats</a>.'),
-=======
       '#description' => $this->t('See <a href="https://www.php.net/manual/datetime.format.php#refsect1-datetime.format-parameters" target="_blank">the documentation for PHP date formats</a>.'),
->>>>>>> dev
       '#default_value' => $this->getSetting('date_format'),
     ];
 

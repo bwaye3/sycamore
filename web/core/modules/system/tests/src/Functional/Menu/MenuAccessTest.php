@@ -17,11 +17,7 @@ class MenuAccessTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['block', 'menu_test'];
-=======
   protected static $modules = ['block', 'menu_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -31,11 +27,7 @@ class MenuAccessTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalPlaceBlock('local_tasks_block');
@@ -62,15 +54,9 @@ class MenuAccessTest extends BrowserTestBase {
     // Check for access to a restricted local task from a default local task.
     $this->drupalGet('foo/asdf');
     $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-    $this->assertLinkByHref('foo/asdf');
-    $this->assertLinkByHref('foo/asdf/b');
-    $this->assertNoLinkByHref('foo/asdf/c');
-=======
     $this->assertSession()->linkByHrefExists('foo/asdf');
     $this->assertSession()->linkByHrefExists('foo/asdf/b');
     $this->assertSession()->linkByHrefNotExists('foo/asdf/c');
->>>>>>> dev
 
     // Attempt to access a restricted local task.
     $this->drupalGet('foo/asdf/c');
@@ -80,13 +66,8 @@ class MenuAccessTest extends BrowserTestBase {
       ':href' => Url::fromRoute('menu_test.router_test1', ['bar' => 'asdf'])->toString(),
     ]);
     $this->assertTrue(empty($elements), 'No tab linking to foo/asdf found');
-<<<<<<< HEAD
-    $this->assertNoLinkByHref('foo/asdf/b');
-    $this->assertNoLinkByHref('foo/asdf/c');
-=======
     $this->assertSession()->linkByHrefNotExists('foo/asdf/b');
     $this->assertSession()->linkByHrefNotExists('foo/asdf/c');
->>>>>>> dev
   }
 
 }

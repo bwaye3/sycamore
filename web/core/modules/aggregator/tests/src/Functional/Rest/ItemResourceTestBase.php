@@ -4,10 +4,6 @@ namespace Drupal\Tests\aggregator\Functional\Rest;
 
 use Drupal\aggregator\Entity\Feed;
 use Drupal\aggregator\Entity\Item;
-<<<<<<< HEAD
-use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
-=======
->>>>>>> dev
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 
 /**
@@ -15,19 +11,10 @@ use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
  */
 abstract class ItemResourceTestBase extends EntityResourceTestBase {
 
-<<<<<<< HEAD
-  use BcTimestampNormalizerUnixTestTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static $modules = ['aggregator'];
-=======
   /**
    * {@inheritdoc}
    */
   protected static $modules = ['aggregator'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -140,14 +127,10 @@ abstract class ItemResourceTestBase extends EntityResourceTestBase {
       'author' => [],
       'description' => [],
       'timestamp' => [
-<<<<<<< HEAD
-        $this->formatExpectedTimestampItemValues(123456789),
-=======
         [
           'value' => (new \DateTime())->setTimestamp(123456789)->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
           'format' => \DateTime::RFC3339,
         ],
->>>>>>> dev
       ],
       'guid' => [],
     ];
@@ -188,13 +171,6 @@ abstract class ItemResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
-<<<<<<< HEAD
-    if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
-      return parent::getExpectedUnauthorizedAccessMessage($method);
-    }
-
-=======
->>>>>>> dev
     switch ($method) {
       case 'GET':
         return "The 'access news feeds' permission is required.";

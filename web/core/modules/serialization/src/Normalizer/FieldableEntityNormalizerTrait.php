@@ -160,13 +160,6 @@ trait FieldableEntityNormalizerTrait {
    *   The entity type repository.
    */
   protected function getEntityTypeRepository() {
-<<<<<<< HEAD
-    if (!$this->entityTypeRepository) {
-      @trigger_error('The entityTypeRepository property must be set on the FieldEntityNormalizerTrait, it is required before Drupal 9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $this->entityTypeRepository = \Drupal::service('entity_type.repository');
-    }
-=======
->>>>>>> dev
     return $this->entityTypeRepository;
   }
 
@@ -177,13 +170,6 @@ trait FieldableEntityNormalizerTrait {
    *   The entity field manager.
    */
   protected function getEntityFieldManager() {
-<<<<<<< HEAD
-    if (!$this->entityFieldManager) {
-      @trigger_error('The entityFieldManager property must be set on the FieldEntityNormalizerTrait, it is required before Drupal 9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $this->entityFieldManager = \Drupal::service('entity_field.manager');
-    }
-=======
->>>>>>> dev
     return $this->entityFieldManager;
   }
 
@@ -194,13 +180,6 @@ trait FieldableEntityNormalizerTrait {
    *   The entity type manager.
    */
   protected function getEntityTypeManager() {
-<<<<<<< HEAD
-    if (!$this->entityTypeManager) {
-      @trigger_error('The entityTypeManager property must be set on the FieldEntityNormalizerTrait, it is required before Drupal 9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $this->entityTypeManager = \Drupal::service('entity_type.manager');
-    }
-=======
->>>>>>> dev
     return $this->entityTypeManager;
   }
 

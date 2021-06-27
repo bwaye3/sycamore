@@ -5,10 +5,6 @@ namespace Drupal\Tests\Core\Extension;
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Extension\ModuleRequiredByThemesUninstallValidator;
 use Drupal\Core\Extension\ThemeExtensionList;
-<<<<<<< HEAD
-use Drupal\Tests\AssertHelperTrait;
-=======
->>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -17,11 +13,6 @@ use Drupal\Tests\UnitTestCase;
  */
 class ModuleRequiredByThemesUninstallValidatorTest extends UnitTestCase {
 
-<<<<<<< HEAD
-  use AssertHelperTrait;
-
-=======
->>>>>>> dev
   /**
    * Instance of ModuleRequiredByThemesUninstallValidator.
    *
@@ -46,11 +37,7 @@ class ModuleRequiredByThemesUninstallValidatorTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->moduleExtensionList = $this->prophesize(ModuleExtensionList::class);
     $this->themeExtensionList = $this->prophesize(ThemeExtensionList::class);
@@ -114,11 +101,7 @@ class ModuleRequiredByThemesUninstallValidatorTest extends UnitTestCase {
     ];
 
     $reasons = $this->moduleRequiredByThemeUninstallValidator->validate($module);
-<<<<<<< HEAD
-    $this->assertSame($expected, $this->castSafeStrings($reasons));
-=======
     $this->assertEquals($expected, $reasons);
->>>>>>> dev
   }
 
   /**
@@ -165,18 +148,7 @@ class ModuleRequiredByThemesUninstallValidatorTest extends UnitTestCase {
     ];
 
     $reasons = $this->moduleRequiredByThemeUninstallValidator->validate($module);
-<<<<<<< HEAD
-    $this->assertSame($expected, $this->castSafeStrings($reasons));
-  }
-
-}
-
-if (!defined('DRUPAL_MINIMUM_PHP')) {
-  define('DRUPAL_MINIMUM_PHP', '7.0.8');
-}
-=======
     $this->assertEquals($expected, $reasons);
   }
 
 }
->>>>>>> dev

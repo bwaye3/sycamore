@@ -8,11 +8,7 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Cache\UseCacheBackendTrait;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use GuzzleHttp\ClientInterface;
-<<<<<<< HEAD
-use GuzzleHttp\Exception\RequestException;
-=======
 use GuzzleHttp\Exception\TransferException;
->>>>>>> dev
 
 /**
  * Converts oEmbed media URLs into endpoint-specific resource URLs.
@@ -95,11 +91,7 @@ class UrlResolver implements UrlResolverInterface {
     try {
       $response = $this->httpClient->get($url);
     }
-<<<<<<< HEAD
-    catch (RequestException $e) {
-=======
     catch (TransferException $e) {
->>>>>>> dev
       return FALSE;
     }
 
@@ -166,15 +158,8 @@ class UrlResolver implements UrlResolverInterface {
     }
 
     $provider = $this->getProviderByUrl($url);
-<<<<<<< HEAD
-    $endpoints = $provider->getEndpoints();
-    $endpoint = reset($endpoints);
-    $resource_url = $endpoint->buildResourceUrl($url);
-
-=======
 
     $resource_url = $this->getEndpointMatchingUrl($url, $provider);
->>>>>>> dev
     $parsed_url = UrlHelper::parse($resource_url);
     if ($max_width) {
       $parsed_url['query']['maxwidth'] = $max_width;
@@ -194,8 +179,6 @@ class UrlResolver implements UrlResolverInterface {
     return $resource_url;
   }
 
-<<<<<<< HEAD
-=======
   /**
    * For the given media item URL find an endpoint with schemes that match.
    *
@@ -219,5 +202,4 @@ class UrlResolver implements UrlResolverInterface {
     return $resource_url ?? reset($endpoints)->buildResourceUrl($url);
   }
 
->>>>>>> dev
 }

@@ -18,11 +18,7 @@ class ExtensionViewsFieldTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['file', 'file_test_views', 'user'];
-=======
   protected static $modules = ['file', 'file_test_views', 'user'];
->>>>>>> dev
 
   /**
    * Views used by this test.
@@ -34,15 +30,9 @@ class ExtensionViewsFieldTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-    parent::setUp();
-    ViewTestData::createTestViews(get_class($this), ['file_test_views']);
-=======
   protected function setUp($import_test_views = TRUE): void {
     parent::setUp();
     ViewTestData::createTestViews(static::class, ['file_test_views']);
->>>>>>> dev
 
     $this->installEntitySchema('file');
 
@@ -84,17 +74,10 @@ class ExtensionViewsFieldTest extends ViewsKernelTestBase {
 
     // Test without the tar option.
     $renderer->executeInRenderContext(new RenderContext(), function () use ($view) {
-<<<<<<< HEAD
-      $this->assertEqual($view->field['extension']->advancedRender($view->result[0]), 'png');
-      $this->assertEqual($view->field['extension']->advancedRender($view->result[1]), 'tar');
-      $this->assertEqual($view->field['extension']->advancedRender($view->result[2]), 'gz');
-      $this->assertEqual($view->field['extension']->advancedRender($view->result[3]), '');
-=======
       $this->assertEquals('png', $view->field['extension']->advancedRender($view->result[0]));
       $this->assertEquals('tar', $view->field['extension']->advancedRender($view->result[1]));
       $this->assertEquals('gz', $view->field['extension']->advancedRender($view->result[2]));
       $this->assertEquals('', $view->field['extension']->advancedRender($view->result[3]));
->>>>>>> dev
     });
 
     // Test with the tar option.
@@ -106,17 +89,10 @@ class ExtensionViewsFieldTest extends ViewsKernelTestBase {
     $this->executeView($view);
 
     $renderer->executeInRenderContext(new RenderContext(), function () use ($view) {
-<<<<<<< HEAD
-      $this->assertEqual($view->field['extension']->advancedRender($view->result[0]), 'png');
-      $this->assertEqual($view->field['extension']->advancedRender($view->result[1]), 'tar');
-      $this->assertEqual($view->field['extension']->advancedRender($view->result[2]), 'tar.gz');
-      $this->assertEqual($view->field['extension']->advancedRender($view->result[3]), '');
-=======
       $this->assertEquals('png', $view->field['extension']->advancedRender($view->result[0]));
       $this->assertEquals('tar', $view->field['extension']->advancedRender($view->result[1]));
       $this->assertEquals('tar.gz', $view->field['extension']->advancedRender($view->result[2]));
       $this->assertEquals('', $view->field['extension']->advancedRender($view->result[3]));
->>>>>>> dev
     });
   }
 

@@ -3,11 +3,7 @@
  * Backbone View providing the aural view of CKEditor keyboard UX configuration.
  */
 
-<<<<<<< HEAD
-(function($, Drupal, Backbone, _) {
-=======
 (function ($, Drupal, Backbone, _) {
->>>>>>> dev
   Drupal.ckeditor.KeyboardView = Backbone.View.extend(
     /** @lends Drupal.ckeditor.KeyboardView# */ {
       /**
@@ -194,11 +190,7 @@
 
           view = this;
           // Attempt to move the button to the new toolbar position.
-<<<<<<< HEAD
-          Drupal.ckeditor.registerButtonMove(this, $button, result => {
-=======
           Drupal.ckeditor.registerButtonMove(this, $button, (result) => {
->>>>>>> dev
             // Put the button back if the registration failed.
             // If the button was in a row, then it was in the active toolbar
             // configuration. The button was probably placed in a new group, but

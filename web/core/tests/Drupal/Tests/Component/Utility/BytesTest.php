@@ -4,10 +4,7 @@ namespace Drupal\Tests\Component\Utility;
 
 use Drupal\Component\Utility\Bytes;
 use PHPUnit\Framework\TestCase;
-<<<<<<< HEAD
-=======
 use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
->>>>>>> dev
 
 /**
  * Tests bytes size parsing helper methods.
@@ -18,11 +15,8 @@ use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
  */
 class BytesTest extends TestCase {
 
-<<<<<<< HEAD
-=======
   use ExpectDeprecationTrait;
 
->>>>>>> dev
   /**
    * Tests \Drupal\Component\Utility\Bytes::toInt().
    *
@@ -33,12 +27,6 @@ class BytesTest extends TestCase {
    *   The expected return value from
    *   \Drupal\Component\Utility\Bytes::toInt().
    *
-<<<<<<< HEAD
-   * @dataProvider providerTestToInt
-   * @covers ::toInt
-   */
-  public function testToInt($size, $expected_int) {
-=======
    * @dataProvider providerTestToNumber
    * @covers ::toInt
    *
@@ -46,40 +34,10 @@ class BytesTest extends TestCase {
    */
   public function testToInt($size, $expected_int) {
     $this->expectDeprecation('\Drupal\Component\Utility\Bytes::toInt() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use \Drupal\Component\Utility\Bytes::toNumber() instead. See https://www.drupal.org/node/3162663');
->>>>>>> dev
     $this->assertEquals($expected_int, Bytes::toInt($size));
   }
 
   /**
-<<<<<<< HEAD
-   * Provides data for testToInt.
-   *
-   * @return array
-   *   An array of arrays, each containing the argument for
-   *   \Drupal\Component\Utility\Bytes::toInt(): size, and the expected return
-   *   value.
-   */
-  public function providerTestToInt() {
-    return [
-      ['1', 1],
-      ['1 byte', 1],
-      ['1 KB'  , Bytes::KILOBYTE],
-      ['1 MB'  , pow(Bytes::KILOBYTE, 2)],
-      ['1 GB'  , pow(Bytes::KILOBYTE, 3)],
-      ['1 TB'  , pow(Bytes::KILOBYTE, 4)],
-      ['1 PB'  , pow(Bytes::KILOBYTE, 5)],
-      ['1 EB'  , pow(Bytes::KILOBYTE, 6)],
-      ['1 ZB'  , pow(Bytes::KILOBYTE, 7)],
-      ['1 YB'  , pow(Bytes::KILOBYTE, 8)],
-      ['23476892 bytes', 23476892],
-      // 76 MB.
-      ['76MRandomStringThatShouldBeIgnoredByParseSize.', 79691776],
-      // 76.24 GB (with typo).
-      ['76.24 Giggabyte', 81862076662],
-      ['1.5', 2],
-      ['2.4', 2],
-      ['', 0],
-=======
    * Tests \Drupal\Component\Utility\Bytes::toNumber().
    *
    * @param string $size
@@ -232,7 +190,6 @@ class BytesTest extends TestCase {
       [' 5.1 megabytes', FALSE],
       ['5.1 megabytes ', TRUE],
       [' 5.1 megabytes ', FALSE],
->>>>>>> dev
     ];
   }
 

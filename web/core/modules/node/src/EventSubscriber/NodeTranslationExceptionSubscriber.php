@@ -9,11 +9,7 @@ use Drupal\Core\Routing\UrlGeneratorInterface;
 use Drupal\Core\State\StateInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -84,19 +80,11 @@ class NodeTranslationExceptionSubscriber implements EventSubscriberInterface {
   /**
    * Redirects not found node translations using the key value collection.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $event
-   *   The exception event.
-   */
-  public function onException(GetResponseForExceptionEvent $event) {
-    $exception = $event->getException();
-=======
    * @param \Symfony\Component\HttpKernel\Event\ExceptionEvent $event
    *   The exception event.
    */
   public function onException(ExceptionEvent $event) {
     $exception = $event->getThrowable();
->>>>>>> dev
 
     // If this is not a 404, we don't need to check for a redirection.
     if (!($exception instanceof NotFoundHttpException)) {

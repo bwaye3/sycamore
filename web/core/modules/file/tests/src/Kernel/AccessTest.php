@@ -18,11 +18,7 @@ class AccessTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['file', 'system', 'user'];
-=======
   protected static $modules = ['file', 'system', 'user'];
->>>>>>> dev
 
   /**
    * An authenticated user.
@@ -48,11 +44,7 @@ class AccessTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('file');

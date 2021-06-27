@@ -22,11 +22,7 @@ class MigrateFieldPluginManagerTest extends MigrateDrupalTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'datetime',
     'system',
     'user',
@@ -43,11 +39,7 @@ class MigrateFieldPluginManagerTest extends MigrateDrupalTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setUp() {
-=======
   public function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->pluginManager = $this->container->get('plugin.manager.migrate.field');
   }
@@ -113,24 +105,6 @@ class MigrateFieldPluginManagerTest extends MigrateDrupalTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests that deprecated plugins can still be directly created.
-   *
-   * Tests that a deprecated plugin triggers an error on instantiation. This
-   * test has an implicit assertion that the deprecation error will be triggered
-   * and does not need an explicit assertion to pass.
-   *
-   * @covers ::createInstance
-   * @group legacy
-   * @expectedDeprecation DateField is deprecated in Drupal 8.4.x and will be removed before Drupal 9.0.x. Use \Drupal\datetime\Plugin\migrate\field\DateField instead.
-   */
-  public function testDeprecatedPluginDirectAccess() {
-    $this->pluginManager->createInstance('date');
-  }
-
-  /**
-=======
->>>>>>> dev
    * Tests that plugins with no explicit weight are given a weight of 0.
    */
   public function testDefaultWeight() {

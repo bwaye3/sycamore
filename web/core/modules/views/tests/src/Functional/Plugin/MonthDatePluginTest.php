@@ -24,11 +24,7 @@ class MonthDatePluginTest extends ViewTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node'];
-=======
   protected static $modules = ['node'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

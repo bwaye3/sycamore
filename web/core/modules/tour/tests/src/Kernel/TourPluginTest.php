@@ -3,11 +3,8 @@
 namespace Drupal\Tests\tour\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
-<<<<<<< HEAD
-=======
 use Drupal\tour\Entity\Tour;
 use PHPUnit\Framework\Error\Warning;
->>>>>>> dev
 
 /**
  * Tests the functionality of tour plugins.
@@ -21,11 +18,7 @@ class TourPluginTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['tour'];
-=======
   protected static $modules = ['tour'];
->>>>>>> dev
 
   /**
    * Stores the tour plugin manager.
@@ -34,14 +27,10 @@ class TourPluginTest extends KernelTestBase {
    */
   protected $pluginManager;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installConfig(['tour']);
@@ -49,18 +38,12 @@ class TourPluginTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test tour plugins.
-=======
    * Tests tour plugins.
->>>>>>> dev
    */
   public function testTourPlugins() {
     $this->assertCount(1, $this->pluginManager->getDefinitions(), 'Only tour plugins for the enabled modules were returned.');
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Test that warnings and deprecations are triggered.
    *
@@ -117,5 +100,4 @@ class TourPluginTest extends KernelTestBase {
     }
   }
 
->>>>>>> dev
 }

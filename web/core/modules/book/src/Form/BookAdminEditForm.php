@@ -5,10 +5,7 @@ namespace Drupal\book\Form;
 use Drupal\book\BookManager;
 use Drupal\book\BookManagerInterface;
 use Drupal\Component\Utility\Crypt;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Entity\EntityRepositoryInterface;
->>>>>>> dev
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -39,8 +36,6 @@ class BookAdminEditForm extends FormBase {
   protected $bookManager;
 
   /**
-<<<<<<< HEAD
-=======
    * The entity repository service.
    *
    * @var \Drupal\Core\Entity\EntityRepositoryInterface
@@ -48,19 +43,12 @@ class BookAdminEditForm extends FormBase {
   protected $entityRepository;
 
   /**
->>>>>>> dev
    * Constructs a new BookAdminEditForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $node_storage
    *   The custom block storage.
    * @param \Drupal\book\BookManagerInterface $book_manager
    *   The book manager.
-<<<<<<< HEAD
-   */
-  public function __construct(EntityStorageInterface $node_storage, BookManagerInterface $book_manager) {
-    $this->nodeStorage = $node_storage;
-    $this->bookManager = $book_manager;
-=======
    * @param \Drupal\Core\Entity\EntityRepositoryInterface|null $entity_repository
    *   The entity repository service.
    */
@@ -72,7 +60,6 @@ class BookAdminEditForm extends FormBase {
       $entity_repository = \Drupal::service('entity.repository');
     }
     $this->entityRepository = $entity_repository;
->>>>>>> dev
   }
 
   /**
@@ -82,12 +69,8 @@ class BookAdminEditForm extends FormBase {
     $entity_type_manager = $container->get('entity_type.manager');
     return new static(
       $entity_type_manager->getStorage('node'),
-<<<<<<< HEAD
-      $container->get('book.manager')
-=======
       $container->get('book.manager'),
       $container->get('entity.repository')
->>>>>>> dev
     );
   }
 
@@ -149,10 +132,7 @@ class BookAdminEditForm extends FormBase {
           // Update the title if changed.
           if ($row['title']['#default_value'] != $values['title']) {
             $node = $this->nodeStorage->load($values['nid']);
-<<<<<<< HEAD
-=======
             $node = $this->entityRepository->getTranslationFromContext($node);
->>>>>>> dev
             $node->revision_log = $this->t('Title changed from %original to %current.', ['%original' => $node->label(), '%current' => $values['title']]);
             $node->title = $values['title'];
             $node->book['link_title'] = $values['title'];

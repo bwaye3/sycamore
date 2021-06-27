@@ -126,22 +126,14 @@ class MenuForm extends EntityForm {
     ];
     $form['description'] = [
       '#type' => 'textfield',
-<<<<<<< HEAD
-      '#title' => t('Administrative summary'),
-=======
       '#title' => $this->t('Administrative summary'),
->>>>>>> dev
       '#maxlength' => 512,
       '#default_value' => $menu->getDescription(),
     ];
 
     $form['langcode'] = [
       '#type' => 'language_select',
-<<<<<<< HEAD
-      '#title' => t('Menu language'),
-=======
       '#title' => $this->t('Menu language'),
->>>>>>> dev
       '#languages' => LanguageInterface::STATE_ALL,
       '#default_value' => $menu->language()->getId(),
     ];

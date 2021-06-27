@@ -13,11 +13,6 @@ form {
   margin: 0;
   padding: 0;
 }
-<<<<<<< HEAD
-fieldset {
-  min-width: 0;
-  margin: 1em 0;
-=======
 /**
  * Prevent regression due to explicit line-height applied to these elements in
  * normalize.css 7.0.0.
@@ -40,7 +35,6 @@ fieldset {
   margin: 1em 0;
   padding: 0.35em 0.625em 0.75em; /* 1 */
   border: 1px solid #c0c0c0; /* 1 */
->>>>>>> dev
 }
 details,
 fieldset,
@@ -102,8 +96,6 @@ textarea {
 }
 
 /**
-<<<<<<< HEAD
-=======
  * Prevent regression due to -webkit-appearance being set to button and
  * font-family being set to inherit normalize.css 4.1.0.
  */
@@ -113,7 +105,6 @@ textarea {
 }
 
 /**
->>>>>>> dev
  * Make the font slightly bigger in mobile
  * @todo: check the correct font-size
  */

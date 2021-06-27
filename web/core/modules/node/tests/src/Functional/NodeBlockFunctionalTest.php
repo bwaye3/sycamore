@@ -5,10 +5,7 @@ namespace Drupal\Tests\node\Functional;
 use Drupal\block\Entity\Block;
 use Drupal\Core\Database\Database;
 use Drupal\Core\EventSubscriber\MainContentViewSubscriber;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Url;
->>>>>>> dev
 use Drupal\Tests\system\Functional\Cache\AssertPageCacheContextsAndTagsTrait;
 use Drupal\user\RoleInterface;
 
@@ -45,25 +42,16 @@ class NodeBlockFunctionalTest extends NodeTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['block', 'views'];
-
-  protected function setUp() {
-=======
   protected static $modules = ['block', 'views', 'node_block_test'];
 
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create users and test node.
     $this->adminUser = $this->drupalCreateUser([
       'administer content types',
       'administer nodes',
-<<<<<<< HEAD
-=======
       'bypass node access',
->>>>>>> dev
       'administer blocks',
       'access content overview',
     ]);
@@ -89,11 +77,7 @@ class NodeBlockFunctionalTest extends NodeTestBase {
 
     // Test that block is not visible without nodes.
     $this->drupalGet('');
-<<<<<<< HEAD
-    $this->assertText(t('No content available.'), 'Block with "No content available." found.');
-=======
     $this->assertSession()->pageTextContains('No content available.');
->>>>>>> dev
 
     // Add some test nodes.
     $default_settings = ['uid' => $this->webUser->id(), 'type' => 'article'];
@@ -101,15 +85,12 @@ class NodeBlockFunctionalTest extends NodeTestBase {
     $node2 = $this->drupalCreateNode($default_settings);
     $node3 = $this->drupalCreateNode($default_settings);
 
-<<<<<<< HEAD
-=======
     // Create a second revision of node1.
     $node1_revision_1 = $node1;
     $node1->setNewRevision(TRUE);
     $node1->setTitle('Node revision 2 title');
     $node1->save();
 
->>>>>>> dev
     $connection = Database::getConnection();
     // Change the changed time for node so that we can test ordering.
     $connection->update('node_field_data')
@@ -129,18 +110,6 @@ class NodeBlockFunctionalTest extends NodeTestBase {
     // see the block.
     $this->drupalLogout();
     $this->drupalGet('');
-<<<<<<< HEAD
-    $this->assertNoText($block->label(), 'Block was not found.');
-
-    // Test that only the 2 latest nodes are shown.
-    $this->drupalLogin($this->webUser);
-    $this->assertNoText($node1->label(), 'Node not found in block.');
-    $this->assertText($node2->label(), 'Node found in block.');
-    $this->assertText($node3->label(), 'Node found in block.');
-
-    // Check to make sure nodes are in the right order.
-    $this->assertNotEmpty($this->xpath('//div[@id="block-test-block"]//div[@class="item-list"]/ul/li[1]/div/span/a[text() = "' . $node3->label() . '"]'), 'Nodes were ordered correctly in block.');
-=======
     $this->assertNoText($block->label());
 
     // Test that only the 2 latest nodes are shown.
@@ -151,7 +120,6 @@ class NodeBlockFunctionalTest extends NodeTestBase {
 
     // Check to make sure nodes are in the right order.
     $this->assertSession()->elementExists('xpath', '//div[@id="block-test-block"]//div[@class="item-list"]/ul/li[1]/div/span/a[text() = "' . $node3->label() . '"]');
->>>>>>> dev
 
     $this->drupalLogout();
     $this->drupalLogin($this->adminUser);
@@ -165,17 +133,10 @@ class NodeBlockFunctionalTest extends NodeTestBase {
 
     // Test that all four nodes are shown.
     $this->drupalGet('');
-<<<<<<< HEAD
-    $this->assertText($node1->label(), 'Node found in block.');
-    $this->assertText($node2->label(), 'Node found in block.');
-    $this->assertText($node3->label(), 'Node found in block.');
-    $this->assertText($node4->label(), 'Node found in block.');
-=======
     $this->assertSession()->pageTextContains($node1->label());
     $this->assertSession()->pageTextContains($node2->label());
     $this->assertSession()->pageTextContains($node3->label());
     $this->assertSession()->pageTextContains($node4->label());
->>>>>>> dev
 
     $this->assertCacheContexts(['languages:language_content', 'languages:language_interface', 'theme', 'url.query_args:' . MainContentViewSubscriber::WRAPPER_FORMAT, 'user']);
 
@@ -186,12 +147,8 @@ class NodeBlockFunctionalTest extends NodeTestBase {
       'visibility[node_type][bundles][article]' => 'article',
     ];
     $theme = \Drupal::service('theme_handler')->getDefault();
-<<<<<<< HEAD
-    $this->drupalPostForm("admin/structure/block/add/system_powered_by_block/$theme", $edit, t('Save block'));
-=======
     $this->drupalGet("admin/structure/block/add/system_powered_by_block/{$theme}");
     $this->submitForm($edit, 'Save block');
->>>>>>> dev
 
     $block = Block::load($edit['id']);
     $visibility = $block->getVisibility();
@@ -206,46 +163,13 @@ class NodeBlockFunctionalTest extends NodeTestBase {
     // Verify visibility rules.
     $this->drupalGet('');
     $label = $block->label();
-<<<<<<< HEAD
-    $this->assertNoText($label, 'Block was not displayed on the front page.');
-=======
     // Check that block is not displayed on the front page.
     $this->assertNoText($label);
->>>>>>> dev
     $this->assertCacheContexts(['languages:language_content', 'languages:language_interface', 'theme', 'url.query_args:' . MainContentViewSubscriber::WRAPPER_FORMAT, 'user', 'route']);
 
     // Ensure that a page that does not have a node context can still be cached,
     // the front page is the user page which is already cached from the login
     // request above.
-<<<<<<< HEAD
-    $this->assertSame('HIT', $this->getSession()->getResponseHeader('X-Drupal-Dynamic-Cache'));
-
-    $this->drupalGet('node/add/article');
-    $this->assertText($label, 'Block was displayed on the node/add/article page.');
-    $this->assertCacheContexts(['languages:language_content', 'languages:language_interface', 'session', 'theme', 'url.path', 'url.query_args', 'user', 'route']);
-
-    // The node/add/article page is an admin path and currently uncacheable.
-    $this->assertSame('UNCACHEABLE', $this->getSession()->getResponseHeader('X-Drupal-Dynamic-Cache'));
-
-    $this->drupalGet('node/' . $node1->id());
-    $this->assertText($label, 'Block was displayed on the node/N when node is of type article.');
-    $this->assertCacheContexts(['languages:language_content', 'languages:language_interface', 'theme', 'url.query_args:' . MainContentViewSubscriber::WRAPPER_FORMAT, 'url.site', 'user', 'route', 'timezone']);
-    $this->assertSame('MISS', $this->getSession()->getResponseHeader('X-Drupal-Dynamic-Cache'));
-    $this->drupalGet('node/' . $node1->id());
-    $this->assertSame('HIT', $this->getSession()->getResponseHeader('X-Drupal-Dynamic-Cache'));
-
-    $this->drupalGet('node/' . $node5->id());
-    $this->assertNoText($label, 'Block was not displayed on nodes of type page.');
-    $this->assertCacheContexts(['languages:language_content', 'languages:language_interface', 'theme', 'url.query_args:' . MainContentViewSubscriber::WRAPPER_FORMAT, 'url.site', 'user', 'route', 'timezone']);
-    $this->assertSame('MISS', $this->getSession()->getResponseHeader('X-Drupal-Dynamic-Cache'));
-    $this->drupalGet('node/' . $node5->id());
-    $this->assertSame('HIT', $this->getSession()->getResponseHeader('X-Drupal-Dynamic-Cache'));
-
-    $this->drupalLogin($this->adminUser);
-    $this->drupalGet('admin/structure/block');
-    $this->assertText($label, 'Block was displayed on the admin/structure/block page.');
-    $this->assertLinkByHref($block->toUrl()->toString());
-=======
     $this->assertSession()->responseHeaderEquals('X-Drupal-Dynamic-Cache', 'HIT');
 
     $this->drupalGet('node/add/article');
@@ -306,7 +230,6 @@ class NodeBlockFunctionalTest extends NodeTestBase {
     // Check that block is displayed on the admin/structure/block page.
     $this->assertSession()->pageTextContains($label);
     $this->assertSession()->linkByHrefExists($block->toUrl()->toString());
->>>>>>> dev
   }
 
 }

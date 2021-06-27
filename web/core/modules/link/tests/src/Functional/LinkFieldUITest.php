@@ -5,11 +5,6 @@ namespace Drupal\Tests\link\Functional;
 use Drupal\Core\Url;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
-<<<<<<< HEAD
-use Drupal\field\Entity\FieldConfig;
-use Drupal\field\Entity\FieldStorageConfig;
-=======
->>>>>>> dev
 use Drupal\link\LinkItemInterface;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
@@ -28,11 +23,7 @@ class LinkFieldUITest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'link', 'field_ui', 'block'];
-=======
   protected static $modules = ['node', 'link', 'field_ui', 'block'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -54,53 +45,26 @@ class LinkFieldUITest extends BrowserTestBase {
   protected $helpTextUser;
 
   /**
-<<<<<<< HEAD
-   * The first content type to add fields to.
-   *
-   * @var \Drupal\node\Entity\NodeType
-   */
-  protected $firstContentType;
-
-  /**
-   * The second content type to add fields to.
-   *
-   * @var \Drupal\node\Entity\NodeType
-   */
-  protected $secondContentType;
-=======
    * The content type to add fields to.
    *
    * @var \Drupal\node\Entity\NodeType
    */
   protected $contentType;
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-    parent::setUp();
-
-    $this->firstContentType = $this->drupalCreateContentType();
-    $this->secondContentType = $this->drupalCreateContentType();
-=======
   protected function setUp(): void {
     parent::setUp();
 
     $this->contentType = $this->drupalCreateContentType();
->>>>>>> dev
     $this->adminUser = $this->drupalCreateUser([
       'administer content types',
       'administer node fields',
       'administer node display',
     ]);
     $this->helpTextUser = $this->drupalCreateUser([
-<<<<<<< HEAD
-      'create ' . $this->secondContentType->id() . ' content',
-=======
       'create ' . $this->contentType->id() . ' content',
->>>>>>> dev
     ]);
     $this->drupalPlaceBlock('system_breadcrumb_block');
   }
@@ -110,13 +74,8 @@ class LinkFieldUITest extends BrowserTestBase {
    */
   public function testFieldUI() {
     foreach ($this->providerTestFieldUI() as $item) {
-<<<<<<< HEAD
-      list($cardinality, $link_type, $title, $label, $field_name) = $item;
-      $this->runFieldUIItem($cardinality, $link_type, $title, $label, $field_name);
-=======
       list($cardinality, $link_type, $title, $label, $field_name, $default_uri) = $item;
       $this->runFieldUIItem($cardinality, $link_type, $title, $label, $field_name, $default_uri);
->>>>>>> dev
     }
   }
 
@@ -135,24 +94,14 @@ class LinkFieldUITest extends BrowserTestBase {
       DRUPAL_OPTIONAL,
     ];
     $link_types = [
-<<<<<<< HEAD
-      LinkItemInterface::LINK_EXTERNAL,
-      LinkItemInterface::LINK_GENERIC,
-      LinkItemInterface::LINK_INTERNAL,
-=======
       LinkItemInterface::LINK_EXTERNAL => 'http://drupal.org',
       LinkItemInterface::LINK_GENERIC => '',
       LinkItemInterface::LINK_INTERNAL => '<front>',
->>>>>>> dev
     ];
 
     // Test all variations of link types on all cardinalities.
     foreach ($cardinalities as $cardinality) {
-<<<<<<< HEAD
-      foreach ($link_types as $link_type) {
-=======
       foreach ($link_types as $link_type => $default_uri) {
->>>>>>> dev
         // Now, test this with both the title enabled and disabled.
         foreach ($title_settings as $title_setting) {
           // Test both empty and non-empty labels.
@@ -176,10 +125,7 @@ class LinkFieldUITest extends BrowserTestBase {
               $title_setting,
               $label_provided ? $label : '',
               $id,
-<<<<<<< HEAD
-=======
               $default_uri,
->>>>>>> dev
             ];
           }
         }
@@ -200,21 +146,6 @@ class LinkFieldUITest extends BrowserTestBase {
    *   The field label.
    * @param string $field_name
    *   The unique machine name for the field.
-<<<<<<< HEAD
-   */
-  public function runFieldUIItem($cardinality, $link_type, $title, $label, $field_name) {
-    $this->drupalLogin($this->adminUser);
-    $type_path = 'admin/structure/types/manage/' . $this->firstContentType->id();
-
-    // Add a link field to the newly-created type. It defaults to allowing both
-    // internal and external links.
-    $field_label = str_replace('_', ' ', $field_name);
-    $description = 'link field description';
-    $field_edit = [
-      'description' => $description,
-    ];
-    $this->fieldUIAddNewField($type_path, $field_name, $field_label, 'link', [], $field_edit);
-=======
    * @param string $default_uri
    *   The default URI value.
    */
@@ -236,41 +167,15 @@ class LinkFieldUITest extends BrowserTestBase {
       'cardinality_number' => $cardinality,
     ];
     $this->fieldUIAddNewField($type_path, $field_name, $label, 'link', $storage_edit, $field_edit);
->>>>>>> dev
 
     // Load the formatter page to check that the settings summary does not
     // generate warnings.
     // @todo Mess with the formatter settings a bit here.
     $this->drupalGet("$type_path/display");
-<<<<<<< HEAD
-    $this->assertText(t('Link text trimmed to @limit characters', ['@limit' => 80]));
-
-    $storage = FieldStorageConfig::create([
-      'field_name' => $field_name,
-      'entity_type' => 'node',
-      'type' => 'link',
-      'cardinality' => $cardinality,
-    ]);
-    $storage->save();
-
-    FieldConfig::create([
-      'field_storage' => $storage,
-      'label' => $label,
-      'bundle' => $this->secondContentType->id(),
-      'settings' => [
-        'title' => $title,
-        'link_type' => $link_type,
-      ],
-    ])->save();
-
-    // Make the fields visible in the form display.
-    $form_display_id = implode('.', ['node', $this->secondContentType->id(), 'default']);
-=======
     $this->assertSession()->pageTextContains('Link text trimmed to 80 characters');
 
     // Make the fields visible in the form display.
     $form_display_id = implode('.', ['node', $this->contentType->id(), 'default']);
->>>>>>> dev
     $form_display = EntityFormDisplay::load($form_display_id);
     $form_display->setComponent($field_name, ['region' => 'content']);
     $form_display->save();
@@ -279,11 +184,7 @@ class LinkFieldUITest extends BrowserTestBase {
     // the user can see the expected help text.
     $this->drupalLogin($this->helpTextUser);
 
-<<<<<<< HEAD
-    $add_path = 'node/add/' . $this->secondContentType->id();
-=======
     $add_path = 'node/add/' . $this->contentType->id();
->>>>>>> dev
     $this->drupalGet($add_path);
 
     $expected_help_texts = [
@@ -305,12 +206,9 @@ class LinkFieldUITest extends BrowserTestBase {
     if (!empty($label)) {
       $this->assertFieldContainsRawText($field_name, $label);
     }
-<<<<<<< HEAD
-=======
 
     // Test the default field value is used as expected.
     $this->assertSession()->fieldValueEquals('field_' . $field_name . '[0][uri]', $default_uri);
->>>>>>> dev
   }
 
   /**
@@ -347,11 +245,7 @@ class LinkFieldUITest extends BrowserTestBase {
    *   The raw HTML.
    */
   protected function getFieldHtml($field_name) {
-<<<<<<< HEAD
-    $css_id = Html::cleanCssIdentifier('edit-' . $field_name . '-wrapper');
-=======
     $css_id = Html::cleanCssIdentifier('edit-field-' . $field_name . '-wrapper');
->>>>>>> dev
     return $this->xpath('//*[@id=:id]', [':id' => $css_id])[0]->getHtml();
   }
 

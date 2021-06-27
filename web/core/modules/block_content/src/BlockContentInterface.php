@@ -14,20 +14,6 @@ use Drupal\Core\Entity\RevisionLogInterface;
 interface BlockContentInterface extends ContentEntityInterface, EntityChangedInterface, RevisionLogInterface, EntityPublishedInterface, RefinableDependentAccessInterface {
 
   /**
-<<<<<<< HEAD
-   * Returns the block revision log message.
-   *
-   * @return string
-   *   The revision log message.
-   *
-   * @deprecated in drupal:8.2.0 and is removed from drupal:9.0.0. Use
-   *   \Drupal\Core\Entity\RevisionLogInterface::getRevisionLogMessage() instead.
-   */
-  public function getRevisionLog();
-
-  /**
-=======
->>>>>>> dev
    * Sets the block description.
    *
    * @param string $info
@@ -39,23 +25,6 @@ interface BlockContentInterface extends ContentEntityInterface, EntityChangedInt
   public function setInfo($info);
 
   /**
-<<<<<<< HEAD
-   * Sets the block revision log message.
-   *
-   * @param string $revision_log
-   *   The revision log message.
-   *
-   * @return $this
-   *   The class instance that this method is called on.
-   *
-   * @deprecated in drupal:8.2.0 and is removed from drupal:9.0.0. Use
-   *   \Drupal\Core\Entity\RevisionLogInterface::setRevisionLogMessage() instead.
-   */
-  public function setRevisionLog($revision_log);
-
-  /**
-=======
->>>>>>> dev
    * Determines if the block is reusable or not.
    *
    * @return bool

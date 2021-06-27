@@ -4,10 +4,7 @@ namespace Drupal\Core\Test;
 
 use Drupal\Core\DrupalKernel;
 use Drupal\Core\Extension\Extension;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Extension\ExtensionDiscovery;
->>>>>>> dev
 use Drupal\Core\Site\Settings;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -39,14 +36,6 @@ class TestRunnerKernel extends DrupalKernel {
     //   DateFormatter::formatInterval() cause a plugin not found exception.
     $this->moduleList = [
       'system' => 0,
-<<<<<<< HEAD
-      'simpletest' => 0,
-    ];
-    $this->moduleData = [
-      'system' => new Extension($this->root, 'module', 'core/modules/system/system.info.yml', 'system.module'),
-      'simpletest' => new Extension($this->root, 'module', 'core/modules/simpletest/simpletest.info.yml', 'simpletest.module'),
-    ];
-=======
     ];
     $this->moduleData = [
       'system' => new Extension($this->root, 'module', 'core/modules/system/system.info.yml', 'system.module'),
@@ -58,7 +47,6 @@ class TestRunnerKernel extends DrupalKernel {
       $this->moduleList['simpletest'] = 0;
       $this->moduleData['simpletest'] = $extensions['simpletest'];
     }
->>>>>>> dev
   }
 
   /**
@@ -89,11 +77,7 @@ class TestRunnerKernel extends DrupalKernel {
     $this->getContainer()->get('module_handler')->loadAll();
 
     $test_discovery = new TestDiscovery(
-<<<<<<< HEAD
-      $this->getContainer()->get('app.root'),
-=======
       $this->getContainer()->getParameter('app.root'),
->>>>>>> dev
       $this->getContainer()->get('class_loader')
     );
     $test_discovery->registerTestNamespaces();

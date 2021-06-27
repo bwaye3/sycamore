@@ -53,11 +53,7 @@ class BlockAccessControlHandler extends EntityAccessControlHandler implements En
   }
 
   /**
-<<<<<<< HEAD
-   * Constructs the block access control handler instance
-=======
    * Constructs the block access control handler instance.
->>>>>>> dev
    *
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
    *   The entity type definition.

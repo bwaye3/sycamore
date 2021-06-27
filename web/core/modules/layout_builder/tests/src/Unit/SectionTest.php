@@ -2,13 +2,10 @@
 
 namespace Drupal\Tests\layout_builder\Unit;
 
-<<<<<<< HEAD
-=======
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Layout\LayoutInterface;
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
 use Drupal\Core\Plugin\Context\ContextHandlerInterface;
->>>>>>> dev
 use Drupal\layout_builder\Section;
 use Drupal\layout_builder\SectionComponent;
 use Drupal\Tests\UnitTestCase;
@@ -29,11 +26,7 @@ class SectionTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->section = new Section(
@@ -373,8 +366,6 @@ class SectionTest extends UnitTestCase {
     $this->assertSame(['bad_judgement'], $this->section->getThirdPartyProviders());
   }
 
-<<<<<<< HEAD
-=======
   /**
    * @covers ::getLayout
    * @dataProvider providerTestGetLayout
@@ -411,5 +402,4 @@ class SectionTest extends UnitTestCase {
     return $data;
   }
 
->>>>>>> dev
 }

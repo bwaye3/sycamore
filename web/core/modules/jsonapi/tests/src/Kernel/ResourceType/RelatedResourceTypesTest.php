@@ -4,10 +4,7 @@ namespace Drupal\Tests\jsonapi\Kernel\ResourceType;
 
 use Drupal\Tests\jsonapi\Kernel\JsonapiKernelTestBase;
 use Drupal\node\Entity\NodeType;
-<<<<<<< HEAD
-=======
 use PHPUnit\Framework\Error\Warning;
->>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\jsonapi\ResourceType\ResourceType
@@ -21,11 +18,7 @@ class RelatedResourceTypesTest extends JsonapiKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'node',
     'jsonapi',
     'serialization',
@@ -58,11 +51,7 @@ class RelatedResourceTypesTest extends JsonapiKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     // Add the entity schemas.
     $this->installEntitySchema('node');
@@ -146,11 +135,7 @@ class RelatedResourceTypesTest extends JsonapiKernelTestBase {
       }
     }
 
-<<<<<<< HEAD
-    $this->assertArraySubset($relatable_type_names, $subjects);
-=======
     $this->assertEquals($relatable_type_names, $subjects);
->>>>>>> dev
   }
 
   /**
@@ -195,8 +180,6 @@ class RelatedResourceTypesTest extends JsonapiKernelTestBase {
     ];
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Ensure a graceful failure when a field can references a missing bundle.
    *
@@ -228,5 +211,4 @@ class RelatedResourceTypesTest extends JsonapiKernelTestBase {
     }
   }
 
->>>>>>> dev
 }

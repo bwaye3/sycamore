@@ -1722,13 +1722,8 @@ class ViewExecutable {
     // Find out which other displays attach to the current one.
     foreach ($this->display_handler->getAttachedDisplays() as $id) {
       $display_handler = $this->displayHandlers->get($id);
-<<<<<<< HEAD
-      // Only attach enabled attachments.
-      if ($display_handler->isEnabled()) {
-=======
       // Only attach enabled attachments that the user has access to.
       if ($display_handler->isEnabled() && $display_handler->access()) {
->>>>>>> dev
         $cloned_view = Views::executableFactory()->get($this->storage);
         $display_handler->attachTo($cloned_view, $this->current_display, $this->element);
       }
@@ -1853,11 +1848,7 @@ class ViewExecutable {
   /**
    * Overrides the view's current title.
    *
-<<<<<<< HEAD
-   * The tokens in the title get's replaced before rendering.
-=======
    * The tokens in the title gets replaced before rendering.
->>>>>>> dev
    *
    * @return true
    *   Always returns TRUE.
@@ -2219,11 +2210,7 @@ class ViewExecutable {
   }
 
   /**
-<<<<<<< HEAD
-   * Generates a unique ID for an handler instance.
-=======
    * Generates a unique ID for a handler instance.
->>>>>>> dev
    *
    * These handler instances are typically fields, filters, sort criteria, or
    * arguments.

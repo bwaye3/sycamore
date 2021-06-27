@@ -2,10 +2,6 @@
 
 namespace Drupal\views;
 
-<<<<<<< HEAD
-use Drupal\Core\Database\Query\Condition;
-=======
->>>>>>> dev
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\Plugin\views\HandlerBase;
 
@@ -43,17 +39,11 @@ class ManyToOneHelper {
   }
 
   /**
-<<<<<<< HEAD
-   * Sometimes the handler might want us to use some kind of formula, so give
-   * it that option. If it wants us to do this, it must set $helper->formula = TRUE
-   * and implement handler->getFormula();
-=======
    * Get the field via formula or build it using alias and field name.
    *
    * Sometimes the handler might want us to use some kind of formula, so give
    * it that option. If it wants us to do this, it must set $helper->formula = TRUE
    * and implement handler->getFormula().
->>>>>>> dev
    */
   public function getField() {
     if (!empty($this->formula)) {
@@ -338,11 +328,7 @@ class ManyToOneHelper {
 
     if ($add_condition) {
       $field = $this->handler->realField;
-<<<<<<< HEAD
-      $clause = $operator == 'or' ? new Condition('OR') : new Condition('AND');
-=======
       $clause = $operator == 'or' ? $this->handler->query->getConnection()->condition('OR') : $this->handler->query->getConnection()->condition('AND');
->>>>>>> dev
       foreach ($this->handler->tableAliases as $value => $alias) {
         $clause->condition("$alias.$field", $value);
       }

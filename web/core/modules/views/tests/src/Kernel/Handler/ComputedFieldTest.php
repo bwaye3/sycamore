@@ -26,31 +26,19 @@ class ComputedFieldTest extends ViewsKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['entity_test'];
-=======
   protected static $modules = ['entity_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->installEntitySchema('entity_test_computed_field');
   }
 
   /**
-<<<<<<< HEAD
-   * Test the computed field handler.
-=======
    * Tests the computed field handler.
->>>>>>> dev
    */
   public function testComputedFieldHandler() {
     \Drupal::state()->set('entity_test_computed_field_item_list_value', ['computed string']);

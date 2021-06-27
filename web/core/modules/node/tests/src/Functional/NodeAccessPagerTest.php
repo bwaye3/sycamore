@@ -21,22 +21,14 @@ class NodeAccessPagerTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node_access_test', 'comment', 'forum'];
-=======
   protected static $modules = ['node_access_test', 'comment', 'forum'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     node_access_rebuild();
@@ -76,13 +68,8 @@ class NodeAccessPagerTest extends BrowserTestBase {
     // View the node page. With the default 50 comments per page there should
     // be two pages (0, 1) but no third (2) page.
     $this->drupalGet('node/' . $node->id());
-<<<<<<< HEAD
-    $this->assertText($node->label());
-    $this->assertText(t('Comments'));
-=======
     $this->assertSession()->pageTextContains($node->label());
     $this->assertSession()->pageTextContains('Comments');
->>>>>>> dev
     $this->assertRaw('page=1');
     $this->assertNoRaw('page=2');
   }

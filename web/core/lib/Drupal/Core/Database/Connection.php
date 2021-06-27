@@ -2,9 +2,6 @@
 
 namespace Drupal\Core\Database;
 
-<<<<<<< HEAD
-use Drupal\Core\Database\Query\Condition;
-=======
 use Drupal\Component\Assertion\Inspector;
 use Drupal\Core\Database\Query\Condition;
 use Drupal\Core\Database\Query\Delete;
@@ -15,7 +12,6 @@ use Drupal\Core\Database\Query\Truncate;
 use Drupal\Core\Database\Query\Update;
 use Drupal\Core\Database\Query\Upsert;
 use Drupal\Core\Pager\PagerManagerInterface;
->>>>>>> dev
 
 /**
  * Base Database API class.
@@ -78,32 +74,21 @@ abstract class Connection {
    * The name of the Statement class for this connection.
    *
    * @var string
-<<<<<<< HEAD
-=======
    *
    * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Database
    *   drivers should use or extend StatementWrapper instead, and encapsulate
    *   client-level statement objects.
    *
    * @see https://www.drupal.org/node/3177488
->>>>>>> dev
    */
   protected $statementClass = 'Drupal\Core\Database\Statement';
 
   /**
-<<<<<<< HEAD
-   * Whether this database connection supports transactions.
-   *
-   * @var bool
-   */
-  protected $transactionSupport = TRUE;
-=======
    * The name of the StatementWrapper class for this connection.
    *
    * @var string
    */
   protected $statementWrapperClass = NULL;
->>>>>>> dev
 
   /**
    * Whether this database connection supports transactional DDL.
@@ -176,21 +161,16 @@ abstract class Connection {
    * List of escaped database, table, and field names, keyed by unescaped names.
    *
    * @var array
-<<<<<<< HEAD
-=======
    *
    * @deprecated in drupal:9.0.0 and is removed from drupal:10.0.0. This is no
    *   longer used. Use \Drupal\Core\Database\Connection::$escapedTables or
    *   \Drupal\Core\Database\Connection::$escapedFields instead.
    *
    * @see https://www.drupal.org/node/2986894
->>>>>>> dev
    */
   protected $escapedNames = [];
 
   /**
-<<<<<<< HEAD
-=======
    * List of escaped table names, keyed by unescaped names.
    *
    * @var array
@@ -208,7 +188,6 @@ abstract class Connection {
   protected $escapedFields = ["" => ""];
 
   /**
->>>>>>> dev
    * List of escaped aliases names, keyed by unescaped aliases.
    *
    * @var array
@@ -223,8 +202,6 @@ abstract class Connection {
   protected $rootTransactionEndCallbacks = [];
 
   /**
-<<<<<<< HEAD
-=======
    * The identifier quote characters for the database type.
    *
    * An array containing the start and end identifier quote characters for the
@@ -236,7 +213,6 @@ abstract class Connection {
   protected $identifierQuotes;
 
   /**
->>>>>>> dev
    * Constructs a Connection object.
    *
    * @param \PDO $connection
@@ -248,8 +224,6 @@ abstract class Connection {
    *   - Other driver-specific options.
    */
   public function __construct(\PDO $connection, array $connection_options) {
-<<<<<<< HEAD
-=======
     if ($this->identifierQuotes === NULL) {
       @trigger_error('In drupal:10.0.0 not setting the $identifierQuotes property in the concrete Connection class will result in an RuntimeException. See https://www.drupal.org/node/2986894', E_USER_DEPRECATED);
       $this->identifierQuotes = ['', ''];
@@ -275,18 +249,13 @@ abstract class Connection {
       @trigger_error('Support for database drivers located in the "drivers/lib/Drupal/Driver/Database" directory is deprecated in drupal:9.1.0 and is removed in drupal:10.0.0. Contributed and custom database drivers should be provided by modules and use the namespace "Drupal\MODULE_NAME\Driver\Database\DRIVER_NAME". See https://www.drupal.org/node/3123251', E_USER_DEPRECATED);
     }
 
->>>>>>> dev
     // Initialize and prepare the connection prefix.
     $this->setPrefix(isset($connection_options['prefix']) ? $connection_options['prefix'] : '');
 
     // Set a Statement class, unless the driver opted out.
-<<<<<<< HEAD
-    if (!empty($this->statementClass)) {
-=======
     // @todo remove this in Drupal 10 https://www.drupal.org/node/3177490
     if (!empty($this->statementClass)) {
       @trigger_error('\Drupal\Core\Database\Connection::$statementClass is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Database drivers should use or extend StatementWrapper instead, and encapsulate client-level statement objects. See https://www.drupal.org/node/3177488', E_USER_DEPRECATED);
->>>>>>> dev
       $connection->setAttribute(\PDO::ATTR_STATEMENT_CLASS, [$this->statementClass, [$this]]);
     }
 
@@ -312,17 +281,6 @@ abstract class Connection {
    * variables. In case of PDO database connection objects, PHP only closes the
    * connection when the PDO object is destructed, so any references to this
    * object may cause the number of maximum allowed connections to be exceeded.
-<<<<<<< HEAD
-   */
-  public function destroy() {
-    // Destroy all references to this connection by setting them to NULL.
-    // The Statement class attribute only accepts a new value that presents a
-    // proper callable, so we reset it to PDOStatement.
-    if (!empty($this->statementClass)) {
-      $this->connection->setAttribute(\PDO::ATTR_STATEMENT_CLASS, ['PDOStatement', []]);
-    }
-    $this->schema = NULL;
-=======
    *
    * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Move custom
    *   database destruction logic to __destruct().
@@ -357,7 +315,6 @@ abstract class Connection {
     // using $this in the call to set the statement class can be garbage
     // collected.
     $this->connection = NULL;
->>>>>>> dev
   }
 
   /**
@@ -390,27 +347,17 @@ abstract class Connection {
    *   - Database::RETURN_NULL: Do not return anything, as there is no
    *     meaningful value to return. That is the case for INSERT queries on
    *     tables that do not contain a serial column.
-<<<<<<< HEAD
-   * - throw_exception: By default, the database system will catch any errors
-   *   on a query as an Exception, log it, and then rethrow it so that code
-   *   further up the call chain can take an appropriate action. To suppress
-   *   that behavior and simply return NULL on failure, set this option to
-   *   FALSE.
-=======
    * - throw_exception: (deprecated) By default, the database system will catch
    *   any errors on a query as an Exception, log it, and then rethrow it so
    *   that code further up the call chain can take an appropriate action. To
    *   suppress that behavior and simply return NULL on failure, set this
    *   option to FALSE.
->>>>>>> dev
    * - allow_delimiter_in_query: By default, queries which have the ; delimiter
    *   any place in them will cause an exception. This reduces the chance of SQL
    *   injection attacks that terminate the original query and add one or more
    *   additional queries (such as inserting new user accounts). In rare cases,
    *   such as creating an SQL function, a ; is needed and can be allowed by
    *   changing this option to TRUE.
-<<<<<<< HEAD
-=======
    * - allow_square_brackets: By default, queries which contain square brackets
    *   will have them replaced with the identifier quote character for the
    *   database type. In rare cases, such as creating an SQL function, []
@@ -421,7 +368,6 @@ abstract class Connection {
    *   PDO driver options on the statement level. In such case, pass the
    *   required setting as an array here, and they will be passed to the
    *   prepared statement. See https://www.php.net/manual/en/pdo.prepare.php.
->>>>>>> dev
    *
    * @return array
    *   An array of default query options.
@@ -430,14 +376,9 @@ abstract class Connection {
     return [
       'fetch' => \PDO::FETCH_OBJ,
       'return' => Database::RETURN_STATEMENT,
-<<<<<<< HEAD
-      'throw_exception' => TRUE,
-      'allow_delimiter_in_query' => FALSE,
-=======
       'allow_delimiter_in_query' => FALSE,
       'allow_square_brackets' => FALSE,
       'pdo' => [],
->>>>>>> dev
     ];
   }
 
@@ -472,10 +413,7 @@ abstract class Connection {
       $this->prefixes = ['default' => $prefix];
     }
 
-<<<<<<< HEAD
-=======
     [$start_quote, $end_quote] = $this->identifierQuotes;
->>>>>>> dev
     // Set up variables for use in prefixTables(). Replace table-specific
     // prefixes first.
     $this->prefixSearch = [];
@@ -483,30 +421,20 @@ abstract class Connection {
     foreach ($this->prefixes as $key => $val) {
       if ($key != 'default') {
         $this->prefixSearch[] = '{' . $key . '}';
-<<<<<<< HEAD
-        $this->prefixReplace[] = $val . $key;
-=======
         // $val can point to another database like 'database.users'. In this
         // instance we need to quote the identifiers correctly.
         $val = str_replace('.', $end_quote . '.' . $start_quote, $val);
         $this->prefixReplace[] = $start_quote . $val . $key . $end_quote;
->>>>>>> dev
       }
     }
     // Then replace remaining tables with the default prefix.
     $this->prefixSearch[] = '{';
-<<<<<<< HEAD
-    $this->prefixReplace[] = $this->prefixes['default'];
-    $this->prefixSearch[] = '}';
-    $this->prefixReplace[] = '';
-=======
     // $this->prefixes['default'] can point to another database like
     // 'other_db.'. In this instance we need to quote the identifiers correctly.
     // For example, "other_db"."PREFIX_table_name".
     $this->prefixReplace[] = $start_quote . str_replace('.', $end_quote . '.' . $start_quote, $this->prefixes['default']);
     $this->prefixSearch[] = '}';
     $this->prefixReplace[] = $end_quote;
->>>>>>> dev
 
     // Set up a map of prefixed => un-prefixed tables.
     foreach ($this->prefixes as $table_name => $prefix) {
@@ -535,8 +463,6 @@ abstract class Connection {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Quotes all identifiers in a query.
    *
    * Queries sent to Drupal should wrap all unquoted identifiers in square
@@ -561,7 +487,6 @@ abstract class Connection {
   }
 
   /**
->>>>>>> dev
    * Find the prefix for a table.
    *
    * This function is for when you want to know the prefix of a table. This
@@ -605,12 +530,6 @@ abstract class Connection {
   }
 
   /**
-<<<<<<< HEAD
-   * Prepares a query string and returns the prepared statement.
-   *
-   * This method caches prepared statements, reusing them when
-   * possible. It also prefixes tables names enclosed in curly-braces.
-=======
    * Returns a prepared statement given a SQL string.
    *
    * This method caches prepared statements, reusing them when possible. It also
@@ -708,21 +627,10 @@ abstract class Connection {
    * This method caches prepared statements, reusing them when possible. It also
    * prefixes tables names enclosed in curly-braces and, optionally, quotes
    * identifiers enclosed in square brackets.
->>>>>>> dev
    *
    * @param $query
    *   The query string as SQL, with curly-braces surrounding the
    *   table names.
-<<<<<<< HEAD
-   *
-   * @return \Drupal\Core\Database\StatementInterface
-   *   A PDO prepared statement ready for its execute() method.
-   */
-  public function prepareQuery($query) {
-    $query = $this->prefixTables($query);
-
-    return $this->connection->prepare($query);
-=======
    * @param bool $quote_identifiers
    *   (optional) Quote any identifiers enclosed in square brackets. Defaults to
    *   TRUE.
@@ -738,7 +646,6 @@ abstract class Connection {
   public function prepareQuery($query, $quote_identifiers = TRUE) {
     @trigger_error('Connection::prepareQuery() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use ::prepareStatement() instead. See https://www.drupal.org/node/3137786', E_USER_DEPRECATED);
     return $this->prepareStatement($query, ['allow_square_brackets' => !$quote_identifiers]);
->>>>>>> dev
   }
 
   /**
@@ -832,14 +739,10 @@ abstract class Connection {
    *   A table prefix-parsed string for the sequence name.
    */
   public function makeSequenceName($table, $field) {
-<<<<<<< HEAD
-    return $this->prefixTables('{' . $table . '}_' . $field . '_seq');
-=======
     $sequence_name = $this->prefixTables('{' . $table . '}_' . $field . '_seq');
     // Remove identifier quotes as we are constructing a new name from a
     // prefixed and quoted table name.
     return str_replace($this->identifierQuotes, '', $sequence_name);
->>>>>>> dev
   }
 
   /**
@@ -908,14 +811,6 @@ abstract class Connection {
    * query. All queries executed by Drupal are executed as PDO prepared
    * statements.
    *
-<<<<<<< HEAD
-   * @param string|\Drupal\Core\Database\StatementInterface $query
-   *   The query to execute. In most cases this will be a string containing
-   *   an SQL query with placeholders. An already-prepared instance of
-   *   StatementInterface may also be passed in order to allow calling
-   *   code to manually bind variables to a query. If a
-   *   StatementInterface is passed, the $args array will be ignored.
-=======
    * @param string|\Drupal\Core\Database\StatementInterface|\PDOStatement $query
    *   The query to execute. This is a string containing an SQL query with
    *   placeholders.
@@ -923,18 +818,11 @@ abstract class Connection {
    *   \PDOStatement may also be passed in order to allow calling code to
    *   manually bind variables to a query. In such cases, the content of the
    *   $args array will be ignored.
->>>>>>> dev
    *   It is extremely rare that module code will need to pass a statement
    *   object to this method. It is used primarily for database drivers for
    *   databases that require special LOB field handling.
    * @param array $args
-<<<<<<< HEAD
-   *   An array of arguments for the prepared statement. If the prepared
-   *   statement uses ? placeholders, this array must be an indexed array.
-   *   If it contains named placeholders, it must be an associative array.
-=======
    *   The associative array of arguments for the prepared statement.
->>>>>>> dev
    * @param array $options
    *   An associative array of options to control how the query is run. The
    *   given options will be merged with self::defaultOptions(). See the
@@ -952,13 +840,7 @@ abstract class Connection {
    *     (not the number matched).
    *   - If $options['return'] === self::RETURN_INSERT_ID,
    *     returns the generated insert ID of the last query as a string.
-<<<<<<< HEAD
-   *   - If either $options['return'] === self::RETURN_NULL, or
-   *     an exception occurs and $options['throw_exception'] evaluates to FALSE,
-   *     returns NULL.
-=======
    *   - If $options['return'] === self::RETURN_NULL, returns NULL.
->>>>>>> dev
    *
    * @throws \Drupal\Core\Database\DatabaseExceptionWrapper
    * @throws \Drupal\Core\Database\IntegrityConstraintViolationException
@@ -969,38 +851,6 @@ abstract class Connection {
   public function query($query, array $args = [], $options = []) {
     // Use default values if not already set.
     $options += $this->defaultOptions();
-<<<<<<< HEAD
-    if (isset($options['target'])) {
-      @trigger_error('Passing a \'target\' key to \\Drupal\\Core\\Database\\Connection::query $options argument is deprecated in drupal:8.0.x and will be removed before drupal:9.0.0. Instead, use \\Drupal\\Core\\Database\\Database::getConnection($target)->query(). See https://www.drupal.org/node/2993033', E_USER_DEPRECATED);
-    }
-
-    try {
-      // We allow either a pre-bound statement object or a literal string.
-      // In either case, we want to end up with an executed statement object,
-      // which we pass to PDOStatement::execute.
-      if ($query instanceof StatementInterface) {
-        $stmt = $query;
-        $stmt->execute(NULL, $options);
-      }
-      else {
-        $this->expandArguments($query, $args);
-        // To protect against SQL injection, Drupal only supports executing one
-        // statement at a time.  Thus, the presence of a SQL delimiter (the
-        // semicolon) is not allowed unless the option is set.  Allowing
-        // semicolons should only be needed for special cases like defining a
-        // function or stored procedure in SQL. Trim any trailing delimiter to
-        // minimize false positives.
-        $trim_chars = "  \t\n\r\0\x0B";
-        if (empty($options['allow_delimiter_in_query'])) {
-          $trim_chars .= ';';
-        }
-        $query = rtrim($query, $trim_chars);
-        if (strpos($query, ';') !== FALSE && empty($options['allow_delimiter_in_query'])) {
-          throw new \InvalidArgumentException('; is not supported in SQL strings. Use only one statement at a time.');
-        }
-        $stmt = $this->prepareQuery($query);
-        $stmt->execute($args, $options);
-=======
     assert(!isset($options['target']), 'Passing "target" option to query() has no effect. See https://www.drupal.org/node/2993033');
 
     // We allow either a pre-bound statement object (deprecated) or a literal
@@ -1028,7 +878,6 @@ abstract class Connection {
       }
       elseif ($query instanceof \PDOStatement) {
         $stmt->execute();
->>>>>>> dev
       }
 
       // Depending on the type of query we may need to return a different value.
@@ -1037,25 +886,6 @@ abstract class Connection {
       switch ($options['return']) {
         case Database::RETURN_STATEMENT:
           return $stmt;
-<<<<<<< HEAD
-        case Database::RETURN_AFFECTED:
-          $stmt->allowRowCount = TRUE;
-          return $stmt->rowCount();
-        case Database::RETURN_INSERT_ID:
-          $sequence_name = isset($options['sequence_name']) ? $options['sequence_name'] : NULL;
-          return $this->connection->lastInsertId($sequence_name);
-        case Database::RETURN_NULL:
-          return NULL;
-        default:
-          throw new \PDOException('Invalid return directive: ' . $options['return']);
-      }
-    }
-    catch (\PDOException $e) {
-      // Most database drivers will return NULL here, but some of them
-      // (e.g. the SQLite driver) may need to re-run the query, so the return
-      // value will be the same as for static::query().
-      return $this->handleQueryException($e, $query, $args, $options);
-=======
 
         case Database::RETURN_AFFECTED:
           $stmt->allowRowCount = TRUE;
@@ -1083,7 +913,6 @@ abstract class Connection {
       else {
         return $this->handleQueryException($e, $query, $args, $options);
       }
->>>>>>> dev
     }
   }
 
@@ -1106,15 +935,6 @@ abstract class Connection {
    *
    * @throws \Drupal\Core\Database\DatabaseExceptionWrapper
    * @throws \Drupal\Core\Database\IntegrityConstraintViolationException
-<<<<<<< HEAD
-   */
-  protected function handleQueryException(\PDOException $e, $query, array $args = [], $options = []) {
-    if ($options['throw_exception']) {
-      // Wrap the exception in another exception, because PHP does not allow
-      // overriding Exception::getMessage(). Its message is the extra database
-      // debug information.
-      $query_string = ($query instanceof StatementInterface) ? $query->getQueryString() : $query;
-=======
    *
    * @deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Get a
    *   handler through $this->exceptionHandler() instead, and use one of its
@@ -1139,7 +959,6 @@ abstract class Connection {
       else {
         $query_string = $query;
       }
->>>>>>> dev
       $message = $e->getMessage() . ": " . $query_string . "; " . print_r($args, TRUE);
       // Match all SQLSTATE 23xxx errors.
       if (substr($e->getCode(), -6, -3) == '23') {
@@ -1232,18 +1051,6 @@ abstract class Connection {
    */
   public function getDriverClass($class) {
     if (empty($this->driverClasses[$class])) {
-<<<<<<< HEAD
-      if (empty($this->connectionOptions['namespace'])) {
-        // Fallback for Drupal 7 settings.php and the test runner script.
-        $this->connectionOptions['namespace'] = (new \ReflectionObject($this))->getNamespaceName();
-      }
-      $driver_class = $this->connectionOptions['namespace'] . '\\' . $class;
-      $this->driverClasses[$class] = class_exists($driver_class) ? $driver_class : $class;
-      if ($this->driverClasses[$class] === 'Condition') {
-        // @todo Deprecate the fallback for contrib and custom drivers in 9.1.x
-        //   in https://www.drupal.org/project/drupal/issues/3120036.
-        $this->driverClasses[$class] = Condition::class;
-=======
       $driver_class = $this->connectionOptions['namespace'] . '\\' . $class;
       if (class_exists($driver_class)) {
         $this->driverClasses[$class] = $driver_class;
@@ -1297,15 +1104,12 @@ abstract class Connection {
           default:
             $this->driverClasses[$class] = $class;
         }
->>>>>>> dev
       }
     }
     return $this->driverClasses[$class];
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Returns the database exceptions handler.
    *
    * @return \Drupal\Core\Database\ExceptionHandler
@@ -1317,7 +1121,6 @@ abstract class Connection {
   }
 
   /**
->>>>>>> dev
    * Prepares and returns a SELECT query object.
    *
    * @param string $table
@@ -1338,11 +1141,7 @@ abstract class Connection {
    */
   public function select($table, $alias = NULL, array $options = []) {
     $class = $this->getDriverClass('Select');
-<<<<<<< HEAD
-    return new $class($table, $alias, $this, $options);
-=======
     return new $class($this, $table, $alias, $options);
->>>>>>> dev
   }
 
   /**
@@ -1491,14 +1290,10 @@ abstract class Connection {
    */
   public function condition($conjunction) {
     $class = $this->getDriverClass('Condition');
-<<<<<<< HEAD
-    return new $class($conjunction);
-=======
     // Creating an instance of the class Drupal\Core\Database\Query\Condition
     // should only be created from the database layer. This will allow database
     // drivers to override the default Condition class.
     return new $class($conjunction, FALSE);
->>>>>>> dev
   }
 
   /**
@@ -1515,44 +1310,24 @@ abstract class Connection {
    *   The sanitized database name.
    */
   public function escapeDatabase($database) {
-<<<<<<< HEAD
-    if (!isset($this->escapedNames[$database])) {
-      $this->escapedNames[$database] = preg_replace('/[^A-Za-z0-9_.]+/', '', $database);
-    }
-    return $this->escapedNames[$database];
-=======
     $database = preg_replace('/[^A-Za-z0-9_]+/', '', $database);
     [$start_quote, $end_quote] = $this->identifierQuotes;
     return $start_quote . $database . $end_quote;
->>>>>>> dev
   }
 
   /**
    * Escapes a table name string.
    *
    * Force all table names to be strictly alphanumeric-plus-underscore.
-<<<<<<< HEAD
-   * For some database drivers, it may also wrap the table name in
-   * database-specific escape characters.
-=======
    * Database drivers should never wrap the table name in database-specific
    * escape characters. This is done in Connection::prefixTables(). The
    * database-specific escape characters are added in Connection::setPrefix().
->>>>>>> dev
    *
    * @param string $table
    *   An unsanitized table name.
    *
    * @return string
    *   The sanitized table name.
-<<<<<<< HEAD
-   */
-  public function escapeTable($table) {
-    if (!isset($this->escapedNames[$table])) {
-      $this->escapedNames[$table] = preg_replace('/[^A-Za-z0-9_.]+/', '', $table);
-    }
-    return $this->escapedNames[$table];
-=======
    *
    * @see \Drupal\Core\Database\Connection::prefixTables()
    * @see \Drupal\Core\Database\Connection::setPrefix()
@@ -1562,7 +1337,6 @@ abstract class Connection {
       $this->escapedTables[$table] = preg_replace('/[^A-Za-z0-9_.]+/', '', $table);
     }
     return $this->escapedTables[$table];
->>>>>>> dev
   }
 
   /**
@@ -1579,12 +1353,6 @@ abstract class Connection {
    *   The sanitized field name.
    */
   public function escapeField($field) {
-<<<<<<< HEAD
-    if (!isset($this->escapedNames[$field])) {
-      $this->escapedNames[$field] = preg_replace('/[^A-Za-z0-9_.]+/', '', $field);
-    }
-    return $this->escapedNames[$field];
-=======
     if (!isset($this->escapedFields[$field])) {
       $escaped = preg_replace('/[^A-Za-z0-9_.]+/', '', $field);
       [$start_quote, $end_quote] = $this->identifierQuotes;
@@ -1593,7 +1361,6 @@ abstract class Connection {
       $this->escapedFields[$field] = $start_quote . str_replace('.', $end_quote . '.' . $start_quote, $escaped) . $end_quote;
     }
     return $this->escapedFields[$field];
->>>>>>> dev
   }
 
   /**
@@ -1612,12 +1379,8 @@ abstract class Connection {
    */
   public function escapeAlias($field) {
     if (!isset($this->escapedAliases[$field])) {
-<<<<<<< HEAD
-      $this->escapedAliases[$field] = preg_replace('/[^A-Za-z0-9_]+/', '', $field);
-=======
       [$start_quote, $end_quote] = $this->identifierQuotes;
       $this->escapedAliases[$field] = $start_quote . preg_replace('/[^A-Za-z0-9_]+/', '', $field) . $end_quote;
->>>>>>> dev
     }
     return $this->escapedAliases[$field];
   }
@@ -1702,12 +1465,6 @@ abstract class Connection {
    * @see \Drupal\Core\Database\Transaction::rollBack()
    */
   public function rollBack($savepoint_name = 'drupal_transaction') {
-<<<<<<< HEAD
-    if (!$this->supportsTransactions()) {
-      return;
-    }
-=======
->>>>>>> dev
     if (!$this->inTransaction()) {
       throw new TransactionNoActiveException();
     }
@@ -1767,12 +1524,6 @@ abstract class Connection {
    * @see \Drupal\Core\Database\Transaction
    */
   public function pushTransaction($name) {
-<<<<<<< HEAD
-    if (!$this->supportsTransactions()) {
-      return;
-    }
-=======
->>>>>>> dev
     if (isset($this->transactionLayers[$name])) {
       throw new TransactionNameNonUniqueException($name . " is already in use.");
     }
@@ -1803,12 +1554,6 @@ abstract class Connection {
    * @see \Drupal\Core\Database\Transaction
    */
   public function popTransaction($name) {
-<<<<<<< HEAD
-    if (!$this->supportsTransactions()) {
-      return;
-    }
-=======
->>>>>>> dev
     // The transaction has already been committed earlier. There is nothing we
     // need to do. If this transaction was part of an earlier out-of-order
     // rollback, an exception would already have been thrown by
@@ -1989,11 +1734,6 @@ abstract class Connection {
    *
    * @return bool
    *   TRUE if this connection supports transactions, FALSE otherwise.
-<<<<<<< HEAD
-   */
-  public function supportsTransactions() {
-    return $this->transactionSupport;
-=======
    *
    * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. All database
    * drivers must support transactions.
@@ -2003,7 +1743,6 @@ abstract class Connection {
   public function supportsTransactions() {
     @trigger_error(__METHOD__ . ' is deprecated in drupal:9.1.0 and is removed in drupal:10.0.0. All database drivers must support transactions. See https://www.drupal.org/node/2278745', E_USER_DEPRECATED);
     return TRUE;
->>>>>>> dev
   }
 
   /**
@@ -2070,11 +1809,7 @@ abstract class Connection {
   }
 
   /**
-<<<<<<< HEAD
-   * Retrieves an unique ID from a given sequence.
-=======
    * Retrieves a unique ID from a given sequence.
->>>>>>> dev
    *
    * Use this function if for some reason you can't use a serial field. For
    * example, MySQL has no ways of reading of the current value of a sequence
@@ -2093,11 +1828,7 @@ abstract class Connection {
   abstract public function nextId($existing_id = 0);
 
   /**
-<<<<<<< HEAD
-   * Prepares a statement for execution and returns a statement object
-=======
    * Prepares a statement for execution and returns a statement object.
->>>>>>> dev
    *
    * Emulated prepared statements do not communicate with the database server so
    * this method does not check the statement.
@@ -2120,12 +1851,6 @@ abstract class Connection {
    *
    * @throws \PDOException
    *
-<<<<<<< HEAD
-   * @see \PDO::prepare()
-   */
-  public function prepare($statement, array $driver_options = []) {
-    return $this->connection->prepare($statement, $driver_options);
-=======
    * @see https://www.php.net/manual/en/pdo.prepare.php
    *
    * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Database
@@ -2140,7 +1865,6 @@ abstract class Connection {
     return $this->statementWrapperClass ?
       (new $this->statementWrapperClass($this, $this->connection, $statement, $driver_options))->getClientStatement() :
       $this->connection->prepare($statement, $driver_options);
->>>>>>> dev
   }
 
   /**
@@ -2229,11 +1953,7 @@ abstract class Connection {
     }
 
     // Use reflection to get the namespace of the class being called.
-<<<<<<< HEAD
-    $reflector = new \ReflectionClass(get_called_class());
-=======
     $reflector = new \ReflectionClass(static::class);
->>>>>>> dev
 
     $database = [
       'driver' => $url_components['scheme'],
@@ -2312,8 +2032,6 @@ abstract class Connection {
     return $db_url;
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Get the module name of the module that is providing the database driver.
    *
@@ -2345,5 +2063,4 @@ abstract class Connection {
     return \Drupal::service('pager.manager');
   }
 
->>>>>>> dev
 }

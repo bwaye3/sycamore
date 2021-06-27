@@ -16,11 +16,7 @@ class MenuTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['system', 'migrate_drupal'];
-=======
   protected static $modules = ['system', 'migrate_drupal'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -45,8 +41,6 @@ class MenuTest extends MigrateSqlSourceTestBase {
     // The expected results are identical to the source data.
     $tests[0]['expected_data'] = $tests[0]['source_data']['menu_custom'];
 
-<<<<<<< HEAD
-=======
     $tests[1] = $tests[0];
     $tests[1]['source_data']['menu_custom'][0] +=
       [
@@ -60,7 +54,6 @@ class MenuTest extends MigrateSqlSourceTestBase {
       ];
     $tests[1]['expected_data'] = $tests[1]['source_data']['menu_custom'];
 
->>>>>>> dev
     return $tests;
   }
 

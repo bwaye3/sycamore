@@ -2,11 +2,8 @@
 
 namespace Drupal\KernelTests\Core\Database;
 
-<<<<<<< HEAD
-=======
 use Drupal\Core\Database\Query\SelectExtender;
 
->>>>>>> dev
 /**
  * Tests the tagging capabilities of the Select builder.
  *
@@ -65,11 +62,7 @@ class TaggingTest extends DatabaseTestBase {
    */
   public function testExtenderHasTag() {
     $query = $this->connection->select('test')
-<<<<<<< HEAD
-      ->extend('Drupal\Core\Database\Query\SelectExtender');
-=======
       ->extend(SelectExtender::class);
->>>>>>> dev
     $query->addField('test', 'name');
     $query->addField('test', 'age', 'age');
 
@@ -84,11 +77,7 @@ class TaggingTest extends DatabaseTestBase {
    */
   public function testExtenderHasAllTags() {
     $query = $this->connection->select('test')
-<<<<<<< HEAD
-      ->extend('Drupal\Core\Database\Query\SelectExtender');
-=======
       ->extend(SelectExtender::class);
->>>>>>> dev
     $query->addField('test', 'name');
     $query->addField('test', 'age', 'age');
 
@@ -100,19 +89,11 @@ class TaggingTest extends DatabaseTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests extended query tagging "has at least one of these tags" functionality.
-   */
-  public function testExtenderHasAnyTag() {
-    $query = $this->connection->select('test')
-      ->extend('Drupal\Core\Database\Query\SelectExtender');
-=======
    * Tests extended query tagging for "has at least one of these tags".
    */
   public function testExtenderHasAnyTag() {
     $query = $this->connection->select('test')
       ->extend(SelectExtender::class);
->>>>>>> dev
     $query->addField('test', 'name');
     $query->addField('test', 'age', 'age');
 
@@ -140,11 +121,7 @@ class TaggingTest extends DatabaseTestBase {
     $query->addMetaData('test', $data);
 
     $return = $query->getMetaData('test');
-<<<<<<< HEAD
-    $this->assertEqual($data, $return, 'Correct metadata returned.');
-=======
     $this->assertEquals($data, $return, 'Correct metadata returned.');
->>>>>>> dev
 
     $return = $query->getMetaData('nothere');
     $this->assertNull($return, 'Non-existent key returned NULL.');

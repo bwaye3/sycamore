@@ -6,10 +6,6 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\entity_test\Entity\EntityTest;
-<<<<<<< HEAD
-use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
-=======
->>>>>>> dev
 use Drupal\user\Entity\User;
 
 /**
@@ -19,19 +15,10 @@ use Drupal\user\Entity\User;
  */
 class EntityTestTest extends ResourceTestBase {
 
-<<<<<<< HEAD
-  use BcTimestampNormalizerUnixTestTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static $modules = ['entity_test'];
-=======
   /**
    * {@inheritdoc}
    */
   protected static $modules = ['entity_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

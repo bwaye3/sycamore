@@ -27,11 +27,7 @@ use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Drupal\Core\Site\Settings;
-<<<<<<< HEAD
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
-=======
 use Drupal\Core\Routing\RouteObjectInterface;
->>>>>>> dev
 use Symfony\Component\Routing\Route;
 
 // Change the directory to the Drupal root.

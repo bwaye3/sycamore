@@ -3,8 +3,4 @@ type: module
 description: 'Logs system events in the database.'
 package: Core
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 configure: system.logging_settings

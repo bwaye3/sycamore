@@ -268,14 +268,10 @@ class DbDumpCommand extends DbCommandBase {
    *   The schema definition to modify.
    */
   protected function getTableCollation(Connection $connection, $table, &$definition) {
-<<<<<<< HEAD
-    $query = $connection->query("SHOW TABLE STATUS LIKE '{" . $table . "}'");
-=======
     // Remove identifier quotes from the table name. See
     // \Drupal\Core\Database\Driver\mysql\Connection::$identifierQuotes.
     $table = trim($connection->prefixTables('{' . $table . '}'), '"');
     $query = $connection->query("SHOW TABLE STATUS WHERE NAME = :table_name", [':table_name' => $table]);
->>>>>>> dev
     $data = $query->fetchAssoc();
 
     // Map the collation to a character set. For example, 'utf8mb4_general_ci'
@@ -338,11 +334,7 @@ class DbDumpCommand extends DbCommandBase {
    * @param string $type
    *   The MySQL field type.
    *
-<<<<<<< HEAD
-   * @return string
-=======
    * @return string|null
->>>>>>> dev
    *   The Drupal schema field size.
    */
   protected function fieldSizeMap(Connection $connection, $type) {
@@ -350,14 +342,11 @@ class DbDumpCommand extends DbCommandBase {
     $map = array_map('strtolower', $connection->schema()->getFieldTypeMap());
     $map = array_flip($map);
 
-<<<<<<< HEAD
-=======
     // Do nothing if the field type is not defined.
     if (!isset($map[$type])) {
       return NULL;
     }
 
->>>>>>> dev
     $schema_type = explode(':', $map[$type])[0];
     // Only specify size on these types.
     if (in_array($schema_type, ['blob', 'float', 'int', 'text'])) {
@@ -410,11 +399,7 @@ class DbDumpCommand extends DbCommandBase {
     // irrelevant.
     $script = <<<'ENDOFSCRIPT'
 <?php
-<<<<<<< HEAD
-// @codingStandardsIgnoreFile
-=======
 // phpcs:ignoreFile
->>>>>>> dev
 /**
  * @file
  * A database agnostic dump for testing purposes.

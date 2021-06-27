@@ -39,22 +39,14 @@ class TermTranslationFieldViewTest extends TaxonomyTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['language', 'content_translation', 'taxonomy'];
-=======
   protected static $modules = ['language', 'content_translation', 'taxonomy'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->setupLanguages();
     $this->vocabulary = $this->createVocabulary();
@@ -73,15 +65,9 @@ class TermTranslationFieldViewTest extends TaxonomyTestBase {
 
     $this->drupalGet($path);
     $this->assertNoText($this->translatedTagName);
-<<<<<<< HEAD
-    $this->assertText($this->baseTagName);
-    $this->drupalGet($translation_path);
-    $this->assertText($this->translatedTagName);
-=======
     $this->assertSession()->pageTextContains($this->baseTagName);
     $this->drupalGet($translation_path);
     $this->assertSession()->pageTextContains($this->translatedTagName);
->>>>>>> dev
     $this->assertNoText($this->baseTagName);
   }
 

@@ -16,11 +16,7 @@ class EntityTestMapFieldTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['entity_test'];
-=======
   protected static $modules = ['entity_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

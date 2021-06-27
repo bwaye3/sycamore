@@ -16,11 +16,7 @@ class SearchExcerptTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['search', 'search_langcode_test'];
-=======
   protected static $modules = ['search', 'search_langcode_test'];
->>>>>>> dev
 
   /**
    * Tests search_excerpt() with several simulated search keywords.
@@ -36,20 +32,6 @@ class SearchExcerptTest extends KernelTestBase {
     $text = 'The <strong>quick</strong> <a href="#">brown</a> fox &amp; jumps <h2>over</h2> the lazy dog';
     $expected = 'The quick brown fox &amp; jumps over the lazy dog';
     $result = $this->doSearchExcerpt('nothing', $text);
-<<<<<<< HEAD
-    $this->assertEqual(preg_replace('| +|', ' ', $result), $expected, 'Entire string, stripped of HTML tags, is returned when keyword is not found in short string');
-
-    $result = $this->doSearchExcerpt('fox', $text);
-    $this->assertEqual($result, 'The quick brown <strong>fox</strong> &amp; jumps over the lazy dog', 'Found keyword is highlighted');
-
-    $expected = '<strong>The</strong> quick brown fox &amp; jumps over <strong>the</strong> lazy dog';
-    $result = $this->doSearchExcerpt('The', $text);
-    $this->assertEqual(preg_replace('| +|', ' ', $result), $expected, 'Keyword is highlighted at beginning of short string');
-
-    $expected = 'The quick brown fox &amp; jumps over the lazy <strong>dog</strong>';
-    $result = $this->doSearchExcerpt('dog', $text);
-    $this->assertEqual(preg_replace('| +|', ' ', $result), $expected, 'Keyword is highlighted at end of short string');
-=======
     $this->assertEquals($expected, preg_replace('| +|', ' ', $result), 'Entire string, stripped of HTML tags, is returned when keyword is not found in short string');
 
     $result = $this->doSearchExcerpt('fox', $text);
@@ -62,16 +44,11 @@ class SearchExcerptTest extends KernelTestBase {
     $expected = 'The quick brown fox &amp; jumps over the lazy <strong>dog</strong>';
     $result = $this->doSearchExcerpt('dog', $text);
     $this->assertEquals($expected, preg_replace('| +|', ' ', $result), 'Keyword is highlighted at end of short string');
->>>>>>> dev
 
     $longtext = str_repeat(str_replace('brown', 'silver', $text) . ' ', 10) . $text . str_repeat(' ' . str_replace('brown', 'pink', $text), 10);
     $result = $this->doSearchExcerpt('brown', $longtext);
     $expected = '… silver fox &amp; jumps over the lazy dog The quick <strong>brown</strong> fox &amp; jumps over the lazy dog The quick …';
-<<<<<<< HEAD
-    $this->assertEqual($result, $expected, 'Snippet around keyword in long text is correctly capped');
-=======
     $this->assertEquals($expected, $result, 'Snippet around keyword in long text is correctly capped');
->>>>>>> dev
 
     $longtext = str_repeat($text . ' ', 10);
     $result = $this->doSearchExcerpt('nothing', $longtext);
@@ -94,25 +71,16 @@ class SearchExcerptTest extends KernelTestBase {
    * Tests search_excerpt() with search keywords matching simplified words.
    *
    * Excerpting should handle keywords that are matched only after going through
-<<<<<<< HEAD
-   * search_simplify(). This test passes keywords that match simplified words
-=======
    * text analysis. This test passes keywords that match simplified words
->>>>>>> dev
    * and compares them with strings that contain the original unsimplified word.
    */
   public function testSearchExcerptSimplified() {
     $start_time = microtime(TRUE);
 
-<<<<<<< HEAD
-    $lorem1 = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae arcu at leo cursus laoreet. Curabitur dui tortor, adipiscing malesuada tempor in, bibendum ac diam. Cras non tellus a libero pellentesque condimentum. What is a Drupalism? Suspendisse ac lacus libero. Ut non est vel nisl faucibus interdum nec sed leo. Pellentesque sem risus, vulputate eu semper eget, auctor in libero.';
-    $lorem2 = 'Ut fermentum est vitae metus convallis scelerisque. Phasellus pellentesque rhoncus tellus, eu dignissim purus posuere id. Quisque eu fringilla ligula. Morbi ullamcorper, lorem et mattis egestas, tortor neque pretium velit, eget eleifend odio turpis eu purus. Donec vitae metus quis leo pretium tincidunt a pulvinar sem. Morbi adipiscing laoreet mauris vel placerat. Nullam elementum, nisl sit amet scelerisque malesuada, dolor nunc hendrerit quam, eu ultrices erat est in orci.';
-=======
     // cSpell:disable
     $lorem1 = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae arcu at leo cursus laoreet. Curabitur dui tortor, adipiscing malesuada tempor in, bibendum ac diam. Cras non tellus a libero pellentesque condimentum. What is a Drupalism? Suspendisse ac lacus libero. Ut non est vel nisl faucibus interdum nec sed leo. Pellentesque sem risus, vulputate eu semper eget, auctor in libero.';
     $lorem2 = 'Ut fermentum est vitae metus convallis scelerisque. Phasellus pellentesque rhoncus tellus, eu dignissim purus posuere id. Quisque eu fringilla ligula. Morbi ullamcorper, lorem et mattis egestas, tortor neque pretium velit, eget eleifend odio turpis eu purus. Donec vitae metus quis leo pretium tincidunt a pulvinar sem. Morbi adipiscing laoreet mauris vel placerat. Nullam elementum, nisl sit amet scelerisque malesuada, dolor nunc hendrerit quam, eu ultrices erat est in orci.';
     // cSpell:enable
->>>>>>> dev
 
     // Make some text with some keywords that will get simplified.
     $text = $lorem1 . ' Number: 123456.7890 Hyphenated: one-two abc,def ' . $lorem2;
@@ -205,11 +173,6 @@ class SearchExcerptTest extends KernelTestBase {
     $text = str_repeat($lorem3, 20) . ' ' . $lorem1;
     $result = $this->doSearchExcerpt('Lìbêró', $text);
     $this->assertStringContainsString('<strong>libero</strong>', $result, 'Search excerpt works with caps and accents in longer text with whitespace');
-<<<<<<< HEAD
-
-    $this->verbose('Elapsed time: ' . (microtime(TRUE) - $start_time));
-=======
->>>>>>> dev
   }
 
   /**

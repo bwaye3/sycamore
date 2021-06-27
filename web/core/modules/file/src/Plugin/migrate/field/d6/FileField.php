@@ -6,11 +6,8 @@ use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Row;
 use Drupal\migrate_drupal\Plugin\migrate\field\FieldPluginBase;
 
-<<<<<<< HEAD
-=======
 // cspell:ignore imagefield imagelink
 
->>>>>>> dev
 /**
  * @MigrateField(
  *   id = "filefield",

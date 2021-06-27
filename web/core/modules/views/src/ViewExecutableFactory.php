@@ -40,11 +40,7 @@ class ViewExecutableFactory {
   protected $routeProvider;
 
   /**
-<<<<<<< HEAD
-   * Constructs a new ViewExecutableFactory
-=======
    * Constructs a new ViewExecutableFactory.
->>>>>>> dev
    *
    * @param \Drupal\Core\Session\AccountInterface $user
    *   The current user.
@@ -72,15 +68,9 @@ class ViewExecutableFactory {
    *   A ViewExecutable instance.
    */
   public function get(ViewEntityInterface $view) {
-<<<<<<< HEAD
-    $view = new ViewExecutable($view, $this->user, $this->viewsData, $this->routeProvider);
-    $view->setRequest($this->requestStack->getCurrentRequest());
-    return $view;
-=======
     $view_executable = new ViewExecutable($view, $this->user, $this->viewsData, $this->routeProvider);
     $view_executable->setRequest($this->requestStack->getCurrentRequest());
     return $view_executable;
->>>>>>> dev
   }
 
 }

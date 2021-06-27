@@ -29,13 +29,8 @@ class BlockContentTypeListBuilder extends ConfigEntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-<<<<<<< HEAD
-    $header['type'] = t('Block type');
-    $header['description'] = t('Description');
-=======
     $header['type'] = $this->t('Block type');
     $header['description'] = $this->t('Description');
->>>>>>> dev
     return $header + parent::buildHeader();
   }
 

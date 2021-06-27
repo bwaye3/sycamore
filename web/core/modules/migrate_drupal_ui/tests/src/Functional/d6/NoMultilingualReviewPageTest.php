@@ -12,22 +12,13 @@ use Drupal\Tests\migrate_drupal_ui\Functional\NoMultilingualReviewPageTestBase;
  *
  * @group migrate_drupal_6
  * @group migrate_drupal_ui
-<<<<<<< HEAD
- *
- * @group legacy
-=======
->>>>>>> dev
  */
 class NoMultilingualReviewPageTest extends NoMultilingualReviewPageTestBase {
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'language',
     'telephone',
     'aggregator',
@@ -40,21 +31,12 @@ class NoMultilingualReviewPageTest extends NoMultilingualReviewPageTestBase {
     // Test migrations states.
     'migrate_state_finished_test',
     'migrate_state_not_finished_test',
-<<<<<<< HEAD
-    // Test missing migrate_drupal.yml.
-    'migrate_state_no_file_test',
-=======
->>>>>>> dev
   ];
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->loadFixture(drupal_get_path('module', 'migrate_drupal') . '/tests/fixtures/drupal6.php');
   }
@@ -71,79 +53,6 @@ class NoMultilingualReviewPageTest extends NoMultilingualReviewPageTestBase {
    */
   protected function getAvailablePaths() {
     return [
-<<<<<<< HEAD
-      'aggregator',
-      'blog',
-      'blogapi',
-      'book',
-      'calendarsignup',
-      'color',
-      'comment',
-      'contact',
-      'content',
-      'content_copy',
-      'content_multigroup',
-      'content_permissions',
-      'date',
-      'date_api',
-      'date_locale',
-      'date_php4',
-      'date_popup',
-      'date_repeat',
-      'date_timezone',
-      'date_tools',
-      'datepicker',
-      'dblog',
-      'ddblock',
-      'email',
-      'event',
-      'fieldgroup',
-      'filefield',
-      'filefield_meta',
-      'filter',
-      'forum',
-      'help',
-      'imageapi',
-      'imageapi_gd',
-      'imageapi_imagemagick',
-      'imagecache',
-      'imagecache_ui',
-      'imagefield',
-      'jquery_ui',
-      'link',
-      'locale',
-      'menu',
-      'node',
-      'nodeaccess',
-      'nodereference',
-      'number',
-      'openid',
-      'optionwidgets',
-      'path',
-      'phone',
-      'php',
-      'ping',
-      'poll',
-      'profile',
-      'search',
-      'statistics',
-      'syslog',
-      'system',
-      'taxonomy',
-      'text',
-      'throttle',
-      'tracker',
-      'translation',
-      'trigger',
-      'update',
-      'upload',
-      'user',
-      'userreference',
-      'variable',
-      'variable_admin',
-      'views_export',
-      'views_ui',
-=======
       'Aggregator',
       'Blog',
       'Blog API',
@@ -215,7 +124,6 @@ class NoMultilingualReviewPageTest extends NoMultilingualReviewPageTestBase {
       'Views UI',
       'Views exporter',
       'jQuery UI',
->>>>>>> dev
     ];
   }
 
@@ -232,25 +140,6 @@ class NoMultilingualReviewPageTest extends NoMultilingualReviewPageTestBase {
   protected function getMissingPaths() {
     return [
       // Block is set not_finished in migrate_state_not_finished_test.
-<<<<<<< HEAD
-      'block',
-      'devel',
-      'devel_generate',
-      'devel_node_access',
-      'i18n',
-      'i18nblocks',
-      'i18ncck',
-      'i18ncontent',
-      'i18nmenu',
-      'i18npoll',
-      'i18nprofile',
-      'i18nstrings',
-      'i18nsync',
-      'i18ntaxonomy',
-      'i18nviews',
-      'migrate_status_active_test',
-      'views',
-=======
       'Block',
       'Block translation',
       'CCK translation',
@@ -268,7 +157,6 @@ class NoMultilingualReviewPageTest extends NoMultilingualReviewPageTestBase {
       'Taxonomy translation',
       'Views',
       'Views translation',
->>>>>>> dev
     ];
   }
 

@@ -21,11 +21,7 @@ class VocabularySerializationTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['taxonomy', 'vocabulary_serialization_test'];
-=======
   protected static $modules = ['taxonomy', 'vocabulary_serialization_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -35,11 +31,7 @@ class VocabularySerializationTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setUp() {
-=======
   public function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     Vocabulary::create(['vid' => 'test'])->save();

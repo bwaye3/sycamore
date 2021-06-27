@@ -13,11 +13,7 @@
  * @ignore
  */
 
-<<<<<<< HEAD
-(function($, Drupal, CKEDITOR) {
-=======
 (function ($, Drupal, CKEDITOR) {
->>>>>>> dev
   /**
    * Gets the focused widget, if of the type specific for this plugin.
    *
@@ -54,11 +50,7 @@
     CKEDITOR.plugins.drupallink.registerLinkableWidget('image');
 
     // Override default behavior of 'drupalunlink' command.
-<<<<<<< HEAD
-    editor.getCommand('drupalunlink').on('exec', function(evt) {
-=======
     editor.getCommand('drupalunlink').on('exec', function (evt) {
->>>>>>> dev
       const widget = getFocusedWidget(editor);
 
       // Override 'drupalunlink' only when link truly belongs to the widget. If
@@ -79,11 +71,7 @@
     });
 
     // Override default refresh of 'drupalunlink' command.
-<<<<<<< HEAD
-    editor.getCommand('drupalunlink').on('refresh', function(evt) {
-=======
     editor.getCommand('drupalunlink').on('refresh', function (evt) {
->>>>>>> dev
       const widget = getFocusedWidget(editor);
 
       if (!widget) {
@@ -110,11 +98,7 @@
     beforeInit(editor) {
       // Override the image2 widget definition to require and handle the
       // additional data-entity-type and data-entity-uuid attributes.
-<<<<<<< HEAD
-      editor.on('widgetDefinition', event => {
-=======
       editor.on('widgetDefinition', (event) => {
->>>>>>> dev
         const widgetDefinition = event.data;
         if (widgetDefinition.name !== 'image') {
           return;
@@ -157,12 +141,8 @@
         // CKEDITOR.style is an immutable object: we cannot modify its
         // definition to extend requiredContent. Hence we get the definition,
         // modify it, and pass it to a new CKEDITOR.style instance.
-<<<<<<< HEAD
-        const requiredContent = widgetDefinition.requiredContent.getDefinition();
-=======
         const requiredContent =
           widgetDefinition.requiredContent.getDefinition();
->>>>>>> dev
         requiredContent.attributes['data-entity-type'] = '';
         requiredContent.attributes['data-entity-uuid'] = '';
         widgetDefinition.requiredContent = new CKEDITOR.style(requiredContent);
@@ -176,31 +156,17 @@
         // Override downcast(): since we only accept <img> in our upcast method,
         // the element is already correct. We only need to update the element's
         // data-entity-uuid attribute.
-<<<<<<< HEAD
-        widgetDefinition.downcast = function(element) {
-          element.attributes['data-entity-type'] = this.data[
-            'data-entity-type'
-          ];
-          element.attributes['data-entity-uuid'] = this.data[
-            'data-entity-uuid'
-          ];
-=======
         widgetDefinition.downcast = function (element) {
           element.attributes['data-entity-type'] =
             this.data['data-entity-type'];
           element.attributes['data-entity-uuid'] =
             this.data['data-entity-uuid'];
->>>>>>> dev
         };
 
         // We want to upcast <img> elements to a DOM structure required by the
         // image2 widget; we only accept an <img> tag, and that <img> tag MAY
         // have a data-entity-type and a data-entity-uuid attribute.
-<<<<<<< HEAD
-        widgetDefinition.upcast = function(element, data) {
-=======
         widgetDefinition.upcast = function (element, data) {
->>>>>>> dev
           if (element.name !== 'img') {
             return;
           }
@@ -228,11 +194,7 @@
         // @see http://dev.ckeditor.com/ticket/13888
         // @see https://www.drupal.org/node/2268941
         const originalGetClasses = widgetDefinition.getClasses;
-<<<<<<< HEAD
-        widgetDefinition.getClasses = function() {
-=======
         widgetDefinition.getClasses = function () {
->>>>>>> dev
           const classes = originalGetClasses.call(this);
           const captionedClasses = (
             this.editor.config.image2_captionedClass || ''
@@ -264,34 +226,20 @@
         // Protected; transforms widget's data object to the format used by the
         // \Drupal\editor\Form\EditorImageDialog dialog, keeping only the data
         // listed in widgetDefinition._dataForDialog.
-<<<<<<< HEAD
-        widgetDefinition._dataToDialogValues = function(data) {
-          const dialogValues = {};
-          const map = widgetDefinition._mapDataToDialog;
-          Object.keys(widgetDefinition._mapDataToDialog).forEach(key => {
-=======
         widgetDefinition._dataToDialogValues = function (data) {
           const dialogValues = {};
           const map = widgetDefinition._mapDataToDialog;
           Object.keys(widgetDefinition._mapDataToDialog).forEach((key) => {
->>>>>>> dev
             dialogValues[map[key]] = data[key];
           });
           return dialogValues;
         };
 
         // Protected; the inverse of _dataToDialogValues.
-<<<<<<< HEAD
-        widgetDefinition._dialogValuesToData = function(dialogReturnValues) {
-          const data = {};
-          const map = widgetDefinition._mapDataToDialog;
-          Object.keys(widgetDefinition._mapDataToDialog).forEach(key => {
-=======
         widgetDefinition._dialogValuesToData = function (dialogReturnValues) {
           const data = {};
           const map = widgetDefinition._mapDataToDialog;
           Object.keys(widgetDefinition._mapDataToDialog).forEach((key) => {
->>>>>>> dev
             if (dialogReturnValues.hasOwnProperty(map[key])) {
               data[key] = dialogReturnValues[map[key]];
             }
@@ -300,13 +248,8 @@
         };
 
         // Protected; creates Drupal dialog save callback.
-<<<<<<< HEAD
-        widgetDefinition._createDialogSaveCallback = function(editor, widget) {
-          return function(dialogReturnValues) {
-=======
         widgetDefinition._createDialogSaveCallback = function (editor, widget) {
           return function (dialogReturnValues) {
->>>>>>> dev
             const firstEdit = !widget.ready;
 
             // Dialog may have blurred the widget. Re-focus it first.
@@ -352,11 +295,7 @@
         };
 
         const originalInit = widgetDefinition.init;
-<<<<<<< HEAD
-        widgetDefinition.init = function() {
-=======
         widgetDefinition.init = function () {
->>>>>>> dev
           originalInit.call(this);
 
           // Update data.link object with attributes if the link has been
@@ -378,22 +317,14 @@
       // to handle its editing with a Drupal-native dialog.
       // This includes also a case just after the image was created
       // and dialog should be opened for it for the first time.
-<<<<<<< HEAD
-      editor.widgets.on('instanceCreated', event => {
-=======
       editor.widgets.on('instanceCreated', (event) => {
->>>>>>> dev
         const widget = event.data;
 
         if (widget.name !== 'image') {
           return;
         }
 
-<<<<<<< HEAD
-        widget.on('edit', event => {
-=======
         widget.on('edit', (event) => {
->>>>>>> dev
           // Cancel edit event to break image2's dialog binding
           // (and also to prevent automatic insertion before opening dialog).
           event.cancel();
@@ -455,17 +386,10 @@
 
   // Override image2's integration with the official CKEditor link plugin:
   // integrate with the drupallink plugin instead.
-<<<<<<< HEAD
-  CKEDITOR.plugins.image2.getLinkAttributesParser = function() {
-    return CKEDITOR.plugins.drupallink.parseLinkAttributes;
-  };
-  CKEDITOR.plugins.image2.getLinkAttributesGetter = function() {
-=======
   CKEDITOR.plugins.image2.getLinkAttributesParser = function () {
     return CKEDITOR.plugins.drupallink.parseLinkAttributes;
   };
   CKEDITOR.plugins.image2.getLinkAttributesGetter = function () {
->>>>>>> dev
     return CKEDITOR.plugins.drupallink.getLinkAttributes;
   };
 

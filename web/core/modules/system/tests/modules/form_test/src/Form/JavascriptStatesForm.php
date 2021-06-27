@@ -23,8 +23,6 @@ class JavascriptStatesForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-<<<<<<< HEAD
-=======
     $form['checkbox_trigger'] = [
       '#type' => 'checkbox',
       '#title' => 'Checkbox trigger',
@@ -330,7 +328,6 @@ class JavascriptStatesForm extends FormBase {
       ],
     ];
 
->>>>>>> dev
     $form['select'] = [
       '#type' => 'select',
       '#title' => 'select 1',

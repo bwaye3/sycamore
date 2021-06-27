@@ -3,7 +3,3 @@ type: module
 description: 'Support module for testing toolbar without user toolbar'
 package: Testing
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev

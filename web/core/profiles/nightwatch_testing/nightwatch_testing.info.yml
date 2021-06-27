@@ -2,10 +2,6 @@ name: Nightwatch Testing
 type: profile
 description: 'Minimal profile for running Nightwatch tests. Includes absolutely required modules only.'
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 hidden: true
 install:
   - js_deprecation_log_test

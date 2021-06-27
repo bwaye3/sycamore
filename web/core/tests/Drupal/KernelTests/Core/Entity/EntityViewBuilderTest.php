@@ -26,11 +26,7 @@ class EntityViewBuilderTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installConfig(['user', 'entity_test']);
 
@@ -59,12 +55,8 @@ class EntityViewBuilderTest extends EntityKernelTestBase {
     // Test that new entities (before they are saved for the first time) do not
     // generate a cache entry.
     $build = $this->container->get('entity_type.manager')->getViewBuilder('entity_test')->view($entity_test, 'full');
-<<<<<<< HEAD
-    $this->assertTrue(isset($build['#cache']) && array_keys($build['#cache']) == ['tags', 'contexts', 'max-age'], 'The render array element of new (unsaved) entities is not cached, but does have cache tags set.');
-=======
     $this->assertNotEmpty($build['#cache']);
     $this->assertEquals(['tags', 'contexts', 'max-age'], array_keys($build['#cache']), 'The render array element of new (unsaved) entities is not cached, but does have cache tags set.');
->>>>>>> dev
 
     // Get a fully built entity view render array.
     $entity_test->save();
@@ -175,13 +167,6 @@ class EntityViewBuilderTest extends EntityKernelTestBase {
     // Test a view mode in default conditions: render caching is enabled for
     // the entity type and the view mode.
     $build = $this->container->get('entity_type.manager')->getViewBuilder('entity_test')->view($entity_test, 'full');
-<<<<<<< HEAD
-    $this->assertTrue(isset($build['#cache']) && array_keys($build['#cache']) == ['tags', 'contexts', 'max-age', 'keys', 'bin'], 'A view mode with render cache enabled has the correct output (cache tags, keys, contexts, max-age and bin).');
-
-    // Test that a view mode can opt out of render caching.
-    $build = $this->container->get('entity_type.manager')->getViewBuilder('entity_test')->view($entity_test, 'test');
-    $this->assertTrue(isset($build['#cache']) && array_keys($build['#cache']) == ['tags', 'contexts', 'max-age'], 'A view mode with render cache disabled has the correct output (only cache tags, contexts and max-age).');
-=======
     $this->assertNotEmpty($build['#cache']);
     $this->assertEquals(['tags', 'contexts', 'max-age', 'keys', 'bin'], array_keys($build['#cache']), 'A view mode with render cache enabled has the correct output (cache tags, keys, contexts, max-age and bin).');
 
@@ -189,19 +174,14 @@ class EntityViewBuilderTest extends EntityKernelTestBase {
     $build = $this->container->get('entity_type.manager')->getViewBuilder('entity_test')->view($entity_test, 'test');
     $this->assertNotEmpty($build['#cache']);
     $this->assertEquals(['tags', 'contexts', 'max-age'], array_keys($build['#cache']), 'A view mode with render cache disabled has the correct output (only cache tags, contexts and max-age).');
->>>>>>> dev
 
     // Test that an entity type can opt out of render caching completely.
     $this->installEntitySchema('entity_test_label');
     $entity_test_no_cache = $this->createTestEntity('entity_test_label');
     $entity_test_no_cache->save();
     $build = $this->container->get('entity_type.manager')->getViewBuilder('entity_test_label')->view($entity_test_no_cache, 'full');
-<<<<<<< HEAD
-    $this->assertTrue(isset($build['#cache']) && array_keys($build['#cache']) == ['tags', 'contexts', 'max-age'], 'An entity type can opt out of render caching regardless of view mode configuration, but always has cache tags, contexts and max-age set.');
-=======
     $this->assertNotEmpty($build['#cache']);
     $this->assertEquals(['tags', 'contexts', 'max-age'], array_keys($build['#cache']), 'An entity type can opt out of render caching regardless of view mode configuration, but always has cache tags, contexts and max-age set.');
->>>>>>> dev
   }
 
   /**
@@ -223,11 +203,7 @@ class EntityViewBuilderTest extends EntityKernelTestBase {
     $renderer->renderRoot($view);
 
     // Check that the weight is respected.
-<<<<<<< HEAD
-    $this->assertEqual($view['label']['#weight'], 20, 'The weight of a display component is respected.');
-=======
     $this->assertEquals(20, $view['label']['#weight'], 'The weight of a display component is respected.');
->>>>>>> dev
   }
 
   /**
@@ -367,8 +343,6 @@ class EntityViewBuilderTest extends EntityKernelTestBase {
     $this->assertArrayNotHasKey('#theme', $build);
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Tests an entity type with an external canonical rel.
    */
@@ -383,5 +357,4 @@ class EntityViewBuilderTest extends EntityKernelTestBase {
     $this->assertArrayNotHasKey('#contextual_links', $view);
   }
 
->>>>>>> dev
 }

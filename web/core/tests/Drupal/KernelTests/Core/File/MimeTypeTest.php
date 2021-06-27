@@ -2,11 +2,6 @@
 
 namespace Drupal\KernelTests\Core\File;
 
-<<<<<<< HEAD
-use Drupal\Component\Render\FormattableMarkup;
-
-=======
->>>>>>> dev
 /**
  * Tests filename mimetype detection.
  *
@@ -19,17 +14,10 @@ class MimeTypeTest extends FileTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['file_test'];
-
-  /**
-   * Test mapping of mimetypes from filenames.
-=======
   protected static $modules = ['file_test'];
 
   /**
    * Tests mapping of mimetypes from filenames.
->>>>>>> dev
    */
   public function testFileMimeTypeDetection() {
     $prefixes = ['public://', 'private://', 'temporary://', 'dummy-remote://'];
@@ -56,15 +44,6 @@ class MimeTypeTest extends FileTestBase {
     foreach ($test_case as $input => $expected) {
       // Test stream [URI].
       foreach ($prefixes as $prefix) {
-<<<<<<< HEAD
-        $output = $guesser->guess($prefix . $input);
-        $this->assertIdentical($output, $expected, new FormattableMarkup('Mimetype for %input is %output (expected: %expected).', ['%input' => $prefix . $input, '%output' => $output, '%expected' => $expected]));
-      }
-
-      // Test normal path equivalent
-      $output = $guesser->guess($input);
-      $this->assertIdentical($output, $expected, new FormattableMarkup('Mimetype (using default mappings) for %input is %output (expected: %expected).', ['%input' => $input, '%output' => $output, '%expected' => $expected]));
-=======
         $output = $guesser->guessMimeType($prefix . $input);
         $this->assertSame($expected, $output);
       }
@@ -72,7 +51,6 @@ class MimeTypeTest extends FileTestBase {
       // Test normal path equivalent
       $output = $guesser->guessMimeType($input);
       $this->assertSame($expected, $output);
->>>>>>> dev
     }
 
     // Now test the extension guesser by passing in a custom mapping.
@@ -106,13 +84,6 @@ class MimeTypeTest extends FileTestBase {
     $extension_guesser->setMapping($mapping);
 
     foreach ($test_case as $input => $expected) {
-<<<<<<< HEAD
-      $output = $extension_guesser->guess($input);
-      $this->assertIdentical($output, $expected, new FormattableMarkup('Mimetype (using passed-in mappings) for %input is %output (expected: %expected).', ['%input' => $input, '%output' => $output, '%expected' => $expected]));
-    }
-  }
-
-=======
       $output = $extension_guesser->guessMimeType($input);
       $this->assertSame($expected, $output);
     }
@@ -133,5 +104,4 @@ class MimeTypeTest extends FileTestBase {
     $this->assertSame('application/java-archive', $output);
   }
 
->>>>>>> dev
 }

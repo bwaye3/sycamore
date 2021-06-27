@@ -5,8 +5,6 @@ form {
   margin: 0;
   padding: 0;
 }
-<<<<<<< HEAD
-=======
 
 /**
  * Prevent regression due to explicit line-height and font-size applied to these
@@ -39,7 +37,6 @@ fieldset {
   padding: 0.35em 0.625em 0.75em;
   border: 1px solid #c0c0c0;
 }
->>>>>>> dev
 fieldset:not(.fieldgroup) {
   position: relative;
   min-width: 0;
@@ -366,8 +363,6 @@ select {
 div.filter-options select {
   padding: 0;
 }
-<<<<<<< HEAD
-=======
 
 /**
  * Prevent regression due to -webkit-appearance being set to button in
@@ -376,4 +371,3 @@ div.filter-options select {
 ::-webkit-file-upload-button {
   -webkit-appearance: push-button;
 }
->>>>>>> dev

@@ -11,11 +11,7 @@ interface ImageStyleStorageInterface {
    * Stores a replacement ID for an image style being deleted.
    *
    * The method stores a replacement style to be used by the configuration
-<<<<<<< HEAD
-   * dependency system when a image style is deleted. The replacement style is
-=======
    * dependency system when an image style is deleted. The replacement style is
->>>>>>> dev
    * replacing the deleted style in other configuration entities that are
    * depending on the image style being deleted.
    *

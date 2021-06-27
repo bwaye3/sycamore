@@ -24,24 +24,14 @@ class CommentEditTest extends CommentBrowserTestBase {
     // Post a comment to node.
     $node_comment = $this->postComment($this->node, $this->randomMachineName(), $this->randomMachineName(), TRUE);
     $this->drupalGet('admin/content/comment');
-<<<<<<< HEAD
-    $this->assertText($this->adminUser->label());
-=======
     $this->assertSession()->pageTextContains($this->adminUser->label());
->>>>>>> dev
     $this->drupalGet($node_comment->toUrl('edit-form'));
     $edit = [
       'comment_body[0][value]' => $this->randomMachineName(),
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save'));
-    $this->drupalGet('admin/content/comment');
-    $this->assertText($this->adminUser->label());
-=======
     $this->submitForm($edit, 'Save');
     $this->drupalGet('admin/content/comment');
     $this->assertSession()->pageTextContains($this->adminUser->label());
->>>>>>> dev
   }
 
 }

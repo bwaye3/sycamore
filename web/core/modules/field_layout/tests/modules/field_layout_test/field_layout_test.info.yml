@@ -1,10 +1,6 @@
 name: 'Field Layout test'
 type: module
 description: 'Support module for Field Layout tests.'
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 package: Testing
 version: VERSION
 dependencies:

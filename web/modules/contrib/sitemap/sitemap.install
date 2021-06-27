@@ -5,11 +5,8 @@
  * Installation functions for Sitemap module.
  */
 
-<<<<<<< HEAD
-=======
 use \Drupal\sitemap\Plugin\Sitemap\Vocabulary;
 
->>>>>>> dev
 /**
  * Change sitemap configuration page permission to administer sitemap.
  */
@@ -17,11 +14,7 @@ function sitemap_update_8101() {
   $roles = user_roles(FALSE, 'administer site configuration');
   if (!empty($roles)) {
     foreach ($roles as $rid => $role) {
-<<<<<<< HEAD
-      user_role_grant_permissions($rid, array('administer sitemap'));
-=======
       user_role_grant_permissions($rid, ['administer sitemap']);
->>>>>>> dev
     }
   }
 }
@@ -38,9 +31,6 @@ function sitemap_update_8102(&$sandbox) {
     $config->set('css', $css);
   }
   $config->save();
-<<<<<<< HEAD
-}
-=======
 }
 
 /**
@@ -239,4 +229,3 @@ function sitemap_vocab_threshold_update($value) {
   }
   return $value;
 }
->>>>>>> dev

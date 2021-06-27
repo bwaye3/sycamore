@@ -5,8 +5,4 @@ dependencies:
   - drupal:language
 package: Multilingual
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 configure: language.content_settings_page

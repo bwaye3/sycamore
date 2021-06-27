@@ -61,11 +61,7 @@ abstract class ModerationStateTestBase extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'content_moderation',
     'block',
     'block_content',
@@ -120,11 +116,7 @@ abstract class ModerationStateTestBase extends BrowserTestBase {
       'name' => $content_type_name,
       'type' => $content_type_id,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save content type'));
-=======
     $this->submitForm($edit, 'Save content type');
->>>>>>> dev
 
     // Check the content type has been set to create new revisions.
     $this->assertTrue(NodeType::load($content_type_id)->shouldCreateNewRevision());
@@ -144,16 +136,10 @@ abstract class ModerationStateTestBase extends BrowserTestBase {
    */
   public function enableModerationThroughUi($content_type_id, $workflow_id = 'editorial') {
     $this->drupalGet('/admin/config/workflow/workflows');
-<<<<<<< HEAD
-    $this->assertLinkByHref('admin/config/workflow/workflows/manage/' . $workflow_id);
-    $edit['bundles[' . $content_type_id . ']'] = TRUE;
-    $this->drupalPostForm('admin/config/workflow/workflows/manage/' . $workflow_id . '/type/node', $edit, t('Save'));
-=======
     $this->assertSession()->linkByHrefExists('admin/config/workflow/workflows/manage/' . $workflow_id);
     $edit['bundles[' . $content_type_id . ']'] = TRUE;
     $this->drupalGet('admin/config/workflow/workflows/manage/' . $workflow_id . '/type/node');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     // Ensure the parent environment is up-to-date.
     // @see content_moderation_workflow_insert()
     \Drupal::service('entity_type.bundle.info')->clearCachedBundles();
@@ -173,11 +159,7 @@ abstract class ModerationStateTestBase extends BrowserTestBase {
    */
   protected function grantUserPermissionToCreateContentOfType(AccountInterface $account, $content_type_id) {
     $role_ids = $account->getRoles(TRUE);
-<<<<<<< HEAD
-    /* @var \Drupal\user\RoleInterface $role */
-=======
     /** @var \Drupal\user\RoleInterface $role */
->>>>>>> dev
     $role_id = reset($role_ids);
     $role = Role::load($role_id);
     $role->grantPermission(sprintf('create %s content', $content_type_id));

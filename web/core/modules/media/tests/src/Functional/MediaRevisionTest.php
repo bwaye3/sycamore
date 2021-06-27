@@ -119,11 +119,7 @@ class MediaRevisionTest extends MediaFunctionalTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests creating revisions of a Image media item.
-=======
    * Tests creating revisions of an Image media item.
->>>>>>> dev
    */
   public function testImageMediaRevision() {
     $assert = $this->assertSession();
@@ -202,10 +198,7 @@ class MediaRevisionTest extends MediaFunctionalTestBase {
       ->get('entity_type.manager')
       ->getStorage($entity_type->id())
       ->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->count()
       ->allRevisions()
       ->condition($entity_type->getKey('id'), $entity->id())

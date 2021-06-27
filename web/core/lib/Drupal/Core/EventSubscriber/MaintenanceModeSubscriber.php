@@ -14,11 +14,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-=======
 use Symfony\Component\HttpKernel\Event\RequestEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -101,17 +97,10 @@ class MaintenanceModeSubscriber implements EventSubscriberInterface {
   /**
    * Returns the site maintenance page if the site is offline.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
-   *   The event to process.
-   */
-  public function onKernelRequestMaintenance(GetResponseEvent $event) {
-=======
    * @param \Symfony\Component\HttpKernel\Event\RequestEvent $event
    *   The event to process.
    */
   public function onKernelRequestMaintenance(RequestEvent $event) {
->>>>>>> dev
     $request = $event->getRequest();
     $route_match = RouteMatch::createFromRequest($request);
     if ($this->maintenanceMode->applies($route_match)) {

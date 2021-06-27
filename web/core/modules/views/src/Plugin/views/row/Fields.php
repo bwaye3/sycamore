@@ -5,11 +5,7 @@ namespace Drupal\views\Plugin\views\row;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
-<<<<<<< HEAD
- * The basic 'fields' row plugin
-=======
  * The basic 'fields' row plugin.
->>>>>>> dev
  *
  * This displays fields one after another, giving options for inline
  * or not.

@@ -14,22 +14,14 @@ class FileTransferAuthorizeFormTest extends UpdateTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['update', 'update_test'];
-=======
   protected static $modules = ['update', 'update_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $admin_user = $this->drupalCreateUser([
       'administer modules',
@@ -65,31 +57,18 @@ class FileTransferAuthorizeFormTest extends UpdateTestBase {
     $edit = [
       'project_url' => $url,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/modules/install', $edit, t('Install'));
-=======
     $this->drupalGet('admin/modules/install');
     $this->submitForm($edit, 'Continue');
->>>>>>> dev
     $edit = [
       'connection_settings[authorize_filetransfer_default]' => 'system_test',
       'connection_settings[system_test][update_test_username]' => $this->randomMachineName(),
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Continue'));
-    $this->assertText(t('Installation was completed successfully.'));
-
-    // Ensure the module is available to install.
-    $this->drupalGet('admin/modules');
-    $this->assertText('Update test new module');
-=======
     $this->submitForm($edit, 'Continue');
     $this->assertSession()->pageTextContains('Files were added successfully.');
 
     // Ensure the module is available to install.
     $this->drupalGet('admin/modules');
     $this->assertSession()->pageTextContains('Update test new module');
->>>>>>> dev
   }
 
   /**

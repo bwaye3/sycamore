@@ -39,11 +39,7 @@ class InstallerConfigDirectorySetNoDirectoryTest extends InstallerTestBase {
    * Verifies that installation succeeded.
    */
   public function testInstaller() {
-<<<<<<< HEAD
-    $this->assertUrl('user/1');
-=======
     $this->assertSession()->addressEquals('user/1');
->>>>>>> dev
     $this->assertSession()->statusCodeEquals(200);
     $this->assertDirectoryExists($this->syncDirectory);
   }

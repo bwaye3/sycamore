@@ -3,11 +3,7 @@
  * A Backbone View that provides the aural view of a contextual link.
  */
 
-<<<<<<< HEAD
-(function(Drupal, Backbone) {
-=======
 (function (Drupal, Backbone) {
->>>>>>> dev
   Drupal.contextual.AuralView = Backbone.View.extend(
     /** @lends Drupal.contextual.AuralView# */ {
       /**

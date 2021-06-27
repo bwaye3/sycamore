@@ -3,17 +3,10 @@
 namespace Drupal\Tests\serialization\Kernel;
 
 use Drupal\Component\Serialization\Json;
-<<<<<<< HEAD
-use Drupal\entity_test\Entity\EntitySerializedField;
-use Drupal\entity_test\Entity\EntityTestMulRev;
-use Drupal\filter\Entity\FilterFormat;
-use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
-=======
 use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\entity_test\Entity\EntitySerializedField;
 use Drupal\entity_test\Entity\EntityTestMulRev;
 use Drupal\filter\Entity\FilterFormat;
->>>>>>> dev
 
 /**
  * Tests that entities can be serialized to supported core formats.
@@ -22,21 +15,12 @@ use Drupal\filter\Entity\FilterFormat;
  */
 class EntitySerializationTest extends NormalizerTestBase {
 
-<<<<<<< HEAD
-  use BcTimestampNormalizerUnixTestTrait;
-
-=======
->>>>>>> dev
   /**
    * Modules to install.
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'serialization',
     'system',
     'field',
@@ -82,11 +66,7 @@ class EntitySerializationTest extends NormalizerTestBase {
    */
   protected $entityClass = 'Drupal\entity_test\Entity\EntityTest';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // User create needs sequence table.
@@ -140,11 +120,7 @@ class EntitySerializationTest extends NormalizerTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the normalize function.
-=======
    * Tests the normalize function.
->>>>>>> dev
    */
   public function testNormalize() {
     $expected = [
@@ -164,14 +140,10 @@ class EntitySerializationTest extends NormalizerTestBase {
         ['value' => 'entity_test_mulrev'],
       ],
       'created' => [
-<<<<<<< HEAD
-        $this->formatExpectedTimestampItemValues($this->entity->created->value),
-=======
         [
           'value' => (new \DateTime())->setTimestamp((int) $this->entity->get('created')->value)->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
           'format' => \DateTime::RFC3339,
         ],
->>>>>>> dev
       ],
       'user_id' => [
         [
@@ -207,11 +179,7 @@ class EntitySerializationTest extends NormalizerTestBase {
     foreach (array_keys($expected) as $fieldName) {
       $this->assertSame($expected[$fieldName], $normalized[$fieldName], "Normalization produces expected array for $fieldName.");
     }
-<<<<<<< HEAD
-    $this->assertEqual(array_diff_key($normalized, $expected), [], 'No unexpected data is added to the normalized array.');
-=======
     $this->assertEquals([], array_diff_key($normalized, $expected), 'No unexpected data is added to the normalized array.');
->>>>>>> dev
   }
 
   /**
@@ -231,19 +199,11 @@ class EntitySerializationTest extends NormalizerTestBase {
 
     // The key 'pass' will now exist, but the password value should be
     // normalized to NULL.
-<<<<<<< HEAD
-    $this->assertIdentical($normalized['pass'], [NULL], '"pass" value is normalized to [NULL]');
-  }
-
-  /**
-   * Test registered Serializer's entity serialization for core's formats.
-=======
     $this->assertSame([NULL], $normalized['pass'], '"pass" value is normalized to [NULL]');
   }
 
   /**
    * Tests registered Serializer's entity serialization for core's formats.
->>>>>>> dev
    */
   public function testSerialize() {
     // Test that Serializer responds using the ComplexDataNormalizer and
@@ -253,20 +213,6 @@ class EntitySerializationTest extends NormalizerTestBase {
     $expected = Json::encode($normalized);
     // Test 'json'.
     $actual = $this->serializer->serialize($this->entity, 'json');
-<<<<<<< HEAD
-    $this->assertIdentical($actual, $expected, 'Entity serializes to JSON when "json" is requested.');
-    $actual = $this->serializer->serialize($normalized, 'json');
-    $this->assertIdentical($actual, $expected, 'A normalized array serializes to JSON when "json" is requested');
-    // Test 'ajax'.
-    $actual = $this->serializer->serialize($this->entity, 'ajax');
-    $this->assertIdentical($actual, $expected, 'Entity serializes to JSON when "ajax" is requested.');
-    $actual = $this->serializer->serialize($normalized, 'ajax');
-    $this->assertIdentical($actual, $expected, 'A normalized array serializes to JSON when "ajax" is requested');
-
-    // Generate the expected xml in a way that allows changes to entity property
-    // order.
-    $expected_created = $this->formatExpectedTimestampItemValues($this->entity->created->value);
-=======
     $this->assertSame($expected, $actual, 'Entity serializes to JSON when "json" is requested.');
     $actual = $this->serializer->serialize($normalized, 'json');
     $this->assertSame($expected, $actual, 'A normalized array serializes to JSON when "json" is requested');
@@ -282,7 +228,6 @@ class EntitySerializationTest extends NormalizerTestBase {
       'value' => DateTimePlus::createFromTimestamp($this->entity->created->value, 'UTC')->format(\DateTime::RFC3339),
       'format' => \DateTime::RFC3339,
     ];
->>>>>>> dev
 
     $expected = [
       'id' => '<id><value>' . $this->entity->id() . '</value></id>',
@@ -308,15 +253,9 @@ class EntitySerializationTest extends NormalizerTestBase {
     $expected = implode('', $expected);
     // Test 'xml'. The output should match that of Symfony's XmlEncoder.
     $actual = $this->serializer->serialize($this->entity, 'xml');
-<<<<<<< HEAD
-    $this->assertIdentical($actual, $expected);
-    $actual = $this->serializer->serialize($normalized, 'xml');
-    $this->assertIdentical($actual, $expected);
-=======
     $this->assertSame($expected, $actual);
     $actual = $this->serializer->serialize($normalized, 'xml');
     $this->assertSame($expected, $actual);
->>>>>>> dev
   }
 
   /**
@@ -328,15 +267,9 @@ class EntitySerializationTest extends NormalizerTestBase {
     foreach (['json', 'xml'] as $type) {
       $denormalized = $this->serializer->denormalize($normalized, $this->entityClass, $type, ['entity_type' => 'entity_test_mulrev']);
       $this->assertInstanceOf($this->entityClass, $denormalized);
-<<<<<<< HEAD
-      $this->assertIdentical($denormalized->getEntityTypeId(), $this->entity->getEntityTypeId(), 'Expected entity type found.');
-      $this->assertIdentical($denormalized->bundle(), $this->entity->bundle(), 'Expected entity bundle found.');
-      $this->assertIdentical($denormalized->uuid(), $this->entity->uuid(), 'Expected entity UUID found.');
-=======
       $this->assertSame($this->entity->getEntityTypeId(), $denormalized->getEntityTypeId(), 'Expected entity type found.');
       $this->assertSame($this->entity->bundle(), $denormalized->bundle(), 'Expected entity bundle found.');
       $this->assertSame($this->entity->uuid(), $denormalized->uuid(), 'Expected entity UUID found.');
->>>>>>> dev
     }
   }
 

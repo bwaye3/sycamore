@@ -2,12 +2,6 @@
 
 namespace Drupal\Core\Template;
 
-<<<<<<< HEAD
-use Drupal\Core\Cache\CacheBackendInterface;
-use Drupal\Core\PhpStorage\PhpStorageFactory;
-use Drupal\Core\Render\Markup;
-use Drupal\Core\State\StateInterface;
-=======
 use Drupal\Component\FrontMatter\Exception\FrontMatterParseException;
 use Drupal\Component\FrontMatter\FrontMatter;
 use Drupal\Core\Cache\CacheBackendInterface;
@@ -20,22 +14,14 @@ use Twig\Error\SyntaxError;
 use Twig\Extension\SandboxExtension;
 use Twig\Loader\LoaderInterface;
 use Twig\Source;
->>>>>>> dev
 
 /**
  * A class that defines a Twig environment for Drupal.
  *
  * Instances of this class are used to store the configuration and extensions,
  * and are used to load templates from the file system or other locations.
-<<<<<<< HEAD
- *
- * @see core\vendor\twig\twig\lib\Twig\Environment.php
- */
-class TwigEnvironment extends \Twig_Environment {
-=======
  */
 class TwigEnvironment extends Environment {
->>>>>>> dev
 
   /**
    * Key name of the Twig cache prefix metadata key-value pair in State.
@@ -75,29 +61,14 @@ class TwigEnvironment extends Environment {
    *   The Twig extension hash.
    * @param \Drupal\Core\State\StateInterface $state
    *   The state service.
-<<<<<<< HEAD
-   * @param \Twig_LoaderInterface $loader
-=======
    * @param \Twig\Loader\LoaderInterface $loader
->>>>>>> dev
    *   The Twig loader or loader chain.
    * @param array $options
    *   The options for the Twig environment.
    */
-<<<<<<< HEAD
-  public function __construct($root, CacheBackendInterface $cache, $twig_extension_hash, StateInterface $state, \Twig_LoaderInterface $loader = NULL, array $options = []) {
-    $this->state = $state;
-
-    // Ensure that twig.engine is loaded, given that it is needed to render a
-    // template because functions like TwigExtension::escapeFilter() are called.
-    // @todo remove in Drupal 9.0.0 https://www.drupal.org/node/3011393.
-    require_once $root . '/core/themes/engines/twig/twig.engine';
-
-=======
   public function __construct($root, CacheBackendInterface $cache, $twig_extension_hash, StateInterface $state, LoaderInterface $loader, array $options = []) {
     $this->state = $state;
 
->>>>>>> dev
     $this->templateClasses = [];
 
     $options += [
@@ -127,17 +98,11 @@ class TwigEnvironment extends Environment {
     $this->setLoader($loader);
     parent::__construct($this->getLoader(), $options);
     $policy = new TwigSandboxPolicy();
-<<<<<<< HEAD
-    $sandbox = new \Twig_Extension_Sandbox($policy, TRUE);
-=======
     $sandbox = new SandboxExtension($policy, TRUE);
->>>>>>> dev
     $this->addExtension($sandbox);
   }
 
   /**
-<<<<<<< HEAD
-=======
    * {@inheritdoc}
    */
   public function compileSource(Source $source) {
@@ -168,7 +133,6 @@ class TwigEnvironment extends Environment {
   }
 
   /**
->>>>>>> dev
    * Invalidates all compiled Twig templates.
    *
    * @see \drupal_flush_all_caches
@@ -180,11 +144,7 @@ class TwigEnvironment extends Environment {
   }
 
   /**
-<<<<<<< HEAD
-   * Get the cache prefixed used by \Drupal\Core\Template\TwigPhpStorageCache
-=======
    * Get the cache prefixed used by \Drupal\Core\Template\TwigPhpStorageCache.
->>>>>>> dev
    *
    * @return string
    *   The file cache prefix, or empty string if the cache is disabled.
@@ -194,8 +154,6 @@ class TwigEnvironment extends Environment {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Retrieves metadata associated with a template.
    *
    * @param string $name
@@ -227,7 +185,6 @@ class TwigEnvironment extends Environment {
   }
 
   /**
->>>>>>> dev
    * Gets the template class associated with the given string.
    *
    * @param string $name

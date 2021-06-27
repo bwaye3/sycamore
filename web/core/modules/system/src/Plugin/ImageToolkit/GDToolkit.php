@@ -28,11 +28,7 @@ class GDToolkit extends ImageToolkitBase {
   /**
    * A GD image resource.
    *
-<<<<<<< HEAD
-   * @var resource|null
-=======
    * @var resource|\GdImage|null
->>>>>>> dev
    */
   protected $resource = NULL;
 
@@ -92,19 +88,9 @@ class GDToolkit extends ImageToolkitBase {
    * @param \Drupal\Core\File\FileSystemInterface $file_system
    *   The file system.
    */
-<<<<<<< HEAD
-  public function __construct(array $configuration, $plugin_id, array $plugin_definition, ImageToolkitOperationManagerInterface $operation_manager, LoggerInterface $logger, ConfigFactoryInterface $config_factory, StreamWrapperManagerInterface $stream_wrapper_manager, FileSystemInterface $file_system = NULL) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $operation_manager, $logger, $config_factory);
-    $this->streamWrapperManager = $stream_wrapper_manager;
-    if (!$file_system) {
-      @trigger_error('The file_system service must be passed to GDToolkit::__construct(), it is required before Drupal 9.0.0. See https://www.drupal.org/node/3006851.', E_USER_DEPRECATED);
-      $file_system = \Drupal::service('file_system');
-    }
-=======
   public function __construct(array $configuration, $plugin_id, array $plugin_definition, ImageToolkitOperationManagerInterface $operation_manager, LoggerInterface $logger, ConfigFactoryInterface $config_factory, StreamWrapperManagerInterface $stream_wrapper_manager, FileSystemInterface $file_system) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $operation_manager, $logger, $config_factory);
     $this->streamWrapperManager = $stream_wrapper_manager;
->>>>>>> dev
     $this->fileSystem = $file_system;
   }
 
@@ -112,11 +98,8 @@ class GDToolkit extends ImageToolkitBase {
    * Destructs a GDToolkit object.
    *
    * Frees memory associated with a GD image resource.
-<<<<<<< HEAD
-=======
    *
    * @todo Remove the method for PHP 8.0+ https://www.drupal.org/node/3173031
->>>>>>> dev
    */
   public function __destruct() {
     if (is_resource($this->resource)) {
@@ -143,21 +126,13 @@ class GDToolkit extends ImageToolkitBase {
   /**
    * Sets the GD image resource.
    *
-<<<<<<< HEAD
-   * @param resource $resource
-=======
    * @param resource|\GdImage $resource
->>>>>>> dev
    *   The GD image resource.
    *
    * @return $this
    *   An instance of the current toolkit object.
    */
   public function setResource($resource) {
-<<<<<<< HEAD
-    if (!is_resource($resource) || get_resource_type($resource) != 'gd') {
-      throw new \InvalidArgumentException('Invalid resource argument');
-=======
     if (!(is_object($resource) && $resource instanceof \GdImage)) {
       // Since PHP 8.0 resource should be \GdImage, for previous versions it
       // should be resource.
@@ -165,7 +140,6 @@ class GDToolkit extends ImageToolkitBase {
       if (!is_resource($resource) || get_resource_type($resource) != 'gd') {
         throw new \InvalidArgumentException('Invalid resource argument');
       }
->>>>>>> dev
     }
     $this->preLoadInfo = NULL;
     $this->resource = $resource;
@@ -175,20 +149,12 @@ class GDToolkit extends ImageToolkitBase {
   /**
    * Retrieves the GD image resource.
    *
-<<<<<<< HEAD
-   * @return resource|null
-   *   The GD image resource, or NULL if not available.
-   */
-  public function getResource() {
-    if (!is_resource($this->resource)) {
-=======
    * @return resource|\GdImage|null
    *   The GD image resource, or NULL if not available.
    */
   public function getResource() {
     // @TODO clean-up for PHP 8.0+ https://www.drupal.org/node/3173031
     if (!(is_resource($this->resource) || (is_object($this->resource) && $this->resource instanceof \GdImage))) {
->>>>>>> dev
       $this->load();
     }
     return $this->resource;
@@ -290,13 +256,8 @@ class GDToolkit extends ImageToolkitBase {
       $success = $function($this->getResource(), $destination, $this->configFactory->get('system.image.gd')->get('jpeg_quality'));
     }
     else {
-<<<<<<< HEAD
-      // Always save PNG images with full transparency.
-      if ($this->getType() == IMAGETYPE_PNG) {
-=======
       // Image types that support alpha need to be saved accordingly.
       if (in_array($this->getType(), [IMAGETYPE_PNG, IMAGETYPE_WEBP], TRUE)) {
->>>>>>> dev
         imagealphablending($this->getResource(), FALSE);
         imagesavealpha($this->getResource(), TRUE);
       }
@@ -506,11 +467,7 @@ class GDToolkit extends ImageToolkitBase {
    *   IMAGETYPE_* constant (e.g. IMAGETYPE_JPEG, IMAGETYPE_PNG, etc.).
    */
   protected static function supportedTypes() {
-<<<<<<< HEAD
-    return [IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF];
-=======
     return [IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF, IMAGETYPE_WEBP];
->>>>>>> dev
   }
 
 }

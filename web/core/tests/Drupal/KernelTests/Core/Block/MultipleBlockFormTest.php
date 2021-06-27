@@ -15,11 +15,7 @@ class MultipleBlockFormTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['system', 'block', 'block_test'];
-=======
   protected static $modules = ['system', 'block', 'block_test'];
->>>>>>> dev
 
   /**
    * Tests that blocks can have multiple forms.
@@ -36,11 +32,7 @@ class MultipleBlockFormTest extends KernelTestBase {
 
     // Ensure that EmptyBlockForm is used and the plugin is set.
     $this->assertInstanceOf(EmptyBlockForm::class, $form_object2);
-<<<<<<< HEAD
-    $this->assertAttributeEquals($block, 'plugin', $form_object2);
-=======
     $this->assertEquals($block, $form_object2->plugin);
->>>>>>> dev
   }
 
 }

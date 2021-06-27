@@ -2,18 +2,11 @@
 
 namespace Drupal\Core\Routing;
 
-<<<<<<< HEAD
-use Symfony\Cmf\Component\Routing\Enhancer\RouteEnhancerInterface;
-=======
 use Symfony\Component\HttpFoundation\Request;
->>>>>>> dev
 
 /**
  * A route enhance service to determine route enhance rules.
  */
-<<<<<<< HEAD
-interface EnhancerInterface extends RouteEnhancerInterface {
-=======
 interface EnhancerInterface {
 
   /**
@@ -29,6 +22,5 @@ interface EnhancerInterface {
    *   $defaults but may add or remove values.
    */
   public function enhance(array $defaults, Request $request);
->>>>>>> dev
 
 }

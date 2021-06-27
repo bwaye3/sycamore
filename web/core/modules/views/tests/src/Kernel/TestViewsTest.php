@@ -22,11 +22,7 @@ class TestViewsTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['views_test_data'];
-=======
   protected static $modules = ['views_test_data'];
->>>>>>> dev
 
   /**
    * Tests default configuration data type.

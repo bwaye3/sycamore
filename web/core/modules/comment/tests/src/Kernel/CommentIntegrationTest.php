@@ -24,11 +24,7 @@ class CommentIntegrationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'comment',
     'field',
     'entity_test',
@@ -40,11 +36,7 @@ class CommentIntegrationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('entity_test');
     $this->installEntitySchema('user');
@@ -155,11 +147,7 @@ class CommentIntegrationTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the default owner of comment entities.
-=======
    * Tests the default owner of comment entities.
->>>>>>> dev
    */
   public function testCommentDefaultOwner() {
     $comment = Comment::create([

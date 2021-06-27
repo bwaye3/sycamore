@@ -18,11 +18,7 @@ class MenuLinkContentDeriverTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'menu_link_content',
     'link',
     'system',
@@ -33,11 +29,7 @@ class MenuLinkContentDeriverTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('user');
@@ -64,11 +56,7 @@ class MenuLinkContentDeriverTest extends KernelTestBase {
     $this->assertCount(1, $menu_tree);
     /** @var \Drupal\Core\Menu\MenuLinkTreeElement $tree_element */
     $tree_element = reset($menu_tree);
-<<<<<<< HEAD
-    $this->assertEqual('route_name_1', $tree_element->link->getRouteName());
-=======
     $this->assertEquals('route_name_1', $tree_element->link->getRouteName());
->>>>>>> dev
 
     // Change the underlying route and trigger the rediscovering.
     \Drupal::state()->set('menu_link_content_dynamic_route.routes', [
@@ -81,17 +69,10 @@ class MenuLinkContentDeriverTest extends KernelTestBase {
     $this->assertCount(1, $menu_tree);
     /** @var \Drupal\Core\Menu\MenuLinkTreeElement $tree_element */
     $tree_element = reset($menu_tree);
-<<<<<<< HEAD
-    $this->assertEqual('route_name_2', $tree_element->link->getRouteName());
-    $title = $tree_element->link->getTitle();
-    $this->assertNotInstanceOf(TranslatableMarkup::class, $title);
-    $this->assertIdentical('<script>alert("Welcome to the discovered jungle!")</script>', $title);
-=======
     $this->assertEquals('route_name_2', $tree_element->link->getRouteName());
     $title = $tree_element->link->getTitle();
     $this->assertNotInstanceOf(TranslatableMarkup::class, $title);
     $this->assertSame('<script>alert("Welcome to the discovered jungle!")</script>', $title);
->>>>>>> dev
 
     // Create a hierarchy.
     \Drupal::state()->set('menu_link_content_dynamic_route.routes', [

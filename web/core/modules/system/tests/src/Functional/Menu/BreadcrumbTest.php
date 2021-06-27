@@ -23,11 +23,7 @@ class BreadcrumbTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['menu_test', 'block'];
-=======
   protected static $modules = ['menu_test', 'block'];
->>>>>>> dev
 
   /**
    * An administrative user.
@@ -50,11 +46,7 @@ class BreadcrumbTest extends BrowserTestBase {
    */
   protected $profile = 'standard';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $perms = array_keys(\Drupal::service('user.permissions')->getPermissions());
@@ -214,24 +206,16 @@ class BreadcrumbTest extends BrowserTestBase {
       'title[0][value]' => 'Root',
       'link[0][uri]' => '/node',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm("admin/structure/menu/manage/$menu/add", $edit, t('Save'));
-=======
     $this->drupalGet("admin/structure/menu/manage/{$menu}/add");
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $menu_links = \Drupal::entityTypeManager()->getStorage('menu_link_content')->loadByProperties(['title' => 'Root']);
     $link = reset($menu_links);
 
     $edit = [
       'menu[menu_parent]' => $link->getMenuName() . ':' . $link->getPluginId(),
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('node/' . $parent->id() . '/edit', $edit, t('Save'));
-=======
     $this->drupalGet('node/' . $parent->id() . '/edit');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $expected = [
       "node" => $link->getTitle(),
     ];
@@ -252,12 +236,8 @@ class BreadcrumbTest extends BrowserTestBase {
     $edit = [
       'field_tags[target_id]' => implode(',', array_keys($tags)),
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('node/' . $parent->id() . '/edit', $edit, t('Save'));
-=======
     $this->drupalGet('node/' . $parent->id() . '/edit');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
 
     // Put both terms into a hierarchy Drupal » Breadcrumbs. Required for both
     // the menu links and the terms itself, since taxonomy_term_page() resets
@@ -271,12 +251,8 @@ class BreadcrumbTest extends BrowserTestBase {
         $edit = [
           'parent[]' => [$parent_tid],
         ];
-<<<<<<< HEAD
-        $this->drupalPostForm("taxonomy/term/{$term->id()}/edit", $edit, t('Save'));
-=======
         $this->drupalGet("taxonomy/term/{$term->id()}/edit");
         $this->submitForm($edit, 'Save');
->>>>>>> dev
       }
       $parent_tid = $term->id();
     }
@@ -289,12 +265,8 @@ class BreadcrumbTest extends BrowserTestBase {
         'menu_parent' => "$menu:{$parent_mlid}",
         'enabled[value]' => 1,
       ];
-<<<<<<< HEAD
-      $this->drupalPostForm("admin/structure/menu/manage/$menu/add", $edit, t('Save'));
-=======
       $this->drupalGet("admin/structure/menu/manage/{$menu}/add");
       $this->submitForm($edit, 'Save');
->>>>>>> dev
       $menu_links = \Drupal::entityTypeManager()->getStorage('menu_link_content')->loadByProperties([
         'title' => $edit['title[0][value]'],
         'link.uri' => 'internal:/taxonomy/term/' . $term->id(),
@@ -320,11 +292,7 @@ class BreadcrumbTest extends BrowserTestBase {
       ];
       $this->assertBreadcrumb($link_path, $trail, $term->getName(), $tree);
       // Ensure that the tagged node is found.
-<<<<<<< HEAD
-      $this->assertEscaped($parent->getTitle());
-=======
       $this->assertSession()->assertEscaped($parent->getTitle());
->>>>>>> dev
 
       // Additionally make sure that this link appears only once; i.e., the
       // untranslated menu links automatically generated from menu router items
@@ -418,11 +386,7 @@ class BreadcrumbTest extends BrowserTestBase {
     // Ensure that the breadcrumb is safe against XSS.
     $this->drupalGet('menu-test/breadcrumb1/breadcrumb2/breadcrumb3');
     $this->assertRaw('<script>alert(12);</script>');
-<<<<<<< HEAD
-    $this->assertEscaped('<script>alert(123);</script>');
-=======
     $this->assertSession()->assertEscaped('<script>alert(123);</script>');
->>>>>>> dev
   }
 
   /**

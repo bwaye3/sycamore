@@ -4,14 +4,9 @@ namespace Drupal\Core\Routing;
 
 use Drupal\Core\Path\CurrentPathStack;
 use Symfony\Component\HttpFoundation\Request;
-<<<<<<< HEAD
-use Symfony\Component\Routing\RouteCollection;
-use Symfony\Cmf\Component\Routing\NestedMatcher\UrlMatcher as BaseUrlMatcher;
-=======
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Matcher\UrlMatcher as BaseUrlMatcher;
->>>>>>> dev
 
 /**
  * Drupal-specific URL Matcher; handles the Drupal "system path" mapping.
@@ -47,8 +42,6 @@ class UrlMatcher extends BaseUrlMatcher {
     return $this->match($this->currentPath->getPath($request));
   }
 
-<<<<<<< HEAD
-=======
   /**
    * {@inheritdoc}
    */
@@ -62,5 +55,4 @@ class UrlMatcher extends BaseUrlMatcher {
     return $this->mergeDefaults($attributes, $route->getDefaults());
   }
 
->>>>>>> dev
 }

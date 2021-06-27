@@ -15,11 +15,7 @@ class MenuTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [];
-=======
   protected static $modules = [];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

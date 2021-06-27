@@ -32,11 +32,7 @@ class SqlBaseTest extends MigrateTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->migration = $this->createMock(MigrationInterface::class);
@@ -151,11 +147,7 @@ class SqlBaseTest extends MigrateTestBase {
     $source = new TestSqlBase($configuration, $this->migration);
 
     if ($high_water) {
-<<<<<<< HEAD
-      $source->getHighWaterStorage()->set($this->migration->id(), $high_water);
-=======
       \Drupal::keyValue('migrate:high_water')->set($this->migration->id(), $high_water);
->>>>>>> dev
     }
 
     $statement = $this->createMock(StatementInterface::class);
@@ -257,14 +249,4 @@ class TestSqlBase extends SqlBase {
     $this->query = $query;
   }
 
-<<<<<<< HEAD
-  /**
-   * {@inheritdoc}
-   */
-  public function getHighWaterStorage() {
-    return parent::getHighWaterStorage();
-  }
-
-=======
->>>>>>> dev
 }

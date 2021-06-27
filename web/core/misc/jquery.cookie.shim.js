@@ -5,9 +5,6 @@
 * @preserve
 **/
 
-<<<<<<< HEAD
-(function ($, Drupal, cookies) {
-=======
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -17,7 +14,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 (function ($, Drupal, cookies) {
   var deprecatedMessageSuffix = "is deprecated in Drupal 9.0.0 and will be removed in Drupal 10.0.0. Use the core/js-cookie library instead. See https://www.drupal.org/node/3104677";
 
->>>>>>> dev
   var isFunction = function isFunction(obj) {
     return Object.prototype.toString.call(obj) === '[object Function]';
   };
@@ -46,12 +42,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   $.cookie = function (key) {
     var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
     var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
-<<<<<<< HEAD
-
-    key = key && !$.cookie.raw ? encodeURIComponent(key) : key;
-    if (value !== undefined && !isFunction(value)) {
-      var attributes = Object.assign({}, $.cookie.defaults, options);
-=======
     Drupal.deprecationError({
       message: "jQuery.cookie() ".concat(deprecatedMessageSuffix)
     });
@@ -59,7 +49,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     if (value !== undefined && !isFunction(value)) {
       var attributes = _objectSpread(_objectSpread({}, $.cookie.defaults), options);
->>>>>>> dev
 
       if (typeof attributes.expires === 'string' && attributes.expires !== '') {
         attributes.expires = new Date(attributes.expires);
@@ -70,13 +59,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           return encodeURIComponent(cookieValue);
         }
       });
-<<<<<<< HEAD
-
       value = $.cookie.json && !$.cookie.raw ? JSON.stringify(value) : String(value);
-
-=======
-      value = $.cookie.json && !$.cookie.raw ? JSON.stringify(value) : String(value);
->>>>>>> dev
       return cookieSetter.set(key, value, attributes);
     }
 
@@ -97,20 +80,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         delete results[resultKey];
       }
     });
-<<<<<<< HEAD
-
-    return results;
-  };
-
-  $.cookie.defaults = Object.assign({ path: '' }, cookies.defaults);
-
-  $.cookie.json = false;
-
-  $.cookie.raw = false;
-
-  $.removeCookie = function (key, options) {
-    cookies.remove(key, Object.assign({}, $.cookie.defaults, options));
-=======
     return results;
   };
 
@@ -125,7 +94,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       message: "jQuery.removeCookie() ".concat(deprecatedMessageSuffix)
     });
     cookies.remove(key, _objectSpread(_objectSpread({}, $.cookie.defaults), options));
->>>>>>> dev
     return !cookies.get(key);
   };
 })(jQuery, Drupal, window.Cookies);

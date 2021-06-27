@@ -9,11 +9,7 @@ use Drupal\jsonapi\ResourceResponse;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -75,17 +71,10 @@ class ResourceResponseSubscriber implements EventSubscriberInterface {
   /**
    * Serializes ResourceResponse responses' data, and removes that data.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\FilterResponseEvent $event
-   *   The event to process.
-   */
-  public function onResponse(FilterResponseEvent $event) {
-=======
    * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
    *   The event to process.
    */
   public function onResponse(ResponseEvent $event) {
->>>>>>> dev
     $response = $event->getResponse();
     if (!$response instanceof ResourceResponse) {
       return;
@@ -131,15 +120,10 @@ class ResourceResponseSubscriber implements EventSubscriberInterface {
       $jsonapi_doc_object = $serializer->normalize($data, $format, $context);
       // Having just normalized the data, we can associate its cacheability with
       // the response object.
-<<<<<<< HEAD
-      assert($jsonapi_doc_object instanceof CacheableNormalization);
-      $response->addCacheableDependency($jsonapi_doc_object);
-=======
       if ($response instanceof CacheableResponseInterface) {
         assert($jsonapi_doc_object instanceof CacheableNormalization);
         $response->addCacheableDependency($jsonapi_doc_object);
       }
->>>>>>> dev
       // Finally, encode the normalized data (JSON:API's encoder rasterizes it
       // automatically).
       $response->setContent($serializer->encode($jsonapi_doc_object->getNormalization(), $format));

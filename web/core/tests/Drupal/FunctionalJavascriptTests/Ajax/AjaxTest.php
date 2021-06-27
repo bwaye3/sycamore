@@ -14,11 +14,7 @@ class AjaxTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['ajax_test'];
-=======
   protected static $modules = ['ajax_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -52,11 +48,7 @@ class AjaxTest extends WebDriverTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that AJAX loaded libraries are not retained between requests.
-=======
    * Tests that AJAX loaded libraries are not retained between requests.
->>>>>>> dev
    *
    * @see https://www.drupal.org/node/2647916
    */

@@ -7,30 +7,18 @@ use Drupal\comment\Entity\CommentType;
 use Drupal\comment\Tests\CommentTestTrait;
 use Drupal\Core\Cache\Cache;
 use Drupal\entity_test\Entity\EntityTest;
-<<<<<<< HEAD
-use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
-=======
->>>>>>> dev
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 use Drupal\user\Entity\User;
 use GuzzleHttp\RequestOptions;
 
 abstract class CommentResourceTestBase extends EntityResourceTestBase {
 
-<<<<<<< HEAD
-  use CommentTestTrait, BcTimestampNormalizerUnixTestTrait;
-=======
   use CommentTestTrait;
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['comment', 'entity_test'];
-=======
   protected static $modules = ['comment', 'entity_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -164,12 +152,6 @@ abstract class CommentResourceTestBase extends EntityResourceTestBase {
         ],
       ],
       'created' => [
-<<<<<<< HEAD
-        $this->formatExpectedTimestampItemValues(123456789),
-      ],
-      'changed' => [
-        $this->formatExpectedTimestampItemValues($this->entity->getChangedTime()),
-=======
         [
           'value' => (new \DateTime())->setTimestamp(123456789)->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
           'format' => \DateTime::RFC3339,
@@ -180,7 +162,6 @@ abstract class CommentResourceTestBase extends EntityResourceTestBase {
           'value' => (new \DateTime())->setTimestamp((int) $this->entity->getChangedTime())->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
           'format' => \DateTime::RFC3339,
         ],
->>>>>>> dev
       ],
       'default_langcode' => [
         [
@@ -335,13 +316,6 @@ abstract class CommentResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
-<<<<<<< HEAD
-    if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
-      return parent::getExpectedUnauthorizedAccessMessage($method);
-    }
-
-=======
->>>>>>> dev
     switch ($method) {
       case 'GET';
         return "The 'access comments' permission is required and the comment must be published.";
@@ -360,11 +334,7 @@ abstract class CommentResourceTestBase extends EntityResourceTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests POSTing a comment with and without 'skip comment approval'
-=======
    * Tests POSTing a comment with and without 'skip comment approval'.
->>>>>>> dev
    */
   public function testPostSkipCommentApproval() {
     $this->initAuthentication();

@@ -12,8 +12,6 @@ use Drupal\Core\Database\DatabaseNotFoundException;
 class Tasks extends InstallTasks {
 
   /**
-<<<<<<< HEAD
-=======
    * Minimum required PostgreSQL version.
    *
    * The contrib extension pg_trgm is supposed to be installed.
@@ -23,7 +21,6 @@ class Tasks extends InstallTasks {
   const PGSQL_MINIMUM_VERSION = '10';
 
   /**
->>>>>>> dev
    * {@inheritdoc}
    */
   protected $pdoDriver = 'pgsql';
@@ -61,11 +58,7 @@ class Tasks extends InstallTasks {
    * {@inheritdoc}
    */
   public function minimumVersion() {
-<<<<<<< HEAD
-    return '9.1.2';
-=======
     return static::PGSQL_MINIMUM_VERSION;
->>>>>>> dev
   }
 
   /**
@@ -114,13 +107,8 @@ class Tasks extends InstallTasks {
         }
       }
       else {
-<<<<<<< HEAD
-        // Database connection failed for some other reason than the database
-        // not existing.
-=======
         // Database connection failed for some other reason than a non-existent
         // database.
->>>>>>> dev
         $this->fail(t('Failed to connect to your database server. The server reports the following message: %error.<ul><li>Is the database server running?</li><li>Does the database exist, and have you entered the correct database name?</li><li>Have you entered the correct username and password?</li><li>Have you entered the correct database hostname and port number?</li></ul>', ['%error' => $e->getMessage()]));
         return FALSE;
       }
@@ -154,44 +142,6 @@ class Tasks extends InstallTasks {
    * Unserializing does not work on Postgresql 9 when bytea_output is 'hex'.
    */
   public function checkBinaryOutput() {
-<<<<<<< HEAD
-    // PostgreSQL < 9 doesn't support bytea_output, so verify we are running
-    // at least PostgreSQL 9.
-    $database_connection = Database::getConnection();
-    if (version_compare($database_connection->version(), '9') >= 0) {
-      if (!$this->checkBinaryOutputSuccess()) {
-        // First try to alter the database. If it fails, raise an error telling
-        // the user to do it themselves.
-        $connection_options = $database_connection->getConnectionOptions();
-        // It is safe to include the database name directly here, because this
-        // code is only called when a connection to the database is already
-        // established, thus the database name is guaranteed to be a correct
-        // value.
-        $query = "ALTER DATABASE \"" . $connection_options['database'] . "\" SET bytea_output = 'escape';";
-        try {
-          $database_connection->query($query);
-        }
-        catch (\Exception $e) {
-          // Ignore possible errors when the user doesn't have the necessary
-          // privileges to ALTER the database.
-        }
-
-        // Close the database connection so that the configuration parameter
-        // is applied to the current connection.
-        Database::closeConnection();
-
-        // Recheck, if it fails, finally just rely on the end user to do the
-        // right thing.
-        if (!$this->checkBinaryOutputSuccess()) {
-          $replacements = [
-            '%setting' => 'bytea_output',
-            '%current_value' => 'hex',
-            '%needed_value' => 'escape',
-            '@query' => $query,
-          ];
-          $this->fail(t("The %setting setting is currently set to '%current_value', but needs to be '%needed_value'. Change this by running the following query: <code>@query</code>", $replacements));
-        }
-=======
     $database_connection = Database::getConnection();
     if (!$this->checkBinaryOutputSuccess()) {
       // First try to alter the database. If it fails, raise an error telling
@@ -224,7 +174,6 @@ class Tasks extends InstallTasks {
           '@query' => $query,
         ];
         $this->fail(t("The %setting setting is currently set to '%current_value', but needs to be '%needed_value'. Change this by running the following query: <code>@query</code>", $replacements));
->>>>>>> dev
       }
     }
   }
@@ -319,11 +268,7 @@ class Tasks extends InstallTasks {
           \'SELECT array_to_string((string_to_array($1, $2)) [1:$3], $2);\'
           LANGUAGE \'sql\'',
           [],
-<<<<<<< HEAD
-          ['allow_delimiter_in_query' => TRUE]
-=======
           ['allow_delimiter_in_query' => TRUE, 'allow_square_brackets' => TRUE]
->>>>>>> dev
         );
       }
       $connection->query('SELECT pg_advisory_unlock(1)');

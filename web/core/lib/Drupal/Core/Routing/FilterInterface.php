@@ -2,19 +2,12 @@
 
 namespace Drupal\Core\Routing;
 
-<<<<<<< HEAD
-use Symfony\Cmf\Component\Routing\NestedMatcher\RouteFilterInterface;
-=======
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouteCollection;
->>>>>>> dev
 
 /**
  * A route filter service to filter down the collection of route instances.
  */
-<<<<<<< HEAD
-interface FilterInterface extends RouteFilterInterface {
-=======
 interface FilterInterface {
 
   /**
@@ -35,6 +28,5 @@ interface FilterInterface {
    *   will no longer be possible.
    */
   public function filter(RouteCollection $collection, Request $request);
->>>>>>> dev
 
 }

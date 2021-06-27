@@ -23,16 +23,6 @@ class ModerationStateNodeTypeTest extends ModerationStateTestBase {
   public function testNotModerated() {
     $this->drupalLogin($this->adminUser);
     $this->createContentTypeFromUi('Not moderated', 'not_moderated');
-<<<<<<< HEAD
-    $this->assertText('The content type Not moderated has been added.');
-    $this->grantUserPermissionToCreateContentOfType($this->adminUser, 'not_moderated');
-    $this->drupalGet('node/add/not_moderated');
-    $this->assertRaw('Save');
-    $this->drupalPostForm(NULL, [
-      'title[0][value]' => 'Test',
-    ], t('Save'));
-    $this->assertText('Not moderated Test has been created.');
-=======
     $this->assertSession()->pageTextContains('The content type Not moderated has been added.');
     $this->grantUserPermissionToCreateContentOfType($this->adminUser, 'not_moderated');
     $this->drupalGet('node/add/not_moderated');
@@ -41,7 +31,6 @@ class ModerationStateNodeTypeTest extends ModerationStateTestBase {
       'title[0][value]' => 'Test',
     ], 'Save');
     $this->assertSession()->pageTextContains('Not moderated Test has been created.');
->>>>>>> dev
   }
 
   /**
@@ -73,17 +62,10 @@ class ModerationStateNodeTypeTest extends ModerationStateTestBase {
 
     // Create content.
     $this->drupalGet('node/add/not_moderated');
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [
-      'title[0][value]' => 'Test',
-    ], t('Save'));
-    $this->assertText('Not moderated Test has been created.');
-=======
     $this->submitForm([
       'title[0][value]' => 'Test',
     ], 'Save');
     $this->assertSession()->pageTextContains('Not moderated Test has been created.');
->>>>>>> dev
 
     // Check that the 'Create new revision' is not disabled.
     $this->drupalGet('/admin/structure/types/manage/not_moderated');
@@ -107,11 +89,7 @@ class ModerationStateNodeTypeTest extends ModerationStateTestBase {
     $node = reset($nodes);
     $this->drupalGet('node/' . $node->id());
     $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-    $this->assertLinkByHref('node/' . $node->id() . '/edit');
-=======
     $this->assertSession()->linkByHrefExists('node/' . $node->id() . '/edit');
->>>>>>> dev
     $this->drupalGet('node/' . $node->id() . '/edit');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->optionExists('moderation_state[0][state]', 'draft');
@@ -134,14 +112,8 @@ class ModerationStateNodeTypeTest extends ModerationStateTestBase {
     // Ensure checkboxes in the 'workflow' section can be altered, even when
     // 'revision' is enforced and disabled.
     $this->drupalGet('admin/structure/types/manage/moderated');
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/types/manage/moderated', [
-     'options[promote]' => TRUE,
-    ], 'Save content type');
-=======
     $this->drupalGet('admin/structure/types/manage/moderated');
     $this->submitForm(['options[promote]' => TRUE], 'Save content type');
->>>>>>> dev
     $this->drupalGet('admin/structure/types/manage/moderated');
     $this->assertSession()->checkboxChecked('options[promote]');
   }

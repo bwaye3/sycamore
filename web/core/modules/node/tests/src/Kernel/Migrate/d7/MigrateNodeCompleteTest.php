@@ -24,11 +24,7 @@ class MigrateNodeCompleteTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'content_translation',
     'comment',
     'datetime',
@@ -54,11 +50,7 @@ class MigrateNodeCompleteTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Remove the classic node table made in setup.
@@ -111,11 +103,7 @@ class MigrateNodeCompleteTest extends MigrateDrupal7TestBase {
     // that only the complete migration ran.
     $results = $this->nodeMigrateMapTableCount('7');
     $this->assertSame(0, $results['node']);
-<<<<<<< HEAD
-    $this->assertSame(7, $results['node_complete']);
-=======
     $this->assertSame(8, $results['node_complete']);
->>>>>>> dev
 
     $db = \Drupal::database();
     $this->assertEquals($this->expectedNodeFieldRevisionTable(), $db->select('node_field_revision', 'nr')
@@ -137,8 +125,6 @@ class MigrateNodeCompleteTest extends MigrateDrupal7TestBase {
     foreach ($this->expectedNodeFieldRevisionTable() as $key => $revision) {
       $this->assertRevision($revision, $data[$key]);
     }
-<<<<<<< HEAD
-=======
 
     // Test the migration of node and user reference fields.
     foreach ([2, 3] as $revision_id) {
@@ -150,7 +136,6 @@ class MigrateNodeCompleteTest extends MigrateDrupal7TestBase {
       $this->assertSame('Bob', $revision->field_user_reference[0]->entity->getAccountName());
     }
 
->>>>>>> dev
   }
 
   /**
@@ -190,11 +175,7 @@ class MigrateNodeCompleteTest extends MigrateDrupal7TestBase {
    *   An array of revision data.
    */
   protected function assertRevision(array $revision, array $data) {
-<<<<<<< HEAD
-    /* @var  \Drupal\node\NodeInterface $actual */
-=======
     /** @var  \Drupal\node\NodeInterface $actual */
->>>>>>> dev
     $actual = $this->nodeStorage->loadRevision($revision['vid'])
       ->getTranslation($revision['langcode']);
     $this->assertInstanceOf(NodeInterface::class, $actual);

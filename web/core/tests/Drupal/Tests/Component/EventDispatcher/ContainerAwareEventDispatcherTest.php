@@ -7,16 +7,11 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-<<<<<<< HEAD
-use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-=======
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\Event as SymfonyEvent;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Drupal\Component\EventDispatcher\Event;
 use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
->>>>>>> dev
 
 /**
  * Unit tests for the ContainerAwareEventDispatcher.
@@ -31,11 +26,8 @@ use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
  */
 class ContainerAwareEventDispatcherTest extends TestCase {
 
-<<<<<<< HEAD
-=======
   use ExpectDeprecationTrait;
 
->>>>>>> dev
   /* Some pseudo events */
   const PREFOO = 'pre.foo';
   const POSTFOO = 'post.foo';
@@ -48,20 +40,12 @@ class ContainerAwareEventDispatcherTest extends TestCase {
   private $dispatcher;
   private $listener;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->dispatcher = $this->createEventDispatcher();
     $this->listener = new TestEventListener();
   }
 
-<<<<<<< HEAD
-  protected function tearDown() {
-=======
   protected function tearDown(): void {
->>>>>>> dev
     $this->dispatcher = NULL;
     $this->listener = NULL;
   }
@@ -131,11 +115,7 @@ class ContainerAwareEventDispatcherTest extends TestCase {
     ];
 
     $dispatcher = new ContainerAwareEventDispatcher($container, $listeners);
-<<<<<<< HEAD
-    $dispatcher->dispatch('test_event');
-=======
     $dispatcher->dispatch(new Event(), 'test_event');
->>>>>>> dev
 
     $this->assertTrue($thirdListener[0]->preFooInvoked);
   }
@@ -165,8 +145,6 @@ class ContainerAwareEventDispatcherTest extends TestCase {
     $this->assertSame($expectedListeners, $actualListeners);
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Tests argument order deprecation.
    *
@@ -212,7 +190,6 @@ class ContainerAwareEventDispatcherTest extends TestCase {
     $dispatcher->dispatch(new SymfonyInheritedEvent());
   }
 
->>>>>>> dev
   public function testDispatchWithServices() {
     $container = new ContainerBuilder();
     $container->register('listener_service', TestEventListener::class);
@@ -227,11 +204,7 @@ class ContainerAwareEventDispatcherTest extends TestCase {
 
     $dispatcher = new ContainerAwareEventDispatcher($container, $listeners);
 
-<<<<<<< HEAD
-    $dispatcher->dispatch('test_event');
-=======
     $dispatcher->dispatch(new Event(), 'test_event');
->>>>>>> dev
 
     $listenerService = $container->get('listener_service');
     $this->assertTrue($listenerService->preFooInvoked);
@@ -260,11 +233,7 @@ class ContainerAwareEventDispatcherTest extends TestCase {
     // listener service.
     $this->assertFalse($container->initialized('other_listener_service'));
 
-<<<<<<< HEAD
-    $dispatcher->dispatch('test_event');
-=======
     $dispatcher->dispatch(new Event(), 'test_event');
->>>>>>> dev
 
     $this->assertFalse($listenerService->preFooInvoked);
     $otherService = $container->get('other_listener_service');
@@ -368,15 +337,6 @@ class ContainerAwareEventDispatcherTest extends TestCase {
   public function testDispatch() {
     $this->dispatcher->addListener('pre.foo', [$this->listener, 'preFoo']);
     $this->dispatcher->addListener('post.foo', [$this->listener, 'postFoo']);
-<<<<<<< HEAD
-    $this->dispatcher->dispatch(self::PREFOO);
-    $this->assertTrue($this->listener->preFooInvoked);
-    $this->assertFalse($this->listener->postFooInvoked);
-    $this->assertInstanceOf(Event::class, $this->dispatcher->dispatch('noevent'));
-    $this->assertInstanceOf(Event::class, $this->dispatcher->dispatch(self::PREFOO));
-    $event = new Event();
-    $return = $this->dispatcher->dispatch(self::PREFOO, $event);
-=======
     $this->dispatcher->dispatch(new Event(), self::PREFOO);
     $this->assertTrue($this->listener->preFooInvoked);
     $this->assertFalse($this->listener->postFooInvoked);
@@ -384,7 +344,6 @@ class ContainerAwareEventDispatcherTest extends TestCase {
     $this->assertInstanceOf(Event::class, $this->dispatcher->dispatch(new Event(), self::PREFOO));
     $event = new Event();
     $return = $this->dispatcher->dispatch($event, self::PREFOO);
->>>>>>> dev
     $this->assertSame($event, $return);
   }
 
@@ -395,11 +354,7 @@ class ContainerAwareEventDispatcherTest extends TestCase {
     };
     $this->dispatcher->addListener('pre.foo', $listener);
     $this->dispatcher->addListener('post.foo', $listener);
-<<<<<<< HEAD
-    $this->dispatcher->dispatch(self::PREFOO);
-=======
     $this->dispatcher->dispatch(new Event(), self::PREFOO);
->>>>>>> dev
     $this->assertEquals(1, $invoked);
   }
 
@@ -411,11 +366,7 @@ class ContainerAwareEventDispatcherTest extends TestCase {
     // Manually set priority to enforce $this->listener to be called first
     $this->dispatcher->addListener('post.foo', [$this->listener, 'postFoo'], 10);
     $this->dispatcher->addListener('post.foo', [$otherListener, 'postFoo']);
-<<<<<<< HEAD
-    $this->dispatcher->dispatch(self::POSTFOO);
-=======
     $this->dispatcher->dispatch(new Event(), self::POSTFOO);
->>>>>>> dev
     $this->assertTrue($this->listener->postFooInvoked);
     $this->assertFalse($otherListener->postFooInvoked);
   }
@@ -434,11 +385,7 @@ class ContainerAwareEventDispatcherTest extends TestCase {
     $this->dispatcher->addListener('pre.foo', $listener1, -10);
     $this->dispatcher->addListener('pre.foo', $listener2);
     $this->dispatcher->addListener('pre.foo', $listener3, 10);
-<<<<<<< HEAD
-    $this->dispatcher->dispatch(self::PREFOO);
-=======
     $this->dispatcher->dispatch(new Event(), self::PREFOO);
->>>>>>> dev
     $this->assertEquals(['3', '2', '1'], $invoked);
   }
 
@@ -512,11 +459,7 @@ class ContainerAwareEventDispatcherTest extends TestCase {
     $this->dispatcher->addListener('test', [$listener, 'foo']);
     $this->assertNull($listener->name);
     $this->assertNull($listener->dispatcher);
-<<<<<<< HEAD
-    $this->dispatcher->dispatch('test');
-=======
     $this->dispatcher->dispatch(new Event(), 'test');
->>>>>>> dev
     $this->assertEquals('test', $listener->name);
     $this->assertSame($this->dispatcher, $listener->dispatcher);
   }
@@ -584,13 +527,8 @@ class ContainerAwareEventDispatcherTest extends TestCase {
     };
     $this->dispatcher->addListener('foo', [$factory, 'foo']);
     $this->assertSame(0, $called);
-<<<<<<< HEAD
-    $this->dispatcher->dispatch('foo', new Event());
-    $this->dispatcher->dispatch('foo', new Event());
-=======
     $this->dispatcher->dispatch(new Event(), 'foo');
     $this->dispatcher->dispatch(new Event(), 'foo');
->>>>>>> dev
     $this->assertSame(1, $called);
   }
 
@@ -655,11 +593,7 @@ class TestEventListener {
   public $postFooInvoked = FALSE;
 
   /**
-<<<<<<< HEAD
-   * Listener methods
-=======
    * Listener methods.
->>>>>>> dev
    */
   public function preFoo(Event $e) {
     $this->preFooInvoked = TRUE;
@@ -716,8 +650,5 @@ class TestEventSubscriberWithMultipleListeners implements EventSubscriberInterfa
   }
 
 }
-<<<<<<< HEAD
-=======
 
 class SymfonyInheritedEvent extends SymfonyEvent {}
->>>>>>> dev

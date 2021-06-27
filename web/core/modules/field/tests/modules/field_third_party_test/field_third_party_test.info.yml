@@ -1,10 +1,6 @@
 name: 'Field Third Party Settings Test'
 type: module
 description: 'Support module for the Field API tests.'
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 package: Testing
 version: VERSION
 dependencies:

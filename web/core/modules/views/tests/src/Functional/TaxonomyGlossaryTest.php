@@ -18,11 +18,7 @@ class TaxonomyGlossaryTest extends ViewTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['taxonomy'];
-=======
   protected static $modules = ['taxonomy'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -43,11 +39,7 @@ class TaxonomyGlossaryTest extends ViewTestBase {
    */
   protected $taxonomyTerms;
 
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();
@@ -65,11 +57,7 @@ class TaxonomyGlossaryTest extends ViewTestBase {
   public function testTaxonomyGlossaryView() {
     // Go the taxonomy glossary page for the first term.
     $this->drupalGet('test_taxonomy_glossary/' . substr($this->taxonomyTerms[0]->getName(), 0, 1));
-<<<<<<< HEAD
-    $this->assertText($this->taxonomyTerms[0]->getName());
-=======
     $this->assertSession()->pageTextContains($this->taxonomyTerms[0]->getName());
->>>>>>> dev
   }
 
 }

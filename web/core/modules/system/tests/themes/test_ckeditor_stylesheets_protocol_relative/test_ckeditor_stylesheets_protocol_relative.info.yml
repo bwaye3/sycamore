@@ -3,10 +3,5 @@ type: theme
 description: 'A theme that uses a protocol-relative CKEditor stylesheet.'
 version: VERSION
 base theme: false
-<<<<<<< HEAD
-core: 8.x
-
-=======
->>>>>>> dev
 ckeditor_stylesheets:
   - //fonts.googleapis.com/css?family=Open+Sans

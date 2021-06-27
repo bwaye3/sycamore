@@ -5,10 +5,6 @@ namespace Drupal\system\Form;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-<<<<<<< HEAD
-use Drupal\Core\Path\AliasManagerInterface as CoreAliasManagerInterface;
-=======
->>>>>>> dev
 use Drupal\Core\Path\PathValidatorInterface;
 use Drupal\Core\Routing\RequestContext;
 use Drupal\path_alias\AliasManagerInterface;
@@ -54,19 +50,8 @@ class SiteInformationForm extends ConfigFormBase {
    * @param \Drupal\Core\Routing\RequestContext $request_context
    *   The request context.
    */
-<<<<<<< HEAD
-  public function __construct(ConfigFactoryInterface $config_factory, $alias_manager, PathValidatorInterface $path_validator, RequestContext $request_context) {
-    parent::__construct($config_factory);
-
-    if (!$alias_manager instanceof AliasManagerInterface) {
-      @trigger_error('Calling \\' . __METHOD__ . ' with \\' . CoreAliasManagerInterface::class . ' instead of \\' . AliasManagerInterface::class . ' is deprecated in drupal:8.8.0. The new service will be required in drupal:9.0.0. See https://www.drupal.org/node/3092086', E_USER_DEPRECATED);
-      $alias_manager = \Drupal::service('path_alias.manager');
-    }
-
-=======
   public function __construct(ConfigFactoryInterface $config_factory, AliasManagerInterface $alias_manager, PathValidatorInterface $path_validator, RequestContext $request_context) {
     parent::__construct($config_factory);
->>>>>>> dev
     $this->aliasManager = $alias_manager;
     $this->pathValidator = $path_validator;
     $this->requestContext = $request_context;
@@ -110,36 +95,17 @@ class SiteInformationForm extends ConfigFormBase {
 
     $form['site_information'] = [
       '#type' => 'details',
-<<<<<<< HEAD
-      '#title' => t('Site details'),
-=======
       '#title' => $this->t('Site details'),
->>>>>>> dev
       '#open' => TRUE,
     ];
     $form['site_information']['site_name'] = [
       '#type' => 'textfield',
-<<<<<<< HEAD
-      '#title' => t('Site name'),
-=======
       '#title' => $this->t('Site name'),
->>>>>>> dev
       '#default_value' => $site_config->get('name'),
       '#required' => TRUE,
     ];
     $form['site_information']['site_slogan'] = [
       '#type' => 'textfield',
-<<<<<<< HEAD
-      '#title' => t('Slogan'),
-      '#default_value' => $site_config->get('slogan'),
-      '#description' => t("How this is used depends on your site's theme."),
-    ];
-    $form['site_information']['site_mail'] = [
-      '#type' => 'email',
-      '#title' => t('Email address'),
-      '#default_value' => $site_mail,
-      '#description' => t("The <em>From</em> address in automated emails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this email being flagged as spam.)"),
-=======
       '#title' => $this->t('Slogan'),
       '#default_value' => $site_config->get('slogan'),
       '#description' => $this->t("How this is used depends on your site's theme."),
@@ -150,58 +116,29 @@ class SiteInformationForm extends ConfigFormBase {
       '#title' => $this->t('Email address'),
       '#default_value' => $site_mail,
       '#description' => $this->t("The <em>From</em> address in automated emails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this email being flagged as spam.)"),
->>>>>>> dev
       '#required' => TRUE,
     ];
     $form['front_page'] = [
       '#type' => 'details',
-<<<<<<< HEAD
-      '#title' => t('Front page'),
-=======
       '#title' => $this->t('Front page'),
->>>>>>> dev
       '#open' => TRUE,
     ];
     $front_page = $site_config->get('page.front') != '/user/login' ? $this->aliasManager->getAliasByPath($site_config->get('page.front')) : '';
     $form['front_page']['site_frontpage'] = [
       '#type' => 'textfield',
-<<<<<<< HEAD
-      '#title' => t('Default front page'),
-      '#default_value' => $front_page,
-      '#size' => 40,
-      '#description' => t('Optionally, specify a relative URL to display as the front page. Leave blank to display the default front page.'),
-=======
       '#title' => $this->t('Default front page'),
       '#default_value' => $front_page,
       '#size' => 40,
       '#description' => $this->t('Optionally, specify a relative URL to display as the front page. Leave blank to display the default front page.'),
->>>>>>> dev
       '#field_prefix' => $this->requestContext->getCompleteBaseUrl(),
     ];
     $form['error_page'] = [
       '#type' => 'details',
-<<<<<<< HEAD
-      '#title' => t('Error pages'),
-=======
       '#title' => $this->t('Error pages'),
->>>>>>> dev
       '#open' => TRUE,
     ];
     $form['error_page']['site_403'] = [
       '#type' => 'textfield',
-<<<<<<< HEAD
-      '#title' => t('Default 403 (access denied) page'),
-      '#default_value' => $site_config->get('page.403'),
-      '#size' => 40,
-      '#description' => t('This page is displayed when the requested document is denied to the current user. Leave blank to display a generic "access denied" page.'),
-    ];
-    $form['error_page']['site_404'] = [
-      '#type' => 'textfield',
-      '#title' => t('Default 404 (not found) page'),
-      '#default_value' => $site_config->get('page.404'),
-      '#size' => 40,
-      '#description' => t('This page is displayed when no other content matches the requested document. Leave blank to display a generic "page not found" page.'),
-=======
       '#title' => $this->t('Default 403 (access denied) page'),
       '#default_value' => $site_config->get('page.403'),
       '#size' => 40,
@@ -213,7 +150,6 @@ class SiteInformationForm extends ConfigFormBase {
       '#default_value' => $site_config->get('page.404'),
       '#size' => 40,
       '#description' => $this->t('This page is displayed when no other content matches the requested document. Leave blank to display a generic "page not found" page.'),
->>>>>>> dev
     ];
 
     return parent::buildForm($form, $form_state);

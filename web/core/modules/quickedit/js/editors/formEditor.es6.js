@@ -3,11 +3,7 @@
  * Form-based in-place editor. Works for any field type.
  */
 
-<<<<<<< HEAD
-(function($, Drupal, _) {
-=======
 (function ($, Drupal, _) {
->>>>>>> dev
   /**
    * @constructor
    *
@@ -152,11 +148,7 @@
           });
 
           $formContainer
-<<<<<<< HEAD
-            .on('formUpdated.quickedit', ':input', event => {
-=======
             .on('formUpdated.quickedit', ':input', (event) => {
->>>>>>> dev
               const state = fieldModel.get('state');
               // If the form is in an invalid state, it will persist on the page.
               // Set the field to activating so that the user can correct the
@@ -170,11 +162,7 @@
                 fieldModel.set('state', 'changed');
               }
             })
-<<<<<<< HEAD
-            .on('keypress.quickedit', 'input', event => {
-=======
             .on('keypress.quickedit', 'input', (event) => {
->>>>>>> dev
               if (event.keyCode === 13) {
                 return false;
               }
@@ -227,11 +215,7 @@
         }
 
         // Successfully saved.
-<<<<<<< HEAD
-        formSaveAjax.commands.quickeditFieldFormSaved = function(
-=======
         formSaveAjax.commands.quickeditFieldFormSaved = function (
->>>>>>> dev
           ajax,
           response,
           status,
@@ -251,11 +235,7 @@
         };
 
         // Unsuccessfully saved; validation errors.
-<<<<<<< HEAD
-        formSaveAjax.commands.quickeditFieldFormValidationErrors = function(
-=======
         formSaveAjax.commands.quickeditFieldFormValidationErrors = function (
->>>>>>> dev
           ajax,
           response,
           status,
@@ -268,11 +248,7 @@
         // the form; Form API will mark which form items have errors, if any. This
         // command is invoked only if validation errors exist and then it runs
         // before editFieldFormValidationErrors().
-<<<<<<< HEAD
-        formSaveAjax.commands.quickeditFieldForm = function(
-=======
         formSaveAjax.commands.quickeditFieldForm = function (
->>>>>>> dev
           ajax,
           response,
           status,

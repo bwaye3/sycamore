@@ -26,11 +26,7 @@ class RequestSanitizerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->errors = [];
     set_error_handler([$this, "errorHandler"]);
@@ -325,11 +321,7 @@ class RequestSanitizerTest extends UnitTestCase {
     $data[] = ['/example.com'];
     // Internal URL using a colon is allowed.
     $data[] = ['example:test'];
-<<<<<<< HEAD
-    // Javascript URL is allowed because it is treated as an internal URL.
-=======
     // JavaScript URL is allowed because it is treated as an internal URL.
->>>>>>> dev
     $data[] = ['javascript:alert(0)'];
     return $data;
   }

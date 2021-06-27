@@ -11,11 +11,7 @@ use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\KernelTests\KernelTestBase;
 
 /**
-<<<<<<< HEAD
- * Tests the raw string formatter
-=======
  * Tests the raw string formatter.
->>>>>>> dev
  *
  * @group field
  */
@@ -26,11 +22,7 @@ class RawStringFormatterTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'field', 'text',
     'entity_test',
     'system',
@@ -61,19 +53,11 @@ class RawStringFormatterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Configure the theme system.
     $this->installConfig(['system', 'field']);
-<<<<<<< HEAD
-    \Drupal::service('router.builder')->rebuild();
-=======
->>>>>>> dev
     $this->installEntitySchema('entity_test');
 
     $this->entityType = 'entity_test';

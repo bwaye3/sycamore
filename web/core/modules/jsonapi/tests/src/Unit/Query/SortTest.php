@@ -20,11 +20,7 @@ class SortTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $container = new Container();
@@ -49,11 +45,7 @@ class SortTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Provides a suite of shortcut sort paramaters and their expected expansions.
-=======
    * Provides a suite of shortcut sort parameters and their expected expansions.
->>>>>>> dev
    */
   public function parameterProvider() {
     return [

@@ -21,11 +21,7 @@ class WizardTest extends WizardTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'comment'];
-=======
   protected static $modules = ['node', 'comment'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -35,11 +31,7 @@ class WizardTest extends WizardTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
     $this->drupalCreateContentType(['type' => 'page', 'name' => t('Basic page')]);
     // Add comment field to page node type.
@@ -59,41 +51,16 @@ class WizardTest extends WizardTestBase {
 
     // Just triggering the saving should automatically choose a proper row
     // plugin.
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/add', $view, t('Save and edit'));
-    $this->assertUrl('admin/structure/views/view/' . $view['id'], [], 'Make sure the view saving was successful and the browser got redirected to the edit page.');
-=======
     $this->drupalGet('admin/structure/views/add');
     $this->submitForm($view, 'Save and edit');
     // Verify that the view saving was successful and the browser got redirected
     // to the edit page.
     $this->assertSession()->addressEquals('admin/structure/views/view/' . $view['id']);
->>>>>>> dev
 
     // If we update the type first we should get a selection of comment valid
     // row plugins as the select field.
 
     $this->drupalGet('admin/structure/views/add');
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/add', $view, t('Update "of type" choice'));
-
-    // Check for available options of the row plugin.
-    $xpath = $this->constructFieldXpath('name', 'page[style][row_plugin]');
-    $fields = $this->xpath($xpath);
-    $options = [];
-    foreach ($fields as $field) {
-      $items = $field->findAll('xpath', 'option');
-      foreach ($items as $item) {
-        $options[] = $item->getValue();
-      }
-    }
-    $expected_options = ['entity:comment', 'fields'];
-    $this->assertEqual($options, $expected_options);
-
-    $view['id'] = strtolower($this->randomMachineName(16));
-    $this->drupalPostForm(NULL, $view, t('Save and edit'));
-    $this->assertUrl('admin/structure/views/view/' . $view['id'], [], 'Make sure the view saving was successful and the browser got redirected to the edit page.');
-=======
     $this->drupalGet('admin/structure/views/add');
     $this->submitForm($view, 'Update "of type" choice');
 
@@ -111,7 +78,6 @@ class WizardTest extends WizardTestBase {
     // Verify that the view saving was successful and the browser got redirected
     // to the edit page.
     $this->assertSession()->addressEquals('admin/structure/views/view/' . $view['id']);
->>>>>>> dev
 
     $user = $this->drupalCreateUser(['access comments']);
     $this->drupalLogin($user);
@@ -119,21 +85,6 @@ class WizardTest extends WizardTestBase {
     $view = Views::getView($view['id']);
     $view->initHandlers();
     $row = $view->display_handler->getOption('row');
-<<<<<<< HEAD
-    $this->assertEqual($row['type'], 'entity:comment');
-
-    // Check for the default filters.
-    $this->assertEqual($view->filter['status']->table, 'comment_field_data');
-    $this->assertEqual($view->filter['status']->field, 'status');
-    $this->assertEquals('1', $view->filter['status']->value);
-    $this->assertEqual($view->filter['status_node']->table, 'node_field_data');
-    $this->assertEqual($view->filter['status_node']->field, 'status');
-    $this->assertEquals('1', $view->filter['status_node']->value);
-
-    // Check for the default fields.
-    $this->assertEqual($view->field['subject']->table, 'comment_field_data');
-    $this->assertEqual($view->field['subject']->field, 'subject');
-=======
     $this->assertEquals('entity:comment', $row['type']);
 
     // Check for the default filters.
@@ -147,7 +98,6 @@ class WizardTest extends WizardTestBase {
     // Check for the default fields.
     $this->assertEquals('comment_field_data', $view->field['subject']->table);
     $this->assertEquals('subject', $view->field['subject']->field);
->>>>>>> dev
   }
 
 }

@@ -7,10 +7,6 @@ use Drupal\Core\Action\Plugin\Action\UnpublishAction;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Messenger\MessengerInterface;
-<<<<<<< HEAD
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-=======
->>>>>>> dev
 use Drupal\Core\Session\AccountInterface;
 use Drupal\content_moderation\ModerationInformationInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -20,11 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @see \Drupal\Core\Action\Plugin\Action\UnpublishAction
  */
-<<<<<<< HEAD
-class ModerationOptOutUnpublish extends UnpublishAction implements ContainerFactoryPluginInterface {
-=======
 class ModerationOptOutUnpublish extends UnpublishAction {
->>>>>>> dev
 
   /**
    * Moderation information service.

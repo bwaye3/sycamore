@@ -28,21 +28,12 @@ trait EntityViewTrait {
    * @param null $langcode
    *   (optional) For which language the entity should be prepared, defaults to
    *   the current content language.
-<<<<<<< HEAD
-   * @param bool $reset
-   *   (optional) Whether to clear the cache for this entity.
-=======
->>>>>>> dev
    *
    * @return array
    *
    * @see \Drupal\Core\Render\RendererInterface::render()
    */
-<<<<<<< HEAD
-  protected function buildEntityView(EntityInterface $entity, $view_mode = 'full', $langcode = NULL, $reset = FALSE) {
-=======
   protected function buildEntityView(EntityInterface $entity, $view_mode = 'full', $langcode = NULL) {
->>>>>>> dev
     $ensure_fully_built = function (&$elements) use (&$ensure_fully_built) {
       // If the default values for this element have not been loaded yet, populate
       // them.
@@ -67,12 +58,6 @@ trait EntityViewTrait {
     };
 
     $render_controller = $this->container->get('entity_type.manager')->getViewBuilder($entity->getEntityTypeId());
-<<<<<<< HEAD
-    if ($reset) {
-      $render_controller->resetCache([$entity->id()]);
-    }
-=======
->>>>>>> dev
     $build = $render_controller->view($entity, $view_mode, $langcode);
     $ensure_fully_built($build);
 

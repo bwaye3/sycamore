@@ -27,24 +27,12 @@
 
         for (var r = 0; r < feature.rules.length; r++) {
           var featureRule = feature.rules[r];
-<<<<<<< HEAD
-
-          var requiredTags = featureRule.required.tags;
-          for (var t = 0; t < requiredTags.length; t++) {
-            universe[requiredTags[t]] = {
-              tag: false,
-
-              touchedByAllowedPropertyRule: false,
-
-              touchedBytouchedByForbiddenPropertyRule: false
-=======
           var requiredTags = featureRule.required.tags;
 
           for (var t = 0; t < requiredTags.length; t++) {
             universe[requiredTags[t]] = {
               tag: false,
               touchedByAllowedPropertyRule: false
->>>>>>> dev
             };
           }
 
@@ -54,16 +42,10 @@
 
           for (var p = 0; p < properties.length; p++) {
             var property = properties[p];
-<<<<<<< HEAD
-            for (var pv = 0; pv < featureRule.required[property].length; pv++) {
-              var propertyValue = featureRule.required[property];
-              universe[requiredTags][property + ':' + propertyValue] = false;
-=======
 
             for (var pv = 0; pv < featureRule.required[property].length; pv++) {
               var propertyValue = featureRule.required[property];
               universe[requiredTags]["".concat(property, ":").concat(propertyValue)] = false;
->>>>>>> dev
             }
           }
         }
@@ -76,11 +58,7 @@
           return false;
         }
 
-<<<<<<< HEAD
-        var key = property + ':' + propertyValue;
-=======
         var key = "".concat(property, ":").concat(propertyValue);
->>>>>>> dev
 
         if (allowing) {
           universe[tag].touchedByAllowedPropertyRule = true;
@@ -91,19 +69,6 @@
             if (allowing) {
               universe[tag][key] = true;
             }
-<<<<<<< HEAD
-            return true;
-          }
-          return false;
-        }
-
-
-        var atLeastOneFound = false;
-        var regex = key.replace(/\*/g, '[^ ]*');
-        _.each(_.keys(universe[tag]), function (key) {
-          if (key.match(regex)) {
-            atLeastOneFound = true;
-=======
 
             return true;
           }
@@ -118,34 +83,24 @@
           if (key.match(regex)) {
             atLeastOneFound = true;
 
->>>>>>> dev
             if (allowing) {
               universe[tag][key] = true;
             }
           }
         });
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         return atLeastOneFound;
       }
 
       function findPropertyValuesOnAllTags(universe, property, propertyValues, allowing) {
         var atLeastOneFound = false;
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         _.each(_.keys(universe), function (tag) {
           if (findPropertyValuesOnTag(universe, tag, property, propertyValues, allowing)) {
             atLeastOneFound = true;
           }
         });
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         return atLeastOneFound;
       }
 
@@ -155,37 +110,25 @@
         }
 
         var atLeastOneFound = false;
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         _.each(propertyValues, function (propertyValue) {
           if (findPropertyValueOnTag(universe, tag, property, propertyValue, allowing)) {
             atLeastOneFound = true;
           }
         });
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         return atLeastOneFound;
       }
 
       function deleteAllTagsFromUniverseIfAllowed(universe) {
         var atLeastOneDeleted = false;
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         _.each(_.keys(universe), function (tag) {
           if (deleteFromUniverseIfAllowed(universe, tag)) {
             atLeastOneDeleted = true;
           }
         });
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         return atLeastOneDeleted;
       }
 
@@ -193,18 +136,12 @@
         if (tag === '*') {
           return deleteAllTagsFromUniverseIfAllowed(universe);
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         if (_.has(universe, tag) && _.every(_.omit(universe[tag], 'touchedByAllowedPropertyRule'))) {
           delete universe[tag];
           return true;
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         return false;
       }
 
@@ -212,18 +149,12 @@
         var properties = ['attributes', 'styles', 'classes'];
 
         var allRequiredTags = _.keys(universe);
-<<<<<<< HEAD
-        var filterRule = void 0;
-        for (var i = 0; i < filterStatus.rules.length; i++) {
-          filterRule = filterStatus.rules[i];
-=======
 
         var filterRule;
 
         for (var i = 0; i < filterStatus.rules.length; i++) {
           filterRule = filterStatus.rules[i];
 
->>>>>>> dev
           if (filterRule.allow === false) {
             if (_.intersection(allRequiredTags, filterRule.tags).length > 0) {
               return true;
@@ -254,16 +185,6 @@
 
       function markAllowedTagsAndPropertyValues(universe, filterStatus) {
         var properties = ['attributes', 'styles', 'classes'];
-<<<<<<< HEAD
-
-        var filterRule = void 0;
-        var tag = void 0;
-        for (var l = 0; !_.isEmpty(universe) && l < filterStatus.rules.length; l++) {
-          filterRule = filterStatus.rules[l];
-          if (filterRule.allow === true) {
-            for (var m = 0; !_.isEmpty(universe) && m < filterRule.tags.length; m++) {
-              tag = filterRule.tags[m];
-=======
         var filterRule;
         var tag;
 
@@ -274,7 +195,6 @@
             for (var m = 0; !_.isEmpty(universe) && m < filterRule.tags.length; m++) {
               tag = filterRule.tags[m];
 
->>>>>>> dev
               if (_.has(universe, tag)) {
                 universe[tag].tag = true;
                 deleteFromUniverseIfAllowed(universe, tag);
@@ -332,35 +252,21 @@
             return false;
           }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
           var tags = _.keys(universe);
 
           for (var i = 0; i < tags.length; i++) {
             var tag = tags[i];
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
             if (_.has(universe, tag)) {
               if (universe[tag].touchedByAllowedPropertyRule === false) {
                 delete universe[tag];
               }
             }
           }
-<<<<<<< HEAD
-          return _.isEmpty(universe);
-        }
-
-
-=======
 
           return _.isEmpty(universe);
         }
 
->>>>>>> dev
         return true;
       }
 
@@ -378,20 +284,12 @@
       styles: [],
       classes: []
     };
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
     this.allowed = {
       tags: [],
       attributes: [],
       styles: [],
       classes: []
     };
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
     this.raw = null;
   };
 
@@ -406,13 +304,7 @@
 
   Drupal.FilterStatus = function (name) {
     this.name = name;
-<<<<<<< HEAD
-
     this.active = false;
-
-=======
-    this.active = false;
->>>>>>> dev
     this.rules = [];
   };
 
@@ -423,15 +315,6 @@
   Drupal.FilterHTMLRule = function () {
     this.tags = [];
     this.allow = null;
-<<<<<<< HEAD
-
-    this.restrictedTags = {
-      tags: [],
-      allowed: { attributes: [], styles: [], classes: [] },
-      forbidden: { attributes: [], styles: [], classes: [] }
-    };
-
-=======
     this.restrictedTags = {
       tags: [],
       allowed: {
@@ -445,7 +328,6 @@
         classes: []
       }
     };
->>>>>>> dev
     return this;
   };
 
@@ -465,19 +347,10 @@
 
   Drupal.filterConfiguration = {
     statuses: {},
-<<<<<<< HEAD
-
-    liveSettingParsers: {},
-
-    update: function update() {
-      Object.keys(Drupal.filterConfiguration.statuses || {}).forEach(function (filterID) {
-        Drupal.filterConfiguration.statuses[filterID].active = $('[name="filters[' + filterID + '][status]"]').is(':checked');
-=======
     liveSettingParsers: {},
     update: function update() {
       Object.keys(Drupal.filterConfiguration.statuses || {}).forEach(function (filterID) {
         Drupal.filterConfiguration.statuses[filterID].active = $("[name=\"filters[".concat(filterID, "][status]\"]")).is(':checked');
->>>>>>> dev
 
         if (Drupal.filterConfiguration.liveSettingParsers[filterID]) {
           Drupal.filterConfiguration.statuses[filterID].rules = Drupal.filterConfiguration.liveSettingParsers[filterID].getRules();
@@ -485,19 +358,6 @@
       });
     }
   };
-<<<<<<< HEAD
-
-  Drupal.behaviors.initializeFilterConfiguration = {
-    attach: function attach(context, settings) {
-      var $context = $(context);
-
-      $context.find('#filters-status-wrapper input.form-checkbox').once('filter-editor-status').each(function () {
-        var $checkbox = $(this);
-        var nameAttribute = $checkbox.attr('name');
-
-        var filterID = nameAttribute.substring(8, nameAttribute.indexOf(']'));
-
-=======
   Drupal.behaviors.initializeFilterConfiguration = {
     attach: function attach(context, settings) {
       var $context = $(context);
@@ -505,7 +365,6 @@
         var $checkbox = $(this);
         var nameAttribute = $checkbox.attr('name');
         var filterID = nameAttribute.substring(8, nameAttribute.indexOf(']'));
->>>>>>> dev
         Drupal.filterConfiguration.statuses[filterID] = new Drupal.FilterStatus(filterID);
       });
     }

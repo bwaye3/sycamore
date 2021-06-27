@@ -19,22 +19,14 @@ class CommentBaseFieldTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'system',
     'user',
     'comment',
     'comment_base_field_test',
   ];
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('comment_test_base_field');
     $this->installEntitySchema('comment');

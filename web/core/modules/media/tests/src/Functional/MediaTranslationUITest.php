@@ -20,11 +20,7 @@ class MediaTranslationUITest extends ContentTranslationUITestBase {
   protected $defaultTheme = 'classy';
 
   /**
-<<<<<<< HEAD
-   * {inheritdoc}
-=======
    * {@inheritdoc}
->>>>>>> dev
    */
   protected $defaultCacheContexts = [
     'languages:language_interface',
@@ -37,15 +33,9 @@ class MediaTranslationUITest extends ContentTranslationUITestBase {
   ];
 
   /**
-<<<<<<< HEAD
-   * {inheritdoc}
-   */
-  public static $modules = [
-=======
    * {@inheritdoc}
    */
   protected static $modules = [
->>>>>>> dev
     'language',
     'content_translation',
     'media',
@@ -55,11 +45,7 @@ class MediaTranslationUITest extends ContentTranslationUITestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->entityTypeId = 'media';
     $this->bundle = 'test';
     parent::setUp();

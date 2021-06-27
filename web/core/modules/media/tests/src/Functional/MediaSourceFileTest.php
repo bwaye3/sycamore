@@ -17,11 +17,7 @@ class MediaSourceFileTest extends MediaFunctionalTestBase {
   protected $defaultTheme = 'stark';
 
   /**
-<<<<<<< HEAD
-   * Test that it's possible to change the allowed file extensions.
-=======
    * Tests that it's possible to change the allowed file extensions.
->>>>>>> dev
    */
   public function testSourceFieldSettingsEditing() {
     $session = $this->getSession();

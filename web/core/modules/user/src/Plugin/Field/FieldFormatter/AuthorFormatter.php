@@ -28,10 +28,6 @@ class AuthorFormatter extends EntityReferenceFormatterBase {
     $elements = [];
 
     foreach ($this->getEntitiesToView($items, $langcode) as $delta => $entity) {
-<<<<<<< HEAD
-      /** @var $referenced_user \Drupal\user\UserInterface */
-=======
->>>>>>> dev
       $elements[$delta] = [
         '#theme' => 'username',
         '#account' => $entity,

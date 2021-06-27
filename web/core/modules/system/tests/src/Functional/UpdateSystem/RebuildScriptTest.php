@@ -4,10 +4,7 @@ namespace Drupal\Tests\system\Functional\UpdateSystem;
 
 use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
-<<<<<<< HEAD
-=======
 use Symfony\Component\Filesystem\Filesystem;
->>>>>>> dev
 
 /**
  * Tests the rebuild script access and functionality.
@@ -19,12 +16,6 @@ class RebuildScriptTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected $defaultTheme = 'stark';
-
-  /**
-   * Test redirect in rebuild.php.
-=======
   protected static $modules = ['module_test', 'container_rebuild_test'];
 
   /**
@@ -34,18 +25,13 @@ class RebuildScriptTest extends BrowserTestBase {
 
   /**
    * Tests redirect in rebuild.php.
->>>>>>> dev
    */
   public function testRebuild() {
     $cache = $this->container->get('cache.default');
 
     $cache->set('rebuild_test', TRUE);
     $this->drupalGet(Url::fromUri('base:core/rebuild.php'));
-<<<<<<< HEAD
-    $this->assertUrl(new Url('<front>'));
-=======
     $this->assertSession()->addressEquals(new Url('<front>'));
->>>>>>> dev
     $this->assertInstanceOf(\stdClass::class, $cache->get('rebuild_test'));
 
     $settings['settings']['rebuild_access'] = (object) [
@@ -57,11 +43,6 @@ class RebuildScriptTest extends BrowserTestBase {
     $this->rebuildAll();
 
     $cache->set('rebuild_test', TRUE);
-<<<<<<< HEAD
-    $this->drupalGet(Url::fromUri('base:core/rebuild.php'));
-    $this->assertUrl(new Url('<front>'));
-    $this->assertFalse($cache->get('rebuild_test'));
-=======
     \Drupal::state()->set('container_rebuild_test.count', 0);
     $this->drupalGet(Url::fromUri('base:core/rebuild.php'));
     $this->assertSession()->addressEquals(new Url('<front>'));
@@ -116,7 +97,6 @@ class RebuildScriptTest extends BrowserTestBase {
     $this->assertFalse($cache->get('rebuild_test'));
     $this->refreshVariables();
     $this->assertSame(1, \Drupal::state()->get('container_rebuild_test.count', 0));
->>>>>>> dev
   }
 
 }

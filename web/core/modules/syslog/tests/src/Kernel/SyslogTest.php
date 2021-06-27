@@ -13,20 +13,12 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class SyslogTest extends KernelTestBase {
 
-<<<<<<< HEAD
-  public static $modules = ['syslog', 'syslog_test'];
-=======
   protected static $modules = ['syslog', 'syslog_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installConfig(['syslog']);
   }
@@ -62,20 +54,12 @@ class SyslogTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test severity level logging.
-=======
    * Tests severity level logging.
->>>>>>> dev
    *
    * @covers ::log
    */
   public function testSyslogSeverity() {
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Config\Config $config */
-=======
     /** @var \Drupal\Core\Config\Config $config */
->>>>>>> dev
     $config = $this->container->get('config.factory')->getEditable('syslog.settings');
     $config->set('format', '!type|!message|!severity');
     $config->save();

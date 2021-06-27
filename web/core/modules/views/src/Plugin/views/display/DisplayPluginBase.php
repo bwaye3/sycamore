@@ -2213,25 +2213,6 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
   }
 
   /**
-<<<<<<< HEAD
-   * Applies the cacheability of the current display to the given render array.
-   *
-   * @param array $element
-   *   The render array with updated cacheability metadata.
-   *
-   * @deprecated in drupal:8.4.0 and is removed from drupal:9.0.0. Use
-   *   DisplayPluginBase::applyDisplayCacheabilityMetadata instead.
-   *
-   * @see \Drupal\views\Plugin\views\display\DisplayPluginBase::applyDisplayCacheabilityMetadata()
-   */
-  protected function applyDisplayCachablityMetadata(array &$element) {
-    @trigger_error('The DisplayPluginBase::applyDisplayCachablityMetadata method is deprecated since version 8.4 and will be removed in 9.0. Use DisplayPluginBase::applyDisplayCacheabilityMetadata instead.', E_USER_DEPRECATED);
-    $this->applyDisplayCacheabilityMetadata($element);
-  }
-
-  /**
-=======
->>>>>>> dev
    * {@inheritdoc}
    */
   public function elementPreRender(array $element) {
@@ -2429,15 +2410,12 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
       // Places like \Drupal\views\ViewExecutable::setCurrentPage() set up an
       // additional cache context.
       $this->view->element['#cache']['keys'] = array_merge(['views', 'display', $this->view->element['#name'], $this->view->element['#display_id']], $this->view->element['#cache']['keys']);
-<<<<<<< HEAD
-=======
 
       // Add arguments to the cache key.
       if ($args) {
         $this->view->element['#cache']['keys'][] = 'args';
         $this->view->element['#cache']['keys'][] = implode(',', $args);
       }
->>>>>>> dev
     }
     else {
       // Remove the cache keys, to ensure render caching is not triggered. We

@@ -33,13 +33,6 @@ class DatabaseStorageExpirable extends DatabaseStorage implements KeyValueStoreE
    * {@inheritdoc}
    */
   public function has($key) {
-<<<<<<< HEAD
-    return (bool) $this->connection->query('SELECT 1 FROM {' . $this->connection->escapeTable($this->table) . '} WHERE collection = :collection AND name = :key AND expire > :now', [
-      ':collection' => $this->collection,
-      ':key' => $key,
-      ':now' => REQUEST_TIME,
-    ])->fetchField();
-=======
     try {
       return (bool) $this->connection->query('SELECT 1 FROM {' . $this->connection->escapeTable($this->table) . '} WHERE [collection] = :collection AND [name] = :key AND [expire] > :now', [
         ':collection' => $this->collection,
@@ -51,23 +44,12 @@ class DatabaseStorageExpirable extends DatabaseStorage implements KeyValueStoreE
       $this->catchException($e);
       return FALSE;
     }
->>>>>>> dev
   }
 
   /**
    * {@inheritdoc}
    */
   public function getMultiple(array $keys) {
-<<<<<<< HEAD
-    $values = $this->connection->query(
-      'SELECT name, value FROM {' . $this->connection->escapeTable($this->table) . '} WHERE expire > :now AND name IN ( :keys[] ) AND collection = :collection',
-      [
-        ':now' => REQUEST_TIME,
-        ':keys[]' => $keys,
-        ':collection' => $this->collection,
-      ])->fetchAllKeyed();
-    return array_map([$this->serializer, 'decode'], $values);
-=======
     try {
       $values = $this->connection->query(
         'SELECT [name], [value] FROM {' . $this->connection->escapeTable($this->table) . '} WHERE [expire] > :now AND [name] IN ( :keys[] ) AND [collection] = :collection',
@@ -86,28 +68,12 @@ class DatabaseStorageExpirable extends DatabaseStorage implements KeyValueStoreE
       $this->catchException($e);
     }
     return [];
->>>>>>> dev
   }
 
   /**
    * {@inheritdoc}
    */
   public function getAll() {
-<<<<<<< HEAD
-    $values = $this->connection->query(
-      'SELECT name, value FROM {' . $this->connection->escapeTable($this->table) . '} WHERE collection = :collection AND expire > :now',
-      [
-        ':collection' => $this->collection,
-        ':now' => REQUEST_TIME,
-      ])->fetchAllKeyed();
-    return array_map([$this->serializer, 'decode'], $values);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setWithExpire($key, $value, $expire) {
-=======
     try {
       $values = $this->connection->query(
         'SELECT [name], [value] FROM {' . $this->connection->escapeTable($this->table) . '} WHERE [collection] = :collection AND [expire] > :now',
@@ -136,7 +102,6 @@ class DatabaseStorageExpirable extends DatabaseStorage implements KeyValueStoreE
    *   The time to live for items, in seconds.
    */
   protected function doSetWithExpire($key, $value, $expire) {
->>>>>>> dev
     $this->connection->merge($this->table)
       ->keys([
         'name' => $key,
@@ -152,9 +117,6 @@ class DatabaseStorageExpirable extends DatabaseStorage implements KeyValueStoreE
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setWithExpireIfNotExists($key, $value, $expire) {
-=======
   public function setWithExpire($key, $value, $expire) {
     try {
       $this->doSetWithExpire($key, $value, $expire);
@@ -186,7 +148,6 @@ class DatabaseStorageExpirable extends DatabaseStorage implements KeyValueStoreE
    *   TRUE if the data was set, or FALSE if it already existed.
    */
   protected function doSetWithExpireIfNotExists($key, $value, $expire) {
->>>>>>> dev
     if (!$this->has($key)) {
       $this->setWithExpire($key, $value, $expire);
       return TRUE;
@@ -197,8 +158,6 @@ class DatabaseStorageExpirable extends DatabaseStorage implements KeyValueStoreE
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-=======
   public function setWithExpireIfNotExists($key, $value, $expire) {
     try {
       return $this->doSetWithExpireIfNotExists($key, $value, $expire);
@@ -217,7 +176,6 @@ class DatabaseStorageExpirable extends DatabaseStorage implements KeyValueStoreE
   /**
    * {@inheritdoc}
    */
->>>>>>> dev
   public function setMultipleWithExpire(array $data, $expire) {
     foreach ($data as $key => $value) {
       $this->setWithExpire($key, $value, $expire);
@@ -231,8 +189,6 @@ class DatabaseStorageExpirable extends DatabaseStorage implements KeyValueStoreE
     parent::deleteMultiple($keys);
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Defines the schema for the key_value_expire table.
    */
@@ -275,5 +231,4 @@ class DatabaseStorageExpirable extends DatabaseStorage implements KeyValueStoreE
     ];
   }
 
->>>>>>> dev
 }

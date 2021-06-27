@@ -17,11 +17,7 @@ class MigrationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['migrate'];
-=======
   protected static $modules = ['migrate'];
->>>>>>> dev
 
   /**
    * Tests Migration::getProcessPlugins()
@@ -112,11 +108,8 @@ class MigrationTest extends KernelTestBase {
   public function testGetMigrationDependencies() {
     $plugin_manager = \Drupal::service('plugin.manager.migration');
     $plugin_definition = [
-<<<<<<< HEAD
-=======
       'id' => 'foo',
       'deriver' => 'fooDeriver',
->>>>>>> dev
       'process' => [
         'f1' => 'bar',
         'f2' => [
@@ -154,13 +147,10 @@ class MigrationTest extends KernelTestBase {
             ],
           ],
         ],
-<<<<<<< HEAD
-=======
         'f7' => [
           'plugin' => 'migration_lookup',
           'migration' => 'foo',
         ],
->>>>>>> dev
       ],
     ];
     $migration = $plugin_manager->createStubMigration($plugin_definition);

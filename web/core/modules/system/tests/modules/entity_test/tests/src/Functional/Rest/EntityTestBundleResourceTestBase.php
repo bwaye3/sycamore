@@ -3,27 +3,14 @@
 namespace Drupal\Tests\entity_test\Functional\Rest;
 
 use Drupal\entity_test\Entity\EntityTestBundle;
-<<<<<<< HEAD
-use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
-=======
->>>>>>> dev
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 
 abstract class EntityTestBundleResourceTestBase extends EntityResourceTestBase {
 
-<<<<<<< HEAD
-  use BcTimestampNormalizerUnixTestTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static $modules = ['entity_test'];
-=======
   /**
    * {@inheritdoc}
    */
   protected static $modules = ['entity_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

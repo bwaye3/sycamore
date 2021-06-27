@@ -7,10 +7,6 @@ use Drupal\migrate\Exception\RequirementsException;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Plugin\MigrationPluginManagerInterface;
 use Drupal\migrate\Plugin\RequirementsInterface;
-<<<<<<< HEAD
-use Drupal\migrate_drupal\Plugin\MigrateCckFieldInterface;
-=======
->>>>>>> dev
 use Drupal\migrate_drupal\Plugin\MigrateFieldPluginManagerInterface;
 use Psr\Log\LoggerInterface;
 
@@ -20,16 +16,6 @@ use Psr\Log\LoggerInterface;
 class FieldDiscovery implements FieldDiscoveryInterface {
 
   /**
-<<<<<<< HEAD
-   * The CCK plugin manager.
-   *
-   * @var \Drupal\migrate_drupal\Plugin\MigrateCckFieldPluginManagerInterface
-   */
-  protected $cckPluginManager;
-
-  /**
-=======
->>>>>>> dev
    * An array of already discovered field plugin information.
    *
    * @var array
@@ -159,15 +145,6 @@ class FieldDiscovery implements FieldDiscoveryInterface {
       if ($plugin) {
         $method = isset($plugin_definition['field_plugin_method']) ? $plugin_definition['field_plugin_method'] : 'defineValueProcessPipeline';
 
-<<<<<<< HEAD
-        // @todo Remove the following 3 lines of code prior to Drupal 9.0.0.
-        // https://www.drupal.org/node/3032317
-        if ($plugin instanceof MigrateCckFieldInterface) {
-          $method = isset($plugin_definition['cck_plugin_method']) ? $plugin_definition['cck_plugin_method'] : 'processCckFieldValues';
-        }
-
-=======
->>>>>>> dev
         call_user_func_array([
           $plugin,
           $method,
@@ -179,11 +156,7 @@ class FieldDiscovery implements FieldDiscoveryInterface {
       }
       else {
         // Default to a get process plugin if this is a value migration.
-<<<<<<< HEAD
-        if ((empty($plugin_definition['field_plugin_method']) || $plugin_definition['field_plugin_method'] === 'defineValueProcessPipeline') && (empty($plugin_definition['cck_plugin_method']) || $plugin_definition['cck_plugin_method'] === 'processCckFieldValues')) {
-=======
         if ((empty($plugin_definition['field_plugin_method']) || $plugin_definition['field_plugin_method'] === 'defineValueProcessPipeline')) {
->>>>>>> dev
           $migration->setProcessOfProperty($field_name, $field_name);
         }
       }
@@ -198,13 +171,8 @@ class FieldDiscovery implements FieldDiscoveryInterface {
    * @param \Drupal\migrate\Plugin\MigrationInterface $migration
    *   The migration to retrieve the plugin for.
    *
-<<<<<<< HEAD
-   * @return \Drupal\migrate_drupal\Plugin\MigrateCckFieldInterface|\Drupal\migrate_drupal\Plugin\MigrateFieldInterface|bool
-   *   The appropriate field or cck plugin to process this field type.
-=======
    * @return \Drupal\migrate_drupal\Plugin\MigrateFieldInterface|bool
    *   The appropriate field plugin to process this field type.
->>>>>>> dev
    *
    * @throws \Drupal\Component\Plugin\Exception\PluginException
    * @throws \InvalidArgumentException
@@ -217,21 +185,7 @@ class FieldDiscovery implements FieldDiscoveryInterface {
         $plugin = $this->fieldPluginManager->createInstance($plugin_id, ['core' => $core], $migration);
       }
       catch (PluginNotFoundException $ex) {
-<<<<<<< HEAD
-        // @todo Replace try/catch block with $plugin = FALSE for Drupal 9.
-        // https://www.drupal.org/project/drupal/issues/3033733
-        try {
-          /** @var \Drupal\migrate_drupal\Plugin\MigrateCckFieldPluginManager $cck_plugin_manager */
-          $cck_plugin_manager = $this->getCckPluginManager();
-          $plugin_id = $cck_plugin_manager->getPluginIdFromFieldType($field_type, ['core' => $core], $migration);
-          $plugin = $cck_plugin_manager->createInstance($plugin_id, ['core' => $core], $migration);
-        }
-        catch (PluginNotFoundException $ex) {
-          $plugin = FALSE;
-        }
-=======
         $plugin = FALSE;
->>>>>>> dev
       }
       $this->fieldPluginCache[$core][$field_type] = $plugin;
     }
@@ -312,26 +266,6 @@ class FieldDiscovery implements FieldDiscoveryInterface {
   }
 
   /**
-<<<<<<< HEAD
-   * Gets the deprecated CCK Plugin Manager service as a BC shim.
-   *
-   * We don't inject this service directly because it is deprecated, and we
-   * don't want to instantiate the plugin manager unless we have to, to avoid
-   * triggering deprecation errors.
-   *
-   * @return \Drupal\migrate_drupal\Plugin\MigrateCckFieldPluginManagerInterface
-   *   The CCK Plugin Manager.
-   */
-  protected function getCckPluginManager() {
-    if (!$this->cckPluginManager) {
-      $this->cckPluginManager = \Drupal::service('plugin.manager.migrate.cckfield');
-    }
-    return $this->cckPluginManager;
-  }
-
-  /**
-=======
->>>>>>> dev
    * Gets the source plugin to use to gather field information.
    *
    * @param string $core
@@ -352,17 +286,10 @@ class FieldDiscovery implements FieldDiscoveryInterface {
       }
       catch (RequirementsException $e) {
         // If checkRequirements() failed, the source database did not support
-<<<<<<< HEAD
-        // fields (i.e., CCK is not installed in D6 or Field is not installed in
-        // D7). Therefore, $fields will be empty and below we'll return an empty
-        // array. The migration will proceed without adding fields.
-        $this->logger->notice('Field discovery failed for Drupal core version @core. Did this site have the CCK or Field module installed? Error: @message', [
-=======
         // fields (i.e., Field is not installed in D7). Therefore, $fields will
         // be empty and below we'll return an empty array. The migration will
         // proceed without adding fields.
         $this->logger->notice('Field discovery failed for Drupal core version @core. Did this site have the Field module installed? Error: @message', [
->>>>>>> dev
           '@core' => $core,
           '@message' => $e->getMessage(),
         ]);

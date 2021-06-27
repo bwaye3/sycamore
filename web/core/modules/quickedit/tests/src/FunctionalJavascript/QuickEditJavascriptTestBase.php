@@ -13,11 +13,7 @@ class QuickEditJavascriptTestBase extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['contextual', 'quickedit', 'toolbar'];
-=======
   protected static $modules = ['contextual', 'quickedit', 'toolbar'];
->>>>>>> dev
 
   /**
    * A user with permissions to edit Articles and use Quick Edit.
@@ -105,11 +101,7 @@ class QuickEditJavascriptTestBase extends WebDriverTestBase {
 
     // Assert the Quick Edit internal state is correct.
     $js_condition = <<<JS
-<<<<<<< HEAD
-Drupal.quickedit.collections.entities.where({isActive: true}).length === 1 && Drupal.quickedit.collections.entities.where({isActive: true})[0].get('entityID') === '$entity_type_id/$entity_id';
-=======
 Drupal.quickedit.collections.entities.where({isActive: true}).length === 1 && Drupal.quickedit.collections.entities.where({isActive: true})[0].get('entityID') === '$entity_type_id/$entity_id'
->>>>>>> dev
 JS;
     $this->assertJsCondition($js_condition);
   }
@@ -157,25 +149,17 @@ JS;
   protected function awaitEntityInstanceFieldState($entity_type_id, $entity_id, $entity_instance_id, $field_name, $langcode, $awaited_state) {
     $entity_page_id = $entity_type_id . '/' . $entity_id . '[' . $entity_instance_id . ']';
     $logical_field_id = $entity_type_id . '/' . $entity_id . '/' . $field_name . '/' . $langcode;
-<<<<<<< HEAD
-    $this->assertJsCondition("Drupal.quickedit.collections.entities.get('$entity_page_id').get('fields').findWhere({logicalFieldID: '$logical_field_id'}).get('state') === '$awaited_state';");
-=======
     $this->assertJsCondition("Drupal.quickedit.collections.entities.get('$entity_page_id').get('fields').findWhere({logicalFieldID: '$logical_field_id'}).get('state') === '$awaited_state'");
->>>>>>> dev
   }
 
   /**
    * Asserts the state of the Quick Edit entity toolbar.
    *
    * @param string $expected_entity_label
-<<<<<<< HEAD
-   *   The expected label in the Quick Edit Entity Toolbar.
-=======
    *   The expected entity label in the Quick Edit Entity Toolbar.
    * @param string|null $expected_field_label
    *   The expected field label in the Quick Edit Entity Toolbar, or NULL
    *   if no field label is expected.
->>>>>>> dev
    */
   protected function assertQuickEditEntityToolbar($expected_entity_label, $expected_field_label) {
     $quickedit_entity_toolbar = $this->getSession()->getPage()->findById('quickedit-entity-toolbar');
@@ -257,48 +241,12 @@ JS;
     foreach ($expected_field_states as $quickedit_field_id => $expected_field_state) {
       $expected_field_attributes[$quickedit_field_id] = static::$expectedFieldStateAttributes[$expected_field_state];
     }
-<<<<<<< HEAD
-    $this->assertEntityInstanceFieldMarkup($entity_type_id, $entity_id, $entity_instance_id, $expected_field_attributes);
-=======
     $this->assertEntityInstanceFieldMarkup($expected_field_attributes);
->>>>>>> dev
   }
 
   /**
    * Asserts all in-place editable fields with markup expectations.
    *
-<<<<<<< HEAD
-   * @param string $entity_type_id
-   *   The entity type ID.
-   * @param int $entity_id
-   *   The entity ID.
-   * @param int $entity_instance_id
-   *   The entity instance ID. (Instance on the page.)
-   * @param array $expected_field_attributes
-   *   Must describe the expected markup attributes for all given in-place
-   *   editable fields.
-   */
-  protected function assertEntityInstanceFieldMarkup($entity_type_id, $entity_id, $entity_instance_id, array $expected_field_attributes) {
-    $entity_page_id = $entity_type_id . '/' . $entity_id . '[' . $entity_instance_id . ']';
-    $expected_field_attributes_json = json_encode($expected_field_attributes);
-    $js_match_field_element_attributes = <<<JS
-function () {
-  var expectations = $expected_field_attributes_json;
-  var entityCollection = Drupal.quickedit.collections.entities;
-  var entityModel = entityCollection.get('$entity_page_id');
-  return entityModel.get('fields').reduce(function (result, fieldModel) {
-    var fieldID = fieldModel.get('fieldID');
-    var element = fieldModel.get('el');
-    var matches = element.webkitMatchesSelector(expectations[fieldID]);
-    result[fieldID] = matches ? matches : element.outerHTML;
-    return result;
-  }, {});
-}()
-JS;
-    $result = $this->getSession()->evaluateScript($js_match_field_element_attributes);
-    foreach ($expected_field_attributes as $quickedit_field_id => $expectation) {
-      $this->assertSame(TRUE, $result[$quickedit_field_id], 'Field ' . $quickedit_field_id . ' did not match its expectation selector (' . $expectation . '), actual HTML: ' . $result[$quickedit_field_id]);
-=======
    * @param array $expected_field_attributes
    *   Must describe the expected markup attributes for all given in-place
    *   editable fields.
@@ -317,7 +265,6 @@ JS;
     foreach ($expected_field_attributes as $quickedit_field_id => $expectation) {
       $element = $this->assertSession()->waitForElementVisible('css', '[data-quickedit-field-id="' . $quickedit_field_id . '"]' . $expectation);
       $this->assertNotEmpty($element, 'Field ' . $quickedit_field_id . ' did not match its expectation selector (' . $expectation . ')');
->>>>>>> dev
     }
   }
 

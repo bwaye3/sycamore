@@ -483,17 +483,6 @@ class Comment extends ContentEntityBase implements CommentInterface {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function getStatus() {
-    @trigger_error(__NAMESPACE__ . '\Comment::getStatus() is deprecated in drupal:8.3.0 and is removed from drupal:9.0.0. Use \Drupal\Core\Entity\EntityPublishedInterface::isPublished() instead. See https://www.drupal.org/node/2830201', E_USER_DEPRECATED);
-    return $this->get('status')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-=======
->>>>>>> dev
   public function getThread() {
     $thread = $this->get('thread');
     if (!empty($thread->value)) {

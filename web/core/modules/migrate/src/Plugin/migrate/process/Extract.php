@@ -3,10 +3,7 @@
 namespace Drupal\migrate\Plugin\migrate\process;
 
 use Drupal\Component\Utility\NestedArray;
-<<<<<<< HEAD
-=======
 use Drupal\Component\Utility\Variable;
->>>>>>> dev
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\MigrateException;
 use Drupal\migrate\MigrateExecutableInterface;
@@ -72,17 +69,6 @@ class Extract extends ProcessPluginBase {
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     if (!is_array($value)) {
-<<<<<<< HEAD
-      throw new MigrateException('Input should be an array.');
-    }
-    $new_value = NestedArray::getValue($value, $this->configuration['index'], $key_exists);
-    if (!$key_exists) {
-      if (isset($this->configuration['default'])) {
-        $new_value = $this->configuration['default'];
-      }
-      else {
-        throw new MigrateException('Array index missing, extraction failed.');
-=======
       throw new MigrateException(sprintf("Input should be an array, instead it was of type '%s'", gettype($value)));
     }
     $new_value = NestedArray::getValue($value, $this->configuration['index'], $key_exists);
@@ -93,7 +79,6 @@ class Extract extends ProcessPluginBase {
       }
       else {
         throw new MigrateException(sprintf("Array index missing, extraction failed for '%s'. Consider adding a `default` key to the configuration.", Variable::export($value)));
->>>>>>> dev
       }
     }
     return $new_value;

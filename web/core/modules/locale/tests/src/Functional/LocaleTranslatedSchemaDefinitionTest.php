@@ -20,11 +20,7 @@ class LocaleTranslatedSchemaDefinitionTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['language', 'locale', 'node'];
-=======
   protected static $modules = ['language', 'locale', 'node'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -34,21 +30,13 @@ class LocaleTranslatedSchemaDefinitionTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     ConfigurableLanguage::createFromLangcode('fr')->save();
     $this->config('system.site')->set('default_langcode', 'fr')->save();
 
     // Clear all caches so that the base field definition, its cache in the
-<<<<<<< HEAD
-    // entity manager, the t() cache, etc. are all cleared.
-=======
     // entity field manager, the t() cache, etc. are all cleared.
->>>>>>> dev
     drupal_flush_all_caches();
   }
 
@@ -70,11 +58,7 @@ class LocaleTranslatedSchemaDefinitionTest extends BrowserTestBase {
     ])->save();
 
     // Ensure that the field is translated when access through the API.
-<<<<<<< HEAD
-    $this->assertEqual('Translated Revision ID', \Drupal::service('entity_field.manager')->getBaseFieldDefinitions('node')['vid']->getLabel());
-=======
     $this->assertEquals('Translated Revision ID', \Drupal::service('entity_field.manager')->getBaseFieldDefinitions('node')['vid']->getLabel());
->>>>>>> dev
 
     // Assert there are no updates.
     $this->assertFalse(\Drupal::service('entity.definition_update_manager')->needsUpdates());
@@ -109,13 +93,8 @@ class LocaleTranslatedSchemaDefinitionTest extends BrowserTestBase {
     $this->drupalGet($update_url . '/selection', ['external' => TRUE]);
     $this->updateRequirementsProblem();
     $this->drupalGet($update_url . '/selection', ['external' => TRUE]);
-<<<<<<< HEAD
-    $this->assertRaw('messages--status', 'No pending updates.');
-    $this->assertNoLinkByHref('fr/update.php/run', 'No link to run updates.');
-=======
     $this->assertRaw('messages--status');
     $this->assertSession()->linkByHrefNotExists('fr/update.php/run', 'No link to run updates.');
->>>>>>> dev
   }
 
 }

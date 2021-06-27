@@ -14,14 +14,9 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
-<<<<<<< HEAD
-use Drupal\Core\TypedData\DataReferenceTargetDefinition;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-=======
 use Drupal\Core\Installer\InstallerKernel;
 use Drupal\Core\TypedData\DataReferenceTargetDefinition;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
->>>>>>> dev
 use Symfony\Component\HttpKernel\Exception\PreconditionFailedHttpException;
 
 /**
@@ -77,11 +72,7 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
   /**
    * The event dispatcher.
    *
-<<<<<<< HEAD
-   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
-=======
    * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
->>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -111,11 +102,7 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
    *   The entity field manager.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
    *   The cache backend.
-<<<<<<< HEAD
-   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
-=======
    * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $dispatcher
->>>>>>> dev
    *   The event dispatcher.
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityTypeBundleInfoInterface $entity_bundle_info, EntityFieldManagerInterface $entity_field_manager, CacheBackendInterface $cache, EventDispatcherInterface $dispatcher) {
@@ -168,11 +155,7 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
     $fields = static::getFields($raw_fields, $entity_type, $bundle);
     if (!$internalize_resource_type) {
       $event = ResourceTypeBuildEvent::createFromEntityTypeAndBundle($entity_type, $bundle, $fields);
-<<<<<<< HEAD
-      $this->eventDispatcher->dispatch(ResourceTypeBuildEvents::BUILD, $event);
-=======
       $this->eventDispatcher->dispatch($event, ResourceTypeBuildEvents::BUILD);
->>>>>>> dev
       $internalize_resource_type = $event->resourceTypeShouldBeDisabled();
       $fields = $event->getFields();
     }
@@ -197,11 +180,7 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
       throw new PreconditionFailedHttpException('Server error. The current route is malformed.');
     }
 
-<<<<<<< HEAD
-    return $this->getByTypeName("$entity_type_id--$bundle");
-=======
     return static::lookupResourceType($this->all(), $entity_type_id, $bundle);
->>>>>>> dev
   }
 
   /**
@@ -289,15 +268,9 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
     // With all fields now aliased, detect any conflicts caused by the
     // automatically generated aliases above.
     foreach (array_intersect($reserved_field_names, array_keys($fields)) as $reserved_field_name) {
-<<<<<<< HEAD
-      /* @var \Drupal\jsonapi\ResourceType\ResourceTypeField $aliased_reserved_field */
-      $aliased_reserved_field = $fields[$reserved_field_name];
-      /* @var \Drupal\jsonapi\ResourceType\ResourceTypeField $field */
-=======
       /** @var \Drupal\jsonapi\ResourceType\ResourceTypeField $aliased_reserved_field */
       $aliased_reserved_field = $fields[$reserved_field_name];
       /** @var \Drupal\jsonapi\ResourceType\ResourceTypeField $field */
->>>>>>> dev
       foreach (array_diff_key($fields, array_flip([$reserved_field_name])) as $field) {
         if ($aliased_reserved_field->getPublicName() === $field->getPublicName()) {
           throw new \LogicException("The generated alias '{$aliased_reserved_field->getPublicName()}' for field name '{$aliased_reserved_field->getInternalName()}' conflicts with an existing field. Please report this in the JSON:API issue queue!");
@@ -318,46 +291,6 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
   }
 
   /**
-<<<<<<< HEAD
-   * Gets the field mapping for the given field names and entity type + bundle.
-   *
-   * @param string[] $field_names
-   *   All field names on a bundle of the given entity type.
-   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
-   *   The entity type for which to get the field mapping.
-   * @param string $bundle
-   *   The bundle to assess.
-   *
-   * @return array
-   *   An array with:
-   *   - keys are (real/internal) field names
-   *   - values are either FALSE (indicating the field is not exposed despite
-   *     not being internal), TRUE (indicating the field should be exposed under
-   *     its internal name) or a string (indicating the field should not be
-   *     exposed using its internal name, but the name specified in the string)
-   *
-   * @deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Use
-   *   self::getFields() instead.
-   *
-   * @see https://www.drupal.org/project/drupal/issues/3014277
-   */
-  protected function getFieldMapping(array $field_names, EntityTypeInterface $entity_type, $bundle) {
-    $class_name = self::class;
-    @trigger_error("{$class_name}::getFieldMapping() is deprecated in Drupal 8.8.0 and will not be allowed in Drupal 9.0.0. Use {$class_name}::getFields() instead. See https://www.drupal.org/project/drupal/issues/3014277.", E_USER_DEPRECATED);
-    $fields = $this->getFields($field_names, $entity_type, $bundle);
-    return array_map(function (ResourceTypeField $field) {
-      if ($field->isFieldEnabled()) {
-        return $field->getInternalName() !== $field->getPublicName()
-          ? $field->getPublicName()
-          : TRUE;
-      }
-      return FALSE;
-    }, $fields);
-  }
-
-  /**
-=======
->>>>>>> dev
    * Gets all field names for a given entity type and bundle.
    *
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
@@ -491,21 +424,6 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
    */
   protected function getRelatableResourceTypesFromFieldDefinition(FieldDefinitionInterface $field_definition, array $resource_types) {
     $item_definition = $field_definition->getItemDefinition();
-<<<<<<< HEAD
-
-    $entity_type_id = $item_definition->getSetting('target_type');
-    $handler_settings = $item_definition->getSetting('handler_settings');
-
-    $has_target_bundles = isset($handler_settings['target_bundles']) && !empty($handler_settings['target_bundles']);
-    $target_bundles = $has_target_bundles ?
-      $handler_settings['target_bundles']
-      : $this->getAllBundlesForEntityType($entity_type_id);
-
-    return array_map(function ($target_bundle) use ($entity_type_id, $resource_types) {
-      $type_name = "$entity_type_id--$target_bundle";
-      return isset($resource_types[$type_name]) ? $resource_types[$type_name] : NULL;
-    }, $target_bundles);
-=======
     $entity_type_id = $item_definition->getSetting('target_type');
     $handler_settings = $item_definition->getSetting('handler_settings');
     $target_bundles = empty($handler_settings['target_bundles']) ? $this->getAllBundlesForEntityType($entity_type_id) : $handler_settings['target_bundles'];
@@ -534,7 +452,6 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
     }
 
     return $relatable_resource_types;
->>>>>>> dev
   }
 
   /**
@@ -554,11 +471,7 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
       return $field_type_is_reference[$field_definition->getType()];
     }
 
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Field\TypedData\FieldItemDataDefinition $item_definition */
-=======
     /** @var \Drupal\Core\Field\TypedData\FieldItemDataDefinition $item_definition */
->>>>>>> dev
     $item_definition = $field_definition->getItemDefinition();
     $main_property = $item_definition->getMainPropertyName();
     $property_definition = $item_definition->getPropertyDefinition($main_property);
@@ -576,9 +489,6 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
    *   The bundle IDs.
    */
   protected function getAllBundlesForEntityType($entity_type_id) {
-<<<<<<< HEAD
-    return array_keys($this->entityTypeBundleInfo->getBundleInfo($entity_type_id));
-=======
     // Ensure all keys are strings because numeric values are allowed as bundle
     // names and "array_keys()" casts "42" to 42.
     return array_map('strval', array_keys($this->entityTypeBundleInfo->getBundleInfo($entity_type_id)));
@@ -609,7 +519,6 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
     }
 
     return NULL;
->>>>>>> dev
   }
 
 }

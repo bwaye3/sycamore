@@ -3,15 +3,10 @@
 namespace Drupal\image\Controller;
 
 use Drupal\Component\Utility\Crypt;
-<<<<<<< HEAD
-use Drupal\Core\Image\ImageFactory;
-use Drupal\Core\Lock\LockBackendInterface;
-=======
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Image\ImageFactory;
 use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\Core\StreamWrapper\StreamWrapperManager;
->>>>>>> dev
 use Drupal\Core\StreamWrapper\StreamWrapperManagerInterface;
 use Drupal\image\ImageStyleInterface;
 use Drupal\system\FileDownloadController;
@@ -50,9 +45,6 @@ class ImageStyleDownloadController extends FileDownloadController {
   protected $logger;
 
   /**
-<<<<<<< HEAD
-   * Constructs a ImageStyleDownloadController object.
-=======
    * File system service.
    *
    * @var \Drupal\Core\File\FileSystemInterface
@@ -61,7 +53,6 @@ class ImageStyleDownloadController extends FileDownloadController {
 
   /**
    * Constructs an ImageStyleDownloadController object.
->>>>>>> dev
    *
    * @param \Drupal\Core\Lock\LockBackendInterface $lock
    *   The lock backend.
@@ -69,28 +60,20 @@ class ImageStyleDownloadController extends FileDownloadController {
    *   The image factory.
    * @param \Drupal\Core\StreamWrapper\StreamWrapperManagerInterface $stream_wrapper_manager
    *   The stream wrapper manager.
-<<<<<<< HEAD
-   */
-  public function __construct(LockBackendInterface $lock, ImageFactory $image_factory, StreamWrapperManagerInterface $stream_wrapper_manager = NULL) {
-=======
    * @param \Drupal\Core\File\FileSystemInterface $file_system
    *   The system service.
    */
   public function __construct(LockBackendInterface $lock, ImageFactory $image_factory, StreamWrapperManagerInterface $stream_wrapper_manager, FileSystemInterface $file_system = NULL) {
->>>>>>> dev
     parent::__construct($stream_wrapper_manager);
     $this->lock = $lock;
     $this->imageFactory = $image_factory;
     $this->logger = $this->getLogger('image');
-<<<<<<< HEAD
-=======
 
     if (!isset($file_system)) {
       @trigger_error('Not defining the $file_system argument to ' . __METHOD__ . ' is deprecated in drupal:9.1.0 and will throw an error in drupal:10.0.0.', E_USER_DEPRECATED);
       $file_system = \Drupal::service('file_system');
     }
     $this->fileSystem = $file_system;
->>>>>>> dev
   }
 
   /**
@@ -100,12 +83,8 @@ class ImageStyleDownloadController extends FileDownloadController {
     return new static(
       $container->get('lock'),
       $container->get('image.factory'),
-<<<<<<< HEAD
-      $container->get('stream_wrapper_manager')
-=======
       $container->get('stream_wrapper_manager'),
       $container->get('file_system')
->>>>>>> dev
     );
   }
 
@@ -176,13 +155,8 @@ class ImageStyleDownloadController extends FileDownloadController {
       // original file, resulting in filenames like image.png.jpeg. So to find
       // the actual source image, we remove the extension and check if that
       // image exists.
-<<<<<<< HEAD
-      $path_info = pathinfo($image_uri);
-      $converted_image_uri = $path_info['dirname'] . DIRECTORY_SEPARATOR . $path_info['filename'];
-=======
       $path_info = pathinfo(StreamWrapperManager::getTarget($image_uri));
       $converted_image_uri = sprintf('%s://%s%s%s', $this->streamWrapperManager->getScheme($derivative_uri), $path_info['dirname'], DIRECTORY_SEPARATOR, $path_info['filename']);
->>>>>>> dev
       if (!file_exists($converted_image_uri)) {
         $this->logger->notice('Source image at %source_image_path not found while trying to generate derivative image at %derivative_path.', ['%source_image_path' => $image_uri, '%derivative_path' => $derivative_uri]);
         return new Response($this->t('Error generating image, missing source file.'), 404);

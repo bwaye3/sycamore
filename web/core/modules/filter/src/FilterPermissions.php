@@ -3,10 +3,6 @@
 namespace Drupal\filter;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -17,15 +13,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class FilterPermissions implements ContainerInjectionInterface {
 
   use StringTranslationTrait;
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * The entity type manager.

@@ -23,11 +23,7 @@ class ConfigEntityAdapterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['config_test'];
-=======
   protected static $modules = ['config_test'];
->>>>>>> dev
 
   /**
    * The config entity.
@@ -39,11 +35,7 @@ class ConfigEntityAdapterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installConfig(static::$modules);
 

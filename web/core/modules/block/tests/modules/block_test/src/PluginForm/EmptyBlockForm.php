@@ -13,14 +13,11 @@ class EmptyBlockForm extends PluginFormBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-=======
   public $plugin;
 
   /**
    * {@inheritdoc}
    */
->>>>>>> dev
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     return $form;
   }

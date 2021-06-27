@@ -53,14 +53,6 @@ class BlockListBuilder extends ConfigEntityListBuilder implements FormInterface 
   protected $formBuilder;
 
   /**
-<<<<<<< HEAD
-   * {@inheritdoc}
-   */
-  protected $limit = FALSE;
-
-  /**
-=======
->>>>>>> dev
    * The messenger.
    *
    * @var \Drupal\Core\Messenger\MessengerInterface
@@ -78,11 +70,8 @@ class BlockListBuilder extends ConfigEntityListBuilder implements FormInterface 
    *   The theme manager.
    * @param \Drupal\Core\Form\FormBuilderInterface $form_builder
    *   The form builder.
-<<<<<<< HEAD
-=======
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
    *   The messenger service.
->>>>>>> dev
    */
   public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage, ThemeManagerInterface $theme_manager, FormBuilderInterface $form_builder, MessengerInterface $messenger) {
     parent::__construct($entity_type, $storage);
@@ -90,10 +79,7 @@ class BlockListBuilder extends ConfigEntityListBuilder implements FormInterface 
     $this->themeManager = $theme_manager;
     $this->formBuilder = $form_builder;
     $this->messenger = $messenger;
-<<<<<<< HEAD
-=======
     $this->limit = FALSE;
->>>>>>> dev
   }
 
   /**
@@ -198,11 +184,7 @@ class BlockListBuilder extends ConfigEntityListBuilder implements FormInterface 
 
     // Weights range from -delta to +delta, so delta should be at least half
     // of the amount of blocks present. This makes sure all blocks in the same
-<<<<<<< HEAD
-    // region get an unique weight.
-=======
     // region get a unique weight.
->>>>>>> dev
     $weight_delta = round(count($entities) / 2);
 
     $placement = FALSE;

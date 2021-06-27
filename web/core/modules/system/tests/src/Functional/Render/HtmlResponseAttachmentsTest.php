@@ -16,11 +16,7 @@ class HtmlResponseAttachmentsTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['render_attached_test'];
-=======
   protected static $modules = ['render_attached_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -28,11 +24,7 @@ class HtmlResponseAttachmentsTest extends BrowserTestBase {
   protected $defaultTheme = 'stark';
 
   /**
-<<<<<<< HEAD
-   * Test rendering of ['#attached'].
-=======
    * Tests rendering of ['#attached'].
->>>>>>> dev
    */
   public function testAttachments() {
     // Test ['#attached']['http_header] = ['Status', $code].
@@ -74,19 +66,11 @@ class HtmlResponseAttachmentsTest extends BrowserTestBase {
       '</foo?bar=&lt;baz&gt;&amp;baz=false>; rel="alternate"',
       '</foo/bar>; hreflang="nl"; rel="alternate"',
     ];
-<<<<<<< HEAD
-    $this->assertEqual($this->getSession()->getResponseHeaders()['Link'], $expected_link_headers);
-  }
-
-  /**
-   * Test caching of ['#attached'].
-=======
     $this->assertEquals($expected_link_headers, $this->getSession()->getResponseHeaders()['Link']);
   }
 
   /**
    * Tests caching of ['#attached'].
->>>>>>> dev
    */
   public function testRenderCachedBlock() {
     // Make sure our test block is visible.
@@ -95,11 +79,7 @@ class HtmlResponseAttachmentsTest extends BrowserTestBase {
     // Get the front page, which should now have our visible block.
     $this->drupalGet('');
     // Make sure our block is visible.
-<<<<<<< HEAD
-    $this->assertText('Markup from attached_rendering_block.');
-=======
     $this->assertSession()->pageTextContains('Markup from attached_rendering_block.');
->>>>>>> dev
     // Test that all our attached items are present.
     $this->assertFeed();
     $this->assertHead();
@@ -109,11 +89,7 @@ class HtmlResponseAttachmentsTest extends BrowserTestBase {
     // Reload the page, to test caching.
     $this->drupalGet('');
     // Make sure our block is visible.
-<<<<<<< HEAD
-    $this->assertText('Markup from attached_rendering_block.');
-=======
     $this->assertSession()->pageTextContains('Markup from attached_rendering_block.');
->>>>>>> dev
     // The header should be present again.
     $this->assertSession()->responseHeaderEquals('X-Test-Teapot', 'Teapot Mode Active');
   }
@@ -166,11 +142,7 @@ class HtmlResponseAttachmentsTest extends BrowserTestBase {
       $this->fail('Unable to find the head meta.');
     }
     else {
-<<<<<<< HEAD
-      $this->assertEqual($test_meta->getAttribute('test-attribute'), 'testvalue');
-=======
       $this->assertEquals('testvalue', $test_meta->getAttribute('test-attribute'));
->>>>>>> dev
     }
   }
 

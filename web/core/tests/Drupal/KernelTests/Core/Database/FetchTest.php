@@ -20,11 +20,7 @@ class FetchTest extends DatabaseTestBase {
    */
   public function testQueryFetchDefault() {
     $records = [];
-<<<<<<< HEAD
-    $result = $this->connection->query('SELECT name FROM {test} WHERE age = :age', [':age' => 25]);
-=======
     $result = $this->connection->query('SELECT [name] FROM {test} WHERE [age] = :age', [':age' => 25]);
->>>>>>> dev
     $this->assertInstanceOf(StatementInterface::class, $result);
     foreach ($result as $record) {
       $records[] = $record;
@@ -40,11 +36,7 @@ class FetchTest extends DatabaseTestBase {
    */
   public function testQueryFetchObject() {
     $records = [];
-<<<<<<< HEAD
-    $result = $this->connection->query('SELECT name FROM {test} WHERE age = :age', [':age' => 25], ['fetch' => \PDO::FETCH_OBJ]);
-=======
     $result = $this->connection->query('SELECT [name] FROM {test} WHERE [age] = :age', [':age' => 25], ['fetch' => \PDO::FETCH_OBJ]);
->>>>>>> dev
     foreach ($result as $record) {
       $records[] = $record;
       $this->assertIsObject($record);
@@ -59,11 +51,7 @@ class FetchTest extends DatabaseTestBase {
    */
   public function testQueryFetchArray() {
     $records = [];
-<<<<<<< HEAD
-    $result = $this->connection->query('SELECT name FROM {test} WHERE age = :age', [':age' => 25], ['fetch' => \PDO::FETCH_ASSOC]);
-=======
     $result = $this->connection->query('SELECT [name] FROM {test} WHERE [age] = :age', [':age' => 25], ['fetch' => \PDO::FETCH_ASSOC]);
->>>>>>> dev
     foreach ($result as $record) {
       $records[] = $record;
       $this->assertIsArray($record);
@@ -81,11 +69,7 @@ class FetchTest extends DatabaseTestBase {
    */
   public function testQueryFetchClass() {
     $records = [];
-<<<<<<< HEAD
-    $result = $this->connection->query('SELECT name FROM {test} WHERE age = :age', [':age' => 25], ['fetch' => FakeRecord::class]);
-=======
     $result = $this->connection->query('SELECT [name] FROM {test} WHERE [age] = :age', [':age' => 25], ['fetch' => FakeRecord::class]);
->>>>>>> dev
     foreach ($result as $record) {
       $records[] = $record;
       $this->assertInstanceOf(FakeRecord::class, $record);
@@ -99,17 +83,6 @@ class FetchTest extends DatabaseTestBase {
    * Confirms that we can fetch a record into a class using fetchObject.
    *
    * @see \Drupal\system\Tests\Database\FakeRecord
-<<<<<<< HEAD
-   * @see \Drupal\Core\Database\StatementPrefech::fetchObject
-   */
-  public function testQueryFetchObjectClass() {
-    $records = 0;
-    $query = $this->connection->query('SELECT name FROM {test} WHERE age = :age', [':age' => 25]);
-    while ($result = $query->fetchObject(FakeRecord::class)) {
-      $records += 1;
-      $this->assertInstanceOf(FakeRecord::class, $result);
-      $this->assertSame('John', $result->name, '25 year old is John.');
-=======
    * @see \Drupal\Core\Database\StatementPrefetch::fetchObject
    */
   public function testQueryFetchObjectClass() {
@@ -120,7 +93,6 @@ class FetchTest extends DatabaseTestBase {
       $this->assertInstanceOf(FakeRecord::class, $result);
       $this->assertSame('John', $result->name, '25 year old is John.');
       $this->assertSame(1, $result->fakeArg, 'The record has received an argument through its constructor.');
->>>>>>> dev
     }
     $this->assertSame(1, $records, 'There is only one record.');
   }
@@ -133,11 +105,7 @@ class FetchTest extends DatabaseTestBase {
    */
   public function testQueryFetchClasstype() {
     $records = [];
-<<<<<<< HEAD
-    $result = $this->connection->query('SELECT classname, name, job FROM {test_classtype} WHERE age = :age', [':age' => 26], ['fetch' => \PDO::FETCH_CLASS | \PDO::FETCH_CLASSTYPE]);
-=======
     $result = $this->connection->query('SELECT [classname], [name], [job] FROM {test_classtype} WHERE [age] = :age', [':age' => 26], ['fetch' => \PDO::FETCH_CLASS | \PDO::FETCH_CLASSTYPE]);
->>>>>>> dev
     foreach ($result as $record) {
       $records[] = $record;
       $this->assertInstanceOf(FakeRecord::class, $record);
@@ -154,11 +122,7 @@ class FetchTest extends DatabaseTestBase {
    */
   public function testQueryFetchNum() {
     $records = [];
-<<<<<<< HEAD
-    $result = $this->connection->query('SELECT name FROM {test} WHERE age = :age', [':age' => 25], ['fetch' => \PDO::FETCH_NUM]);
-=======
     $result = $this->connection->query('SELECT [name] FROM {test} WHERE [age] = :age', [':age' => 25], ['fetch' => \PDO::FETCH_NUM]);
->>>>>>> dev
     foreach ($result as $record) {
       $records[] = $record;
       $this->assertIsArray($record);
@@ -174,11 +138,7 @@ class FetchTest extends DatabaseTestBase {
    */
   public function testQueryFetchBoth() {
     $records = [];
-<<<<<<< HEAD
-    $result = $this->connection->query('SELECT name FROM {test} WHERE age = :age', [':age' => 25], ['fetch' => \PDO::FETCH_BOTH]);
-=======
     $result = $this->connection->query('SELECT [name] FROM {test} WHERE [age] = :age', [':age' => 25], ['fetch' => \PDO::FETCH_BOTH]);
->>>>>>> dev
     foreach ($result as $record) {
       $records[] = $record;
       $this->assertIsArray($record);
@@ -201,27 +161,13 @@ class FetchTest extends DatabaseTestBase {
     $query_result = $query->execute()->fetchAll(\PDO::FETCH_COLUMN);
 
     $expected_result = ['George', 'John', 'Paul', 'Ringo'];
-<<<<<<< HEAD
-    $this->assertEqual($query_result, $expected_result, 'Returned the correct result.');
-=======
     $this->assertEquals($expected_result, $query_result, 'Returned the correct result.');
->>>>>>> dev
   }
 
   /**
    * Confirms that we can fetch an entire column of a result set at once.
    */
   public function testQueryFetchCol() {
-<<<<<<< HEAD
-    $result = $this->connection->query('SELECT name FROM {test} WHERE age > :age', [':age' => 25]);
-    $column = $result->fetchCol();
-    $this->assertCount(3, $column, 'fetchCol() returns the right number of records.');
-
-    $result = $this->connection->query('SELECT name FROM {test} WHERE age > :age', [':age' => 25]);
-    $i = 0;
-    foreach ($result as $record) {
-      $this->assertIdentical($record->name, $column[$i++], 'Column matches direct access.');
-=======
     $result = $this->connection->query('SELECT [name] FROM {test} WHERE [age] > :age', [':age' => 25]);
     $column = $result->fetchCol();
     $this->assertCount(3, $column, 'fetchCol() returns the right number of records.');
@@ -230,7 +176,6 @@ class FetchTest extends DatabaseTestBase {
     $i = 0;
     foreach ($result as $record) {
       $this->assertSame($column[$i++], $record->name, 'Column matches direct access.');
->>>>>>> dev
     }
   }
 
@@ -238,11 +183,7 @@ class FetchTest extends DatabaseTestBase {
    * Tests that rowCount() throws exception on SELECT query.
    */
   public function testRowCount() {
-<<<<<<< HEAD
-    $result = $this->connection->query('SELECT name FROM {test}');
-=======
     $result = $this->connection->query('SELECT [name] FROM {test}');
->>>>>>> dev
     try {
       $result->rowCount();
       $exception = FALSE;

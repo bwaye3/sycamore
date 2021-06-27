@@ -25,20 +25,7 @@ class ThemeRenderAndAutoescapeTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['system'];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-
-    \Drupal::service('router.builder')->rebuild();
-  }
-=======
   protected static $modules = ['system'];
->>>>>>> dev
 
   /**
    * @dataProvider providerTestThemeRenderAndAutoescape

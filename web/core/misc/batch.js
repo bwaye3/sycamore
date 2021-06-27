@@ -10,20 +10,12 @@
     attach: function attach(context, settings) {
       var batch = settings.batch;
       var $progress = $('[data-drupal-progress]').once('batch');
-<<<<<<< HEAD
-      var progressBar = void 0;
-=======
       var progressBar;
->>>>>>> dev
 
       function updateCallback(progress, status, pb) {
         if (progress === '100') {
           pb.stopMonitoring();
-<<<<<<< HEAD
-          window.location = batch.uri + '&op=finished';
-=======
           window.location = "".concat(batch.uri, "&op=finished");
->>>>>>> dev
         }
       }
 
@@ -35,15 +27,8 @@
       if ($progress.length) {
         progressBar = new Drupal.ProgressBar('updateprogress', updateCallback, 'POST', errorCallback);
         progressBar.setProgress(-1, batch.initMessage);
-<<<<<<< HEAD
-        progressBar.startMonitoring(batch.uri + '&op=do', 10);
-
-        $progress.empty();
-
-=======
         progressBar.startMonitoring("".concat(batch.uri, "&op=do"), 10);
         $progress.empty();
->>>>>>> dev
         $progress.append(progressBar.element);
       }
     }

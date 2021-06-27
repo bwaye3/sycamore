@@ -4,11 +4,7 @@ namespace Drupal\Core\Config;
 
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Lock\LockBackendInterface;
-<<<<<<< HEAD
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-=======
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
->>>>>>> dev
 
 /**
  * The import storage transformer helps to use the configuration management api.
@@ -30,11 +26,7 @@ final class ImportStorageTransformer {
   /**
    * The event dispatcher to get changes to the configuration.
    *
-<<<<<<< HEAD
-   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
-=======
    * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
->>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -64,11 +56,7 @@ final class ImportStorageTransformer {
   /**
    * ImportStorageTransformer constructor.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
-=======
    * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
->>>>>>> dev
    *   The event dispatcher.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
@@ -129,11 +117,7 @@ final class ImportStorageTransformer {
     self::replaceStorageContents($storage, $mutable);
 
     // Dispatch the event so that event listeners can alter the configuration.
-<<<<<<< HEAD
-    $this->eventDispatcher->dispatch(ConfigEvents::STORAGE_TRANSFORM_IMPORT, new StorageTransformEvent($mutable));
-=======
     $this->eventDispatcher->dispatch(new StorageTransformEvent($mutable), ConfigEvents::STORAGE_TRANSFORM_IMPORT);
->>>>>>> dev
 
     // Return the storage with the altered configuration.
     return $mutable;

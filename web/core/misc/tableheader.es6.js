@@ -3,11 +3,7 @@
  * Sticky table headers.
  */
 
-<<<<<<< HEAD
-(function($, Drupal, displace) {
-=======
 (function ($, Drupal, displace) {
->>>>>>> dev
   /**
    * Constructor for the tableHeader object. Provides sticky table headers.
    *
@@ -148,12 +144,8 @@
      *
      * @ignore
      */
-<<<<<<< HEAD
-    'columnschange.TableHeader drupalToolbarTrayChange': tableHeaderResizeHandler,
-=======
     'columnschange.TableHeader drupalToolbarTrayChange':
       tableHeaderResizeHandler,
->>>>>>> dev
 
     /**
      * Recalculate TableHeader.topOffset when viewport is resized.
@@ -216,11 +208,8 @@
        * Create the duplicate header.
        */
       createSticky() {
-<<<<<<< HEAD
-=======
         // For caching purposes.
         this.$html = $('html');
->>>>>>> dev
         // Clone the table header so it inherits original jQuery properties.
         const $stickyHeader = this.$originalHeader.clone(true);
         // Hide the table to avoid a flash of the header clone upon page load.
@@ -258,14 +247,11 @@
         if (typeof offsetLeft === 'number') {
           css.left = `${this.tableOffset.left - offsetLeft}px`;
         }
-<<<<<<< HEAD
-=======
         this.$html.css(
           'scroll-padding-top',
           displace.offsets.top +
             (this.stickyVisible ? this.$stickyTable.height() : 0),
         );
->>>>>>> dev
         return this.$stickyTable.css(css);
       },
 

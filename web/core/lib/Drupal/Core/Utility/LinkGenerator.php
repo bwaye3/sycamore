@@ -170,21 +170,13 @@ class LinkGenerator implements LinkGeneratorInterface {
     }
     if ($url->isRouted() && $url->getRouteName() === '<nolink>') {
       $generated_link = new GeneratedNoLink();
-<<<<<<< HEAD
-      unset($attributes['href']);
-=======
       unset($attributes['href'], $attributes['hreflang']);
->>>>>>> dev
       return $this->doGenerate($generated_link, $attributes, $variables);
     }
     if ($url->isRouted() && $url->getRouteName() === '<button>') {
       $generated_link = new GeneratedButton();
       $attributes['type'] = 'button';
-<<<<<<< HEAD
-      unset($attributes['href']);
-=======
       unset($attributes['href'], $attributes['hreflang']);
->>>>>>> dev
       return $this->doGenerate($generated_link, $attributes, $variables);
     }
     $generated_url = $url->toString(TRUE);

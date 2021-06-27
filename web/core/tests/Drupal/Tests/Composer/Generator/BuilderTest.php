@@ -9,22 +9,14 @@ use PHPUnit\Framework\TestCase;
 use Drupal\Composer\Composer;
 
 /**
-<<<<<<< HEAD
- * Test DrupalCoreRecommendedBuilder
-=======
  * Test DrupalCoreRecommendedBuilder.
->>>>>>> dev
  *
  * @group Metapackage
  */
 class BuilderTest extends TestCase {
 
   /**
-<<<<<<< HEAD
-   * Test data for testBuilder
-=======
    * Provides test data for testBuilder.
->>>>>>> dev
    */
   public function builderTestData() {
     return [
@@ -90,11 +82,7 @@ class BuilderTest extends TestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test all of the various kinds of builders.
-=======
    * Tests all of the various kinds of builders.
->>>>>>> dev
    *
    * @dataProvider builderTestData
    */

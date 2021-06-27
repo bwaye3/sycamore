@@ -4,14 +4,9 @@ namespace Drupal\update;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
-<<<<<<< HEAD
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\RequestException;
-=======
 use Drupal\Core\Site\Settings;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\TransferException;
->>>>>>> dev
 
 /**
  * Fetches project information from remote locations.
@@ -23,11 +18,7 @@ class UpdateFetcher implements UpdateFetcherInterface {
   /**
    * URL to check for updates, if a given project doesn't define its own.
    */
-<<<<<<< HEAD
-  const UPDATE_DEFAULT_URL = 'http://updates.drupal.org/release-history';
-=======
   const UPDATE_DEFAULT_URL = 'https://updates.drupal.org/release-history';
->>>>>>> dev
 
   /**
    * The fetch url configured in the update settings.
@@ -37,11 +28,7 @@ class UpdateFetcher implements UpdateFetcherInterface {
   protected $fetchUrl;
 
   /**
-<<<<<<< HEAD
-   * The update settings
-=======
    * The update settings.
->>>>>>> dev
    *
    * @var \Drupal\Core\Config\Config
    */
@@ -55,9 +42,6 @@ class UpdateFetcher implements UpdateFetcherInterface {
   protected $httpClient;
 
   /**
-<<<<<<< HEAD
-   * Constructs a UpdateFetcher.
-=======
    * Whether to use HTTP fallback if HTTPS fails.
    *
    * @var bool
@@ -66,19 +50,11 @@ class UpdateFetcher implements UpdateFetcherInterface {
 
   /**
    * Constructs an UpdateFetcher.
->>>>>>> dev
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory.
    * @param \GuzzleHttp\ClientInterface $http_client
    *   A Guzzle client object.
-<<<<<<< HEAD
-   */
-  public function __construct(ConfigFactoryInterface $config_factory, ClientInterface $http_client) {
-    $this->fetchUrl = $config_factory->get('update.settings')->get('fetch.url');
-    $this->httpClient = $http_client;
-    $this->updateSettings = $config_factory->get('update.settings');
-=======
    * @param \Drupal\Core\Site\Settings|null $settings
    *   The settings instance.
    */
@@ -91,7 +67,6 @@ class UpdateFetcher implements UpdateFetcherInterface {
       $settings = \Drupal::service('settings');
     }
     $this->withHttpFallback = $settings->get('update_fetch_with_http_fallback', FALSE);
->>>>>>> dev
   }
 
   /**
@@ -99,8 +74,6 @@ class UpdateFetcher implements UpdateFetcherInterface {
    */
   public function fetchProjectData(array $project, $site_key = '') {
     $url = $this->buildFetchUrl($project, $site_key);
-<<<<<<< HEAD
-=======
     return $this->doRequest($url, ['headers' => ['Accept' => 'text/xml']], $this->withHttpFallback);
   }
 
@@ -121,24 +94,18 @@ class UpdateFetcher implements UpdateFetcherInterface {
    *   The body of the HTTP(S) request, or an empty string on failure.
    */
   protected function doRequest(string $url, array $options, bool $with_http_fallback): string {
->>>>>>> dev
     $data = '';
     try {
       $data = (string) $this->httpClient
         ->get($url, ['headers' => ['Accept' => 'text/xml']])
         ->getBody();
     }
-<<<<<<< HEAD
-    catch (RequestException $exception) {
-      watchdog_exception('update', $exception);
-=======
     catch (TransferException $exception) {
       watchdog_exception('update', $exception);
       if ($with_http_fallback && strpos($url, "http://") === FALSE) {
         $url = str_replace('https://', 'http://', $url);
         return $this->doRequest($url, $options, FALSE);
       }
->>>>>>> dev
     }
     return $data;
   }

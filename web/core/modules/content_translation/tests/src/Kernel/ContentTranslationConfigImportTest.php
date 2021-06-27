@@ -25,11 +25,7 @@ class ContentTranslationConfigImportTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'system',
     'user',
     'entity_test',
@@ -40,11 +36,7 @@ class ContentTranslationConfigImportTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installConfig(['system']);
@@ -81,11 +73,7 @@ class ContentTranslationConfigImportTest extends KernelTestBase {
     $sync = $this->container->get('config.storage.sync');
 
     // Verify the configuration to create does not exist yet.
-<<<<<<< HEAD
-    $this->assertIdentical($storage->exists($config_name), FALSE, $config_name . ' not found.');
-=======
     $this->assertFalse($storage->exists($config_name), $config_name . ' not found.');
->>>>>>> dev
 
     // Create new config entity.
     $data = [
@@ -105,22 +93,14 @@ class ContentTranslationConfigImportTest extends KernelTestBase {
       ],
     ];
     $sync->write($config_name, $data);
-<<<<<<< HEAD
-    $this->assertIdentical($sync->exists($config_name), TRUE, $config_name . ' found.');
-=======
     $this->assertTrue($sync->exists($config_name), $config_name . ' found.');
->>>>>>> dev
 
     // Import.
     $this->configImporter->reset()->import();
 
     // Verify the values appeared.
     $config = $this->config($config_name);
-<<<<<<< HEAD
-    $this->assertIdentical($config->get('id'), $config_id);
-=======
     $this->assertSame($config_id, $config->get('id'));
->>>>>>> dev
 
     // Verify that updates were performed.
     $entity_type = $this->container->get('entity_type.manager')->getDefinition($entity_type_id);

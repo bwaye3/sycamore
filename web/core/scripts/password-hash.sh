@@ -18,20 +18,6 @@ if (PHP_SAPI !== 'cli') {
   return;
 }
 
-<<<<<<< HEAD
-if (version_compare(PHP_VERSION, '5.4.5') < 0) {
-  $version = PHP_VERSION;
-  echo <<<EOF
-
-ERROR: This script requires at least PHP version 5.4.5. You invoked it with
-       PHP version {$version}.
-\n
-EOF;
-  exit;
-}
-
-=======
->>>>>>> dev
 $script = basename(array_shift($_SERVER['argv']));
 
 if (in_array('--help', $_SERVER['argv']) || empty($_SERVER['argv'])) {
@@ -39,13 +25,8 @@ if (in_array('--help', $_SERVER['argv']) || empty($_SERVER['argv'])) {
 
 Generate Drupal password hashes from the shell.
 
-<<<<<<< HEAD
-Usage:        {$script} [OPTIONS] "<plan-text password>"
-Example:      {$script} "mynewpassword"
-=======
 Usage:        {$script} [OPTIONS] "<plaintext password>"
 Example:      {$script} "my-new-password"
->>>>>>> dev
 
 All arguments are long options.
 
@@ -53,11 +34,7 @@ All arguments are long options.
 
   "<password1>" ["<password2>" ["<password3>" ...]]
 
-<<<<<<< HEAD
-              One or more plan-text passwords enclosed by double quotes. The
-=======
               One or more plaintext passwords enclosed by double quotes. The
->>>>>>> dev
               output hash may be manually entered into the
               {users_field_data}.pass field to change a password via SQL to a
               known value.

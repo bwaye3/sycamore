@@ -32,8 +32,6 @@ class ViewExecutableTest extends UnitTestCase {
   const DISPLAY_DISABLED = FALSE;
 
   /**
-<<<<<<< HEAD
-=======
    * Indicates that user has access to the display.
    */
   const ACCESS_GRANTED = TRUE;
@@ -44,7 +42,6 @@ class ViewExecutableTest extends UnitTestCase {
   const ACCESS_REVOKED = FALSE;
 
   /**
->>>>>>> dev
    * A mocked display collection.
    *
    * @var \Drupal\views\DisplayPluginCollection|\PHPUnit\Framework\MockObject\MockObject
@@ -117,11 +114,7 @@ class ViewExecutableTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->view = $this->createMock('Drupal\views\ViewEntityInterface');
@@ -459,11 +452,6 @@ class ViewExecutableTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * @covers ::attachDisplays
-   */
-  public function testAttachDisplays() {
-=======
    * Tests if a display gets attached or not.
    *
    * @param bool $display_enabled
@@ -477,7 +465,6 @@ class ViewExecutableTest extends UnitTestCase {
    * @dataProvider providerAttachDisplays
    */
   public function testAttachDisplays($display_enabled, $access_granted, $expected_to_be_attached) {
->>>>>>> dev
     /** @var \Drupal\views\ViewExecutable|\PHPUnit\Framework\MockObject\MockObject $view */
     /** @var \Drupal\views\Plugin\views\display\DisplayPluginBase|\PHPUnit\Framework\MockObject\MockObject $display */
     list($view, $display) = $this->setupBaseViewAndDisplay();
@@ -489,29 +476,15 @@ class ViewExecutableTest extends UnitTestCase {
       ->method('getAttachedDisplays')
       ->willReturn(['page_1']);
 
-<<<<<<< HEAD
-    $cloned_view = $this->getMockBuilder('Drupal\views\ViewExecutable')
-      ->disableOriginalConstructor()
-      ->getMock();
-    $this->viewExecutableFactory->expects($this->atLeastOnce())
-      ->method('get')
-      ->willReturn($cloned_view);
-
-=======
->>>>>>> dev
     $page_display = $this->getMockBuilder('Drupal\views\Plugin\views\display\DisplayPluginBase')
       ->disableOriginalConstructor()
       ->getMock();
 
     $page_display->expects($this->atLeastOnce())
       ->method('isEnabled')
-<<<<<<< HEAD
-      ->willReturn(TRUE);
-=======
       ->willReturn($display_enabled);
     $page_display->method('access')
       ->willReturn($access_granted);
->>>>>>> dev
 
     $display_collection = $this->getMockBuilder('Drupal\views\DisplayPluginCollection')
       ->disableOriginalConstructor()
@@ -524,9 +497,6 @@ class ViewExecutableTest extends UnitTestCase {
     $view->displayHandlers = $display_collection;
 
     // Setup the expectations.
-<<<<<<< HEAD
-    $page_display->expects($this->once())
-=======
     $cloned_view = $this->getMockBuilder('Drupal\views\ViewExecutable')
       ->disableOriginalConstructor()
       ->getMock();
@@ -534,7 +504,6 @@ class ViewExecutableTest extends UnitTestCase {
       ->method('get')
       ->willReturn($cloned_view);
     $page_display->expects($expected_to_be_attached ? $this->once() : $this->never())
->>>>>>> dev
       ->method('attachTo')
       ->with($cloned_view, 'default', $view->element);
 
@@ -542,8 +511,6 @@ class ViewExecutableTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Provider for testAttachDisplays().
    *
    * @return array[]
@@ -560,7 +527,6 @@ class ViewExecutableTest extends UnitTestCase {
   }
 
   /**
->>>>>>> dev
    * Setups a view executable and default display.
    *
    * @return array

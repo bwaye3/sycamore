@@ -40,25 +40,16 @@ class WorkspacesContentModerationStateTest extends ContentModerationStateTest {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-    parent::setUp();
-
-    $this->installSchema('system', ['key_value_expire', 'sequences']);
-=======
   protected function setUp(): void {
     parent::setUp();
 
     $this->installSchema('system', ['sequences']);
->>>>>>> dev
 
     $this->initializeWorkspacesModule();
     $this->switchToWorkspace('stage');
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Tests that the 'workspace' entity type can not be moderated.
    *
    * @see \Drupal\workspaces\EntityTypeInfo::entityTypeAlter()
@@ -71,7 +62,6 @@ class WorkspacesContentModerationStateTest extends ContentModerationStateTest {
   }
 
   /**
->>>>>>> dev
    * Tests the integration between Content Moderation and Workspaces.
    *
    * @see content_moderation_workspace_access()

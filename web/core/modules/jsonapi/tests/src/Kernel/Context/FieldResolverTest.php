@@ -16,11 +16,7 @@ use Drupal\Tests\jsonapi\Kernel\JsonapiKernelTestBase;
  */
 class FieldResolverTest extends JsonapiKernelTestBase {
 
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'entity_test',
     'jsonapi_test_field_aliasing',
     'jsonapi_test_field_filter_access',
@@ -47,11 +43,7 @@ class FieldResolverTest extends JsonapiKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('entity_test_with_bundle');

@@ -3,25 +3,6 @@
  * Maintenance theming.
  */
 
-<<<<<<< HEAD
-.maintenance-page {
-  min-height: 100%;
-  background-color: #e0e0d8;
-  background-image: -webkit-radial-gradient(hsl(203, 2%, 90%), hsl(203, 2%, 95%));
-  background-image: radial-gradient(hsl(203, 2%, 90%), hsl(203, 2%, 95%));
-  background-repeat: repeat;
-  background-position: left top, 50% 50%; /* LTR */
-}
-[dir="rtl"] .maintenance-page {
-  background-position: right top, 50% 50%;
-}
-
-.page-title {
-  word-wrap: break-word;
-  color: #0074bd;
-  font-size: 2em;
-  line-height: 1.2em;
-=======
 @import "../base/variables.pcss.css";
 
 .maintenance-page {
@@ -50,7 +31,6 @@
 .title,
 .content {
   max-width: 512px;
->>>>>>> dev
 }
 
 /**
@@ -134,14 +114,10 @@
   width: auto;
   margin-right: 1.25em;
   margin-left: 1.25em;
-<<<<<<< HEAD
-  background: #fff;
-=======
   padding: var(--space-xl);
   border-radius: 8px;
   background: #fff;
   box-shadow: var(--shadow-z3);
->>>>>>> dev
 }
 .layout-container:after { /* no reason for a clearfix in the markup */
   display: table;
@@ -152,19 +128,7 @@
 @media all and (max-width: 48em) { /* 768px */
   .layout-container {
     margin: 1.25em;
-<<<<<<< HEAD
-    padding: 10px 20px;
-  }
-  .page-title {
-    margin-right: 2em; /* LTR */
-    margin-bottom: 0.725em;
-  }
-  [dir="rtl"] .page-title {
-    margin-right: 0;
-    margin-left: 2em;
-=======
     padding: var(--space-m) var(--space-l);
->>>>>>> dev
   }
 }
 
@@ -185,28 +149,6 @@
     height: 100%;
     margin: 0;
   }
-<<<<<<< HEAD
-  .layout-container {
-    width: 75%;
-    max-width: 770px;
-    margin: 0 auto;
-    padding: 20px 0 40px 0;
-    border-radius: 5px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  /* Positioning sidebar & content */
-  main {
-    float: left; /* LTR */
-    clear: none;
-    box-sizing: border-box;
-    width: 65%;
-    padding-right: 3.85em;
-    padding-left: 3.85em;
-  }
-  [dir="rtl"] main {
-    float: right;
-=======
   /**
    * Needed to override rules from system-admin--layout.pcss.
    */
@@ -214,7 +156,6 @@
     width: 75%;
     max-width: 940px;
     margin: 0 auto;
->>>>>>> dev
   }
   ul {
     margin: 0.25em 0;
@@ -230,14 +171,6 @@
   [dir="rtl"] .layout-sidebar-first {
     float: right;
   }
-<<<<<<< HEAD
-
-  /* Margins for sitename */
-  .page-title {
-    margin: 0.75em 1.9em;
-  }
-=======
->>>>>>> dev
 }
 
 /**

@@ -23,11 +23,7 @@ class AdminMetaTagTest extends BrowserTestBase {
     list($version,) = explode('.', \Drupal::VERSION);
     $string = '<meta name="Generator" content="Drupal ' . $version . ' (https://www.drupal.org)" />';
     $this->drupalGet('node');
-<<<<<<< HEAD
-    $this->assertRaw($string, 'Fingerprinting meta tag generated correctly.', 'System');
-=======
     $this->assertRaw($string);
->>>>>>> dev
   }
 
 }

@@ -193,11 +193,7 @@ abstract class ViewsBlockBase extends BlockBase implements ContainerFactoryPlugi
    * Converts Views block content to a renderable array with contextual links.
    *
    * @param string|array $output
-<<<<<<< HEAD
-   *   An string|array representing the block. This will be modified to be a
-=======
    *   A string|array representing the block. This will be modified to be a
->>>>>>> dev
    *   renderable array, containing the optional '#contextual_links' property (if
    *   there are any contextual links associated with the block).
    * @param string $block_type

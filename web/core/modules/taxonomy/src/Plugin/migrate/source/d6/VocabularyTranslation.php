@@ -29,13 +29,8 @@ class VocabularyTranslation extends DrupalSqlBase {
     // and objectindex. The objectid column is a text field. Therefore, for the
     // join to work in PostgreSQL, use the objectindex field as this is numeric
     // like the vid field.
-<<<<<<< HEAD
-    $query->join('i18n_strings', 'i18n', 'v.vid = i18n.objectindex');
-    $query->innerJoin('locales_target', 'lt', 'lt.lid = i18n.lid');
-=======
     $query->join('i18n_strings', 'i18n', '[v].[vid] = [i18n].[objectindex]');
     $query->innerJoin('locales_target', 'lt', '[lt].[lid] = [i18n].[lid]');
->>>>>>> dev
 
     return $query;
   }
@@ -60,10 +55,7 @@ class VocabularyTranslation extends DrupalSqlBase {
     // the language.
     $language = $row->getSourceProperty('ltlanguage');
     $row->setSourceProperty('language', $language);
-<<<<<<< HEAD
-=======
     return parent::prepareRow($row);
->>>>>>> dev
   }
 
   /**

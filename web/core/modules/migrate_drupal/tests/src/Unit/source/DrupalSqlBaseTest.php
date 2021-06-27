@@ -2,13 +2,6 @@
 
 namespace Drupal\Tests\migrate_drupal\Unit\source;
 
-<<<<<<< HEAD
-use Drupal\Tests\migrate\Unit\MigrateTestCase;
-use Drupal\migrate\Exception\RequirementsException;
-
-/**
- * @coversDefaultClass Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase
-=======
 use Drupal\Core\Database\Connection;
 use Drupal\Tests\migrate\Unit\MigrateTestCase;
 use Drupal\migrate\Exception\RequirementsException;
@@ -16,7 +9,6 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 
 /**
  * @coversDefaultClass \Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase
->>>>>>> dev
  * @group migrate_drupal
  */
 class DrupalSqlBaseTest extends MigrateTestCase {
@@ -30,12 +22,6 @@ class DrupalSqlBaseTest extends MigrateTestCase {
 
   /**
    * @var \Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase
-<<<<<<< HEAD
-  */
-  protected $base;
-
-  /**
-=======
    */
   protected $base;
 
@@ -61,7 +47,6 @@ class DrupalSqlBaseTest extends MigrateTestCase {
   protected $entityTypeManager;
 
   /**
->>>>>>> dev
    * Minimum database contents needed to test DrupalSqlBase.
    */
   protected $databaseContents = [
@@ -77,20 +62,6 @@ class DrupalSqlBaseTest extends MigrateTestCase {
   ];
 
   /**
-<<<<<<< HEAD
-   * @covers ::checkRequirements
-   */
-  public function testSourceProviderNotActive() {
-    $plugin_definition['requirements_met'] = TRUE;
-    $plugin_definition['source_module'] = 'module1';
-    /** @var \Drupal\Core\State\StateInterface $state */
-    $state = $this->createMock('Drupal\Core\State\StateInterface');
-    /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager */
-    $entity_type_manager = $this->createMock('Drupal\Core\Entity\EntityTypeManagerInterface');
-    $plugin = new TestDrupalSqlBase([], 'placeholder_id', $plugin_definition, $this->getMigration(), $state, $entity_type_manager);
-    $plugin->setDatabase($this->getDatabase($this->databaseContents));
-    $system_data = $plugin->getSystemData();
-=======
    * {@inheritdoc}
    */
   public function setUp(): void {
@@ -107,7 +78,6 @@ class DrupalSqlBaseTest extends MigrateTestCase {
   public function testSourceProviderNotActive() {
     $plugin = new TestDrupalSqlBase([], 'placeholder_id', $this->pluginDefinition, $this->getMigration(), $this->state, $this->entityTypeManager);
     $plugin->setDatabase($this->getDatabase($this->databaseContents));
->>>>>>> dev
     $this->expectException(RequirementsException::class);
     $this->expectExceptionMessage('The module module1 is not enabled in the source site.');
     try {
@@ -125,31 +95,12 @@ class DrupalSqlBaseTest extends MigrateTestCase {
    * @covers ::checkRequirements
    */
   public function testSourceDatabaseError() {
-<<<<<<< HEAD
-    $plugin_definition['requirements_met'] = TRUE;
-    $plugin_definition['source_module'] = 'module1';
-    /** @var \Drupal\Core\State\StateInterface $state */
-    $state = $this->createMock('Drupal\Core\State\StateInterface');
-    /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager */
-    $entity_manager = $this->createMock('Drupal\Core\Entity\EntityTypeManagerInterface');
-    $plugin = new TestDrupalSqlBase([], 'test', $plugin_definition, $this->getMigration(), $state, $entity_manager);
-    $system_data = $plugin->getSystemData();
-=======
     $plugin = new TestDrupalSqlBase([], 'test', $this->pluginDefinition, $this->getMigration(), $this->state, $this->entityTypeManager);
->>>>>>> dev
     $this->expectException(RequirementsException::class);
     $this->expectExceptionMessage('No database connection configured for source plugin test');
     $plugin->checkRequirements();
   }
 
-<<<<<<< HEAD
-}
-
-namespace Drupal\Tests\migrate_drupal\Unit\source;
-
-use Drupal\Core\Database\Connection;
-use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
-=======
   /**
    * @covers ::checkRequirements
    *
@@ -216,7 +167,6 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
   }
 
 }
->>>>>>> dev
 
 /**
  * Extends the DrupalSqlBase abstract class.

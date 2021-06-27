@@ -18,11 +18,7 @@ class TokenReplaceWebTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['token_test', 'filter', 'node'];
-=======
   protected static $modules = ['token_test', 'filter', 'node'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -38,20 +34,12 @@ class TokenReplaceWebTest extends BrowserTestBase {
     $this->drupalLogin($account);
 
     $this->drupalGet('token-test/' . $node->id());
-<<<<<<< HEAD
-    $this->assertText("Tokens: {$node->id()} {$account->id()}");
-=======
     $this->assertSession()->pageTextContains("Tokens: {$node->id()} {$account->id()}");
->>>>>>> dev
     $this->assertCacheTags(['node:1', 'rendered', 'user:2']);
     $this->assertCacheContexts(['languages:language_interface', 'theme', 'url.query_args:' . MainContentViewSubscriber::WRAPPER_FORMAT, 'user']);
 
     $this->drupalGet('token-test-without-bubbleable-metadata/' . $node->id());
-<<<<<<< HEAD
-    $this->assertText("Tokens: {$node->id()} {$account->id()}");
-=======
     $this->assertSession()->pageTextContains("Tokens: {$node->id()} {$account->id()}");
->>>>>>> dev
     $this->assertCacheTags(['node:1', 'rendered', 'user:2']);
     $this->assertCacheContexts(['languages:language_interface', 'theme', 'url.query_args:' . MainContentViewSubscriber::WRAPPER_FORMAT, 'user']);
   }

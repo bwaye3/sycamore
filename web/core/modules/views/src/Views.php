@@ -127,11 +127,7 @@ class Views {
   }
 
   /**
-<<<<<<< HEAD
-   * Fetches a list of all base tables available
-=======
    * Fetches a list of all base tables available.
->>>>>>> dev
    *
    * @param string $type
    *   Either 'display', 'style' or 'row'.
@@ -200,10 +196,7 @@ class Views {
    *
    * @return array
    *   A list of arrays containing the $view_id and $display_id.
-<<<<<<< HEAD
-=======
    *
->>>>>>> dev
    * @code
    * array(
    *   array($view_id, $display_id),

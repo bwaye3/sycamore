@@ -26,11 +26,7 @@ class MediaStandardProfileTest extends MediaJavascriptTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['media_test_oembed'];
-=======
   protected static $modules = ['media_test_oembed'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -40,11 +36,7 @@ class MediaStandardProfileTest extends MediaJavascriptTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->lockHttpClientToFixtures();
     $this->hijackProviderEndpoints();
@@ -101,11 +93,7 @@ class MediaStandardProfileTest extends MediaJavascriptTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the standard profile configuration for media type 'audio'.
-=======
    * Tests the standard profile configuration for media type 'audio'.
->>>>>>> dev
    */
   protected function audioTest() {
     $assert_session = $this->assertSession();
@@ -136,10 +124,7 @@ class MediaStandardProfileTest extends MediaJavascriptTestBase {
       ->get('entity_type.manager')
       ->getStorage('media')
       ->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->sort('mid', 'DESC')
       ->execute();
     $audio_media_id = reset($audio_media_id);
@@ -200,11 +185,7 @@ class MediaStandardProfileTest extends MediaJavascriptTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the standard profile configuration for media type 'image'.
-=======
    * Tests the standard profile configuration for media type 'image'.
->>>>>>> dev
    */
   protected function imageTest() {
     $assert_session = $this->assertSession();
@@ -229,10 +210,7 @@ class MediaStandardProfileTest extends MediaJavascriptTestBase {
       ->get('entity_type.manager')
       ->getStorage('media')
       ->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->sort('mid', 'DESC')
       ->execute();
     $image_media_id = reset($image_media_id);
@@ -301,11 +279,7 @@ class MediaStandardProfileTest extends MediaJavascriptTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the standard profile configuration for media type 'document'.
-=======
    * Tests the standard profile configuration for media type 'document'.
->>>>>>> dev
    */
   protected function documentTest() {
     $assert_session = $this->assertSession();
@@ -336,10 +310,7 @@ class MediaStandardProfileTest extends MediaJavascriptTestBase {
       ->get('entity_type.manager')
       ->getStorage('media')
       ->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->sort('mid', 'DESC')
       ->execute();
     $file_media_id = reset($file_media_id);
@@ -398,11 +369,7 @@ class MediaStandardProfileTest extends MediaJavascriptTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the standard profile configuration for media type 'remote_video'.
-=======
    * Tests the standard profile configuration for media type 'remote_video'.
->>>>>>> dev
    */
   protected function remoteVideoTest() {
     $assert_session = $this->assertSession();
@@ -431,10 +398,7 @@ class MediaStandardProfileTest extends MediaJavascriptTestBase {
       ->get('entity_type.manager')
       ->getStorage('media')
       ->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->sort('mid', 'DESC')
       ->execute();
     $remote_video_media_id = reset($remote_video_media_id);
@@ -500,11 +464,7 @@ class MediaStandardProfileTest extends MediaJavascriptTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the standard profile configuration for media type 'video'.
-=======
    * Tests the standard profile configuration for media type 'video'.
->>>>>>> dev
    */
   protected function videoTest() {
     $assert_session = $this->assertSession();
@@ -535,10 +495,7 @@ class MediaStandardProfileTest extends MediaJavascriptTestBase {
       ->get('entity_type.manager')
       ->getStorage('media')
       ->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->sort('mid', 'DESC')
       ->execute();
     $video_media_id = reset($video_media_id);

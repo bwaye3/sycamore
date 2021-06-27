@@ -2,26 +2,17 @@
 
 namespace Drupal\Core\Routing;
 
-<<<<<<< HEAD
-use Symfony\Cmf\Component\Routing\RouteProviderInterface as RouteProviderBaseInterface;
-
-/**
- * Extends the router provider interface
-=======
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Cmf\Component\Routing\RouteProviderInterface as RouteProviderBaseInterface;
 
 /**
  * Extends the router provider interface.
->>>>>>> dev
  *
  * @see \Symfony\Cmf\Component\Routing
  */
 interface RouteProviderInterface extends RouteProviderBaseInterface {
 
   /**
-<<<<<<< HEAD
-=======
    * Finds routes that may potentially match the request.
    *
    * This may return a mixed list of class instances, but all routes returned
@@ -87,7 +78,6 @@ interface RouteProviderInterface extends RouteProviderBaseInterface {
   public function getRoutesByNames($names);
 
   /**
->>>>>>> dev
    * Get all routes which match a certain pattern.
    *
    * @param string $pattern

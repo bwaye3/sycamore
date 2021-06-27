@@ -5,13 +5,9 @@
 * @preserve
 **/
 
-<<<<<<< HEAD
-(function ($) {
-=======
 (function ($, _ref) {
   var tabbable = _ref.tabbable,
       isTabbable = _ref.isTabbable;
->>>>>>> dev
   $.widget('ui.dialog', $.ui.dialog, {
     options: {
       buttonClass: 'button',
@@ -19,16 +15,10 @@
     },
     _createButtons: function _createButtons() {
       var opts = this.options;
-<<<<<<< HEAD
-      var primaryIndex = void 0;
-      var index = void 0;
-      var il = opts.buttons.length;
-=======
       var primaryIndex;
       var index;
       var il = opts.buttons.length;
 
->>>>>>> dev
       for (index = 0; index < il; index++) {
         if (opts.buttons[index].primary && opts.buttons[index].primary === true) {
           primaryIndex = index;
@@ -36,16 +26,6 @@
           break;
         }
       }
-<<<<<<< HEAD
-      this._super();
-      var $buttons = this.uiButtonSet.children().addClass(opts.buttonClass);
-      if (typeof primaryIndex !== 'undefined') {
-        $buttons.eq(index).addClass(opts.buttonPrimaryClass);
-      }
-    }
-  });
-})(jQuery);
-=======
 
       this._super();
 
@@ -92,4 +72,3 @@
     }
   });
 })(jQuery, window.tabbable);
->>>>>>> dev

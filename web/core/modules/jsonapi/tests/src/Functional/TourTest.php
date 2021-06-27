@@ -15,11 +15,7 @@ class TourTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['tour'];
-=======
   protected static $modules = ['tour'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -71,13 +67,7 @@ class TourTest extends ResourceTestBase {
           'label' => 'Llama',
           'body' => 'Who handle the awesomeness of llamas?',
           'weight' => 100,
-<<<<<<< HEAD
-          'attributes' => [
-            'data-id' => 'tour-llama-1',
-          ],
-=======
           'selector' => '#tour-llama-1',
->>>>>>> dev
         ],
       ],
     ]);
@@ -127,13 +117,7 @@ class TourTest extends ResourceTestBase {
               'label' => 'Llama',
               'body' => 'Who handle the awesomeness of llamas?',
               'weight' => 100,
-<<<<<<< HEAD
-              'attributes' => [
-                'data-id' => 'tour-llama-1',
-              ],
-=======
               'selector' => '#tour-llama-1',
->>>>>>> dev
             ],
           ],
           'drupal_internal__id' => 'tour-llama',

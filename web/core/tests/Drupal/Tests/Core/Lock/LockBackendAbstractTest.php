@@ -17,11 +17,7 @@ class LockBackendAbstractTest extends UnitTestCase {
    */
   protected $lock;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->lock = $this->getMockForAbstractClass('Drupal\Core\Lock\LockBackendAbstract');
   }
 
@@ -53,21 +49,13 @@ class LockBackendAbstractTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the getLockId() method.
-=======
    * Tests the getLockId() method.
->>>>>>> dev
    */
   public function testGetLockId() {
     $lock_id = $this->lock->getLockId();
     $this->assertIsString($lock_id);
     // Example lock ID would be '7213141505232b6ee2cb967.27683891'.
-<<<<<<< HEAD
-    $this->assertRegExp('/[\da-f]+\.\d+/', $lock_id);
-=======
     $this->assertMatchesRegularExpression('/[\da-f]+\.\d+/', $lock_id);
->>>>>>> dev
     // Test the same lock ID is returned a second time.
     $this->assertSame($lock_id, $this->lock->getLockId());
   }

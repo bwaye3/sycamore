@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-.joyride-tip-guide .tour-tip-label {
-  margin-top: 0;
-}
-
-.joyride-tip-guide h2 {
-  margin: 10px 0;
-=======
 .shepherd-element:focus {
   outline-width: 1px;
   outline-style: dotted;
@@ -31,7 +23,6 @@
 
 .shepherd-title {
   margin: 0;
->>>>>>> dev
   color: #fff;
   font-family: "Lucida Grande", "Lucida Sans Unicode", "DejaVu Sans", "Lucida Sans", sans-serif;
   font-size: 18px;
@@ -39,30 +30,13 @@
   line-height: 20px;
 }
 
-<<<<<<< HEAD
-.joyride-tip-guide p {
-=======
 .shepherd-text p {
->>>>>>> dev
   font-size: 13px;
   line-height: 18px;
 }
 
-<<<<<<< HEAD
-.joyride-tip-guide .button {
-=======
 .shepherd-button {
->>>>>>> dev
   padding: 4px 1.5em;
   font-size: 14px;
   line-height: 17px;
 }
-<<<<<<< HEAD
-
-.joyride-tip-guide a:hover,
-.joyride-tip-guide a:focus {
-  color: #000;
-  background-color: #efefef;
-}
-=======
->>>>>>> dev

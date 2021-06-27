@@ -10,11 +10,7 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\user\Entity\User;
-<<<<<<< HEAD
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
-=======
 use Drupal\Core\Routing\RouteObjectInterface;
->>>>>>> dev
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route;
 
@@ -31,11 +27,7 @@ class MenuLinkContentCacheabilityBubblingTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'menu_link_content',
     'system',
     'link',
@@ -47,11 +39,7 @@ class MenuLinkContentCacheabilityBubblingTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->setUpCurrentUser(['uid' => 0]);
@@ -66,11 +54,6 @@ class MenuLinkContentCacheabilityBubblingTest extends KernelTestBase {
    * Tests bubbleable metadata of menu links' outbound route/path processing.
    */
   public function testOutboundPathAndRouteProcessing() {
-<<<<<<< HEAD
-    \Drupal::service('router.builder')->rebuild();
-
-=======
->>>>>>> dev
     $request_stack = \Drupal::requestStack();
     /** @var \Symfony\Component\Routing\RequestContext $request_context */
     $request_context = \Drupal::service('router.request_context');
@@ -141,11 +124,7 @@ class MenuLinkContentCacheabilityBubblingTest extends KernelTestBase {
       $renderer->renderRoot($build);
 
       $expected_cacheability = $default_menu_cacheability->merge($expectation['cacheability']);
-<<<<<<< HEAD
-      $this->assertEqual($expected_cacheability, BubbleableMetadata::createFromRenderArray($build));
-=======
       $this->assertEquals($expected_cacheability, BubbleableMetadata::createFromRenderArray($build));
->>>>>>> dev
 
       $menu_link_content->delete();
     }
@@ -167,11 +146,7 @@ class MenuLinkContentCacheabilityBubblingTest extends KernelTestBase {
     $build = $menu_tree->build($tree);
     $renderer->renderRoot($build);
     $expected_cacheability = $expected_cacheability->merge($default_menu_cacheability);
-<<<<<<< HEAD
-    $this->assertEqual($expected_cacheability, BubbleableMetadata::createFromRenderArray($build));
-=======
     $this->assertEquals($expected_cacheability, BubbleableMetadata::createFromRenderArray($build));
->>>>>>> dev
   }
 
 }

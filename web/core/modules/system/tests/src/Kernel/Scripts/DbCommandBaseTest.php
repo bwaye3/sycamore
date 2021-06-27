@@ -26,11 +26,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 class DbCommandBaseTest extends KernelTestBase {
 
   /**
-<<<<<<< HEAD
-   * Test specifying a database key.
-=======
    * Tests specifying a database key.
->>>>>>> dev
    */
   public function testSpecifyDatabaseKey() {
     $command = new DbCommandBaseTester();
@@ -59,11 +55,7 @@ class DbCommandBaseTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test supplying database connection as a url.
-=======
    * Tests supplying database connection as a url.
->>>>>>> dev
    */
   public function testSpecifyDbUrl() {
     $command = new DbCommandBaseTester();
@@ -81,11 +73,7 @@ class DbCommandBaseTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test specifying a prefix for different connections.
-=======
    * Tests specifying a prefix for different connections.
->>>>>>> dev
    */
   public function testPrefix() {
     if (Database::getConnection()->driver() == 'sqlite') {

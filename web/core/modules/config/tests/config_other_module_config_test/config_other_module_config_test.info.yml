@@ -2,7 +2,3 @@ name: 'Config other module config'
 type: module
 package: Testing
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev

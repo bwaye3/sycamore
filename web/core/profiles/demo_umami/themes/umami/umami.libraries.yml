@@ -25,10 +25,7 @@ global:
       css/components/fields/recipe-instruction.css: {}
       css/components/fields/summary.css: {}
       css/components/forms/buttons.css: {}
-<<<<<<< HEAD
-=======
       css/components/forms/container-inline.module.css: {}
->>>>>>> dev
       css/components/views/promoted-items.css: {}
       css/components/views/frontpage.css: {}
       css/components/navigation/menu-footer/menu-footer.css: {}
@@ -43,10 +40,7 @@ global:
       css/components/regions/header/header.css: {}
       css/components/regions/highlighted/highlighted.css: {}
       css/components/regions/pre-header/pre-header.css: {}
-<<<<<<< HEAD
-=======
       css/components/regions/tabs/tabs.css: {}
->>>>>>> dev
       css/components/toolbar/toolbar.css: {}
       css/components/layout_builder/layout-builder.css: {}
     layout:
@@ -84,15 +78,12 @@ two-columns:
     layout:
       css/layout/layout-2-col.css: {}
 
-<<<<<<< HEAD
-=======
 user:
   version: VERSION
   css:
     component:
       css/components/user/user.css: { weight: -10 }
 
->>>>>>> dev
 webfonts-open-sans:
   remote: https://fonts.google.com
   license:
@@ -148,15 +139,12 @@ oneplusfourgrid_section:
     theme:
       layouts/oneplusfourgrid_section/oneplusfourgrid_section.css: {}
 
-<<<<<<< HEAD
-=======
 filter:
   version: VERSION
   css:
     component:
       css/theme/filter.admin.css: {}
 
->>>>>>> dev
 classy.base:
   version: VERSION
   css:
@@ -215,15 +203,6 @@ classy.forum:
     component:
       css/classy/components/forum.css: { weight: -10 }
 
-<<<<<<< HEAD
-classy.image-widget:
-  version: VERSION
-  css:
-    component:
-      css/classy/components/image-widget.css: {}
-
-=======
->>>>>>> dev
 classy.indented:
   version: VERSION
   css:
@@ -264,12 +243,3 @@ classy.search-results:
   css:
     component:
       css/classy/components/search-results.css: {}
-<<<<<<< HEAD
-
-classy.user:
-  version: VERSION
-  css:
-    component:
-      css/classy/components/user.css: { weight: -10 }
-=======
->>>>>>> dev

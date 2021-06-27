@@ -67,11 +67,7 @@ class LocaleLookupTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->storage = $this->createMock('Drupal\locale\StringStorageInterface');
     $this->cache = $this->createMock('Drupal\Core\Cache\CacheBackendInterface');
     $this->lock = $this->createMock('Drupal\Core\Lock\LockBackendInterface');
@@ -138,10 +134,7 @@ class LocaleLookupTest extends UnitTestCase {
    */
   public function testResolveCacheMissWithFallback($langcode, $string, $context, $expected) {
     // These are fake words!
-<<<<<<< HEAD
-=======
     // cSpell:disable
->>>>>>> dev
     $translations = [
       'en' => [
         'test' => 'test',
@@ -161,10 +154,7 @@ class LocaleLookupTest extends UnitTestCase {
         'missing pl' => 'chybějící pl',
       ],
     ];
-<<<<<<< HEAD
-=======
     // cSpell:enable
->>>>>>> dev
     $this->storage->expects($this->any())
       ->method('findTranslation')
       ->will($this->returnCallback(function ($argument) use ($translations) {
@@ -201,10 +191,7 @@ class LocaleLookupTest extends UnitTestCase {
    * Provides test data for testResolveCacheMissWithFallback().
    */
   public function resolveCacheMissWithFallbackProvider() {
-<<<<<<< HEAD
-=======
     // cSpell:disable
->>>>>>> dev
     return [
       ['cs', 'test', 'irrelevant', 'test v české'],
       ['cs', 'fake', 'irrelevant', 'falešný'],
@@ -219,10 +206,7 @@ class LocaleLookupTest extends UnitTestCase {
       ['pl', 'missing cs', 'irrelevant', 'zaginiony czech'],
       ['pl', 'missing both', 'irrelevant', 'missing both'],
     ];
-<<<<<<< HEAD
-=======
     // cSpell:enable
->>>>>>> dev
   }
 
   /**
@@ -354,8 +338,6 @@ class LocaleLookupTest extends UnitTestCase {
     ];
   }
 
-<<<<<<< HEAD
-=======
   /**
    * @covers ::getCid
    *
@@ -400,5 +382,4 @@ class LocaleLookupTest extends UnitTestCase {
     ];
   }
 
->>>>>>> dev
 }

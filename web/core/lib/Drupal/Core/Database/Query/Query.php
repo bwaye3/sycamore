@@ -179,8 +179,6 @@ abstract class Query implements PlaceholderInterface {
     return $this->comments;
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Gets the database connection to be used for the query.
    *
@@ -191,5 +189,4 @@ abstract class Query implements PlaceholderInterface {
     return $this->connection;
   }
 
->>>>>>> dev
 }

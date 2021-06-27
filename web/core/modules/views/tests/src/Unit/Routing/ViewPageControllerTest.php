@@ -5,11 +5,7 @@ namespace Drupal\Tests\views\Unit\Routing;
 use Drupal\Core\Routing\RouteMatch;
 use Drupal\Tests\UnitTestCase;
 use Drupal\views\Routing\ViewPageController;
-<<<<<<< HEAD
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
-=======
 use Drupal\Core\Routing\RouteObjectInterface;
->>>>>>> dev
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route;
@@ -39,11 +35,7 @@ class ViewPageControllerTest extends UnitTestCase {
     '#view_display_show_admin_links' => NULL,
   ];
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->pageController = new ViewPageController();
   }
 
@@ -109,11 +101,7 @@ class ViewPageControllerTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests the page controller with arguments of a overridden page view.
-=======
    * Tests the page controller with arguments of an overridden page view.
->>>>>>> dev
    *
    * Note: This test does not care about upcasting for now.
    */
@@ -149,11 +137,7 @@ class ViewPageControllerTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests the page controller with arguments of a overridden page view.
-=======
    * Tests the page controller with arguments of an overridden page view.
->>>>>>> dev
    *
    * This test care about upcasted values and ensures that the raw variables
    * are pulled in.

@@ -4,13 +4,7 @@ namespace Drupal\KernelTests\Core\Config\Storage;
 
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Config\CachedStorage;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\StreamWrapper\PublicStream;
-use Symfony\Component\DependencyInjection\Reference;
-=======
-use Drupal\Core\StreamWrapper\PublicStream;
->>>>>>> dev
 
 /**
  * Tests CachedStorage operations.
@@ -33,11 +27,7 @@ class CachedStorageTest extends ConfigStorageTestBase {
    */
   protected $fileStorage;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     // Create a directory.
     $dir = PublicStream::basePath() . '/config';
@@ -88,18 +78,4 @@ class CachedStorageTest extends ConfigStorageTestBase {
     unlink($this->fileStorage->getFilePath($name));
   }
 
-<<<<<<< HEAD
-  /**
-   * {@inheritdoc}
-   */
-  public function containerBuild(ContainerBuilder $container) {
-    parent::containerBuild($container);
-    // Use the regular database cache backend to aid testing.
-    $container->register('cache_factory', 'Drupal\Core\Cache\DatabaseBackendFactory')
-      ->addArgument(new Reference('database'))
-      ->addArgument(new Reference('cache_tags.invalidator.checksum'));
-  }
-
-=======
->>>>>>> dev
 }

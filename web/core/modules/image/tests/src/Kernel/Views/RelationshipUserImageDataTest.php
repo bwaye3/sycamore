@@ -22,11 +22,7 @@ class RelationshipUserImageDataTest extends ViewsKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'file',
     'field',
     'image',
@@ -42,11 +38,7 @@ class RelationshipUserImageDataTest extends ViewsKernelTestBase {
    */
   public static $testViews = ['test_image_user_image_data'];
 
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->installEntitySchema('file');
@@ -69,11 +61,7 @@ class RelationshipUserImageDataTest extends ViewsKernelTestBase {
       'required' => 0,
     ])->save();
 
-<<<<<<< HEAD
-    ViewTestData::createTestViews(get_class($this), ['image_test_views']);
-=======
     ViewTestData::createTestViews(static::class, ['image_test_views']);
->>>>>>> dev
   }
 
   /**
@@ -108,11 +96,7 @@ class RelationshipUserImageDataTest extends ViewsKernelTestBase {
         'user',
       ],
     ];
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $view->getDependencies());
-=======
     $this->assertSame($expected, $view->getDependencies());
->>>>>>> dev
     $this->executeView($view);
     $expected_result = [
       [

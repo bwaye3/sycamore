@@ -5,10 +5,6 @@ namespace Drupal\node;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Database\Query\SelectInterface;
-<<<<<<< HEAD
-use Drupal\Core\Database\Query\Condition;
-=======
->>>>>>> dev
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -101,11 +97,7 @@ class NodeGrantDatabaseStorage implements NodeGrantDatabaseStorageInterface {
     $query->condition($nids);
     $query->range(0, 1);
 
-<<<<<<< HEAD
-    $grants = static::buildGrantsQueryCondition(node_access_grants($operation, $account));
-=======
     $grants = $this->buildGrantsQueryCondition(node_access_grants($operation, $account));
->>>>>>> dev
 
     if (count($grants) > 0) {
       $query->condition($grants);
@@ -143,11 +135,7 @@ class NodeGrantDatabaseStorage implements NodeGrantDatabaseStorageInterface {
       ->condition('nid', 0)
       ->condition('grant_view', 1, '>=');
 
-<<<<<<< HEAD
-    $grants = static::buildGrantsQueryCondition(node_access_grants('view', $account));
-=======
     $grants = $this->buildGrantsQueryCondition(node_access_grants('view', $account));
->>>>>>> dev
 
     if (count($grants) > 0) {
       $query->condition($grants);
@@ -169,11 +157,7 @@ class NodeGrantDatabaseStorage implements NodeGrantDatabaseStorageInterface {
     $grants = node_access_grants($op, $account);
     // If any grant exists for the specified user, then user has access to the
     // node for the specified operation.
-<<<<<<< HEAD
-    $grant_conditions = static::buildGrantsQueryCondition($grants);
-=======
     $grant_conditions = $this->buildGrantsQueryCondition($grants);
->>>>>>> dev
     $grants_exist = count($grant_conditions->conditions()) > 0;
 
     $is_multilingual = \Drupal::languageManager()->isMultilingual();
@@ -205,11 +189,7 @@ class NodeGrantDatabaseStorage implements NodeGrantDatabaseStorageInterface {
 
         $field = 'nid';
         // Now handle entities.
-<<<<<<< HEAD
-        $subquery->where("$nalias.$field = na.nid");
-=======
         $subquery->where("[$nalias].[$field] = [na].[nid]");
->>>>>>> dev
 
         $query->exists($subquery);
       }
@@ -313,19 +293,11 @@ class NodeGrantDatabaseStorage implements NodeGrantDatabaseStorageInterface {
    *
    * @see node_access_grants()
    */
-<<<<<<< HEAD
-  protected static function buildGrantsQueryCondition(array $node_access_grants) {
-    $grants = new Condition("OR");
-    foreach ($node_access_grants as $realm => $gids) {
-      if (!empty($gids)) {
-        $and = new Condition('AND');
-=======
   protected function buildGrantsQueryCondition(array $node_access_grants) {
     $grants = $this->database->condition('OR');
     foreach ($node_access_grants as $realm => $gids) {
       if (!empty($gids)) {
         $and = $this->database->condition('AND');
->>>>>>> dev
         $grants->condition($and
           ->condition('gid', $gids, 'IN')
           ->condition('realm', $realm)

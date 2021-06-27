@@ -22,11 +22,7 @@ use Drupal\update\UpdateManagerInterface;
 function template_preprocess_update_report(&$variables) {
   $data = isset($variables['data']) && is_array($variables['data']) ? $variables['data'] : [];
 
-<<<<<<< HEAD
-  $last = \Drupal::state()->get('update.last_check') ?: 0;
-=======
   $last = \Drupal::state()->get('update.last_check', 0);
->>>>>>> dev
 
   $variables['last_checked'] = [
     '#theme' => 'update_last_check',
@@ -338,8 +334,6 @@ function template_preprocess_update_project_status(&$variables) {
     '#title' => $text,
   ];
 }
-<<<<<<< HEAD
-=======
 
 /**
  * Prepares variables for update fetch error message templates.
@@ -371,4 +365,3 @@ function template_preprocess_update_fetch_error_message(&$variables): void {
   }
 
 }
->>>>>>> dev

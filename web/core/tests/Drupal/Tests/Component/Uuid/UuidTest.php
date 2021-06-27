@@ -35,11 +35,7 @@ class UuidTest extends TestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Dataprovider for UUID instance tests.
-=======
    * Data provider for UUID instance tests.
->>>>>>> dev
    *
    * @return array
    */
@@ -78,11 +74,7 @@ class UuidTest extends TestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Dataprovider for UUID instance tests.
-=======
    * Data provider for UUID instance tests.
->>>>>>> dev
    *
    * @return array
    *   An array of arrays containing

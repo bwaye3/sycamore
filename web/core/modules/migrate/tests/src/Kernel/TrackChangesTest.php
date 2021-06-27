@@ -12,11 +12,7 @@ class TrackChangesTest extends MigrateTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'system',
     'user',
     'taxonomy',
@@ -28,11 +24,7 @@ class TrackChangesTest extends MigrateTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     // Create source test table.
     $this->sourceDatabase->schema()->createTable('track_changes_term', [
@@ -190,11 +182,7 @@ class TrackChangesTest extends MigrateTestBase {
    */
   protected function termExists($property, $value) {
     $property = $property === 'description' ? 'description__value' : $property;
-<<<<<<< HEAD
-    $query = \Drupal::entityQuery('taxonomy_term');
-=======
     $query = \Drupal::entityQuery('taxonomy_term')->accessCheck(FALSE);
->>>>>>> dev
     $result = $query
       ->condition($property, $value)
       ->range(0, 1)

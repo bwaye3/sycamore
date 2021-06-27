@@ -4,10 +4,7 @@ namespace Drupal\Tests\system\Functional\Database;
 
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Database\Database;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Database\Query\PagerSelectExtender;
->>>>>>> dev
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -98,11 +95,7 @@ class SelectPagerDefaultTest extends DatabaseTestBase {
   public function testInnerPagerQuery() {
     $connection = Database::getConnection();
     $query = $connection->select('test', 't')
-<<<<<<< HEAD
-      ->extend('Drupal\Core\Database\Query\PagerSelectExtender');
-=======
       ->extend(PagerSelectExtender::class);
->>>>>>> dev
     $query
       ->fields('t', ['age'])
       ->orderBy('age')
@@ -115,11 +108,7 @@ class SelectPagerDefaultTest extends DatabaseTestBase {
     $ages = $outer_query
       ->execute()
       ->fetchCol();
-<<<<<<< HEAD
-    $this->assertEqual($ages, [25, 26, 27, 28], 'Inner pager query returned the correct ages.');
-=======
     $this->assertEquals([25, 26, 27, 28], $ages, 'Inner pager query returned the correct ages.');
->>>>>>> dev
   }
 
   /**
@@ -129,30 +118,18 @@ class SelectPagerDefaultTest extends DatabaseTestBase {
    */
   public function testHavingPagerQuery() {
     $query = Database::getConnection()->select('test', 't')
-<<<<<<< HEAD
-      ->extend('Drupal\Core\Database\Query\PagerSelectExtender');
-=======
       ->extend(PagerSelectExtender::class);
->>>>>>> dev
     $query
       ->fields('t', ['name'])
       ->orderBy('name')
       ->groupBy('name')
-<<<<<<< HEAD
-      ->having('MAX(age) > :count', [':count' => 26])
-=======
       ->having('MAX([age]) > :count', [':count' => 26])
->>>>>>> dev
       ->limit(5);
 
     $ages = $query
       ->execute()
       ->fetchCol();
-<<<<<<< HEAD
-    $this->assertEqual($ages, ['George', 'Ringo'], 'Pager query with having expression returned the correct ages.');
-=======
     $this->assertEquals(['George', 'Ringo'], $ages, 'Pager query with having expression returned the correct ages.');
->>>>>>> dev
   }
 
   /**
@@ -167,38 +144,6 @@ class SelectPagerDefaultTest extends DatabaseTestBase {
     \Drupal::getContainer()->get('request_stack')->push($request);
 
     $connection = Database::getConnection();
-<<<<<<< HEAD
-    $name = $connection->select('test', 't')
-      ->extend('Drupal\Core\Database\Query\PagerSelectExtender')
-      ->element(2)
-      ->fields('t', ['name'])
-      ->orderBy('age')
-      ->limit(1)
-      ->execute()
-      ->fetchField();
-    $this->assertEqual($name, 'Paul', 'Pager query #1 with a specified element ID returned the correct results.');
-
-    // Setting an element smaller than the previous one
-    // should not overwrite the pager $maxElement with a smaller value.
-    $name = $connection->select('test', 't')
-      ->extend('Drupal\Core\Database\Query\PagerSelectExtender')
-      ->element(1)
-      ->fields('t', ['name'])
-      ->orderBy('age')
-      ->limit(1)
-      ->execute()
-      ->fetchField();
-    $this->assertEqual($name, 'George', 'Pager query #2 with a specified element ID returned the correct results.');
-
-    $name = $connection->select('test', 't')
-      ->extend('Drupal\Core\Database\Query\PagerSelectExtender')
-      ->fields('t', ['name'])
-      ->orderBy('age')
-      ->limit(1)
-      ->execute()
-      ->fetchField();
-    $this->assertEqual($name, 'John', 'Pager query #3 with a generated element ID returned the correct results.');
-=======
     $query = $connection->select('test', 't')
       ->extend(PagerSelectExtender::class)
       ->element(2)
@@ -241,7 +186,6 @@ class SelectPagerDefaultTest extends DatabaseTestBase {
     $name = $query->execute()
       ->fetchField();
     $this->assertEquals('John', $name, 'Pager query #3 with a generated element ID returned the correct results.');
->>>>>>> dev
 
   }
 

@@ -12,10 +12,6 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\TypedData\TypedDataManagerInterface;
-<<<<<<< HEAD
-use Drupal\Tests\Traits\ExpectDeprecationTrait;
-=======
->>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 use Drupal\Core\Language\Language;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -27,11 +23,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  */
 class ContentEntityBaseUnitTest extends UnitTestCase {
 
-<<<<<<< HEAD
-  use ExpectDeprecationTrait;
-
-=======
->>>>>>> dev
   /**
    * The bundle of the entity under test.
    *
@@ -133,11 +124,7 @@ class ContentEntityBaseUnitTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->id = 1;
     $values = [
       'id' => $this->id,
@@ -332,19 +319,11 @@ class ContentEntityBaseUnitTest extends UnitTestCase {
     $this->languageManager->expects($this->any())
       ->method('isMultilingual')
       ->will($this->returnValue(TRUE));
-<<<<<<< HEAD
-    $this->assertTrue($this->entity->language()->getId() == 'en');
-    $this->assertFalse($this->entity->language()->isLocked());
-    $this->assertTrue($this->entity->isTranslatable());
-
-    $this->assertTrue($this->entityUnd->language()->getId() == LanguageInterface::LANGCODE_NOT_SPECIFIED);
-=======
     $this->assertSame('en', $this->entity->language()->getId());
     $this->assertFalse($this->entity->language()->isLocked());
     $this->assertTrue($this->entity->isTranslatable());
 
     $this->assertSame(LanguageInterface::LANGCODE_NOT_SPECIFIED, $this->entityUnd->language()->getId());
->>>>>>> dev
     $this->assertTrue($this->entityUnd->language()->isLocked());
     $this->assertFalse($this->entityUnd->isTranslatable());
   }
@@ -491,34 +470,6 @@ class ContentEntityBaseUnitTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * @covers ::label
-   *
-   * @group legacy
-   */
-  public function testLabel() {
-
-    $this->addExpectedDeprecationMessage('Entity type ' . $this->entityTypeId . ' defines a label callback. Support for that is deprecated in drupal:8.0.0 and will be removed in drupal:9.0.0. Override the EntityInterface::label() method instead. See https://www.drupal.org/node/3050794');
-
-    // Make a mock with one method that we use as the entity's label callback.
-    // We check that it is called, and that the entity's label is the callback's
-    // return value.
-    $callback_label = $this->randomMachineName();
-    $callback_container = $this->createMock(get_class());
-    $callback_container->expects($this->once())
-      ->method(__FUNCTION__)
-      ->will($this->returnValue($callback_label));
-    $this->entityType->expects($this->once())
-      ->method('get')
-      ->with('label_callback')
-      ->will($this->returnValue([$callback_container, __FUNCTION__]));
-
-    $this->assertSame($callback_label, $this->entity->label());
-  }
-
-  /**
-=======
->>>>>>> dev
    * Data provider for testGet().
    *
    * @returns
@@ -647,11 +598,7 @@ class ContentEntityBaseUnitTest extends UnitTestCase {
       ->willReturnArgument(0);
 
     // Exercise getFields().
-<<<<<<< HEAD
-    $this->assertArrayEquals(
-=======
     $this->assertEquals(
->>>>>>> dev
       $expected,
       $mock_base->getFields($include_computed)
     );

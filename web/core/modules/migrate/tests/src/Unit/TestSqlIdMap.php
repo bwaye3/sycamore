@@ -6,11 +6,7 @@ use Drupal\Core\Database\Connection;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\MigrateException;
 use Drupal\migrate\Plugin\migrate\id_map\Sql;
-<<<<<<< HEAD
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-=======
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
->>>>>>> dev
 
 /**
  * Defines a SQL ID map for use in tests.
@@ -30,11 +26,7 @@ class TestSqlIdMap extends Sql implements \Iterator {
    *   The configuration for the plugin.
    * @param \Drupal\migrate\Plugin\MigrationInterface $migration
    *   The migration to do.
-<<<<<<< HEAD
-   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
-=======
    * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
->>>>>>> dev
    *   The event dispatcher service.
    */
   public function __construct(Connection $database, array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, EventDispatcherInterface $event_dispatcher) {
@@ -45,14 +37,11 @@ class TestSqlIdMap extends Sql implements \Iterator {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-=======
   public $message;
 
   /**
    * {@inheritdoc}
    */
->>>>>>> dev
   public function getDatabase() {
     return parent::getDatabase();
   }
@@ -92,8 +81,6 @@ class TestSqlIdMap extends Sql implements \Iterator {
     }
   }
 
-<<<<<<< HEAD
-=======
   /**
    * {@inheritdoc}
    */
@@ -101,5 +88,4 @@ class TestSqlIdMap extends Sql implements \Iterator {
     parent::ensureTables();
   }
 
->>>>>>> dev
 }

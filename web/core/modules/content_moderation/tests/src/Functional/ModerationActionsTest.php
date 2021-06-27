@@ -22,11 +22,7 @@ class ModerationActionsTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'content_moderation',
     'node',
     'views',
@@ -40,11 +36,7 @@ class ModerationActionsTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setUp() {
-=======
   public function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $moderated_bundle = $this->createContentType(['type' => 'moderated_bundle']);
@@ -65,11 +57,7 @@ class ModerationActionsTest extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the node status actions report moderation status to users correctly.
-=======
    * Tests the node status actions report moderation status to users correctly.
->>>>>>> dev
    *
    * @dataProvider nodeStatusActionsTestCases
    */
@@ -85,12 +73,8 @@ class ModerationActionsTest extends BrowserTestBase {
     }
     $node->save();
 
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/content', [
-=======
     $this->drupalGet('admin/content');
     $this->submitForm([
->>>>>>> dev
       'node_bulk_form[0]' => TRUE,
       'action' => $action,
     ], 'Apply to selected items');

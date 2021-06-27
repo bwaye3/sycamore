@@ -16,11 +16,7 @@ class BlockContentListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-<<<<<<< HEAD
-    $header['label'] = t('Block description');
-=======
     $header['label'] = $this->t('Block description');
->>>>>>> dev
     return $header + parent::buildHeader();
   }
 
@@ -37,10 +33,7 @@ class BlockContentListBuilder extends EntityListBuilder {
    */
   protected function getEntityIds() {
     $query = $this->getStorage()->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(TRUE)
->>>>>>> dev
       ->sort($this->entityType->getKey('id'));
     $query->condition('reusable', TRUE);
 

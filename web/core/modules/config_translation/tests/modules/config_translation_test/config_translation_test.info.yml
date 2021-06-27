@@ -3,10 +3,6 @@ description: 'Helpers to test the configuration translation system'
 type: module
 package: Testing
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 dependencies:
   - drupal:config_translation
   - drupal:config_test

@@ -294,11 +294,7 @@ class CacheContextsManager {
   }
 
   /**
-<<<<<<< HEAD
-   * Asserts the context tokens are valid
-=======
    * Asserts the context tokens are valid.
->>>>>>> dev
    *
    * Similar to ::validateTokens, this method returns boolean TRUE when the
    * context tokens are valid, and FALSE when they are not instead of returning

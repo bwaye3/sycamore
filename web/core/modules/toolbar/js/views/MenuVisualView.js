@@ -14,14 +14,8 @@
       var _this = this;
 
       var subtrees = this.model.get('subtrees');
-<<<<<<< HEAD
-
-      Object.keys(subtrees || {}).forEach(function (id) {
-        _this.$el.find('#toolbar-link-' + id).once('toolbar-subtrees').after(subtrees[id]);
-=======
       Object.keys(subtrees || {}).forEach(function (id) {
         _this.$el.find("#toolbar-link-".concat(id)).once('toolbar-subtrees').after(subtrees[id]);
->>>>>>> dev
       });
 
       if ('drupalToolbarMenu' in $.fn) {

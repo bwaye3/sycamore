@@ -15,14 +15,6 @@ class InvalidPluginDefinitionException extends PluginException {
   protected $pluginId;
 
   /**
-<<<<<<< HEAD
-   * Constructs a InvalidPluginDefinitionException.
-   *
-   * For the remaining parameters see \Exception.
-   *
-   * @param string $plugin_id
-   *   The plugin ID of the mapper.
-=======
    * Constructs an InvalidPluginDefinitionException.
    *
    * @param string $plugin_id
@@ -33,7 +25,6 @@ class InvalidPluginDefinitionException extends PluginException {
    *   The exception code.
    * @param \Exception|null $previous
    *   The previous throwable used for exception chaining.
->>>>>>> dev
    *
    * @see \Exception
    */

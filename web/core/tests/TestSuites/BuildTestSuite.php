@@ -16,11 +16,7 @@ class BuildTestSuite extends TestSuiteBase {
    *   The test suite.
    */
   public static function suite() {
-<<<<<<< HEAD
-    $root = dirname(dirname(dirname(__DIR__)));
-=======
     $root = dirname(__DIR__, 3);
->>>>>>> dev
 
     $suite = new static('build');
     $suite->addTestsBySuiteNamespace($root, 'Build');

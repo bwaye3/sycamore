@@ -8,10 +8,7 @@
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\search\SearchPageInterface;
-<<<<<<< HEAD
-=======
 use Drupal\views\Form\ViewsForm;
->>>>>>> dev
 
 /**
  * Implements hook_preprocess_HOOK() for HTML document templates.
@@ -97,8 +94,6 @@ function umami_preprocess_breadcrumb(&$variables) {
 function umami_form_search_block_form_alter(&$form, FormStateInterface $form_state) {
   $form['keys']['#attributes']['placeholder'] = t('Search by keyword, ingredient, dish');
 }
-<<<<<<< HEAD
-=======
 
 /**
  * Implements hook_preprocess_links__media_library_menu().
@@ -177,4 +172,3 @@ function umami_preprocess_links(&$variables) {
     }
   }
 }
->>>>>>> dev

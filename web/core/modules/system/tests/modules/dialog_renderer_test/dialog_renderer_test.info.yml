@@ -1,9 +1,5 @@
 name: 'Dialog Renderer Test'
 type: module
 description: 'Support module for Dialog Renderer tests.'
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 package: Testing
 version: VERSION

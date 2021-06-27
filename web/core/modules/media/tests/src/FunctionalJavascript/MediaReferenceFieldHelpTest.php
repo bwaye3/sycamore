@@ -17,11 +17,7 @@ class MediaReferenceFieldHelpTest extends MediaJavascriptTestBase {
   protected $defaultTheme = 'stark';
 
   /**
-<<<<<<< HEAD
-   * Test our custom help texts when creating a field.
-=======
    * Tests our custom help texts when creating a field.
->>>>>>> dev
    *
    * @see media_form_field_ui_field_storage_add_form_alter()
    */

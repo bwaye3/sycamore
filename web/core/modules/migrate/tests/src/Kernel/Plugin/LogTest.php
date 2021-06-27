@@ -2,17 +2,11 @@
 
 namespace Drupal\Tests\migrate\Kernel\Plugin;
 
-<<<<<<< HEAD
-use Drupal\KernelTests\KernelTestBase;
-use Drupal\migrate\MigrateExecutableInterface;
-use Drupal\migrate\Row;
-=======
 use Drupal\Core\Url;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\migrate\MigrateExecutable;
 use Drupal\migrate\Row;
 use Drupal\node\Entity\Node;
->>>>>>> dev
 
 /**
  * Tests the Log process plugin.
@@ -24,23 +18,6 @@ class LogTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['migrate'];
-
-  /**
-   * Test the Log plugin.
-   */
-  public function testLog() {
-    $plugin = \Drupal::service('plugin.manager.migrate.process')
-      ->createInstance('log');
-    $executable = $this->prophesize(MigrateExecutableInterface::class)->reveal();
-    $row = new Row();
-    $log_message = "Testing the log message";
-
-    // Ensure the log is getting saved.
-    $saved_message = $plugin->transform($log_message, $executable, $row, 'buffalo');
-    $this->assertSame($log_message, $saved_message);
-=======
   protected static $modules = ['node', 'migrate'];
 
   /**
@@ -227,7 +204,6 @@ class TestMigrateExecutable extends MigrateExecutable {
    */
   public function getIdMap() {
     return parent::getIdMap();
->>>>>>> dev
   }
 
 }

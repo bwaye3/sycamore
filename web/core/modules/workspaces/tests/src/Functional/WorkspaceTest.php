@@ -3,10 +3,7 @@
 namespace Drupal\Tests\workspaces\Functional;
 
 use Drupal\Tests\BrowserTestBase;
-<<<<<<< HEAD
-=======
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
->>>>>>> dev
 
 /**
  * Test the workspace entity.
@@ -16,19 +13,12 @@ use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 class WorkspaceTest extends BrowserTestBase {
 
   use WorkspaceTestUtilities;
-<<<<<<< HEAD
-=======
   use ContentTypeCreationTrait;
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['workspaces', 'toolbar', 'field_ui'];
-=======
   protected static $modules = ['block', 'field_ui', 'node', 'toolbar', 'user', 'workspaces'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -52,11 +42,7 @@ class WorkspaceTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setUp() {
-=======
   public function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $permissions = [
       'access administration pages',
@@ -73,11 +59,7 @@ class WorkspaceTest extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test creating a workspace with special characters.
-=======
    * Tests creating a workspace with special characters.
->>>>>>> dev
    */
   public function testSpecialCharacters() {
     $this->drupalLogin($this->editor1);
@@ -97,32 +79,20 @@ class WorkspaceTest extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that the toolbar correctly shows the active workspace.
-=======
    * Tests that the toolbar correctly shows the active workspace.
->>>>>>> dev
    */
   public function testWorkspaceToolbar() {
     $this->drupalLogin($this->editor1);
 
-<<<<<<< HEAD
-    $this->drupalPostForm('/admin/config/workflow/workspaces/add', [
-=======
     $this->drupalGet('/admin/config/workflow/workspaces/add');
     $this->submitForm([
->>>>>>> dev
       'id' => 'test_workspace',
       'label' => 'Test workspace',
     ], 'Save');
 
     // Activate the test workspace.
-<<<<<<< HEAD
-    $this->drupalPostForm('/admin/config/workflow/workspaces/manage/test_workspace/activate', [], 'Confirm');
-=======
     $this->drupalGet('/admin/config/workflow/workspaces/manage/test_workspace/activate');
     $this->submitForm([], 'Confirm');
->>>>>>> dev
 
     $this->drupalGet('<front>');
     $page = $this->getSession()->getPage();
@@ -130,14 +100,8 @@ class WorkspaceTest extends BrowserTestBase {
     $this->assertTrue($page->hasLink('Test workspace'));
 
     // Change the workspace label.
-<<<<<<< HEAD
-    $this->drupalPostForm('/admin/config/workflow/workspaces/manage/test_workspace/edit', [
-      'label' => 'New name',
-    ], 'Save');
-=======
     $this->drupalGet('/admin/config/workflow/workspaces/manage/test_workspace/edit');
     $this->submitForm(['label' => 'New name'], 'Save');
->>>>>>> dev
 
     $this->drupalGet('<front>');
     $page = $this->getSession()->getPage();
@@ -146,21 +110,13 @@ class WorkspaceTest extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test changing the owner of a workspace.
-=======
    * Tests changing the owner of a workspace.
->>>>>>> dev
    */
   public function testWorkspaceOwner() {
     $this->drupalLogin($this->editor1);
 
-<<<<<<< HEAD
-    $this->drupalPostForm('/admin/config/workflow/workspaces/add', [
-=======
     $this->drupalGet('/admin/config/workflow/workspaces/add');
     $this->submitForm([
->>>>>>> dev
       'id' => 'test_workspace',
       'label' => 'Test workspace',
     ], 'Save');
@@ -169,14 +125,8 @@ class WorkspaceTest extends BrowserTestBase {
     $test_workspace = $storage->load('test_workspace');
     $this->assertEquals($this->editor1->id(), $test_workspace->getOwnerId());
 
-<<<<<<< HEAD
-    $this->drupalPostForm('/admin/config/workflow/workspaces/manage/test_workspace/edit', [
-      'uid[0][target_id]' => $this->editor2->getAccountName(),
-    ], 'Save');
-=======
     $this->drupalGet('/admin/config/workflow/workspaces/manage/test_workspace/edit');
     $this->submitForm(['uid[0][target_id]' => $this->editor2->getAccountName()], 'Save');
->>>>>>> dev
 
     $test_workspace = $storage->loadUnchanged('test_workspace');
     $this->assertEquals($this->editor2->id(), $test_workspace->getOwnerId());
@@ -194,12 +144,8 @@ class WorkspaceTest extends BrowserTestBase {
     $this->assertEquals('1', $stage_workspace->getRevisionId());
 
     // Re-save the 'stage' workspace via the UI to create revision 2.
-<<<<<<< HEAD
-    $this->drupalPostForm($stage_workspace->toUrl('edit-form')->toString(), [], 'Save');
-=======
     $this->drupalGet($stage_workspace->toUrl('edit-form')->toString());
     $this->submitForm([], 'Save');
->>>>>>> dev
     $stage_workspace = $storage->loadUnchanged('stage');
     $this->assertEquals('2', $stage_workspace->getRevisionId());
   }
@@ -229,25 +175,14 @@ class WorkspaceTest extends BrowserTestBase {
       'label' => $field_label,
       'field_name' => $field_name,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm("admin/config/workflow/workspaces/fields/add-field", $edit, 'Save and continue');
-=======
     $this->drupalGet("admin/config/workflow/workspaces/fields/add-field");
     $this->submitForm($edit, 'Save and continue');
->>>>>>> dev
     $page = $this->getSession()->getPage();
     $page->pressButton('Save field settings');
     $page->pressButton('Save settings');
 
     // Check that the field is displayed on the manage form display page.
     $this->drupalGet('admin/config/workflow/workspaces/form-display');
-<<<<<<< HEAD
-    $this->assertText($field_label);
-
-    // Check that the field is displayed on the manage display page.
-    $this->drupalGet('admin/config/workflow/workspaces/display');
-    $this->assertText($field_label);
-=======
     $this->assertSession()->pageTextContains($field_label);
 
     // Check that the field is displayed on the manage display page.
@@ -312,7 +247,6 @@ class WorkspaceTest extends BrowserTestBase {
     // 'Live' is no longer the active workspace, so it's 'Switch to Live'
     // operation should be visible now.
     $assert_session->linkExists('Switch to Live');
->>>>>>> dev
   }
 
 }

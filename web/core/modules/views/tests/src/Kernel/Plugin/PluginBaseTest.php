@@ -24,21 +24,13 @@ class PluginBaseTest extends KernelTestBase {
    */
   protected $testPluginBase;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->testPluginBase = new TestPluginBase();
   }
 
   /**
-<<<<<<< HEAD
-   * Test that the token replacement in views works correctly.
-=======
    * Tests that the token replacement in views works correctly.
->>>>>>> dev
    */
   public function testViewsTokenReplace() {
     $text = '{{ langcode__value }} means {{ langcode }}';
@@ -48,19 +40,11 @@ class PluginBaseTest extends KernelTestBase {
       return $this->testPluginBase->viewsTokenReplace($text, $tokens);
     });
 
-<<<<<<< HEAD
-    $this->assertIdentical($result, 'en means English');
-  }
-
-  /**
-   * Test that the token replacement in views works correctly with dots.
-=======
     $this->assertSame('en means English', $result);
   }
 
   /**
    * Tests that the token replacement in views works correctly with dots.
->>>>>>> dev
    */
   public function testViewsTokenReplaceWithDots() {
     $text = '{{ argument.first }} comes before {{ argument.second }}';
@@ -70,11 +54,7 @@ class PluginBaseTest extends KernelTestBase {
       return $this->testPluginBase->viewsTokenReplace($text, $tokens);
     });
 
-<<<<<<< HEAD
-    $this->assertIdentical($result, 'first comes before second');
-=======
     $this->assertSame('first comes before second', $result);
->>>>>>> dev
 
     // Test tokens with numeric indexes.
     $text = '{{ argument.0.first }} comes before {{ argument.1.second }}';
@@ -84,11 +64,7 @@ class PluginBaseTest extends KernelTestBase {
       return $this->testPluginBase->viewsTokenReplace($text, $tokens);
     });
 
-<<<<<<< HEAD
-    $this->assertIdentical($result, 'first comes before second');
-=======
     $this->assertSame('first comes before second', $result);
->>>>>>> dev
   }
 
   /**
@@ -98,11 +74,7 @@ class PluginBaseTest extends KernelTestBase {
     $text = 'Just some text';
     $tokens = [];
     $result = $this->testPluginBase->viewsTokenReplace($text, $tokens);
-<<<<<<< HEAD
-    $this->assertIdentical($result, 'Just some text');
-=======
     $this->assertSame('Just some text', $result);
->>>>>>> dev
   }
 
 }

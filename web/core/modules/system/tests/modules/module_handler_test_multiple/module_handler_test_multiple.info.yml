@@ -3,8 +3,4 @@ type: module
 description: Test module used to test adding modules with child module.
 package: Testing
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 hidden: true

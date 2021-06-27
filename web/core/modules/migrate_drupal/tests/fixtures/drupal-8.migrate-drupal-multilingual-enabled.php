@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-// @codingStandardsIgnoreFile
-=======
 // phpcs:ignoreFile
->>>>>>> dev
 
 use Drupal\Core\Database\Database;
 

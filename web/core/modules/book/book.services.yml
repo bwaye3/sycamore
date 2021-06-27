@@ -1,30 +1,18 @@
 services:
   book.breadcrumb:
     class: Drupal\book\BookBreadcrumbBuilder
-<<<<<<< HEAD
-    arguments: ['@entity_type.manager', '@current_user']
-=======
     arguments: ['@entity_type.manager', '@current_user', '@entity.repository', '@language_manager']
->>>>>>> dev
     tags:
       - { name: breadcrumb_builder, priority: 701 }
   book.manager:
     class: Drupal\book\BookManager
-<<<<<<< HEAD
-    arguments: ['@entity_type.manager', '@string_translation', '@config.factory', '@book.outline_storage', '@renderer']
-=======
     arguments: ['@entity_type.manager', '@string_translation', '@config.factory', '@book.outline_storage', '@renderer', '@language_manager', '@entity.repository']
->>>>>>> dev
   book.outline:
     class: Drupal\book\BookOutline
     arguments: ['@book.manager']
   book.export:
     class: Drupal\book\BookExport
-<<<<<<< HEAD
-    arguments: ['@entity_type.manager', '@book.manager']
-=======
     arguments: ['@entity_type.manager', '@book.manager', '@entity.repository']
->>>>>>> dev
   book.outline_storage:
     class: Drupal\book\BookOutlineStorage
     arguments: ['@database']
@@ -37,11 +25,7 @@ services:
       - { name: access_check, applies_to: _access_book_removable }
   cache_context.route.book_navigation:
     class: Drupal\book\Cache\BookNavigationCacheContext
-<<<<<<< HEAD
-    arguments: ['@request_stack']
-=======
     arguments: ['@current_route_match']
->>>>>>> dev
     calls:
       - [setContainer, ['@service_container']]
     tags:

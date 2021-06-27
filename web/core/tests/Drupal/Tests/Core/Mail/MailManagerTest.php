@@ -81,11 +81,7 @@ class MailManagerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     // Prepare the default constructor arguments required by MailManager.
     $this->cache = $this->createMock('Drupal\Core\Cache\CacheBackendInterface');

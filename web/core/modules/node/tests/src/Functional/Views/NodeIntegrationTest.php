@@ -49,11 +49,7 @@ class NodeIntegrationTest extends NodeTestBase {
 
     foreach ($types as $type) {
       $this->drupalGet("test-node-view/{$type->id()}");
-<<<<<<< HEAD
-      $this->assertEscaped($type->label());
-=======
       $this->assertSession()->assertEscaped($type->label());
->>>>>>> dev
       $this->assertNids(array_keys($nodes[$type->id()]));
     }
   }
@@ -70,11 +66,7 @@ class NodeIntegrationTest extends NodeTestBase {
     foreach ($result as $element) {
       $nids[] = (int) $element->getText();
     }
-<<<<<<< HEAD
-    $this->assertEqual($nids, $expected_nids);
-=======
     $this->assertEquals($expected_nids, $nids);
->>>>>>> dev
   }
 
 }

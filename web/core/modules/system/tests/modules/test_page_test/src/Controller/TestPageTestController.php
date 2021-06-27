@@ -2,11 +2,8 @@
 
 namespace Drupal\test_page_test\Controller;
 
-<<<<<<< HEAD
-=======
 use Drupal\user\Entity\Role;
 
->>>>>>> dev
 /**
  * Controller routines for test_page_test routes.
  */
@@ -28,8 +25,6 @@ class TestPageTestController {
     ];
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Returns a test page and with the call to the dump() function.
    */
@@ -42,5 +37,4 @@ class TestPageTestController {
     ];
   }
 
->>>>>>> dev
 }

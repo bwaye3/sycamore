@@ -42,16 +42,6 @@ class NodeRouteContext implements ContextProviderInterface {
     $result = [];
     $context_definition = EntityContextDefinition::create('node')->setRequired(FALSE);
     $value = NULL;
-<<<<<<< HEAD
-    if (($route_object = $this->routeMatch->getRouteObject()) && ($route_contexts = $route_object->getOption('parameters')) && isset($route_contexts['node'])) {
-      if ($node = $this->routeMatch->getParameter('node')) {
-        $value = $node;
-      }
-    }
-    elseif ($this->routeMatch->getRouteName() == 'node.add') {
-      $node_type = $this->routeMatch->getParameter('node_type');
-      $value = Node::create(['type' => $node_type->id()]);
-=======
     if (($route_object = $this->routeMatch->getRouteObject())) {
       $route_contexts = $route_object->getOption('parameters');
       // Check for a node revision parameter first.
@@ -70,7 +60,6 @@ class NodeRouteContext implements ContextProviderInterface {
         $node_type = $this->routeMatch->getParameter('node_type');
         $value = Node::create(['type' => $node_type->id()]);
       }
->>>>>>> dev
     }
 
     $cacheability = new CacheableMetadata();

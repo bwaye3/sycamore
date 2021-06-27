@@ -4,10 +4,6 @@ namespace Drupal\comment;
 
 use Drupal\comment\Plugin\Field\FieldType\CommentItemInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
@@ -28,15 +24,6 @@ use Drupal\user\UserInterface;
  */
 class CommentManager implements CommentManagerInterface {
   use StringTranslationTrait;
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * The entity field manager.
@@ -105,30 +92,13 @@ class CommentManager implements CommentManagerInterface {
    * @param \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entity_display_repository
    *   The entity display repository service.
    */
-<<<<<<< HEAD
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory, TranslationInterface $string_translation, ModuleHandlerInterface $module_handler, AccountInterface $current_user, EntityFieldManagerInterface $entity_field_manager = NULL, EntityDisplayRepositoryInterface $entity_display_repository = NULL) {
-=======
   public function __construct(EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory, TranslationInterface $string_translation, ModuleHandlerInterface $module_handler, AccountInterface $current_user, EntityFieldManagerInterface $entity_field_manager, EntityDisplayRepositoryInterface $entity_display_repository) {
->>>>>>> dev
     $this->entityTypeManager = $entity_type_manager;
     $this->userConfig = $config_factory->get('user.settings');
     $this->stringTranslation = $string_translation;
     $this->moduleHandler = $module_handler;
     $this->currentUser = $current_user;
-<<<<<<< HEAD
-    if (!$entity_field_manager) {
-      @trigger_error('The entity_field.manager service must be passed to CommentManager::__construct(), it is required before Drupal 9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $entity_field_manager = \Drupal::service('entity_field.manager');
-    }
     $this->entityFieldManager = $entity_field_manager;
-
-    if (!$entity_display_repository) {
-      @trigger_error('The entity_display.repository service must be passed to CommentManager::__construct(), it is required before Drupal 9.0.0. See https://www.drupal.org/node/2835616.', E_USER_DEPRECATED);
-      $entity_display_repository = \Drupal::service('entity_display.repository');
-    }
-=======
-    $this->entityFieldManager = $entity_field_manager;
->>>>>>> dev
     $this->entityDisplayRepository = $entity_display_repository;
   }
 
@@ -250,10 +220,7 @@ class CommentManager implements CommentManagerInterface {
 
       // Use the timestamp to retrieve the number of new comments.
       $query = $this->entityTypeManager->getStorage('comment')->getQuery()
-<<<<<<< HEAD
-=======
         ->accessCheck(TRUE)
->>>>>>> dev
         ->condition('entity_type', $entity->getEntityTypeId())
         ->condition('entity_id', $entity->id())
         ->condition('created', $timestamp, '>')

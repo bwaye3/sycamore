@@ -22,11 +22,7 @@ class ElementsTableSelectTest extends WebDriverTestBase {
   protected $defaultTheme = 'stark';
 
   /**
-<<<<<<< HEAD
-   * Test the presence of ajax functionality for all options.
-=======
    * Tests the presence of ajax functionality for all options.
->>>>>>> dev
    */
   public function testAjax() {
     // Test checkboxes (#multiple == TRUE).

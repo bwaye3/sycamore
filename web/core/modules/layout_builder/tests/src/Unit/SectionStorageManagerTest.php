@@ -17,10 +17,6 @@ use Drupal\layout_builder\SectionStorage\SectionStorageDefinition;
 use Drupal\layout_builder\SectionStorage\SectionStorageManager;
 use Drupal\layout_builder\SectionStorageInterface;
 use Drupal\Tests\UnitTestCase;
-<<<<<<< HEAD
-use Symfony\Component\DependencyInjection\ContainerInterface;
-=======
->>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\layout_builder\SectionStorage\SectionStorageManager
@@ -67,11 +63,7 @@ class SectionStorageManagerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $cache = $this->prophesize(CacheBackendInterface::class);
@@ -93,26 +85,6 @@ class SectionStorageManagerTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * @covers ::__construct
-   *
-   * @expectedDeprecation The context.handler service must be passed to \Drupal\layout_builder\SectionStorage\SectionStorageManager::__construct(); it was added in Drupal 8.7.0 and will be required before Drupal 9.0.0.
-   *
-   * @group legacy
-   */
-  public function testConstructNoContextHandler() {
-    $cache = $this->prophesize(CacheBackendInterface::class);
-    $module_handler = $this->prophesize(ModuleHandlerInterface::class);
-
-    $container = $this->prophesize(ContainerInterface::class);
-    $container->get('context.handler')->shouldBeCalled();
-    \Drupal::setContainer($container->reveal());
-    new SectionStorageManager(new \ArrayObject(), $cache->reveal(), $module_handler->reveal());
-  }
-
-  /**
-=======
->>>>>>> dev
    * @covers ::loadEmpty
    */
   public function testLoadEmpty() {
@@ -122,49 +94,6 @@ class SectionStorageManagerTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * @covers ::loadFromStorageId
-   *
-   * @expectedDeprecation \Drupal\layout_builder\SectionStorage\SectionStorageManagerInterface::loadFromStorageId() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. \Drupal\layout_builder\SectionStorage\SectionStorageManagerInterface::load() should be used instead. See https://www.drupal.org/node/3012353.
-   *
-   * @group legacy
-   */
-  public function testLoadFromStorageId() {
-    $this->plugin->deriveContextsFromRoute('the_storage_id', [], '', [])->willReturn([]);
-
-    $result = $this->manager->loadFromStorageId('the_plugin_id', 'the_storage_id');
-    $this->assertInstanceOf(SectionStorageInterface::class, $result);
-  }
-
-  /**
-   * @covers ::loadFromRoute
-   *
-   * @expectedDeprecation \Drupal\layout_builder\SectionStorage\SectionStorageManagerInterface::loadFromRoute() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. \Drupal\layout_builder\SectionStorageInterface::deriveContextsFromRoute() and \Drupal\layout_builder\SectionStorage\SectionStorageManagerInterface::load() should be used instead. See https://www.drupal.org/node/3012353.
-   *
-   * @group legacy
-   */
-  public function testLoadFromRoute() {
-    $this->plugin->deriveContextsFromRoute('the_value', [], 'the_parameter_name', [])->willReturn([]);
-    $result = $this->manager->loadFromRoute('the_plugin_id', 'the_value', [], 'the_parameter_name', []);
-    $this->assertInstanceOf(SectionStorageInterface::class, $result);
-  }
-
-  /**
-   * @covers ::loadFromRoute
-   *
-   * @expectedDeprecation \Drupal\layout_builder\SectionStorage\SectionStorageManagerInterface::loadFromRoute() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. \Drupal\layout_builder\SectionStorageInterface::deriveContextsFromRoute() and \Drupal\layout_builder\SectionStorage\SectionStorageManagerInterface::load() should be used instead. See https://www.drupal.org/node/3012353.
-   *
-   * @group legacy
-   */
-  public function testLoadFromRouteNull() {
-    $this->plugin->deriveContextsFromRoute('the_value', [], 'the_parameter_name', ['_route' => 'the_route_name'])->willReturn([]);
-    $result = $this->manager->loadFromRoute('the_plugin_id', 'the_value', [], 'the_parameter_name', ['_route' => 'the_route_name']);
-    $this->assertInstanceOf(SectionStorageInterface::class, $result);
-  }
-
-  /**
-=======
->>>>>>> dev
    * @covers ::load
    */
   public function testLoad() {

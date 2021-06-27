@@ -19,11 +19,7 @@ class MediaUiJavascriptTest extends MediaJavascriptTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'block',
     'media_test_source',
   ];
@@ -43,11 +39,7 @@ class MediaUiJavascriptTest extends MediaJavascriptTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->drupalPlaceBlock('local_actions_block');
     $this->drupalPlaceBlock('local_tasks_block');
@@ -73,11 +65,7 @@ class MediaUiJavascriptTest extends MediaJavascriptTestBase {
     $machine_name = strtolower($name);
     $this->assertJsCondition("jQuery('.machine-name-value').html() == '$machine_name'");
     $page->selectFieldOption('source', 'test');
-<<<<<<< HEAD
-    $this->assertJsCondition("jQuery('.form-item-source-configuration-test-config-value').length > 0;");
-=======
     $this->assertJsCondition("jQuery('.form-item-source-configuration-test-config-value').length > 0");
->>>>>>> dev
     $page->fillField('description', $description);
     $page->pressButton('Save');
     // The wait prevents intermittent test failures.

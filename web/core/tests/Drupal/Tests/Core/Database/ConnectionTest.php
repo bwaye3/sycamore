@@ -2,36 +2,24 @@
 
 namespace Drupal\Tests\Core\Database;
 
-<<<<<<< HEAD
-use Drupal\Tests\Core\Database\Stub\StubConnection;
-use Drupal\Tests\Core\Database\Stub\StubPDO;
-=======
 use Composer\Autoload\ClassLoader;
 use Drupal\Core\Database\Statement;
 use Drupal\Core\Database\StatementWrapper;
 use Drupal\Tests\Core\Database\Stub\StubConnection;
 use Drupal\Tests\Core\Database\Stub\StubPDO;
 use Drupal\Tests\Core\Database\Stub\Driver;
->>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 
 /**
  * Tests the Connection class.
  *
-<<<<<<< HEAD
-=======
  * @coversDefaultClass \Drupal\Core\Database\Connection
->>>>>>> dev
  * @group Database
  */
 class ConnectionTest extends UnitTestCase {
 
   /**
-<<<<<<< HEAD
-   * Dataprovider for testPrefixRoundTrip().
-=======
    * Data provider for testPrefixRoundTrip().
->>>>>>> dev
    *
    * @return array
    *   Array of arrays with the following elements:
@@ -80,11 +68,7 @@ class ConnectionTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Dataprovider for testPrefixTables().
-=======
    * Data provider for testPrefixTables().
->>>>>>> dev
    *
    * @return array
    *   Array of arrays with the following elements:
@@ -98,17 +82,6 @@ class ConnectionTest extends UnitTestCase {
         'SELECT * FROM test_table',
         'test_',
         'SELECT * FROM {table}',
-<<<<<<< HEAD
-      ],
-      [
-        'SELECT * FROM first_table JOIN second_thingie',
-        [
-          'table' => 'first_',
-          'thingie' => 'second_',
-        ],
-        'SELECT * FROM {table} JOIN {thingie}',
-      ],
-=======
         ['', ''],
       ],
       [
@@ -129,7 +102,6 @@ class ConnectionTest extends UnitTestCase {
         ['[', ']'],
       ],
 
->>>>>>> dev
     ];
   }
 
@@ -138,69 +110,18 @@ class ConnectionTest extends UnitTestCase {
    *
    * @dataProvider providerTestPrefixTables
    */
-<<<<<<< HEAD
-  public function testPrefixTables($expected, $prefix_info, $query) {
-    $mock_pdo = $this->createMock('Drupal\Tests\Core\Database\Stub\StubPDO');
-    $connection = new StubConnection($mock_pdo, ['prefix' => $prefix_info]);
-=======
   public function testPrefixTables($expected, $prefix_info, $query, array $quote_identifier = ['"', '"']) {
     $mock_pdo = $this->createMock('Drupal\Tests\Core\Database\Stub\StubPDO');
     $connection = new StubConnection($mock_pdo, ['prefix' => $prefix_info], $quote_identifier);
->>>>>>> dev
     $this->assertEquals($expected, $connection->prefixTables($query));
   }
 
   /**
-<<<<<<< HEAD
-   * Dataprovider for testEscapeMethods().
-   *
-   * @return array
-   *   Array of arrays with the following elements:
-   *   - Expected escaped string.
-   *   - String to escape.
-   */
-  public function providerEscapeMethods() {
-    return [
-      ['thing', 'thing'],
-      ['_item', '_item'],
-      ['item_', 'item_'],
-      ['_item_', '_item_'],
-      ['', '!@#$%^&*()-=+'],
-      ['123', '!1@2#3'],
-    ];
-  }
-
-  /**
-   * Test the various escaping methods.
-   *
-   * All tested together since they're basically the same method
-   * with different names.
-   *
-   * @dataProvider providerEscapeMethods
-   * @todo Separate test method for each escape method?
-   */
-  public function testEscapeMethods($expected, $name) {
-    $mock_pdo = $this->createMock('Drupal\Tests\Core\Database\Stub\StubPDO');
-    $connection = new StubConnection($mock_pdo, []);
-    $this->assertEquals($expected, $connection->escapeDatabase($name));
-    $this->assertEquals($expected, $connection->escapeTable($name));
-    $this->assertEquals($expected, $connection->escapeField($name));
-    $this->assertEquals($expected, $connection->escapeAlias($name));
-  }
-
-  /**
-   * Dataprovider for testGetDriverClass().
-=======
    * Data provider for testGetDriverClass().
->>>>>>> dev
    *
    * @return array
    *   Array of arrays with the following elements:
    *   - Expected namespaced class name.
-<<<<<<< HEAD
-   *   - Driver.
-=======
->>>>>>> dev
    *   - Namespace.
    *   - Class name without namespace.
    */
@@ -216,13 +137,6 @@ class ConnectionTest extends UnitTestCase {
         NULL,
         'Select',
       ],
-<<<<<<< HEAD
-      [
-        'Drupal\\Tests\\Core\\Database\\Stub\\Driver\\Schema',
-        'Drupal\\Tests\\Core\\Database\\Stub\\Driver',
-        'Schema',
-      ],
-=======
       // Tests with the corefake database driver. This driver has no custom
       // driver classes.
       [
@@ -397,21 +311,10 @@ class ConnectionTest extends UnitTestCase {
         'Drupal\corefake\Driver\Database\corefakeWithAllCustomClasses',
         '\Drupal\search\SearchQuery',
       ],
->>>>>>> dev
     ];
   }
 
   /**
-<<<<<<< HEAD
-   * Test getDriverClass().
-   *
-   * @dataProvider providerGetDriverClass
-   */
-  public function testGetDriverClass($expected, $namespace, $class) {
-    $mock_pdo = $this->createMock('Drupal\Tests\Core\Database\Stub\StubPDO');
-    $connection = new StubConnection($mock_pdo, ['namespace' => $namespace]);
-    // Set the driver using our stub class' public property.
-=======
    * @covers ::getDriverClass
    * @dataProvider providerGetDriverClass
    */
@@ -423,16 +326,11 @@ class ConnectionTest extends UnitTestCase {
 
     $mock_pdo = $this->createMock('Drupal\Tests\Core\Database\Stub\StubPDO');
     $connection = new StubConnection($mock_pdo, ['namespace' => $namespace]);
->>>>>>> dev
     $this->assertEquals($expected, $connection->getDriverClass($class));
   }
 
   /**
-<<<<<<< HEAD
-   * Dataprovider for testSchema().
-=======
    * Data provider for testSchema().
->>>>>>> dev
    *
    * @return array
    *   Array of arrays with the following elements:
@@ -451,11 +349,7 @@ class ConnectionTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test Connection::schema().
-=======
    * Tests Connection::schema().
->>>>>>> dev
    *
    * @dataProvider providerSchema
    */
@@ -467,18 +361,12 @@ class ConnectionTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test Connection::destroy().
-   */
-  public function testDestroy() {
-=======
    * Tests Connection::destroy().
    *
    * @group legacy
    */
   public function testDestroy() {
     $this->expectDeprecation('Drupal\Core\Database\Connection::destroy() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Move custom database destruction logic to __destruct(). See https://www.drupal.org/node/3142866');
->>>>>>> dev
     $mock_pdo = $this->createMock('Drupal\Tests\Core\Database\Stub\StubPDO');
     // Mocking StubConnection gives us access to the $schema attribute.
     $connection = new StubConnection($mock_pdo, ['namespace' => 'Drupal\\Tests\\Core\\Database\\Stub\\Driver']);
@@ -488,13 +376,6 @@ class ConnectionTest extends UnitTestCase {
       $connection->schema()
     );
     $connection->destroy();
-<<<<<<< HEAD
-    $this->assertAttributeEquals(NULL, 'schema', $connection);
-  }
-
-  /**
-   * Dataprovider for testMakeComments().
-=======
 
     $reflected_schema = (new \ReflectionObject($connection))->getProperty('schema');
     $reflected_schema->setAccessible(TRUE);
@@ -526,7 +407,6 @@ class ConnectionTest extends UnitTestCase {
 
   /**
    * Data provider for testMakeComments().
->>>>>>> dev
    *
    * @return array
    *   Array of arrays with the following elements:
@@ -551,11 +431,7 @@ class ConnectionTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test Connection::makeComments().
-=======
    * Tests Connection::makeComments().
->>>>>>> dev
    *
    * @dataProvider providerMakeComments
    */
@@ -566,11 +442,7 @@ class ConnectionTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Dataprovider for testFilterComments().
-=======
    * Data provider for testFilterComments().
->>>>>>> dev
    *
    * @return array
    *   Array of arrays with the following elements:
@@ -586,11 +458,7 @@ class ConnectionTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test Connection::filterComments().
-=======
    * Tests Connection::filterComments().
->>>>>>> dev
    *
    * @dataProvider providerFilterComments
    */
@@ -610,8 +478,6 @@ class ConnectionTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Data provider for testEscapeTable.
    *
    * @return array
@@ -795,7 +661,6 @@ class ConnectionTest extends UnitTestCase {
   }
 
   /**
->>>>>>> dev
    * Test rtrim() of query strings.
    *
    * @dataProvider provideQueriesToTrim
@@ -804,33 +669,22 @@ class ConnectionTest extends UnitTestCase {
     $mock_pdo = $this->getMockBuilder(StubPdo::class)
       ->setMethods(['execute', 'prepare', 'setAttribute'])
       ->getMock();
-<<<<<<< HEAD
-=======
     $mock_statement = $this->getMockBuilder(StatementWrapper::class)
       ->disableOriginalConstructor()
       ->getMock();
->>>>>>> dev
 
     // Ensure that PDO::prepare() is called only once, and with the
     // correctly trimmed query string.
     $mock_pdo->expects($this->once())
       ->method('prepare')
       ->with($expected)
-<<<<<<< HEAD
-      ->willReturnSelf();
-=======
       ->willReturn($mock_statement);
->>>>>>> dev
     $connection = new StubConnection($mock_pdo, []);
     $connection->query($query, [], $options);
   }
 
   /**
-<<<<<<< HEAD
-   * Dataprovider for testQueryTrim().
-=======
    * Data provider for testQueryTrim().
->>>>>>> dev
    *
    * @return array
    *   Array of arrays with the following elements:
@@ -840,8 +694,6 @@ class ConnectionTest extends UnitTestCase {
    */
   public function provideQueriesToTrim() {
     return [
-<<<<<<< HEAD
-=======
       'remove_non_breaking_space' => [
         'SELECT * FROM test',
         "SELECT * FROM test\xA0",
@@ -852,7 +704,6 @@ class ConnectionTest extends UnitTestCase {
         'SELECT * FROM test ',
         [],
       ],
->>>>>>> dev
       'remove_semicolon' => [
         'SELECT * FROM test',
         'SELECT * FROM test;',
@@ -876,8 +727,6 @@ class ConnectionTest extends UnitTestCase {
     ];
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Tests the deprecation of Drupal 8 style database drivers.
    *
@@ -905,5 +754,4 @@ class ConnectionTest extends UnitTestCase {
     new StubConnection($mock_pdo, ['namespace' => 'Drupal\\Tests\\Core\\Database\\Stub\\Driver'], ['"', '"'], Statement::class);
   }
 
->>>>>>> dev
 }

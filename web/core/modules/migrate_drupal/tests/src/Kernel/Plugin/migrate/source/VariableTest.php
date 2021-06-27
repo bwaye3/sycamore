@@ -16,11 +16,7 @@ class VariableTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['migrate_drupal'];
-=======
   protected static $modules = ['migrate_drupal'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -44,11 +40,7 @@ class VariableTest extends MigrateSqlSourceTestBase {
     ];
 
     // The expected count.
-<<<<<<< HEAD
-    $tests[0]['expected_count'] = NULL;
-=======
     $tests[0]['expected_count'] = 1;
->>>>>>> dev
 
     // The source plugin configuration.
     $tests[0]['configuration']['variables'] = [
@@ -69,23 +61,15 @@ class VariableTest extends MigrateSqlSourceTestBase {
       ],
     ];
 
-<<<<<<< HEAD
-    $tests[1]['expected_count'] = NULL;
-=======
     $tests[1]['expected_count'] = 1;
->>>>>>> dev
 
     $tests[1]['configuration']['variables'] = [
       'foo',
       'bar0',
     ];
 
-<<<<<<< HEAD
-    // Tests requesting mis-spelled variable names.
-=======
     // Tests requesting mis-spelled variable names. If none of the required
     // variables are available, this plugin still returns a single row.
->>>>>>> dev
     $tests[2]['source_data']['variable'] = [
       ['name' => 'foo', 'value' => 'i:1;'],
       ['name' => 'bar', 'value' => 'b:0;'],
@@ -95,19 +79,12 @@ class VariableTest extends MigrateSqlSourceTestBase {
         'id' => 'foo0',
       ],
     ];
-<<<<<<< HEAD
-    $tests[2]['expected_count'] = NULL;
-=======
     $tests[2]['expected_count'] = 1;
->>>>>>> dev
     $tests[2]['configuration']['variables'] = [
       'foo0',
       'bar0',
     ];
 
-<<<<<<< HEAD
-    return $tests;
-=======
     $source_data = [
       'variable' => [
         ['name' => 'foo', 'value' => 'i:1;'],
@@ -226,7 +203,6 @@ class VariableTest extends MigrateSqlSourceTestBase {
     ];
 
     return $tests + $variables_no_row_if_missing_tests;
->>>>>>> dev
   }
 
 }

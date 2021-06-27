@@ -15,11 +15,7 @@ class ItemsPerPageTest extends WizardTestBase {
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->drupalPlaceBlock('page_title_block');
@@ -58,9 +54,6 @@ class ItemsPerPageTest extends WizardTestBase {
     $view['block[create]'] = 1;
     $view['block[title]'] = $this->randomMachineName(16);
     $view['block[items_per_page]'] = 3;
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/add', $view, t('Save and edit'));
-=======
     $this->drupalGet('admin/structure/views/add');
     $this->submitForm($view, 'Save and edit');
 
@@ -83,21 +76,11 @@ class ItemsPerPageTest extends WizardTestBase {
     $this->clickLink('Items per page');
     $this->assertSession()->checkboxChecked('allow[items_per_page]');
 
->>>>>>> dev
     $this->drupalGet($view['page[path]']);
     $this->assertSession()->statusCodeEquals(200);
 
     // Make sure the page display shows the nodes we expect, and that they
     // appear in the expected order.
-<<<<<<< HEAD
-    $this->assertUrl($view['page[path]']);
-    $this->assertText($view['page[title]']);
-    $content = $this->getSession()->getPage()->getContent();
-    $this->assertText($node5->label());
-    $this->assertText($node4->label());
-    $this->assertText($node3->label());
-    $this->assertText($node2->label());
-=======
     $this->assertSession()->addressEquals($view['page[path]']);
     $this->assertSession()->pageTextContains($view['page[title]']);
     $content = $this->getSession()->getPage()->getContent();
@@ -105,29 +88,20 @@ class ItemsPerPageTest extends WizardTestBase {
     $this->assertSession()->pageTextContains($node4->label());
     $this->assertSession()->pageTextContains($node3->label());
     $this->assertSession()->pageTextContains($node2->label());
->>>>>>> dev
     $this->assertNoText($node1->label());
     $this->assertNoText($page_node->label());
     $pos5 = strpos($content, $node5->label());
     $pos4 = strpos($content, $node4->label());
     $pos3 = strpos($content, $node3->label());
     $pos2 = strpos($content, $node2->label());
-<<<<<<< HEAD
-    $this->assertTrue($pos5 < $pos4 && $pos4 < $pos3 && $pos3 < $pos2, 'The nodes appear in the expected order in the page display.');
-=======
     $this->assertGreaterThan($pos5, $pos4);
     $this->assertGreaterThan($pos4, $pos3);
     $this->assertGreaterThan($pos3, $pos2);
->>>>>>> dev
 
     // Confirm that the block is listed in the block administration UI.
     $this->drupalGet('admin/structure/block/list/' . $this->config('system.theme')->get('default'));
     $this->clickLink('Place block');
-<<<<<<< HEAD
-    $this->assertText($view['label']);
-=======
     $this->assertSession()->pageTextContains($view['label']);
->>>>>>> dev
 
     // Place the block, visit a page that displays the block, and check that the
     // nodes we expect appear in the correct order.
@@ -135,27 +109,17 @@ class ItemsPerPageTest extends WizardTestBase {
 
     $this->drupalGet('user');
     $content = $this->getSession()->getPage()->getContent();
-<<<<<<< HEAD
-    $this->assertText($node5->label());
-    $this->assertText($node4->label());
-    $this->assertText($node3->label());
-=======
     $this->assertSession()->pageTextContains($node5->label());
     $this->assertSession()->pageTextContains($node4->label());
     $this->assertSession()->pageTextContains($node3->label());
->>>>>>> dev
     $this->assertNoText($node2->label());
     $this->assertNoText($node1->label());
     $this->assertNoText($page_node->label());
     $pos5 = strpos($content, $node5->label());
     $pos4 = strpos($content, $node4->label());
     $pos3 = strpos($content, $node3->label());
-<<<<<<< HEAD
-    $this->assertTrue($pos5 < $pos4 && $pos4 < $pos3, 'The nodes appear in the expected order in the block display.');
-=======
     $this->assertGreaterThan($pos5, $pos4);
     $this->assertGreaterThan($pos4, $pos3);
->>>>>>> dev
   }
 
 }

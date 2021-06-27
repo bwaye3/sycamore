@@ -25,11 +25,7 @@ class ManageDisplayTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'node',
     'field_ui',
     'taxonomy',
@@ -47,11 +43,7 @@ class ManageDisplayTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->drupalPlaceBlock('system_breadcrumb_block');
     $this->drupalPlaceBlock('local_tasks_block');
@@ -129,24 +121,16 @@ class ManageDisplayTest extends BrowserTestBase {
       'fields[field_test][type]' => 'field_test_with_prepare_view',
       'fields[field_test][region]' => 'content',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/types/manage/' . $this->type . '/display', $edit, t('Save'));
-=======
     $this->drupalGet('admin/structure/types/manage/' . $this->type . '/display');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $this->assertNodeViewText($node, 'rss', $output['field_test_with_prepare_view'], "The field is displayed as expected in view modes that use 'default' settings.");
 
     // Specialize the 'rss' mode, check that the field is displayed the same.
     $edit = [
       "display_modes_custom[rss]" => TRUE,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/types/manage/' . $this->type . '/display', $edit, t('Save'));
-=======
     $this->drupalGet('admin/structure/types/manage/' . $this->type . '/display');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $this->assertNodeViewText($node, 'rss', $output['field_test_with_prepare_view'], "The field is displayed as expected in newly specialized 'rss' mode.");
 
     // Set the field to 'hidden' in the view mode, check that the field is
@@ -154,12 +138,8 @@ class ManageDisplayTest extends BrowserTestBase {
     $edit = [
       'fields[field_test][region]' => 'hidden',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/types/manage/' . $this->type . '/display/rss', $edit, t('Save'));
-=======
     $this->drupalGet('admin/structure/types/manage/' . $this->type . '/display/rss');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $this->assertNodeViewNoText($node, 'rss', $value, "The field is hidden in 'rss' mode.");
 
     // Set the view mode back to 'default', check that the field is displayed
@@ -167,24 +147,16 @@ class ManageDisplayTest extends BrowserTestBase {
     $edit = [
       "display_modes_custom[rss]" => FALSE,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/types/manage/' . $this->type . '/display', $edit, t('Save'));
-=======
     $this->drupalGet('admin/structure/types/manage/' . $this->type . '/display');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $this->assertNodeViewText($node, 'rss', $output['field_test_with_prepare_view'], "The field is displayed as expected when 'rss' mode is set back to 'default' settings.");
 
     // Specialize the view mode again.
     $edit = [
       "display_modes_custom[rss]" => TRUE,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/types/manage/' . $this->type . '/display', $edit, t('Save'));
-=======
     $this->drupalGet('admin/structure/types/manage/' . $this->type . '/display');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     // Check that the previous settings for the view mode have been kept.
     $this->assertNodeViewNoText($node, 'rss', $value, "The previous settings are kept when 'rss' mode is specialized again.");
   }
@@ -213,11 +185,7 @@ class ManageDisplayTest extends BrowserTestBase {
     // Check that the field appears as 'hidden' on the 'Manage display' page
     // for the 'teaser' mode.
     $this->drupalGet('admin/structure/types/manage/' . $this->type . '/display/teaser');
-<<<<<<< HEAD
-    $this->assertFieldByName('fields[field_test][region]', 'hidden', 'The field is displayed as \'hidden \'.');
-=======
     $this->assertSession()->fieldValueEquals('fields[field_test][region]', 'hidden');
->>>>>>> dev
   }
 
   /**
@@ -225,18 +193,11 @@ class ManageDisplayTest extends BrowserTestBase {
    */
   public function testSingleViewMode() {
     $this->drupalGet('admin/structure/taxonomy/manage/' . $this->vocabulary . '/display');
-<<<<<<< HEAD
-    $this->assertNoText('Use custom display settings for the following view modes', 'Custom display settings fieldset found.');
-
-    // This may not trigger a notice when 'view_modes_custom' isn't available.
-    $this->drupalPostForm('admin/structure/taxonomy/manage/' . $this->vocabulary . '/overview/display', [], t('Save'));
-=======
     $this->assertNoText('Use custom display settings for the following view modes');
 
     // This may not trigger a notice when 'view_modes_custom' isn't available.
     $this->drupalGet('admin/structure/taxonomy/manage/' . $this->vocabulary . '/overview/display');
     $this->submitForm([], 'Save');
->>>>>>> dev
   }
 
   /**
@@ -319,10 +280,6 @@ class ManageDisplayTest extends BrowserTestBase {
       ->getViewBuilder('node')
       ->view($clone, $view_mode);
     $output = (string) \Drupal::service('renderer')->renderRoot($element);
-<<<<<<< HEAD
-    $this->verbose(t('Rendered node - view mode: @view_mode', ['@view_mode' => $view_mode]) . '<hr />' . $output);
-=======
->>>>>>> dev
 
     if ($not_exists) {
       $this->assertStringNotContainsString((string) $text, $output, $message);
@@ -341,11 +298,7 @@ class ManageDisplayTest extends BrowserTestBase {
    *   An array of expected options.
    */
   protected function assertFieldSelectOptions($name, array $expected_options) {
-<<<<<<< HEAD
-    $xpath = $this->buildXPathQuery('//select[@name=:name]', [':name' => $name]);
-=======
     $xpath = $this->assertSession()->buildXPathQuery('//select[@name=:name]', [':name' => $name]);
->>>>>>> dev
     $fields = $this->xpath($xpath);
     if ($fields) {
       $field = $fields[0];
@@ -354,11 +307,7 @@ class ManageDisplayTest extends BrowserTestBase {
       sort($options);
       sort($expected_options);
 
-<<<<<<< HEAD
-      $this->assertIdentical($options, $expected_options);
-=======
       $this->assertSame($expected_options, $options);
->>>>>>> dev
     }
     else {
       $this->fail('Unable to find field ' . $name);

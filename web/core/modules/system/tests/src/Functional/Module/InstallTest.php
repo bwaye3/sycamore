@@ -19,11 +19,7 @@ class InstallTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['module_test'];
-=======
   protected static $modules = ['module_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -36,11 +32,7 @@ class InstallTest extends BrowserTestBase {
   public function testGetSchemaAtInstallTime() {
     // @see module_test_install()
     $value = Database::getConnection()->select('module_test', 'mt')->fields('mt', ['data'])->execute()->fetchField();
-<<<<<<< HEAD
-    $this->assertIdentical($value, 'varchar');
-=======
     $this->assertSame('varchar', $value);
->>>>>>> dev
   }
 
   /**
@@ -52,11 +44,7 @@ class InstallTest extends BrowserTestBase {
    */
   public function testEnableUserTwice() {
     \Drupal::service('module_installer')->install(['user'], FALSE);
-<<<<<<< HEAD
-    $this->assertIdentical($this->config('core.extension')->get('module.user'), 0);
-=======
     $this->assertSame(0, $this->config('core.extension')->get('module.user'));
->>>>>>> dev
   }
 
   /**
@@ -64,15 +52,9 @@ class InstallTest extends BrowserTestBase {
    */
   public function testRequiredModuleSchemaVersions() {
     $version = drupal_get_installed_schema_version('system', TRUE);
-<<<<<<< HEAD
-    $this->assertTrue($version > 0, 'System module version is > 0.');
-    $version = drupal_get_installed_schema_version('user', TRUE);
-    $this->assertTrue($version > 0, 'User module version is > 0.');
-=======
     $this->assertGreaterThan(0, $version);
     $version = drupal_get_installed_schema_version('user', TRUE);
     $this->assertGreaterThan(0, $version);
->>>>>>> dev
 
     $post_update_key_value = \Drupal::keyValue('post_update');
     $existing_updates = $post_update_key_value->get('existing_updates', []);

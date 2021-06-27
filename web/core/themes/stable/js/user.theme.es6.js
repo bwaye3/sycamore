@@ -3,23 +3,13 @@
  * Stable theme overrides for user password forms.
  */
 
-<<<<<<< HEAD
-(Drupal => {
-  /**
-   * Constucts a password confirm message element
-=======
 ((Drupal) => {
   /**
    * Constructs a password confirm message element
->>>>>>> dev
    *
    * @return {string}
    *   A string representing a DOM fragment.
    */
-<<<<<<< HEAD
-  Drupal.theme.passwordConfirmMessage = translate =>
-    `<div aria-live="polite" aria-atomic="true" class="password-confirm js-password-confirm js-password-confirm-message">${translate.confirmTitle} <span></span></div>`;
-=======
   Drupal.theme.passwordConfirmMessage = (translate) =>
     `<div aria-live="polite" aria-atomic="true" class="password-confirm js-password-confirm js-password-confirm-message" data-drupal-selector="password-confirm-message">${translate.confirmTitle} <span data-drupal-selector="password-match-status-text"></span></div>`;
 
@@ -47,5 +37,4 @@
       </div>
     `;
   };
->>>>>>> dev
 })(Drupal);

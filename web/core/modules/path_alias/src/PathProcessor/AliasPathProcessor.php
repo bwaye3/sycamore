@@ -2,22 +2,15 @@
 
 namespace Drupal\path_alias\PathProcessor;
 
-<<<<<<< HEAD
-use Drupal\Core\PathProcessor\PathProcessorAlias;
-=======
 use Drupal\Core\PathProcessor\InboundPathProcessorInterface;
 use Drupal\Core\PathProcessor\OutboundPathProcessorInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\path_alias\AliasManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
->>>>>>> dev
 
 /**
  * Processes the inbound path using path alias lookups.
  */
-<<<<<<< HEAD
-class AliasPathProcessor extends PathProcessorAlias {}
-=======
 class AliasPathProcessor implements InboundPathProcessorInterface, OutboundPathProcessorInterface {
 
   /**
@@ -66,4 +59,3 @@ class AliasPathProcessor implements InboundPathProcessorInterface, OutboundPathP
   }
 
 }
->>>>>>> dev

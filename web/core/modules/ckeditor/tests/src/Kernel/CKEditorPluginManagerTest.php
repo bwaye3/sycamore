@@ -18,9 +18,6 @@ class CKEditorPluginManagerTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['system', 'user', 'filter', 'editor', 'ckeditor'];
-=======
   protected static $modules = [
     'system',
     'user',
@@ -28,7 +25,6 @@ class CKEditorPluginManagerTest extends KernelTestBase {
     'editor',
     'ckeditor',
   ];
->>>>>>> dev
 
   /**
    * The manager for "CKEditor plugin" plugins.
@@ -37,11 +33,7 @@ class CKEditorPluginManagerTest extends KernelTestBase {
    */
   protected $manager;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Install the Filter module.
@@ -71,22 +63,13 @@ class CKEditorPluginManagerTest extends KernelTestBase {
     // Case 1: no CKEditor plugins.
     $definitions = array_keys($this->manager->getDefinitions());
     sort($definitions);
-<<<<<<< HEAD
-    $this->assertIdentical(['drupalimage', 'drupalimagecaption', 'drupallink', 'internal', 'language', 'stylescombo'], $definitions, 'No CKEditor plugins found besides the built-in ones.');
-=======
     $this->assertSame(['drupalimage', 'drupalimagecaption', 'drupallink', 'internal', 'language', 'stylescombo'], $definitions, 'No CKEditor plugins found besides the built-in ones.');
->>>>>>> dev
     $enabled_plugins = [
       'drupalimage' => drupal_get_path('module', 'ckeditor') . '/js/plugins/drupalimage/plugin.js',
       'drupallink' => drupal_get_path('module', 'ckeditor') . '/js/plugins/drupallink/plugin.js',
     ];
-<<<<<<< HEAD
-    $this->assertIdentical($enabled_plugins, $this->manager->getEnabledPluginFiles($editor), 'Only built-in plugins are enabled.');
-    $this->assertIdentical(['internal' => NULL] + $enabled_plugins, $this->manager->getEnabledPluginFiles($editor, TRUE), 'Only the "internal" plugin is enabled.');
-=======
     $this->assertSame($enabled_plugins, $this->manager->getEnabledPluginFiles($editor), 'Only built-in plugins are enabled.');
     $this->assertSame(['internal' => NULL] + $enabled_plugins, $this->manager->getEnabledPluginFiles($editor, TRUE), 'Only the "internal" plugin is enabled.');
->>>>>>> dev
 
     // Enable the CKEditor Test module, which has the Llama plugin (plus four
     // variations of it, to cover all possible ways a plugin can be enabled) and
@@ -98,15 +81,9 @@ class CKEditorPluginManagerTest extends KernelTestBase {
     // Case 2: CKEditor plugins are available.
     $plugin_ids = array_keys($this->manager->getDefinitions());
     sort($plugin_ids);
-<<<<<<< HEAD
-    $this->assertIdentical(['drupalimage', 'drupalimagecaption', 'drupallink', 'internal', 'language', 'llama', 'llama_button', 'llama_contextual', 'llama_contextual_and_button', 'llama_css', 'stylescombo'], $plugin_ids, 'Additional CKEditor plugins found.');
-    $this->assertIdentical($enabled_plugins, $this->manager->getEnabledPluginFiles($editor), 'Only the internal plugins are enabled.');
-    $this->assertIdentical(['internal' => NULL] + $enabled_plugins, $this->manager->getEnabledPluginFiles($editor, TRUE), 'Only the "internal" plugin is enabled.');
-=======
     $this->assertSame(['drupalimage', 'drupalimagecaption', 'drupallink', 'internal', 'language', 'llama', 'llama_button', 'llama_contextual', 'llama_contextual_and_button', 'llama_css', 'stylescombo'], $plugin_ids, 'Additional CKEditor plugins found.');
     $this->assertSame($enabled_plugins, $this->manager->getEnabledPluginFiles($editor), 'Only the internal plugins are enabled.');
     $this->assertSame(['internal' => NULL] + $enabled_plugins, $this->manager->getEnabledPluginFiles($editor, TRUE), 'Only the "internal" plugin is enabled.');
->>>>>>> dev
 
     // Case 3: enable each of the newly available plugins, if possible:
     // a. Llama: cannot be enabled, since it does not implement
@@ -135,47 +112,27 @@ class CKEditorPluginManagerTest extends KernelTestBase {
     $file['cb'] = drupal_get_path('module', 'ckeditor_test') . '/js/llama_contextual_and_button.js';
     $file['css'] = drupal_get_path('module', 'ckeditor_test') . '/js/llama_css.js';
     $expected = $enabled_plugins + ['llama_button' => $file['b'], 'llama_contextual_and_button' => $file['cb']];
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $this->manager->getEnabledPluginFiles($editor), 'The LlamaButton and LlamaContextualAndButton plugins are enabled.');
-    $this->assertIdentical(['internal' => NULL] + $expected, $this->manager->getEnabledPluginFiles($editor, TRUE), 'The LlamaButton and LlamaContextualAndButton plugins are enabled.');
-=======
     $this->assertSame($expected, $this->manager->getEnabledPluginFiles($editor), 'The LlamaButton and LlamaContextualAndButton plugins are enabled.');
     $this->assertSame(['internal' => NULL] + $expected, $this->manager->getEnabledPluginFiles($editor, TRUE), 'The LlamaButton and LlamaContextualAndButton plugins are enabled.');
->>>>>>> dev
     $settings['toolbar'] = $original_toolbar;
     $settings['toolbar']['rows'][0][0]['items'][] = 'Strike';
     $editor->setSettings($settings);
     $editor->save();
     $expected = $enabled_plugins + ['llama_contextual' => $file['c'], 'llama_contextual_and_button' => $file['cb']];
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $this->manager->getEnabledPluginFiles($editor), 'The  LLamaContextual and LlamaContextualAndButton plugins are enabled.');
-    $this->assertIdentical(['internal' => NULL] + $expected, $this->manager->getEnabledPluginFiles($editor, TRUE), 'The LlamaContextual and LlamaContextualAndButton plugins are enabled.');
-=======
     $this->assertSame($expected, $this->manager->getEnabledPluginFiles($editor), 'The  LLamaContextual and LlamaContextualAndButton plugins are enabled.');
     $this->assertSame(['internal' => NULL] + $expected, $this->manager->getEnabledPluginFiles($editor, TRUE), 'The LlamaContextual and LlamaContextualAndButton plugins are enabled.');
->>>>>>> dev
     $settings['toolbar']['rows'][0][0]['items'][] = 'Llama';
     $editor->setSettings($settings);
     $editor->save();
     $expected = $enabled_plugins + ['llama_button' => $file['b'], 'llama_contextual' => $file['c'], 'llama_contextual_and_button' => $file['cb']];
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $this->manager->getEnabledPluginFiles($editor), 'The LlamaButton, LlamaContextual and LlamaContextualAndButton plugins are enabled.');
-    $this->assertIdentical(['internal' => NULL] + $expected, $this->manager->getEnabledPluginFiles($editor, TRUE), 'The LLamaButton, LlamaContextual and LlamaContextualAndButton plugins are enabled.');
-=======
     $this->assertSame($expected, $this->manager->getEnabledPluginFiles($editor), 'The LlamaButton, LlamaContextual and LlamaContextualAndButton plugins are enabled.');
     $this->assertSame(['internal' => NULL] + $expected, $this->manager->getEnabledPluginFiles($editor, TRUE), 'The LLamaButton, LlamaContextual and LlamaContextualAndButton plugins are enabled.');
->>>>>>> dev
     $settings['toolbar']['rows'][0][0]['items'][] = 'LlamaCSS';
     $editor->setSettings($settings);
     $editor->save();
     $expected = $enabled_plugins + ['llama_button' => $file['b'], 'llama_contextual' => $file['c'], 'llama_contextual_and_button' => $file['cb'], 'llama_css' => $file['css']];
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $this->manager->getEnabledPluginFiles($editor), 'The LlamaButton, LlamaContextual, LlamaContextualAndButton and LlamaCSS plugins are enabled.');
-    $this->assertIdentical(['internal' => NULL] + $expected, $this->manager->getEnabledPluginFiles($editor, TRUE), 'The LLamaButton, LlamaContextual, LlamaContextualAndButton and LlamaCSS plugins are enabled.');
-=======
     $this->assertSame($expected, $this->manager->getEnabledPluginFiles($editor), 'The LlamaButton, LlamaContextual, LlamaContextualAndButton and LlamaCSS plugins are enabled.');
     $this->assertSame(['internal' => NULL] + $expected, $this->manager->getEnabledPluginFiles($editor, TRUE), 'The LLamaButton, LlamaContextual, LlamaContextualAndButton and LlamaCSS plugins are enabled.');
->>>>>>> dev
   }
 
   /**
@@ -186,11 +143,7 @@ class CKEditorPluginManagerTest extends KernelTestBase {
     $editor = Editor::load('filtered_html');
 
     // Case 1: no CKEditor iframe instance CSS file.
-<<<<<<< HEAD
-    $this->assertIdentical([], $this->manager->getCssFiles($editor), 'No iframe instance CSS file found.');
-=======
     $this->assertSame([], $this->manager->getCssFiles($editor), 'No iframe instance CSS file found.');
->>>>>>> dev
 
     // Enable the CKEditor Test module, which has the LlamaCss plugin and
     // clear the editor manager's cache so it is picked up.
@@ -206,11 +159,7 @@ class CKEditorPluginManagerTest extends KernelTestBase {
     $expected = [
       'llama_css' => [drupal_get_path('module', 'ckeditor_test') . '/css/llama.css'],
     ];
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $this->manager->getCssFiles($editor), 'Iframe instance CSS file found.');
-=======
     $this->assertSame($expected, $this->manager->getCssFiles($editor), 'Iframe instance CSS file found.');
->>>>>>> dev
   }
 
 }

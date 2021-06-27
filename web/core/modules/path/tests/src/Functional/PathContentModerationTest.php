@@ -21,11 +21,7 @@ class PathContentModerationTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'node',
     'path',
     'content_moderation',
@@ -40,11 +36,7 @@ class PathContentModerationTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     ConfigurableLanguage::createFromLangcode('fr')->save();
     $this->rebuildContainer();
@@ -64,12 +56,8 @@ class PathContentModerationTest extends BrowserTestBase {
 
     // Enable URL language detection and selection.
     $edit = ['language_interface[enabled][language-url]' => 1];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/regional/language/detection', $edit, 'Save settings');
-=======
     $this->drupalGet('admin/config/regional/language/detection');
     $this->submitForm($edit, 'Save settings');
->>>>>>> dev
 
     // Enable translation for moderated node.
     $edit = [
@@ -79,12 +67,8 @@ class PathContentModerationTest extends BrowserTestBase {
       'settings[node][moderated][fields][body]' => 1,
       'settings[node][moderated][settings][language][language_alterable]' => 1,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/regional/content-language', $edit, 'Save configuration');
-=======
     $this->drupalGet('admin/config/regional/content-language');
     $this->submitForm($edit, 'Save configuration');
->>>>>>> dev
     \Drupal::entityTypeManager()->clearCachedDefinitions();
   }
 
@@ -95,109 +79,61 @@ class PathContentModerationTest extends BrowserTestBase {
     // Create some moderated content with a path alias.
     $this->drupalGet('node/add/moderated');
     $this->assertSession()->fieldValueEquals('path[0][alias]', '');
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [
-      'title[0][value]' => 'moderated content',
-      'path[0][alias]' => '/moderated-content',
-      'moderation_state[0][state]' => 'published',
-    ], t('Save'));
-=======
     $this->submitForm([
       'title[0][value]' => 'moderated content',
       'path[0][alias]' => '/moderated-content',
       'moderation_state[0][state]' => 'published',
     ], 'Save');
->>>>>>> dev
     $node = $this->getNodeByTitle('moderated content');
 
     // Add a pending revision with the same alias.
     $this->drupalGet('node/' . $node->id() . '/edit');
     $this->assertSession()->fieldValueEquals('path[0][alias]', '/moderated-content');
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [
-      'title[0][value]' => 'pending revision',
-      'path[0][alias]' => '/moderated-content',
-      'moderation_state[0][state]' => 'draft',
-    ], t('Save'));
-=======
     $this->submitForm([
       'title[0][value]' => 'pending revision',
       'path[0][alias]' => '/moderated-content',
       'moderation_state[0][state]' => 'draft',
     ], 'Save');
->>>>>>> dev
     $this->assertSession()->pageTextNotContains('You can only change the URL alias for the published version of this content.');
 
     // Create some moderated content with no path alias.
     $this->drupalGet('node/add/moderated');
     $this->assertSession()->fieldValueEquals('path[0][alias]', '');
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [
-      'title[0][value]' => 'moderated content 2',
-      'path[0][alias]' => '',
-      'moderation_state[0][state]' => 'published',
-    ], t('Save'));
-=======
     $this->submitForm([
       'title[0][value]' => 'moderated content 2',
       'path[0][alias]' => '',
       'moderation_state[0][state]' => 'published',
     ], 'Save');
->>>>>>> dev
     $node = $this->getNodeByTitle('moderated content 2');
 
     // Add a pending revision with a new alias.
     $this->drupalGet('node/' . $node->id() . '/edit');
     $this->assertSession()->fieldValueEquals('path[0][alias]', '');
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [
-      'title[0][value]' => 'pending revision',
-      'path[0][alias]' => '/pending-revision',
-      'moderation_state[0][state]' => 'draft',
-    ], t('Save'));
-=======
     $this->submitForm([
       'title[0][value]' => 'pending revision',
       'path[0][alias]' => '/pending-revision',
       'moderation_state[0][state]' => 'draft',
     ], 'Save');
->>>>>>> dev
     $this->assertSession()->pageTextContains('You can only change the URL alias for the published version of this content.');
 
     // Create some moderated content with no path alias.
     $this->drupalGet('node/add/moderated');
     $this->assertSession()->fieldValueEquals('path[0][alias]', '');
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [
-      'title[0][value]' => 'moderated content 3',
-      'path[0][alias]' => '',
-      'moderation_state[0][state]' => 'published',
-    ], t('Save'));
-=======
     $this->submitForm([
       'title[0][value]' => 'moderated content 3',
       'path[0][alias]' => '',
       'moderation_state[0][state]' => 'published',
     ], 'Save');
->>>>>>> dev
     $node = $this->getNodeByTitle('moderated content 3');
 
     // Add a pending revision with no path alias.
     $this->drupalGet('node/' . $node->id() . '/edit');
     $this->assertSession()->fieldValueEquals('path[0][alias]', '');
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [
-      'title[0][value]' => 'pending revision',
-      'path[0][alias]' => '',
-      'moderation_state[0][state]' => 'draft',
-    ], t('Save'));
-=======
     $this->submitForm([
       'title[0][value]' => 'pending revision',
       'path[0][alias]' => '',
       'moderation_state[0][state]' => 'draft',
     ], 'Save');
->>>>>>> dev
     $this->assertSession()->pageTextNotContains('You can only change the URL alias for the published version of this content.');
   }
 
@@ -222,11 +158,7 @@ class PathContentModerationTest extends BrowserTestBase {
       'moderation_state[0][state]' => 'published',
       'path[0][alias]' => '/' . $this->randomMachineName(),
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit_translation, 'Save (this translation)');
-=======
     $this->submitForm($edit_translation, 'Save (this translation)');
->>>>>>> dev
     // Confirm that the alias works.
     $this->drupalGet('fr' . $edit_translation['path[0][alias]']);
     $this->assertSession()->pageTextContains($edit_translation['body[0][value]']);
@@ -241,12 +173,8 @@ class PathContentModerationTest extends BrowserTestBase {
       'moderation_state[0][state]' => 'draft',
       'path[0][alias]' => '/' . $this->randomMachineName(),
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('fr/node/' . $default_node->id() . '/edit', $edit_new_translation_draft_with_alias, 'Save (this translation)');
-=======
     $this->drupalGet('fr/node/' . $default_node->id() . '/edit');
     $this->submitForm($edit_new_translation_draft_with_alias, 'Save (this translation)');
->>>>>>> dev
     // Confirm the expected error.
     $this->assertSession()->pageTextContains('You can only change the URL alias for the published version of this content.');
 
@@ -255,12 +183,8 @@ class PathContentModerationTest extends BrowserTestBase {
       'body[0][value]' => $this->randomMachineName(),
       'moderation_state[0][state]' => 'draft',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('fr/node/' . $default_node->id() . '/edit', $edit_new_translation_draft, t('Save (this translation)'));
-=======
     $this->drupalGet('fr/node/' . $default_node->id() . '/edit');
     $this->submitForm($edit_new_translation_draft, 'Save (this translation)');
->>>>>>> dev
     // Confirm that the new draft revision was created.
     $this->assertSession()->pageTextNotContains('You can only change the URL alias for the published version of this content.');
     $this->assertSession()->pageTextContains($edit_new_translation_draft['body[0][value]']);
@@ -272,12 +196,8 @@ class PathContentModerationTest extends BrowserTestBase {
       'moderation_state[0][state]' => 'draft',
       'path[0][alias]' => $default_node->path->alias,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('fr/node/' . $default_node->id() . '/edit', $edit_new_translation_draft_with_defaults_alias, 'Save (this translation)');
-=======
     $this->drupalGet('fr/node/' . $default_node->id() . '/edit');
     $this->submitForm($edit_new_translation_draft_with_defaults_alias, 'Save (this translation)');
->>>>>>> dev
     // Verify the expected error.
     $this->assertSession()->pageTextContains('You can only change the URL alias for the published version of this content.');
 
@@ -288,12 +208,8 @@ class PathContentModerationTest extends BrowserTestBase {
       'moderation_state[0][state]' => 'draft',
       'path[0][alias]' => '',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('fr/node/' . $default_node->id() . '/edit', $edit_new_translation_draft_empty_alias, 'Save (this translation)');
-=======
     $this->drupalGet('fr/node/' . $default_node->id() . '/edit');
     $this->submitForm($edit_new_translation_draft_empty_alias, 'Save (this translation)');
->>>>>>> dev
     // Confirm the expected error.
     $this->assertSession()->pageTextContains('You can only change the URL alias for the published version of this content.');
 
@@ -304,12 +220,8 @@ class PathContentModerationTest extends BrowserTestBase {
       'moderation_state[0][state]' => 'published',
       'path[0][alias]' => '/' . $this->randomMachineName(),
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('fr/node/' . $default_node->id() . '/edit', $edit_new_translation, 'Save (this translation)');
-=======
     $this->drupalGet('fr/node/' . $default_node->id() . '/edit');
     $this->submitForm($edit_new_translation, 'Save (this translation)');
->>>>>>> dev
     // Confirm that the new published revision was created.
     $this->assertSession()->pageTextNotContains('You can only change the URL alias for the published version of this content.');
     $this->assertSession()->pageTextContains($edit_new_translation['body[0][value]']);

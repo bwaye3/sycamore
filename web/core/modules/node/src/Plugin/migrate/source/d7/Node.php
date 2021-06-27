@@ -14,8 +14,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Drupal 7 node source from database.
  *
-<<<<<<< HEAD
-=======
  * Available configuration keys:
  * - node_type: The node_types to get from the source - can be a string or
  *   an array. If not declared then nodes of all types will be retrieved.
@@ -43,7 +41,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @see \Drupal\migrate\Plugin\migrate\source\SqlBase
  * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
  *
->>>>>>> dev
  * @MigrateSource(
  *   id = "d7_node",
  *   source_module = "node"
@@ -83,11 +80,7 @@ class Node extends FieldableEntity {
   /**
    * The join options between the node and the node_revisions table.
    */
-<<<<<<< HEAD
-  const JOIN = 'n.vid = nr.vid';
-=======
   const JOIN = '[n].[vid] = [nr].[vid]';
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -121,21 +114,13 @@ class Node extends FieldableEntity {
     // If the content_translation module is enabled, get the source langcode
     // to fill the content_translation_source field.
     if ($this->moduleHandler->moduleExists('content_translation')) {
-<<<<<<< HEAD
-      $query->leftJoin('node', 'nt', 'n.tnid = nt.nid');
-=======
       $query->leftJoin('node', 'nt', '[n].[tnid] = [nt].[nid]');
->>>>>>> dev
       $query->addField('nt', 'language', 'source_langcode');
     }
     $this->handleTranslations($query);
 
     if (isset($this->configuration['node_type'])) {
-<<<<<<< HEAD
-      $query->condition('n.type', $this->configuration['node_type']);
-=======
       $query->condition('n.type', (array) $this->configuration['node_type'], 'IN');
->>>>>>> dev
     }
 
     return $query;
@@ -231,19 +216,11 @@ class Node extends FieldableEntity {
     // Check whether or not we want translations.
     if (empty($this->configuration['translations'])) {
       // No translations: Yield untranslated nodes, or default translations.
-<<<<<<< HEAD
-      $query->where('n.tnid = 0 OR n.tnid = n.nid');
-    }
-    else {
-      // Translations: Yield only non-default translations.
-      $query->where('n.tnid <> 0 AND n.tnid <> n.nid');
-=======
       $query->where('[n].[tnid] = 0 OR [n].[tnid] = [n].[nid]');
     }
     else {
       // Translations: Yield only non-default translations.
       $query->where('[n].[tnid] <> 0 AND [n].[tnid] <> [n].[nid]');
->>>>>>> dev
     }
   }
 

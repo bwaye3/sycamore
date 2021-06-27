@@ -34,11 +34,7 @@ class SingleVisibleProfileTest extends InstallerTestBase {
     foreach ($profiles as $profile) {
       $info = [
         'type' => 'profile',
-<<<<<<< HEAD
-        'core' => \Drupal::CORE_COMPATIBILITY,
-=======
         'core_version_requirement' => '^8 || ^9 || ^10',
->>>>>>> dev
         'name' => 'Override ' . $profile,
         'hidden' => TRUE,
       ];
@@ -60,21 +56,12 @@ class SingleVisibleProfileTest extends InstallerTestBase {
    * Confirms that the installation succeeded.
    */
   public function testInstalled() {
-<<<<<<< HEAD
-    $this->assertUrl('user/1');
-    $this->assertSession()->statusCodeEquals(200);
-    // Confirm that we are logged-in after installation.
-    $this->assertText($this->rootUser->getAccountName());
-    // Confirm that the minimal profile was installed.
-    $this->assertEqual(\Drupal::installProfile(), 'minimal');
-=======
     $this->assertSession()->addressEquals('user/1');
     $this->assertSession()->statusCodeEquals(200);
     // Confirm that we are logged-in after installation.
     $this->assertSession()->pageTextContains($this->rootUser->getAccountName());
     // Confirm that the minimal profile was installed.
     $this->assertEquals('minimal', \Drupal::installProfile());
->>>>>>> dev
   }
 
 }

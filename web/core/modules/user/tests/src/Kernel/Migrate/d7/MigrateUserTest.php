@@ -18,11 +18,7 @@ class MigrateUserTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'comment',
     'content_translation',
     'datetime',
@@ -39,11 +35,7 @@ class MigrateUserTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('comment');
@@ -225,17 +217,8 @@ class MigrateUserTest extends MigrateDrupal7TestBase {
       $user = User::load($source->uid);
       $this->assertEquals($rehash, $user->getPassword());
     }
-<<<<<<< HEAD
-  }
-
-  /**
-   * Tests the Drupal 7 user entity translations to Drupal 8 migration.
-   */
-  public function testUserEntityTranslations() {
-=======
 
     // Tests the Drupal 7 user entity translations to Drupal 8 migration.
->>>>>>> dev
     $manager = $this->container->get('content_translation.manager');
 
     // Get the user and its translations.

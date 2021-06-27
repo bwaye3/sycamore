@@ -15,11 +15,7 @@ class PreprocessPagerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $pager_manager = $this->getMockBuilder('Drupal\Core\Pager\PagerManager')
@@ -52,11 +48,7 @@ class PreprocessPagerTest extends UnitTestCase {
    * @covers ::template_preprocess_pager
    */
   public function testQuantityNotSet() {
-<<<<<<< HEAD
-    require_once $this->root . '/core/includes/pager.inc';
-=======
     require_once $this->root . '/core/includes/theme.inc';
->>>>>>> dev
     $variables = [
       'pager' => [
         '#element' => '',

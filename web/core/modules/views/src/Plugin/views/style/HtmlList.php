@@ -32,11 +32,7 @@ class HtmlList extends StylePluginBase {
   protected $usesRowClass = TRUE;
 
   /**
-<<<<<<< HEAD
-   * Set default options
-=======
    * Set default options.
->>>>>>> dev
    */
   protected function defineOptions() {
     $options = parent::defineOptions();

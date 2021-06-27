@@ -3,10 +3,6 @@
 namespace Drupal\comment;
 
 use Drupal\comment\Plugin\Field\FieldType\CommentItemInterface;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\EntityFormBuilderInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -21,15 +17,6 @@ use Drupal\Core\Url;
  * Defines a service for comment #lazy_builder callbacks.
  */
 class CommentLazyBuilders implements TrustedCallbackInterface {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * The entity type manager service.
@@ -194,13 +181,9 @@ class CommentLazyBuilders implements TrustedCallbackInterface {
           'url' => $entity->toUrl('edit-form'),
         ];
       }
-<<<<<<< HEAD
-      if ($entity->access('create')) {
-=======
       $field_definition = $commented_entity->getFieldDefinition($entity->getFieldName());
       if ($entity->access('create')
         && $field_definition->getSetting('default_mode') === CommentManagerInterface::COMMENT_MODE_THREADED) {
->>>>>>> dev
         $links['comment-reply'] = [
           'title' => t('Reply'),
           'url' => Url::fromRoute('comment.reply', [

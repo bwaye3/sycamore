@@ -14,8 +14,6 @@ class HoldTestSubscriber implements EventSubscriberInterface {
   const HOLD_RESPONSE = 'response';
 
   /**
-<<<<<<< HEAD
-=======
    * Time in microseconds to wait for before checking if the file is updated.
    *
    * @var int
@@ -23,7 +21,6 @@ class HoldTestSubscriber implements EventSubscriberInterface {
   const WAIT = 100000;
 
   /**
->>>>>>> dev
    * The site path.
    *
    * @var string
@@ -64,11 +61,7 @@ class HoldTestSubscriber implements EventSubscriberInterface {
     $path = "{$this->sitePath}/hold_test_$type.txt";
     do {
       $status = (bool) file_get_contents($path);
-<<<<<<< HEAD
-    } while ($status && (NULL === usleep(100000)));
-=======
     } while ($status && (NULL === usleep(static::WAIT)));
->>>>>>> dev
   }
 
   /**

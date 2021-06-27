@@ -20,11 +20,7 @@ class EditorDialogSave implements CommandInterface {
   protected $values;
 
   /**
-<<<<<<< HEAD
-   * Constructs a EditorDialogSave object.
-=======
    * Constructs an EditorDialogSave object.
->>>>>>> dev
    *
    * @param string $values
    *   The values that should be passed to the form constructor in Drupal.

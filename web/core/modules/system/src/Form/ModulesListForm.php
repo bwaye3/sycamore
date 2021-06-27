@@ -7,10 +7,7 @@ use Drupal\Core\Config\UnmetDependenciesException;
 use Drupal\Core\Access\AccessManagerInterface;
 use Drupal\Core\Extension\Extension;
 use Drupal\Core\Extension\InfoParserException;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Extension\ModuleDependencyMessageTrait;
->>>>>>> dev
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Extension\ModuleInstallerInterface;
@@ -21,10 +18,6 @@ use Drupal\Core\Render\Element;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\user\PermissionHandlerInterface;
 use Drupal\Core\Url;
-<<<<<<< HEAD
-use Drupal\system\ModuleDependencyMessageTrait;
-=======
->>>>>>> dev
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -84,8 +77,6 @@ class ModulesListForm extends FormBase {
   protected $moduleExtensionList;
 
   /**
-<<<<<<< HEAD
-=======
    * The access manager.
    *
    * @var \Drupal\Core\Access\AccessManagerInterface
@@ -93,7 +84,6 @@ class ModulesListForm extends FormBase {
   protected $accessManager;
 
   /**
->>>>>>> dev
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
@@ -188,18 +178,13 @@ class ModulesListForm extends FormBase {
 
     // Iterate over each of the modules.
     $form['modules']['#tree'] = TRUE;
-<<<<<<< HEAD
-=======
     $incompatible_installed = FALSE;
->>>>>>> dev
     foreach ($modules as $filename => $module) {
       if (empty($module->info['hidden'])) {
         $package = $module->info['package'];
         $form['modules'][$package][$filename] = $this->buildRow($modules, $module, $distribution);
         $form['modules'][$package][$filename]['#parents'] = ['modules', $filename];
       }
-<<<<<<< HEAD
-=======
       if (!$incompatible_installed && $module->status && $module->info['core_incompatible']) {
         $incompatible_installed = TRUE;
         $this->messenger()->addWarning($this->t(
@@ -207,7 +192,6 @@ class ModulesListForm extends FormBase {
           [':link' => Url::fromRoute('system.status')->toString()]
         ));
       }
->>>>>>> dev
     }
 
     // Add a wrapper around every package.

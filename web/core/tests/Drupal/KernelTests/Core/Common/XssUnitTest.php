@@ -18,15 +18,9 @@ class XssUnitTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['filter', 'system'];
-
-  protected function setUp() {
-=======
   protected static $modules = ['filter', 'system'];
 
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installConfig(['system']);
   }
@@ -36,19 +30,11 @@ class XssUnitTest extends KernelTestBase {
    */
   public function testT() {
     $text = t('Simple text');
-<<<<<<< HEAD
-    $this->assertEqual($text, 'Simple text', 't leaves simple text alone.');
-    $text = t('Escaped text: @value', ['@value' => '<script>']);
-    $this->assertEqual($text, 'Escaped text: &lt;script&gt;', 't replaces and escapes string.');
-    $text = t('Placeholder text: %value', ['%value' => '<script>']);
-    $this->assertEqual($text, 'Placeholder text: <em class="placeholder">&lt;script&gt;</em>', 't replaces, escapes and themes string.');
-=======
     $this->assertEquals('Simple text', $text, 't leaves simple text alone.');
     $text = t('Escaped text: @value', ['@value' => '<script>']);
     $this->assertEquals('Escaped text: &lt;script&gt;', $text, 't replaces and escapes string.');
     $text = t('Placeholder text: %value', ['%value' => '<script>']);
     $this->assertEquals('Placeholder text: <em class="placeholder">&lt;script&gt;</em>', $text, 't replaces, escapes and themes string.');
->>>>>>> dev
   }
 
   /**
@@ -62,29 +48,9 @@ class XssUnitTest extends KernelTestBase {
     $url = 'javascript:http://www.example.com/?x=1&y=2';
     $expected_plain = 'http://www.example.com/?x=1&y=2';
     $expected_html = 'http://www.example.com/?x=1&amp;y=2';
-<<<<<<< HEAD
-    $this->assertIdentical(UrlHelper::filterBadProtocol($url), $expected_html, '\Drupal\Component\Utility\UrlHelper::filterBadProtocol() filters a URL and encodes it for HTML.');
-    $this->assertIdentical(UrlHelper::stripDangerousProtocols($url), $expected_plain, '\Drupal\Component\Utility\UrlHelper::stripDangerousProtocols() filters a URL and returns plain text.');
-
-  }
-
-  /**
-   * Tests deprecation of the check_url() function.
-   *
-   * @group legacy
-   * @expectedDeprecation check_url() is deprecated in Drupal 8.0.0 and will be removed before Drupal 9.0.0. Use UrlHelper::stripDangerousProtocols() or UrlHelper::filterBadProtocol() instead. See https://www.drupal.org/node/2560027
-   */
-  public function testCheckUrl() {
-    $url = 'javascript:http://www.example.com/?x=1&y=2';
-    $expected_html = 'http://www.example.com/?x=1&amp;y=2';
-    $this->assertSame($expected_html, check_url($url));
-  }
-
-=======
     $this->assertSame($expected_html, UrlHelper::filterBadProtocol($url), '\\Drupal\\Component\\Utility\\UrlHelper::filterBadProtocol() filters a URL and encodes it for HTML.');
     $this->assertSame($expected_plain, UrlHelper::stripDangerousProtocols($url), '\\Drupal\\Component\\Utility\\UrlHelper::stripDangerousProtocols() filters a URL and returns plain text.');
 
   }
 
->>>>>>> dev
 }

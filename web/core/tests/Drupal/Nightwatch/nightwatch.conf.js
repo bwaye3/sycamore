@@ -21,11 +21,7 @@ glob
         )
       : defaultIgnore,
   })
-<<<<<<< HEAD
-  .forEach(file => {
-=======
   .forEach((file) => {
->>>>>>> dev
     let m = regex.exec(file);
     while (m !== null) {
       // This is necessary to avoid infinite loops with zero-width matches.
@@ -34,11 +30,7 @@ glob
       }
 
       const key = `../${m[1]}`;
-<<<<<<< HEAD
-      Object.keys(collectedFolders).forEach(folder => {
-=======
       Object.keys(collectedFolders).forEach((folder) => {
->>>>>>> dev
         if (file.includes(`Nightwatch/${folder}`)) {
           collectedFolders[folder].push(`${searchDirectory}${key}/${folder}`);
         }
@@ -48,11 +40,7 @@ glob
   });
 
 // Remove duplicate folders.
-<<<<<<< HEAD
-Object.keys(collectedFolders).forEach(folder => {
-=======
 Object.keys(collectedFolders).forEach((folder) => {
->>>>>>> dev
   collectedFolders[folder] = Array.from(new Set(collectedFolders[folder]));
 });
 

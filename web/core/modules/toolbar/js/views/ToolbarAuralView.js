@@ -9,10 +9,6 @@
   Drupal.toolbar.ToolbarAuralView = Backbone.View.extend({
     initialize: function initialize(options) {
       this.strings = options.strings;
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
       this.listenTo(this.model, 'change:orientation', this.onOrientationChange);
       this.listenTo(this.model, 'change:activeTray', this.onActiveTrayChange);
     },
@@ -27,33 +23,22 @@
       if (!relevantTray) {
         return;
       }
-<<<<<<< HEAD
-      var action = tray === null ? Drupal.t('closed') : Drupal.t('opened');
-      var trayNameElement = relevantTray.querySelector('.toolbar-tray-name');
-      var text = void 0;
-=======
 
       var action = tray === null ? Drupal.t('closed') : Drupal.t('opened');
       var trayNameElement = relevantTray.querySelector('.toolbar-tray-name');
       var text;
 
->>>>>>> dev
       if (trayNameElement !== null) {
         text = Drupal.t('Tray "@tray" @action.', {
           '@tray': trayNameElement.textContent,
           '@action': action
         });
       } else {
-<<<<<<< HEAD
-        text = Drupal.t('Tray @action.', { '@action': action });
-      }
-=======
         text = Drupal.t('Tray @action.', {
           '@action': action
         });
       }
 
->>>>>>> dev
       Drupal.announce(text);
     }
   });

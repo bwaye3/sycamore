@@ -2,10 +2,7 @@
 
 namespace Drupal\comment\Plugin\migrate\source\d7;
 
-<<<<<<< HEAD
-=======
 use Drupal\migrate\Exception\RequirementsException;
->>>>>>> dev
 use Drupal\migrate\Row;
 use Drupal\migrate_drupal\Plugin\migrate\source\d7\FieldableEntity;
 
@@ -31,13 +28,8 @@ class CommentEntityTranslation extends FieldableEntity {
       ->condition('et.entity_type', 'comment')
       ->condition('et.source', '', '<>');
 
-<<<<<<< HEAD
-    $query->innerJoin('comment', 'c', 'c.cid = et.entity_id');
-    $query->innerJoin('node', 'n', 'n.nid = c.nid');
-=======
     $query->innerJoin('comment', 'c', '[c].[cid] = [et].[entity_id]');
     $query->innerJoin('node', 'n', '[n].[nid] = [c].[nid]');
->>>>>>> dev
 
     $query->addField('n', 'type', 'node_type');
 
@@ -109,8 +101,6 @@ class CommentEntityTranslation extends FieldableEntity {
     ];
   }
 
-<<<<<<< HEAD
-=======
   /**
    * {@inheritdoc}
    */
@@ -127,5 +117,4 @@ class CommentEntityTranslation extends FieldableEntity {
     }
   }
 
->>>>>>> dev
 }

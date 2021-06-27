@@ -32,22 +32,17 @@ abstract class TipPluginBase extends PluginBase implements TipPluginInterface {
    * The attributes that will be applied to the markup of this tip.
    *
    * @var array
-<<<<<<< HEAD
-=======
    *
    * @deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. There is no
    *   direct replacement. Note that this was never actually used.
    *
    * @see https://www.drupal.org/node/3204096
->>>>>>> dev
    */
   protected $attributes;
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-=======
   public function __construct(array $configuration, $plugin_id, $plugin_definition) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     if (!$this instanceof TourTipPluginInterface) {
@@ -58,7 +53,6 @@ abstract class TipPluginBase extends PluginBase implements TipPluginInterface {
   /**
    * {@inheritdoc}
    */
->>>>>>> dev
   public function id() {
     return $this->get('id');
   }
@@ -79,11 +73,6 @@ abstract class TipPluginBase extends PluginBase implements TipPluginInterface {
 
   /**
    * {@inheritdoc}
-<<<<<<< HEAD
-   */
-  public function getAttributes() {
-    return $this->get('attributes') ?: [];
-=======
    *
    * @todo remove in https://drupal.org/node/3195193
    */
@@ -112,7 +101,6 @@ abstract class TipPluginBase extends PluginBase implements TipPluginInterface {
     }
 
     return $attributes;
->>>>>>> dev
   }
 
   /**
@@ -131,8 +119,6 @@ abstract class TipPluginBase extends PluginBase implements TipPluginInterface {
     $this->configuration[$key] = $value;
   }
 
-<<<<<<< HEAD
-=======
   /**
    * This method should not be used. It is deprecated from TipPluginInterface.
    *
@@ -210,5 +196,4 @@ abstract class TipPluginBase extends PluginBase implements TipPluginInterface {
     return $this->get('selector');
   }
 
->>>>>>> dev
 }

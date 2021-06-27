@@ -23,22 +23,14 @@ class ConfigTranslationViewListUiTest extends UITestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['config_translation', 'views_ui'];
-=======
   protected static $modules = ['config_translation', 'views_ui'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $permissions = [
@@ -58,16 +50,6 @@ class ConfigTranslationViewListUiTest extends UITestBase {
     $this->drupalGet('admin/structure/views');
     $translate_link = 'admin/structure/views/view/test_view/translate';
     // Test if the link to translate the test_view is on the page.
-<<<<<<< HEAD
-    $this->assertLinkByHref($translate_link);
-
-    // Test if the link to translate actually goes to the translate page.
-    $this->drupalGet($translate_link);
-    $this->assertRaw('<th>' . t('Language') . '</th>');
-
-    // Test that the 'Edit' tab appears.
-    $this->assertLinkByHref('admin/structure/views/view/test_view');
-=======
     $this->assertSession()->linkByHrefExists($translate_link);
 
     // Test if the link to translate actually goes to the translate page.
@@ -76,7 +58,6 @@ class ConfigTranslationViewListUiTest extends UITestBase {
 
     // Test that the 'Edit' tab appears.
     $this->assertSession()->linkByHrefExists('admin/structure/views/view/test_view');
->>>>>>> dev
   }
 
 }

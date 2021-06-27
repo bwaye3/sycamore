@@ -20,11 +20,7 @@ class ContentTranslationRevisionTranslationDeletionTest extends ContentTranslati
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->enableContentModeration();
   }
@@ -81,11 +77,7 @@ class ContentTranslationRevisionTranslationDeletionTest extends ContentTranslati
       'title[0][value]' => "Test $index.2 IT",
       'moderation_state[0][state]' => 'draft',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save (this translation)'));
-=======
     $this->submitForm($edit, 'Save (this translation)');
->>>>>>> dev
     $entity = $this->storage->loadUnchanged($id);
     $this->assertFalse($entity->hasTranslation('it'));
     $it_revision = $this->loadRevisionTranslation($entity, 'it');
@@ -107,11 +99,7 @@ class ContentTranslationRevisionTranslationDeletionTest extends ContentTranslati
       'title[0][value]' => "Test $index.3 IT",
       'moderation_state[0][state]' => 'published',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save (this translation)'));
-=======
     $this->submitForm($edit, 'Save (this translation)');
->>>>>>> dev
     $entity = $this->storage->loadUnchanged($id);
     $this->assertTrue($entity->hasTranslation('it'));
     $it_revision = $this->loadRevisionTranslation($entity, 'it');
@@ -131,11 +119,7 @@ class ContentTranslationRevisionTranslationDeletionTest extends ContentTranslati
       'title[0][value]' => "Test $index.4 EN",
       'moderation_state[0][state]' => 'draft',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save (this translation)'));
-=======
     $this->submitForm($edit, 'Save (this translation)');
->>>>>>> dev
     $entity = $this->storage->loadUnchanged($id);
     $this->assertTrue($entity->hasTranslation('it'));
     $en_revision = $this->loadRevisionTranslation($entity, 'en');
@@ -145,21 +129,13 @@ class ContentTranslationRevisionTranslationDeletionTest extends ContentTranslati
     // Delete the translation and verify that it is actually gone and that it is
     // possible to create it again.
     $this->drupalGet($it_delete_url);
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [], 'Delete Italian translation');
-=======
     $this->submitForm([], 'Delete Italian translation');
->>>>>>> dev
     $entity = $this->storage->loadUnchanged($id);
     $this->assertFalse($entity->hasTranslation('it'));
     $it_revision = $this->loadRevisionTranslation($entity, 'it');
     $this->assertTrue($it_revision->wasDefaultRevision());
     $this->assertTrue($it_revision->hasTranslation('it'));
-<<<<<<< HEAD
-    $this->assertTrue($it_revision->getRevisionId() < $entity->getRevisionId());
-=======
     $this->assertLessThan($entity->getRevisionId(), $it_revision->getRevisionId());
->>>>>>> dev
     $this->drupalGet($overview_url);
     $this->assertSession()->linkByHrefNotExists($this->getEditUrl($it_revision)->toString());
     $this->assertSession()->linkByHrefExists($add_translation_href);
@@ -173,11 +149,7 @@ class ContentTranslationRevisionTranslationDeletionTest extends ContentTranslati
       'title[0][value]' => "Test $index.6 EN",
       'moderation_state[0][state]' => 'published',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save'));
-=======
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $entity = $this->storage->loadUnchanged($id);
     $this->assertFalse($entity->hasTranslation('it'));
     $this->drupalLogin($this->currentAccount);
@@ -188,11 +160,7 @@ class ContentTranslationRevisionTranslationDeletionTest extends ContentTranslati
       'title[0][value]' => "Test $index.7 IT",
       'moderation_state[0][state]' => 'published',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save (this translation)'));
-=======
     $this->submitForm($edit, 'Save (this translation)');
->>>>>>> dev
     $entity = $this->storage->loadUnchanged($id);
     $this->assertTrue($entity->hasTranslation('it'));
     $it_revision = $this->loadRevisionTranslation($entity, 'it');
@@ -206,11 +174,7 @@ class ContentTranslationRevisionTranslationDeletionTest extends ContentTranslati
       'title[0][value]' => "Test $index.8 IT",
       'moderation_state[0][state]' => 'draft',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save (this translation)'));
-=======
     $this->submitForm($edit, 'Save (this translation)');
->>>>>>> dev
     $entity = $this->storage->loadUnchanged($id);
     $this->assertTrue($entity->hasTranslation('it'));
     $it_revision = $this->loadRevisionTranslation($entity, 'it');
@@ -233,32 +197,20 @@ class ContentTranslationRevisionTranslationDeletionTest extends ContentTranslati
     );
     $revision_deletion_href = $revision_deletion_url->toString();
     $this->getSession()->getDriver()->click("//a[@href='$revision_deletion_href']");
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [], 'Delete');
-=======
     $this->submitForm([], 'Delete');
->>>>>>> dev
     $this->drupalLogin($this->currentAccount);
     $this->drupalGet($overview_url);
     $this->assertSession()->linkByHrefExists($it_delete_href);
 
     // Verify that now the translation can be deleted.
     $this->drupalGet($it_delete_url);
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [], 'Delete Italian translation');
-=======
     $this->submitForm([], 'Delete Italian translation');
->>>>>>> dev
     $entity = $this->storage->loadUnchanged($id);
     $this->assertFalse($entity->hasTranslation('it'));
     $it_revision = $this->loadRevisionTranslation($entity, 'it');
     $this->assertTrue($it_revision->wasDefaultRevision());
     $this->assertTrue($it_revision->hasTranslation('it'));
-<<<<<<< HEAD
-    $this->assertTrue($it_revision->getRevisionId() < $entity->getRevisionId());
-=======
     $this->assertLessThan($entity->getRevisionId(), $it_revision->getRevisionId());
->>>>>>> dev
     $this->drupalGet($overview_url);
     $this->assertSession()->linkByHrefNotExists($this->getEditUrl($it_revision)->toString());
     $this->assertSession()->linkByHrefExists($add_translation_href);

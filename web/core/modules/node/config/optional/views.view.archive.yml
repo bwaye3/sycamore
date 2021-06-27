@@ -16,11 +16,7 @@ base_field: nid
 display:
   default:
     id: default
-<<<<<<< HEAD
-    display_title: Master
-=======
     display_title: Default
->>>>>>> dev
     display_plugin: default
     position: 0
     display_options:

@@ -34,8 +34,6 @@ class FormTestAutocompleteForm extends FormBase {
       '#autocomplete_route_name' => 'form_test.autocomplete_2',
       '#autocomplete_route_parameters' => ['param' => 'value'],
     ];
-<<<<<<< HEAD
-=======
     $form['autocomplete_3'] = [
       '#type' => 'container',
       '#attributes' => [
@@ -49,7 +47,6 @@ class FormTestAutocompleteForm extends FormBase {
         '#autocomplete_route_name' => 'form_test.autocomplete_1',
       ],
     ];
->>>>>>> dev
 
     return $form;
   }

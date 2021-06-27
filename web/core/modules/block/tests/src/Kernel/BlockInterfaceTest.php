@@ -13,17 +13,10 @@ use Drupal\KernelTests\KernelTestBase;
  */
 class BlockInterfaceTest extends KernelTestBase {
 
-<<<<<<< HEAD
-  public static $modules = ['system', 'block', 'block_test', 'user'];
-
-  /**
-   * Test configuration and subsequent form() and build() method calls.
-=======
   protected static $modules = ['system', 'block', 'block_test', 'user'];
 
   /**
    * Tests configuration and subsequent form() and build() method calls.
->>>>>>> dev
    *
    * This test is attempting to test the existing block plugin api and all
    * functionality that is expected to remain consistent. The arrays that are
@@ -49,24 +42,14 @@ class BlockInterfaceTest extends KernelTestBase {
       'display_message' => 'no message set',
     ];
     // Initial configuration of the block at construction time.
-<<<<<<< HEAD
-    /** @var $display_block \Drupal\Core\Block\BlockPluginInterface */
-    $display_block = $manager->createInstance('test_block_instantiation', $configuration);
-    $this->assertIdentical($display_block->getConfiguration(), $expected_configuration, 'The block was configured correctly.');
-=======
     /** @var \Drupal\Core\Block\BlockPluginInterface $display_block */
     $display_block = $manager->createInstance('test_block_instantiation', $configuration);
     $this->assertSame($expected_configuration, $display_block->getConfiguration(), 'The block was configured correctly.');
->>>>>>> dev
 
     // Updating an element of the configuration.
     $display_block->setConfigurationValue('display_message', 'My custom display message.');
     $expected_configuration['display_message'] = 'My custom display message.';
-<<<<<<< HEAD
-    $this->assertIdentical($display_block->getConfiguration(), $expected_configuration, 'The block configuration was updated correctly.');
-=======
     $this->assertSame($expected_configuration, $display_block->getConfiguration(), 'The block configuration was updated correctly.');
->>>>>>> dev
     $definition = $display_block->getPluginDefinition();
 
     $expected_form = [
@@ -104,29 +87,17 @@ class BlockInterfaceTest extends KernelTestBase {
     $actual_form = $display_block->buildConfigurationForm([], $form_state);
     // Remove the visibility sections, as that just tests condition plugins.
     unset($actual_form['visibility'], $actual_form['visibility_tabs']);
-<<<<<<< HEAD
-    $this->assertIdentical($this->castSafeStrings($actual_form), $this->castSafeStrings($expected_form), 'Only the expected form elements were present.');
-=======
     $this->assertEquals($expected_form, $actual_form, 'Only the expected form elements were present.');
->>>>>>> dev
 
     $expected_build = [
       '#children' => 'My custom display message.',
     ];
     // Ensure the build array is proper.
-<<<<<<< HEAD
-    $this->assertIdentical($display_block->build(), $expected_build, 'The plugin returned the appropriate build array.');
-
-    // Ensure the machine name suggestion is correct. In truth, this is actually
-    // testing BlockBase's implementation, not the interface itself.
-    $this->assertIdentical($display_block->getMachineNameSuggestion(), 'displaymessage', 'The plugin returned the expected machine name suggestion.');
-=======
     $this->assertSame($expected_build, $display_block->build(), 'The plugin returned the appropriate build array.');
 
     // Ensure the machine name suggestion is correct. In truth, this is actually
     // testing BlockBase's implementation, not the interface itself.
     $this->assertSame('displaymessage', $display_block->getMachineNameSuggestion(), 'The plugin returned the expected machine name suggestion.');
->>>>>>> dev
   }
 
 }

@@ -3,11 +3,7 @@
  * Some basic behaviors and utility functions for Views.
  */
 
-<<<<<<< HEAD
-(function($, Drupal, drupalSettings) {
-=======
 (function ($, Drupal, drupalSettings) {
->>>>>>> dev
   /**
    * @namespace
    */
@@ -22,11 +18,7 @@
    * @return {object}
    *   A map of query parameters.
    */
-<<<<<<< HEAD
-  Drupal.Views.parseQueryString = function(query) {
-=======
   Drupal.Views.parseQueryString = function (query) {
->>>>>>> dev
     const args = {};
     const pos = query.indexOf('?');
     if (pos !== -1) {
@@ -38,14 +30,8 @@
       pair = pairs[i].split('=');
       // Ignore the 'q' path argument, if present.
       if (pair[0] !== 'q' && pair[1]) {
-<<<<<<< HEAD
-        args[
-          decodeURIComponent(pair[0].replace(/\+/g, ' '))
-        ] = decodeURIComponent(pair[1].replace(/\+/g, ' '));
-=======
         args[decodeURIComponent(pair[0].replace(/\+/g, ' '))] =
           decodeURIComponent(pair[1].replace(/\+/g, ' '));
->>>>>>> dev
       }
     }
     return args;
@@ -62,11 +48,7 @@
    * @return {object}
    *   An object containing `view_args` and `view_path`.
    */
-<<<<<<< HEAD
-  Drupal.Views.parseViewArgs = function(href, viewPath) {
-=======
   Drupal.Views.parseViewArgs = function (href, viewPath) {
->>>>>>> dev
     const returnObj = {};
     const path = Drupal.Views.getPath(href);
     // Get viewPath url without baseUrl portion.
@@ -92,11 +74,7 @@
    * @return {string}
    *   The href without the protocol and domain.
    */
-<<<<<<< HEAD
-  Drupal.Views.pathPortion = function(href) {
-=======
   Drupal.Views.pathPortion = function (href) {
->>>>>>> dev
     // Remove e.g. http://example.com if present.
     const protocol = window.location.protocol;
     if (href.substring(0, protocol.length) === protocol) {
@@ -115,11 +93,7 @@
    * @return {string}
    *   An internal path.
    */
-<<<<<<< HEAD
-  Drupal.Views.getPath = function(href) {
-=======
   Drupal.Views.getPath = function (href) {
->>>>>>> dev
     href = Drupal.Views.pathPortion(href);
     href = href.substring(drupalSettings.path.baseUrl.length, href.length);
     // 3 is the length of the '?q=' added to the url without clean urls.

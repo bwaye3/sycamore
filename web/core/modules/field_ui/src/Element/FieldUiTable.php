@@ -110,11 +110,7 @@ class FieldUiTable extends Table {
 
     $elements['#attached']['drupalSettings']['fieldUIRowsData'] = $js_settings;
 
-<<<<<<< HEAD
-    // If the custom #tabledrag is set and there is a HTML ID, add the table's
-=======
     // If the custom #tabledrag is set and there is an HTML ID, add the table's
->>>>>>> dev
     // HTML ID to the options and attach the behavior.
     // @see \Drupal\Core\Render\Element\Table::preRenderTable()
     if (!empty($elements['#tabledrag']) && isset($elements['#attributes']['id'])) {

@@ -2,11 +2,7 @@
 
 namespace Drupal\Tests\migrate\Kernel;
 
-<<<<<<< HEAD
-use Drupal\Component\Plugin\Exception\PluginNotFoundException;
-=======
 use Drupal\field\Entity\FieldConfig;
->>>>>>> dev
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 
 /**
@@ -20,20 +16,13 @@ class MigrateStubTest extends MigrateTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'system',
     'node',
     'field',
     'user',
     'text',
-<<<<<<< HEAD
-=======
     'filter',
->>>>>>> dev
     'migrate_stub_test',
   ];
 
@@ -61,11 +50,7 @@ class MigrateStubTest extends MigrateTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->setTestLogger();
     $this->migrateStub = $this->container->get('migrate.stub');
@@ -117,9 +102,6 @@ class MigrateStubTest extends MigrateTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test invalid source id count.
-=======
    * Tests stub creation with bundle fields.
    */
   public function testStubWithBundleFields() {
@@ -139,7 +121,6 @@ class MigrateStubTest extends MigrateTestBase {
 
   /**
    * Tests invalid source id count.
->>>>>>> dev
    */
   public function testInvalidSourceIdCount() {
     $this->expectException(\InvalidArgumentException::class);
@@ -152,24 +133,8 @@ class MigrateStubTest extends MigrateTestBase {
    */
   public function testInvalidSourceIdKeys() {
     $this->expectException(\InvalidArgumentException::class);
-<<<<<<< HEAD
-    $this->expectExceptionMessage('version_id is defined as a source ID but has no value.');
-    $this->migrateStub->createStub('sample_stubbing_migration_with_multiple_source_ids', ['id' => 17, 'not_a_key' => 17]);
-  }
-
-  /**
-   * Tests that an exception is thrown if a migration does not exist.
-   */
-  public function testErrorOnMigrationNotFound() {
-    $this->expectException(PluginNotFoundException::class);
-    $this->expectExceptionMessage("Plugin ID 'nonexistent_migration' was not found.");
-    $this->migrateStub->createStub('nonexistent_migration', [1]);
-  }
-
-=======
     $this->expectExceptionMessage("'version_id' is defined as a source ID but has no value.");
     $this->migrateStub->createStub('sample_stubbing_migration_with_multiple_source_ids', ['id' => 17, 'not_a_key' => 17]);
   }
 
->>>>>>> dev
 }

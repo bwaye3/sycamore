@@ -89,11 +89,7 @@ class NodeForm extends ContentEntityForm {
     // rebuilding the form.
     $request_uuid = \Drupal::request()->query->get('uuid');
     if (!$form_state->isRebuilding() && $request_uuid && $preview = $store->get($request_uuid)) {
-<<<<<<< HEAD
-      /** @var $preview \Drupal\Core\Form\FormStateInterface */
-=======
       /** @var \Drupal\Core\Form\FormStateInterface $preview */
->>>>>>> dev
 
       $form_state->setStorage($preview->getStorage());
       $form_state->setUserInput($preview->getUserInput());
@@ -165,11 +161,7 @@ class NodeForm extends ContentEntityForm {
     // Node author information for administrators.
     $form['author'] = [
       '#type' => 'details',
-<<<<<<< HEAD
-      '#title' => t('Authoring information'),
-=======
       '#title' => $this->t('Authoring information'),
->>>>>>> dev
       '#group' => 'advanced',
       '#attributes' => [
         'class' => ['node-form-author'],
@@ -192,11 +184,7 @@ class NodeForm extends ContentEntityForm {
     // Node options for administrators.
     $form['options'] = [
       '#type' => 'details',
-<<<<<<< HEAD
-      '#title' => t('Promotion options'),
-=======
       '#title' => $this->t('Promotion options'),
->>>>>>> dev
       '#group' => 'advanced',
       '#attributes' => [
         'class' => ['node-form-options'],
@@ -222,33 +210,6 @@ class NodeForm extends ContentEntityForm {
   }
 
   /**
-<<<<<<< HEAD
-   * Entity builder updating the node status with the submitted value.
-   *
-   * @param string $entity_type_id
-   *   The entity type identifier.
-   * @param \Drupal\node\NodeInterface $node
-   *   The node updated with the submitted values.
-   * @param array $form
-   *   The complete form array.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   The current state of the form.
-   *
-   * @see \Drupal\node\NodeForm::form()
-   *
-   * @deprecated in drupal:8.4.0 and is removed from drupal:9.0.0.
-   *   The "Publish" button was removed.
-   */
-  public function updateStatus($entity_type_id, NodeInterface $node, array $form, FormStateInterface $form_state) {
-    $element = $form_state->getTriggeringElement();
-    if (isset($element['#published_status'])) {
-      $element['#published_status'] ? $node->setPublished() : $node->setUnpublished();
-    }
-  }
-
-  /**
-=======
->>>>>>> dev
    * {@inheritdoc}
    */
   protected function actions(array $form, FormStateInterface $form_state) {
@@ -261,11 +222,7 @@ class NodeForm extends ContentEntityForm {
     $element['preview'] = [
       '#type' => 'submit',
       '#access' => $preview_mode != DRUPAL_DISABLED && ($node->access('create') || $node->access('update')),
-<<<<<<< HEAD
-      '#value' => t('Preview'),
-=======
       '#value' => $this->t('Preview'),
->>>>>>> dev
       '#weight' => 20,
       '#submit' => ['::submitForm', '::preview'],
     ];

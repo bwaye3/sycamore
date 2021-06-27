@@ -41,11 +41,7 @@ class SortTest extends ViewsKernelTestBase {
     $this->executeView($view);
 
     // Verify the result.
-<<<<<<< HEAD
-    $this->assertEqual(count($this->dataSet()), count($view->result), 'The number of returned rows match.');
-=======
     $this->assertSame(count($this->dataSet()), count($view->result), 'The number of returned rows match.');
->>>>>>> dev
     $this->assertIdenticalResultset($view, $this->orderResultSet($this->dataSet(), 'age'), [
       'views_test_data_name' => 'name',
       'views_test_data_age' => 'age',
@@ -69,11 +65,7 @@ class SortTest extends ViewsKernelTestBase {
     $this->executeView($view);
 
     // Verify the result.
-<<<<<<< HEAD
-    $this->assertEqual(count($this->dataSet()), count($view->result), 'The number of returned rows match.');
-=======
     $this->assertSame(count($this->dataSet()), count($view->result), 'The number of returned rows match.');
->>>>>>> dev
     $this->assertIdenticalResultset($view, $this->orderResultSet($this->dataSet(), 'age', TRUE), [
       'views_test_data_name' => 'name',
       'views_test_data_age' => 'age',
@@ -102,11 +94,7 @@ class SortTest extends ViewsKernelTestBase {
     $this->executeView($view);
 
     // Verify the result.
-<<<<<<< HEAD
-    $this->assertEqual(count($this->dataSet()), count($view->result), 'The number of returned rows match.');
-=======
     $this->assertSame(count($this->dataSet()), count($view->result), 'The number of returned rows match.');
->>>>>>> dev
     $this->assertIdenticalResultset($view, $this->orderResultSet($this->dataSet(), 'name'), [
       'views_test_data_name' => 'name',
       'views_test_data_age' => 'age',
@@ -130,11 +118,7 @@ class SortTest extends ViewsKernelTestBase {
     $this->executeView($view);
 
     // Verify the result.
-<<<<<<< HEAD
-    $this->assertEqual(count($this->dataSet()), count($view->result), 'The number of returned rows match.');
-=======
     $this->assertSame(count($this->dataSet()), count($view->result), 'The number of returned rows match.');
->>>>>>> dev
     $this->assertIdenticalResultset($view, $this->orderResultSet($this->dataSet(), 'name', TRUE), [
       'views_test_data_name' => 'name',
       'views_test_data_age' => 'age',

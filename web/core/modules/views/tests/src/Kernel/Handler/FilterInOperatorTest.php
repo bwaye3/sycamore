@@ -17,11 +17,7 @@ use Drupal\views\Views;
 class FilterInOperatorTest extends ViewsKernelTestBase {
   use StringTranslationTrait;
 
-<<<<<<< HEAD
-  public static $modules = ['system'];
-=======
   protected static $modules = ['system'];
->>>>>>> dev
 
   /**
    * Views used by this test.
@@ -50,11 +46,7 @@ class FilterInOperatorTest extends ViewsKernelTestBase {
     $view = Views::getView('test_view');
     $view->setDisplay();
 
-<<<<<<< HEAD
-    // Add a in_operator ordering.
-=======
     // Add an in_operator ordering.
->>>>>>> dev
     $view->displayHandlers->get('default')->overrideOption('filters', [
       'age' => [
         'id' => 'age',
@@ -84,11 +76,7 @@ class FilterInOperatorTest extends ViewsKernelTestBase {
     $view->destroy();
     $view->setDisplay();
 
-<<<<<<< HEAD
-    // Add a in_operator ordering.
-=======
     // Add an in_operator ordering.
->>>>>>> dev
     $view->displayHandlers->get('default')->overrideOption('filters', [
       'age' => [
         'id' => 'age',
@@ -246,11 +234,7 @@ class FilterInOperatorTest extends ViewsKernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests that the InOperator filter can handle TranslateableMarkup.
-=======
    * Tests that the InOperator filter can handle TranslatableMarkup.
->>>>>>> dev
    */
   public function testFilterOptionAsMarkup() {
     $view = $this->prophesize(ViewExecutable::class);

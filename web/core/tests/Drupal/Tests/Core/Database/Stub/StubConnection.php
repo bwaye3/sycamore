@@ -3,12 +3,8 @@
 namespace Drupal\Tests\Core\Database\Stub;
 
 use Drupal\Core\Database\Connection;
-<<<<<<< HEAD
-use Drupal\Core\Database\StatementEmpty;
-=======
 use Drupal\Core\Database\Log;
 use Drupal\Core\Database\StatementWrapper;
->>>>>>> dev
 
 /**
  * A stub of the abstract Connection class for testing purposes.
@@ -18,8 +14,6 @@ use Drupal\Core\Database\StatementWrapper;
 class StubConnection extends Connection {
 
   /**
-<<<<<<< HEAD
-=======
    * {@inheritdoc}
    */
   protected $statementClass = NULL;
@@ -30,7 +24,6 @@ class StubConnection extends Connection {
   protected $statementWrapperClass = StatementWrapper::class;
 
   /**
->>>>>>> dev
    * Public property so we can test driver loading mechanism.
    *
    * @var string
@@ -39,12 +32,6 @@ class StubConnection extends Connection {
   public $driver = 'stub';
 
   /**
-<<<<<<< HEAD
-   * {@inheritdoc}
-   */
-  public function queryRange($query, $from, $count, array $args = [], array $options = []) {
-    return new StatementEmpty();
-=======
    * Constructs a Connection object.
    *
    * @param \PDO $connection
@@ -70,7 +57,6 @@ class StubConnection extends Connection {
    */
   public function queryRange($query, $from, $count, array $args = [], array $options = []) {
     return NULL;
->>>>>>> dev
   }
 
   /**
@@ -113,8 +99,6 @@ class StubConnection extends Connection {
     return 0;
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Helper method to test database classes are not included in backtraces.
    *
@@ -125,5 +109,4 @@ class StubConnection extends Connection {
     return (new Log())->findCaller();
   }
 
->>>>>>> dev
 }

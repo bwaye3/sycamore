@@ -19,11 +19,7 @@ class NodeTranslationRedirectTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'content_translation',
     'language',
     'menu_ui',
@@ -35,20 +31,12 @@ class NodeTranslationRedirectTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->setUpCurrentUser();
 
     $this->installSchema('node', ['node_access']);
-<<<<<<< HEAD
-    $this->installSchema('system', ['key_value']);
-=======
->>>>>>> dev
 
     $this->migrateUsers(FALSE);
     $this->migrateContentTypes();

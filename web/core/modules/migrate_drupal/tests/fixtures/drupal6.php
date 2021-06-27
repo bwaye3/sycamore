@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-// @codingStandardsIgnoreFile
-=======
 // phpcs:ignoreFile
->>>>>>> dev
 /**
  * @file
  * A database agnostic dump for testing purposes.
@@ -2355,8 +2351,6 @@ $connection->insert('content_field_multivalue')
   'delta' => '1',
 ))
 ->execute();
-<<<<<<< HEAD
-=======
 $connection->schema()->createTable('content_field_node_reference', array(
   'fields' => array(
     'vid' => array(
@@ -2440,7 +2434,6 @@ $connection->insert('content_field_node_reference')
   'field_node_reference_nid' => '2',
 ))
 ->execute();
->>>>>>> dev
 $connection->schema()->createTable('content_field_test', array(
   'fields' => array(
     'vid' => array(
@@ -2685,8 +2678,6 @@ $connection->insert('content_field_test_two')
   'field_test_two_value' => '20',
 ))
 ->execute();
-<<<<<<< HEAD
-=======
 $connection->schema()->createTable('content_field_user_reference', array(
   'fields' => array(
     'vid' => array(
@@ -2770,7 +2761,6 @@ $connection->insert('content_field_user_reference')
   'field_user_reference_uid' => NULL,
 ))
 ->execute();
->>>>>>> dev
 $connection->schema()->createTable('content_group', array(
   'fields' => array(
     'group_type' => array(
@@ -2986,8 +2976,6 @@ $connection->insert('content_node_field')
   'locked' => '0',
 ))
 ->values(array(
-<<<<<<< HEAD
-=======
   'field_name' => 'field_node_reference',
   'type' => 'nodereference',
   'global_settings' => 'a:1:{s:19:"referenceable_types";a:9:{s:7:"article";i:0;s:7:"company";i:0;s:8:"employee";i:0;s:10:"test_event";i:0;s:9:"test_page";i:0;s:11:"test_planet";i:0;s:10:"test_story";i:0;s:7:"sponsor";i:0;s:5:"story";i:0;}}',
@@ -3012,7 +3000,6 @@ $connection->insert('content_node_field')
   'locked' => '0',
 ))
 ->values(array(
->>>>>>> dev
   'field_name' => 'field_reference',
   'type' => 'nodereference',
   'global_settings' => 'a:1:{s:19:"referenceable_types";a:11:{s:4:"page";s:4:"page";s:7:"article";i:0;s:7:"company";i:0;s:8:"employee";i:0;s:5:"forum";i:0;s:10:"test_event";i:0;s:9:"test_page";i:0;s:11:"test_planet";i:0;s:10:"test_story";i:0;s:7:"sponsor";i:0;s:5:"story";i:0;}}',
@@ -3300,8 +3287,6 @@ $connection->insert('content_node_field')
   'active' => '1',
   'locked' => '0',
 ))
-<<<<<<< HEAD
-=======
 ->values(array(
   'field_name' => 'field_user_reference',
   'type' => 'userreference',
@@ -3326,7 +3311,6 @@ $connection->insert('content_node_field')
   'active' => '1',
   'locked' => '0',
 ))
->>>>>>> dev
 ->execute();
 $connection->schema()->createTable('content_node_field_instance', array(
   'fields' => array(
@@ -3469,8 +3453,6 @@ $connection->insert('content_node_field_instance')
   'widget_active' => '1',
 ))
 ->values(array(
-<<<<<<< HEAD
-=======
   'field_name' => 'field_node_reference',
   'type_name' => 'story',
   'weight' => '21',
@@ -3495,7 +3477,6 @@ $connection->insert('content_node_field_instance')
   'widget_active' => '1',
 ))
 ->values(array(
->>>>>>> dev
   'field_name' => 'field_reference',
   'type_name' => 'page',
   'weight' => '31',
@@ -3807,8 +3788,6 @@ $connection->insert('content_node_field_instance')
   'widget_module' => 'number',
   'widget_active' => '1',
 ))
-<<<<<<< HEAD
-=======
 ->values(array(
   'field_name' => 'field_user_reference',
   'type_name' => 'story',
@@ -3833,7 +3812,6 @@ $connection->insert('content_node_field_instance')
   'widget_module' => 'userreference',
   'widget_active' => '1',
 ))
->>>>>>> dev
 ->execute();
 $connection->schema()->createTable('content_type_employee', array(
   'fields' => array(
@@ -4177,8 +4155,6 @@ $connection->schema()->createTable('content_type_story', array(
       'not null' => FALSE,
       'size' => 'big',
     ),
-<<<<<<< HEAD
-=======
     'field_user_reference_2_uid' => array(
       'type' => 'int',
       'not null' => FALSE,
@@ -4191,7 +4167,6 @@ $connection->schema()->createTable('content_type_story', array(
       'size' => 'normal',
       'unsigned' => TRUE,
     ),
->>>>>>> dev
   ),
   'primary key' => array(
     'vid',
@@ -4200,15 +4175,12 @@ $connection->schema()->createTable('content_type_story', array(
     'nid' => array(
       'nid',
     ),
-<<<<<<< HEAD
-=======
     'field_user_reference_2_uid' => array(
       'field_user_reference_2_uid',
     ),
     'field_node_reference_2_nid' => array(
       'field_node_reference_2_nid',
     ),
->>>>>>> dev
   ),
   'mysql_character_set' => 'utf8',
 ));
@@ -4245,11 +4217,8 @@ $connection->insert('content_type_story')
   'field_test_datestamp_value2',
   'field_test_datetime_value2',
   'field_test_string_selectlist_value',
-<<<<<<< HEAD
-=======
   'field_user_reference_2_uid',
   'field_node_reference_2_nid',
->>>>>>> dev
 ))
 ->values(array(
   'nid' => '1',
@@ -4282,11 +4251,8 @@ $connection->insert('content_type_story')
   'field_test_datestamp_value2' => NULL,
   'field_test_datetime_value2' => NULL,
   'field_test_string_selectlist_value' => NULL,
-<<<<<<< HEAD
-=======
   'field_user_reference_2_uid' => NULL,
   'field_node_reference_2_nid' => NULL,
->>>>>>> dev
 ))
 ->values(array(
   'nid' => '2',
@@ -4319,11 +4285,8 @@ $connection->insert('content_type_story')
   'field_test_datestamp_value2' => NULL,
   'field_test_datetime_value2' => NULL,
   'field_test_string_selectlist_value' => NULL,
-<<<<<<< HEAD
-=======
   'field_user_reference_2_uid' => NULL,
   'field_node_reference_2_nid' => NULL,
->>>>>>> dev
 ))
 ->values(array(
   'nid' => '1',
@@ -4356,11 +4319,8 @@ $connection->insert('content_type_story')
   'field_test_datestamp_value2' => NULL,
   'field_test_datetime_value2' => NULL,
   'field_test_string_selectlist_value' => NULL,
-<<<<<<< HEAD
-=======
   'field_user_reference_2_uid' => NULL,
   'field_node_reference_2_nid' => NULL,
->>>>>>> dev
 ))
 ->values(array(
   'nid' => '9',
@@ -4393,11 +4353,8 @@ $connection->insert('content_type_story')
   'field_test_datestamp_value2' => '1391357160',
   'field_test_datetime_value2' => '2015-03-04 06:07:00',
   'field_test_string_selectlist_value' => NULL,
-<<<<<<< HEAD
-=======
   'field_user_reference_2_uid' => NULL,
   'field_node_reference_2_nid' => NULL,
->>>>>>> dev
 ))
 ->values(array(
   'nid' => '1',
@@ -4430,11 +4387,8 @@ $connection->insert('content_type_story')
   'field_test_datestamp_value2' => NULL,
   'field_test_datetime_value2' => NULL,
   'field_test_string_selectlist_value' => NULL,
-<<<<<<< HEAD
-=======
   'field_user_reference_2_uid' => NULL,
   'field_node_reference_2_nid' => NULL,
->>>>>>> dev
 ))
 ->execute();
 $connection->schema()->createTable('content_type_test_page', array(
@@ -46223,8 +46177,6 @@ $connection->insert('node_type')
   'locked' => '0',
   'orig_type' => 'test_story',
 ))
-<<<<<<< HEAD
-=======
 ->values(array(
   'type' => 'a_thirty_two_character_type_name',
   'name' => 'Test long name',
@@ -46241,7 +46193,6 @@ $connection->insert('node_type')
   'locked' => '0',
   'orig_type' => '',
 ))
->>>>>>> dev
 ->execute();
 $connection->schema()->createTable('permission', array(
   'fields' => array(
@@ -47335,11 +47286,7 @@ $connection->insert('system')
   'name' => 'update',
   'type' => 'module',
   'owner' => '',
-<<<<<<< HEAD
-  'status' => '0',
-=======
   'status' => '1',
->>>>>>> dev
   'throttle' => '0',
   'bootstrap' => '0',
   'schema_version' => '-1',

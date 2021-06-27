@@ -3,7 +3,3 @@ type: theme
 base theme: stable
 description: 'Theme for testing attached library'
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev

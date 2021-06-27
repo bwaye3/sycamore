@@ -31,11 +31,7 @@ class FileStorageReadOnlyTest extends PhpStorageTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->standardSettings = [
@@ -67,22 +63,14 @@ class FileStorageReadOnlyTest extends PhpStorageTestBase {
     // Write out a PHP file and ensure it's successfully loaded.
     $code = "<?php\n\$GLOBALS[$random] = TRUE;";
     $success = $php->save($name, $code);
-<<<<<<< HEAD
-    $this->assertSame(TRUE, $success);
-=======
     $this->assertTrue($success);
->>>>>>> dev
     $php_read = new FileReadOnlyStorage($this->readonlyStorage);
     $php_read->load($name);
     $this->assertTrue($GLOBALS[$random]);
 
     // If the file was successfully loaded, it must also exist, but ensure the
     // exists() method returns that correctly.
-<<<<<<< HEAD
-    $this->assertSame(TRUE, $php_read->exists($name));
-=======
     $this->assertTrue($php_read->exists($name));
->>>>>>> dev
     // Saving and deleting should always fail.
     $this->assertFalse($php_read->save($name, $code));
     $this->assertFalse($php_read->delete($name));

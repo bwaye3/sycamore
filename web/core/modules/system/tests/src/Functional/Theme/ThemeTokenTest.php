@@ -16,11 +16,7 @@ class ThemeTokenTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['block'];
-=======
   protected static $modules = ['block'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -30,11 +26,7 @@ class ThemeTokenTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $account = $this->drupalCreateUser([
       'administer blocks',
@@ -65,11 +57,7 @@ class ThemeTokenTest extends BrowserTestBase {
     $this->assertNotNull($settings['ajaxPageState']['theme_token']);
     // The CSRF token is a 43 length string.
     $this->assertIsString($settings['ajaxPageState']['theme_token']);
-<<<<<<< HEAD
-    $this->assertEqual(strlen($settings['ajaxPageState']['theme_token']), 43);
-=======
     $this->assertEquals(43, strlen($settings['ajaxPageState']['theme_token']));
->>>>>>> dev
   }
 
 }

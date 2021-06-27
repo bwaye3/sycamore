@@ -11,11 +11,7 @@
  *  - Drupal.editors.magical.attachInlineEditor()
  */
 
-<<<<<<< HEAD
-(function($, Drupal, drupalSettings, _) {
-=======
 (function ($, Drupal, drupalSettings, _) {
->>>>>>> dev
   Drupal.quickedit.editors.editor = Drupal.quickedit.EditorView.extend(
     /** @lends Drupal.quickedit.editors.editor# */ {
       /**
@@ -130,11 +126,7 @@
             // without the transformation filters.
             if (this.textFormatHasTransformations) {
               const $textElement = this.$textElement;
-<<<<<<< HEAD
-              this._getUntransformedText(untransformedText => {
-=======
               this._getUntransformedText((untransformedText) => {
->>>>>>> dev
                 $textElement.html(untransformedText);
                 fieldModel.set('state', 'active');
               });
@@ -160,11 +152,7 @@
               toolbarView.getFloatedWysiwygToolgroupId(),
             );
             // Set the state to 'changed' whenever the content has changed.
-<<<<<<< HEAD
-            this.textEditor.onChange(textElement, htmlText => {
-=======
             this.textEditor.onChange(textElement, (htmlText) => {
->>>>>>> dev
               editorModel.set('currentValue', htmlText);
               fieldModel.set('state', 'changed');
             });
@@ -239,11 +227,7 @@
 
         // Implement a scoped editorGetUntransformedText AJAX command: calls the
         // callback.
-<<<<<<< HEAD
-        textLoaderAjax.commands.editorGetUntransformedText = function(
-=======
         textLoaderAjax.commands.editorGetUntransformedText = function (
->>>>>>> dev
           ajax,
           response,
           status,

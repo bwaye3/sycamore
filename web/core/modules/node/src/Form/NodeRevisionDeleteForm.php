@@ -95,11 +95,7 @@ class NodeRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-<<<<<<< HEAD
-    return t('Are you sure you want to delete the revision from %revision-date?', [
-=======
     return $this->t('Are you sure you want to delete the revision from %revision-date?', [
->>>>>>> dev
       '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime()),
     ]);
   }
@@ -115,11 +111,7 @@ class NodeRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getConfirmText() {
-<<<<<<< HEAD
-    return t('Delete');
-=======
     return $this->t('Delete');
->>>>>>> dev
   }
 
   /**
@@ -150,11 +142,7 @@ class NodeRevisionDeleteForm extends ConfirmFormBase {
       'entity.node.canonical',
       ['node' => $this->revision->id()]
     );
-<<<<<<< HEAD
-    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {node_field_revision} WHERE nid = :nid', [':nid' => $this->revision->id()])->fetchField() > 1) {
-=======
     if ($this->connection->query('SELECT COUNT(DISTINCT [vid]) FROM {node_field_revision} WHERE [nid] = :nid', [':nid' => $this->revision->id()])->fetchField() > 1) {
->>>>>>> dev
       $form_state->setRedirect(
         'entity.node.version_history',
         ['node' => $this->revision->id()]

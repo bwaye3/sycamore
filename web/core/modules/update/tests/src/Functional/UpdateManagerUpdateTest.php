@@ -31,11 +31,7 @@ class UpdateManagerUpdateTest extends UpdateTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $admin_user = $this->drupalCreateUser([
       'administer software updates',

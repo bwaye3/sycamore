@@ -2,10 +2,7 @@
 
 namespace Drupal\Tests\migrate\Unit\process;
 
-<<<<<<< HEAD
-=======
 use Drupal\migrate\MigrateException;
->>>>>>> dev
 use Drupal\migrate\Plugin\migrate\process\Callback;
 
 /**
@@ -16,11 +13,7 @@ use Drupal\migrate\Plugin\migrate\process\Callback;
 class CallbackTest extends MigrateProcessTestCase {
 
   /**
-<<<<<<< HEAD
-   * Test callback with valid "callable".
-=======
    * Tests callback with valid "callable".
->>>>>>> dev
    *
    * @dataProvider providerCallback
    */
@@ -42,16 +35,6 @@ class CallbackTest extends MigrateProcessTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test callback exceptions.
-   *
-   * @dataProvider providerCallbackExceptions
-   */
-  public function testCallbackExceptions($message, $configuration) {
-    $this->expectException(\InvalidArgumentException::class);
-    $this->expectExceptionMessage($message);
-    $this->plugin = new Callback($configuration, 'map', []);
-=======
    * Test callback with valid "callable" and multiple arguments.
    *
    * @dataProvider providerCallbackArray
@@ -105,7 +88,6 @@ class CallbackTest extends MigrateProcessTestCase {
     $this->expectExceptionMessage($message);
     $this->plugin = new Callback($configuration, 'map', []);
     $this->plugin->transform($args, $this->migrateExecutable, $this->row, 'destination_property');
->>>>>>> dev
   }
 
   /**
@@ -121,15 +103,12 @@ class CallbackTest extends MigrateProcessTestCase {
         'message' => 'The "callable" must be a valid function or method.',
         'configuration' => ['callable' => 'nonexistent_callable'],
       ],
-<<<<<<< HEAD
-=======
       'array required' => [
         'message' => "When 'unpack_source' is set, the source must be an array. Instead it was of type 'string'",
         'configuration' => ['callable' => 'count', 'unpack_source' => TRUE],
         'class' => MigrateException::class,
         'args' => 'This string is not an array.',
       ],
->>>>>>> dev
     ];
   }
 

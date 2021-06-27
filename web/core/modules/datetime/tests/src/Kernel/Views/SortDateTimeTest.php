@@ -20,11 +20,7 @@ class SortDateTimeTest extends DateTimeHandlerTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     // Add some basic test nodes.

@@ -1,9 +1,5 @@
 name: 'Field API configuration tests'
 type: module
 description: 'Support module for the Field API configuration tests.'
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 package: Testing
 version: VERSION

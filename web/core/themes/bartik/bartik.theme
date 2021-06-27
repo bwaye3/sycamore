@@ -5,15 +5,10 @@
  * Functions to support theming in the Bartik theme.
  */
 
-<<<<<<< HEAD
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Template\Attribute;
-=======
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\views\Form\ViewsForm;
->>>>>>> dev
 
 /**
  * Implements hook_preprocess_HOOK() for HTML document templates.
@@ -119,16 +114,10 @@ function bartik_theme_suggestions_form_alter(array &$suggestions, array $variabl
 }
 
 /**
-<<<<<<< HEAD
- * Implements hook_form_alter() to add classes to the search form.
- */
-function bartik_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-=======
  * Implements hook_form_alter().
  */
 function bartik_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Add classes to the search form.
->>>>>>> dev
   if (in_array($form_id, ['search_block_form', 'search_form'])) {
     $key = ($form_id == 'search_block_form') ? 'actions' : 'basic';
     if (!isset($form[$key]['submit']['#attributes'])) {
@@ -136,8 +125,6 @@ function bartik_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     }
     $form[$key]['submit']['#attributes']->addClass('search-form__submit');
   }
-<<<<<<< HEAD
-=======
 
   $form_object = $form_state->getFormObject();
 
@@ -210,5 +197,4 @@ function bartik_preprocess_links(&$variables) {
       }
     }
   }
->>>>>>> dev
 }

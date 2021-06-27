@@ -24,11 +24,7 @@ class BlockDependenciesTest extends ViewsKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'block', 'user', 'field'];
-=======
   protected static $modules = ['node', 'block', 'user', 'field'];
->>>>>>> dev
 
   /**
    * Tests that exposed filter blocks have the correct dependencies.
@@ -43,11 +39,7 @@ class BlockDependenciesTest extends ViewsKernelTestBase {
       'module' => ['views'],
       'theme' => ['stark'],
     ];
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $dependencies);
-=======
     $this->assertSame($expected, $dependencies);
->>>>>>> dev
   }
 
   /**
@@ -63,11 +55,7 @@ class BlockDependenciesTest extends ViewsKernelTestBase {
       'module' => ['views'],
       'theme' => ['stark'],
     ];
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $dependencies);
-=======
     $this->assertSame($expected, $dependencies);
->>>>>>> dev
   }
 
   /**

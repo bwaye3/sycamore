@@ -10,11 +10,7 @@ abstract class SearchPageResourceTestBase extends EntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'search'];
-=======
   protected static $modules = ['node', 'search'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -90,13 +86,6 @@ abstract class SearchPageResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
-<<<<<<< HEAD
-    if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
-      return parent::getExpectedUnauthorizedAccessMessage($method);
-    }
-
-=======
->>>>>>> dev
     switch ($method) {
       case 'GET':
         return "The 'access content' permission is required.";

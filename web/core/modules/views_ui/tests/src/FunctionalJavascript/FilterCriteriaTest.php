@@ -14,11 +14,7 @@ class FilterCriteriaTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'views', 'views_ui'];
-=======
   protected static $modules = ['node', 'views', 'views_ui'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -28,11 +24,7 @@ class FilterCriteriaTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setUp() {
-=======
   public function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $admin_user = $this->drupalCreateUser([
@@ -134,8 +126,6 @@ class FilterCriteriaTest extends WebDriverTestBase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Tests operator labels.
    */
   public function testOperatorLabels() {
@@ -184,7 +174,6 @@ class FilterCriteriaTest extends WebDriverTestBase {
   }
 
   /**
->>>>>>> dev
    * Uses the 'And/Or Rearrange' link for filters to open a dialog.
    */
   protected function openFilterDialog() {

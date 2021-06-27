@@ -9,15 +9,9 @@
   Drupal.behaviors.menuUiChangeParentItems = {
     attach: function attach(context, settings) {
       var $menu = $('#edit-menu').once('menu-parent');
-<<<<<<< HEAD
-      if ($menu.length) {
-        Drupal.menuUiUpdateParentList();
-
-=======
 
       if ($menu.length) {
         Drupal.menuUiUpdateParentList();
->>>>>>> dev
         $menu.on('change', 'input', Drupal.menuUiUpdateParentList);
       }
     }
@@ -26,31 +20,6 @@
   Drupal.menuUiUpdateParentList = function () {
     var $menu = $('#edit-menu');
     var values = [];
-<<<<<<< HEAD
-
-    $menu.find('input:checked').each(function () {
-      values.push(Drupal.checkPlain($.trim($(this).val())));
-    });
-
-    $.ajax({
-      url: window.location.protocol + '//' + window.location.host + Drupal.url('admin/structure/menu/parents'),
-      type: 'POST',
-      data: { 'menus[]': values },
-      dataType: 'json',
-      success: function success(options) {
-        var $select = $('#edit-menu-parent');
-
-        var selected = $select.val();
-
-        $select.children().remove();
-
-        var totalOptions = 0;
-        Object.keys(options || {}).forEach(function (machineName) {
-          $select.append($('<option ' + (machineName === selected ? ' selected="selected"' : '') + '></option>').val(machineName).text(options[machineName]));
-          totalOptions++;
-        });
-
-=======
     $menu.find('input:checked').each(function () {
       values.push(Drupal.checkPlain($.trim($(this).val())));
     });
@@ -70,7 +39,6 @@
           $select.append($("<option ".concat(machineName === selected ? ' selected="selected"' : '', "></option>")).val(machineName).text(options[machineName]));
           totalOptions++;
         });
->>>>>>> dev
         $select.closest('div').toggle(totalOptions > 0).attr('hidden', totalOptions === 0);
       }
     });

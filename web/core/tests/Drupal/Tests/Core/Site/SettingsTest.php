@@ -3,28 +3,16 @@
 namespace Drupal\Tests\Core\Site;
 
 use Drupal\Core\Site\Settings;
-<<<<<<< HEAD
-use Drupal\Tests\Traits\ExpectDeprecationTrait;
-=======
->>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 use org\bovigo\vfs\vfsStream;
 
 /**
  * @coversDefaultClass \Drupal\Core\Site\Settings
-<<<<<<< HEAD
-=======
  * @runTestsInSeparateProcesses
->>>>>>> dev
  * @group Site
  */
 class SettingsTest extends UnitTestCase {
 
-<<<<<<< HEAD
-  use ExpectDeprecationTrait;
-
-=======
->>>>>>> dev
   /**
    * Simple settings array to test against.
    *
@@ -42,11 +30,7 @@ class SettingsTest extends UnitTestCase {
   /**
    * @covers ::__construct
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->config = [
       'one' => '1',
       'two' => '2',
@@ -84,11 +68,7 @@ class SettingsTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests Settings::getHashSalt();
-=======
    * Tests Settings::getHashSalt().
->>>>>>> dev
    *
    * @covers ::getHashSalt
    */
@@ -161,32 +141,15 @@ class SettingsTest extends UnitTestCase {
     $settings = new Settings([]);
 
     $class = new \ReflectionClass(Settings::class);
-<<<<<<< HEAD
-    $instace_property = $class->getProperty("instance");
-    $instace_property->setAccessible(TRUE);
-    $instace_property->setValue(NULL);
-=======
     $instance_property = $class->getProperty("instance");
     $instance_property->setAccessible(TRUE);
     $instance_property->setValue(NULL);
->>>>>>> dev
 
     $this->expectException(\BadMethodCallException::class);
     $settings->getInstance();
   }
 
   /**
-<<<<<<< HEAD
-   * @runInSeparateProcess
-   * @group legacy
-   * @covers ::__construct
-   * @dataProvider configDirectoriesBcLayerProvider
-   */
-  public function testConfigDirectoriesBcLayer($settings_file_content, $directory, $expect_deprecation) {
-    global $config_directories;
-    $class_loader = NULL;
-
-=======
    * Tests deprecation messages and values when using fake deprecated settings.
    *
    * Note: Tests for real deprecated settings should not be added to this test
@@ -219,52 +182,12 @@ class SettingsTest extends UnitTestCase {
       $settings_file_content .= "\$settings['$name'] = '$value';\n";
     }
     $class_loader = NULL;
->>>>>>> dev
     $vfs_root = vfsStream::setup('root');
     $sites_directory = vfsStream::newDirectory('sites')->at($vfs_root);
     vfsStream::newFile('settings.php')
       ->at($sites_directory)
       ->setContent($settings_file_content);
 
-<<<<<<< HEAD
-    if ($expect_deprecation) {
-      $this->addExpectedDeprecationMessage('$config_directories[\'sync\'] has moved to $settings[\'config_sync_directory\']. See https://www.drupal.org/node/3018145.');
-    }
-
-    Settings::initialize(vfsStream::url('root'), 'sites', $class_loader);
-    $this->assertSame($directory, Settings::get('config_sync_directory'));
-    $this->assertSame($directory, $config_directories['sync']);
-  }
-
-  /**
-   * Data provider for self::testConfigDirectoriesBcLayer().
-   */
-  public function configDirectoriesBcLayerProvider() {
-    $no_config_directories = <<<'EOD'
-<?php
-$settings['config_sync_directory'] = 'foo';
-EOD;
-
-    $only_config_directories = <<<'EOD'
-<?php
-$config_directories['sync'] = 'bar';
-EOD;
-
-    $both = <<<'EOD'
-<?php
-$settings['config_sync_directory'] = 'foo';
-$config_directories['sync'] = 'bar';
-EOD;
-
-    return [
-      'Only $settings[\'config_sync_directory\']' => [
-        $no_config_directories,
-        'foo',
-        FALSE,
-      ],
-      'Only $config_directories' => [$only_config_directories, 'bar', TRUE],
-      'Both' => [$both, 'foo', FALSE],
-=======
     // This is the deprecated setting used by all cases for this test method.
     $deprecated_setting = [
       'replacement' => 'happy_replacement',
@@ -346,55 +269,10 @@ EOD;
         // No deprecation since the old name is neither used nor defined.
         FALSE,
       ],
->>>>>>> dev
     ];
   }
 
   /**
-<<<<<<< HEAD
-   * @runInSeparateProcess
-   * @group legacy
-   */
-  public function testConfigDirectoriesBcLayerEmpty() {
-    global $config_directories;
-    $class_loader = NULL;
-
-    $vfs_root = vfsStream::setup('root');
-    $sites_directory = vfsStream::newDirectory('sites')->at($vfs_root);
-    vfsStream::newFile('settings.php')->at($sites_directory)->setContent(<<<'EOD'
-<?php
-$settings = [];
-EOD
-    );
-
-    Settings::initialize(vfsStream::url('root'), 'sites', $class_loader);
-    $this->assertNull(Settings::get('config_sync_directory'));
-    $this->assertNull($config_directories);
-  }
-
-  /**
-   * @runInSeparateProcess
-   * @group legacy
-   */
-  public function testConfigDirectoriesBcLayerMultiple() {
-    global $config_directories;
-    $class_loader = NULL;
-
-    $vfs_root = vfsStream::setup('root');
-    $sites_directory = vfsStream::newDirectory('sites')->at($vfs_root);
-    vfsStream::newFile('settings.php')->at($sites_directory)->setContent(<<<'EOD'
-<?php
-$settings['config_sync_directory'] = 'foo';
-$config_directories['sync'] = 'bar';
-$config_directories['custom'] = 'custom';
-EOD
-    );
-
-    Settings::initialize(vfsStream::url('root'), 'sites', $class_loader);
-    $this->assertSame('foo', Settings::get('config_sync_directory'));
-    $this->assertSame('foo', $config_directories['sync']);
-    $this->assertSame('custom', $config_directories['custom']);
-=======
    * Tests deprecation messages for real deprecated settings.
    *
    * @param string $legacy_setting
@@ -443,7 +321,6 @@ EOD
         'The "twig_sandbox_whitelisted_prefixes" setting is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use "twig_sandbox_allowed_prefixes" instead. See https://www.drupal.org/node/3162897.',
       ],
     ];
->>>>>>> dev
   }
 
 }

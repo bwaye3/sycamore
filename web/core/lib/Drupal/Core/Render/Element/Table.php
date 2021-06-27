@@ -63,11 +63,7 @@ class Table extends FormElement {
    * {@inheritdoc}
    */
   public function getInfo() {
-<<<<<<< HEAD
-    $class = get_class($this);
-=======
     $class = static::class;
->>>>>>> dev
     return [
       '#header' => [],
       '#rows' => [],
@@ -386,11 +382,7 @@ class Table extends FormElement {
       $element['#attributes']['class'][] = 'responsive-enabled';
     }
 
-<<<<<<< HEAD
-    // If the custom #tabledrag is set and there is a HTML ID, add the table's
-=======
     // If the custom #tabledrag is set and there is an HTML ID, add the table's
->>>>>>> dev
     // HTML ID to the options and attach the behavior.
     if (!empty($element['#tabledrag']) && isset($element['#attributes']['id'])) {
       foreach ($element['#tabledrag'] as $options) {

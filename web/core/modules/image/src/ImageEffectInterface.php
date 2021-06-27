@@ -3,10 +3,6 @@
 namespace Drupal\image;
 
 use Drupal\Component\Plugin\ConfigurableInterface;
-<<<<<<< HEAD
-use Drupal\Component\Plugin\ConfigurablePluginInterface;
-=======
->>>>>>> dev
 use Drupal\Component\Plugin\DependentPluginInterface;
 use Drupal\Component\Plugin\PluginInspectionInterface;
 use Drupal\Core\Image\ImageInterface;
@@ -21,11 +17,7 @@ use Drupal\Core\Image\ImageInterface;
  * @see \Drupal\image\ImageEffectManager
  * @see plugin_api
  */
-<<<<<<< HEAD
-interface ImageEffectInterface extends PluginInspectionInterface, ConfigurableInterface, DependentPluginInterface, ConfigurablePluginInterface {
-=======
 interface ImageEffectInterface extends PluginInspectionInterface, ConfigurableInterface, DependentPluginInterface {
->>>>>>> dev
 
   /**
    * Applies an image effect to the image object.

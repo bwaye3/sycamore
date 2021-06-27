@@ -102,11 +102,7 @@ class FormOperations implements ContainerInjectionInterface {
     }
 
     if (isset($element['#validate'])) {
-<<<<<<< HEAD
-      $element['#validate'][] = [get_called_class(), 'validateDefaultWorkspace'];
-=======
       $element['#validate'][] = [static::class, 'validateDefaultWorkspace'];
->>>>>>> dev
     }
   }
 

@@ -6,11 +6,7 @@
  * installed.
  */
 
-<<<<<<< HEAD
-(function($, Drupal, drupalSettings) {
-=======
 (function ($, Drupal, drupalSettings) {
->>>>>>> dev
   /**
    * Hides a "new comment" element.
    *
@@ -117,11 +113,7 @@
      *   Data about new comment links indexed by nodeID.
      */
     function render(results) {
-<<<<<<< HEAD
-      Object.keys(results || {}).forEach(nodeID => {
-=======
       Object.keys(results || {}).forEach((nodeID) => {
->>>>>>> dev
         if ($placeholdersToUpdate.hasOwnProperty(nodeID)) {
           $placeholdersToUpdate[nodeID]
             .attr('href', results[nodeID].first_new_comment_link)
@@ -168,11 +160,7 @@
       const $placeholders = $(context)
         .find('[data-history-node-last-comment-timestamp]')
         .once('history')
-<<<<<<< HEAD
-        .filter(function() {
-=======
         .filter(function () {
->>>>>>> dev
           const $placeholder = $(this);
           const lastCommentTimestamp = parseInt(
             $placeholder.attr('data-history-node-last-comment-timestamp'),

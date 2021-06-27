@@ -184,11 +184,7 @@ pre {
   white-space: pre-wrap;
 }
 details {
-<<<<<<< HEAD
-  line-height: 1.295em;
-=======
   line-height: var(--details-line-height);
->>>>>>> dev
 }
 details summary {
   padding: 0.95em 1.45em;

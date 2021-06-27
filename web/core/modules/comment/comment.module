@@ -29,39 +29,6 @@ use Drupal\user\RoleInterface;
 use Drupal\user\UserInterface;
 
 /**
-<<<<<<< HEAD
- * Anonymous posters cannot enter their contact information.
- *
- * @deprecated in drupal:8.3.0 and is removed from drupal:9.0.0.
- *   Use \Drupal\comment\CommentInterface::ANONYMOUS_MAYNOT_CONTACT instead.
- *
- * @see https://www.drupal.org/node/2831620
- */
-const COMMENT_ANONYMOUS_MAYNOT_CONTACT = 0;
-
-/**
- * Anonymous posters may leave their contact information.
- *
- * @deprecated in drupal:8.3.0 and is removed from drupal:9.0.0.
- *   Use \Drupal\comment\CommentInterface::ANONYMOUS_MAY_CONTACT instead.
- *
- * @see https://www.drupal.org/node/2831620
- */
-const COMMENT_ANONYMOUS_MAY_CONTACT = 1;
-
-/**
- * Anonymous posters are required to leave their contact information.
- *
- * @deprecated in drupal:8.3.0 and is removed from drupal:9.0.0.
- *   Use \Drupal\comment\CommentInterface::ANONYMOUS_MUST_CONTACT instead.
- *
- * @see https://www.drupal.org/node/2831620
- */
-const COMMENT_ANONYMOUS_MUST_CONTACT = 2;
-
-/**
-=======
->>>>>>> dev
  * The time cutoff for comments marked as read for entity types other node.
  *
  * Comments changed before this time are always marked as read.
@@ -204,11 +171,7 @@ function comment_field_storage_config_insert(FieldStorageConfigInterface $field_
 function comment_field_config_delete(FieldConfigInterface $field) {
   if ($field->getType() == 'comment') {
     // Delete all comments that used by the entity bundle.
-<<<<<<< HEAD
-    $entity_query = \Drupal::entityQuery('comment');
-=======
     $entity_query = \Drupal::entityQuery('comment')->accessCheck(FALSE);
->>>>>>> dev
     $entity_query->condition('entity_type', $field->getEntityTypeId());
     $entity_query->condition('field_name', $field->getName());
     $cids = $entity_query->execute();
@@ -267,66 +230,6 @@ function comment_node_view_alter(array &$build, EntityInterface $node, EntityVie
 }
 
 /**
-<<<<<<< HEAD
- * Generates an array for rendering a comment.
- *
- * @param \Drupal\comment\CommentInterface $comment
- *   The comment object.
- * @param string $view_mode
- *   (optional) View mode; for instance, 'full', 'teaser', etc. Defaults to
- *   'full'.
- * @param string $langcode
- *   (optional) A language code to use for rendering. Defaults to the global
- *   content language of the current request.
- *
- * @return array
- *   An array as expected by \Drupal\Core\Render\RendererInterface::render().
- *
- * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0.
- *   Use \Drupal::entityTypeManager()->getViewBuilder('comment')->view().
- *
- * @see https://www.drupal.org/node/3033656
- */
-function comment_view(CommentInterface $comment, $view_mode = 'full', $langcode = NULL) {
-  @trigger_error("comment_view() is deprecated in Drupal 8.0.0 and will be removed before Drupal 9.0.0. Use \Drupal::entityTypeManager()->getViewBuilder('comment')->view() instead. See https://www.drupal.org/node/3033656", E_USER_DEPRECATED);
-  return \Drupal::entityTypeManager()
-    ->getViewBuilder('comment')
-    ->view($comment, $view_mode, $langcode);
-}
-
-/**
- * Constructs render array from an array of loaded comments.
- *
- * @param \Drupal\comment\CommentInterface[] $comments
- *   An array of comments as returned by entity_load_multiple().
- * @param string $view_mode
- *   (optional) View mode; for instance, 'full', 'teaser', etc. Defaults to
- *   'full'.
- * @param string $langcode
- *   (optional) A string indicating the language field values are to be shown
- *   in. If no language is provided the current content language is used.
- *   Defaults to NULL.
- *
- * @return array
- *   An array in the format expected by
- *   \Drupal\Core\Render\RendererInterface::render().
- *
- * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0.
- *   Use \Drupal::entityTypeManager()->getViewBuilder('comment')->viewMultiple().
- *
- * @see https://www.drupal.org/node/3033656
- * @see \Drupal\Core\Render\RendererInterface::render()
- */
-function comment_view_multiple($comments, $view_mode = 'full', $langcode = NULL) {
-  @trigger_error("comment_view_multiple() is deprecated in Drupal 8.0.0 and will be removed before Drupal 9.0.0. Use \Drupal::entityTypeManager()->getViewBuilder('comment')->viewMultiple() instead. See https://www.drupal.org/node/3033656", E_USER_DEPRECATED);
-  return \Drupal::entityTypeManager()
-    ->getViewBuilder('comment')
-    ->viewMultiple($comments, $view_mode, $langcode);
-}
-
-/**
-=======
->>>>>>> dev
  * Implements hook_form_FORM_ID_alter() for field_ui_field_storage_add_form.
  */
 function comment_form_field_ui_field_storage_add_form_alter(&$form, FormStateInterface $form_state) {
@@ -415,11 +318,7 @@ function comment_entity_predelete(EntityInterface $entity) {
   // entity type that has an integer ID, $entity->id() might be a string
   // containing a number), and then cast it to an integer when querying.
   if ($entity instanceof FieldableEntityInterface && is_numeric($entity->id())) {
-<<<<<<< HEAD
-    $entity_query = \Drupal::entityQuery('comment');
-=======
     $entity_query = \Drupal::entityQuery('comment')->accessCheck(FALSE);
->>>>>>> dev
     $entity_query->condition('entity_id', (int) $entity->id());
     $entity_query->condition('entity_type', $entity->getEntityTypeId());
     $cids = $entity_query->execute();
@@ -573,11 +472,7 @@ function comment_user_cancel($edit, UserInterface $account, $method) {
  * Implements hook_ENTITY_TYPE_predelete() for user entities.
  */
 function comment_user_predelete($account) {
-<<<<<<< HEAD
-  $entity_query = \Drupal::entityQuery('comment');
-=======
   $entity_query = \Drupal::entityQuery('comment')->accessCheck(FALSE);
->>>>>>> dev
   $entity_query->condition('uid', $account->id());
   $cids = $entity_query->execute();
   $comment_storage = \Drupal::entityTypeManager()->getStorage('comment');

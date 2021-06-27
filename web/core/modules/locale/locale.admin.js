@@ -9,28 +9,17 @@
   Drupal.behaviors.localeTranslateDirty = {
     attach: function attach() {
       var $form = $('#locale-translate-edit-form').once('localetranslatedirty');
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       if ($form.length) {
         $form.one('formUpdated.localeTranslateDirty', 'table', function () {
           var $marker = $(Drupal.theme('localeTranslateChangedWarning')).hide();
           $(this).addClass('changed').before($marker);
           $marker.fadeIn('slow');
         });
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         $form.on('formUpdated.localeTranslateDirty', 'tr', function () {
           var $row = $(this);
           var $rowToMark = $row.once('localemark');
           var marker = Drupal.theme('localeTranslateChangedMarker');
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
           $row.addClass('changed');
 
           if ($rowToMark.length) {
@@ -42,48 +31,27 @@
     detach: function detach(context, settings, trigger) {
       if (trigger === 'unload') {
         var $form = $('#locale-translate-edit-form').removeOnce('localetranslatedirty');
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         if ($form.length) {
           $form.off('formUpdated.localeTranslateDirty');
         }
       }
     }
   };
-<<<<<<< HEAD
-
-  Drupal.behaviors.hideUpdateInformation = {
-    attach: function attach(context, settings) {
-      var $table = $('#locale-translation-status-form').once('expand-updates');
-      if ($table.length) {
-        var $tbodies = $table.find('tbody');
-
-=======
   Drupal.behaviors.hideUpdateInformation = {
     attach: function attach(context, settings) {
       var $table = $('#locale-translation-status-form').once('expand-updates');
 
       if ($table.length) {
         var $tbodies = $table.find('tbody');
->>>>>>> dev
         $tbodies.on('click keydown', '.description', function (e) {
           if (e.keyCode && e.keyCode !== 13 && e.keyCode !== 32) {
             return;
           }
-<<<<<<< HEAD
-          e.preventDefault();
-          var $tr = $(this).closest('tr');
-
-          $tr.toggleClass('expanded');
-
-=======
 
           e.preventDefault();
           var $tr = $(this).closest('tr');
           $tr.toggleClass('expanded');
->>>>>>> dev
           $tr.find('.locale-translation-update__prefix').text(function () {
             if ($tr.hasClass('expanded')) {
               return Drupal.t('Hide description');
@@ -96,22 +64,12 @@
       }
     }
   };
-<<<<<<< HEAD
-
-  $.extend(Drupal.theme, {
-    localeTranslateChangedMarker: function localeTranslateChangedMarker() {
-      return '<abbr class="warning ajax-changed" title="' + Drupal.t('Changed') + '">*</abbr>';
-    },
-    localeTranslateChangedWarning: function localeTranslateChangedWarning() {
-      return '<div class="clearfix messages messages--warning">' + Drupal.theme('localeTranslateChangedMarker') + ' ' + Drupal.t('Changes made in this table will not be saved until the form is submitted.') + '</div>';
-=======
   $.extend(Drupal.theme, {
     localeTranslateChangedMarker: function localeTranslateChangedMarker() {
       return "<abbr class=\"warning ajax-changed\" title=\"".concat(Drupal.t('Changed'), "\">*</abbr>");
     },
     localeTranslateChangedWarning: function localeTranslateChangedWarning() {
       return "<div class=\"clearfix messages messages--warning\">".concat(Drupal.theme('localeTranslateChangedMarker'), " ").concat(Drupal.t('Changes made in this table will not be saved until the form is submitted.'), "</div>");
->>>>>>> dev
     }
   });
 })(jQuery, Drupal);

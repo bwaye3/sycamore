@@ -16,11 +16,7 @@ class EntityListBuilderTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['entity_test'];
-=======
   protected static $modules = ['entity_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -30,11 +26,7 @@ class EntityListBuilderTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create and log in user.
@@ -45,11 +37,7 @@ class EntityListBuilderTest extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test paging.
-=======
    * Tests paging.
->>>>>>> dev
    */
   public function testPager() {
     // Create 51 test entities.
@@ -61,15 +49,6 @@ class EntityListBuilderTest extends BrowserTestBase {
     $this->drupalGet('entity_test/list');
 
     // Item 51 should not be present.
-<<<<<<< HEAD
-    $this->assertRaw('Test entity 50', 'Item 50 is shown.');
-    $this->assertNoRaw('Test entity 51', 'Item 51 is on the next page.');
-
-    // Browse to the next page.
-    $this->clickLink(t('Page 2'));
-    $this->assertNoRaw('Test entity 50', 'Test entity 50 is on the previous page.');
-    $this->assertRaw('Test entity 51', 'Test entity 51 is shown.');
-=======
     $this->assertRaw('Test entity 50');
     $this->assertNoRaw('Test entity 51');
 
@@ -77,7 +56,6 @@ class EntityListBuilderTest extends BrowserTestBase {
     $this->clickLink(t('Page 2'));
     $this->assertNoRaw('Test entity 50');
     $this->assertRaw('Test entity 51');
->>>>>>> dev
   }
 
   /**
@@ -90,11 +68,7 @@ class EntityListBuilderTest extends BrowserTestBase {
     $build = $list_builder->render();
     $this->container->get('renderer')->renderRoot($build);
 
-<<<<<<< HEAD
-    $this->assertEqual(['entity_test_view_grants', 'languages:' . LanguageInterface::TYPE_INTERFACE, 'theme', 'url.query_args.pagers:0', 'user.permissions'], $build['#cache']['contexts']);
-=======
     $this->assertEquals(['entity_test_view_grants', 'languages:' . LanguageInterface::TYPE_INTERFACE, 'theme', 'url.query_args.pagers:0', 'user.permissions'], $build['#cache']['contexts']);
->>>>>>> dev
   }
 
   /**
@@ -102,11 +76,7 @@ class EntityListBuilderTest extends BrowserTestBase {
    */
   public function testCacheTags() {
     $this->drupalGet('entity_test/list');
-<<<<<<< HEAD
-    $this->assertCacheTag('entity_test_list');
-=======
     $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'entity_test_list');
->>>>>>> dev
   }
 
 }

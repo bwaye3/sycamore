@@ -8,8 +8,6 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Drupal 7 field instances source from database.
  *
-<<<<<<< HEAD
-=======
  * If the Drupal 7 Title module is enabled, the fields it provides are not
  * migrated. The values of those fields will be migrated to the base fields they
  * were replacing.
@@ -47,7 +45,6 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
  * @see \Drupal\migrate\Plugin\migrate\source\SqlBase
  * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
  *
->>>>>>> dev
  * @MigrateSource(
  *   id = "d7_field_instance",
  *   source_module = "field"
@@ -66,11 +63,7 @@ class FieldInstance extends DrupalSqlBase {
       ->condition('fc.storage_active', 1)
       ->condition('fc.deleted', 0)
       ->condition('fci.deleted', 0);
-<<<<<<< HEAD
-    $query->join('field_config', 'fc', 'fci.field_id = fc.id');
-=======
     $query->join('field_config', 'fc', '[fci].[field_id] = [fc].[id]');
->>>>>>> dev
 
     // Optionally filter by entity type and bundle.
     if (isset($this->configuration['entity_type'])) {
@@ -81,13 +74,7 @@ class FieldInstance extends DrupalSqlBase {
       }
     }
 
-<<<<<<< HEAD
-    // If the Drupal 7 Title module is enabled, we don't want to migrate the
-    // fields it provides. The values of those fields will be migrated to the
-    // base fields they were replacing.
-=======
     // The Title module fields are not migrated.
->>>>>>> dev
     if ($this->moduleExists('title')) {
       $title_fields = [
         'title_field',
@@ -228,8 +215,6 @@ class FieldInstance extends DrupalSqlBase {
       }
     }
 
-<<<<<<< HEAD
-=======
     // Get the user roles for user reference fields.
     if ($row->getSourceProperty('type') == 'user_reference') {
       $data = unserialize($field_definition['data']);
@@ -241,7 +226,6 @@ class FieldInstance extends DrupalSqlBase {
         $row->setSourceProperty('roles', $results);
       }
     }
->>>>>>> dev
     return parent::prepareRow($row);
   }
 

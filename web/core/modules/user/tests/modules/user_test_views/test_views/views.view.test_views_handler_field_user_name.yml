@@ -57,10 +57,6 @@ display:
           field: uid
           plugin_id: standard
     display_plugin: default
-<<<<<<< HEAD
-    display_title: Master
-=======
     display_title: Default
->>>>>>> dev
     id: default
     position: 0

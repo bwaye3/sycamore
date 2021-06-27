@@ -10,8 +10,6 @@ namespace Drupal\Component\Utility;
 class Variable {
 
   /**
-<<<<<<< HEAD
-=======
    * Generates a human-readable name for a callable.
    *
    * @param callable $callable
@@ -39,7 +37,6 @@ class Variable {
   }
 
   /**
->>>>>>> dev
    * Drupal-friendly var_export().
    *
    * @param mixed $var

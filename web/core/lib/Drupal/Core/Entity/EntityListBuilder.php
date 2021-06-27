@@ -95,10 +95,7 @@ class EntityListBuilder extends EntityHandlerBase implements EntityListBuilderIn
    */
   protected function getEntityIds() {
     $query = $this->getStorage()->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(TRUE)
->>>>>>> dev
       ->sort($this->entityType->getKey('id'));
 
     // Only add the pager if a limit is specified.
@@ -109,26 +106,6 @@ class EntityListBuilder extends EntityHandlerBase implements EntityListBuilderIn
   }
 
   /**
-<<<<<<< HEAD
-   * Gets the label of an entity.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *   The entity being listed.
-   *
-   * @return string
-   *   The entity label.
-   *
-   * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0.
-   *   Use $entity->label() instead. This method used to escape the entity
-   *   label. The render system's autoescape is now relied upon.
-   */
-  protected function getLabel(EntityInterface $entity) {
-    return $entity->label();
-  }
-
-  /**
-=======
->>>>>>> dev
    * {@inheritdoc}
    */
   public function getOperations(EntityInterface $entity) {

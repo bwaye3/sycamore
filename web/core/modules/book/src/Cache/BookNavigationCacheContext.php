@@ -2,13 +2,6 @@
 
 namespace Drupal\book\Cache;
 
-<<<<<<< HEAD
-use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Cache\Context\CacheContextInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-use Symfony\Component\HttpFoundation\RequestStack;
-=======
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\Context\CacheContextInterface;
@@ -16,7 +9,6 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
->>>>>>> dev
 
 /**
  * Defines the book navigation cache context service.
@@ -33,15 +25,6 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 class BookNavigationCacheContext implements CacheContextInterface, ContainerAwareInterface {
 
   use ContainerAwareTrait;
-<<<<<<< HEAD
-
-  /**
-   * The request stack.
-   *
-   * @var \Symfony\Component\HttpFoundation\RequestStack
-   */
-  protected $requestStack;
-=======
   use DeprecatedServicePropertyTrait;
 
   /**
@@ -55,18 +38,10 @@ class BookNavigationCacheContext implements CacheContextInterface, ContainerAwar
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['request_stack' => 'request_stack'];
->>>>>>> dev
 
   /**
    * Constructs a new BookNavigationCacheContext service.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
-   *   The request stack.
-   */
-  public function __construct(RequestStack $request_stack) {
-    $this->requestStack = $request_stack;
-=======
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
    *   The current route match.
    */
@@ -76,7 +51,6 @@ class BookNavigationCacheContext implements CacheContextInterface, ContainerAwar
       $route_match = \Drupal::routeMatch();
     }
     $this->routeMatch = $route_match;
->>>>>>> dev
   }
 
   /**
@@ -92,14 +66,9 @@ class BookNavigationCacheContext implements CacheContextInterface, ContainerAwar
   public function getContext() {
     // Find the current book's ID.
     $current_bid = 0;
-<<<<<<< HEAD
-    if ($node = $this->requestStack->getCurrentRequest()->get('node')) {
-      $current_bid = empty($node->book['bid']) ? 0 : $node->book['bid'];
-=======
     $node = $this->routeMatch->getParameter('node');
     if ($node instanceof NodeInterface && !empty($node->book['bid'])) {
       $current_bid = $node->book['bid'];
->>>>>>> dev
     }
 
     // If we're not looking at a book node, then we're not navigating a book.
@@ -120,12 +89,8 @@ class BookNavigationCacheContext implements CacheContextInterface, ContainerAwar
     // The book active trail depends on the node and data attached to it.
     // That information is however not stored as part of the node.
     $cacheable_metadata = new CacheableMetadata();
-<<<<<<< HEAD
-    if ($node = $this->requestStack->getCurrentRequest()->get('node')) {
-=======
     $node = $this->routeMatch->getParameter('node');
     if ($node instanceof NodeInterface) {
->>>>>>> dev
       // If the node is part of a book then we can use the cache tag for that
       // book. If not, then it can't be optimized away.
       if (!empty($node->book['bid'])) {

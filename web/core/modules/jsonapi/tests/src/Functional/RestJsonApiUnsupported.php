@@ -22,11 +22,7 @@ class RestJsonApiUnsupported extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['jsonapi', 'node'];
-=======
   protected static $modules = ['jsonapi', 'node'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -65,11 +61,7 @@ class RestJsonApiUnsupported extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setUp() {
-=======
   public function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Set up a HTTP client that accepts relative URLs.
@@ -132,12 +124,4 @@ class RestJsonApiUnsupported extends ResourceTestBase {
    */
   protected function getExpectedUnauthorizedAccessCacheability() {}
 
-<<<<<<< HEAD
-  /**
-   * {@inheritdoc}
-   */
-  protected function getExpectedBcUnauthorizedAccessMessage($method) {}
-
-=======
->>>>>>> dev
 }

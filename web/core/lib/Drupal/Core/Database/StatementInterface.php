@@ -40,11 +40,7 @@ interface StatementInterface extends \Traversable {
   // protected function __construct(Connection $dbh);
 
   /**
-<<<<<<< HEAD
-   * Executes a prepared statement
-=======
    * Executes a prepared statement.
->>>>>>> dev
    *
    * @param $args
    *   An array of values with as many elements as there are bound parameters in
@@ -131,10 +127,6 @@ interface StatementInterface extends \Traversable {
    *
    * The object will be of the class specified by StatementInterface::setFetchMode()
    * or stdClass if not specified.
-<<<<<<< HEAD
-   */
-  public function fetchObject();
-=======
    *
    * phpcs:disable Drupal.Commenting
    * @todo Remove PHPCS overrides https://www.drupal.org/node/3194677.
@@ -150,7 +142,6 @@ interface StatementInterface extends \Traversable {
    *   FALSE or NULL if there is no next row.
    */
   public function fetchObject(/* string $class_name = NULL, array $constructor_arguments = NULL */);
->>>>>>> dev
 
   /**
    * Fetches the next row and returns it as an associative array.

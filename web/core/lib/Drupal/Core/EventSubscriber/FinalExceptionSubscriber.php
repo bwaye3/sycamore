@@ -8,11 +8,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Utility\Error;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -77,19 +73,11 @@ class FinalExceptionSubscriber implements EventSubscriberInterface {
   /**
    * Handles exceptions for this subscriber.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $event
-   *   The event to process.
-   */
-  public function onException(GetResponseForExceptionEvent $event) {
-    $exception = $event->getException();
-=======
    * @param \Symfony\Component\HttpKernel\Event\ExceptionEvent $event
    *   The event to process.
    */
   public function onException(ExceptionEvent $event) {
     $exception = $event->getThrowable();
->>>>>>> dev
     $error = Error::decodeException($exception);
 
     // Display the message if the current error reporting level allows this type
@@ -98,21 +86,13 @@ class FinalExceptionSubscriber implements EventSubscriberInterface {
     if ($this->isErrorDisplayable($error)) {
       // If error type is 'User notice' then treat it as debug information
       // instead of an error message.
-<<<<<<< HEAD
-      // @see debug()
-=======
->>>>>>> dev
       if ($error['%type'] == 'User notice') {
         $error['%type'] = 'Debug';
       }
 
       $error = $this->simplifyFileInError($error);
 
-<<<<<<< HEAD
-      unset($error['backtrace']);
-=======
       unset($error['backtrace'], $error['exception'], $error['severity_level']);
->>>>>>> dev
 
       if (!$this->isErrorLevelVerbose()) {
         // Without verbose logging, use a simple message.

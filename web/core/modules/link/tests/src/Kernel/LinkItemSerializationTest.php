@@ -19,11 +19,7 @@ class LinkItemSerializationTest extends FieldKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['link', 'serialization'];
-=======
   protected static $modules = ['link', 'serialization'];
->>>>>>> dev
 
   /**
    * The serializer service.
@@ -35,11 +31,7 @@ class LinkItemSerializationTest extends FieldKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('user');

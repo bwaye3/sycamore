@@ -12,11 +12,7 @@ bundle: article
 label: Tags
 description: 'Enter a comma-separated list. For example: Vegetarian, Chocolate brownies, Appetizers'
 required: false
-<<<<<<< HEAD
-translatable: true
-=======
 translatable: false
->>>>>>> dev
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -27,8 +23,4 @@ settings:
     sort:
       field: _none
     auto_create: true
-<<<<<<< HEAD
-    auto_create_bundle: ''
-=======
->>>>>>> dev
 field_type: entity_reference

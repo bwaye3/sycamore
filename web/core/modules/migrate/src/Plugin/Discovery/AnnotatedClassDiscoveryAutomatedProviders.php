@@ -108,11 +108,7 @@ class AnnotatedClassDiscoveryAutomatedProviders extends AnnotatedClassDiscovery 
               $finder = MockFileFinder::create($fileinfo->getPathName());
               $parser = new BaseStaticReflectionParser($class, $finder, FALSE);
 
-<<<<<<< HEAD
-              /** @var $annotation \Drupal\Component\Annotation\AnnotationInterface */
-=======
               /** @var \Drupal\Component\Annotation\AnnotationInterface $annotation */
->>>>>>> dev
               if ($annotation = $reader->getClassAnnotation($parser->getReflectionClass(), $this->pluginDefinitionAnnotationName)) {
                 $this->prepareAnnotationDefinition($annotation, $class, $parser);
 

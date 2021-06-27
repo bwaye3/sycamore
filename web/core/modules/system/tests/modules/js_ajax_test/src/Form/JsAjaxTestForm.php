@@ -8,11 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\js_ajax_test\Ajax\JsAjaxTestCommand;
 
 /**
-<<<<<<< HEAD
- * Test form for js_ajax_test
-=======
  * Test form for js_ajax_test.
->>>>>>> dev
  *
  * @internal
  */

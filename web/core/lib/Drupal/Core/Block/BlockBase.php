@@ -2,16 +2,11 @@
 
 namespace Drupal\Core\Block;
 
-<<<<<<< HEAD
-use Drupal\Core\Plugin\ContextAwarePluginAssignmentTrait;
-use Drupal\Core\Plugin\ContextAwarePluginBase;
-=======
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContextAwarePluginAssignmentTrait;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Plugin\ContextAwarePluginTrait;
 use Drupal\Core\Plugin\PluginBase;
->>>>>>> dev
 use Drupal\Core\Plugin\PluginWithFormsInterface;
 use Drupal\Core\Render\PreviewFallbackInterface;
 
@@ -24,13 +19,6 @@ use Drupal\Core\Render\PreviewFallbackInterface;
  *
  * @ingroup block_api
  */
-<<<<<<< HEAD
-abstract class BlockBase extends ContextAwarePluginBase implements BlockPluginInterface, PluginWithFormsInterface, PreviewFallbackInterface {
-
-  use BlockPluginTrait;
-  use ContextAwarePluginAssignmentTrait;
-
-=======
 abstract class BlockBase extends PluginBase implements BlockPluginInterface, PluginWithFormsInterface, PreviewFallbackInterface, ContextAwarePluginInterface {
 
   use BlockPluginTrait {
@@ -52,5 +40,4 @@ abstract class BlockBase extends PluginBase implements BlockPluginInterface, Plu
     return $form;
   }
 
->>>>>>> dev
 }

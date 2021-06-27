@@ -13,11 +13,7 @@ use Drupal\taxonomy\TermInterface;
  */
 class MigrateTaxonomyTermTest extends MigrateDrupal7TestBase {
 
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'comment',
     'content_translation',
     'datetime',
@@ -41,11 +37,7 @@ class MigrateTaxonomyTermTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('comment');
     $this->installEntitySchema('file');
@@ -134,11 +126,7 @@ class MigrateTaxonomyTermTest extends MigrateDrupal7TestBase {
 
     // Reset the forums tree data so this new term is included in the tree.
     unset($this->treeData['forums']);
-<<<<<<< HEAD
-    $this->assertEntity(25, 'en', 'Forum Container', 'forums', '', '', 0, [], NULL, NULL, 1);
-=======
     $this->assertEntity(26, 'en', 'Forum Container', 'forums', '', '', 0, [], NULL, NULL, 1);
->>>>>>> dev
 
     // Test taxonomy term language translations.
     $this->assertEntity(19, 'en', 'Jupiter Station', 'vocablocalized', 'Holographic research.', 'filtered_html', 0, [], NULL, NULL, 1);
@@ -151,10 +139,7 @@ class MigrateTaxonomyTermTest extends MigrateDrupal7TestBase {
     // Localized.
     $this->assertEntity(19, 'en', 'Jupiter Station', 'vocablocalized', 'Holographic research.', 'filtered_html', '0', []);
     $this->assertEntity(20, 'en', 'DS9', 'vocablocalized', 'Terok Nor', 'filtered_html', '0', []);
-<<<<<<< HEAD
-=======
     $this->assertEntity(25, 'en', 'Emissary', 'vocablocalized2', 'Pilot episode', 'filtered_html', '0', []);
->>>>>>> dev
 
     /** @var \Drupal\taxonomy\TermInterface $entity */
     $entity = Term::load(20);
@@ -169,54 +154,8 @@ class MigrateTaxonomyTermTest extends MigrateDrupal7TestBase {
 
     // Fixed.
     $this->assertEntity(24, 'fr', 'FR - Crewman', 'vocabfixed', NULL, NULL, '0', []);
-<<<<<<< HEAD
-  }
-
-  /**
-   * Retrieves the parent term IDs for a given term.
-   *
-   * @param $tid
-   *   ID of the term to check.
-   *
-   * @return array
-   *   List of parent term IDs.
-   */
-  protected function getParentIDs($tid) {
-    return array_keys(\Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($tid));
-  }
-
-  /**
-   * Assert that a term is present in the tree storage, with the right parents.
-   *
-   * @param string $vid
-   *   Vocabulary ID.
-   * @param int $tid
-   *   ID of the term to check.
-   * @param array $parent_ids
-   *   The expected parent term IDs.
-   */
-  protected function assertHierarchy($vid, $tid, array $parent_ids) {
-    if (!isset($this->treeData[$vid])) {
-      $tree = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
-      $this->treeData[$vid] = [];
-      foreach ($tree as $item) {
-        $this->treeData[$vid][$item->tid] = $item;
-      }
-    }
-
-    $this->assertArrayHasKey($tid, $this->treeData[$vid], "Term $tid exists in taxonomy tree");
-    $term = $this->treeData[$vid][$tid];
-    $this->assertEquals($parent_ids, array_filter($term->parents), "Term $tid has correct parents in taxonomy tree");
-  }
-
-  /**
-   * Tests the migration of taxonomy term entity translations.
-   */
-  public function testTaxonomyTermEntityTranslations() {
-=======
 
     // Tests the migration of taxonomy term entity translations.
->>>>>>> dev
     $manager = $this->container->get('content_translation.manager');
 
     // Get the term and its translations.
@@ -265,8 +204,6 @@ class MigrateTaxonomyTermTest extends MigrateDrupal7TestBase {
     $this->assertSame($term->parent->terget_id, $term_is->parent->terget_id);
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Retrieves the parent term IDs for a given term.
    *
@@ -304,5 +241,4 @@ class MigrateTaxonomyTermTest extends MigrateDrupal7TestBase {
     $this->assertEquals($parent_ids, array_filter($term->parents), "Term $tid has correct parents in taxonomy tree");
   }
 
->>>>>>> dev
 }

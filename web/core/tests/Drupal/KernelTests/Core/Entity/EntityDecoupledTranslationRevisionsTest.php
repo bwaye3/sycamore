@@ -22,11 +22,7 @@ class EntityDecoupledTranslationRevisionsTest extends EntityKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'system',
     'entity_test',
     'language',
@@ -84,11 +80,7 @@ class EntityDecoupledTranslationRevisionsTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $entity_type_id = 'entity_test_mulrev';
@@ -201,11 +193,7 @@ class EntityDecoupledTranslationRevisionsTest extends EntityKernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test decoupled default revisions.
-=======
    * Tests decoupled default revisions.
->>>>>>> dev
    *
    * @param array[] $sequence
    *   An array with arrays of arguments for the ::doSaveNewRevision() method as
@@ -217,11 +205,7 @@ class EntityDecoupledTranslationRevisionsTest extends EntityKernelTestBase {
    */
   public function testDecoupledPendingRevisions($sequence) {
     $revision_id = $this->doTestEditSequence($sequence);
-<<<<<<< HEAD
-    $this->assertEquals(count($sequence), $revision_id);
-=======
     $this->assertCount($revision_id, $sequence);
->>>>>>> dev
   }
 
   /**
@@ -271,10 +255,6 @@ class EntityDecoupledTranslationRevisionsTest extends EntityKernelTestBase {
    * @param array[] $sequence
    *   An array with arrays of arguments for the ::doSaveNewRevision() method as
    *   values. Every child array corresponds to a method invocation.
-<<<<<<< HEAD
-   *
-=======
->>>>>>> dev
    * @param bool $default_translation_affected
    *   Whether untranslatable field changes affect all revisions or only the
    *   default revision.

@@ -30,11 +30,7 @@ class JSMessageTestController {
   }
 
   /**
-<<<<<<< HEAD
-   * Displays links to show messages via Javascript.
-=======
    * Displays links to show messages via JavaScript.
->>>>>>> dev
    *
    * @return array
    *   Render array for links.

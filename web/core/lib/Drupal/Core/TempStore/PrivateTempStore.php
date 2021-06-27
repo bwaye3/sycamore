@@ -2,10 +2,7 @@
 
 namespace Drupal\Core\TempStore;
 
-<<<<<<< HEAD
-=======
 use Drupal\Component\Utility\Crypt;
->>>>>>> dev
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\KeyValueStore\KeyValueStoreExpirableInterface;
 use Drupal\Core\Lock\LockBackendInterface;
@@ -123,19 +120,6 @@ class PrivateTempStore {
    *   Thrown when a lock for the backend storage could not be acquired.
    */
   public function set($key, $value) {
-<<<<<<< HEAD
-    // Ensure that an anonymous user has a session created for them, as
-    // otherwise subsequent page loads will not be able to retrieve their
-    // tempstore data.
-    if ($this->currentUser->isAnonymous()) {
-      // @todo when https://www.drupal.org/node/2865991 is resolved, use force
-      //   start session API rather than setting an arbitrary value directly.
-      $this->startSession();
-      $this->requestStack
-        ->getCurrentRequest()
-        ->getSession()
-        ->set('core.tempstore.private', TRUE);
-=======
     if ($this->currentUser->isAnonymous()) {
       // Ensure that an anonymous user has a session created for them, as
       // otherwise subsequent page loads will not be able to retrieve their
@@ -146,7 +130,6 @@ class PrivateTempStore {
       if (!$session->has('core.tempstore.private.owner')) {
         $session->set('core.tempstore.private.owner', Crypt::randomBytesBase64());
       }
->>>>>>> dev
     }
 
     $key = $this->createkey($key);
@@ -241,15 +224,10 @@ class PrivateTempStore {
   protected function getOwner() {
     $owner = $this->currentUser->id();
     if ($this->currentUser->isAnonymous()) {
-<<<<<<< HEAD
-      $this->startSession();
-      $owner = $this->requestStack->getCurrentRequest()->getSession()->getId();
-=======
       // Check to see if an owner key exists in the session.
       $this->startSession();
       $session = $this->requestStack->getCurrentRequest()->getSession();
       $owner = $session->get('core.tempstore.private.owner');
->>>>>>> dev
     }
     return $owner;
   }

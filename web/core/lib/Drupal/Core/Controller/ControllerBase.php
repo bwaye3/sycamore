@@ -4,13 +4,7 @@ namespace Drupal\Core\Controller;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Logger\LoggerChannelTrait;
-<<<<<<< HEAD
-use Drupal\Core\Routing\LinkGeneratorTrait;
 use Drupal\Core\Routing\RedirectDestinationTrait;
-use Drupal\Core\Routing\UrlGeneratorTrait;
-=======
-use Drupal\Core\Routing\RedirectDestinationTrait;
->>>>>>> dev
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -40,25 +34,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 abstract class ControllerBase implements ContainerInjectionInterface {
 
-<<<<<<< HEAD
-  use LinkGeneratorTrait;
-=======
->>>>>>> dev
   use LoggerChannelTrait;
   use MessengerTrait;
   use RedirectDestinationTrait;
   use StringTranslationTrait;
-<<<<<<< HEAD
-  use UrlGeneratorTrait;
-
-  /**
-   * The entity manager.
-   *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
-   */
-  protected $entityManager;
-=======
->>>>>>> dev
 
   /**
    * The entity type manager.
@@ -131,27 +110,6 @@ abstract class ControllerBase implements ContainerInjectionInterface {
   }
 
   /**
-<<<<<<< HEAD
-   * Retrieves the entity manager service.
-   *
-   * @return \Drupal\Core\Entity\EntityManagerInterface
-   *   The entity manager service.
-   *
-   * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0.
-   *   Most of the time static::entityTypeManager() is supposed to be used
-   *   instead.
-   */
-  protected function entityManager() {
-    @trigger_error('ControllerBase::getEntityManager() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. Use ::getEntityTypeManager() instead. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-    if (!$this->entityManager) {
-      $this->entityManager = $this->container()->get('entity.manager');
-    }
-    return $this->entityManager;
-  }
-
-  /**
-=======
->>>>>>> dev
    * Retrieves the entity type manager.
    *
    * @return \Drupal\Core\Entity\EntityTypeManagerInterface

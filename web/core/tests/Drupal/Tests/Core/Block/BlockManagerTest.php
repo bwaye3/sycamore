@@ -7,15 +7,10 @@ use Drupal\Core\Block\BlockManager;
 use Drupal\Core\Block\Plugin\Block\Broken;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
-<<<<<<< HEAD
-use Drupal\Tests\UnitTestCase;
-use Psr\Log\LoggerInterface;
-=======
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Tests\UnitTestCase;
 use Psr\Log\LoggerInterface;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
->>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\Core\Block\BlockManager
@@ -41,11 +36,6 @@ class BlockManagerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-    parent::setUp();
-
-=======
   protected function setUp(): void {
     parent::setUp();
 
@@ -54,7 +44,6 @@ class BlockManagerTest extends UnitTestCase {
     $container->set('current_user', $current_user->reveal());
     \Drupal::setContainer($container);
 
->>>>>>> dev
     $cache_backend = $this->prophesize(CacheBackendInterface::class);
     $module_handler = $this->prophesize(ModuleHandlerInterface::class);
     $this->logger = $this->prophesize(LoggerInterface::class);

@@ -5,10 +5,6 @@ namespace Drupal\Tests\block_content\Functional\Rest;
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\block_content\Entity\BlockContentType;
 use Drupal\Core\Cache\Cache;
-<<<<<<< HEAD
-use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
-=======
->>>>>>> dev
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 
 /**
@@ -16,19 +12,10 @@ use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
  */
 abstract class BlockContentResourceTestBase extends EntityResourceTestBase {
 
-<<<<<<< HEAD
-  use BcTimestampNormalizerUnixTestTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static $modules = ['block_content'];
-=======
   /**
    * {@inheritdoc}
    */
   protected static $modules = ['block_content'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -121,16 +108,12 @@ abstract class BlockContentResourceTestBase extends EntityResourceTestBase {
       ],
       'revision_log' => [],
       'changed' => [
-<<<<<<< HEAD
-        $this->formatExpectedTimestampItemValues($this->entity->getChangedTime()),
-=======
         [
           'value' => (new \DateTime())->setTimestamp((int) $this->entity->getChangedTime())
             ->setTimezone(new \DateTimeZone('UTC'))
             ->format(\DateTime::RFC3339),
           'format' => \DateTime::RFC3339,
         ],
->>>>>>> dev
       ],
       'revision_id' => [
         [
@@ -138,16 +121,12 @@ abstract class BlockContentResourceTestBase extends EntityResourceTestBase {
         ],
       ],
       'revision_created' => [
-<<<<<<< HEAD
-        $this->formatExpectedTimestampItemValues((int) $this->entity->getRevisionCreationTime()),
-=======
         [
           'value' => (new \DateTime())->setTimestamp((int) $this->entity->getRevisionCreationTime())
             ->setTimezone(new \DateTimeZone('UTC'))
             ->format(\DateTime::RFC3339),
           'format' => \DateTime::RFC3339,
         ],
->>>>>>> dev
       ],
       'revision_user' => [],
       'revision_translation_affected' => [
@@ -198,13 +177,6 @@ abstract class BlockContentResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
-<<<<<<< HEAD
-    if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
-      return parent::getExpectedUnauthorizedAccessMessage($method);
-    }
-
-=======
->>>>>>> dev
     return parent::getExpectedUnauthorizedAccessMessage($method);
   }
 

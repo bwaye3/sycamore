@@ -17,11 +17,7 @@ class EntityDisplayFormBaseTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['entity_test'];
-=======
   protected static $modules = ['entity_test'];
->>>>>>> dev
 
   /**
    * @covers ::copyFormValuesToEntity

@@ -16,11 +16,7 @@ class NodeAccessMenuLinkTest extends NodeTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['menu_ui', 'block'];
-=======
   protected static $modules = ['menu_ui', 'block'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -34,11 +30,7 @@ class NodeAccessMenuLinkTest extends NodeTestBase {
    */
   protected $contentAdminUser;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalPlaceBlock('system_menu_block:main');
@@ -66,12 +58,8 @@ class NodeAccessMenuLinkTest extends NodeTestBase {
       'menu[enabled]' => 1,
       'menu[title]' => $menu_link_title,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('node/add/page', $edit, t('Save'));
-=======
     $this->drupalGet('node/add/page');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $this->assertSession()->linkExists($menu_link_title);
 
     // Ensure anonymous users without "access content" permission do not see

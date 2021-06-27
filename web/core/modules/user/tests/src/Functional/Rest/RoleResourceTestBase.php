@@ -10,11 +10,7 @@ abstract class RoleResourceTestBase extends EntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['user'];
-=======
   protected static $modules = ['user'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

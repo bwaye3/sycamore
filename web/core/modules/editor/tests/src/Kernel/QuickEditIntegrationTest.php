@@ -12,11 +12,7 @@ use Drupal\Tests\quickedit\Kernel\QuickEditTestBase;
 use Drupal\quickedit_test\MockQuickEditEntityFieldAccessCheck;
 use Drupal\editor\EditorController;
 use Symfony\Component\HttpFoundation\Request;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Drupal\filter\Entity\FilterFormat;
 
@@ -30,11 +26,7 @@ class QuickEditIntegrationTest extends QuickEditTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['editor', 'editor_test'];
-=======
   protected static $modules = ['editor', 'editor_test'];
->>>>>>> dev
 
   /**
    * The manager for editor plug-ins.
@@ -71,11 +63,7 @@ class QuickEditIntegrationTest extends QuickEditTestBase {
    */
   protected $fieldName;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Install the Filter module.
@@ -161,29 +149,17 @@ class QuickEditIntegrationTest extends QuickEditTestBase {
     $entity->save();
 
     // Editor selection w/ cardinality 1, text format w/o associated text editor.
-<<<<<<< HEAD
-    $this->assertEqual('form', $this->getSelectedEditor($entity->id(), $this->fieldName), "With cardinality 1, and the filtered_html text format, the 'form' editor is selected.");
-=======
     $this->assertEquals('form', $this->getSelectedEditor($entity->id(), $this->fieldName), "With cardinality 1, and the filtered_html text format, the 'form' editor is selected.");
->>>>>>> dev
 
     // Editor selection w/ cardinality 1, text format w/ associated text editor.
     $entity->{$this->fieldName}->format = 'full_html';
     $entity->save();
-<<<<<<< HEAD
-    $this->assertEqual('editor', $this->getSelectedEditor($entity->id(), $this->fieldName), "With cardinality 1, and the full_html text format, the 'editor' editor is selected.");
-=======
     $this->assertEquals('editor', $this->getSelectedEditor($entity->id(), $this->fieldName), "With cardinality 1, and the full_html text format, the 'editor' editor is selected.");
->>>>>>> dev
 
     // Editor selection with text processing, cardinality >1
     $this->fields->field_textarea_field_storage->setCardinality(2);
     $this->fields->field_textarea_field_storage->save();
-<<<<<<< HEAD
-    $this->assertEqual('form', $this->getSelectedEditor($entity->id(), $this->fieldName), "With cardinality >1, and both items using the full_html text format, the 'form' editor is selected.");
-=======
     $this->assertEquals('form', $this->getSelectedEditor($entity->id(), $this->fieldName), "With cardinality >1, and both items using the full_html text format, the 'form' editor is selected.");
->>>>>>> dev
   }
 
   /**
@@ -214,11 +190,7 @@ class QuickEditIntegrationTest extends QuickEditTestBase {
         'formatHasTransformations' => FALSE,
       ],
     ];
-<<<<<<< HEAD
-    $this->assertEqual($expected, $metadata, 'The correct metadata (including custom metadata) is generated.');
-=======
     $this->assertEquals($expected, $metadata, 'The correct metadata (including custom metadata) is generated.');
->>>>>>> dev
   }
 
   /**
@@ -229,11 +201,7 @@ class QuickEditIntegrationTest extends QuickEditTestBase {
 
     $editors = ['editor'];
     $attachments = $this->editorSelector->getEditorAttachments($editors);
-<<<<<<< HEAD
-    $this->assertIdentical($attachments, ['library' => ['editor/quickedit.inPlaceEditor.formattedText']], "Expected attachments for Editor module's in-place editor found.");
-=======
     $this->assertSame(['library' => ['editor/quickedit.inPlaceEditor.formattedText']], $attachments, "Expected attachments for Editor module's in-place editor found.");
->>>>>>> dev
   }
 
   /**
@@ -260,11 +228,7 @@ class QuickEditIntegrationTest extends QuickEditTestBase {
 
     $ajax_response_attachments_processor = \Drupal::service('ajax_response.attachments_processor');
     $subscriber = new AjaxResponseSubscriber($ajax_response_attachments_processor);
-<<<<<<< HEAD
-    $event = new FilterResponseEvent(
-=======
     $event = new ResponseEvent(
->>>>>>> dev
       \Drupal::service('http_kernel'),
       $request,
       HttpKernelInterface::MASTER_REQUEST,
@@ -272,11 +236,7 @@ class QuickEditIntegrationTest extends QuickEditTestBase {
     );
     $subscriber->onResponse($event);
 
-<<<<<<< HEAD
-    $this->assertEqual(Json::encode($expected), $response->getContent(), 'The GetUntransformedTextCommand AJAX command works correctly.');
-=======
     $this->assertEquals(Json::encode($expected), $response->getContent(), 'The GetUntransformedTextCommand AJAX command works correctly.');
->>>>>>> dev
   }
 
 }

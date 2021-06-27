@@ -2,10 +2,6 @@
 
 namespace Drupal\search;
 
-<<<<<<< HEAD
-use Drupal\Core\Database\Query\Condition;
-=======
->>>>>>> dev
 use Drupal\Core\Database\Query\SelectExtender;
 use Drupal\Core\Database\Query\SelectInterface;
 
@@ -208,11 +204,7 @@ class SearchQuery extends SelectExtender {
     $this->addTag('search_' . $type);
 
     // Initialize conditions and status.
-<<<<<<< HEAD
-    $this->conditions = new Condition('AND');
-=======
     $this->conditions = $this->connection->condition('AND');
->>>>>>> dev
     $this->status = 0;
 
     return $this;
@@ -240,11 +232,8 @@ class SearchQuery extends SelectExtender {
     // Classify tokens.
     $in_or = FALSE;
     $limit_combinations = \Drupal::config('search.settings')->get('and_or_limit');
-<<<<<<< HEAD
-=======
     /** @var \Drupal\search\SearchTextProcessorInterface $text_processor */
     $text_processor = \Drupal::service('search.text_processor');
->>>>>>> dev
     // The first search expression does not count as AND.
     $and_count = -1;
     $or_count = 0;
@@ -267,11 +256,7 @@ class SearchQuery extends SelectExtender {
       // Simplify keyword according to indexing rules and external
       // preprocessors. Use same process as during search indexing, so it
       // will match search index.
-<<<<<<< HEAD
-      $words = search_simplify($match[2]);
-=======
       $words = $text_processor->analyze($match[2]);
->>>>>>> dev
       // Re-explode in case simplification added more words, except when
       // matching a phrase.
       $words = $phrase ? [$words] : preg_split('/ /', $words, -1, PREG_SPLIT_NO_EMPTY);
@@ -280,11 +265,7 @@ class SearchQuery extends SelectExtender {
         $this->keys['negative'] = array_merge($this->keys['negative'], $words);
       }
       // OR operator: instead of a single keyword, we store an array of all
-<<<<<<< HEAD
-      // OR'd keywords.
-=======
       // ORed keywords.
->>>>>>> dev
       elseif ($match[2] == 'OR' && count($this->keys['positive'])) {
         $last = array_pop($this->keys['positive']);
         // Starting a new OR?
@@ -326,22 +307,14 @@ class SearchQuery extends SelectExtender {
     foreach ($this->keys['positive'] as $key) {
       // Group of ORed terms.
       if (is_array($key) && count($key)) {
-<<<<<<< HEAD
-        // If we had already found one OR, this is another one AND-ed with the
-=======
         // If we had already found one OR, this is another one ANDed with the
->>>>>>> dev
         // first, meaning it is not a simple query.
         if ($has_or) {
           $this->simple = FALSE;
         }
         $has_or = TRUE;
         $has_new_scores = FALSE;
-<<<<<<< HEAD
-        $queryor = new Condition('OR');
-=======
         $queryor = $this->connection->condition('OR');
->>>>>>> dev
         foreach ($key as $or) {
           list($num_new_scores) = $this->parseWord($or);
           $has_new_scores |= $num_new_scores;
@@ -429,22 +402,14 @@ class SearchQuery extends SelectExtender {
     }
 
     // Build the basic search query: match the entered keywords.
-<<<<<<< HEAD
-    $or = new Condition('OR');
-=======
     $or = $this->connection->condition('OR');
->>>>>>> dev
     foreach ($this->words as $word) {
       $or->condition('i.word', $word);
     }
     $this->condition($or);
 
     // Add keyword normalization information to the query.
-<<<<<<< HEAD
-    $this->join('search_total', 't', 'i.word = t.word');
-=======
     $this->join('search_total', 't', '[i].[word] = [t].[word]');
->>>>>>> dev
     $this
       ->condition('i.type', $this->type)
       ->groupBy('i.type')
@@ -464,11 +429,7 @@ class SearchQuery extends SelectExtender {
     // For complex search queries, add the LIKE conditions; if the query is
     // simple, we do not need them for normalization.
     if (!$this->simple) {
-<<<<<<< HEAD
-      $normalize_query->join('search_dataset', 'd', 'i.sid = d.sid AND i.type = d.type AND i.langcode = d.langcode');
-=======
       $normalize_query->join('search_dataset', 'd', '[i].[sid] = [d].[sid] AND [i].[type] = [d].[type] AND [i].[langcode] = [d].[langcode]');
->>>>>>> dev
       if (count($this->conditions)) {
         $normalize_query->condition($this->conditions);
       }
@@ -477,11 +438,7 @@ class SearchQuery extends SelectExtender {
     // Calculate normalization, which is the max of all the search scores for
     // positive keywords in the query. And note that the query could have other
     // fields added to it by the user of this extension.
-<<<<<<< HEAD
-    $normalize_query->addExpression('SUM(i.score * t.count)', 'calculated_score');
-=======
     $normalize_query->addExpression('SUM([i].[score] * [t].[count])', 'calculated_score');
->>>>>>> dev
     $result = $normalize_query
       ->range(0, 1)
       ->orderBy('calculated_score', 'DESC')
@@ -594,11 +551,7 @@ class SearchQuery extends SelectExtender {
     }
 
     // Add conditions to the query.
-<<<<<<< HEAD
-    $this->join('search_dataset', 'd', 'i.sid = d.sid AND i.type = d.type AND i.langcode = d.langcode');
-=======
     $this->join('search_dataset', 'd', '[i].[sid] = [d].[sid] AND [i].[type] = [d].[type] AND [i].[langcode] = [d].[langcode]');
->>>>>>> dev
     if (count($this->conditions)) {
       $this->condition($this->conditions);
     }
@@ -656,11 +609,7 @@ class SearchQuery extends SelectExtender {
     $inner = clone $this->query;
 
     // Add conditions to query.
-<<<<<<< HEAD
-    $inner->join('search_dataset', 'd', 'i.sid = d.sid AND i.type = d.type');
-=======
     $inner->join('search_dataset', 'd', '[i].[sid] = [d].[sid] AND [i].[type] = [d].[type]');
->>>>>>> dev
     if (count($this->conditions)) {
       $inner->condition($this->conditions);
     }

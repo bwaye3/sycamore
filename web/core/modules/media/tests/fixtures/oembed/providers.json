@@ -72,8 +72,6 @@
         "discovery": true
       }
     ]
-<<<<<<< HEAD
-=======
   },
   {
     "provider_name": "Facebook",
@@ -104,6 +102,5 @@
         "discovery": true
       }
     ]
->>>>>>> dev
   }
 ]

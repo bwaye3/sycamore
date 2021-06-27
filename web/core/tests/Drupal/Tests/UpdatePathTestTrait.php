@@ -5,11 +5,7 @@ namespace Drupal\Tests;
 use Drupal\Core\Url;
 
 /**
-<<<<<<< HEAD
- * Trait UpdatePathTestTrait
-=======
  * Trait UpdatePathTestTrait.
->>>>>>> dev
  *
  * For use on \Drupal\Tests\BrowserTestBase tests.
  */

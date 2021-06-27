@@ -3,10 +3,6 @@
 namespace Drupal\Core\Entity;
 
 use Drupal\Core\Access\AccessResult;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Routing\Access\AccessInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -16,15 +12,6 @@ use Symfony\Component\Routing\Route;
  * Defines an access checker for entity creation.
  */
 class EntityCreateAccessCheck implements AccessInterface {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * The entity type manager service.
@@ -41,26 +28,12 @@ class EntityCreateAccessCheck implements AccessInterface {
   protected $requirementsKey = '_entity_create_access';
 
   /**
-<<<<<<< HEAD
-   * Constructs a EntityCreateAccessCheck object.
-=======
    * Constructs an EntityCreateAccessCheck object.
->>>>>>> dev
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager service.
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager) {
-<<<<<<< HEAD
-    if ($entity_type_manager instanceof EntityManagerInterface) {
-      @trigger_error('Passing the entity.manager service to EntityCreateAccessCheck::__construct() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. Pass the new dependencies instead. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $this->entityTypeManager = \Drupal::entityTypeManager();
-    }
-    else {
-      $this->entityTypeManager = $entity_type_manager;
-    }
-=======
->>>>>>> dev
     $this->entityTypeManager = $entity_type_manager;
   }
 

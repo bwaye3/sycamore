@@ -1,11 +1,6 @@
 name: Toolbar
 type: module
-<<<<<<< HEAD
-description: 'Provides a toolbar that shows the top-level administration menu items and links from other modules.'
-core: 8.x
-=======
 description: 'Provides a toolbar that shows the top-level administration menu links and links from other modules.'
->>>>>>> dev
 package: Core
 version: VERSION
 dependencies:

@@ -4,11 +4,8 @@ namespace Drupal\Tests\file\Kernel\Plugin\migrate\source\d6;
 
 use Drupal\Tests\migrate\Kernel\MigrateSqlSourceTestBase;
 
-<<<<<<< HEAD
-=======
 // cspell:ignore abantu
 
->>>>>>> dev
 /**
  * Tests D6 d6_upload source plugin.
  *
@@ -21,11 +18,7 @@ class UploadTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['file', 'migrate_drupal'];
-=======
   protected static $modules = ['file', 'migrate_drupal'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

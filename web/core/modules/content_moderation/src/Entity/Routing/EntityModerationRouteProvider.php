@@ -23,11 +23,7 @@ use Symfony\Component\Routing\RouteCollection;
 class EntityModerationRouteProvider implements EntityRouteProviderInterface, EntityHandlerInterface {
 
   /**
-<<<<<<< HEAD
-   * The entity manager.
-=======
    * The entity type manager.
->>>>>>> dev
    *
    * @var \Drupal\Core\Entity\EntityFieldManagerInterface
    */
@@ -36,19 +32,11 @@ class EntityModerationRouteProvider implements EntityRouteProviderInterface, Ent
   /**
    * Constructs a new DefaultHtmlRouteProvider.
    *
-<<<<<<< HEAD
-   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_manager
-   *   The entity manager.
-   */
-  public function __construct(EntityFieldManagerInterface $entity_manager) {
-    $this->entityFieldManager = $entity_manager;
-=======
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
    *   The entity field manager.
    */
   public function __construct(EntityFieldManagerInterface $entity_field_manager) {
     $this->entityFieldManager = $entity_field_manager;
->>>>>>> dev
   }
 
   /**

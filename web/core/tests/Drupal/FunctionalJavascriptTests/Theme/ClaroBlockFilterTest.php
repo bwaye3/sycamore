@@ -22,20 +22,12 @@ class ClaroBlockFilterTest extends BlockFilterTest {
    *
    * @var string[]
    */
-<<<<<<< HEAD
-  public static $modules = ['shortcut'];
-=======
   protected static $modules = ['shortcut'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->container->get('theme_installer')->install(['claro']);
     $this->config('system.theme')->set('default', 'claro')->save();

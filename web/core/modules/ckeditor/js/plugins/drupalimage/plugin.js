@@ -22,10 +22,6 @@
     }
 
     CKEDITOR.plugins.drupallink.registerLinkableWidget('image');
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
     editor.getCommand('drupalunlink').on('exec', function (evt) {
       var widget = getFocusedWidget(editor);
 
@@ -34,18 +30,9 @@
       }
 
       widget.setData('link', null);
-<<<<<<< HEAD
-
-      this.refresh(editor, editor.elementPath());
-
-      evt.cancel();
-    });
-
-=======
       this.refresh(editor, editor.elementPath());
       evt.cancel();
     });
->>>>>>> dev
     editor.getCommand('drupalunlink').on('refresh', function (evt) {
       var widget = getFocusedWidget(editor);
 
@@ -54,10 +41,6 @@
       }
 
       this.setState(widget.data.link || widget.wrapper.getAscendant('a') ? CKEDITOR.TRISTATE_OFF : CKEDITOR.TRISTATE_DISABLED);
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
       evt.cancel();
     });
   }
@@ -66,17 +49,10 @@
     requires: 'image2',
     icons: 'drupalimage',
     hidpi: true,
-<<<<<<< HEAD
-
-    beforeInit: function beforeInit(editor) {
-      editor.on('widgetDefinition', function (event) {
-        var widgetDefinition = event.data;
-=======
     beforeInit: function beforeInit(editor) {
       editor.on('widgetDefinition', function (event) {
         var widgetDefinition = event.data;
 
->>>>>>> dev
         if (widgetDefinition.name !== 'image') {
           return;
         }
@@ -92,10 +68,6 @@
             classes: {}
           }
         };
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         widgetDefinition.requiredContent = new CKEDITOR.style({
           element: 'img',
           attributes: {
@@ -103,10 +75,6 @@
             alt: ''
           }
         });
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         var requiredContent = widgetDefinition.requiredContent.getDefinition();
         requiredContent.attributes['data-entity-type'] = '';
         requiredContent.attributes['data-entity-uuid'] = '';
@@ -129,21 +97,12 @@
           }
 
           data['data-entity-type'] = element.attributes['data-entity-type'];
-<<<<<<< HEAD
-
           data['data-entity-uuid'] = element.attributes['data-entity-uuid'];
-
-=======
-          data['data-entity-uuid'] = element.attributes['data-entity-uuid'];
->>>>>>> dev
           return element;
         };
 
         var originalGetClasses = widgetDefinition.getClasses;
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         widgetDefinition.getClasses = function () {
           var classes = originalGetClasses.call(this);
           var captionedClasses = (this.editor.config.image2_captionedClass || '').split(/\s+/);
@@ -197,21 +156,12 @@
             }
 
             editor.fire('saveSnapshot');
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
             var container = widget.wrapper.getParent(true);
             var image = widget.parts.image;
 
             var data = widgetDefinition._dialogValuesToData(dialogReturnValues.attributes);
-<<<<<<< HEAD
-            widget.setData(data);
-
-=======
 
             widget.setData(data);
->>>>>>> dev
             widget = editor.widgets.getByElement(image);
 
             if (firstEdit) {
@@ -220,24 +170,14 @@
 
             setTimeout(function () {
               widget.focus();
-<<<<<<< HEAD
-
               editor.fire('saveSnapshot');
             });
-
-=======
-              editor.fire('saveSnapshot');
-            });
->>>>>>> dev
             return widget;
           };
         };
 
         var originalInit = widgetDefinition.init;
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         widgetDefinition.init = function () {
           originalInit.call(this);
 
@@ -246,10 +186,6 @@
           }
         };
       });
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
       editor.widgets.on('instanceCreated', function (event) {
         var widget = event.data;
 
@@ -259,56 +195,32 @@
 
         widget.on('edit', function (event) {
           event.cancel();
-<<<<<<< HEAD
-
           editor.execCommand('editdrupalimage', {
             existingValues: widget.definition._dataToDialogValues(widget.data),
             saveCallback: widget.definition._createDialogSaveCallback(editor, widget),
-
-=======
-          editor.execCommand('editdrupalimage', {
-            existingValues: widget.definition._dataToDialogValues(widget.data),
-            saveCallback: widget.definition._createDialogSaveCallback(editor, widget),
->>>>>>> dev
             dialogTitle: widget.data.src ? editor.config.drupalImage_dialogTitleEdit : editor.config.drupalImage_dialogTitleAdd
           });
         });
       });
-<<<<<<< HEAD
-
-      editor.addCommand('editdrupalimage', {
-        allowedContent: 'img[alt,!src,width,height,!data-entity-type,!data-entity-uuid]',
-        requiredContent: 'img[alt,src,data-entity-type,data-entity-uuid]',
-        modes: { wysiwyg: 1 },
-=======
       editor.addCommand('editdrupalimage', {
         allowedContent: 'img[alt,!src,width,height,!data-entity-type,!data-entity-uuid]',
         requiredContent: 'img[alt,src,data-entity-type,data-entity-uuid]',
         modes: {
           wysiwyg: 1
         },
->>>>>>> dev
         canUndo: true,
         exec: function exec(editor, data) {
           var dialogSettings = {
             title: data.dialogTitle,
             dialogClass: 'editor-image-dialog'
           };
-<<<<<<< HEAD
-          Drupal.ckeditor.openDialog(editor, Drupal.url('editor/dialog/image/' + editor.config.drupal.format), data.existingValues, data.saveCallback, dialogSettings);
-=======
           Drupal.ckeditor.openDialog(editor, Drupal.url("editor/dialog/image/".concat(editor.config.drupal.format)), data.existingValues, data.saveCallback, dialogSettings);
->>>>>>> dev
         }
       });
 
       if (editor.ui.addButton) {
         editor.ui.addButton('DrupalImage', {
           label: Drupal.t('Image'),
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
           command: 'image'
         });
       }
@@ -321,10 +233,7 @@
   CKEDITOR.plugins.image2.getLinkAttributesParser = function () {
     return CKEDITOR.plugins.drupallink.parseLinkAttributes;
   };
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
   CKEDITOR.plugins.image2.getLinkAttributesGetter = function () {
     return CKEDITOR.plugins.drupallink.getLinkAttributes;
   };

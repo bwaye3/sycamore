@@ -9,17 +9,9 @@ use Drupal\migrate\Plugin\migrate\destination\ComponentEntityDisplayBase;
 use Drupal\migrate\Plugin\migrate\destination\Config;
 use Drupal\migrate\Plugin\migrate\destination\EntityConfigBase;
 use Drupal\migrate\Plugin\migrate\destination\EntityContentBase;
-<<<<<<< HEAD
-use Drupal\path\Plugin\migrate\destination\UrlAlias;
 use Drupal\shortcut\Plugin\migrate\destination\ShortcutSetUsers;
 use Drupal\statistics\Plugin\migrate\destination\NodeCounter;
 use Drupal\system\Plugin\migrate\destination\d7\ThemeSettings;
-use Drupal\Tests\DeprecatedModulesTestTrait;
-=======
-use Drupal\shortcut\Plugin\migrate\destination\ShortcutSetUsers;
-use Drupal\statistics\Plugin\migrate\destination\NodeCounter;
-use Drupal\system\Plugin\migrate\destination\d7\ThemeSettings;
->>>>>>> dev
 use Drupal\Tests\migrate_drupal\Kernel\MigrateDrupalTestBase;
 use Drupal\Tests\migrate_drupal\Traits\CreateMigrationsTrait;
 use Drupal\user\Plugin\migrate\destination\UserData;
@@ -33,10 +25,6 @@ class DestinationCategoryTest extends MigrateDrupalTestBase {
 
   use FileSystemModuleDiscoveryDataProviderTrait;
   use CreateMigrationsTrait;
-<<<<<<< HEAD
-  use DeprecatedModulesTestTrait;
-=======
->>>>>>> dev
 
   /**
    * The migration plugin manager.
@@ -48,16 +36,9 @@ class DestinationCategoryTest extends MigrateDrupalTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-    // Enable all modules.
-    self::$modules = array_keys($this->coreModuleListDataProvider());
-    self::$modules = $this->removeDeprecatedModules(self::$modules);
-=======
   protected function setUp(): void {
     // Enable all modules.
     self::$modules = array_keys($this->coreModuleListDataProvider());
->>>>>>> dev
     parent::setUp();
     $this->migrationManager = \Drupal::service('plugin.manager.migration');
   }
@@ -138,10 +119,6 @@ class DestinationCategoryTest extends MigrateDrupalTestBase {
   protected function getContentClasses() {
     return [
       EntityContentBase::class,
-<<<<<<< HEAD
-      UrlAlias::class,
-=======
->>>>>>> dev
       BlockedIp::class,
       NodeCounter::class,
       UserData::class,

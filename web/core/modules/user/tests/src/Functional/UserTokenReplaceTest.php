@@ -22,11 +22,7 @@ class UserTokenReplaceTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['language', 'user_hooks_test'];
-=======
   protected static $modules = ['language', 'user_hooks_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -36,11 +32,7 @@ class UserTokenReplaceTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     ConfigurableLanguage::createFromLangcode('de')->save();
   }
@@ -119,13 +111,8 @@ class UserTokenReplaceTest extends BrowserTestBase {
     foreach ($tests as $input => $expected) {
       $bubbleable_metadata = new BubbleableMetadata();
       $output = $token_service->replace($input, ['user' => $account], ['langcode' => $language_interface->getId()], $bubbleable_metadata);
-<<<<<<< HEAD
-      $this->assertEqual($output, $expected, new FormattableMarkup('User token %token replaced.', ['%token' => $input]));
-      $this->assertEqual($bubbleable_metadata, $metadata_tests[$input]);
-=======
       $this->assertEquals($expected, $output, new FormattableMarkup('User token %token replaced.', ['%token' => $input]));
       $this->assertEquals($metadata_tests[$input], $bubbleable_metadata);
->>>>>>> dev
     }
 
     // Generate tokens for the anonymous user.
@@ -144,13 +131,8 @@ class UserTokenReplaceTest extends BrowserTestBase {
     foreach ($tests as $input => $expected) {
       $bubbleable_metadata = new BubbleableMetadata();
       $output = $token_service->replace($input, ['user' => $anonymous_user], ['langcode' => $language_interface->getId()], $bubbleable_metadata);
-<<<<<<< HEAD
-      $this->assertEqual($output, $expected, new FormattableMarkup('Sanitized user token %token replaced.', ['%token' => $input]));
-      $this->assertEqual($bubbleable_metadata, $metadata_tests[$input]);
-=======
       $this->assertEquals($expected, $output, new FormattableMarkup('Sanitized user token %token replaced.', ['%token' => $input]));
       $this->assertEquals($metadata_tests[$input], $bubbleable_metadata);
->>>>>>> dev
     }
 
     // Generate login and cancel link.
@@ -189,11 +171,7 @@ class UserTokenReplaceTest extends BrowserTestBase {
     $input = '[user:display-name] [current-user:display-name]';
     $expected = "<em>{$user1->id()}</em> <em>{$user2->id()}</em>";
     $output = $token_service->replace($input, ['user' => $user1]);
-<<<<<<< HEAD
-    $this->assertEqual($output, $expected, new FormattableMarkup('User token %token does not escape safe markup.', ['%token' => 'display-name']));
-=======
     $this->assertEquals($expected, $output, new FormattableMarkup('User token %token does not escape safe markup.', ['%token' => 'display-name']));
->>>>>>> dev
   }
 
 }

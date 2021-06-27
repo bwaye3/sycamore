@@ -7,11 +7,7 @@
  * to automatically adjust their settings based on the editor configuration.
  */
 
-<<<<<<< HEAD
-(function($, _, Drupal, document) {
-=======
 (function ($, _, Drupal, document) {
->>>>>>> dev
   /**
    * Editor configuration namespace.
    *
@@ -177,11 +173,6 @@
               // property rule. i.e. will become true if >=1 filter rule has >=1
               // allowed property rule.
               touchedByAllowedPropertyRule: false,
-<<<<<<< HEAD
-              // Analogous, but for forbidden property rule.
-              touchedBytouchedByForbiddenPropertyRule: false,
-=======
->>>>>>> dev
             };
           }
 
@@ -262,11 +253,7 @@
 
         let atLeastOneFound = false;
         const regex = key.replace(/\*/g, '[^ ]*');
-<<<<<<< HEAD
-        _.each(_.keys(universe[tag]), key => {
-=======
         _.each(_.keys(universe[tag]), (key) => {
->>>>>>> dev
           if (key.match(regex)) {
             atLeastOneFound = true;
             if (allowing) {
@@ -299,11 +286,7 @@
         allowing,
       ) {
         let atLeastOneFound = false;
-<<<<<<< HEAD
-        _.each(_.keys(universe), tag => {
-=======
         _.each(_.keys(universe), (tag) => {
->>>>>>> dev
           if (
             // eslint-disable-next-line no-use-before-define
             findPropertyValuesOnTag(
@@ -357,11 +340,7 @@
         }
 
         let atLeastOneFound = false;
-<<<<<<< HEAD
-        _.each(propertyValues, propertyValue => {
-=======
         _.each(propertyValues, (propertyValue) => {
->>>>>>> dev
           if (
             findPropertyValueOnTag(
               universe,
@@ -388,11 +367,7 @@
        */
       function deleteAllTagsFromUniverseIfAllowed(universe) {
         let atLeastOneDeleted = false;
-<<<<<<< HEAD
-        _.each(_.keys(universe), tag => {
-=======
         _.each(_.keys(universe), (tag) => {
->>>>>>> dev
           // eslint-disable-next-line no-use-before-define
           if (deleteFromUniverseIfAllowed(universe, tag)) {
             atLeastOneDeleted = true;
@@ -674,20 +649,12 @@
       // If any filter's current status forbids the editor feature, return
       // false.
       Drupal.filterConfiguration.update();
-<<<<<<< HEAD
-      return Object.keys(Drupal.filterConfiguration.statuses).every(filterID =>
-        filterStatusAllowsFeature(
-          Drupal.filterConfiguration.statuses[filterID],
-          feature,
-        ),
-=======
       return Object.keys(Drupal.filterConfiguration.statuses).every(
         (filterID) =>
           filterStatusAllowsFeature(
             Drupal.filterConfiguration.statuses[filterID],
             feature,
           ),
->>>>>>> dev
       );
     },
   };
@@ -723,11 +690,7 @@
    *
    * @see Drupal.EditorFeature
    */
-<<<<<<< HEAD
-  Drupal.EditorFeatureHTMLRule = function() {
-=======
   Drupal.EditorFeatureHTMLRule = function () {
->>>>>>> dev
     /**
      *
      * @type {Object}
@@ -793,30 +756,18 @@
    *
    * @see Drupal.EditorFeatureHTMLRule
    */
-<<<<<<< HEAD
-  Drupal.EditorFeature = function(name) {
-=======
   Drupal.EditorFeature = function (name) {
->>>>>>> dev
     this.name = name;
     this.rules = [];
   };
 
   /**
-<<<<<<< HEAD
-   * Adds a HTML rule to the list of HTML rules for this feature.
-=======
    * Adds an HTML rule to the list of HTML rules for this feature.
->>>>>>> dev
    *
    * @param {Drupal.EditorFeatureHTMLRule} rule
    *   A text editor feature HTML rule.
    */
-<<<<<<< HEAD
-  Drupal.EditorFeature.prototype.addHTMLRule = function(rule) {
-=======
   Drupal.EditorFeature.prototype.addHTMLRule = function (rule) {
->>>>>>> dev
     this.rules.push(rule);
   };
 
@@ -843,11 +794,7 @@
    *
    * @see Drupal.FilterHTMLRule
    */
-<<<<<<< HEAD
-  Drupal.FilterStatus = function(name) {
-=======
   Drupal.FilterStatus = function (name) {
->>>>>>> dev
     /**
      *
      * @type {string}
@@ -868,20 +815,12 @@
   };
 
   /**
-<<<<<<< HEAD
-   * Adds a HTML rule to the list of HTML rules for this filter.
-=======
    * Adds an HTML rule to the list of HTML rules for this filter.
->>>>>>> dev
    *
    * @param {Drupal.FilterHTMLRule} rule
    *   A text filter HTML rule.
    */
-<<<<<<< HEAD
-  Drupal.FilterStatus.prototype.addHTMLRule = function(rule) {
-=======
   Drupal.FilterStatus.prototype.addHTMLRule = function (rule) {
->>>>>>> dev
     this.rules.push(rule);
   };
 
@@ -960,11 +899,7 @@
    *
    * @see Drupal.FilterStatus
    */
-<<<<<<< HEAD
-  Drupal.FilterHTMLRule = function() {
-=======
   Drupal.FilterHTMLRule = function () {
->>>>>>> dev
     // Allow or forbid tags.
     this.tags = [];
     this.allow = null;
@@ -979,35 +914,11 @@
     return this;
   };
 
-<<<<<<< HEAD
-  Drupal.FilterHTMLRule.prototype.clone = function() {
-=======
   Drupal.FilterHTMLRule.prototype.clone = function () {
->>>>>>> dev
     const clone = new Drupal.FilterHTMLRule();
     clone.tags = this.tags.slice(0);
     clone.allow = this.allow;
     clone.restrictedTags.tags = this.restrictedTags.tags.slice(0);
-<<<<<<< HEAD
-    clone.restrictedTags.allowed.attributes = this.restrictedTags.allowed.attributes.slice(
-      0,
-    );
-    clone.restrictedTags.allowed.styles = this.restrictedTags.allowed.styles.slice(
-      0,
-    );
-    clone.restrictedTags.allowed.classes = this.restrictedTags.allowed.classes.slice(
-      0,
-    );
-    clone.restrictedTags.forbidden.attributes = this.restrictedTags.forbidden.attributes.slice(
-      0,
-    );
-    clone.restrictedTags.forbidden.styles = this.restrictedTags.forbidden.styles.slice(
-      0,
-    );
-    clone.restrictedTags.forbidden.classes = this.restrictedTags.forbidden.classes.slice(
-      0,
-    );
-=======
     clone.restrictedTags.allowed.attributes =
       this.restrictedTags.allowed.attributes.slice(0);
     clone.restrictedTags.allowed.styles =
@@ -1020,7 +931,6 @@
       this.restrictedTags.forbidden.styles.slice(0);
     clone.restrictedTags.forbidden.classes =
       this.restrictedTags.forbidden.classes.slice(0);
->>>>>>> dev
     return clone;
   };
 
@@ -1056,11 +966,7 @@
      * Updates all {@link Drupal.FilterStatus} objects to reflect current state.
      *
      * Automatically checks whether a filter is currently enabled or not. To
-<<<<<<< HEAD
-     * support more finegrained.
-=======
      * support more fine-grained.
->>>>>>> dev
      *
      * If a filter implements a live setting parser, then that will be used to
      * keep the HTML rules for the {@link Drupal.FilterStatus} object
@@ -1068,11 +974,7 @@
      */
     update() {
       Object.keys(Drupal.filterConfiguration.statuses || {}).forEach(
-<<<<<<< HEAD
-        filterID => {
-=======
         (filterID) => {
->>>>>>> dev
           // Update status.
           Drupal.filterConfiguration.statuses[filterID].active = $(
             `[name="filters[${filterID}][status]"]`,
@@ -1080,18 +982,10 @@
 
           // Update current rules.
           if (Drupal.filterConfiguration.liveSettingParsers[filterID]) {
-<<<<<<< HEAD
-            Drupal.filterConfiguration.statuses[
-              filterID
-            ].rules = Drupal.filterConfiguration.liveSettingParsers[
-              filterID
-            ].getRules();
-=======
             Drupal.filterConfiguration.statuses[filterID].rules =
               Drupal.filterConfiguration.liveSettingParsers[
                 filterID
               ].getRules();
->>>>>>> dev
           }
         },
       );
@@ -1113,11 +1007,7 @@
       $context
         .find('#filters-status-wrapper input.form-checkbox')
         .once('filter-editor-status')
-<<<<<<< HEAD
-        .each(function() {
-=======
         .each(function () {
->>>>>>> dev
           const $checkbox = $(this);
           const nameAttribute = $checkbox.attr('name');
 
@@ -1131,14 +1021,8 @@
 
           // Create a Drupal.FilterStatus object to track the state (whether it's
           // active or not and its current settings, if any) of each filter.
-<<<<<<< HEAD
-          Drupal.filterConfiguration.statuses[
-            filterID
-          ] = new Drupal.FilterStatus(filterID);
-=======
           Drupal.filterConfiguration.statuses[filterID] =
             new Drupal.FilterStatus(filterID);
->>>>>>> dev
         });
     },
   };

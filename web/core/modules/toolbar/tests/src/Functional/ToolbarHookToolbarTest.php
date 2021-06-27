@@ -23,22 +23,14 @@ class ToolbarHookToolbarTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['toolbar', 'toolbar_test', 'test_page_test'];
-=======
   protected static $modules = ['toolbar', 'toolbar_test', 'test_page_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create an administrative user and log it in.

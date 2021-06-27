@@ -30,15 +30,9 @@ function template_preprocess_search_result(&$variables) {
   $result = $variables['result'];
   $variables['url'] = UrlHelper::stripDangerousProtocols($result['link']);
   $variables['title'] = $result['title'];
-<<<<<<< HEAD
-  if (isset($result['language']) && $result['language'] != $language_interface->getId() && $result['language'] != LanguageInterface::LANGCODE_NOT_SPECIFIED) {
-    $variables['title_attributes']['lang'] = $result['language'];
-    $variables['content_attributes']['lang'] = $result['language'];
-=======
   if (isset($result['langcode']) && $result['langcode'] != $language_interface->getId() && $result['langcode'] != LanguageInterface::LANGCODE_NOT_SPECIFIED) {
     $variables['title_attributes']['lang'] = $result['langcode'];
     $variables['content_attributes']['lang'] = $result['langcode'];
->>>>>>> dev
   }
 
   $info = [];

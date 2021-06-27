@@ -3,10 +3,6 @@
 namespace Drupal\Tests\system\Functional\FileTransfer;
 
 use Drupal\Core\FileTransfer\FileTransfer;
-<<<<<<< HEAD
-use Drupal\Core\FileTransfer\FileTransferException;
-=======
->>>>>>> dev
 
 /**
  * Mock FileTransfer object for test case.
@@ -50,13 +46,7 @@ class TestFileTransfer extends FileTransfer {
   }
 
   public function removeFileJailed($destination) {
-<<<<<<< HEAD
-    if (!ftp_delete($this->connection, $item)) {
-      throw new FileTransferException('Unable to remove the file @file.', NULL, ['@file' => $item]);
-    }
-=======
     $this->connection->run("rm $destination");
->>>>>>> dev
   }
 
   public function isDirectory($path) {

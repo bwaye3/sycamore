@@ -3,11 +3,7 @@
  * A Backbone Model for the state of a CKEditor toolbar configuration .
  */
 
-<<<<<<< HEAD
-(function(Drupal, Backbone) {
-=======
 (function (Drupal, Backbone) {
->>>>>>> dev
   /**
    * Backbone model for the CKEditor toolbar configuration state.
    *

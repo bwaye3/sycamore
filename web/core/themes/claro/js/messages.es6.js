@@ -3,11 +3,7 @@
  * Message template overrides.
  */
 
-<<<<<<< HEAD
-(Drupal => {
-=======
 ((Drupal) => {
->>>>>>> dev
   /**
    * Overrides message theme function.
    *

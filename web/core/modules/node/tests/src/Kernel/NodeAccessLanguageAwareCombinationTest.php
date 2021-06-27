@@ -23,11 +23,7 @@ class NodeAccessLanguageAwareCombinationTest extends NodeAccessTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'language',
     'node_access_test_language',
     'node_access_test',
@@ -54,11 +50,7 @@ class NodeAccessLanguageAwareCombinationTest extends NodeAccessTestBase {
    */
   protected $adminUser;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     node_access_test_add_field(NodeType::load('page'));
@@ -222,11 +214,7 @@ class NodeAccessLanguageAwareCombinationTest extends NodeAccessTestBase {
     $this->assertNodeAccess($expected_node_access, $this->nodes['private_both_public']->getTranslation('hu'), $this->webUser);
     $this->assertNodeAccess($expected_node_access, $this->nodes['private_both_public']->getTranslation('ca'), $this->webUser);
 
-<<<<<<< HEAD
-    // If the node is marked private, but a existing translation is public,
-=======
     // If the node is marked private, but an existing translation is public,
->>>>>>> dev
     // access should only be granted for the public translation. With the
     // Hungarian translation marked as private, but the Catalan translation
     // public, the access is granted.

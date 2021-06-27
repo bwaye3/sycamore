@@ -26,11 +26,7 @@ class DiffArrayTest extends UnitTestCase {
    */
   protected $array2;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->array1 = [

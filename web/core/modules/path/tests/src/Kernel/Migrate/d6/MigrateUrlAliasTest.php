@@ -20,11 +20,7 @@ class MigrateUrlAliasTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'language',
     'content_translation',
     'path',
@@ -35,11 +31,7 @@ class MigrateUrlAliasTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('node');
     $this->installEntitySchema('path_alias');
@@ -75,11 +67,7 @@ class MigrateUrlAliasTest extends MigrateDrupal6TestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the url alias migration.
-=======
    * Tests the url alias migration.
->>>>>>> dev
    */
   public function testUrlAlias() {
     $id_map = $this->getMigration('d6_url_alias')->getIdMap();
@@ -134,20 +122,9 @@ class MigrateUrlAliasTest extends MigrateDrupal6TestBase {
       'langcode' => 'und',
     ];
     $this->assertPath(8, $conditions, $path_alias);
-<<<<<<< HEAD
-  }
-
-  /**
-   * Test the URL alias migration with translated nodes.
-   */
-  public function testUrlAliasWithTranslatedNodes() {
-    // Alias for the 'The Real McCoy' node in English.
-
-=======
 
     // Tests the URL alias migration with translated nodes.
     // Alias for the 'The Real McCoy' node in English.
->>>>>>> dev
     $path_alias = $this->loadPathAliasByConditions(['alias' => '/the-real-mccoy']);
     $this->assertSame('/node/10', $path_alias->getPath());
     $this->assertSame('en', $path_alias->get('langcode')->value);

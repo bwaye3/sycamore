@@ -32,22 +32,14 @@ class TaxonomyImageTest extends TaxonomyTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['image'];
-=======
   protected static $modules = ['image'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Remove access content permission from registered users.
@@ -100,20 +92,12 @@ class TaxonomyImageTest extends TaxonomyTestBase {
     $image = array_pop($files);
     $edit['name[0][value]'] = $this->randomMachineName();
     $edit['files[field_test_0]'] = \Drupal::service('file_system')->realpath($image->uri);
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/taxonomy/manage/' . $this->vocabulary->id() . '/add', $edit, t('Save'));
-    $this->drupalPostForm(NULL, ['field_test[0][alt]' => $this->randomMachineName()], t('Save'));
-    $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => $edit['name[0][value]']]);
-    $term = reset($terms);
-    $this->assertText(t('Created new term @name.', ['@name' => $term->getName()]));
-=======
     $this->drupalGet('admin/structure/taxonomy/manage/' . $this->vocabulary->id() . '/add');
     $this->submitForm($edit, 'Save');
     $this->submitForm(['field_test[0][alt]' => $this->randomMachineName()], 'Save');
     $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => $edit['name[0][value]']]);
     $term = reset($terms);
     $this->assertSession()->pageTextContains('Created new term ' . $term->getName() . '.');
->>>>>>> dev
 
     // Create a user that should have access to the file and one that doesn't.
     $access_user = $this->drupalCreateUser(['access content']);

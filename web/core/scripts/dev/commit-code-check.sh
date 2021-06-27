@@ -7,10 +7,7 @@
 #   It exists only for core development purposes.
 #
 # The script makes the following checks:
-<<<<<<< HEAD
-=======
 # - Spell checking.
->>>>>>> dev
 # - File modes.
 # - No changes to core/node_modules directory.
 # - PHPCS checks PHP and YAML files.
@@ -19,11 +16,8 @@
 # - Stylelint checks CSS files.
 # - Checks .pcss.css and .css files are equivalent.
 
-<<<<<<< HEAD
-=======
 # cSpell:disable
 
->>>>>>> dev
 # Searches an array.
 contains_element() {
   local e
@@ -129,8 +123,6 @@ fi;
 # run and all dependencies are updated.
 FINAL_STATUS=0
 
-<<<<<<< HEAD
-=======
 DEPENDENCIES_NEED_INSTALLING=0
 # Ensure PHP development dependencies are installed.
 # @todo https://github.com/composer/composer/issues/4497 Improve this to
@@ -164,7 +156,6 @@ if [ "$?" -ne "0" ]; then
 else
   printf "\nCSpell: ${green}passed${reset}\n"
 fi
->>>>>>> dev
 cd "$TOP_LEVEL"
 
 # Add a separator line to make the output easier to read.
@@ -174,11 +165,7 @@ printf "\n"
 
 for FILE in $FILES; do
   STATUS=0;
-<<<<<<< HEAD
-  # Print a line to separate output.
-=======
   # Print a line to separate spellcheck output from per file output.
->>>>>>> dev
   printf "Checking %s\n" "$FILE"
   printf "\n"
 

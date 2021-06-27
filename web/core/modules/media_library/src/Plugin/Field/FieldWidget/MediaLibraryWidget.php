@@ -16,10 +16,6 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
-<<<<<<< HEAD
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-=======
->>>>>>> dev
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
@@ -46,11 +42,7 @@ use Symfony\Component\Validator\ConstraintViolationInterface;
  * @internal
  *   Plugin classes are internal.
  */
-<<<<<<< HEAD
-class MediaLibraryWidget extends WidgetBase implements ContainerFactoryPluginInterface, TrustedCallbackInterface {
-=======
 class MediaLibraryWidget extends WidgetBase implements TrustedCallbackInterface {
->>>>>>> dev
 
   /**
    * Entity type manager service.
@@ -93,25 +85,10 @@ class MediaLibraryWidget extends WidgetBase implements TrustedCallbackInterface 
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.
    */
-<<<<<<< HEAD
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, array $third_party_settings, EntityTypeManagerInterface $entity_type_manager, AccountInterface $current_user = NULL, ModuleHandlerInterface $module_handler = NULL) {
-    parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $third_party_settings);
-    $this->entityTypeManager = $entity_type_manager;
-    if (!$current_user) {
-      @trigger_error('The current_user service must be passed to MediaLibraryWidget::__construct(), it is required before Drupal 9.0.0.', E_USER_DEPRECATED);
-      $current_user = \Drupal::currentUser();
-    }
-    $this->currentUser = $current_user;
-    if (!$module_handler) {
-      @trigger_error('The module_handler service must be passed to MediaLibraryWidget::__construct(), it is required before Drupal 9.0.0.', E_USER_DEPRECATED);
-      $module_handler = \Drupal::moduleHandler();
-    }
-=======
   public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, array $third_party_settings, EntityTypeManagerInterface $entity_type_manager, AccountInterface $current_user, ModuleHandlerInterface $module_handler) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $third_party_settings);
     $this->entityTypeManager = $entity_type_manager;
     $this->currentUser = $current_user;
->>>>>>> dev
     $this->moduleHandler = $module_handler;
   }
 
@@ -197,15 +174,6 @@ class MediaLibraryWidget extends WidgetBase implements TrustedCallbackInterface 
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-<<<<<<< HEAD
-    $media_type_ids = $this->getAllowedMediaTypeIdsSorted();
-
-    if (count($media_type_ids) <= 1) {
-      return $form;
-    }
-
-    $form['media_types'] = [
-=======
     $elements = [];
     $media_type_ids = $this->getAllowedMediaTypeIdsSorted();
 
@@ -214,7 +182,6 @@ class MediaLibraryWidget extends WidgetBase implements TrustedCallbackInterface 
     }
 
     $elements['media_types'] = [
->>>>>>> dev
       '#type' => 'table',
       '#header' => [
         $this->t('Tab order'),
@@ -234,11 +201,7 @@ class MediaLibraryWidget extends WidgetBase implements TrustedCallbackInterface 
     $weight = 0;
     foreach ($media_types as $media_type_id => $media_type) {
       $label = $media_type->label();
-<<<<<<< HEAD
-      $form['media_types'][$media_type_id] = [
-=======
       $elements['media_types'][$media_type_id] = [
->>>>>>> dev
         'label' => ['#markup' => $label],
         'weight' => [
           '#type' => 'weight',
@@ -253,11 +216,7 @@ class MediaLibraryWidget extends WidgetBase implements TrustedCallbackInterface 
       $weight++;
     }
 
-<<<<<<< HEAD
-    return $form;
-=======
     return $elements;
->>>>>>> dev
   }
 
   /**
@@ -374,10 +333,7 @@ class MediaLibraryWidget extends WidgetBase implements TrustedCallbackInterface 
       return $element;
     }
 
-<<<<<<< HEAD
-=======
     $multiple_items = FALSE;
->>>>>>> dev
     if (empty($referenced_entities)) {
       $element['#field_prefix']['empty_selection'] = [
         '#markup' => $this->t('No media items are selected.'),
@@ -387,18 +343,12 @@ class MediaLibraryWidget extends WidgetBase implements TrustedCallbackInterface 
       // @todo Use a <button> link here, and delete
       // seven_preprocess_fieldset__media_library_widget(), when
       // https://www.drupal.org/project/drupal/issues/2999549 lands.
-<<<<<<< HEAD
-=======
       $multiple_items = count($referenced_entities) > 1;
->>>>>>> dev
       $element['#field_prefix']['weight_toggle'] = [
         '#type' => 'html_tag',
         '#tag' => 'button',
         '#value' => $this->t('Show media item weights'),
-<<<<<<< HEAD
-=======
         '#access' => $multiple_items,
->>>>>>> dev
         '#attributes' => [
           'class' => [
             'link',
@@ -469,10 +419,7 @@ class MediaLibraryWidget extends WidgetBase implements TrustedCallbackInterface 
           '#type' => 'number',
           '#theme' => 'input__number__media_library_item_weight',
           '#title' => $this->t('Weight'),
-<<<<<<< HEAD
-=======
           '#access' => $multiple_items,
->>>>>>> dev
           '#default_value' => $delta,
           '#attributes' => [
             'class' => [
@@ -538,12 +485,6 @@ class MediaLibraryWidget extends WidgetBase implements TrustedCallbackInterface 
         'class' => [
           'js-media-library-open-button',
         ],
-<<<<<<< HEAD
-        // The jQuery UI dialog automatically moves focus to the first :tabbable
-        // element of the modal, so we need to disable refocus on the button.
-        'data-disable-refocus' => 'true',
-=======
->>>>>>> dev
       ],
       '#media_library_state' => $state,
       '#ajax' => [
@@ -552,12 +493,9 @@ class MediaLibraryWidget extends WidgetBase implements TrustedCallbackInterface 
           'type' => 'throbber',
           'message' => $this->t('Opening media library.'),
         ],
-<<<<<<< HEAD
-=======
         // The AJAX system automatically moves focus to the first tabbable
         // element of the modal, so we need to disable refocus on the button.
         'disable-refocus' => TRUE,
->>>>>>> dev
       ],
       // Allow the media library to be opened even if there are form errors.
       '#limit_validation_errors' => [],

@@ -32,10 +32,7 @@ class UninstallDefaultContentTest extends BrowserTestBase {
     $this->assertRecipesImported($node_storage);
 
     $count = $node_storage->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->condition('type', 'article')
       ->count()
       ->execute();
@@ -51,10 +48,7 @@ class UninstallDefaultContentTest extends BrowserTestBase {
     // Assert the removal of blocks on uninstall.
     foreach ($this->expectedBlocks() as $block_info) {
       $count = $block_storage->getQuery()
-<<<<<<< HEAD
-=======
         ->accessCheck(FALSE)
->>>>>>> dev
         ->condition('type', $block_info['type'])
         ->count()
         ->execute();
@@ -65,20 +59,14 @@ class UninstallDefaultContentTest extends BrowserTestBase {
 
     // Assert the removal of nodes on uninstall.
     $count = $node_storage->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->condition('type', 'article')
       ->count()
       ->execute();
     $this->assertEquals(0, $count);
 
     $count = $node_storage->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->condition('type', 'recipe')
       ->count()
       ->execute();
@@ -99,10 +87,7 @@ class UninstallDefaultContentTest extends BrowserTestBase {
    */
   protected function assertRecipesImported(EntityStorageInterface $node_storage) {
     $count = $node_storage->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->condition('type', 'recipe')
       ->count()
       ->execute();
@@ -121,10 +106,7 @@ class UninstallDefaultContentTest extends BrowserTestBase {
    */
   protected function assertArticlesImported(EntityStorageInterface $node_storage) {
     $count = $node_storage->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->condition('type', 'article')
       ->count()
       ->execute();
@@ -158,10 +140,7 @@ class UninstallDefaultContentTest extends BrowserTestBase {
 
       // Verify that the block can be loaded.
       $count = $block_storage->getQuery()
-<<<<<<< HEAD
-=======
         ->accessCheck(FALSE)
->>>>>>> dev
         ->condition('type', $block_info['type'])
         ->count()
         ->execute();

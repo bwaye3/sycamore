@@ -2,10 +2,7 @@
 
 namespace Drupal\Tests\content_translation\Functional;
 
-<<<<<<< HEAD
-=======
 use Drupal\Core\Url;
->>>>>>> dev
 use Drupal\Tests\BrowserTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\entity_test\Entity\EntityTestMul;
@@ -21,11 +18,7 @@ class ContentTranslationLinkTagTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'entity_test',
     'content_translation',
     'content_translation_test',
@@ -47,11 +40,7 @@ class ContentTranslationLinkTagTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Set up user.
@@ -133,8 +122,6 @@ class ContentTranslationLinkTagTest extends BrowserTestBase {
         $this->assertTrue(isset($links[0]), $message);
       }
     }
-<<<<<<< HEAD
-=======
 
     // Configure entity path as a front page.
     $entity_canonical = '/entity_test_mul/manage/' . $entity->id();
@@ -156,7 +143,6 @@ class ContentTranslationLinkTagTest extends BrowserTestBase {
         $this->assertArrayHasKey(0, $links);
       }
     }
->>>>>>> dev
   }
 
   /**

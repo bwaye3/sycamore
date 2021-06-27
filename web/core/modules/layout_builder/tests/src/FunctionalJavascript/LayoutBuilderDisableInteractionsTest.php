@@ -40,11 +40,7 @@ class LayoutBuilderDisableInteractionsTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->createContentType(['type' => 'bundle_with_section_field']);
@@ -108,12 +104,8 @@ class LayoutBuilderDisableInteractionsTest extends WebDriverTestBase {
 
     $field_ui_prefix = 'admin/structure/types/manage/bundle_with_section_field';
 
-<<<<<<< HEAD
-    $this->drupalPostForm("$field_ui_prefix/display", ['layout[enabled]' => TRUE], 'Save');
-=======
     $this->drupalGet("{$field_ui_prefix}/display");
     $this->submitForm(['layout[enabled]' => TRUE], 'Save');
->>>>>>> dev
     $assert_session->linkExists('Manage layout');
     $this->clickLink('Manage layout');
 
@@ -135,12 +127,8 @@ class LayoutBuilderDisableInteractionsTest extends WebDriverTestBase {
     // Ensure contextual links were not disabled.
     $this->assertContextualLinksClickable();
 
-<<<<<<< HEAD
-    $this->drupalPostForm("$field_ui_prefix/display/default", ['layout[allow_custom]' => TRUE], 'Save');
-=======
     $this->drupalGet("{$field_ui_prefix}/display/default");
     $this->submitForm(['layout[allow_custom]' => TRUE], 'Save');
->>>>>>> dev
     $this->drupalGet('node/1/layout');
 
     // Ensure the links and forms are also disabled in using the override.

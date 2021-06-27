@@ -19,11 +19,7 @@ class QuickEditIntegrationLoadingTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['quickedit', 'filter', 'node', 'editor'];
-=======
   protected static $modules = ['quickedit', 'filter', 'node', 'editor'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -37,11 +33,7 @@ class QuickEditIntegrationLoadingTest extends BrowserTestBase {
    */
   protected static $basicPermissions = ['access content', 'create article content', 'use text format filtered_html', 'access contextual links'];
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create a text format.
@@ -76,11 +68,7 @@ class QuickEditIntegrationLoadingTest extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test loading of untransformed text when a user doesn't have access to it.
-=======
    * Tests loading of untransformed text when a user doesn't have access to it.
->>>>>>> dev
    */
   public function testUsersWithoutPermission() {
     // Create 3 users, each with insufficient permissions, i.e. without either
@@ -103,11 +91,7 @@ class QuickEditIntegrationLoadingTest extends BrowserTestBase {
 
       $client = $this->getHttpClient();
 
-<<<<<<< HEAD
-      // Retrieving the untransformed text should result in an 403 response and
-=======
       // Retrieving the untransformed text should result in a 403 response and
->>>>>>> dev
       // return a different error message depending of the missing permission.
       $response = $client->post($this->buildUrl('editor/node/1/body/en/full'), [
         'query' => http_build_query([MainContentViewSubscriber::WRAPPER_FORMAT => 'drupal_ajax']),
@@ -133,11 +117,7 @@ class QuickEditIntegrationLoadingTest extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test loading of untransformed text when a user does have access to it.
-=======
    * Tests loading of untransformed text when a user does have access to it.
->>>>>>> dev
    */
   public function testUserWithPermission() {
     $user = $this->drupalCreateUser(array_merge(static::$basicPermissions, ['edit any article content', 'access in-place editing']));
@@ -160,13 +140,8 @@ class QuickEditIntegrationLoadingTest extends BrowserTestBase {
     $this->assertEquals(200, $response->getStatusCode());
     $ajax_commands = Json::decode($response->getBody());
     $this->assertCount(1, $ajax_commands, 'The untransformed text POST request results in one AJAX command.');
-<<<<<<< HEAD
-    $this->assertIdentical('editorGetUntransformedText', $ajax_commands[0]['command'], 'The first AJAX command is an editorGetUntransformedText command.');
-    $this->assertIdentical('<p>Do you also love Drupal?</p><img src="druplicon.png" data-caption="Druplicon" />', $ajax_commands[0]['data'], 'The editorGetUntransformedText command contains the expected data.');
-=======
     $this->assertSame('editorGetUntransformedText', $ajax_commands[0]['command'], 'The first AJAX command is an editorGetUntransformedText command.');
     $this->assertSame('<p>Do you also love Drupal?</p><img src="druplicon.png" data-caption="Druplicon" />', $ajax_commands[0]['data'], 'The editorGetUntransformedText command contains the expected data.');
->>>>>>> dev
   }
 
 }

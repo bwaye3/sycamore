@@ -7,11 +7,7 @@
  * @see Drupal.history
  */
 
-<<<<<<< HEAD
-(function(window, Drupal, drupalSettings) {
-=======
 (function (window, Drupal, drupalSettings) {
->>>>>>> dev
   // When the window's "load" event is triggered, mark all enumerated nodes as
   // read. This still allows for Drupal behaviors (which are triggered on the
   // "DOMContentReady" event) to add "new" and "updated" indicators.

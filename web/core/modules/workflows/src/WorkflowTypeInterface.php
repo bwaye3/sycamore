@@ -3,10 +3,6 @@
 namespace Drupal\workflows;
 
 use Drupal\Component\Plugin\ConfigurableInterface;
-<<<<<<< HEAD
-use Drupal\Component\Plugin\ConfigurablePluginInterface;
-=======
->>>>>>> dev
 use Drupal\Component\Plugin\DependentPluginInterface;
 use Drupal\Component\Plugin\DerivativeInspectionInterface;
 use Drupal\Core\Plugin\PluginWithFormsInterface;
@@ -14,11 +10,7 @@ use Drupal\Core\Plugin\PluginWithFormsInterface;
 /**
  * An interface for Workflow type plugins.
  */
-<<<<<<< HEAD
-interface WorkflowTypeInterface extends PluginWithFormsInterface, DerivativeInspectionInterface, ConfigurableInterface, DependentPluginInterface, ConfigurablePluginInterface {
-=======
 interface WorkflowTypeInterface extends PluginWithFormsInterface, DerivativeInspectionInterface, ConfigurableInterface, DependentPluginInterface {
->>>>>>> dev
 
   /**
    * The key of the global workflow plugin form.

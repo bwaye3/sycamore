@@ -16,11 +16,7 @@ class LocaleStringIsSafeTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['locale', 'locale_test'];
-=======
   protected static $modules = ['locale', 'locale_test'];
->>>>>>> dev
 
   /**
    * Tests for locale_string_is_safe().
@@ -71,15 +67,9 @@ class LocaleStringIsSafeTest extends KernelTestBase {
       $rendered_original_string = \Drupal::theme()->render('locale_test_tokenized', ['content' => $original_string]);
       // Twig assumes that strings are unsafe so it escapes them, and so the
       // original and the rendered version should be different.
-<<<<<<< HEAD
-      $this->assertNotEqual(
-        $rendered_original_string,
-        $original_string . "\n",
-=======
       $this->assertNotEquals(
         $original_string . "\n",
         $rendered_original_string,
->>>>>>> dev
         'Security test ' . $i . ' before translation'
       );
 
@@ -88,15 +78,7 @@ class LocaleStringIsSafeTest extends KernelTestBase {
       $rendered_safe_string = \Drupal::theme()->render('locale_test_tokenized', ['content' => $safe_string]);
       // t() function always marks the string as safe so it won't be escaped,
       // and should be the same as the original.
-<<<<<<< HEAD
-      $this->assertEqual(
-        $rendered_safe_string,
-        $original_string . "\n",
-        'Security test ' . $i . ' after translation before token replacement'
-      );
-=======
       $this->assertEquals($original_string . "\n", $rendered_safe_string, 'Security test ' . $i . ' after translation before token replacement');
->>>>>>> dev
 
       // Replace tokens in the safe string to inject it with dangerous content.
       // @see locale_test_tokens().
@@ -104,15 +86,7 @@ class LocaleStringIsSafeTest extends KernelTestBase {
       $rendered_unsafe_string = \Drupal::theme()->render('locale_test_tokenized', ['content' => $unsafe_string]);
       // Token replacement changes the string so it is not marked as safe
       // anymore. Check it is escaped the way we expect.
-<<<<<<< HEAD
-      $this->assertEqual(
-        $rendered_unsafe_string,
-        $test['replaced'] . "\n",
-        'Security test ' . $i . ' after translation  after token replacement'
-      );
-=======
       $this->assertEquals($test['replaced'] . "\n", $rendered_unsafe_string, 'Security test ' . $i . ' after translation  after token replacement');
->>>>>>> dev
     }
   }
 

@@ -3,7 +3,3 @@ type: module
 description: Tests the 'incomplete' migrate state
 package: Testing
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev

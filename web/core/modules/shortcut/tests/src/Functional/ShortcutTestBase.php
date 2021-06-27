@@ -17,11 +17,7 @@ abstract class ShortcutTestBase extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'toolbar', 'shortcut'];
-=======
   protected static $modules = ['node', 'toolbar', 'shortcut'];
->>>>>>> dev
 
   /**
    * User with permission to administer shortcuts.

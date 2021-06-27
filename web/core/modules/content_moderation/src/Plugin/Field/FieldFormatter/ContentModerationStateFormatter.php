@@ -6,10 +6,6 @@ use Drupal\content_moderation\ModerationInformationInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\FieldItemListInterface;
-<<<<<<< HEAD
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-=======
->>>>>>> dev
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -23,11 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
-<<<<<<< HEAD
-class ContentModerationStateFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
-=======
 class ContentModerationStateFormatter extends FormatterBase {
->>>>>>> dev
 
   /**
    * The moderation information service.

@@ -3,10 +3,6 @@
 namespace Drupal\menu_link_content\Plugin\Menu;
 
 use Drupal\Component\Plugin\Exception\PluginException;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
@@ -18,15 +14,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Provides the menu link plugin for content menu links.
  */
 class MenuLinkContent extends MenuLinkBase implements ContainerFactoryPluginInterface {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * Entities IDs to load.
@@ -98,11 +85,7 @@ class MenuLinkContent extends MenuLinkBase implements ContainerFactoryPluginInte
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
    */
-<<<<<<< HEAD
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager, EntityRepositoryInterface $entity_repository = NULL) {
-=======
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager, EntityRepositoryInterface $entity_repository) {
->>>>>>> dev
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     if (!empty($this->pluginDefinition['metadata']['entity_id'])) {
@@ -114,13 +97,6 @@ class MenuLinkContent extends MenuLinkBase implements ContainerFactoryPluginInte
 
     $this->entityTypeManager = $entity_type_manager;
     $this->languageManager = $language_manager;
-<<<<<<< HEAD
-    if (!$entity_repository) {
-      @trigger_error('Calling MenuLinkContent::__construct() with the $entity_repository argument is supported in drupal:8.7.0 and will be required before drupal:9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $entity_repository = \Drupal::service('entity.repository');
-    }
-=======
->>>>>>> dev
     $this->entityRepository = $entity_repository;
   }
 

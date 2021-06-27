@@ -105,8 +105,6 @@ use Drupal\migrate\MigrateSkipRowException;
  *       'TRUE': to
  * @endcode
  *
-<<<<<<< HEAD
-=======
  * A NULL can be mapped. If the value of the source property 'foo' is NULL then
  * the value of the destination property bar will be 'to'.
  *
@@ -135,7 +133,6 @@ use Drupal\migrate\MigrateSkipRowException;
  *       1: bar
  * @endcode
  *
->>>>>>> dev
  * Mapping from a string which contains a period is not supported. A custom
  * process plugin can be written to handle this kind of a transformation.
  * Another option which may be feasible in certain use cases is to first pass

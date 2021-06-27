@@ -26,11 +26,7 @@ abstract class InlineBlockTestBase extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'block_content',
     'layout_builder',
     'block',
@@ -101,15 +97,11 @@ abstract class InlineBlockTestBase extends WebDriverTestBase {
    * Gets the latest block entity id.
    */
   protected function getLatestBlockEntityId() {
-<<<<<<< HEAD
-    $block_ids = \Drupal::entityQuery('block_content')->sort('id', 'DESC')->range(0, 1)->execute();
-=======
     $block_ids = \Drupal::entityQuery('block_content')
       ->accessCheck(FALSE)
       ->sort('id', 'DESC')
       ->range(0, 1)
       ->execute();
->>>>>>> dev
     $block_id = array_pop($block_ids);
     $this->assertNotEmpty($this->blockStorage->load($block_id));
     return $block_id;
@@ -185,26 +177,6 @@ abstract class InlineBlockTestBase extends WebDriverTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Waits for an element to be removed from the page.
-   *
-   * @param string $selector
-   *   CSS selector.
-   * @param int $timeout
-   *   (optional) Timeout in milliseconds, defaults to 10000.
-   *
-   * @deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Use
-   *   Drupal\FunctionalJavascriptTests\JSWebAssert::assertNoElementAfterWait()
-   */
-  protected function waitForNoElement($selector, $timeout = 10000) {
-    @trigger_error('::waitForNoElement is deprecated in Drupal 8.8.0 and will be removed before Drupal 9.0.0. Use \Drupal\FunctionalJavascriptTests\JSWebAssert::assertNoElementAfterWait() instead.', E_USER_DEPRECATED);
-    $condition = "(typeof jQuery !== 'undefined' && jQuery('$selector').length === 0)";
-    $this->assertJsCondition($condition, $timeout);
-  }
-
-  /**
-=======
->>>>>>> dev
    * Asserts that the dialog closes and the new text appears on the main canvas.
    *
    * @param string $text

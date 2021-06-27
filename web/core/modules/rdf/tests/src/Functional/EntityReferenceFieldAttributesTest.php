@@ -21,11 +21,7 @@ class EntityReferenceFieldAttributesTest extends TaxonomyTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['rdf', 'field_test', 'file', 'image'];
-=======
   protected static $modules = ['rdf', 'field_test', 'file', 'image'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -53,11 +49,7 @@ class EntityReferenceFieldAttributesTest extends TaxonomyTestBase {
    */
   protected $vocabulary;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $web_user = $this->drupalCreateUser([

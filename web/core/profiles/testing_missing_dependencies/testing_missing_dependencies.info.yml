@@ -2,10 +2,6 @@ name: 'Testing missing dependencies'
 type: profile
 description: 'Minimal profile for running a test when dependencies are listed but missing.'
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 hidden: true
 install:
   - block

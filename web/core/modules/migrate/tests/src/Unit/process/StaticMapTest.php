@@ -17,11 +17,7 @@ class StaticMapTest extends MigrateProcessTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $configuration['map']['foo']['bar'] = 'baz';
     $this->plugin = new StaticMap($configuration, 'map', []);
     parent::setUp();
@@ -95,8 +91,6 @@ class StaticMapTest extends MigrateProcessTestCase {
     $this->plugin->transform(['bar'], $this->migrateExecutable, $this->row, 'destination_property');
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Tests when the source is NULL.
    */
@@ -117,5 +111,4 @@ class StaticMapTest extends MigrateProcessTestCase {
     $this->assertSame('mapped NULL', $value);
   }
 
->>>>>>> dev
 }

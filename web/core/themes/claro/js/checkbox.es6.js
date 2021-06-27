@@ -3,11 +3,7 @@
  * Theme override for checkbox.
  */
 
-<<<<<<< HEAD
-(Drupal => {
-=======
 ((Drupal) => {
->>>>>>> dev
   /**
    * Constructs a checkbox input element.
    *

@@ -21,11 +21,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class SecuredRedirectResponseTest extends TestCase {
 
   /**
-<<<<<<< HEAD
-   * Test copying of redirect response.
-=======
    * Tests copying of redirect response.
->>>>>>> dev
    *
    * @covers ::createFromRedirectResponse
    * @covers ::fromResponse

@@ -6,8 +6,6 @@
  */
 
 /**
-<<<<<<< HEAD
-=======
  * @addtogroup file
  * @{
  * @section file_security Uploading files and security considerations
@@ -54,7 +52,6 @@
  */
 
 /**
->>>>>>> dev
  * @addtogroup hooks
  * @{
  */
@@ -74,11 +71,7 @@
  *
  * @see file_validate()
  */
-<<<<<<< HEAD
-function hook_file_validate(Drupal\file\FileInterface $file) {
-=======
 function hook_file_validate(\Drupal\file\FileInterface $file) {
->>>>>>> dev
   $errors = [];
 
   if (!$file->getFilename()) {
@@ -101,11 +94,7 @@ function hook_file_validate(\Drupal\file\FileInterface $file) {
  *
  * @see file_copy()
  */
-<<<<<<< HEAD
-function hook_file_copy(Drupal\file\FileInterface $file, Drupal\file\FileInterface $source) {
-=======
 function hook_file_copy(\Drupal\file\FileInterface $file, \Drupal\file\FileInterface $source) {
->>>>>>> dev
   // Make sure that the file name starts with the owner's user name.
   if (strpos($file->getFilename(), $file->getOwner()->name) !== 0) {
     $file->setFilename($file->getOwner()->name . '_' . $file->getFilename());
@@ -125,11 +114,7 @@ function hook_file_copy(\Drupal\file\FileInterface $file, \Drupal\file\FileInter
  *
  * @see file_move()
  */
-<<<<<<< HEAD
-function hook_file_move(Drupal\file\FileInterface $file, Drupal\file\FileInterface $source) {
-=======
 function hook_file_move(\Drupal\file\FileInterface $file, \Drupal\file\FileInterface $source) {
->>>>>>> dev
   // Make sure that the file name starts with the owner's user name.
   if (strpos($file->getFilename(), $file->getOwner()->name) !== 0) {
     $file->setFilename($file->getOwner()->name . '_' . $file->getFilename());

@@ -64,11 +64,6 @@ class DateTimeNormalizer extends NormalizerBase implements DenormalizerInterface
       // Set an explicit timezone. Otherwise, timestamps may end up being
       // normalized using the user's preferred timezone. Which would result in
       // many variations and complex caching.
-<<<<<<< HEAD
-      // @see \Drupal\Core\Datetime\DrupalDateTime::prepareTimezone()
-      // @see drupal_get_user_timezone()
-=======
->>>>>>> dev
       ->setTimezone($this->getNormalizationTimezone())
       ->format(\DateTime::RFC3339);
   }
@@ -77,10 +72,7 @@ class DateTimeNormalizer extends NormalizerBase implements DenormalizerInterface
    * Gets the timezone to be used during normalization.
    *
    * @see ::normalize
-<<<<<<< HEAD
-=======
    * @see \Drupal\Core\Datetime\DrupalDateTime::prepareTimezone()
->>>>>>> dev
    *
    * @returns \DateTimeZone
    *   The timezone to use.

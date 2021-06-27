@@ -3,8 +3,4 @@ type: module
 description: 'Deprecated. All the functionality has been moved to Core.'
 package: Field types
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 hidden: true

@@ -3,10 +3,7 @@
 namespace Drupal\Core\Database\Install;
 
 use Drupal\Core\Database\Database;
-<<<<<<< HEAD
-=======
 use Drupal\Core\StringTranslation\TranslatableMarkup;
->>>>>>> dev
 
 /**
  * Database installer structure.
@@ -204,9 +201,6 @@ abstract class Tasks {
    */
   protected function checkEngineVersion() {
     // Ensure that the database server has the right version.
-<<<<<<< HEAD
-    if ($this->minimumVersion() && version_compare(Database::getConnection()->version(), $this->minimumVersion(), '<')) {
-=======
     // We append '-AnyName' to the minimum version for comparison purposes, so
     // that engines that append a package name or other build information to
     // their version strings still pass. For example, MariaDB might report its
@@ -223,7 +217,6 @@ abstract class Tasks {
     // them or not.
     // @see https://www.php.net/manual/en/function.version-compare.php
     if ($this->minimumVersion() && version_compare(Database::getConnection()->version(), $this->minimumVersion() . '-AnyName', '<')) {
->>>>>>> dev
       $this->fail(t("The database server version %version is less than the minimum required version %minimum_version.", ['%version' => Database::getConnection()->version(), '%minimum_version' => $this->minimumVersion()]));
     }
   }
@@ -242,11 +235,7 @@ abstract class Tasks {
     // @todo https:///www.drupal.org/node/3123240 Provide a better way to get
     //   the driver name.
     $reflection = new \ReflectionClass($this);
-<<<<<<< HEAD
-    $dir_parts = explode(DIRECTORY_SEPARATOR, dirname(dirname($reflection->getFileName())));
-=======
     $dir_parts = explode(DIRECTORY_SEPARATOR, dirname($reflection->getFileName(), 2));
->>>>>>> dev
     $driver = array_pop($dir_parts);
 
     $form['database'] = [
@@ -347,8 +336,6 @@ abstract class Tasks {
     return $errors;
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Translates a string to the current language or to a given language.
    *
@@ -379,5 +366,4 @@ abstract class Tasks {
     return Database::getConnection();
   }
 
->>>>>>> dev
 }

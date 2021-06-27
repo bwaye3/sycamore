@@ -14,11 +14,7 @@ class FormValuesTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'ajax_test', 'ajax_forms_test'];
-=======
   protected static $modules = ['node', 'ajax_test', 'ajax_forms_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -28,11 +24,7 @@ class FormValuesTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalLogin($this->drupalCreateUser(['access content']));
@@ -50,11 +42,7 @@ class FormValuesTest extends WebDriverTestBase {
 
     // Verify form values of a select element.
     foreach (['green', 'blue', 'red'] as $item) {
-<<<<<<< HEAD
-      // Updating the field will trigger a AJAX request/response.
-=======
       // Updating the field will trigger an AJAX request/response.
->>>>>>> dev
       $session->getPage()->selectFieldOption('select', $item);
 
       // The AJAX command in the response will update the DOM
@@ -73,31 +61,19 @@ class FormValuesTest extends WebDriverTestBase {
 
     // Verify that AJAX elements with invalid callbacks return error code 500.
     // Ensure the test error log is empty before these tests.
-<<<<<<< HEAD
-    $this->assertFileNotExists(DRUPAL_ROOT . '/' . $this->siteDirectory . '/error.log');
-=======
     $this->assertFileDoesNotExist(DRUPAL_ROOT . '/' . $this->siteDirectory . '/error.log');
->>>>>>> dev
     // We don't need to check for the X-Drupal-Ajax-Token header with these
     // invalid requests.
     $this->assertAjaxHeader = FALSE;
     foreach (['null', 'empty', 'nonexistent'] as $key) {
       $element_name = 'select_' . $key . '_callback';
-<<<<<<< HEAD
-      // Updating the field will trigger a AJAX request/response.
-=======
       // Updating the field will trigger an AJAX request/response.
->>>>>>> dev
       $session->getPage()->selectFieldOption($element_name, 'green');
 
       // The select element is disabled as the AJAX request is issued.
       $this->assertSession()->waitForElement('css', "select[name=\"$element_name\"]:disabled");
 
-<<<<<<< HEAD
-      // The select element is enabled as the response is receieved.
-=======
       // The select element is enabled as the response is received.
->>>>>>> dev
       $this->assertSession()->waitForElement('css', "select[name=\"$element_name\"]:enabled");
       $this->assertFileExists(DRUPAL_ROOT . '/' . $this->siteDirectory . '/error.log');
       $this->assertStringContainsString('"The specified #ajax callback is empty or not callable."', file_get_contents(DRUPAL_ROOT . '/' . $this->siteDirectory . '/error.log'));

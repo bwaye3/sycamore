@@ -3,11 +3,7 @@
  * Attaches behaviors for Drupal's active link marking.
  */
 
-<<<<<<< HEAD
-(function(Drupal, drupalSettings) {
-=======
 (function (Drupal, drupalSettings) {
->>>>>>> dev
   /**
    * Append is-active class.
    *
@@ -44,26 +40,15 @@
       // Add language filtering.
       selectors = [].concat(
         // Links without any hreflang attributes (most of them).
-<<<<<<< HEAD
-        originalSelectors.map(selector => `${selector}:not([hreflang])`),
-        // Links with hreflang equals to the current language.
-        originalSelectors.map(
-          selector => `${selector}[hreflang="${path.currentLanguage}"]`,
-=======
         originalSelectors.map((selector) => `${selector}:not([hreflang])`),
         // Links with hreflang equals to the current language.
         originalSelectors.map(
           (selector) => `${selector}[hreflang="${path.currentLanguage}"]`,
->>>>>>> dev
         ),
       );
 
       // Add query string selector for pagers, exposed filters.
-<<<<<<< HEAD
-      selectors = selectors.map(current => current + querySelector);
-=======
       selectors = selectors.map((current) => current + querySelector);
->>>>>>> dev
 
       // Query the DOM.
       const activeLinks = context.querySelectorAll(selectors.join(','));

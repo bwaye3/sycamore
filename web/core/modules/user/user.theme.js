@@ -6,10 +6,6 @@
 **/
 
 (function (Drupal) {
-<<<<<<< HEAD
-  Drupal.theme.passwordConfirmMessage = function (translate) {
-    return "<div aria-live=\"polite\" aria-atomic=\"true\" class=\"password-confirm-message js-password-confirm-message\">" + translate.confirmTitle + " <span></span></div>";
-=======
   Drupal.theme.passwordConfirmMessage = function (_ref) {
     var confirmTitle = _ref.confirmTitle;
     var confirmTextWrapper = '<span data-drupal-selector="password-match-status-text"></span>';
@@ -26,6 +22,5 @@
   Drupal.theme.passwordSuggestions = function (_ref3, tips) {
     var hasWeaknesses = _ref3.hasWeaknesses;
     return "<div class=\"password-suggestions\">".concat(tips.length ? "".concat(hasWeaknesses, "<ul><li>").concat(tips.join('</li><li>'), "</li></ul>") : '', "</div>");
->>>>>>> dev
   };
 })(Drupal);

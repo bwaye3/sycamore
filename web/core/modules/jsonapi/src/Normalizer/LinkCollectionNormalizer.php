@@ -3,18 +3,12 @@
 namespace Drupal\jsonapi\Normalizer;
 
 use Drupal\Component\Utility\Crypt;
-<<<<<<< HEAD
-use Drupal\jsonapi\JsonApiResource\LinkCollection;
-use Drupal\jsonapi\JsonApiResource\Link;
-use Drupal\jsonapi\Normalizer\Value\CacheableNormalization;
-=======
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\jsonapi\JsonApiResource\LinkCollection;
 use Drupal\jsonapi\JsonApiResource\Link;
 use Drupal\jsonapi\Normalizer\Value\CacheableNormalization;
 use Drupal\jsonapi\Normalizer\Value\CacheableOmission;
->>>>>>> dev
 
 /**
  * Normalizes a LinkCollection object.
@@ -26,12 +20,8 @@ use Drupal\jsonapi\Normalizer\Value\CacheableOmission;
  *
  * When normalizing more than one link in a LinkCollection with the same key, a
  * unique and random string is appended to the link's key after a double dash
-<<<<<<< HEAD
- * (--) to differentiate the links.
-=======
  * (--) to differentiate the links. See this class's hashByHref() method for
  * details.
->>>>>>> dev
  *
  * This may change with a later version of the JSON:API specification.
  *
@@ -77,8 +67,6 @@ class LinkCollectionNormalizer extends NormalizerBase {
   protected $hashSalt;
 
   /**
-<<<<<<< HEAD
-=======
    * The current user making the request.
    *
    * @var \Drupal\Core\Session\AccountInterface
@@ -100,26 +88,18 @@ class LinkCollectionNormalizer extends NormalizerBase {
   }
 
   /**
->>>>>>> dev
    * {@inheritdoc}
    */
   public function normalize($object, $format = NULL, array $context = []) {
     assert($object instanceof LinkCollection);
     $normalized = [];
-<<<<<<< HEAD
-    /* @var \Drupal\jsonapi\JsonApiResource\Link $link */
-=======
     /** @var \Drupal\jsonapi\JsonApiResource\Link $link */
->>>>>>> dev
     foreach ($object as $key => $links) {
       $is_multiple = count($links) > 1;
       foreach ($links as $link) {
         $link_key = $is_multiple ? sprintf('%s--%s', $key, $this->hashByHref($link)) : $key;
         $attributes = $link->getTargetAttributes();
         $normalization = array_merge(['href' => $link->getHref()], !empty($attributes) ? ['meta' => $attributes] : []);
-<<<<<<< HEAD
-        $normalized[$link_key] = new CacheableNormalization($link, $normalization);
-=======
         // Checking access on links is not about access to the link itself;
         // it is about whether the current user has access to the route that is
         // *targeted* by the link. This is done on a "best effort" basis. That
@@ -132,16 +112,12 @@ class LinkCollectionNormalizer extends NormalizerBase {
         $normalized[$link_key] = $access->isAllowed()
           ? new CacheableNormalization($cacheability, $normalization)
           : new CacheableOmission($cacheability);
->>>>>>> dev
       }
     }
     return CacheableNormalization::aggregate($normalized);
   }
 
   /**
-<<<<<<< HEAD
-   * Hashes a link by its href.
-=======
    * Hashes a link using its href and its target attributes, if any.
    *
    * This method generates an unpredictable, but deterministic, 7 character
@@ -151,7 +127,6 @@ class LinkCollectionNormalizer extends NormalizerBase {
    * request. The hash is deterministic because, within a single request, links
    * with the same href and target attributes (i.o.w. duplicates) will generate
    * equivalent hash values.
->>>>>>> dev
    *
    * @param \Drupal\jsonapi\JsonApiResource\Link $link
    *   A link to be hashed.
@@ -160,12 +135,6 @@ class LinkCollectionNormalizer extends NormalizerBase {
    *   A 7 character alphanumeric hash.
    */
   protected function hashByHref(Link $link) {
-<<<<<<< HEAD
-    if (!$this->hashSalt) {
-      $this->hashSalt = Crypt::randomBytesBase64();
-    }
-    return substr(str_replace(['-', '_'], '', Crypt::hashBase64($this->hashSalt . $link->getHref())), 0, 7);
-=======
     // Generate a salt unique to each instance of this class.
     if (!$this->hashSalt) {
       $this->hashSalt = Crypt::randomBytesBase64();
@@ -183,7 +152,6 @@ class LinkCollectionNormalizer extends NormalizerBase {
     // Remove any dashes and underscores from the base64 hash and then return
     // the first 7 characters.
     return substr(str_replace(['-', '_'], '', $b64_hash), 0, 7);
->>>>>>> dev
   }
 
 }

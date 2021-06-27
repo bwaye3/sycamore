@@ -16,11 +16,7 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'user', 'migrate_drupal'];
-=======
   protected static $modules = ['node', 'user', 'migrate_drupal'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -66,8 +62,6 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
         'created' => 1531343528,
         'changed' => 1531343528,
       ],
-<<<<<<< HEAD
-=======
       [
         'entity_type' => 'node',
         'entity_id' => 3,
@@ -80,7 +74,6 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
         'created' => 1531343528,
         'changed' => 1531343528,
       ],
->>>>>>> dev
     ];
     $tests[0]['source_data']['field_config'] = [
       [
@@ -142,8 +135,6 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
         'data' => 'a:0:{}',
         'deleted' => 0,
       ],
-<<<<<<< HEAD
-=======
       [
         'id' => 4,
         'field_id' => 2,
@@ -153,7 +144,6 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
         'data' => 'a:0:{}',
         'deleted' => 0,
       ],
->>>>>>> dev
     ];
     $tests[0]['source_data']['field_revision_body'] = [
       [
@@ -204,8 +194,6 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
         'body_summary' => 'Spanish summary',
         'body_format' => 'filtered_html',
       ],
-<<<<<<< HEAD
-=======
       [
         'entity_type' => 'node',
         'bundle' => 'article',
@@ -218,7 +206,6 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
         'body_summary' => 'French summary',
         'body_format' => 'filtered_html',
       ],
->>>>>>> dev
     ];
     $tests[0]['source_data']['field_revision_title_field'] = [
       [
@@ -254,8 +241,6 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
         'title_field_value' => 'Spanish Translation',
         'title_field_format' => NULL,
       ],
-<<<<<<< HEAD
-=======
       [
         'entity_type' => 'node',
         'bundle' => 'article',
@@ -267,7 +252,6 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
         'title_field_value' => 'French Translation',
         'title_field_format' => NULL,
       ],
->>>>>>> dev
     ];
     $tests[0]['source_data']['node'] = [
       [
@@ -302,8 +286,6 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
         'tnid' => 0,
         'translate' => 0,
       ],
-<<<<<<< HEAD
-=======
       [
         'nid' => 3,
         'vid' => 3,
@@ -320,7 +302,6 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
         'tnid' => 0,
         'translate' => 0,
       ],
->>>>>>> dev
     ];
     $tests[0]['source_data']['node_revision'] = [
       [
@@ -347,8 +328,6 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
         'promote' => 0,
         'sticky' => 0,
       ],
-<<<<<<< HEAD
-=======
       [
         'nid' => 3,
         'vid' => 3,
@@ -361,7 +340,6 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
         'promote' => 0,
         'sticky' => 0,
       ],
->>>>>>> dev
     ];
     $tests[0]['source_data']['system'] = [
       [
@@ -435,21 +413,6 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
       'node_type' => 'page',
     ];
 
-<<<<<<< HEAD
-    // The source data.
-    $tests[1]['source_data'] = $tests[0]['source_data'];
-
-    // The expected results.
-    $tests[1]['expected_data'] = [];
-
-    // Do an automatic count.
-    $tests[1]['expected_count'] = NULL;
-
-    // Set up source plugin configuration.
-    $tests[1]['configuration'] = [
-      'node_type' => 'article',
-    ];
-=======
     // Tests retrieval translations of article and page content types.
     $tests[1] = $tests[0];
     $tests[1]['configuration'] = [
@@ -485,7 +448,6 @@ class NodeEntityTranslationTest extends MigrateSqlSourceTestBase {
     // Tests retrieval of entity translations without configuration.
     $tests[2] = $tests[1];
     $tests[2]['configuration'] = [];
->>>>>>> dev
 
     return $tests;
   }

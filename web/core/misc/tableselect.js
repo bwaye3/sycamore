@@ -18,30 +18,18 @@
     }
 
     var table = this;
-<<<<<<< HEAD
-    var checkboxes = void 0;
-    var lastChecked = void 0;
-=======
     var checkboxes;
     var lastChecked;
->>>>>>> dev
     var $table = $(table);
     var strings = {
       selectAll: Drupal.t('Select all rows in this table'),
       selectNone: Drupal.t('Deselect all rows in this table')
     };
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
     var updateSelectAll = function updateSelectAll(state) {
       $table.prev('table.sticky-header').addBack().find('th.select-all input[type="checkbox"]').each(function () {
         var $checkbox = $(this);
         var stateChanged = $checkbox.prop('checked') !== state;
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         $checkbox.attr('title', state ? strings.selectNone : strings.selectAll);
 
         if (stateChanged) {
@@ -62,17 +50,9 @@
 
           $checkbox.closest('tr').toggleClass('selected', this.checked);
         });
-<<<<<<< HEAD
-
         updateSelectAll(event.target.checked);
       }
     });
-
-=======
-        updateSelectAll(event.target.checked);
-      }
-    });
->>>>>>> dev
     checkboxes = $table.find('td input[type="checkbox"]:enabled').on('click', function (e) {
       $(this).closest('tr').toggleClass('selected', this.checked);
 
@@ -81,15 +61,8 @@
       }
 
       updateSelectAll(checkboxes.length === checkboxes.filter(':checked').length);
-<<<<<<< HEAD
-
       lastChecked = e.target;
     });
-
-=======
-      lastChecked = e.target;
-    });
->>>>>>> dev
     updateSelectAll(checkboxes.length === checkboxes.filter(':checked').length);
   };
 

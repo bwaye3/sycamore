@@ -14,16 +14,10 @@ use Drupal\deprecation_test\Deprecation\FixtureDeprecatedClass;
 class PhpUnitBridgeTest extends UnitTestCase {
 
   /**
-<<<<<<< HEAD
-   * @expectedDeprecation Drupal\deprecation_test\Deprecation\FixtureDeprecatedClass is deprecated.
-   */
-  public function testDeprecatedClass() {
-=======
    * Tests class-level deprecation.
    */
   public function testDeprecatedClass() {
     $this->expectDeprecation('Drupal\deprecation_test\Deprecation\FixtureDeprecatedClass is deprecated.');
->>>>>>> dev
     $deprecated = new FixtureDeprecatedClass();
     $this->assertEquals('test', $deprecated->testFunction());
   }
@@ -33,8 +27,6 @@ class PhpUnitBridgeTest extends UnitTestCase {
     $this->assertEquals('known_return_value', \deprecation_test_function());
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Tests the @requires annotation in conjunction with DrupalListener.
    *
@@ -49,5 +41,4 @@ class PhpUnitBridgeTest extends UnitTestCase {
     $this->assertEquals('test', $deprecated->testFunction());
   }
 
->>>>>>> dev
 }

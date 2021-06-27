@@ -2,16 +2,6 @@
 
 namespace Drupal\path_alias;
 
-<<<<<<< HEAD
-use Drupal\Core\Path\AliasManagerInterface as CoreAliasManagerInterface;
-
-/**
- * Find an alias for a path and vice versa.
- *
- * @see \Drupal\Core\Path\AliasStorageInterface
- */
-interface AliasManagerInterface extends CoreAliasManagerInterface {}
-=======
 /**
  * Find an alias for a path and vice versa.
  *
@@ -61,4 +51,3 @@ interface AliasManagerInterface {
   public function cacheClear($source = NULL);
 
 }
->>>>>>> dev

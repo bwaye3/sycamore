@@ -11,11 +11,7 @@ abstract class ActionResourceTestBase extends EntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['user'];
-=======
   protected static $modules = ['user'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

@@ -22,11 +22,7 @@ class LanguageNegotiationUrlTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
 
     // Set up some languages to be used by the language-based path processor.
     $language_de = $this->createMock('\Drupal\Core\Language\LanguageInterface');
@@ -65,11 +61,7 @@ class LanguageNegotiationUrlTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test path prefix language negotiation and outbound path processing.
-=======
    * Tests path prefix language negotiation and outbound path processing.
->>>>>>> dev
    *
    * @dataProvider providerTestPathPrefix
    */
@@ -158,11 +150,7 @@ class LanguageNegotiationUrlTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test domain language negotiation and outbound path processing.
-=======
    * Tests domain language negotiation and outbound path processing.
->>>>>>> dev
    *
    * @dataProvider providerTestDomain
    */

@@ -17,11 +17,7 @@ use Drupal\Core\Access\AccessManager;
 use Drupal\Core\Access\DefaultAccessCheck;
 use Drupal\Tests\UnitTestCase;
 use Drupal\router_test\Access\DefinedTestAccessCheck;
-<<<<<<< HEAD
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
-=======
 use Drupal\Core\Routing\RouteObjectInterface;
->>>>>>> dev
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\Route;
@@ -95,11 +91,7 @@ class AccessManagerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->container = new ContainerBuilder();
@@ -305,11 +297,7 @@ class AccessManagerTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test \Drupal\Core\Access\AccessManager::check() with conjunctions.
-=======
    * Tests \Drupal\Core\Access\AccessManager::check() with conjunctions.
->>>>>>> dev
    *
    * @dataProvider providerTestCheckConjunctions
    */

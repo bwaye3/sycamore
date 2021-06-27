@@ -174,10 +174,7 @@ class MessageForm extends ContentEntityForm {
       '#type' => 'submit',
       '#value' => $this->t('Preview'),
       '#submit' => ['::submitForm', '::preview'],
-<<<<<<< HEAD
-=======
       '#access' => !empty($form_state->getStorage()['form_display']->getComponent('preview')),
->>>>>>> dev
     ];
     return $elements;
   }

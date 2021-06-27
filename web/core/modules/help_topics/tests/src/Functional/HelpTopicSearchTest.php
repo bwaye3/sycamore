@@ -31,11 +31,7 @@ class HelpTopicSearchTest extends HelpTopicTranslatedTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Log in.
@@ -51,19 +47,12 @@ class HelpTopicSearchTest extends HelpTopicTranslatedTestBase {
     ]));
 
     // Add English language and set to default.
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/regional/language/add', [
-      'predefined_langcode' => 'en',
-    ], 'Add language');
-    $this->drupalPostForm('admin/config/regional/language', [
-=======
     $this->drupalGet('admin/config/regional/language/add');
     $this->submitForm([
       'predefined_langcode' => 'en',
     ], 'Add language');
     $this->drupalGet('admin/config/regional/language');
     $this->submitForm([
->>>>>>> dev
       'site_default_language' => 'en',
     ], 'Save configuration');
     // When default language is changed, the container is rebuilt in the child
@@ -71,18 +60,12 @@ class HelpTopicSearchTest extends HelpTopicTranslatedTestBase {
     // here.
     $this->rebuildContainer();
 
-<<<<<<< HEAD
-    // Before running cron, verify that a search returns no results.
-    $this->drupalPostForm('search/help', ['keys' => 'notawordenglish'], 'Search');
-    $this->assertSearchResultsCount(0);
-=======
     // Before running cron, verify that a search returns no results and shows
     // warning.
     $this->drupalGet('search/help');
     $this->submitForm(['keys' => 'notawordenglish'], 'Search');
     $this->assertSearchResultsCount(0);
     $this->assertSession()->pageTextContains('is not fully indexed');
->>>>>>> dev
 
     // Run cron until the topics are fully indexed, with a limit of 100 runs
     // to avoid infinite loops.
@@ -98,14 +81,11 @@ class HelpTopicSearchTest extends HelpTopicTranslatedTestBase {
     // Visit the Search settings page and verify it says 100% indexed.
     $this->drupalGet('admin/config/search/pages');
     $this->assertSession()->pageTextContains('100% of the site has been indexed');
-<<<<<<< HEAD
-=======
     // Search and verify there is no warning.
     $this->drupalGet('search/help');
     $this->submitForm(['keys' => 'notawordenglish'], 'Search');
     $this->assertSearchResultsCount(1);
     $this->assertSession()->pageTextNotContains('is not fully indexed');
->>>>>>> dev
   }
 
   /**
@@ -119,97 +99,57 @@ class HelpTopicSearchTest extends HelpTopicTranslatedTestBase {
     // English text, we find the topic. Note that these "words" are provided
     // by the topics that come from
     // \Drupal\help_topics_test\Plugin\HelpSection\TestHelpSection.
-<<<<<<< HEAD
-    $this->drupalPostForm('search/help', ['keys' => 'notawordenglish'], 'Search');
-=======
     $this->drupalGet('search/help');
     $this->submitForm(['keys' => 'notawordenglish'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(1);
     $session->linkExists('Foo in English title wcsrefsdf');
 
     // Same for German.
-<<<<<<< HEAD
-    $this->drupalPostForm('search/help', ['keys' => 'notawordgerman'], 'Search', [
-      'language' => $german,
-    ]);
-=======
     $this->drupalGet('search/help', ['language' => $german]);
     $this->submitForm(['keys' => 'notawordgerman'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(1);
     $session->linkExists('Foomm Foreign heading');
 
     // Verify when we search in English for a word that only exists in German,
     // we get no results.
-<<<<<<< HEAD
-    $this->drupalPostForm('search/help', ['keys' => 'notawordgerman'], 'Search');
-=======
     $this->drupalGet('search/help');
     $this->submitForm(['keys' => 'notawordgerman'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(0);
     $session->pageTextContains('no results');
 
     // Same for German.
-<<<<<<< HEAD
-    $this->drupalPostForm('search/help', ['keys' => 'notawordenglish'], 'Search', [
-      'language' => $german,
-    ]);
-=======
     $this->drupalGet('search/help', ['language' => $german]);
     $this->submitForm(['keys' => 'notawordenglish'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(0);
     $session->pageTextContains('no results');
 
     // Verify when we search in English for a word that exists in one topic
     // in English and a different topic in German, we only get the one English
     // topic.
-<<<<<<< HEAD
-    $this->drupalPostForm('search/help', ['keys' => 'sqruct'], 'Search');
-=======
     $this->drupalGet('search/help');
     $this->submitForm(['keys' => 'sqruct'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(1);
     $session->linkExists('Foo in English title wcsrefsdf');
 
     // Same for German.
-<<<<<<< HEAD
-    $this->drupalPostForm('search/help', ['keys' => 'asdrsad'], 'Search', [
-      'language' => $german,
-    ]);
-=======
     $this->drupalGet('search/help', ['language' => $german]);
     $this->submitForm(['keys' => 'asdrsad'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(1);
     $session->linkExists('Foomm Foreign heading');
 
     // All of the above tests used the TestHelpSection plugin. Also verify
     // that we can search for translated regular help topics, in both English
     // and German.
-<<<<<<< HEAD
-    $this->drupalPostForm('search/help', ['keys' => 'nonworditem'], 'Search');
-=======
     $this->drupalGet('search/help');
     $this->submitForm(['keys' => 'nonworditem'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(1);
     $session->linkExists('ABC Help Test module');
     // Click the link and verify we ended up on the topic page.
     $this->clickLink('ABC Help Test module');
     $session->pageTextContains('This is a test');
 
-<<<<<<< HEAD
-    $this->drupalPostForm('search/help', ['keys' => 'nonwordgerman'], 'Search', [
-      'language' => $german,
-    ]);
-=======
     $this->drupalGet('search/help', ['language' => $german]);
     $this->submitForm(['keys' => 'nonwordgerman'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(1);
     $session->linkExists('ABC-Hilfetestmodul');
     $this->clickLink('ABC-Hilfetestmodul');
@@ -218,37 +158,18 @@ class HelpTopicSearchTest extends HelpTopicTranslatedTestBase {
     // Verify that we can search from the admin/help page.
     $this->drupalGet('admin/help');
     $session->pageTextContains('Search help');
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, ['keys' => 'nonworditem'], 'Search');
-=======
     $this->submitForm(['keys' => 'nonworditem'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(1);
     $session->linkExists('ABC Help Test module');
 
     // Same for German.
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/help', ['keys' => 'nonwordgerman'], 'Search', [
-      'language' => $german,
-    ]);
-=======
     $this->drupalGet('admin/help', ['language' => $german]);
     $this->submitForm(['keys' => 'nonwordgerman'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(1);
     $session->linkExists('ABC-Hilfetestmodul');
 
     // Verify we can search for title text (other searches used text
     // that was part of the body).
-<<<<<<< HEAD
-    $this->drupalPostForm('search/help', ['keys' => 'wcsrefsdf'], 'Search');
-    $this->assertSearchResultsCount(1);
-    $session->linkExists('Foo in English title wcsrefsdf');
-
-    $this->drupalPostForm('admin/help', ['keys' => 'sdeeeee'], 'Search', [
-      'language' => $german,
-    ]);
-=======
     $this->drupalGet('search/help');
     $this->submitForm(['keys' => 'wcsrefsdf'], 'Search');
     $this->assertSearchResultsCount(1);
@@ -256,7 +177,6 @@ class HelpTopicSearchTest extends HelpTopicTranslatedTestBase {
 
     $this->drupalGet('admin/help', ['language' => $german]);
     $this->submitForm(['keys' => 'sdeeeee'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(1);
     $session->linkExists('Barmm Foreign sdeeeee');
 
@@ -265,17 +185,6 @@ class HelpTopicSearchTest extends HelpTopicTranslatedTestBase {
     // topic is rendered each time.
     \Drupal::state()->set('help_topics_test:translated_title', 'Updated translated title');
     $this->cronRun();
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/help', ['keys' => 'sdeeeee'], 'Search', [
-      'language' => $german,
-    ]);
-    $this->assertSearchResultsCount(1);
-    $session->linkExists('Updated translated title');
-    // Searching for the updated test shouldn't produce a match.
-    $this->drupalPostForm('admin/help', ['keys' => 'translated title'], 'Search', [
-      'language' => $german,
-    ]);
-=======
     $this->drupalGet('admin/help', ['language' => $german]);
     $this->submitForm(['keys' => 'sdeeeee'], 'Search');
     $this->assertSearchResultsCount(1);
@@ -283,27 +192,16 @@ class HelpTopicSearchTest extends HelpTopicTranslatedTestBase {
     // Searching for the updated test shouldn't produce a match.
     $this->drupalGet('admin/help', ['language' => $german]);
     $this->submitForm(['keys' => 'translated title'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(0);
 
     // Clear the caches and re-run cron - this should re-index the help.
     $this->rebuildAll();
     $this->cronRun();
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/help', ['keys' => 'sdeeeee'], 'Search', [
-      'language' => $german,
-    ]);
-    $this->assertSearchResultsCount(0);
-    $this->drupalPostForm('admin/help', ['keys' => 'translated title'], 'Search', [
-      'language' => $german,
-    ]);
-=======
     $this->drupalGet('admin/help', ['language' => $german]);
     $this->submitForm(['keys' => 'sdeeeee'], 'Search');
     $this->assertSearchResultsCount(0);
     $this->drupalGet('admin/help', ['language' => $german]);
     $this->submitForm(['keys' => 'translated title'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(1);
     $session->linkExists('Updated translated title');
 
@@ -329,13 +227,6 @@ class HelpTopicSearchTest extends HelpTopicTranslatedTestBase {
     $this->drupalGet('admin/help');
     $session->pageTextContains('Search help');
 
-<<<<<<< HEAD
-    $this->drupalPostForm('search/help', ['keys' => 'nonworditem'], 'Search');
-    $this->assertSearchResultsCount(1);
-    $session->linkExists('ABC Help Test module');
-
-    $this->drupalPostForm('search/help', ['keys' => 'notawordenglish'], 'Search');
-=======
     $this->drupalGet('search/help');
     $this->submitForm(['keys' => 'nonworditem'], 'Search');
     $this->assertSearchResultsCount(1);
@@ -343,19 +234,14 @@ class HelpTopicSearchTest extends HelpTopicTranslatedTestBase {
 
     $this->drupalGet('search/help');
     $this->submitForm(['keys' => 'notawordenglish'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(0);
     $session->pageTextContains('no results');
 
     // Uninstall the test module and verify its topics are immediately not
     // searchable.
     \Drupal::service('module_installer')->uninstall(['help_topics_test']);
-<<<<<<< HEAD
-    $this->drupalPostForm('search/help', ['keys' => 'nonworditem'], 'Search');
-=======
     $this->drupalGet('search/help');
     $this->submitForm(['keys' => 'nonworditem'], 'Search');
->>>>>>> dev
     $this->assertSearchResultsCount(0);
   }
 
@@ -363,25 +249,16 @@ class HelpTopicSearchTest extends HelpTopicTranslatedTestBase {
    * Tests uninstalling the help_topics module.
    */
   public function testUninstall() {
-<<<<<<< HEAD
-=======
     \Drupal::service('module_installer')->uninstall(['help_topics_test']);
->>>>>>> dev
     // Ensure we can uninstall help_topics and use the help system without
     // breaking.
     $this->drupalLogin($this->rootUser);
     $edit = [];
     $edit['uninstall[help_topics]'] = TRUE;
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/modules/uninstall', $edit, t('Uninstall'));
-    $this->drupalPostForm(NULL, NULL, t('Uninstall'));
-    $this->assertText(t('The selected modules have been uninstalled.'), 'Modules status has been updated.');
-=======
     $this->drupalGet('admin/modules/uninstall');
     $this->submitForm($edit, 'Uninstall');
     $this->submitForm([], 'Uninstall');
     $this->assertSession()->pageTextContains('The selected modules have been uninstalled.');
->>>>>>> dev
     $this->drupalGet('admin/help');
     $this->assertSession()->statusCodeEquals(200);
   }

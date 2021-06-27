@@ -3,10 +3,6 @@
 namespace Drupal\views\Entity\Render;
 
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
@@ -27,15 +23,6 @@ use Drupal\views\ViewExecutable;
 class EntityFieldRenderer extends RendererBase {
   use EntityTranslationRenderTrait;
   use DependencySerializationTrait;
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * The relationship being handled.
@@ -81,21 +68,10 @@ class EntityFieldRenderer extends RendererBase {
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
    */
-<<<<<<< HEAD
-  public function __construct(ViewExecutable $view, $relationship, LanguageManagerInterface $language_manager, EntityTypeInterface $entity_type, EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository = NULL) {
-    parent::__construct($view, $language_manager, $entity_type);
-    $this->relationship = $relationship;
-    $this->entityTypeManager = $entity_type_manager;
-    if (!$entity_repository) {
-      @trigger_error('Calling EntityFieldRenderer::__construct() with the $entity_repository argument is supported in drupal:8.7.0 and will be required before drupal:9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $entity_repository = \Drupal::service('entity.repository');
-    }
-=======
   public function __construct(ViewExecutable $view, $relationship, LanguageManagerInterface $language_manager, EntityTypeInterface $entity_type, EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository) {
     parent::__construct($view, $language_manager, $entity_type);
     $this->relationship = $relationship;
     $this->entityTypeManager = $entity_type_manager;
->>>>>>> dev
     $this->entityRepository = $entity_repository;
   }
 
@@ -116,18 +92,6 @@ class EntityFieldRenderer extends RendererBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function getEntityManager() {
-    // This relies on DeprecatedServicePropertyTrait to trigger a deprecation
-    // message in case it is accessed.
-    return $this->entityManager;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-=======
->>>>>>> dev
   protected function getEntityTypeManager() {
     return $this->entityTypeManager;
   }

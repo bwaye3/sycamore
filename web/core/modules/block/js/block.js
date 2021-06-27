@@ -16,14 +16,6 @@
         var vals = [];
         var $checkboxes = $(context).find('input[type="checkbox"]:checked + label');
         var il = $checkboxes.length;
-<<<<<<< HEAD
-        for (var i = 0; i < il; i++) {
-          vals.push($($checkboxes[i]).html());
-        }
-        if (!vals.length) {
-          vals.push(Drupal.t('Not restricted'));
-        }
-=======
 
         for (var i = 0; i < il; i++) {
           vals.push($($checkboxes[i]).html());
@@ -33,20 +25,13 @@
           vals.push(Drupal.t('Not restricted'));
         }
 
->>>>>>> dev
         return vals.join(', ');
       }
 
       $('[data-drupal-selector="edit-visibility-node-type"], [data-drupal-selector="edit-visibility-language"], [data-drupal-selector="edit-visibility-user-role"]').drupalSetSummary(checkboxesSummary);
-<<<<<<< HEAD
-
-      $('[data-drupal-selector="edit-visibility-request-path"]').drupalSetSummary(function (context) {
-        var $pages = $(context).find('textarea[name="visibility[request_path][pages]"]');
-=======
       $('[data-drupal-selector="edit-visibility-request-path"]').drupalSetSummary(function (context) {
         var $pages = $(context).find('textarea[name="visibility[request_path][pages]"]');
 
->>>>>>> dev
         if (!$pages.val()) {
           return Drupal.t('Not restricted');
         }
@@ -55,10 +40,6 @@
       });
     }
   };
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
   Drupal.behaviors.blockDrag = {
     attach: function attach(context, settings) {
       if (typeof Drupal.tableDrag === 'undefined' || typeof Drupal.tableDrag.blocks === 'undefined') {
@@ -85,13 +66,8 @@
 
       function updateLastPlaced(table, rowObject) {
         table.find('.color-success').removeClass('color-success');
-<<<<<<< HEAD
-
-        var $rowObject = $(rowObject);
-=======
         var $rowObject = $(rowObject);
 
->>>>>>> dev
         if (!$rowObject.is('.drag-previous')) {
           table.find('.drag-previous').removeClass('drag-previous');
           $rowObject.addClass('drag-previous');
@@ -100,21 +76,12 @@
 
       function updateBlockWeights(table, region) {
         var weight = -Math.round(table.find('.draggable').length / 2);
-<<<<<<< HEAD
-
-        table.find('.region-' + region + '-message').nextUntil('.region-title').find('select.block-weight').val(function () {
-=======
         table.find(".region-".concat(region, "-message")).nextUntil('.region-title').find('select.block-weight').val(function () {
->>>>>>> dev
           return ++weight;
         });
       }
 
       var table = $('#blocks');
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
       var tableDrag = Drupal.tableDrag.blocks;
 
       tableDrag.row.prototype.onSwap = function (swappedRow) {
@@ -125,27 +92,10 @@
       tableDrag.onDrop = function () {
         var dragObject = this;
         var $rowElement = $(dragObject.rowObject.element);
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         var regionRow = $rowElement.prevAll('tr.region-message').get(0);
         var regionName = regionRow.className.replace(/([^ ]+[ ]+)*region-([^ ]+)-message([ ]+[^ ]+)*/, '$2');
         var regionField = $rowElement.find('select.block-region-select');
 
-<<<<<<< HEAD
-        if (regionField.find('option[value=' + regionName + ']').length === 0) {
-          window.alert(Drupal.t('The block cannot be placed in this region.'));
-
-          regionField.trigger('change');
-        }
-
-        if (!regionField.is('.block-region-' + regionName)) {
-          var weightField = $rowElement.find('select.block-weight');
-          var oldRegionName = weightField[0].className.replace(/([^ ]+[ ]+)*block-weight-([^ ]+)([ ]+[^ ]+)*/, '$2');
-          regionField.removeClass('block-region-' + oldRegionName).addClass('block-region-' + regionName);
-          weightField.removeClass('block-weight-' + oldRegionName).addClass('block-weight-' + regionName);
-=======
         if (regionField.find("option[value=".concat(regionName, "]")).length === 0) {
           window.alert(Drupal.t('The block cannot be placed in this region.'));
           regionField.trigger('change');
@@ -156,7 +106,6 @@
           var oldRegionName = weightField[0].className.replace(/([^ ]+[ ]+)*block-weight-([^ ]+)([ ]+[^ ]+)*/, '$2');
           regionField.removeClass("block-region-".concat(oldRegionName)).addClass("block-region-".concat(regionName));
           weightField.removeClass("block-weight-".concat(oldRegionName)).addClass("block-weight-".concat(regionName));
->>>>>>> dev
           regionField.val(regionName);
         }
 
@@ -166,32 +115,18 @@
       $(context).find('select.block-region-select').once('block-region-select').on('change', function (event) {
         var row = $(this).closest('tr');
         var select = $(this);
-<<<<<<< HEAD
-
-        tableDrag.rowObject = new tableDrag.row(row[0]);
-        var regionMessage = table.find('.region-' + select[0].value + '-message');
-        var regionItems = regionMessage.nextUntil('.region-message, .region-title');
-=======
         tableDrag.rowObject = new tableDrag.row(row[0]);
         var regionMessage = table.find(".region-".concat(select[0].value, "-message"));
         var regionItems = regionMessage.nextUntil('.region-message, .region-title');
 
->>>>>>> dev
         if (regionItems.length) {
           regionItems.last().after(row);
         } else {
             regionMessage.after(row);
           }
-<<<<<<< HEAD
-        updateBlockWeights(table, select[0].value);
-
-        checkEmptyRegions(table, tableDrag.rowObject);
-
-=======
 
         updateBlockWeights(table, select[0].value);
         checkEmptyRegions(table, tableDrag.rowObject);
->>>>>>> dev
         updateLastPlaced(table, row);
 
         if (!tableDrag.changed) {

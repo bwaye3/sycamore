@@ -1,10 +1,6 @@
 {
   "extends": "stylelint-config-standard",
   "plugins": [
-<<<<<<< HEAD
-    "stylelint-no-browser-hacks/lib",
-=======
->>>>>>> dev
     "stylelint-order"
   ],
   "rules": {
@@ -117,25 +113,19 @@
       "margin-right",
       "margin-bottom",
       "margin-left",
-<<<<<<< HEAD
-=======
       "margin-block-start",
       "margin-block-end",
       "margin-inline-start",
       "margin-inline-end",
->>>>>>> dev
       "padding",
       "padding-top",
       "padding-right",
       "padding-bottom",
       "padding-left",
-<<<<<<< HEAD
-=======
       "padding-block-start",
       "padding-block-end",
       "padding-inline-start",
       "padding-inline-end",
->>>>>>> dev
 
       "table-layout",
       "-webkit-columns",
@@ -342,8 +332,6 @@
       "border-left-width",
       "border-left-style",
       "border-left-color",
-<<<<<<< HEAD
-=======
       "border-block-start",
       "border-block-start-width",
       "border-block-start-style",
@@ -360,7 +348,6 @@
       "border-inline-start-width",
       "border-inline-start-style",
       "border-inline-start-color",
->>>>>>> dev
       "-webkit-border-radius",
       "-moz-border-radius",
       "border-radius",
@@ -457,27 +444,11 @@
       "font-smooth",
       "line-height"
     ],
-<<<<<<< HEAD
-    "plugin/no-browser-hacks": [true, {
-      "browsers": [
-        "ie >= 9",
-        "edge >= 13",
-        "firefox >= 5",
-        "opera >= 12",
-        "safari >= 5",
-        "chrome >= 56"
-      ]
-    }],
-=======
->>>>>>> dev
     "property-no-unknown": null,
     "rule-empty-line-before": null,
     "selector-pseudo-element-colon-notation": null,
     "shorthand-property-no-redundant-values": null,
     "string-quotes": "double",
-<<<<<<< HEAD
-    "unit-whitelist": ["deg", "em", "ex", "ms", "rem", "%", "s", "px", "vw", "vh"]
-=======
     "unit-allowed-list": ["ch", "deg", "em", "ex", "fr", "ms", "rem", "%", "s", "px", "vw", "vh"],
     "value-keyword-case": ["lower", {
       "ignoreProperties": [
@@ -485,18 +456,13 @@
         "font-family"
       ]
     }]
->>>>>>> dev
   },
   "ignoreFiles": [
     "assets/vendor/**/*.css",
     "tests/Drupal/Tests/Core/Asset/css_test_files/**/*.css",
-<<<<<<< HEAD
-    "modules/media/css/plugins/drupalmedia/ckeditor.drupalmedia.css"
-=======
     "modules/media/css/plugins/drupalmedia/ckeditor.drupalmedia.css",
     "themes/stable/css/core/assets/vendor/**/*.css",
     "themes/stable9/css/core/assets/vendor/**/*.css",
     "themes/stable9/css/media/plugins/drupalmedia/ckeditor.drupalmedia.css"
->>>>>>> dev
   ]
 }

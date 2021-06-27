@@ -37,11 +37,7 @@ class ComplexDataNormalizerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->normalizer = new ComplexDataNormalizer();
   }
 
@@ -56,11 +52,7 @@ class ComplexDataNormalizerTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test normalizing complex data.
-=======
    * Tests normalizing complex data.
->>>>>>> dev
    *
    * @covers ::normalize
    */
@@ -88,11 +80,7 @@ class ComplexDataNormalizerTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test normalize() where $object does not implement ComplexDataInterface.
-=======
    * Tests normalize() where $object does not implement ComplexDataInterface.
->>>>>>> dev
    *
    * Normalizers extending ComplexDataNormalizer may have a different supported
    * class.

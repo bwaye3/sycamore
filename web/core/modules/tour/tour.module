@@ -114,8 +114,6 @@ function tour_tour_insert($entity) {
 function tour_tour_update($entity) {
   \Drupal::service('plugin.manager.tour.tip')->clearCachedDefinitions();
 }
-<<<<<<< HEAD
-=======
 
 /**
  * Implements hook_ENTITY_TYPE_presave() for tour entities.
@@ -195,4 +193,3 @@ function _tour_update_joyride(Tour $tour, bool $trigger_deprecation = TRUE): boo
 
   return $needs_save;
 }
->>>>>>> dev

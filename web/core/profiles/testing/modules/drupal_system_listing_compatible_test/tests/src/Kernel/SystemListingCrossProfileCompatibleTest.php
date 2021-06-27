@@ -20,11 +20,7 @@ class SystemListingCrossProfileCompatibleTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['drupal_system_cross_profile_test'];
-=======
   protected static $modules = ['drupal_system_cross_profile_test'];
->>>>>>> dev
 
   /**
    * Use the Minimal profile.
@@ -41,11 +37,7 @@ class SystemListingCrossProfileCompatibleTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->setInstallProfile($this->profile);

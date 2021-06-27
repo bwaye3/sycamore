@@ -3,13 +3,9 @@
 namespace Drupal\Core\Language;
 
 /**
-<<<<<<< HEAD
- * Defines a language.
-=======
  * Defines an interface for languages.
  *
  * @ingroup i18n
->>>>>>> dev
  */
 interface LanguageInterface {
 

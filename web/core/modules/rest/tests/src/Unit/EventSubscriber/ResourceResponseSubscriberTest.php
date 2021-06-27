@@ -17,11 +17,7 @@ use Drupal\serialization\Encoder\XmlEncoder;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
 use Symfony\Component\HttpFoundation\Request;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Serializer\Serializer;
@@ -43,11 +39,7 @@ class ResourceResponseSubscriberTest extends UnitTestCase {
 
     $handler_response = new ResourceResponse($data);
     $resource_response_subscriber = $this->getFunctioningResourceResponseSubscriber($route_match);
-<<<<<<< HEAD
-    $event = new FilterResponseEvent(
-=======
     $event = new ResponseEvent(
->>>>>>> dev
       $this->prophesize(HttpKernelInterface::class)->reveal(),
       $request,
       HttpKernelInterface::MASTER_REQUEST,
@@ -65,10 +57,7 @@ class ResourceResponseSubscriberTest extends UnitTestCase {
       'default' => [NULL, ''],
       'empty string' => [''],
       'simple string' => ['string'],
-<<<<<<< HEAD
-=======
       // cSpell:disable-next-line
->>>>>>> dev
       'complex string' => ['Complex \ string $%^&@ with unicode ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΣὨ'],
       'empty array' => [[]],
       'numeric array' => [['test']],
@@ -154,11 +143,7 @@ class ResourceResponseSubscriberTest extends UnitTestCase {
       // The ResourceResponseSubscriber must then generate a response body and
       // transform it to a plain CacheableResponse object.
       $resource_response_subscriber = $this->getFunctioningResourceResponseSubscriber($route_match);
-<<<<<<< HEAD
-      $event = new FilterResponseEvent(
-=======
       $event = new ResponseEvent(
->>>>>>> dev
         $this->prophesize(HttpKernelInterface::class)->reveal(),
         $request,
         HttpKernelInterface::MASTER_REQUEST,
@@ -208,11 +193,7 @@ class ResourceResponseSubscriberTest extends UnitTestCase {
       // The ResourceResponseSubscriber must then generate a response body and
       // transform it to a plain Response object.
       $resource_response_subscriber = $this->getFunctioningResourceResponseSubscriber($route_match);
-<<<<<<< HEAD
-      $event = new FilterResponseEvent(
-=======
       $event = new ResponseEvent(
->>>>>>> dev
         $this->prophesize(HttpKernelInterface::class)->reveal(),
         $request,
         HttpKernelInterface::MASTER_REQUEST,

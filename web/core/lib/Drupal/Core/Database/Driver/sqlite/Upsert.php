@@ -6,11 +6,8 @@ use Drupal\Core\Database\Query\Upsert as QueryUpsert;
 
 /**
  * SQLite implementation of \Drupal\Core\Database\Query\Upsert.
-<<<<<<< HEAD
-=======
  *
  * @see https://www.sqlite.org/lang_UPSERT.html
->>>>>>> dev
  */
 class Upsert extends QueryUpsert {
 
@@ -23,22 +20,15 @@ class Upsert extends QueryUpsert {
 
     // Default fields are always placed first for consistency.
     $insert_fields = array_merge($this->defaultFields, $this->insertFields);
-<<<<<<< HEAD
-
-    $query = $comments . 'INSERT OR REPLACE INTO {' . $this->table . '} (' . implode(', ', $insert_fields) . ') VALUES ';
-=======
     $insert_fields = array_map(function ($field) {
       return $this->connection->escapeField($field);
     }, $insert_fields);
 
     $query = $comments . 'INSERT INTO {' . $this->table . '} (' . implode(', ', $insert_fields) . ') VALUES ';
->>>>>>> dev
 
     $values = $this->getInsertPlaceholderFragment($this->insertValues, $this->defaultFields);
     $query .= implode(', ', $values);
 
-<<<<<<< HEAD
-=======
     // Updating the unique / primary key is not necessary.
     unset($insert_fields[$this->key]);
 
@@ -51,7 +41,6 @@ class Upsert extends QueryUpsert {
 
     $query .= ' ON CONFLICT (' . $this->connection->escapeField($this->key) . ') DO UPDATE SET ' . implode(', ', $update);
 
->>>>>>> dev
     return $query;
   }
 

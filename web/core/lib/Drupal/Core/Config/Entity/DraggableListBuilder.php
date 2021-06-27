@@ -35,14 +35,6 @@ abstract class DraggableListBuilder extends ConfigEntityListBuilder implements F
   protected $weightKey = FALSE;
 
   /**
-<<<<<<< HEAD
-   * {@inheritdoc}
-   */
-  protected $limit = FALSE;
-
-  /**
-=======
->>>>>>> dev
    * The form builder.
    *
    * @var \Drupal\Core\Form\FormBuilderInterface
@@ -59,10 +51,7 @@ abstract class DraggableListBuilder extends ConfigEntityListBuilder implements F
     if ($this->entityType->hasKey('weight')) {
       $this->weightKey = $this->entityType->getKey('weight');
     }
-<<<<<<< HEAD
-=======
     $this->limit = FALSE;
->>>>>>> dev
   }
 
   /**
@@ -136,11 +125,7 @@ abstract class DraggableListBuilder extends ConfigEntityListBuilder implements F
     foreach ($this->entities as $entity) {
       $row = $this->buildRow($entity);
       if (isset($row['label'])) {
-<<<<<<< HEAD
-        $row['label'] = ['#markup' => $row['label']];
-=======
         $row['label'] = ['#plain_text' => $row['label']];
->>>>>>> dev
       }
       if (isset($row['weight'])) {
         $row['weight']['#delta'] = $delta;

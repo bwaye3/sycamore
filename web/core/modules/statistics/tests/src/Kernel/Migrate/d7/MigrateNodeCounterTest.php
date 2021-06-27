@@ -14,11 +14,7 @@ class MigrateNodeCounterTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'content_translation',
     'language',
     'menu_ui',
@@ -30,11 +26,7 @@ class MigrateNodeCounterTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installSchema('node', ['node_access']);

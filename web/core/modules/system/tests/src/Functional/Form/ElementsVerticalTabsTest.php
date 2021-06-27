@@ -18,11 +18,7 @@ class ElementsVerticalTabsTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['form_test'];
-=======
   protected static $modules = ['form_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -43,11 +39,7 @@ class ElementsVerticalTabsTest extends BrowserTestBase {
    */
   protected $webUser;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->adminUser = $this->drupalCreateUser([
@@ -67,13 +59,9 @@ class ElementsVerticalTabsTest extends BrowserTestBase {
     $content = $this->getSession()->getPage()->getContent();
     $position1 = strpos($content, 'core/misc/vertical-tabs.js');
     $position2 = strpos($content, 'core/misc/collapse.js');
-<<<<<<< HEAD
-    $this->assertTrue($position1 !== FALSE && $position2 !== FALSE && $position1 < $position2, 'vertical-tabs.js is included before collapse.js');
-=======
     $this->assertNotFalse($position1);
     $this->assertNotFalse($position2);
     $this->assertGreaterThan($position1, $position2, 'vertical-tabs.js is included before collapse.js');
->>>>>>> dev
   }
 
   /**
@@ -82,22 +70,12 @@ class ElementsVerticalTabsTest extends BrowserTestBase {
   public function testWrapperNotShownWhenEmpty() {
     // Test admin user can see vertical tabs and wrapper.
     $this->drupalGet('form_test/vertical-tabs');
-<<<<<<< HEAD
-    $wrapper = $this->xpath("//div[@data-vertical-tabs-panes]");
-    $this->assertTrue(isset($wrapper[0]), 'Vertical tab panes found.');
-=======
     $this->assertSession()->elementExists('xpath', "//div[@data-vertical-tabs-panes]");
->>>>>>> dev
 
     // Test wrapper markup not present for non-privileged web user.
     $this->drupalLogin($this->webUser);
     $this->drupalGet('form_test/vertical-tabs');
-<<<<<<< HEAD
-    $wrapper = $this->xpath("//div[@data-vertical-tabs-panes]");
-    $this->assertFalse(isset($wrapper[0]), 'Vertical tab wrappers are not displayed to unprivileged users.');
-=======
     $this->assertSession()->elementNotExists('xpath', "//div[@data-vertical-tabs-panes]");
->>>>>>> dev
   }
 
   /**
@@ -117,13 +95,9 @@ class ElementsVerticalTabsTest extends BrowserTestBase {
    * Ensures that vertical tab form values are cleaned.
    */
   public function testDefaultTabCleaned() {
-<<<<<<< HEAD
-    $values = Json::decode($this->drupalPostForm('form_test/form-state-values-clean', [], t('Submit')));
-=======
     $this->drupalGet('form_test/form-state-values-clean');
     $this->submitForm([], 'Submit');
     $values = Json::decode($this->getSession()->getPage()->getContent());
->>>>>>> dev
     $this->assertFalse(isset($values['vertical_tabs__active_tab']), new FormattableMarkup('%element was removed.', ['%element' => 'vertical_tabs__active_tab']));
   }
 

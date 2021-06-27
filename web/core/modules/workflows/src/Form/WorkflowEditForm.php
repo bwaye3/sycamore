@@ -52,11 +52,7 @@ class WorkflowEditForm extends EntityForm {
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
 
-<<<<<<< HEAD
-    /* @var \Drupal\workflows\WorkflowInterface $workflow */
-=======
     /** @var \Drupal\workflows\WorkflowInterface $workflow */
->>>>>>> dev
     $workflow = $this->entity;
     $workflow_type = $workflow->getTypePlugin();
     $form['#title'] = $this->t('Edit %label workflow', ['%label' => $workflow->label()]);
@@ -235,11 +231,7 @@ class WorkflowEditForm extends EntityForm {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-<<<<<<< HEAD
-    /* @var \Drupal\workflows\WorkflowInterface $workflow */
-=======
     /** @var \Drupal\workflows\WorkflowInterface $workflow */
->>>>>>> dev
     $workflow = $this->entity;
     $workflow_type = $workflow->getTypePlugin();
 
@@ -255,11 +247,7 @@ class WorkflowEditForm extends EntityForm {
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
-<<<<<<< HEAD
-    /* @var \Drupal\workflows\WorkflowInterface $workflow */
-=======
     /** @var \Drupal\workflows\WorkflowInterface $workflow */
->>>>>>> dev
     $workflow = $this->entity;
     $workflow_type = $workflow->getTypePlugin();
 

@@ -16,13 +16,6 @@ class BlockContentTypeDeleteForm extends EntityDeleteForm {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-<<<<<<< HEAD
-    $blocks = $this->entityTypeManager->getStorage('block_content')->getQuery()
-      ->condition('type', $this->entity->id())
-      ->execute();
-    if (!empty($blocks)) {
-      $caption = '<p>' . $this->formatPlural(count($blocks), '%label is used by 1 custom block on your site. You can not remove this block type until you have removed all of the %label blocks.', '%label is used by @count custom blocks on your site. You may not remove %label until you have removed all of the %label custom blocks.', ['%label' => $this->entity->label()]) . '</p>';
-=======
     $block_count = $this->entityTypeManager->getStorage('block_content')->getQuery()
       ->accessCheck(FALSE)
       ->condition('type', $this->entity->id())
@@ -30,7 +23,6 @@ class BlockContentTypeDeleteForm extends EntityDeleteForm {
       ->execute();
     if ($block_count) {
       $caption = '<p>' . $this->formatPlural($block_count, '%label is used by 1 custom block on your site. You can not remove this block type until you have removed all of the %label blocks.', '%label is used by @count custom blocks on your site. You may not remove %label until you have removed all of the %label custom blocks.', ['%label' => $this->entity->label()]) . '</p>';
->>>>>>> dev
       $form['description'] = ['#markup' => $caption];
       return $form;
     }

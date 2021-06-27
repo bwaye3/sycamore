@@ -3,21 +3,13 @@
 namespace Drupal\views\Plugin\views\display;
 
 use Drupal\Core\Database\Connection;
-<<<<<<< HEAD
-use Drupal\Core\Database\Query\Condition;
-=======
->>>>>>> dev
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * The plugin that handles an EntityReference display.
  *
  * "entity_reference_display" is a custom property, used with
-<<<<<<< HEAD
- * \Drupal\views\Views::getApplicableViews() to retrieve all views with a
-=======
  * \Drupal\views\Views::getApplicableViews() to retrieve all views with an
->>>>>>> dev
  * 'Entity Reference' display.
  *
  * @ingroup views_display_plugins
@@ -176,13 +168,8 @@ class EntityReference extends DisplayPluginBase {
         }
       }
 
-<<<<<<< HEAD
-      // Multiple search fields are OR'd together.
-      $conditions = new Condition('OR');
-=======
       // Multiple search fields are ORed together.
       $conditions = $this->view->query->getConnection()->condition('OR');
->>>>>>> dev
 
       // Build the condition using the selected search fields.
       foreach ($style_options['options']['search_fields'] as $field_id) {

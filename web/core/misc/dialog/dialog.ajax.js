@@ -15,10 +15,7 @@
       }
 
       var $dialog = $context.closest('.ui-dialog-content');
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       if ($dialog.length) {
         if ($dialog.dialog('option', 'drupalAutoButtons')) {
           $dialog.trigger('dialogButtonsChange');
@@ -30,11 +27,7 @@
       var originalClose = settings.dialog.close;
 
       settings.dialog.close = function (event) {
-<<<<<<< HEAD
-        for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-=======
         for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
->>>>>>> dev
           args[_key - 1] = arguments[_key];
         }
 
@@ -46,13 +39,9 @@
       var buttons = [];
       var $buttons = $dialog.find('.form-actions input[type=submit], .form-actions a.button');
       $buttons.each(function () {
-<<<<<<< HEAD
-        var $originalButton = $(this).css({ display: 'none' });
-=======
         var $originalButton = $(this).css({
           display: 'none'
         });
->>>>>>> dev
         buttons.push({
           text: $originalButton.html() || $originalButton.attr('value'),
           class: $originalButton.attr('class'),
@@ -74,17 +63,11 @@
     if (!response.selector) {
       return false;
     }
-<<<<<<< HEAD
-    var $dialog = $(response.selector);
-    if (!$dialog.length) {
-      $dialog = $('<div id="' + response.selector.replace(/^#/, '') + '" class="ui-front"></div>').appendTo('body');
-=======
 
     var $dialog = $(response.selector);
 
     if (!$dialog.length) {
       $dialog = $("<div id=\"".concat(response.selector.replace(/^#/, ''), "\" class=\"ui-front\"></div>")).appendTo('body');
->>>>>>> dev
     }
 
     if (!ajax.wrapper) {
@@ -104,15 +87,9 @@
       var buttons = Drupal.behaviors.dialog.prepareDialogButtons($dialog);
       $dialog.dialog('option', 'buttons', buttons);
     });
-<<<<<<< HEAD
-
-    response.dialogOptions = response.dialogOptions || {};
-    var dialog = Drupal.dialog($dialog.get(0), response.dialogOptions);
-=======
     response.dialogOptions = response.dialogOptions || {};
     var dialog = Drupal.dialog($dialog.get(0), response.dialogOptions);
 
->>>>>>> dev
     if (response.dialogOptions.modal) {
       dialog.showModal();
     } else {
@@ -124,15 +101,10 @@
 
   Drupal.AjaxCommands.prototype.closeDialog = function (ajax, response, status) {
     var $dialog = $(response.selector);
-<<<<<<< HEAD
-    if ($dialog.length) {
-      Drupal.dialog($dialog.get(0)).close();
-=======
 
     if ($dialog.length) {
       Drupal.dialog($dialog.get(0)).close();
 
->>>>>>> dev
       if (!response.persist) {
         $dialog.remove();
       }
@@ -143,10 +115,7 @@
 
   Drupal.AjaxCommands.prototype.setDialogOption = function (ajax, response, status) {
     var $dialog = $(response.selector);
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
     if ($dialog.length) {
       $dialog.dialog('option', response.optionName, response.optionValue);
     }
@@ -159,10 +128,6 @@
       e.stopPropagation();
     });
   });
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
   $(window).on('dialog:beforeclose', function (e, dialog, $element) {
     $element.off('.dialog');
   });

@@ -23,11 +23,7 @@ class LanguageTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setUp() {
-=======
   public function setUp(): void {
->>>>>>> dev
     $this->plugin = new Language([], $this->randomMachineName(), []);
   }
 

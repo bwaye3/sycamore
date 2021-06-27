@@ -15,11 +15,7 @@ class RdfMappingHalJsonBasicAuthTest extends RdfMappingResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['hal', 'basic_auth'];
-=======
   protected static $modules = ['hal', 'basic_auth'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

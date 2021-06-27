@@ -12,10 +12,7 @@
     if (widget && widget.name === 'drupalmedia') {
       return widget;
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
     return null;
   }
 
@@ -25,10 +22,6 @@
     }
 
     CKEDITOR.plugins.drupallink.registerLinkableWidget('drupalmedia');
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
     editor.getCommand('drupalunlink').on('exec', function (evt) {
       var widget = getFocusedWidget(editor);
 
@@ -37,18 +30,9 @@
       }
 
       widget.setData('link', null);
-<<<<<<< HEAD
-
-      this.refresh(editor, editor.elementPath());
-
-      evt.cancel();
-    });
-
-=======
       this.refresh(editor, editor.elementPath());
       evt.cancel();
     });
->>>>>>> dev
     editor.getCommand('drupalunlink').on('refresh', function (evt) {
       var widget = getFocusedWidget(editor);
 
@@ -57,10 +41,6 @@
       }
 
       this.setState(widget.data.link ? CKEDITOR.TRISTATE_OFF : CKEDITOR.TRISTATE_DISABLED);
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
       evt.cancel();
     });
 
@@ -78,10 +58,7 @@
             unlink: CKEDITOR.TRISTATE_OFF
           };
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         return {};
       });
     }
@@ -89,30 +66,17 @@
 
   CKEDITOR.plugins.add('drupalmedia', {
     requires: 'widget',
-<<<<<<< HEAD
-
-    beforeInit: function beforeInit(editor) {
-      var dtd = CKEDITOR.dtd;
-
-      dtd['drupal-media'] = { '#': 1 };
-
-=======
     beforeInit: function beforeInit(editor) {
       var dtd = CKEDITOR.dtd;
       dtd['drupal-media'] = {
         '#': 1
       };
->>>>>>> dev
       Object.keys(dtd).forEach(function (tagName) {
         if (dtd[tagName].div) {
           dtd[tagName]['drupal-media'] = 1;
         }
       });
       dtd.a['drupal-media'] = 1;
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
       editor.widgets.add('drupalmedia', {
         allowedContent: {
           'drupal-media': {
@@ -127,10 +91,6 @@
             classes: {}
           }
         },
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         requiredContent: new CKEDITOR.style({
           element: 'drupal-media',
           attributes: {
@@ -138,13 +98,7 @@
             'data-entity-uuid': ''
           }
         }),
-<<<<<<< HEAD
-
         pathName: Drupal.t('Embedded media'),
-
-=======
-        pathName: Drupal.t('Embedded media'),
->>>>>>> dev
         editables: {
           caption: {
             selector: 'figcaption',
@@ -152,18 +106,11 @@
             pathName: Drupal.t('Caption')
           }
         },
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         getLabel: function getLabel() {
           if (this.data.label) {
             return this.data.label;
           }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
           return Drupal.t('Embedded media');
         },
         upcast: function upcast(element, data) {
@@ -172,30 +119,19 @@
           if (element.name !== 'drupal-media' || attributes['data-entity-type'] !== 'media' || attributes['data-entity-uuid'] === undefined) {
             return;
           }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
           data.attributes = CKEDITOR.tools.copy(attributes);
           data.hasCaption = data.attributes.hasOwnProperty('data-caption');
 
           if (data.hasCaption && data.attributes['data-caption'] === '') {
             data.attributes['data-caption'] = ' ';
           }
-<<<<<<< HEAD
-          data.label = null;
-          data.link = null;
-          if (element.parent.name === 'a') {
-            data.link = CKEDITOR.tools.copy(element.parent.attributes);
-
-=======
 
           data.label = null;
           data.link = null;
 
           if (element.parent.name === 'a') {
             data.link = CKEDITOR.tools.copy(element.parent.attributes);
->>>>>>> dev
             Object.keys(element.parent.attributes).forEach(function (attrName) {
               if (attrName.indexOf('data-cke-') !== -1) {
                 delete data.link[attrName];
@@ -204,17 +140,11 @@
           }
 
           var hostEntityLangcode = document.getElementById(editor.name).getAttribute('data-media-embed-host-entity-langcode');
-<<<<<<< HEAD
-          if (hostEntityLangcode) {
-            data.hostEntityLangcode = hostEntityLangcode;
-          }
-=======
 
           if (hostEntityLangcode) {
             data.hostEntityLangcode = hostEntityLangcode;
           }
 
->>>>>>> dev
           return element;
         },
         destroy: function destroy() {
@@ -233,21 +163,14 @@
 
           if (this._previewNeedsServerSideUpdate()) {
             editor.fire('lockSnapshot');
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
             this._tearDownDynamicEditables();
 
             this._loadPreview(function (widget) {
               widget._setUpDynamicEditables();
-<<<<<<< HEAD
-              widget._setUpEditButton();
-=======
 
               widget._setUpEditButton();
 
->>>>>>> dev
               editor.fire('unlockSnapshot');
             });
           }
@@ -259,27 +182,17 @@
           }
 
           this.element.setAttributes(this.data.attributes);
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
           this.oldData = CKEDITOR.tools.clone(this.data);
         },
         downcast: function downcast() {
           var downcastElement = new CKEDITOR.htmlParser.element('drupal-media', this.data.attributes);
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
           if (this.data.link) {
             var link = new CKEDITOR.htmlParser.element('a', this.data.link);
             link.add(downcastElement);
             return link;
           }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
           return downcastElement;
         },
         _setUpDynamicEditables: function _setUpDynamicEditables() {
@@ -287,20 +200,11 @@
 
           if (this.initEditable('caption', this.definition.editables.caption)) {
             var captionEditable = this.editables.caption;
-<<<<<<< HEAD
-
-            captionEditable.setAttribute('data-placeholder', Drupal.t('Enter caption here'));
-
-            this.captionObserver = new MutationObserver(function () {
-              var mediaAttributes = CKEDITOR.tools.clone(_this2.data.attributes);
-              mediaAttributes['data-caption'] = captionEditable.getData();
-=======
             captionEditable.setAttribute('data-placeholder', Drupal.t('Enter caption here'));
             this.captionObserver = new MutationObserver(function () {
               var mediaAttributes = CKEDITOR.tools.clone(_this2.data.attributes);
               mediaAttributes['data-caption'] = captionEditable.getData();
 
->>>>>>> dev
               _this2.setData('attributes', mediaAttributes);
             });
             this.captionObserver.observe(captionEditable.$, {
@@ -332,39 +236,23 @@
           }
 
           embeddedMedia.setStyle('position', 'relative');
-<<<<<<< HEAD
-
           var editButton = CKEDITOR.dom.element.createFromHtml(Drupal.theme('mediaEmbedEditButton'));
           embeddedMedia.getFirst().insertBeforeMe(editButton);
-
-=======
-          var editButton = CKEDITOR.dom.element.createFromHtml(Drupal.theme('mediaEmbedEditButton'));
-          embeddedMedia.getFirst().insertBeforeMe(editButton);
->>>>>>> dev
           var widget = this;
           this.element.findOne('.media-library-item__edit').on('click', function (event) {
             var saveCallback = function saveCallback(values) {
               event.cancel();
               editor.fire('saveSnapshot');
-<<<<<<< HEAD
-              if (values.hasOwnProperty('attributes')) {
-                CKEDITOR.tools.extend(values.attributes, widget.data.attributes);
-
-=======
 
               if (values.hasOwnProperty('attributes')) {
                 CKEDITOR.tools.extend(values.attributes, widget.data.attributes);
->>>>>>> dev
                 Object.keys(values.attributes).forEach(function (prop) {
                   if (values.attributes[prop] === false || prop === 'data-align' && values.attributes[prop] === 'none') {
                     delete values.attributes[prop];
                   }
                 });
               }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
               widget.setData({
                 attributes: values.attributes,
                 hasCaption: !!values.hasCaption
@@ -372,17 +260,6 @@
               editor.fire('saveSnapshot');
             };
 
-<<<<<<< HEAD
-            Drupal.ckeditor.openDialog(editor, Drupal.url('editor/dialog/media/' + editor.config.drupal.format), widget.data, saveCallback, {});
-          });
-
-          this.element.findOne('.media-library-item__edit').on('keydown', function (event) {
-            var returnKey = 13;
-
-            var spaceBar = 32;
-            if (typeof event.data !== 'undefined') {
-              var keypress = event.data.getKey();
-=======
             Drupal.ckeditor.openDialog(editor, Drupal.url("editor/dialog/media/".concat(editor.config.drupal.format)), widget.data, saveCallback, {});
           });
           this.element.findOne('.media-library-item__edit').on('keydown', function (event) {
@@ -392,7 +269,6 @@
             if (typeof event.data !== 'undefined') {
               var keypress = event.data.getKey();
 
->>>>>>> dev
               if (keypress === returnKey || keypress === spaceBar) {
                 event.sender.$.click();
               }
@@ -416,33 +292,20 @@
         },
         _hashData: function _hashData(data) {
           var dataToHash = CKEDITOR.tools.clone(data);
-<<<<<<< HEAD
-
           delete dataToHash.attributes['data-caption'];
-
-=======
-          delete dataToHash.attributes['data-caption'];
->>>>>>> dev
           delete dataToHash.label;
 
           if (dataToHash.link) {
             delete dataToHash.link.href;
           }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
           return JSON.stringify(dataToHash);
         },
         _loadPreview: function _loadPreview(callback) {
           var _this3 = this;
 
           jQuery.get({
-<<<<<<< HEAD
-            url: Drupal.url('media/' + editor.config.drupal.format + '/preview'),
-=======
             url: Drupal.url("media/".concat(editor.config.drupal.format, "/preview")),
->>>>>>> dev
             data: {
               text: this.downcast().getOuterHtml(),
               uuid: this.data.attributes['data-entity-uuid']
@@ -450,13 +313,9 @@
             dataType: 'html',
             success: function success(previewHtml, textStatus, jqXhr) {
               _this3.element.setHtml(previewHtml);
-<<<<<<< HEAD
-              _this3.setData('label', jqXhr.getResponseHeader('Drupal-Media-Label'));
-=======
 
               _this3.setData('label', jqXhr.getResponseHeader('Drupal-Media-Label'));
 
->>>>>>> dev
               callback(_this3);
             },
             error: function error() {

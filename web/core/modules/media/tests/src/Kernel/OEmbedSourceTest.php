@@ -21,14 +21,11 @@ use Prophecy\Argument;
 class OEmbedSourceTest extends MediaKernelTestBase {
 
   /**
-<<<<<<< HEAD
-=======
    * {@inheritdoc}
    */
   protected static $modules = ['media'];
 
   /**
->>>>>>> dev
    * @covers ::getMetadata
    */
   public function testGetMetadata() {

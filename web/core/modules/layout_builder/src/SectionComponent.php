@@ -87,11 +87,7 @@ class SectionComponent {
    */
   public function toRenderArray(array $contexts = [], $in_preview = FALSE) {
     $event = new SectionComponentBuildRenderArrayEvent($this, $contexts, $in_preview);
-<<<<<<< HEAD
-    $this->eventDispatcher()->dispatch(LayoutBuilderEvents::SECTION_COMPONENT_BUILD_RENDER_ARRAY, $event);
-=======
     $this->eventDispatcher()->dispatch($event, LayoutBuilderEvents::SECTION_COMPONENT_BUILD_RENDER_ARRAY);
->>>>>>> dev
     $output = $event->getBuild();
     $event->getCacheableMetadata()->applyTo($output);
     return $output;
@@ -276,11 +272,7 @@ class SectionComponent {
   /**
    * Wraps the event dispatcher.
    *
-<<<<<<< HEAD
-   * @return \Symfony\Component\EventDispatcher\EventDispatcherInterface
-=======
    * @return \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
->>>>>>> dev
    *   The event dispatcher.
    */
   protected function eventDispatcher() {

@@ -24,9 +24,6 @@ class InstallerDatabaseErrorMessagesTest extends InstallerTestBase {
     // it will try and create the drupal_install_test table as this is part of
     // the standard database tests performed by the installer in
     // Drupal\Core\Database\Install\Tasks.
-<<<<<<< HEAD
-    Database::getConnection('default')->query('CREATE TABLE {drupal_install_test} (id int NOT NULL PRIMARY KEY)');
-=======
     $spec = [
       'fields' => [
         'id' => [
@@ -38,7 +35,6 @@ class InstallerDatabaseErrorMessagesTest extends InstallerTestBase {
     ];
 
     Database::getConnection('default')->schema()->createTable('drupal_install_test', $spec);
->>>>>>> dev
     parent::setUpSettings();
   }
 

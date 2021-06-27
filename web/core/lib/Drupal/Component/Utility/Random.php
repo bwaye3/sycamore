@@ -139,11 +139,6 @@ class Random {
    * @return string
    */
   public function word($length) {
-<<<<<<< HEAD
-    mt_srand((double) microtime() * 1000000);
-
-=======
->>>>>>> dev
     $vowels = ["a", "e", "i", "o", "u"];
     $cons = ["b", "c", "d", "g", "h", "j", "k", "l", "m", "n", "p", "r", "s", "t", "u", "v", "w", "tr",
       "cr", "br", "fr", "th", "dr", "ch", "ph", "wr", "st", "sp", "sw", "pr",
@@ -195,10 +190,7 @@ class Random {
    *   Nonsense latin words which form sentence(s).
    */
   public function sentences($min_word_count, $capitalize = FALSE) {
-<<<<<<< HEAD
-=======
     // cSpell:disable
->>>>>>> dev
     $dictionary = ["abbas", "abdo", "abico", "abigo", "abluo", "accumsan",
       "acsi", "ad", "adipiscing", "aliquam", "aliquip", "amet", "antehabeo",
       "appellatio", "aptent", "at", "augue", "autem", "bene", "blandit",
@@ -230,10 +222,7 @@ class Random {
       "virtus", "voco", "volutpat", "vulpes", "vulputate", "wisi", "ymo",
       "zelus",
     ];
-<<<<<<< HEAD
-=======
     // cSpell:enable
->>>>>>> dev
     $dictionary_flipped = array_flip($dictionary);
     $greeking = '';
 

@@ -1,10 +1,6 @@
 name: 'Media test type'
 type: module
 description: 'Provides test type for a media item.'
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 package: Testing
 version: VERSION
 dependencies:

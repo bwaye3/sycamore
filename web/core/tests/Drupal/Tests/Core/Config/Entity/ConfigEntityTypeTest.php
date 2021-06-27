@@ -24,11 +24,7 @@ class ConfigEntityTypeTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->typedConfigManager = $this->createMock(TypedConfigManagerInterface::class);
     $container = new ContainerBuilder();
     $container->set('config.typed', $this->typedConfigManager);
@@ -197,25 +193,6 @@ class ConfigEntityTypeTest extends UnitTestCase {
 
   /**
    * @covers ::getPropertiesToExport
-<<<<<<< HEAD
-   *
-   * @group legacy
-   * @expectedDeprecation Entity type "example_config_entity_type" is using config schema as a fallback for a missing `config_export` definition is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. See https://www.drupal.org/node/2949023.
-   */
-  public function testGetPropertiesToExportSchemaFallback() {
-    $this->typedConfigManager->expects($this->once())
-      ->method('getDefinition')
-      ->will($this->returnValue(['mapping' => ['id' => '', 'dependencies' => '']]));
-    $config_entity_type = new ConfigEntityType([
-      'id' => 'example_config_entity_type',
-    ]);
-    $this->assertEquals(['id' => 'id', 'dependencies' => 'dependencies'], $config_entity_type->getPropertiesToExport('test'));
-  }
-
-  /**
-   * @covers ::getPropertiesToExport
-=======
->>>>>>> dev
    */
   public function testGetPropertiesToExportNoFallback() {
     $config_entity_type = new ConfigEntityType([

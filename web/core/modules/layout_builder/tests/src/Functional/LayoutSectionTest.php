@@ -18,11 +18,7 @@ class LayoutSectionTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'field_ui',
     'layout_builder',
     'node',
@@ -37,11 +33,7 @@ class LayoutSectionTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->createContentType([
@@ -280,12 +272,8 @@ class LayoutSectionTest extends BrowserTestBase {
     $display = LayoutBuilderEntityViewDisplay::load('node.bundle_with_section_field.default');
     $this->assertInstanceOf(LayoutBuilderEntityViewDisplay::class, $display);
 
-<<<<<<< HEAD
-    $this->drupalPostForm('/admin/structure/types/manage/bundle_with_section_field/delete', [], 'Delete');
-=======
     $this->drupalGet('/admin/structure/types/manage/bundle_with_section_field/delete');
     $this->submitForm([], 'Delete');
->>>>>>> dev
     $assert_session->statusCodeEquals(200);
 
     $display = LayoutBuilderEntityViewDisplay::load('node.bundle_with_section_field.default');

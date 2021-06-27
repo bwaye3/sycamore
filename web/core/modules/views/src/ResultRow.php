@@ -12,10 +12,7 @@ class ResultRow {
    *
    * @var \Drupal\Core\Entity\EntityInterface
    */
-<<<<<<< HEAD
-=======
   // phpcs:ignore Drupal.Classes.PropertyDeclaration
->>>>>>> dev
   public $_entity = NULL;
 
   /**
@@ -23,10 +20,7 @@ class ResultRow {
    *
    * @var \Drupal\Core\Entity\EntityInterface[]
    */
-<<<<<<< HEAD
-=======
   // phpcs:ignore Drupal.Classes.PropertyDeclaration
->>>>>>> dev
   public $_relationship_entities = [];
 
   /**

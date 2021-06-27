@@ -16,11 +16,7 @@ class RebuildTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'form_test'];
-=======
   protected static $modules = ['node', 'form_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -34,11 +30,7 @@ class RebuildTest extends BrowserTestBase {
    */
   protected $webUser;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalCreateContentType(['type' => 'page', 'name' => 'Basic page']);
@@ -56,12 +48,8 @@ class RebuildTest extends BrowserTestBase {
       'checkbox_1_default_on' => FALSE,
       'text_1' => 'foo',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('form-test/form-rebuild-preserve-values', $edit, 'Add more');
-=======
     $this->drupalGet('form-test/form-rebuild-preserve-values');
     $this->submitForm($edit, 'Add more');
->>>>>>> dev
 
     $assert_session = $this->assertSession();
 

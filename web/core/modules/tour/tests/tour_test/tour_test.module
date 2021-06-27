@@ -2,11 +2,7 @@
 
 /**
  * @file
-<<<<<<< HEAD
- * Provides tests for tour module
-=======
  * Provides tests for tour module.
->>>>>>> dev
  */
 
 use Drupal\Core\Entity\EntityInterface;

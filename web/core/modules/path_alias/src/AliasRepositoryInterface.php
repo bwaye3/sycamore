@@ -2,11 +2,6 @@
 
 namespace Drupal\path_alias;
 
-<<<<<<< HEAD
-use Drupal\Core\Path\AliasRepositoryInterface as CoreAliasRepositoryInterface;
-
-=======
->>>>>>> dev
 /**
  * Provides an interface for path alias lookup operations.
  *
@@ -20,9 +15,6 @@ use Drupal\Core\Path\AliasRepositoryInterface as CoreAliasRepositoryInterface;
  * whether a system path has an alias, the 'path_alias.manager' service should
  * be used instead.
  */
-<<<<<<< HEAD
-interface AliasRepositoryInterface extends CoreAliasRepositoryInterface {}
-=======
 interface AliasRepositoryInterface {
 
   /**
@@ -87,4 +79,3 @@ interface AliasRepositoryInterface {
   public function pathHasMatchingAlias($initial_substring);
 
 }
->>>>>>> dev

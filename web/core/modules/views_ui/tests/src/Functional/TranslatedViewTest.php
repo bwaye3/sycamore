@@ -16,11 +16,7 @@ class TranslatedViewTest extends UITestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'config_translation',
     'views_ui',
   ];
@@ -46,11 +42,7 @@ class TranslatedViewTest extends UITestBase {
    */
   protected $adminUser;
 
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $permissions = [
@@ -78,30 +70,18 @@ class TranslatedViewTest extends UITestBase {
 
     // Check the original string.
     $this->drupalGet($edit_url);
-<<<<<<< HEAD
-    $this->assertTitle('Files (File) | Drupal');
-=======
     $this->assertSession()->titleEquals('Files (File) | Drupal');
->>>>>>> dev
 
     // Translate the label of the view.
     $this->drupalGet($translation_url);
     $edit = [
       'translation[config_names][views.view.files][label]' => 'Fichiers',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save translation'));
-
-    // Check if the label is translated.
-    $this->drupalGet($edit_url, ['language' => \Drupal::languageManager()->getLanguage('fr')]);
-    $this->assertTitle('Files (File) | Drupal');
-=======
     $this->submitForm($edit, 'Save translation');
 
     // Check if the label is translated.
     $this->drupalGet($edit_url, ['language' => \Drupal::languageManager()->getLanguage('fr')]);
     $this->assertSession()->titleEquals('Files (File) | Drupal');
->>>>>>> dev
     $this->assertNoText('Fichiers');
   }
 

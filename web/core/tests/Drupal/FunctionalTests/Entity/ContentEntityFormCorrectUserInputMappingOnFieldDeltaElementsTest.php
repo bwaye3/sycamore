@@ -31,11 +31,7 @@ class ContentEntityFormCorrectUserInputMappingOnFieldDeltaElementsTest extends B
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['entity_test'];
-=======
   protected static $modules = ['entity_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -45,11 +41,7 @@ class ContentEntityFormCorrectUserInputMappingOnFieldDeltaElementsTest extends B
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $web_user = $this->drupalCreateUser(['administer entity_test content']);
     $this->drupalLogin($web_user);
@@ -114,13 +106,8 @@ class ContentEntityFormCorrectUserInputMappingOnFieldDeltaElementsTest extends B
     // This is how currently the form building process works and this test
     // ensures the correct behavior no matter what changes would be made to the
     // form builder or the content entity forms.
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Add another item'));
-    $this->drupalPostForm(NULL, [], t('Save'));
-=======
     $this->submitForm($edit, 'Add another item');
     $this->submitForm([], 'Save');
->>>>>>> dev
 
     // Reload the entity.
     $entity = $storage->load($entity->id());

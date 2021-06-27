@@ -16,11 +16,7 @@ abstract class OptionsFieldUnitTestBase extends FieldKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['options'];
-=======
   protected static $modules = ['options'];
->>>>>>> dev
 
   /**
    * The field name used in the test.
@@ -55,10 +51,6 @@ abstract class OptionsFieldUnitTestBase extends FieldKernelTestBase {
    */
   protected function setUp() {
     parent::setUp();
-<<<<<<< HEAD
-    $this->container->get('router.builder')->rebuild();
-=======
->>>>>>> dev
 
     $this->fieldStorageDefinition = [
       'field_name' => $this->fieldName,

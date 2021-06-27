@@ -82,11 +82,7 @@ abstract class MediaEmbedFilterTestBase extends KernelTestBase {
 
     // Create a user with required permissions. Ensure that we don't use user 1
     // because that user is treated in special ways by access control handlers.
-<<<<<<< HEAD
-    $admin_user = $this->drupalCreateUser([]);
-=======
     $this->drupalCreateUser([]);
->>>>>>> dev
     $user = $this->drupalCreateUser([
       'access content',
       'view media',

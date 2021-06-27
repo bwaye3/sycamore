@@ -14,11 +14,7 @@ class AjaxFormPageCacheTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['ajax_test', 'ajax_forms_test'];
-=======
   protected static $modules = ['ajax_test', 'ajax_forms_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -28,11 +24,7 @@ class AjaxFormPageCacheTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $config = $this->config('system.performance');
@@ -44,15 +36,9 @@ class AjaxFormPageCacheTest extends WebDriverTestBase {
    * Return the build id of the current form.
    */
   protected function getFormBuildId() {
-<<<<<<< HEAD
-    $build_id_fields = $this->xpath('//input[@name="form_build_id"]');
-    $this->assertCount(1, $build_id_fields, 'One form build id field on the page');
-    return $build_id_fields[0]->getValue();
-=======
     // Ensure the hidden 'form_build_id' field is unique.
     $this->assertSession()->elementsCount('xpath', '//input[@name="form_build_id"]', 1);
     return $this->assertSession()->hiddenFieldExists('form_build_id')->getValue();
->>>>>>> dev
   }
 
   /**
@@ -62,11 +48,7 @@ class AjaxFormPageCacheTest extends WebDriverTestBase {
     $this->drupalGet('ajax_forms_test_get_form');
     $build_id_initial = $this->getFormBuildId();
 
-<<<<<<< HEAD
-    // Changing the value of a select input element, triggers a AJAX
-=======
     // Changing the value of a select input element, triggers an AJAX
->>>>>>> dev
     // request/response. The callback on the form responds with three AJAX
     // commands:
     // - UpdateBuildIdCommand
@@ -84,11 +66,7 @@ class AjaxFormPageCacheTest extends WebDriverTestBase {
     $build_id_first_ajax = $this->getFormBuildId();
     $this->assertNotEquals($build_id_initial, $build_id_first_ajax, 'Build id is changed in the form_build_id element on first AJAX submission');
 
-<<<<<<< HEAD
-    // Changing the value of a select input element, triggers a AJAX
-=======
     // Changing the value of a select input element, triggers an AJAX
->>>>>>> dev
     // request/response.
     $session->getPage()->selectFieldOption('select', 'red');
 
@@ -106,11 +84,7 @@ class AjaxFormPageCacheTest extends WebDriverTestBase {
     $build_id_from_cache_initial = $this->getFormBuildId();
     $this->assertEquals($build_id_initial, $build_id_from_cache_initial, 'Build id is the same as on the first request');
 
-<<<<<<< HEAD
-    // Changing the value of a select input element, triggers a AJAX
-=======
     // Changing the value of a select input element, triggers an AJAX
->>>>>>> dev
     // request/response.
     $session->getPage()->selectFieldOption('select', 'green');
 
@@ -122,11 +96,7 @@ class AjaxFormPageCacheTest extends WebDriverTestBase {
     $this->assertNotEquals($build_id_from_cache_initial, $build_id_from_cache_first_ajax, 'Build id is changed in the simpletest-DOM on first AJAX submission');
     $this->assertNotEquals($build_id_first_ajax, $build_id_from_cache_first_ajax, 'Build id from first user is not reused');
 
-<<<<<<< HEAD
-    // Changing the value of a select input element, triggers a AJAX
-=======
     // Changing the value of a select input element, triggers an AJAX
->>>>>>> dev
     // request/response.
     $session->getPage()->selectFieldOption('select', 'red');
 

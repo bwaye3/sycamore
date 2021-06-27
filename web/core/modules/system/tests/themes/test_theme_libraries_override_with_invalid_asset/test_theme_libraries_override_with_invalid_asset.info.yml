@@ -3,10 +3,6 @@ type: theme
 description: 'Theme with invalid libraries-override asset spec.'
 version: VERSION
 base theme: classy
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 libraries-override:
   # A malformed library asset name. Should throw a
   # \Drupal\Core\Asset\Exception\InvalidLibrariesOverrideSpecificationException.

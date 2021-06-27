@@ -352,13 +352,6 @@ class Merge extends Query implements ConditionInterface {
   }
 
   public function execute() {
-<<<<<<< HEAD
-    // Default options for merge queries.
-    $this->queryOptions += [
-      'throw_exception' => TRUE,
-    ];
-=======
->>>>>>> dev
 
     try {
       if (!count($this->condition)) {
@@ -400,14 +393,6 @@ class Merge extends Query implements ConditionInterface {
       }
     }
     catch (\Exception $e) {
-<<<<<<< HEAD
-      if ($this->queryOptions['throw_exception']) {
-        throw $e;
-      }
-      else {
-        return NULL;
-      }
-=======
       // @todo 'throw_exception' option is deprecated. Remove in D10.
       // @see https://www.drupal.org/project/drupal/issues/3210310
       if (array_key_exists('throw_exception', $this->queryOptions)) {
@@ -417,7 +402,6 @@ class Merge extends Query implements ConditionInterface {
         }
       }
       throw $e;
->>>>>>> dev
     }
   }
 

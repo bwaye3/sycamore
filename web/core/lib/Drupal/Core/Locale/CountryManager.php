@@ -37,10 +37,7 @@ class CountryManager implements CountryManagerInterface {
    *   An array of country code => country name pairs.
    */
   public static function getStandardList() {
-<<<<<<< HEAD
-=======
     // cSpell:disable
->>>>>>> dev
     $countries = [
       'AC' => t('Ascension Island'),
       'AD' => t('Andorra'),
@@ -301,10 +298,7 @@ class CountryManager implements CountryManagerInterface {
       'ZM' => t('Zambia'),
       'ZW' => t('Zimbabwe'),
     ];
-<<<<<<< HEAD
-=======
     // cSpell:enable
->>>>>>> dev
 
     // Sort the list.
     natcasesort($countries);

@@ -31,11 +31,6 @@ class Log extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-<<<<<<< HEAD
-    // Log the value.
-    $migrate_executable->saveMessage($value);
-
-=======
     $is_object = is_object($value);
     if (is_null($value) || is_bool($value)) {
       $export = var_export($value, TRUE);
@@ -69,7 +64,6 @@ class Log extends ProcessPluginBase {
 
     // Log the value.
     $migrate_executable->saveMessage($message);
->>>>>>> dev
     // Pass through the same value we received.
     return $value;
   }

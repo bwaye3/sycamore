@@ -2,10 +2,6 @@
 
 namespace Drupal\KernelTests\Core\Extension;
 
-<<<<<<< HEAD
-use Drupal\Core\Site\Settings;
-=======
->>>>>>> dev
 use Drupal\KernelTests\KernelTestBase;
 
 /**
@@ -18,13 +14,6 @@ class ThemeExtensionListTest extends KernelTestBase {
    * @covers ::getList
    */
   public function testGetlist() {
-<<<<<<< HEAD
-    $settings = Settings::getAll();
-    $settings['install_profile'] = 'testing';
-    new Settings($settings);
-
-=======
->>>>>>> dev
     \Drupal::configFactory()->getEditable('core.extension')
       ->set('module.testing', 1000)
       ->set('theme.test_theme', 0)

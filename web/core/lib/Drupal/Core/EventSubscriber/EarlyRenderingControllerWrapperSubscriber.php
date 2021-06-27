@@ -11,11 +11,7 @@ use Drupal\Core\Render\RenderContext;
 use Drupal\Core\Render\RendererInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -88,17 +84,10 @@ class EarlyRenderingControllerWrapperSubscriber implements EventSubscriberInterf
   /**
    * Ensures bubbleable metadata from early rendering is not lost.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\FilterControllerEvent $event
-   *   The controller event.
-   */
-  public function onController(FilterControllerEvent $event) {
-=======
    * @param \Symfony\Component\HttpKernel\Event\ControllerEvent $event
    *   The controller event.
    */
   public function onController(ControllerEvent $event) {
->>>>>>> dev
     $controller = $event->getController();
 
     // See \Symfony\Component\HttpKernel\HttpKernel::handleRaw().

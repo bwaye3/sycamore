@@ -23,20 +23,12 @@ class RouteProviderTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['entity_test', 'user', 'system'];
-=======
   protected static $modules = ['entity_test', 'user', 'system'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->setUpCurrentUser(['uid' => 1]);

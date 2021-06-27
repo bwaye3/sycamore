@@ -10,10 +10,6 @@ use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Messenger\MessengerInterface;
-<<<<<<< HEAD
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-=======
->>>>>>> dev
 use Drupal\Core\Url;
 use Drupal\media\Entity\MediaType;
 use Drupal\media\IFrameUrlHelper;
@@ -41,11 +37,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   },
  * )
  */
-<<<<<<< HEAD
-class OEmbedFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
-=======
 class OEmbedFormatter extends FormatterBase {
->>>>>>> dev
 
   /**
    * The messenger service.

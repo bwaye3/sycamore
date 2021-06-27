@@ -1,7 +1,5 @@
 id: testing_config_overrides
 module: testing_config_overrides
-<<<<<<< HEAD
-=======
 # This depends on configuration in the install's config/install directory so we
 # can test that this configuration is installed.
 dependencies:
@@ -10,7 +8,6 @@ dependencies:
       - tour.tour.language
   module:
     - testing_config_overrides
->>>>>>> dev
 label: Config override test
 langcode: en
 routes:

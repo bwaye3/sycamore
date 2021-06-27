@@ -260,8 +260,6 @@ label {
   font-weight: 700;
 }
 
-<<<<<<< HEAD
-=======
 /**
  * Prevent regression due to fieldset styling that was removed in normalize.css
  * 6.0.0.
@@ -294,7 +292,6 @@ input:not([type="file"]) {
   font-size: 1em;
 }
 
->>>>>>> dev
 ul,
 ol {
   margin-bottom: 1.28rem;
@@ -310,8 +307,6 @@ ul ol {
 p {
   margin-bottom: 1.28rem;
 }
-<<<<<<< HEAD
-=======
 
 /**
  * Prevent regression table/td/th rules removed in normalize.css 7.0.0.
@@ -323,4 +318,3 @@ td,
 th {
   padding: 0;
 }
->>>>>>> dev

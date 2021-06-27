@@ -53,11 +53,7 @@ class LayoutBuilderTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalPlaceBlock('local_tasks_block');
@@ -164,11 +160,7 @@ class LayoutBuilderTest extends WebDriverTestBase {
     $this->assertNotEmpty($assert_session->waitForElementVisible('named', ['link', 'Two column']));
 
     $this->clickLink('Two column');
-<<<<<<< HEAD
-    $assert_session->assertWaitOnAjaxRequest();
-=======
     $assert_session->waitForElementVisible('named', ['button', 'Add section']);
->>>>>>> dev
     $page->pressButton('Add section');
     $assert_session->assertWaitOnAjaxRequest();
 
@@ -301,11 +293,7 @@ class LayoutBuilderTest extends WebDriverTestBase {
     // Add another section.
     $assert_session->linkExists('Add section');
     $this->clickLink('Add section');
-<<<<<<< HEAD
-    $assert_session->assertWaitOnAjaxRequest();
-=======
     $assert_session->waitForElementVisible('named', ['link', 'Layout plugin (with settings)']);
->>>>>>> dev
     $assert_session->elementExists('css', '#drupal-off-canvas');
 
     $assert_session->linkExists('Layout plugin (with settings)');
@@ -313,17 +301,11 @@ class LayoutBuilderTest extends WebDriverTestBase {
     $this->assertOffCanvasFormAfterWait('layout_builder_configure_section');
     $assert_session->fieldExists('layout_settings[setting_1]');
     $page->pressButton('Add section');
-<<<<<<< HEAD
-    $assert_session->assertWaitOnAjaxRequest();
-=======
->>>>>>> dev
 
     $assert_session->assertNoElementAfterWait('css', '#drupal-off-canvas');
     $assert_session->pageTextContains('Default');
     $assert_session->linkExists('Add block');
 
-<<<<<<< HEAD
-=======
     // Ensure validation error is displayed for ConfigureSectionForm.
     $assert_session->linkExists('Add section');
     $this->clickLink('Add section');
@@ -339,17 +321,12 @@ class LayoutBuilderTest extends WebDriverTestBase {
     $assert_session->assertNoElementAfterWait('css', '#drupal-off-canvas');
     $assert_session->pageTextContains('Setting 1 Value');
 
->>>>>>> dev
     // Configure the existing section.
     $assert_session->linkExists('Configure Section 1');
     $this->clickLink('Configure Section 1');
     $this->assertOffCanvasFormAfterWait('layout_builder_configure_section');
     $page->fillField('layout_settings[setting_1]', 'Test setting value');
     $page->pressButton('Update');
-<<<<<<< HEAD
-    $assert_session->assertWaitOnAjaxRequest();
-=======
->>>>>>> dev
     $assert_session->assertNoElementAfterWait('css', '#drupal-off-canvas');
     $assert_session->pageTextContains('Test setting value');
     $this->assertPageNotReloaded();

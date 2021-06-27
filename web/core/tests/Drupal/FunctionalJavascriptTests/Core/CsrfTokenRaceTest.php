@@ -22,11 +22,7 @@ class CsrfTokenRaceTest extends WebDriverTestBase {
   protected $defaultTheme = 'stark';
 
   /**
-<<<<<<< HEAD
-   * Test race condition for CSRF tokens for simultaneous requests.
-=======
    * Tests race condition for CSRF tokens for simultaneous requests.
->>>>>>> dev
    */
   public function testCsrfRace() {
     $user = $this->createUser(['access content']);
@@ -59,11 +55,7 @@ EOT;
     $token1 = $this->assertSession()->waitForElement('css', '.csrf1')->getHtml();
     $this->assertNotNull($token0);
     $this->assertNotNull($token1);
-<<<<<<< HEAD
-    $this->assertEqual($token0, $token1);
-=======
     $this->assertEquals($token0, $token1);
->>>>>>> dev
   }
 
 }

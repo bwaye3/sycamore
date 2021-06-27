@@ -2,10 +2,7 @@
 
 namespace Drupal\migrate;
 
-<<<<<<< HEAD
-=======
 use Drupal\Component\Plugin\Exception\PluginException;
->>>>>>> dev
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Plugin\MigrationPluginManagerInterface;
@@ -39,15 +36,12 @@ class MigrateLookup implements MigrateLookupInterface {
     $results = [];
     $migrations = $this->migrationPluginManager->createInstances($migration_id);
     if (!$migrations) {
-<<<<<<< HEAD
-=======
       if (is_array($migration_id)) {
         if (count($migration_id) != 1) {
           throw new PluginException("Plugin IDs '" . implode("', '", $migration_id) . "' were not found.");
         }
         $migration_id = reset($migration_id);
       }
->>>>>>> dev
       throw new PluginNotFoundException($migration_id);
     }
     foreach ($migrations as $migration) {

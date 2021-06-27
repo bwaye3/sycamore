@@ -17,11 +17,7 @@ class LocaleExportTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['locale'];
-=======
   protected static $modules = ['locale'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -36,11 +32,7 @@ class LocaleExportTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->adminUser = $this->drupalCreateUser([
@@ -56,11 +48,7 @@ class LocaleExportTest extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test exportation of translations.
-=======
    * Tests exportation of translations.
->>>>>>> dev
    */
   public function testExportTranslation() {
     $file_system = \Drupal::service('file_system');
@@ -68,23 +56,6 @@ class LocaleExportTest extends BrowserTestBase {
     // This will also automatically add the 'fr' language.
     $name = $file_system->tempnam('temporary://', "po_") . '.po';
     file_put_contents($name, $this->getPoFile());
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/regional/translate/import', [
-      'langcode' => 'fr',
-      'files[file]' => $name,
-    ], t('Import'));
-    $file_system->unlink($name);
-
-    // Get the French translations.
-    $this->drupalPostForm('admin/config/regional/translate/export', [
-      'langcode' => 'fr',
-    ], t('Export'));
-
-    // Ensure we have a translation file.
-    $this->assertRaw('# French translation of Drupal', 'Exported French translation file.');
-    // Ensure our imported translations exist in the file.
-    $this->assertRaw('msgstr "lundi"', 'French translations present in exported file.');
-=======
     $this->drupalGet('admin/config/regional/translate/import');
     $this->submitForm([
       'langcode' => 'fr',
@@ -100,25 +71,16 @@ class LocaleExportTest extends BrowserTestBase {
     $this->assertRaw('# French translation of Drupal');
     // Ensure our imported translations exist in the file.
     $this->assertRaw('msgstr "lundi"');
->>>>>>> dev
 
     // Import some more French translations which will be marked as customized.
     $name = $file_system->tempnam('temporary://', "po2_") . '.po';
     file_put_contents($name, $this->getCustomPoFile());
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/regional/translate/import', [
-      'langcode' => 'fr',
-      'files[file]' => $name,
-      'customized' => 1,
-    ], t('Import'));
-=======
     $this->drupalGet('admin/config/regional/translate/import');
     $this->submitForm([
       'langcode' => 'fr',
       'files[file]' => $name,
       'customized' => 1,
     ], 'Import');
->>>>>>> dev
     $file_system->unlink($name);
 
     // Create string without translation in the locales_source table.
@@ -129,29 +91,12 @@ class LocaleExportTest extends BrowserTestBase {
       ->save();
 
     // Export only customized French translations.
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/regional/translate/export', [
-=======
     $this->drupalGet('admin/config/regional/translate/export');
     $this->submitForm([
->>>>>>> dev
       'langcode' => 'fr',
       'content_options[not_customized]' => FALSE,
       'content_options[customized]' => TRUE,
       'content_options[not_translated]' => FALSE,
-<<<<<<< HEAD
-    ], t('Export'));
-
-    // Ensure we have a translation file.
-    $this->assertRaw('# French translation of Drupal', 'Exported French translation file with only customized strings.');
-    // Ensure the customized translations exist in the file.
-    $this->assertRaw('msgstr "janvier"', 'French custom translation present in exported file.');
-    // Ensure no untranslated strings exist in the file.
-    $this->assertNoRaw('msgid "February"', 'Untranslated string not present in exported file.');
-
-    // Export only untranslated French translations.
-    $this->drupalPostForm('admin/config/regional/translate/export', [
-=======
     ], 'Export');
 
     // Ensure we have a translation file.
@@ -164,25 +109,10 @@ class LocaleExportTest extends BrowserTestBase {
     // Export only untranslated French translations.
     $this->drupalGet('admin/config/regional/translate/export');
     $this->submitForm([
->>>>>>> dev
       'langcode' => 'fr',
       'content_options[not_customized]' => FALSE,
       'content_options[customized]' => FALSE,
       'content_options[not_translated]' => TRUE,
-<<<<<<< HEAD
-    ], t('Export'));
-
-    // Ensure we have a translation file.
-    $this->assertRaw('# French translation of Drupal', 'Exported French translation file with only untranslated strings.');
-    // Ensure no customized translations exist in the file.
-    $this->assertNoRaw('msgstr "janvier"', 'French custom translation not present in exported file.');
-    // Ensure the untranslated strings exist in the file, and with right quotes.
-    $this->assertRaw($this->getUntranslatedString(), 'Empty string present in exported file.');
-  }
-
-  /**
-   * Test exportation of translation template file.
-=======
     ], 'Export');
 
     // Ensure we have a translation file.
@@ -195,7 +125,6 @@ class LocaleExportTest extends BrowserTestBase {
 
   /**
    * Tests exportation of translation template file.
->>>>>>> dev
    */
   public function testExportTranslationTemplateFile() {
     // Load an admin page with JavaScript so _drupal_add_library() fires at
@@ -203,16 +132,10 @@ class LocaleExportTest extends BrowserTestBase {
     // the locales_source table gets populated with something.
     $this->drupalGet('admin/config/regional/language');
     // Get the translation template file.
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/regional/translate/export', [], t('Export'));
-    // Ensure we have a translation file.
-    $this->assertRaw('# LANGUAGE translation of PROJECT', 'Exported translation template file.');
-=======
     $this->drupalGet('admin/config/regional/translate/export');
     $this->submitForm([], 'Export');
     // Ensure we have a translation file.
     $this->assertRaw('# LANGUAGE translation of PROJECT');
->>>>>>> dev
   }
 
   /**

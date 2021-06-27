@@ -15,11 +15,7 @@ class ProfileFieldTranslationTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['config_translation', 'migrate_drupal', 'user'];
-=======
   protected static $modules = ['config_translation', 'migrate_drupal', 'user'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

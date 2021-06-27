@@ -16,11 +16,7 @@ class NodeByNodeTypeTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'user', 'migrate_drupal'];
-=======
   protected static $modules = ['node', 'user', 'migrate_drupal'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -115,11 +111,7 @@ class NodeByNodeTypeTest extends MigrateSqlSourceTestBase {
         'uid' => 2,
         'timestamp' => 1279290908,
         'body' => 'body for node 5',
-<<<<<<< HEAD
-        'teaser' => 'body for node 5',
-=======
         'teaser' => 'teaser for node 5',
->>>>>>> dev
         'format' => 1,
         'log' => 'log message 3',
       ],
@@ -187,8 +179,6 @@ class NodeByNodeTypeTest extends MigrateSqlSourceTestBase {
       'node_type' => 'page',
     ];
 
-<<<<<<< HEAD
-=======
     // Tests retrieval of article and page content types.
     $tests[1] = $tests[0];
     $tests[1]['configuration'] = [
@@ -224,7 +214,6 @@ class NodeByNodeTypeTest extends MigrateSqlSourceTestBase {
 
     // The expected results should be the same as the previous ones.
     $tests[2]['expected_data'] = $tests[1]['expected_data'];
->>>>>>> dev
     return $tests;
   }
 

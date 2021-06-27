@@ -19,20 +19,12 @@ class MigrateCommentStubTest extends MigrateDrupalTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['comment', 'node'];
-=======
   protected static $modules = ['comment', 'node'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('comment');
     $this->installEntitySchema('node');

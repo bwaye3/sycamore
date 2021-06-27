@@ -3,10 +3,6 @@ type: module
 description: 'Tests that contact messages can be stored.'
 package: Testing
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 dependencies:
   - drupal:contact
   - drupal:user

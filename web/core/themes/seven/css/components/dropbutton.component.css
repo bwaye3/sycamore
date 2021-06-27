@@ -165,10 +165,7 @@
   position: static;
   display: inline-block;
   border: 0;
-<<<<<<< HEAD
-=======
   background: transparent;
->>>>>>> dev
 }
 .dropbutton-single .dropbutton-action a {
   width: auto !important;

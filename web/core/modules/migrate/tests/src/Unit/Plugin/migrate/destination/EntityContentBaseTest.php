@@ -2,11 +2,7 @@
 
 /**
  * @file
-<<<<<<< HEAD
- * Contains \Drupal\Tests\migrate\Unit\Plugin\migrate\destination\EntityContentBaseTest
-=======
  * Contains \Drupal\Tests\migrate\Unit\Plugin\migrate\destination\EntityContentBaseTest.
->>>>>>> dev
  */
 
 namespace Drupal\Tests\migrate\Unit\Plugin\migrate\destination;
@@ -27,11 +23,7 @@ use Drupal\migrate\Row;
 class EntityContentBaseTest extends EntityTestBase {
 
   /**
-<<<<<<< HEAD
-   * Test basic entity save.
-=======
    * Tests basic entity save.
->>>>>>> dev
    *
    * @covers ::import
    */
@@ -60,11 +52,7 @@ class EntityContentBaseTest extends EntityTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test row skipping when we can't get an entity to save.
-=======
    * Tests row skipping when we can't get an entity to save.
->>>>>>> dev
    *
    * @covers ::import
    */
@@ -83,11 +71,7 @@ class EntityContentBaseTest extends EntityTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that translation destination fails for untranslatable entities.
-=======
    * Tests that translation destination fails for untranslatable entities.
->>>>>>> dev
    */
   public function testUntranslatable() {
     // An entity type without a language.

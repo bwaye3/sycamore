@@ -349,11 +349,7 @@ class FieldItemListTest extends UnitTestCase {
     $field_list->expects($this->never())
       ->method('getValue');
 
-<<<<<<< HEAD
-    $this->assertArrayEquals([], $field_list->defaultValuesFormSubmit([], $form, $form_state));
-=======
     $this->assertSame([], $field_list->defaultValuesFormSubmit([], $form, $form_state));
->>>>>>> dev
   }
 
 }

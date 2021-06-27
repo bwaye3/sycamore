@@ -21,12 +21,6 @@ class ComposerTest extends UnitTestCase {
       $this->assertNull(Composer::ensureComposerVersion());
     }
     catch (\RuntimeException $e) {
-<<<<<<< HEAD
-      $this->assertRegExp('/Drupal core development requires Composer 1.9.0, but Composer /', $e->getMessage());
-    }
-  }
-
-=======
       $this->assertMatchesRegularExpression('/Drupal core development requires Composer 1.9.0, but Composer /', $e->getMessage());
     }
   }
@@ -44,5 +38,4 @@ class ComposerTest extends UnitTestCase {
     $this->assertEquals($composer_core_json['require']['php'], '>=' . $composer_json['config']['platform']['php'], 'The config.platform.php configured version in the root composer.json file should always be exactly the same as the minimum php version configured in core/composer.json.');
   }
 
->>>>>>> dev
 }

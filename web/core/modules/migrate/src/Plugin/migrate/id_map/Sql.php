@@ -19,11 +19,7 @@ use Drupal\migrate\Event\MigrateEvents;
 use Drupal\migrate\Event\MigrateMapSaveEvent;
 use Drupal\migrate\Event\MigrateMapDeleteEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-<<<<<<< HEAD
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-=======
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
->>>>>>> dev
 
 /**
  * Defines the sql based ID map implementation.
@@ -43,11 +39,7 @@ class Sql extends PluginBase implements MigrateIdMapInterface, ContainerFactoryP
   /**
    * An event dispatcher instance to use for map events.
    *
-<<<<<<< HEAD
-   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
-=======
    * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
->>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -162,11 +154,7 @@ class Sql extends PluginBase implements MigrateIdMapInterface, ContainerFactoryP
    *   The configuration for the plugin.
    * @param \Drupal\migrate\Plugin\MigrationInterface $migration
    *   The migration to do.
-<<<<<<< HEAD
-   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
-=======
    * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
->>>>>>> dev
    *   The event dispatcher.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, EventDispatcherInterface $event_dispatcher) {
@@ -210,11 +198,7 @@ class Sql extends PluginBase implements MigrateIdMapInterface, ContainerFactoryP
    *   The source identifiers
    *
    * @return string
-<<<<<<< HEAD
-   *   An hash containing the hashed values of the source identifiers.
-=======
    *   A hash containing the hashed values of the source identifiers.
->>>>>>> dev
    */
   public function getSourceIdsHash(array $source_id_values) {
     // When looking up the destination ID we require an array with both the
@@ -328,11 +312,8 @@ class Sql extends PluginBase implements MigrateIdMapInterface, ContainerFactoryP
 
   /**
    * Create the map and message tables if they don't already exist.
-<<<<<<< HEAD
-=======
    *
    * @throws \Drupal\Core\Database\DatabaseException
->>>>>>> dev
    */
   protected function ensureTables() {
     if (!$this->getDatabase()->schema()->tableExists($this->mapTableName)) {
@@ -394,15 +375,6 @@ class Sql extends PluginBase implements MigrateIdMapInterface, ContainerFactoryP
         'not null' => FALSE,
         'description' => 'Hash of source row data, for detecting changes',
       ];
-<<<<<<< HEAD
-      $schema = [
-        'description' => 'Mappings from source identifier value(s) to destination identifier value(s).',
-        'fields' => $fields,
-        'primary key' => [$this::SOURCE_IDS_HASH],
-        'indexes' => $indexes,
-      ];
-      $this->getDatabase()->schema()->createTable($this->mapTableName, $schema);
-=======
 
       // To keep within the MySQL maximum key length of 3072 bytes we try
       // different groupings of the source IDs. Groups are created in chunks
@@ -443,7 +415,6 @@ class Sql extends PluginBase implements MigrateIdMapInterface, ContainerFactoryP
           }
         }
       }
->>>>>>> dev
 
       // Now do the message table.
       if (!$this->getDatabase()->schema()->tableExists($this->messageTableName())) {
@@ -609,18 +580,6 @@ class Sql extends PluginBase implements MigrateIdMapInterface, ContainerFactoryP
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function lookupDestinationId(array $source_id_values) {
-    @trigger_error(__NAMESPACE__ . '\Sql::lookupDestinationId() is deprecated in drupal:8.1.0 and is removed from drupal:9.0.0. Use Sql::lookupDestinationIds() instead. See https://www.drupal.org/node/2725809', E_USER_DEPRECATED);
-    $results = $this->lookupDestinationIds($source_id_values);
-    return $results ? reset($results) : [];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-=======
->>>>>>> dev
   public function lookupDestinationIds(array $source_id_values) {
     if (empty($source_id_values)) {
       return [];
@@ -721,11 +680,7 @@ class Sql extends PluginBase implements MigrateIdMapInterface, ContainerFactoryP
     }
     $keys = [$this::SOURCE_IDS_HASH => $this->getSourceIdsHash($source_id_values)];
     // Notify anyone listening of the map row we're about to save.
-<<<<<<< HEAD
-    $this->eventDispatcher->dispatch(MigrateEvents::MAP_SAVE, new MigrateMapSaveEvent($this, $fields));
-=======
     $this->eventDispatcher->dispatch(new MigrateMapSaveEvent($this, $fields), MigrateEvents::MAP_SAVE);
->>>>>>> dev
     $this->getDatabase()->merge($this->mapTableName())
       ->key($keys)
       ->fields($fields)
@@ -750,12 +705,7 @@ class Sql extends PluginBase implements MigrateIdMapInterface, ContainerFactoryP
       ->execute();
 
     // Notify anyone listening of the message we've saved.
-<<<<<<< HEAD
-    $this->eventDispatcher->dispatch(MigrateEvents::IDMAP_MESSAGE,
-      new MigrateIdMapMessageEvent($this->migration, $source_id_values, $message, $level));
-=======
     $this->eventDispatcher->dispatch(new MigrateIdMapMessageEvent($this->migration, $source_id_values, $message, $level), MigrateEvents::IDMAP_MESSAGE);
->>>>>>> dev
   }
 
   /**
@@ -763,11 +713,7 @@ class Sql extends PluginBase implements MigrateIdMapInterface, ContainerFactoryP
    */
   public function getMessages(array $source_id_values = [], $level = NULL) {
     $query = $this->getDatabase()->select($this->messageTableName(), 'msg');
-<<<<<<< HEAD
-    $condition = sprintf('msg.%s = map.%s', $this::SOURCE_IDS_HASH, $this::SOURCE_IDS_HASH);
-=======
     $condition = sprintf('[msg].[%s] = [map].[%s]', $this::SOURCE_IDS_HASH, $this::SOURCE_IDS_HASH);
->>>>>>> dev
     $query->addJoin('LEFT', $this->mapTableName(), 'map', $condition);
     // Explicitly define the fields we want. The order will be preserved: source
     // IDs, destination IDs (if possible), and then the rest.
@@ -790,17 +736,6 @@ class Sql extends PluginBase implements MigrateIdMapInterface, ContainerFactoryP
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function getMessageIterator(array $source_id_values = [], $level = NULL) {
-    @trigger_error('getMessageIterator() is deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Use getMessages() instead. See https://www.drupal.org/node/3060969', E_USER_DEPRECATED);
-    return $this->getMessages($source_id_values, $level);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-=======
->>>>>>> dev
   public function prepareUpdate() {
     $this->getDatabase()->update($this->mapTableName())
       ->fields(['source_row_status' => MigrateIdMapInterface::STATUS_NEEDS_UPDATE])
@@ -884,11 +819,7 @@ class Sql extends PluginBase implements MigrateIdMapInterface, ContainerFactoryP
       $map_query = $this->getDatabase()->delete($this->mapTableName());
       $map_query->condition($this::SOURCE_IDS_HASH, $this->getSourceIdsHash($source_id_values));
       // Notify anyone listening of the map row we're about to delete.
-<<<<<<< HEAD
-      $this->eventDispatcher->dispatch(MigrateEvents::MAP_DELETE, new MigrateMapDeleteEvent($this, $source_id_values));
-=======
       $this->eventDispatcher->dispatch(new MigrateMapDeleteEvent($this, $source_id_values), MigrateEvents::MAP_DELETE);
->>>>>>> dev
       $map_query->execute();
     }
     $message_query = $this->getDatabase()->delete($this->messageTableName());
@@ -908,11 +839,7 @@ class Sql extends PluginBase implements MigrateIdMapInterface, ContainerFactoryP
         $map_query->condition($destination_id, $destination_id_values[$field_name]);
       }
       // Notify anyone listening of the map row we're about to delete.
-<<<<<<< HEAD
-      $this->eventDispatcher->dispatch(MigrateEvents::MAP_DELETE, new MigrateMapDeleteEvent($this, $source_id_values));
-=======
       $this->eventDispatcher->dispatch(new MigrateMapDeleteEvent($this, $source_id_values), MigrateEvents::MAP_DELETE);
->>>>>>> dev
       $map_query->execute();
 
       $message_query->condition($this::SOURCE_IDS_HASH, $this->getSourceIdsHash($source_id_values));

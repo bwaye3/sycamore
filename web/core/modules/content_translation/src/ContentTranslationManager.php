@@ -2,10 +2,6 @@
 
 namespace Drupal\content_translation;
 
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\workflows\Entity\Workflow;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
@@ -15,18 +11,6 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
  * Provides common functionality for content translation.
  */
 class ContentTranslationManager implements ContentTranslationManagerInterface, BundleTranslationSettingsInterface {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = [
-    'entityManager' => 'entity.manager',
-    'updatesManager' => 'content_translation.updates_manager',
-  ];
-=======
->>>>>>> dev
 
   /**
    * The entity type bundle info provider.
@@ -50,18 +34,8 @@ class ContentTranslationManager implements ContentTranslationManagerInterface, B
    * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entity_type_bundle_info
    *   The entity type bundle info provider.
    */
-<<<<<<< HEAD
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, $entity_type_bundle_info) {
-    $this->entityTypeManager = $entity_type_manager;
-
-    if (!($entity_type_bundle_info instanceof EntityTypeBundleInfoInterface)) {
-      @trigger_error('The entity_type.bundle.info service should be passed to ContentTranslationManager::__construct() instead of the content_translation.updates_manager service since 8.7.0. This will be required in Drupal 9.0.0. See https://www.drupal.org/node/2549139 and https://www.drupal.org/node/2973222.', E_USER_DEPRECATED);
-      $entity_type_bundle_info = \Drupal::service('entity_type.bundle.info');
-    }
-=======
   public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityTypeBundleInfoInterface $entity_type_bundle_info) {
     $this->entityTypeManager = $entity_type_manager;
->>>>>>> dev
     $this->entityTypeBundleInfo = $entity_type_bundle_info;
   }
 

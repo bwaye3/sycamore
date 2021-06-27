@@ -7,11 +7,8 @@ use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;
 use Drupal\migrate\MigrateException;
 
-<<<<<<< HEAD
-=======
 // cspell:ignore skłodowska
 
->>>>>>> dev
 /**
  * Returns a substring of the input value.
  *

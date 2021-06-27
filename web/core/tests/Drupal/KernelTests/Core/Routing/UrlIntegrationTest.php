@@ -19,11 +19,7 @@ class UrlIntegrationTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['user', 'router_test', 'system'];
-=======
   protected static $modules = ['user', 'router_test', 'system'];
->>>>>>> dev
 
   /**
    * Ensures that the access() method on \Drupal\Core\Url objects works.

@@ -16,11 +16,7 @@ interface AssetDumperInterface {
    *   The file extension of this asset.
    *
    * @return string
-<<<<<<< HEAD
-   *   An URI to access the dumped asset.
-=======
    *   A URI to access the dumped asset.
->>>>>>> dev
    */
   public function dump($data, $file_extension);
 

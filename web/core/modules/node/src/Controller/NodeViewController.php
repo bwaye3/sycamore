@@ -30,31 +30,13 @@ class NodeViewController extends EntityViewController {
   protected $entityRepository;
 
   /**
-<<<<<<< HEAD
-   * Creates an NodeViewController object.
-=======
    * Creates a NodeViewController object.
->>>>>>> dev
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer service.
    * @param \Drupal\Core\Session\AccountInterface $current_user
-<<<<<<< HEAD
-   *   The current user. For backwards compatibility this is optional, however
-   *   this will be removed before Drupal 9.0.0.
-   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
-   *   The entity repository.
-   */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, RendererInterface $renderer, AccountInterface $current_user = NULL, EntityRepositoryInterface $entity_repository = NULL) {
-    parent::__construct($entity_type_manager, $renderer);
-    $this->currentUser = $current_user ?: \Drupal::currentUser();
-    if (!$entity_repository) {
-      @trigger_error('The entity.repository service must be passed to NodeViewController::__construct(), it is required before Drupal 9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $entity_repository = \Drupal::service('entity.repository');
-    }
-=======
    *   The current user.
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
@@ -62,7 +44,6 @@ class NodeViewController extends EntityViewController {
   public function __construct(EntityTypeManagerInterface $entity_type_manager, RendererInterface $renderer, AccountInterface $current_user, EntityRepositoryInterface $entity_repository) {
     parent::__construct($entity_type_manager, $renderer);
     $this->currentUser = $current_user;
->>>>>>> dev
     $this->entityRepository = $entity_repository;
   }
 

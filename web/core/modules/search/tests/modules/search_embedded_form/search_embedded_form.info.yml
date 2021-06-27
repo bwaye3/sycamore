@@ -3,7 +3,3 @@ type: module
 description: 'Support module for Search module testing of embedded forms.'
 package: Testing
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev

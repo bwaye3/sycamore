@@ -39,11 +39,7 @@ class LinkNotExistingInternalConstraintValidatorTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Data provider for ::testValidate
-=======
    * Data provider for ::testValidate.
->>>>>>> dev
    */
   public function providerValidate() {
     $data = [];
@@ -63,11 +59,7 @@ class LinkNotExistingInternalConstraintValidatorTest extends UnitTestCase {
 
     $data[] = [$url, TRUE];
 
-<<<<<<< HEAD
-    // Not existing routed URL.
-=======
     // Non-existent routed URL.
->>>>>>> dev
     $url = Url::fromRoute('example.not_existing_route');
 
     $url_generator = $this->createMock('Drupal\Core\Routing\UrlGeneratorInterface');

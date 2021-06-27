@@ -23,11 +23,7 @@ class RouteTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['user', 'system'];
-=======
   protected static $modules = ['user', 'system'];
->>>>>>> dev
 
   /**
    * Tests Route plugin based on providerTestRoute() values.
@@ -263,11 +259,6 @@ class RouteTest extends KernelTestBase {
    *   The route information based on the source link_path.
    */
   protected function doTransform($value) {
-<<<<<<< HEAD
-    // Rebuild the routes.
-    $this->container->get('router.builder')->rebuild();
-=======
->>>>>>> dev
     $pathValidator = $this->container->get('path.validator');
     $row = new Row();
     $migration = $this->prophesize(MigrationInterface::class)->reveal();

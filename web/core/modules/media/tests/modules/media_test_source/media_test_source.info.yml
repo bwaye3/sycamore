@@ -1,9 +1,5 @@
 name: 'Test media source'
 type: module
 description: 'Provides test media source to test configuration forms.'
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 package: Testing
 version: VERSION

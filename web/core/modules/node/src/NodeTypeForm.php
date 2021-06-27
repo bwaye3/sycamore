@@ -2,10 +2,6 @@
 
 namespace Drupal\node;
 
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\BundleEntityFormBase;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
@@ -19,17 +15,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @internal
  */
 class NodeTypeForm extends BundleEntityFormBase {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = [
-    'entityManager' => 'entity.manager',
-  ];
-=======
->>>>>>> dev
 
   /**
    * The entity field manager.
@@ -81,17 +66,10 @@ class NodeTypeForm extends BundleEntityFormBase {
     }
 
     $form['name'] = [
-<<<<<<< HEAD
-      '#title' => t('Name'),
-      '#type' => 'textfield',
-      '#default_value' => $type->label(),
-      '#description' => t('The human-readable name of this content type. This text will be displayed as part of the list on the <em>Add content</em> page. This name must be unique.'),
-=======
       '#title' => $this->t('Name'),
       '#type' => 'textfield',
       '#default_value' => $type->label(),
       '#description' => $this->t('The human-readable name of this content type. This text will be displayed as part of the list on the <em>Add content</em> page. This name must be unique.'),
->>>>>>> dev
       '#required' => TRUE,
       '#size' => 30,
     ];
@@ -105,28 +83,16 @@ class NodeTypeForm extends BundleEntityFormBase {
         'exists' => ['Drupal\node\Entity\NodeType', 'load'],
         'source' => ['name'],
       ],
-<<<<<<< HEAD
-      '#description' => t('A unique machine-readable name for this content type. It must only contain lowercase letters, numbers, and underscores. This name will be used for constructing the URL of the %node-add page, in which underscores will be converted into hyphens.', [
-        '%node-add' => t('Add content'),
-=======
       '#description' => $this->t('A unique machine-readable name for this content type. It must only contain lowercase letters, numbers, and underscores. This name will be used for constructing the URL of the %node-add page.', [
         '%node-add' => $this->t('Add content'),
->>>>>>> dev
       ]),
     ];
 
     $form['description'] = [
-<<<<<<< HEAD
-      '#title' => t('Description'),
-      '#type' => 'textarea',
-      '#default_value' => $type->getDescription(),
-      '#description' => t('This text will be displayed on the <em>Add new content</em> page.'),
-=======
       '#title' => $this->t('Description'),
       '#type' => 'textarea',
       '#default_value' => $type->getDescription(),
       '#description' => $this->t('This text will be displayed on the <em>Add new content</em> page.'),
->>>>>>> dev
     ];
 
     $form['additional_settings'] = [
@@ -138,54 +104,28 @@ class NodeTypeForm extends BundleEntityFormBase {
 
     $form['submission'] = [
       '#type' => 'details',
-<<<<<<< HEAD
-      '#title' => t('Submission form settings'),
-=======
       '#title' => $this->t('Submission form settings'),
->>>>>>> dev
       '#group' => 'additional_settings',
       '#open' => TRUE,
     ];
     $form['submission']['title_label'] = [
-<<<<<<< HEAD
-      '#title' => t('Title field label'),
-=======
       '#title' => $this->t('Title field label'),
->>>>>>> dev
       '#type' => 'textfield',
       '#default_value' => $fields['title']->getLabel(),
       '#required' => TRUE,
     ];
     $form['submission']['preview_mode'] = [
       '#type' => 'radios',
-<<<<<<< HEAD
-      '#title' => t('Preview before submitting'),
-      '#default_value' => $type->getPreviewMode(),
-      '#options' => [
-        DRUPAL_DISABLED => t('Disabled'),
-        DRUPAL_OPTIONAL => t('Optional'),
-        DRUPAL_REQUIRED => t('Required'),
-=======
       '#title' => $this->t('Preview before submitting'),
       '#default_value' => $type->getPreviewMode(),
       '#options' => [
         DRUPAL_DISABLED => $this->t('Disabled'),
         DRUPAL_OPTIONAL => $this->t('Optional'),
         DRUPAL_REQUIRED => $this->t('Required'),
->>>>>>> dev
       ],
     ];
     $form['submission']['help'] = [
       '#type' => 'textarea',
-<<<<<<< HEAD
-      '#title' => t('Explanation or submission guidelines'),
-      '#default_value' => $type->getHelp(),
-      '#description' => t('This text will be displayed at the top of the page when creating or editing content of this type.'),
-    ];
-    $form['workflow'] = [
-      '#type' => 'details',
-      '#title' => t('Publishing options'),
-=======
       '#title' => $this->t('Explanation or submission guidelines'),
       '#default_value' => $type->getHelp(),
       '#description' => $this->t('This text will be displayed at the top of the page when creating or editing content of this type.'),
@@ -193,7 +133,6 @@ class NodeTypeForm extends BundleEntityFormBase {
     $form['workflow'] = [
       '#type' => 'details',
       '#title' => $this->t('Publishing options'),
->>>>>>> dev
       '#group' => 'additional_settings',
     ];
     $workflow_options = [
@@ -207,17 +146,6 @@ class NodeTypeForm extends BundleEntityFormBase {
     $workflow_options = array_combine($keys, $keys);
     $form['workflow']['options'] = [
       '#type' => 'checkboxes',
-<<<<<<< HEAD
-      '#title' => t('Default options'),
-      '#default_value' => $workflow_options,
-      '#options' => [
-        'status' => t('Published'),
-        'promote' => t('Promoted to front page'),
-        'sticky' => t('Sticky at top of lists'),
-        'revision' => t('Create new revision'),
-      ],
-      '#description' => t('Users with sufficient access rights will be able to override these options.'),
-=======
       '#title' => $this->t('Default options'),
       '#default_value' => $workflow_options,
       '#options' => [
@@ -227,16 +155,11 @@ class NodeTypeForm extends BundleEntityFormBase {
         'revision' => $this->t('Create new revision'),
       ],
       '#description' => $this->t('Users with sufficient access rights will be able to override these options.'),
->>>>>>> dev
     ];
     if ($this->moduleHandler->moduleExists('language')) {
       $form['language'] = [
         '#type' => 'details',
-<<<<<<< HEAD
-        '#title' => t('Language settings'),
-=======
         '#title' => $this->t('Language settings'),
->>>>>>> dev
         '#group' => 'additional_settings',
       ];
 
@@ -252,24 +175,14 @@ class NodeTypeForm extends BundleEntityFormBase {
     }
     $form['display'] = [
       '#type' => 'details',
-<<<<<<< HEAD
-      '#title' => t('Display settings'),
-=======
       '#title' => $this->t('Display settings'),
->>>>>>> dev
       '#group' => 'additional_settings',
     ];
     $form['display']['display_submitted'] = [
       '#type' => 'checkbox',
-<<<<<<< HEAD
-      '#title' => t('Display author and date information'),
-      '#default_value' => $type->displaySubmitted(),
-      '#description' => t('Author username and publish date will be displayed.'),
-=======
       '#title' => $this->t('Display author and date information'),
       '#default_value' => $type->displaySubmitted(),
       '#description' => $this->t('Author username and publish date will be displayed.'),
->>>>>>> dev
     ];
 
     return $this->protectBundleIdElement($form);
@@ -280,11 +193,7 @@ class NodeTypeForm extends BundleEntityFormBase {
    */
   protected function actions(array $form, FormStateInterface $form_state) {
     $actions = parent::actions($form, $form_state);
-<<<<<<< HEAD
-    $actions['submit']['#value'] = t('Save content type');
-=======
     $actions['submit']['#value'] = $this->t('Save content type');
->>>>>>> dev
     return $actions;
   }
 

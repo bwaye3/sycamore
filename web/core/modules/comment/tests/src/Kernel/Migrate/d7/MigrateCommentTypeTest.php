@@ -16,19 +16,7 @@ class MigrateCommentTypeTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'comment', 'text'];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-    $this->migrateCommentTypes();
-  }
-=======
   protected static $modules = ['node', 'comment', 'text'];
->>>>>>> dev
 
   /**
    * Asserts a comment type entity.
@@ -49,11 +37,8 @@ class MigrateCommentTypeTest extends MigrateDrupal7TestBase {
    * Tests the migrated comment types.
    */
   public function testMigration() {
-<<<<<<< HEAD
-=======
     $this->migrateCommentTypes();
 
->>>>>>> dev
     $comment_fields = [
       'comment' => 'Default comment setting',
       'comment_default_mode' => 'Default display mode',
@@ -63,13 +48,9 @@ class MigrateCommentTypeTest extends MigrateDrupal7TestBase {
       'comment_preview' => 'Preview comment',
       'comment_form_location' => 'Location of comment submission form',
     ];
-<<<<<<< HEAD
-    $this->assertArraySubset($comment_fields, $this->migration->getSourcePlugin()->fields());
-=======
     foreach ($comment_fields as $field => $description) {
       $this->assertEquals($description, $this->migration->getSourcePlugin()->fields()[$field]);
     }
->>>>>>> dev
 
     $this->assertEntity('comment_node_article', 'Article comment');
     $this->assertEntity('comment_node_blog', 'Blog entry comment');
@@ -77,8 +58,6 @@ class MigrateCommentTypeTest extends MigrateDrupal7TestBase {
     $this->assertEntity('comment_forum', 'Forum topic comment');
     $this->assertEntity('comment_node_page', 'Basic page comment');
     $this->assertEntity('comment_node_test_content_type', 'Test content type comment');
-<<<<<<< HEAD
-=======
     $this->assertEntity('comment_node_a_thirty_two_char', 'Test long name comment');
   }
 
@@ -165,7 +144,6 @@ class MigrateCommentTypeTest extends MigrateDrupal7TestBase {
         ],
       ],
     ];
->>>>>>> dev
   }
 
 }

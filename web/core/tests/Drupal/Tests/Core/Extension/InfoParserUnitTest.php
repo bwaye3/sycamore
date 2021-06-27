@@ -30,11 +30,7 @@ class InfoParserUnitTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     // Use a fake DRUPAL_ROOT.
     $this->infoParser = new InfoParser('vfs:/');
@@ -52,11 +48,7 @@ class InfoParserUnitTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test if correct exception is thrown for a broken info file.
-=======
    * Tests if correct exception is thrown for a broken info file.
->>>>>>> dev
    *
    * @covers ::parse
    */
@@ -133,11 +125,7 @@ MISSING_CORE_AND_CORE_VERSION_REQUIREMENT;
         'missing_core_and_core_version_requirement-duplicate.info.txt' => $missing_core_and_core_version_requirement,
       ],
     ]);
-<<<<<<< HEAD
-    $exception_message = "The 'core' or the 'core_version_requirement' key must be present in vfs://modules/fixtures/missing_core_and_core_version_requirement";
-=======
     $exception_message = "The 'core_version_requirement' key must be present in vfs://modules/fixtures/missing_core_and_core_version_requirement";
->>>>>>> dev
     // Set the expected exception for the 2nd call to parse().
     $this->expectException('\Drupal\Core\Extension\InfoParserException');
     $this->expectExceptionMessage("$exception_message-duplicate.info.txt");
@@ -249,14 +237,6 @@ BOTH_CORE_CORE_VERSION_REQUIREMENT_88;
    * Tests a invalid 'core' key.
    *
    * @covers ::parse
-<<<<<<< HEAD
-   */
-  public function testInvalidCore() {
-    $invalid_core = <<<INVALID_CORE
-# info.yml for testing invalid core key.
-package: Core
-core: ^8
-=======
    *
    * @dataProvider providerInvalidCore
    */
@@ -266,7 +246,6 @@ core: ^8
 package: Core
 core: $core
 core_version_requirement: ^8 || ^9
->>>>>>> dev
 version: VERSION
 type: module
 name: Llama or Alpaca
@@ -279,36 +258,21 @@ INVALID_CORE;
     vfsStream::setup('modules');
     vfsStream::create([
       'fixtures' => [
-<<<<<<< HEAD
-        'invalid_core.info.txt' => $invalid_core,
-        'invalid_core-duplicate.info.txt' => $invalid_core,
-      ],
-    ]);
-    $exception_message = "Invalid 'core' value \"^8\" in vfs://modules/fixtures/invalid_core";
-=======
         "invalid_core-$filename.info.txt" => $invalid_core,
         "invalid_core-$filename-duplicate.info.txt" => $invalid_core,
       ],
     ]);
     $exception_message = "'core: {$core}' is not supported. Use 'core_version_requirement' to specify core compatibility. Only 'core: 8.x' is supported to provide backwards compatibility for Drupal 8 when needed in vfs://modules/fixtures/invalid_core-$filename";
->>>>>>> dev
     // Set the expected exception for the 2nd call to parse().
     $this->expectException('\Drupal\Core\Extension\InfoParserException');
     $this->expectExceptionMessage("$exception_message-duplicate.info.txt");
 
     try {
-<<<<<<< HEAD
-      $this->infoParser->parse(vfsStream::url('modules/fixtures/invalid_core.info.txt'));
-=======
       $this->infoParser->parse(vfsStream::url("modules/fixtures/invalid_core-$filename.info.txt"));
->>>>>>> dev
     }
     catch (InfoParserException $exception) {
       $this->assertSame("$exception_message.info.txt", $exception->getMessage());
 
-<<<<<<< HEAD
-      $this->infoParser->parse(vfsStream::url('modules/fixtures/invalid_core-duplicate.info.txt'));
-=======
       $this->infoParser->parse(vfsStream::url("modules/fixtures/invalid_core-$filename-duplicate.info.txt"));
     }
   }
@@ -424,13 +388,10 @@ CORE_WITHOUT_CORE_VERSION_REQUIREMENT;
     catch (InfoParserException $exception) {
       $this->assertSame("$exception_message.info.txt", $exception->getMessage());
       $this->infoParser->parse(vfsStream::url("modules/fixtures/core_without_core_version_requirement-$core-duplicate.info.txt"));
->>>>>>> dev
     }
   }
 
   /**
-<<<<<<< HEAD
-=======
    * DataProvider for testCoreWithoutCoreVersionRequirement().
    */
   public function providerCoreWithoutCoreVersionRequirement() {
@@ -442,7 +403,6 @@ CORE_WITHOUT_CORE_VERSION_REQUIREMENT;
   }
 
   /**
->>>>>>> dev
    * Tests a invalid 'core_version_requirement'.
    *
    * @covers ::parse
@@ -484,11 +444,7 @@ INVALID_CORE_VERSION_REQUIREMENT;
   }
 
   /**
-<<<<<<< HEAD
-   * Dataprovider for testCoreVersionRequirementInvalid().
-=======
    * Data provider for testCoreVersionRequirementInvalid().
->>>>>>> dev
    */
   public function providerCoreVersionRequirementInvalid() {
     return [
@@ -627,11 +583,7 @@ CORE_INCOMPATIBILITY;
   }
 
   /**
-<<<<<<< HEAD
-   * Dataprovider for testCoreIncompatibility().
-=======
    * Data provider for testCoreIncompatibility().
->>>>>>> dev
    */
   public function providerCoreIncompatibility() {
     list($major, $minor) = explode('.', \Drupal::VERSION);
@@ -663,11 +615,7 @@ CORE_INCOMPATIBILITY;
   }
 
   /**
-<<<<<<< HEAD
-   * Test a profile info file.
-=======
    * Tests a profile info file.
->>>>>>> dev
    */
   public function testProfile() {
     $profile = <<<PROFILE_TEST
@@ -714,8 +662,6 @@ UNPARSABLE_CORE_VERSION_REQUIREMENT;
     $this->infoParser->parse(vfsStream::url('modules/fixtures/unparsable_core_version_requirement.info.txt'));
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Tests an info file with 'core: 8.x' but without 'core_version_requirement'.
    *
@@ -745,5 +691,4 @@ INFO;
     }
   }
 
->>>>>>> dev
 }

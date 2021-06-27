@@ -141,8 +141,6 @@
   top: 0;
   left: 0;
 }
-<<<<<<< HEAD
-=======
 
 /* In Joyride, display: block is added as an inline style. */
 .shepherd-element.joyride-tip-guide {
@@ -173,4 +171,3 @@
 .shepherd-modal-overlay-container.shepherd-modal-is-visible path {
   pointer-events: all;
 }
->>>>>>> dev

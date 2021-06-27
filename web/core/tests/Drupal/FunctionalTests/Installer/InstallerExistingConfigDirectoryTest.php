@@ -3,11 +3,7 @@
 namespace Drupal\FunctionalTests\Installer;
 
 /**
-<<<<<<< HEAD
- * Tests the installer when a config_directory has already been set up.
-=======
  * Tests installation when a config_sync_directory exists and is set up.
->>>>>>> dev
  *
  * @group Installer
  */
@@ -42,17 +38,10 @@ class InstallerExistingConfigDirectoryTest extends InstallerTestBase {
    * Verifies that installation succeeded.
    */
   public function testInstaller() {
-<<<<<<< HEAD
-    $this->assertUrl('user/1');
-    $this->assertSession()->statusCodeEquals(200);
-    $this->assertEqual($this->expectedFilePerms, fileperms($this->siteDirectory . '/config_read_only'));
-    $this->assertEqual([], glob($this->siteDirectory . '/config_read_only/*'), 'The sync directory is empty after install because it is read-only.');
-=======
     $this->assertSession()->addressEquals('user/1');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertEquals($this->expectedFilePerms, fileperms($this->siteDirectory . '/config_read_only'));
     $this->assertEquals([], glob($this->siteDirectory . '/config_read_only/*'), 'The sync directory is empty after install because it is read-only.');
->>>>>>> dev
   }
 
 }

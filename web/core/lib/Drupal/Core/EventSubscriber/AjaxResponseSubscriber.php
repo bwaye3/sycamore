@@ -6,13 +6,8 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Render\AttachmentsResponseProcessorInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -45,17 +40,10 @@ class AjaxResponseSubscriber implements EventSubscriberInterface {
   /**
    * Sets the AJAX parameter from the current request.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
-   *   The response event, which contains the current request.
-   */
-  public function onRequest(GetResponseEvent $event) {
-=======
    * @param \Symfony\Component\HttpKernel\Event\RequestEvent $event
    *   The response event, which contains the current request.
    */
   public function onRequest(RequestEvent $event) {
->>>>>>> dev
     // Pass to the Html class that the current request is an Ajax request.
     if ($event->getRequest()->request->get(static::AJAX_REQUEST_PARAMETER)) {
       Html::setIsAjax(TRUE);
@@ -65,17 +53,10 @@ class AjaxResponseSubscriber implements EventSubscriberInterface {
   /**
    * Renders the ajax commands right before preparing the result.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\FilterResponseEvent $event
-   *   The response event, which contains the possible AjaxResponse object.
-   */
-  public function onResponse(FilterResponseEvent $event) {
-=======
    * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
    *   The response event, which contains the possible AjaxResponse object.
    */
   public function onResponse(ResponseEvent $event) {
->>>>>>> dev
     $response = $event->getResponse();
     if ($response instanceof AjaxResponse) {
       $this->ajaxResponseAttachmentsProcessor->processAttachments($response);

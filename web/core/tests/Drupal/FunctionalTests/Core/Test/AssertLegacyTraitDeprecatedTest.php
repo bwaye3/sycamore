@@ -17,16 +17,6 @@ class AssertLegacyTraitDeprecatedTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['form_test'];
-
-  /**
-   * Tests getAllOptions().
-   *
-   * @expectedDeprecation AssertLegacyTrait::getAllOptions() is deprecated in drupal:8.5.0 and is removed from drupal:10.0.0. Use $element->findAll('xpath', 'option') instead. See https://www.drupal.org/node/3129738
-   */
-  public function testGetAllOptions() {
-=======
   protected static $modules = ['form_test'];
 
   /**
@@ -39,7 +29,6 @@ class AssertLegacyTraitDeprecatedTest extends BrowserTestBase {
    */
   public function testGetAllOptions() {
     $this->expectDeprecation('AssertLegacyTrait::getAllOptions() is deprecated in drupal:8.5.0 and is removed from drupal:10.0.0. Use $element->findAll(\'xpath\', \'option\') instead. See https://www.drupal.org/node/3129738');
->>>>>>> dev
     $this->drupalGet('/form-test/select');
     $this->assertCount(6, $this->getAllOptions($this->cssSelect('select[name="opt_groups"]')[0]));
   }

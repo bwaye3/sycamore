@@ -9,17 +9,6 @@
   Drupal.behaviors.setTimezone = {
     attach: function attach(context, settings) {
       var $timezone = $(context).find('.timezone-detect').once('timezone');
-<<<<<<< HEAD
-      if ($timezone.length) {
-        var dateString = Date();
-
-        var matches = dateString.match(/\(([A-Z]{3,5})\)/);
-        var abbreviation = matches ? matches[1] : 0;
-
-        var dateNow = new Date();
-        var offsetNow = dateNow.getTimezoneOffset() * -60;
-
-=======
 
       if ($timezone.length) {
         var tz = new Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -34,17 +23,11 @@
         var abbreviation = matches ? matches[1] : 0;
         var dateNow = new Date();
         var offsetNow = dateNow.getTimezoneOffset() * -60;
->>>>>>> dev
         var dateJan = new Date(dateNow.getFullYear(), 0, 1, 12, 0, 0, 0);
         var dateJul = new Date(dateNow.getFullYear(), 6, 1, 12, 0, 0, 0);
         var offsetJan = dateJan.getTimezoneOffset() * -60;
         var offsetJul = dateJul.getTimezoneOffset() * -60;
-<<<<<<< HEAD
-
-        var isDaylightSavingTime = void 0;
-=======
         var isDaylightSavingTime;
->>>>>>> dev
 
         if (offsetJan === offsetJul) {
           isDaylightSavingTime = '';
@@ -54,13 +37,6 @@
               isDaylightSavingTime = 0;
             }
 
-<<<<<<< HEAD
-        var path = 'system/timezone/' + abbreviation + '/' + offsetNow + '/' + isDaylightSavingTime;
-        $.ajax({
-          async: false,
-          url: Drupal.url(path),
-          data: { date: dateString },
-=======
         var path = "system/timezone/".concat(abbreviation, "/").concat(offsetNow, "/").concat(isDaylightSavingTime);
         $.ajax({
           async: false,
@@ -68,7 +44,6 @@
           data: {
             date: dateString
           },
->>>>>>> dev
           dataType: 'json',
           success: function success(data) {
             if (data) {

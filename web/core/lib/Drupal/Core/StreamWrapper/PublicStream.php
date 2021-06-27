@@ -86,11 +86,7 @@ class PublicStream extends LocalStream {
    *
    * The site path is injectable from the site.path service:
    * @code
-<<<<<<< HEAD
-   * $base_path = PublicStream::basePath(\Drupal::service('site.path'));
-=======
    * $base_path = PublicStream::basePath(\Drupal::getContainer()->getParameter('site.path'));
->>>>>>> dev
    * @endcode
    *
    * @param string $site_path
@@ -108,11 +104,7 @@ class PublicStream extends LocalStream {
       // Find the site path. Kernel service is not always available at this
       // point, but is preferred, when available.
       if (\Drupal::hasService('kernel')) {
-<<<<<<< HEAD
-        $site_path = \Drupal::service('site.path');
-=======
         $site_path = \Drupal::getContainer()->getParameter('site.path');
->>>>>>> dev
       }
       else {
         // If there is no kernel available yet, we call the static

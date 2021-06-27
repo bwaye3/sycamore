@@ -16,11 +16,7 @@ use Drupal\KernelTests\KernelTestBase;
 class DbToolsApplicationTest extends KernelTestBase {
 
   /**
-<<<<<<< HEAD
-   * Test that the dump command is correctly registered.
-=======
    * Tests that the dump command is correctly registered.
->>>>>>> dev
    */
   public function testDumpCommandRegistration() {
     $application = new DbToolsApplication();
@@ -30,11 +26,7 @@ class DbToolsApplicationTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that the dump command is correctly registered.
-=======
    * Tests that the dump command is correctly registered.
->>>>>>> dev
    */
   public function testImportCommandRegistration() {
     $application = new DbToolsApplication();

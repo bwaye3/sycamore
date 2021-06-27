@@ -31,11 +31,7 @@ class CommentFieldAccessTest extends EntityKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['comment', 'entity_test', 'user'];
-=======
   protected static $modules = ['comment', 'entity_test', 'user'];
->>>>>>> dev
 
   /**
    * Fields that only users with administer comments permissions can change.
@@ -88,22 +84,14 @@ class CommentFieldAccessTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installConfig(['user', 'comment']);
     $this->installSchema('comment', ['comment_entity_statistics']);
   }
 
   /**
-<<<<<<< HEAD
-   * Test permissions on comment fields.
-=======
    * Tests permissions on comment fields.
->>>>>>> dev
    */
   public function testAccessToAdministrativeFields() {
     // Create a comment type.
@@ -229,11 +217,7 @@ class CommentFieldAccessTest extends EntityKernelTestBase {
           '@comment' => $set['comment']->getSubject(),
           '@field' => $field,
         ]));
-<<<<<<< HEAD
-        $this->assertEqual($may_update, $set['user']->hasPermission('administer comments'), new FormattableMarkup('User @user @state update field @field on comment @comment', [
-=======
         $this->assertEquals($may_update, $set['user']->hasPermission('administer comments'), new FormattableMarkup('User @user @state update field @field on comment @comment', [
->>>>>>> dev
           '@user' => $set['user']->getAccountName(),
           '@state' => $may_update ? 'can' : 'cannot',
           '@comment' => $set['comment']->getSubject(),
@@ -245,11 +229,7 @@ class CommentFieldAccessTest extends EntityKernelTestBase {
     // Check access to normal field.
     foreach ($permutations as $set) {
       $may_update = $set['comment']->access('update', $set['user']) && $set['comment']->subject->access('edit', $set['user']);
-<<<<<<< HEAD
-      $this->assertEqual($may_update, $set['user']->hasPermission('administer comments') || ($set['user']->hasPermission('edit own comments') && $set['user']->id() == $set['comment']->getOwnerId()), new FormattableMarkup('User @user @state update field subject on comment @comment', [
-=======
       $this->assertEquals($may_update, $set['user']->hasPermission('administer comments') || ($set['user']->hasPermission('edit own comments') && $set['user']->id() == $set['comment']->getOwnerId()), new FormattableMarkup('User @user @state update field subject on comment @comment', [
->>>>>>> dev
         '@user' => $set['user']->getAccountName(),
         '@state' => $may_update ? 'can' : 'cannot',
         '@comment' => $set['comment']->getSubject(),
@@ -271,11 +251,7 @@ class CommentFieldAccessTest extends EntityKernelTestBase {
           $view_access = TRUE;
           $state = 'can';
         }
-<<<<<<< HEAD
-        $this->assertEqual($may_view, $view_access, new FormattableMarkup('User @user @state view field @field on comment @comment', [
-=======
         $this->assertEquals($may_view, $view_access, new FormattableMarkup('User @user @state view field @field on comment @comment', [
->>>>>>> dev
           '@user' => $set['user']->getAccountName(),
           '@comment' => $set['comment']->getSubject(),
           '@field' => $field,
@@ -296,20 +272,12 @@ class CommentFieldAccessTest extends EntityKernelTestBase {
       foreach ($permutations as $set) {
         $may_view = $set['comment']->{$field}->access('view', $set['user']);
         $may_update = $set['comment']->{$field}->access('edit', $set['user']);
-<<<<<<< HEAD
-        $this->assertEqual($may_view, TRUE, new FormattableMarkup('User @user can view field @field on comment @comment', [
-=======
         $this->assertTrue($may_view, new FormattableMarkup('User @user can view field @field on comment @comment', [
->>>>>>> dev
           '@user' => $set['user']->getAccountName(),
           '@comment' => $set['comment']->getSubject(),
           '@field' => $field,
         ]));
-<<<<<<< HEAD
-        $this->assertEqual($may_update, $set['user']->hasPermission('post comments') && $set['comment']->isNew(), new FormattableMarkup('User @user @state update field @field on comment @comment', [
-=======
         $this->assertEquals($may_update, $set['user']->hasPermission('post comments') && $set['comment']->isNew(), new FormattableMarkup('User @user @state update field @field on comment @comment', [
->>>>>>> dev
           '@user' => $set['user']->getAccountName(),
           '@state' => $may_update ? 'can' : 'cannot',
           '@comment' => $set['comment']->getSubject(),
@@ -326,11 +294,7 @@ class CommentFieldAccessTest extends EntityKernelTestBase {
         // To edit the 'mail' or 'name' field, either the user has the
         // "administer comments" permissions or the user is anonymous and
         // adding a new comment using a field that allows contact details.
-<<<<<<< HEAD
-        $this->assertEqual($may_update, $set['user']->hasPermission('administer comments') || (
-=======
         $this->assertEquals($may_update, $set['user']->hasPermission('administer comments') || (
->>>>>>> dev
             $set['user']->isAnonymous() &&
             $set['comment']->isNew() &&
             $set['user']->hasPermission('post comments') &&
@@ -346,11 +310,7 @@ class CommentFieldAccessTest extends EntityKernelTestBase {
     foreach ($permutations as $set) {
       // Check no view-access to mail field for other than admin.
       $may_view = $set['comment']->mail->access('view', $set['user']);
-<<<<<<< HEAD
-      $this->assertEqual($may_view, $set['user']->hasPermission('administer comments'));
-=======
       $this->assertEquals($may_view, $set['user']->hasPermission('administer comments'));
->>>>>>> dev
     }
   }
 

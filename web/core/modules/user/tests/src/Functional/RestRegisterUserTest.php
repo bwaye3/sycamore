@@ -50,11 +50,7 @@ class RestRegisterUserTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['hal', 'user'];
-=======
   protected static $modules = ['hal', 'user'];
->>>>>>> dev
 
   const USER_EMAIL_DOMAIN = '@example.com';
 
@@ -63,11 +59,7 @@ class RestRegisterUserTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setUp() {
-=======
   public function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $auth = isset(static::$auth) ? [static::$auth] : [];
@@ -274,14 +266,6 @@ class RestRegisterUserTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function getExpectedBcUnauthorizedAccessMessage($method) {}
-
-  /**
-   * {@inheritdoc}
-   */
-=======
->>>>>>> dev
   protected function getExpectedUnauthorizedAccessCacheability() {}
 
 }

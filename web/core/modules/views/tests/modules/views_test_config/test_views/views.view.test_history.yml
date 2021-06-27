@@ -16,11 +16,7 @@ display:
   default:
     display_plugin: default
     id: default
-<<<<<<< HEAD
-    display_title: Master
-=======
     display_title: Default
->>>>>>> dev
     position: null
     display_options:
       access:

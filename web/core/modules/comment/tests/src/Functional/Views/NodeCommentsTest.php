@@ -14,11 +14,7 @@ class NodeCommentsTest extends CommentTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['history'];
-=======
   protected static $modules = ['history'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -33,11 +29,7 @@ class NodeCommentsTest extends CommentTestBase {
   public static $testViews = ['test_new_comments', 'test_comment_count'];
 
   /**
-<<<<<<< HEAD
-   * Test the new comments field plugin.
-=======
    * Tests the new comments field plugin.
->>>>>>> dev
    */
   public function testNewComments() {
     $this->drupalGet('test-new-comments');

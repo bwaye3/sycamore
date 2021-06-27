@@ -43,11 +43,7 @@ class UserPictureTest extends BrowserTestBase {
    */
   protected $webUser;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // This test expects unused managed files to be marked temporary and then
@@ -76,14 +72,6 @@ class UserPictureTest extends BrowserTestBase {
 
     // Verify that the image is displayed on the user account page.
     $this->drupalGet('user');
-<<<<<<< HEAD
-    $this->assertRaw(StreamWrapperManager::getTarget($file->getFileUri()), 'User picture found on user account page.');
-
-    // Delete the picture.
-    $edit = [];
-    $this->drupalPostForm('user/' . $this->webUser->id() . '/edit', $edit, t('Remove'));
-    $this->drupalPostForm(NULL, [], t('Save'));
-=======
     $this->assertRaw(StreamWrapperManager::getTarget($file->getFileUri()));
 
     // Delete the picture.
@@ -91,7 +79,6 @@ class UserPictureTest extends BrowserTestBase {
     $this->drupalGet('user/' . $this->webUser->id() . '/edit');
     $this->submitForm($edit, 'Remove');
     $this->submitForm([], 'Save');
->>>>>>> dev
 
     // Call file_cron() to clean up the file. Make sure the timestamp
     // of the file is older than the system.file.temporary_maximum_age
@@ -109,11 +96,7 @@ class UserPictureTest extends BrowserTestBase {
     $this->assertNull(File::load($file->id()), 'File was removed from the database.');
     // Clear out PHP's file stat cache so we see the current value.
     clearstatcache(TRUE, $file->getFileUri());
-<<<<<<< HEAD
-    $this->assertFileNotExists($file->getFileUri());
-=======
     $this->assertFileDoesNotExist($file->getFileUri());
->>>>>>> dev
   }
 
   /**
@@ -150,12 +133,8 @@ class UserPictureTest extends BrowserTestBase {
     $edit = [
       'comment_body[0][value]' => $this->randomString(),
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('comment/reply/node/' . $node->id() . '/comment', $edit, t('Save'));
-=======
     $this->drupalGet('comment/reply/node/' . $node->id() . '/comment');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $elements = $this->cssSelect('.comment__meta .field--name-user-picture img[alt="' . $alt_text . '"][src="' . $image_url . '"]');
     $this->assertCount(1, $elements, 'User picture with alt text found on the comment.');
 
@@ -166,11 +145,7 @@ class UserPictureTest extends BrowserTestBase {
       ->save();
 
     $this->drupalGet('node/' . $node->id());
-<<<<<<< HEAD
-    $this->assertNoRaw(StreamWrapperManager::getTarget($file->getFileUri()), 'User picture not found on node and comment.');
-=======
     $this->assertNoRaw(StreamWrapperManager::getTarget($file->getFileUri()));
->>>>>>> dev
   }
 
   /**
@@ -178,12 +153,8 @@ class UserPictureTest extends BrowserTestBase {
    */
   public function saveUserPicture($image) {
     $edit = ['files[user_picture_0]' => \Drupal::service('file_system')->realpath($image->uri)];
-<<<<<<< HEAD
-    $this->drupalPostForm('user/' . $this->webUser->id() . '/edit', $edit, t('Save'));
-=======
     $this->drupalGet('user/' . $this->webUser->id() . '/edit');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
 
     // Load actual user data from database.
     $user_storage = $this->container->get('entity_type.manager')->getStorage('user');

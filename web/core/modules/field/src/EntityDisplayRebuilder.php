@@ -70,10 +70,6 @@ class EntityDisplayRebuilder implements ContainerInjectionInterface {
    *
    * @param string $entity_type_id
    *   The entity type machine name.
-<<<<<<< HEAD
-   *
-=======
->>>>>>> dev
    * @param string $bundle
    *   The bundle we need to rebuild.
    */

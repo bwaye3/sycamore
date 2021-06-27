@@ -24,11 +24,7 @@ class BasicSyntaxTest extends DatabaseTestBase {
       ':a4' => ' a ',
       ':a5' => 'test.',
     ]);
-<<<<<<< HEAD
-    $this->assertIdentical($result->fetchField(), 'This is a test.', 'Basic CONCAT works.');
-=======
     $this->assertSame('This is a test.', $result->fetchField(), 'Basic CONCAT works.');
->>>>>>> dev
   }
 
   /**
@@ -41,11 +37,7 @@ class BasicSyntaxTest extends DatabaseTestBase {
    */
   public function testConcatFields() {
     $result = $this->connection->query(
-<<<<<<< HEAD
-      'SELECT CONCAT(:a1, CONCAT(job, CONCAT(:a2, CONCAT(age, :a3)))) FROM {test} WHERE age = :age', [
-=======
       'SELECT CONCAT(:a1, CONCAT([job], CONCAT(:a2, CONCAT([age], :a3)))) FROM {test} WHERE [age] = :age', [
->>>>>>> dev
         ':a1' => 'The age of ',
         ':a2' => ' is ',
         ':a3' => '.',
@@ -65,31 +57,19 @@ class BasicSyntaxTest extends DatabaseTestBase {
       ':a3' => '',
       ':a4' => 'world.',
     ]);
-<<<<<<< HEAD
-    $this->assertIdentical($result->fetchField(), 'Hello, , world.');
-=======
     $this->assertSame('Hello, , world.', $result->fetchField());
->>>>>>> dev
   }
 
   /**
    * Tests string concatenation with separator, with field values.
    */
   public function testConcatWsFields() {
-<<<<<<< HEAD
-    $result = $this->connection->query("SELECT CONCAT_WS('-', :a1, name, :a2, age) FROM {test} WHERE age = :age", [
-=======
     $result = $this->connection->query("SELECT CONCAT_WS('-', :a1, [name], :a2, [age]) FROM {test} WHERE [age] = :age", [
->>>>>>> dev
       ':a1' => 'name',
       ':a2' => 'age',
       ':age' => 25,
     ]);
-<<<<<<< HEAD
-    $this->assertIdentical($result->fetchField(), 'name-John-age-25');
-=======
     $this->assertSame('name-John-age-25', $result->fetchField());
->>>>>>> dev
   }
 
   /**
@@ -108,22 +88,14 @@ class BasicSyntaxTest extends DatabaseTestBase {
       ->countQuery()
       ->execute()
       ->fetchField();
-<<<<<<< HEAD
-    $this->assertIdentical($num_matches, '2', 'Found 2 records.');
-=======
     $this->assertSame('2', $num_matches, 'Found 2 records.');
->>>>>>> dev
     // Match only "Ring_" using a LIKE expression with no wildcards.
     $num_matches = $this->connection->select('test', 't')
       ->condition('name', $this->connection->escapeLike('Ring_'), 'LIKE')
       ->countQuery()
       ->execute()
       ->fetchField();
-<<<<<<< HEAD
-    $this->assertIdentical($num_matches, '1', 'Found 1 record.');
-=======
     $this->assertSame('1', $num_matches, 'Found 1 record.');
->>>>>>> dev
   }
 
   /**
@@ -147,22 +119,14 @@ class BasicSyntaxTest extends DatabaseTestBase {
       ->countQuery()
       ->execute()
       ->fetchField();
-<<<<<<< HEAD
-    $this->assertIdentical($num_matches, '2', 'Found 2 records.');
-=======
     $this->assertSame('2', $num_matches, 'Found 2 records.');
->>>>>>> dev
     // Match only the former using a LIKE expression with no wildcards.
     $num_matches = $this->connection->select('test', 't')
       ->condition('name', $this->connection->escapeLike('abc%\_'), 'LIKE')
       ->countQuery()
       ->execute()
       ->fetchField();
-<<<<<<< HEAD
-    $this->assertIdentical($num_matches, '1', 'Found 1 record.');
-=======
     $this->assertSame('1', $num_matches, 'Found 1 record.');
->>>>>>> dev
   }
 
   /**
@@ -174,9 +138,6 @@ class BasicSyntaxTest extends DatabaseTestBase {
       ->countQuery()
       ->execute()
       ->fetchField();
-<<<<<<< HEAD
-    $this->assertIdentical($num_matches, '4', 'Found 4 records.');
-=======
     $this->assertSame('4', $num_matches, 'Found 4 records.');
   }
 
@@ -207,7 +168,6 @@ class BasicSyntaxTest extends DatabaseTestBase {
     // Test square brackets using the query builder.
     $result = $this->connection->select('test')->fields('test', ['name'])->condition('name', '[square]')->execute();
     $this->assertSame('[square]', $result->fetchField());
->>>>>>> dev
   }
 
 }

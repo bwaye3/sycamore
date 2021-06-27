@@ -27,10 +27,7 @@ use Drupal\Core\TypedData\TypedDataInternalPropertiesHelper;
 use Drupal\Core\Url;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
-<<<<<<< HEAD
-=======
 use Drupal\jsonapi\CacheableResourceResponse;
->>>>>>> dev
 use Drupal\jsonapi\JsonApiResource\LinkCollection;
 use Drupal\jsonapi\JsonApiResource\NullIncludedData;
 use Drupal\jsonapi\JsonApiResource\Link;
@@ -275,10 +272,6 @@ abstract class ResourceTestBase extends BrowserTestBase {
     }
 
     $entity_bundle = $entity->bundle();
-<<<<<<< HEAD
-    $account_bundle = $account->bundle();
-=======
->>>>>>> dev
 
     // Add access-protected field.
     FieldStorageConfig::create([
@@ -362,12 +355,6 @@ abstract class ResourceTestBase extends BrowserTestBase {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   protected function getData() {
-<<<<<<< HEAD
-    if ($this->entityStorage->getQuery()->count()->execute() < 2) {
-      $this->createAnotherEntity('two');
-    }
-    $query = $this->entityStorage->getQuery()->sort($this->entity->getEntityType()->getKey('id'));
-=======
     if ($this->entityStorage->getQuery()->accessCheck(FALSE)->count()->execute() < 2) {
       $this->createAnotherEntity('two');
     }
@@ -375,7 +362,6 @@ abstract class ResourceTestBase extends BrowserTestBase {
       ->getQuery()
       ->accessCheck(FALSE)
       ->sort($this->entity->getEntityType()->getKey('id'));
->>>>>>> dev
     return $this->entityStorage->loadMultiple($query->execute());
   }
 
@@ -572,21 +558,13 @@ abstract class ResourceTestBase extends BrowserTestBase {
         $cacheability->addCacheableDependency($entity);
         if ($entity instanceof FieldableEntityInterface) {
           foreach ($entity as $field_name => $field_item_list) {
-<<<<<<< HEAD
-            /* @var \Drupal\Core\Field\FieldItemListInterface $field_item_list */
-=======
             /** @var \Drupal\Core\Field\FieldItemListInterface $field_item_list */
->>>>>>> dev
             if (is_null($sparse_fieldset) || in_array($field_name, $sparse_fieldset)) {
               $field_access = static::entityFieldAccess($entity, $field_name, 'view', $account);
               $cacheability->addCacheableDependency($field_access);
               if ($field_access->isAllowed()) {
                 foreach ($field_item_list as $field_item) {
-<<<<<<< HEAD
-                  /* @var \Drupal\Core\Field\FieldItemInterface $field_item */
-=======
                   /** @var \Drupal\Core\Field\FieldItemInterface $field_item */
->>>>>>> dev
                   foreach (TypedDataInternalPropertiesHelper::getNonInternalProperties($field_item) as $property) {
                     $cacheability->addCacheableDependency(CacheableMetadata::createFromObject($property));
                   }
@@ -726,11 +704,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
       // sets it to 'text/html' by default. We also cannot detect the presence
       // of Apache either here in the CLI. For now having this documented here
       // is all we can do.
-<<<<<<< HEAD
-      /* $this->assertSame(FALSE, $response->hasHeader('Content-Type')); */
-=======
       /* $this->assertFalse($response->hasHeader('Content-Type')); */
->>>>>>> dev
       $this->assertSame('', (string) $response->getBody());
     }
     else {
@@ -811,19 +785,11 @@ abstract class ResourceTestBase extends BrowserTestBase {
     if (!empty($missing_member_names) || !empty($extra_member_names)) {
       $message_format = "The document members did not match the expected values. Missing: [ %s ]. Unexpected: [ %s ]";
       $message = sprintf($message_format, implode(', ', $missing_member_names), implode(', ', $extra_member_names));
-<<<<<<< HEAD
-      $this->assertSame($expected_document, $actual_document, $message);
-    }
-    foreach ($expected_document as $member_name => $expected_member) {
-      $actual_member = $actual_document[$member_name];
-      $this->assertSame($expected_member, $actual_member, "The '$member_name' member was not as expected.");
-=======
       $this->assertEquals($expected_document, $actual_document, $message);
     }
     foreach ($expected_document as $member_name => $expected_member) {
       $actual_member = $actual_document[$member_name];
       $this->assertEquals($expected_member, $actual_member, "The '$member_name' member was not as expected.");
->>>>>>> dev
     }
   }
 
@@ -1017,11 +983,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
       ->condition('cid', '%[route]=jsonapi.%', 'LIKE')
       ->execute()
       ->fetchAllAssoc('cid');
-<<<<<<< HEAD
-    $this->assertTrue(count($cache_items) >= 2);
-=======
     $this->assertGreaterThanOrEqual(2, count($cache_items));
->>>>>>> dev
     $found_cache_redirect = FALSE;
     $found_cached_200_response = FALSE;
     $other_cached_responses_are_4xx = TRUE;
@@ -1295,11 +1257,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
     $cacheability = static::getExpectedCollectionCacheability($this->account, $collection, NULL, $filtered);
     $cacheability->setCacheMaxAge($merged_response->getCacheableMetadata()->getCacheMaxAge());
 
-<<<<<<< HEAD
-    $collection_response = ResourceResponse::create($merged_document);
-=======
     $collection_response = new CacheableResourceResponse($merged_document);
->>>>>>> dev
     $collection_response->addCacheableDependency($cacheability);
 
     if (is_null($included_paths)) {
@@ -1325,11 +1283,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests GETing related resource of an individual resource.
-=======
    * Tests GET of the related resource of an individual resource.
->>>>>>> dev
    *
    * Expected responses are built by making requests to 'relationship' routes.
    * Using the fetched resource identifiers, if any, all targeted resources are
@@ -1408,15 +1362,9 @@ abstract class ResourceTestBase extends BrowserTestBase {
     // Fetches actual responses as an array keyed by relationship field name.
     $related_responses = $this->getRelatedResponses($relationship_field_names, $request_options);
     foreach ($relationship_field_names as $relationship_field_name) {
-<<<<<<< HEAD
-      /* @var \Drupal\jsonapi\ResourceResponse $expected_resource_response */
-      $expected_resource_response = $expected_relationship_responses[$relationship_field_name];
-      /* @var \Psr\Http\Message\ResponseInterface $actual_response */
-=======
       /** @var \Drupal\jsonapi\ResourceResponse $expected_resource_response */
       $expected_resource_response = $expected_relationship_responses[$relationship_field_name];
       /** @var \Psr\Http\Message\ResponseInterface $actual_response */
->>>>>>> dev
       $actual_response = $related_responses[$relationship_field_name];
       // Dynamic Page Cache miss because cache should vary based on the
       // 'include' query param.
@@ -1480,11 +1428,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
    * @see ::testRelationships
    */
   protected function doTestRelationshipMutation(array $request_options) {
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Entity\FieldableEntityInterface $resource */
-=======
     /** @var \Drupal\Core\Entity\FieldableEntityInterface $resource */
->>>>>>> dev
     $resource = $this->createAnotherEntity('dupe');
     $resource->set('field_jsonapi_test_entity_ref', NULL);
     $violations = $resource->validate();
@@ -1497,11 +1441,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
     $target_identifier = static::toResourceIdentifier($target_resource);
     $resource_identifier = static::toResourceIdentifier($resource);
     $relationship_field_name = 'field_jsonapi_test_entity_ref';
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Access\AccessResultReasonInterface $update_access */
-=======
     /** @var \Drupal\Core\Access\AccessResultReasonInterface $update_access */
->>>>>>> dev
     $update_access = static::entityAccess($resource, 'update', $this->account)
       ->andIf(static::entityFieldAccess($resource, $relationship_field_name, 'edit', $this->account));
     $url = Url::fromRoute(sprintf("jsonapi.{$resource_identifier['type']}.{$relationship_field_name}.relationship.patch"), [
@@ -1557,19 +1497,11 @@ abstract class ResourceTestBase extends BrowserTestBase {
         // Test POST: invalid target.
         $request_options[RequestOptions::BODY] = Json::encode(['data' => [$resource_identifier]]);
         $response = $this->request('POST', $url, $request_options);
-<<<<<<< HEAD
-        $this->assertResourceErrorResponse(400, sprintf('The provided type (%s) does not mach the destination resource types (%s).', $resource_identifier['type'], $target_identifier['type']), $url, $response, FALSE);
-        // Test PATCH: invalid target.
-        $request_options[RequestOptions::BODY] = Json::encode(['data' => [$resource_identifier]]);
-        $response = $this->request('POST', $url, $request_options);
-        $this->assertResourceErrorResponse(400, sprintf('The provided type (%s) does not mach the destination resource types (%s).', $resource_identifier['type'], $target_identifier['type']), $url, $response, FALSE);
-=======
         $this->assertResourceErrorResponse(400, sprintf('The provided type (%s) does not match the destination resource types (%s).', $resource_identifier['type'], $target_identifier['type']), $url, $response, FALSE);
         // Test PATCH: invalid target.
         $request_options[RequestOptions::BODY] = Json::encode(['data' => [$resource_identifier]]);
         $response = $this->request('POST', $url, $request_options);
         $this->assertResourceErrorResponse(400, sprintf('The provided type (%s) does not match the destination resource types (%s).', $resource_identifier['type'], $target_identifier['type']), $url, $response, FALSE);
->>>>>>> dev
       }
 
       // Test POST: duplicate targets, no arity.
@@ -1740,11 +1672,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
    * @param \Drupal\Core\Entity\EntityInterface|null $entity
    *   (optional) The entity for which to get expected relationship response.
    *
-<<<<<<< HEAD
-   * @return \Drupal\jsonapi\ResourceResponse
-=======
    * @return \Drupal\jsonapi\CacheableResourceResponse
->>>>>>> dev
    *   The expected ResourceResponse.
    */
   protected function getExpectedGetRelationshipResponse($relationship_field_name, EntityInterface $entity = NULL) {
@@ -1769,11 +1697,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
       ->addCacheableDependency($entity)
       ->addCacheableDependency($access);
     $status_code = isset($expected_document['errors'][0]['status']) ? $expected_document['errors'][0]['status'] : 200;
-<<<<<<< HEAD
-    $resource_response = new ResourceResponse($expected_document, $status_code);
-=======
     $resource_response = new CacheableResourceResponse($expected_document, $status_code);
->>>>>>> dev
     $resource_response->addCacheableDependency($expected_cacheability);
     return $resource_response;
   }
@@ -1826,11 +1750,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
   protected function getExpectedGetRelationshipDocumentData($relationship_field_name, EntityInterface $entity = NULL) {
     $entity = $entity ?: $this->entity;
     $internal_field_name = $this->resourceType->getInternalName($relationship_field_name);
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Field\FieldItemListInterface $field */
-=======
     /** @var \Drupal\Core\Field\FieldItemListInterface $field */
->>>>>>> dev
     $field = $entity->{$internal_field_name};
     $is_multiple = $field->getFieldDefinition()->getFieldStorageDefinition()->getCardinality() !== 1;
     if ($field->isEmpty()) {
@@ -1891,10 +1811,6 @@ abstract class ResourceTestBase extends BrowserTestBase {
   protected function getExpectedRelatedResponse($relationship_field_name, array $request_options, EntityInterface $entity) {
     // Get the relationships responses which contain resource identifiers for
     // every related resource.
-<<<<<<< HEAD
-    /* @var \Drupal\jsonapi\ResourceResponse[] $relationship_responses */
-=======
->>>>>>> dev
     $base_resource_identifier = static::toResourceIdentifier($entity);
     $internal_name = $this->resourceType->getInternalName($relationship_field_name);
     $access = AccessResult::neutral()->addCacheContexts($entity->getEntityType()->isRevisionable() ? ['url.query_args:resourceVersion'] : []);
@@ -1925,11 +1841,6 @@ abstract class ResourceTestBase extends BrowserTestBase {
           'url.site',
         ], $this->entity->getEntityType()->isRevisionable() ? ['url.query_args:resourceVersion'] : []);
         $cacheability = (new CacheableMetadata())->addCacheContexts($cache_contexts)->addCacheTags(['http_response']);
-<<<<<<< HEAD
-        $related_response = isset($relationship_document['errors'])
-          ? $relationship_response
-          : (new ResourceResponse(static::getEmptyCollectionResponse(!is_null($relationship_document['data']), $self_link)->getResponseData()))->addCacheableDependency($cacheability);
-=======
         if (isset($relationship_document['errors'])) {
           $related_response = $relationship_response;
         }
@@ -1937,7 +1848,6 @@ abstract class ResourceTestBase extends BrowserTestBase {
           $cardinality = is_null($relationship_document['data']) ? 1 : -1;
           $related_response = (new CacheableResourceResponse(static::getEmptyCollectionResponse($cardinality, $self_link)->getResponseData()))->addCacheableDependency($cacheability);
         }
->>>>>>> dev
       }
       else {
         $is_to_one_relationship = static::isResourceIdentifier($relationship_document['data']);
@@ -1953,12 +1863,8 @@ abstract class ResourceTestBase extends BrowserTestBase {
           $related_response = static::toCollectionResourceResponse($individual_responses, $self_link, !$is_to_one_relationship);
         }
         else {
-<<<<<<< HEAD
-          $related_response = static::getEmptyCollectionResponse(!$is_to_one_relationship, $self_link);
-=======
           $cardinality = $is_to_one_relationship ? 1 : -1;
           $related_response = static::getEmptyCollectionResponse($cardinality, $self_link);
->>>>>>> dev
         }
       }
       $related_response->addCacheableDependency($relationship_response->getCacheableMetadata());
@@ -1979,10 +1885,6 @@ abstract class ResourceTestBase extends BrowserTestBase {
     // Try with all of the following request bodies.
     $unparseable_request_body = '!{>}<';
     $parseable_valid_request_body = Json::encode($this->getPostDocument());
-<<<<<<< HEAD
-    /* $parseable_valid_request_body_2 = Json::encode($this->getNormalizedPostEntity()); */
-=======
->>>>>>> dev
     $parseable_invalid_request_body_missing_type = Json::encode($this->removeResourceTypeFromDocument($this->getPostDocument()));
     if ($this->entity->getEntityType()->hasKey('label')) {
       $parseable_invalid_request_body = Json::encode($this->makeNormalizationInvalid($this->getPostDocument(), 'label'));
@@ -2103,30 +2005,19 @@ abstract class ResourceTestBase extends BrowserTestBase {
       // contains the serialized created entity.
       $created_entity_document = $this->normalize($created_entity, $url);
       $decoded_response_body = Json::decode((string) $response->getBody());
-<<<<<<< HEAD
-      $this->assertSame($created_entity_document, $decoded_response_body);
-=======
       $this->assertEquals($created_entity_document, $decoded_response_body);
->>>>>>> dev
       // Assert that the entity was indeed created using the POSTed values.
       foreach ($this->getPostDocument()['data']['attributes'] as $field_name => $field_normalization) {
         // If the value is an array of properties, only verify that the sent
         // properties are present, the server could be computing additional
         // properties.
         if (is_array($field_normalization)) {
-<<<<<<< HEAD
-          $this->assertArraySubset($field_normalization, $created_entity_document['data']['attributes'][$field_name]);
-        }
-        else {
-          $this->assertSame($field_normalization, $created_entity_document['data']['attributes'][$field_name]);
-=======
           foreach ($field_normalization as $value) {
             $this->assertContains($value, $created_entity_document['data']['attributes'][$field_name]);
           }
         }
         else {
           $this->assertEquals($field_normalization, $created_entity_document['data']['attributes'][$field_name]);
->>>>>>> dev
         }
       }
       if (isset($this->getPostDocument()['data']['relationships'])) {
@@ -2134,11 +2025,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
           // POSTing relationships: 'data' is required, 'links' is optional.
           static::recursiveKsort($relationship_field_normalization);
           static::recursiveKsort($created_entity_document['data']['relationships'][$field_name]);
-<<<<<<< HEAD
-          $this->assertSame($relationship_field_normalization, array_diff_key($created_entity_document['data']['relationships'][$field_name], ['links' => TRUE]));
-=======
           $this->assertEquals($relationship_field_normalization, array_diff_key($created_entity_document['data']['relationships'][$field_name], ['links' => TRUE]));
->>>>>>> dev
         }
       }
     }
@@ -2219,10 +2106,6 @@ abstract class ResourceTestBase extends BrowserTestBase {
     // Try with all of the following request bodies.
     $unparseable_request_body = '!{>}<';
     $parseable_valid_request_body = Json::encode($this->getPatchDocument());
-<<<<<<< HEAD
-    /* $parseable_valid_request_body_2 = Json::encode($this->getNormalizedPatchEntity()); */
-=======
->>>>>>> dev
     if ($this->entity->getEntityType()->hasKey('label')) {
       $parseable_invalid_request_body = Json::encode($this->makeNormalizationInvalid($this->getPatchDocument(), 'label'));
     }
@@ -2258,11 +2141,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
 
     // DX: 415 when no Content-Type request header.
     $response = $this->request('PATCH', $url, $request_options);
-<<<<<<< HEAD
-    $this->assertsame(415, $response->getStatusCode());
-=======
     $this->assertSame(415, $response->getStatusCode());
->>>>>>> dev
 
     $request_options[RequestOptions::HEADERS]['Content-Type'] = 'application/vnd.api+json';
 
@@ -2388,13 +2267,9 @@ abstract class ResourceTestBase extends BrowserTestBase {
       // properties are present, the server could be computing additional
       // properties.
       if (is_array($field_normalization)) {
-<<<<<<< HEAD
-        $this->assertArraySubset($field_normalization, $updated_entity_document['data']['attributes'][$field_name]);
-=======
         foreach ($field_normalization as $value) {
           $this->assertContains($value, $updated_entity_document['data']['attributes'][$field_name]);
         }
->>>>>>> dev
       }
       else {
         $this->assertSame($field_normalization, $updated_entity_document['data']['attributes'][$field_name]);
@@ -2856,11 +2731,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
     $entity = $this->entityLoadUnchanged($this->entity->id());
 
     // Set up test data.
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Entity\FieldableEntityInterface $entity */
-=======
     /** @var \Drupal\Core\Entity\FieldableEntityInterface $entity */
->>>>>>> dev
     $entity->set('field_revisionable_number', 42);
     $entity->save();
     $original_revision_id = (int) $entity->getRevisionId();
@@ -3010,11 +2881,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
     $workflow->save();
 
     // Ensure the test entity has content_moderation fields attached to it.
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Entity\FieldableEntityInterface|\Drupal\Core\Entity\TranslatableRevisionableInterface $entity */
-=======
     /** @var \Drupal\Core\Entity\FieldableEntityInterface|\Drupal\Core\Entity\TranslatableRevisionableInterface $entity */
->>>>>>> dev
     $entity = $this->entityStorage->load($entity->id());
 
     // Set the published moderation state on the test entity.
@@ -3310,26 +3177,15 @@ abstract class ResourceTestBase extends BrowserTestBase {
    * the expected cacheability for those includes. It does so based of responses
    * from the related routes for individual relationships.
    *
-<<<<<<< HEAD
-   * @param \Drupal\jsonapi\ResourceResponse $expected_response
-=======
    * @param \Drupal\jsonapi\CacheableResourceResponse $expected_response
->>>>>>> dev
    *   The expected ResourceResponse.
    * @param \Drupal\jsonapi\ResourceResponse[] $related_responses
    *   The related ResourceResponses, keyed by relationship field names.
    *
-<<<<<<< HEAD
-   * @return \Drupal\jsonapi\ResourceResponse
-   *   The decorated ResourceResponse.
-   */
-  protected static function decorateExpectedResponseForIncludedFields(ResourceResponse $expected_response, array $related_responses) {
-=======
    * @return \Drupal\jsonapi\CacheableResourceResponse
    *   The decorated ResourceResponse.
    */
   protected static function decorateExpectedResponseForIncludedFields(CacheableResourceResponse $expected_response, array $related_responses) {
->>>>>>> dev
     $expected_document = $expected_response->getResponseData();
     $expected_cacheability = $expected_response->getCacheableMetadata();
     foreach ($related_responses as $related_response) {
@@ -3356,29 +3212,17 @@ abstract class ResourceTestBase extends BrowserTestBase {
         }
       }
     }
-<<<<<<< HEAD
-    return (new ResourceResponse($expected_document))->addCacheableDependency($expected_cacheability);
-=======
     return (new CacheableResourceResponse($expected_document))->addCacheableDependency($expected_cacheability);
->>>>>>> dev
   }
 
   /**
    * Gets the expected individual ResourceResponse for GET.
    *
-<<<<<<< HEAD
-   * @return \Drupal\jsonapi\ResourceResponse
-   *   The expected individual ResourceResponse.
-   */
-  protected function getExpectedGetIndividualResourceResponse($status_code = 200) {
-    $resource_response = new ResourceResponse($this->getExpectedDocument(), $status_code);
-=======
    * @return \Drupal\jsonapi\CacheableResourceResponse
    *   The expected individual ResourceResponse.
    */
   protected function getExpectedGetIndividualResourceResponse($status_code = 200) {
     $resource_response = new CacheableResourceResponse($this->getExpectedDocument(), $status_code);
->>>>>>> dev
     $cacheability = new CacheableMetadata();
     $cacheability->setCacheContexts($this->getExpectedCacheContexts());
     $cacheability->setCacheTags($this->getExpectedCacheTags());
@@ -3422,11 +3266,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
       ? iterator_to_array($entity)
       : [];
     return array_reduce($fields, function ($field_names, $field) {
-<<<<<<< HEAD
-      /* @var \Drupal\Core\Field\FieldItemListInterface $field */
-=======
       /** @var \Drupal\Core\Field\FieldItemListInterface $field */
->>>>>>> dev
       if (static::isReferenceFieldDefinition($field->getFieldDefinition())) {
         $field_names[] = $this->resourceType->getPublicName($field->getName());
       }
@@ -3544,11 +3384,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
    *   otherwise.
    */
   protected static function isReferenceFieldDefinition(FieldDefinitionInterface $field_definition) {
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Field\TypedData\FieldItemDataDefinition $item_definition */
-=======
     /** @var \Drupal\Core\Field\TypedData\FieldItemDataDefinition $item_definition */
->>>>>>> dev
     $item_definition = $field_definition->getItemDefinition();
     $main_property = $item_definition->getMainPropertyName();
     $property_definition = $item_definition->getPropertyDefinition($main_property);

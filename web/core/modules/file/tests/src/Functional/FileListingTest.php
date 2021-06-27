@@ -18,11 +18,7 @@ class FileListingTest extends FileFieldTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['views', 'file', 'image', 'entity_test'];
-=======
   protected static $modules = ['views', 'file', 'image', 'entity_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -36,11 +32,7 @@ class FileListingTest extends FileFieldTestBase {
    */
   protected $baseUser;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // This test expects unused managed files to be marked as a temporary file.
@@ -97,11 +89,7 @@ class FileListingTest extends FileFieldTestBase {
 
     $this->drupalGet('admin/content/files');
     $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-    $this->assertText('No files available.');
-=======
     $this->assertSession()->pageTextContains('No files available.');
->>>>>>> dev
     $this->drupalGet('admin/content/files');
     $this->assertSession()->statusCodeEquals(200);
 
@@ -110,11 +98,7 @@ class FileListingTest extends FileFieldTestBase {
 
     $this->drupalGet('admin/content/files/usage/' . $file->id());
     $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-    $this->assertTitle('File usage information for ' . $file->getFilename() . ' | Drupal');
-=======
     $this->assertSession()->titleEquals('File usage information for ' . $file->getFilename() . ' | Drupal');
->>>>>>> dev
 
     foreach ($nodes as &$node) {
       $this->drupalGet('node/' . $node->id() . '/edit');
@@ -123,11 +107,7 @@ class FileListingTest extends FileFieldTestBase {
       $edit = [
         'files[file_0]' => \Drupal::service('file_system')->realpath($file->getFileUri()),
       ];
-<<<<<<< HEAD
-      $this->drupalPostForm(NULL, $edit, t('Save'));
-=======
       $this->submitForm($edit, 'Save');
->>>>>>> dev
       $node = Node::load($node->id());
     }
 
@@ -135,15 +115,9 @@ class FileListingTest extends FileFieldTestBase {
 
     foreach ($nodes as $node) {
       $file = File::load($node->file->target_id);
-<<<<<<< HEAD
-      $this->assertText($file->getFilename());
-      $this->assertLinkByHref(file_create_url($file->getFileUri()));
-      $this->assertLinkByHref('admin/content/files/usage/' . $file->id());
-=======
       $this->assertSession()->pageTextContains($file->getFilename());
       $this->assertSession()->linkByHrefExists(file_create_url($file->getFileUri()));
       $this->assertSession()->linkByHrefExists('admin/content/files/usage/' . $file->id());
->>>>>>> dev
     }
     $this->assertSession()->elementTextNotContains('css', 'table.views-table', 'Temporary');
     $this->assertSession()->elementTextContains('css', 'table.views-table', 'Permanent');
@@ -172,19 +146,6 @@ class FileListingTest extends FileFieldTestBase {
       $usage = $file_usage->listUsage($file);
       $this->drupalGet('admin/content/files/usage/' . $file->id());
       $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-      $this->assertText($node->getTitle(), 'Node title found on usage page.');
-      $this->assertText('node', 'Registering entity type found on usage page.');
-      $this->assertText('file', 'Registering module found on usage page.');
-      foreach ($usage as $module) {
-        foreach ($module as $entity_type) {
-          foreach ($entity_type as $entity) {
-            $this->assertText($entity, 'Usage count found on usage page.');
-          }
-        }
-      }
-      $this->assertLinkByHref('node/' . $node->id(), 0, 'Link to registering entity found on usage page.');
-=======
       $this->assertSession()->pageTextContains($node->getTitle());
       // Verify that registering entity type is found on usage page.
       $this->assertSession()->pageTextContains('node');
@@ -199,7 +160,6 @@ class FileListingTest extends FileFieldTestBase {
         }
       }
       $this->assertSession()->linkByHrefExists('node/' . $node->id(), 0, 'Link to registering entity found on usage page.');
->>>>>>> dev
     }
   }
 
@@ -247,11 +207,7 @@ class FileListingTest extends FileFieldTestBase {
     $this->assertSession()->statusCodeEquals(200);
     // Entity name should be displayed, but not linked if Entity::toUrl
     // throws an exception
-<<<<<<< HEAD
-    $this->assertText($entity_name, 'Entity name is added to file usage listing.');
-=======
     $this->assertSession()->pageTextContains($entity_name);
->>>>>>> dev
     $this->assertSession()->linkNotExists($entity_name, 'Linked entity name not added to file usage listing.');
     $this->assertSession()->linkExists($node->getTitle());
   }

@@ -91,19 +91,11 @@ class ConfigNamesMapperTest extends UnitTestCase {
   /**
    * The mocked event dispatcher.
    *
-<<<<<<< HEAD
-   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface|\PHPUnit\Framework\MockObject\MockObject
-   */
-  protected $eventDispatcher;
-
-  protected function setUp() {
-=======
    * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface|\PHPUnit\Framework\MockObject\MockObject
    */
   protected $eventDispatcher;
 
   protected function setUp(): void {
->>>>>>> dev
     $this->routeProvider = $this->createMock('Drupal\Core\Routing\RouteProviderInterface');
 
     $this->pluginDefinition = [
@@ -137,11 +129,7 @@ class ConfigNamesMapperTest extends UnitTestCase {
 
     $this->languageManager = $this->createMock('Drupal\Core\Language\LanguageManagerInterface');
 
-<<<<<<< HEAD
-    $this->eventDispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
-=======
     $this->eventDispatcher = $this->createMock('Symfony\Contracts\EventDispatcher\EventDispatcherInterface');
->>>>>>> dev
 
     $this->configNamesMapper = new TestConfigNamesMapper(
       'system.site_information_settings',
@@ -340,12 +328,8 @@ class ConfigNamesMapperTest extends UnitTestCase {
     $route_match = new RouteMatch('example', new Route('/test/{langcode}'), ['langcode' => 'xx']);
     $this->configNamesMapper->populateFromRouteMatch($route_match);
 
-<<<<<<< HEAD
-    $expected = ['langcode' => 'xx'];    $result = $this->configNamesMapper->getDeleteRouteParameters();
-=======
     $expected = ['langcode' => 'xx'];
     $result = $this->configNamesMapper->getDeleteRouteParameters();
->>>>>>> dev
     $this->assertSame($expected, $result);
   }
 
@@ -486,10 +470,6 @@ class ConfigNamesMapperTest extends UnitTestCase {
       ],
       'system.rss' => [
         'items' => [
-<<<<<<< HEAD
-          'limit' => 10,
-=======
->>>>>>> dev
           'view_mode' => 'rss',
         ],
       ],
@@ -631,11 +611,7 @@ class ConfigNamesMapperTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Provides data for for ConfigNamesMapperTest::testHasTranslation().
-=======
    * Provides data for ConfigNamesMapperTest::testHasTranslation().
->>>>>>> dev
    *
    * @return array
    *   An array of arrays, where each inner array has an array of values that

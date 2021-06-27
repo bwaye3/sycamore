@@ -3,11 +3,7 @@
 namespace Drupal\Core\EventSubscriber;
 
 use Drupal\Core\Utility\Error;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
->>>>>>> dev
 
 /**
  * Custom handling of errors when in a system-under-test.
@@ -35,17 +31,10 @@ class ExceptionTestSiteSubscriber extends HttpExceptionSubscriberBase {
    *   original code. It's quite possible that this entire method is now
    *   vestigial and can be removed.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $event
-   */
-  public function on500(GetResponseForExceptionEvent $event) {
-    $exception = $event->getException();
-=======
    * @param \Symfony\Component\HttpKernel\Event\ExceptionEvent $event
    */
   public function on500(ExceptionEvent $event) {
     $exception = $event->getThrowable();
->>>>>>> dev
     $error = Error::decodeException($exception);
 
     $headers = [];

@@ -54,11 +54,7 @@ class Analyze extends ViewsFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-<<<<<<< HEAD
-    /** @var $view \Drupal\views_ui\ViewUI */
-=======
     /** @var \Drupal\views_ui\ViewUI $view */
->>>>>>> dev
     $view = $form_state->get('view');
     $form_state->setRedirectUrl($view->toUrl('edit-form'));
   }

@@ -3,8 +3,4 @@ type: module
 description: 'Helper module to test the behavior when the core verison is a development release.'
 package: Testing
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 hidden: true

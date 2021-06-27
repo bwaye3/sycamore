@@ -38,11 +38,7 @@ class SiteNameTest extends BrowserTestBase {
    */
   public function testSiteName() {
     $this->drupalGet('');
-<<<<<<< HEAD
-    $this->assertRaw($this->siteName, 'The site name that was set during the installation appears on the front page after installation.');
-=======
     $this->assertRaw($this->siteName);
->>>>>>> dev
   }
 
 }

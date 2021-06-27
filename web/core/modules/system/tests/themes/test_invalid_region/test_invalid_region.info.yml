@@ -3,10 +3,5 @@ type: theme
 base theme: stable
 description: 'Test theme which has a non-existent content region.'
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-
-=======
->>>>>>> dev
 regions:
   - foo: Foo

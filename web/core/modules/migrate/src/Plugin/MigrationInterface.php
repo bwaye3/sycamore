@@ -104,8 +104,6 @@ interface MigrationInterface extends PluginInspectionInterface, DerivativeInspec
   public function label();
 
   /**
-<<<<<<< HEAD
-=======
    * Get a list of required plugin IDs.
    *
    * @returns string[]
@@ -113,7 +111,6 @@ interface MigrationInterface extends PluginInspectionInterface, DerivativeInspec
   public function getRequirements(): array;
 
   /**
->>>>>>> dev
    * Returns the initialized source plugin.
    *
    * @return \Drupal\migrate\Plugin\MigrateSourceInterface
@@ -258,11 +255,6 @@ interface MigrationInterface extends PluginInspectionInterface, DerivativeInspec
    *
    * @return $this
    *   The migration entity.
-<<<<<<< HEAD
-   *
-   * @see Drupal\migrate_drupal\Plugin\migrate\load\LoadEntity::processLinkField()
-=======
->>>>>>> dev
    */
   public function mergeProcessOfProperty($property, array $process_of_property);
 

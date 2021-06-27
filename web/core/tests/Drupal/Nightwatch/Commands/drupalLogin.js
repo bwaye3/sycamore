@@ -9,11 +9,7 @@
  *   The drupalUserIsLoggedIn command.
  */
 exports.command = function drupalLogin({ name, password }) {
-<<<<<<< HEAD
-  this.drupalUserIsLoggedIn(sessionExists => {
-=======
   this.drupalUserIsLoggedIn((sessionExists) => {
->>>>>>> dev
     // Log the current user out if necessary.
     if (sessionExists) {
       this.drupalLogout();
@@ -24,11 +20,7 @@ exports.command = function drupalLogin({ name, password }) {
       .setValue('input[name="pass"]', password)
       .submitForm('#user-login-form');
     // Assert that a user is logged in.
-<<<<<<< HEAD
-    this.drupalUserIsLoggedIn(sessionExists => {
-=======
     this.drupalUserIsLoggedIn((sessionExists) => {
->>>>>>> dev
       this.assert.equal(
         sessionExists,
         true,

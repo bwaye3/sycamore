@@ -2,11 +2,7 @@
  * @file
  *  Testing tools for deprecating JavaScript functions and class properties.
  */
-<<<<<<< HEAD
-(function({ deprecationError, deprecatedProperty, behaviors }) {
-=======
 (function ({ deprecationError, deprecatedProperty, behaviors }) {
->>>>>>> dev
   const deprecatedFunction = () => {
     deprecationError({
       message: 'This function is deprecated for testing purposes.',

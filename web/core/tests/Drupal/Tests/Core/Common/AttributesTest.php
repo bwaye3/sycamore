@@ -57,11 +57,7 @@ class AttributesTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test attribute iteration
-=======
    * Tests attribute iteration.
->>>>>>> dev
    */
   public function testAttributeIteration() {
     $attribute = new Attribute(['key1' => 'value1']);
@@ -71,11 +67,7 @@ class AttributesTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test AttributeValueBase copy.
-=======
    * Tests AttributeValueBase copy.
->>>>>>> dev
    */
   public function testAttributeValueBaseCopy() {
     $original_attributes = new Attribute([

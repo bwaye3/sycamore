@@ -20,11 +20,7 @@ class FieldImportChangeTest extends FieldKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['field_test_config'];
-=======
   protected static $modules = ['field_test_config'];
->>>>>>> dev
 
   /**
    * Tests importing an updated field.
@@ -50,11 +46,7 @@ class FieldImportChangeTest extends FieldKernelTestBase {
 
     // Check that the updated config was correctly imported.
     $field = FieldConfig::load($field_id);
-<<<<<<< HEAD
-    $this->assertEqual($field->getLabel(), $new_label, 'field label updated');
-=======
     $this->assertEquals($new_label, $field->getLabel(), 'field label updated');
->>>>>>> dev
   }
 
 }

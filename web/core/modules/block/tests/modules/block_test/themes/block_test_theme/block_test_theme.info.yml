@@ -3,10 +3,6 @@ type: theme
 base theme: stable
 description: 'Theme for testing the block system'
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 regions:
   sidebar_first: 'Left sidebar'
   sidebar_second: 'Right sidebar'

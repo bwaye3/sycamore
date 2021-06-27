@@ -10,11 +10,7 @@ module.exports = {
   after(browser) {
     browser.drupalUninstall();
   },
-<<<<<<< HEAD
-  'Test page with langcode': browser => {
-=======
   'Test page with langcode': (browser) => {
->>>>>>> dev
     browser
       .drupalRelativeURL('/test-page')
       .assert.attributeEquals('html', 'lang', 'fr')

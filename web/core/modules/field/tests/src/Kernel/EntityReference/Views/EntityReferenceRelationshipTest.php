@@ -41,11 +41,7 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'user',
     'field',
     'entity_test',
@@ -63,18 +59,11 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-    parent::setUp();
-
-    $this->installEntitySchema('user');
-=======
   protected function setUp($import_test_views = TRUE): void {
     parent::setUp();
 
     $this->installEntitySchema('user');
     $this->installEntitySchema('user_role');
->>>>>>> dev
     $this->installEntitySchema('entity_test');
     $this->installEntitySchema('entity_test_mul');
     $this->installEntitySchema('entity_test_mul_changed');
@@ -94,11 +83,7 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
     // Create reference from entity_test_mul to entity_test cardinality: infinite.
     $this->createEntityReferenceField('entity_test_mul', 'entity_test_mul', 'field_data_test_unlimited', 'field_data_test_unlimited', 'entity_test', 'default', [], FieldStorageConfig::CARDINALITY_UNLIMITED);
 
-<<<<<<< HEAD
-    ViewTestData::createTestViews(get_class($this), ['entity_reference_test_views']);
-=======
     ViewTestData::createTestViews(static::class, ['entity_reference_test_views']);
->>>>>>> dev
   }
 
   /**
@@ -113,45 +98,19 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
     $entity = EntityTest::create();
     $entity->field_test_data->target_id = $referenced_entity->id();
     $entity->save();
-<<<<<<< HEAD
-    $this->assertEqual($entity->field_test_data[0]->entity->id(), $referenced_entity->id());
-=======
     $this->assertEquals($referenced_entity->id(), $entity->field_test_data[0]->entity->id());
->>>>>>> dev
     $this->entities[] = $entity;
 
     $entity = EntityTest::create();
     $entity->field_test_data->target_id = $referenced_entity->id();
     $entity->save();
-<<<<<<< HEAD
-    $this->assertEqual($entity->field_test_data[0]->entity->id(), $referenced_entity->id());
-=======
     $this->assertEquals($referenced_entity->id(), $entity->field_test_data[0]->entity->id());
->>>>>>> dev
     $this->entities[] = $entity;
 
     Views::viewsData()->clear();
 
     // Check the generated views data.
     $views_data = Views::viewsData()->get('entity_test__field_test_data');
-<<<<<<< HEAD
-    $this->assertEqual($views_data['field_test_data']['relationship']['id'], 'standard');
-    $this->assertEqual($views_data['field_test_data']['relationship']['base'], 'entity_test_mul_property_data');
-    $this->assertEqual($views_data['field_test_data']['relationship']['base field'], 'id');
-    $this->assertEqual($views_data['field_test_data']['relationship']['relationship field'], 'field_test_data_target_id');
-    $this->assertEqual($views_data['field_test_data']['relationship']['entity type'], 'entity_test_mul');
-
-    // Check the backwards reference.
-    $views_data = Views::viewsData()->get('entity_test_mul_property_data');
-    $this->assertEqual($views_data['reverse__entity_test__field_test_data']['relationship']['id'], 'entity_reverse');
-    $this->assertEqual($views_data['reverse__entity_test__field_test_data']['relationship']['base'], 'entity_test');
-    $this->assertEqual($views_data['reverse__entity_test__field_test_data']['relationship']['base field'], 'id');
-    $this->assertEqual($views_data['reverse__entity_test__field_test_data']['relationship']['field table'], 'entity_test__field_test_data');
-    $this->assertEqual($views_data['reverse__entity_test__field_test_data']['relationship']['field field'], 'field_test_data_target_id');
-    $this->assertEqual($views_data['reverse__entity_test__field_test_data']['relationship']['field_name'], 'field_test_data');
-    $this->assertEqual($views_data['reverse__entity_test__field_test_data']['relationship']['entity_type'], 'entity_test');
-    $this->assertEqual($views_data['reverse__entity_test__field_test_data']['relationship']['join_extra'][0], ['field' => 'deleted', 'value' => 0, 'numeric' => TRUE]);
-=======
     $this->assertEquals('standard', $views_data['field_test_data']['relationship']['id']);
     $this->assertEquals('entity_test_mul_property_data', $views_data['field_test_data']['relationship']['base']);
     $this->assertEquals('id', $views_data['field_test_data']['relationship']['base field']);
@@ -168,7 +127,6 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
     $this->assertEquals('field_test_data', $views_data['reverse__entity_test__field_test_data']['relationship']['field_name']);
     $this->assertEquals('entity_test', $views_data['reverse__entity_test__field_test_data']['relationship']['entity_type']);
     $this->assertEquals(['field' => 'deleted', 'value' => 0, 'numeric' => TRUE], $views_data['reverse__entity_test__field_test_data']['relationship']['join_extra'][0]);
->>>>>>> dev
 
     // Check an actual test view.
     $view = Views::getView('test_entity_reference_entity_test_view');
@@ -176,19 +134,6 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
     /** @var \Drupal\views\ResultRow $row */
     foreach ($view->result as $index => $row) {
       // Check that the actual ID of the entity is the expected one.
-<<<<<<< HEAD
-      $this->assertEqual($row->id, $this->entities[$index]->id());
-
-      // Also check that we have the correct result entity.
-      $this->assertEqual($row->_entity->id(), $this->entities[$index]->id());
-
-      // Test the forward relationship.
-      $this->assertEqual($row->entity_test_mul_property_data_entity_test__field_test_data_i, 1);
-
-      // Test that the correct relationship entity is on the row.
-      $this->assertEqual($row->_relationship_entities['field_test_data']->id(), 1);
-      $this->assertEqual($row->_relationship_entities['field_test_data']->bundle(), 'entity_test_mul');
-=======
       $this->assertEquals($this->entities[$index]->id(), $row->id);
 
       // Also check that we have the correct result entity.
@@ -200,7 +145,6 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
       // Test that the correct relationship entity is on the row.
       $this->assertEquals(1, $row->_relationship_entities['field_test_data']->id());
       $this->assertEquals('entity_test_mul', $row->_relationship_entities['field_test_data']->bundle());
->>>>>>> dev
     }
 
     // Check the backwards reference view.
@@ -208,17 +152,6 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
     $this->executeView($view);
     /** @var \Drupal\views\ResultRow $row */
     foreach ($view->result as $index => $row) {
-<<<<<<< HEAD
-      $this->assertEqual($row->id, 1);
-      $this->assertEqual($row->_entity->id(), 1);
-
-      // Test the backwards relationship.
-      $this->assertEqual($row->field_test_data_entity_test_mul_property_data_id, $this->entities[$index]->id());
-
-      // Test that the correct relationship entity is on the row.
-      $this->assertEqual($row->_relationship_entities['reverse__entity_test__field_test_data']->id(), $this->entities[$index]->id());
-      $this->assertEqual($row->_relationship_entities['reverse__entity_test__field_test_data']->bundle(), 'entity_test');
-=======
       $this->assertEquals(1, $row->id);
       $this->assertEquals(1, $row->_entity->id());
 
@@ -228,7 +161,6 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
       // Test that the correct relationship entity is on the row.
       $this->assertEquals($this->entities[$index]->id(), $row->_relationship_entities['reverse__entity_test__field_test_data']->id());
       $this->assertEquals('entity_test', $row->_relationship_entities['reverse__entity_test__field_test_data']->bundle());
->>>>>>> dev
     }
   }
 
@@ -246,45 +178,19 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
     $entity = EntityTestMul::create();
     $entity->field_data_test->target_id = $referenced_entity->id();
     $entity->save();
-<<<<<<< HEAD
-    $this->assertEqual($entity->field_data_test[0]->entity->id(), $referenced_entity->id());
-=======
     $this->assertEquals($referenced_entity->id(), $entity->field_data_test[0]->entity->id());
->>>>>>> dev
     $this->entities[] = $entity;
 
     $entity = EntityTestMul::create();
     $entity->field_data_test->target_id = $referenced_entity->id();
     $entity->save();
-<<<<<<< HEAD
-    $this->assertEqual($entity->field_data_test[0]->entity->id(), $referenced_entity->id());
-=======
     $this->assertEquals($referenced_entity->id(), $entity->field_data_test[0]->entity->id());
->>>>>>> dev
     $this->entities[] = $entity;
 
     Views::viewsData()->clear();
 
     // Check the generated views data.
     $views_data = Views::viewsData()->get('entity_test_mul__field_data_test');
-<<<<<<< HEAD
-    $this->assertEqual($views_data['field_data_test']['relationship']['id'], 'standard');
-    $this->assertEqual($views_data['field_data_test']['relationship']['base'], 'entity_test');
-    $this->assertEqual($views_data['field_data_test']['relationship']['base field'], 'id');
-    $this->assertEqual($views_data['field_data_test']['relationship']['relationship field'], 'field_data_test_target_id');
-    $this->assertEqual($views_data['field_data_test']['relationship']['entity type'], 'entity_test');
-
-    // Check the backwards reference.
-    $views_data = Views::viewsData()->get('entity_test');
-    $this->assertEqual($views_data['reverse__entity_test_mul__field_data_test']['relationship']['id'], 'entity_reverse');
-    $this->assertEqual($views_data['reverse__entity_test_mul__field_data_test']['relationship']['base'], 'entity_test_mul_property_data');
-    $this->assertEqual($views_data['reverse__entity_test_mul__field_data_test']['relationship']['base field'], 'id');
-    $this->assertEqual($views_data['reverse__entity_test_mul__field_data_test']['relationship']['field table'], 'entity_test_mul__field_data_test');
-    $this->assertEqual($views_data['reverse__entity_test_mul__field_data_test']['relationship']['field field'], 'field_data_test_target_id');
-    $this->assertEqual($views_data['reverse__entity_test_mul__field_data_test']['relationship']['field_name'], 'field_data_test');
-    $this->assertEqual($views_data['reverse__entity_test_mul__field_data_test']['relationship']['entity_type'], 'entity_test_mul');
-    $this->assertEqual($views_data['reverse__entity_test_mul__field_data_test']['relationship']['join_extra'][0], ['field' => 'deleted', 'value' => 0, 'numeric' => TRUE]);
-=======
     $this->assertEquals('standard', $views_data['field_data_test']['relationship']['id']);
     $this->assertEquals('entity_test', $views_data['field_data_test']['relationship']['base']);
     $this->assertEquals('id', $views_data['field_data_test']['relationship']['base field']);
@@ -301,7 +207,6 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
     $this->assertEquals('field_data_test', $views_data['reverse__entity_test_mul__field_data_test']['relationship']['field_name']);
     $this->assertEquals('entity_test_mul', $views_data['reverse__entity_test_mul__field_data_test']['relationship']['entity_type']);
     $this->assertEquals(['field' => 'deleted', 'value' => 0, 'numeric' => TRUE], $views_data['reverse__entity_test_mul__field_data_test']['relationship']['join_extra'][0]);
->>>>>>> dev
 
     // Check an actual test view.
     $view = Views::getView('test_entity_reference_entity_test_mul_view');
@@ -309,19 +214,6 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
     /** @var \Drupal\views\ResultRow $row */
     foreach ($view->result as $index => $row) {
       // Check that the actual ID of the entity is the expected one.
-<<<<<<< HEAD
-      $this->assertEqual($row->id, $this->entities[$index]->id());
-
-      // Also check that we have the correct result entity.
-      $this->assertEqual($row->_entity->id(), $this->entities[$index]->id());
-
-      // Test the forward relationship.
-      $this->assertEqual($row->entity_test_entity_test_mul__field_data_test_id, 1);
-
-      // Test that the correct relationship entity is on the row.
-      $this->assertEqual($row->_relationship_entities['field_data_test']->id(), 1);
-      $this->assertEqual($row->_relationship_entities['field_data_test']->bundle(), 'entity_test');
-=======
       $this->assertEquals($this->entities[$index]->id(), $row->id);
 
       // Also check that we have the correct result entity.
@@ -333,7 +225,6 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
       // Test that the correct relationship entity is on the row.
       $this->assertEquals(1, $row->_relationship_entities['field_data_test']->id());
       $this->assertEquals('entity_test', $row->_relationship_entities['field_data_test']->bundle());
->>>>>>> dev
 
     }
 
@@ -342,17 +233,6 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
     $this->executeView($view);
     /** @var \Drupal\views\ResultRow $row */
     foreach ($view->result as $index => $row) {
-<<<<<<< HEAD
-      $this->assertEqual($row->id, 1);
-      $this->assertEqual($row->_entity->id(), 1);
-
-      // Test the backwards relationship.
-      $this->assertEqual($row->field_data_test_entity_test_id, $this->entities[$index]->id());
-
-      // Test that the correct relationship entity is on the row.
-      $this->assertEqual($row->_relationship_entities['reverse__entity_test_mul__field_data_test']->id(), $this->entities[$index]->id());
-      $this->assertEqual($row->_relationship_entities['reverse__entity_test_mul__field_data_test']->bundle(), 'entity_test_mul');
-=======
       $this->assertEquals(1, $row->id);
       $this->assertEquals(1, $row->_entity->id());
 
@@ -362,7 +242,6 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
       // Test that the correct relationship entity is on the row.
       $this->assertEquals($this->entities[$index]->id(), $row->_relationship_entities['reverse__entity_test_mul__field_data_test']->id());
       $this->assertEquals('entity_test_mul', $row->_relationship_entities['reverse__entity_test_mul__field_data_test']->bundle());
->>>>>>> dev
     }
   }
 
@@ -394,19 +273,6 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
     /** @var \Drupal\views\ResultRow $row */
     foreach ($view->result as $index => $row) {
       // Check that the actual ID of the entity is the expected one.
-<<<<<<< HEAD
-      $this->assertEqual($row->id, $this->entities[$index]->id());
-
-      // Also check that we have the correct result entity.
-      $this->assertEqual($row->_entity->id(), $this->entities[$index]->id());
-
-      // Test the forward relationship.
-      // $this->assertEqual($row->entity_test_entity_test_mul__field_data_test_id, 1);
-
-      // Test that the correct relationship entity is on the row.
-      $this->assertEqual($row->_relationship_entities['field_test_data_with_a_long_name']->id(), 1);
-      $this->assertEqual($row->_relationship_entities['field_test_data_with_a_long_name']->bundle(), 'entity_test');
-=======
       $this->assertEquals($this->entities[$index]->id(), $row->id);
 
       // Also check that we have the correct result entity.
@@ -418,7 +284,6 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
       // Test that the correct relationship entity is on the row.
       $this->assertEquals(1, $row->_relationship_entities['field_test_data_with_a_long_name']->id());
       $this->assertEquals('entity_test', $row->_relationship_entities['field_test_data_with_a_long_name']->bundle());
->>>>>>> dev
 
     }
   }
@@ -472,11 +337,7 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
     $this->assertNotEmpty($view->getStyle()->getField(2, 'name_2'));
     // Fourth result has no reference from EntityTestMul hence the output for
     // should be empty.
-<<<<<<< HEAD
-    $this->assertEqual('', $view->getStyle()->getField(3, 'name_2'));
-=======
     $this->assertEquals('', $view->getStyle()->getField(3, 'name_2'));
->>>>>>> dev
 
     $fields = $view->field;
     // Check getValue for reference with a value. The first 3 rows reference
@@ -488,8 +349,6 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
     $this->assertNull($fields['name_2']->getValue($view->result[3]));
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Test that config entities don't get relationships added.
    */
@@ -504,5 +363,4 @@ class EntityReferenceRelationshipTest extends ViewsKernelTestBase {
     $this->assertFalse(isset($views_data['entity_test__field_test_config_entity']['field_test_config_entity']['relationship']));
   }
 
->>>>>>> dev
 }

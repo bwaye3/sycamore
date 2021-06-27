@@ -31,11 +31,7 @@
     "irc": "irc://irc.freenode.org/drupal-contribute",
     "source": "http://cgit.drupalcode.org/sitemap"
   },
-<<<<<<< HEAD
-  "license": "GPL-2.0+",
-=======
   "license": "GPL-2.0-or-later",
->>>>>>> dev
   "minimum-stability": "dev",
   "require": { }
 }

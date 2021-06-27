@@ -7,41 +7,16 @@
 
 (function ($, Drupal) {
   function DropButton(dropbutton, settings) {
-<<<<<<< HEAD
-    var options = $.extend({ title: Drupal.t('List additional actions') }, settings);
-    var $dropbutton = $(dropbutton);
-
-    this.$dropbutton = $dropbutton;
-
-    this.$list = $dropbutton.find('.dropbutton');
-
-=======
     var options = $.extend({
       title: Drupal.t('List additional actions')
     }, settings);
     var $dropbutton = $(dropbutton);
     this.$dropbutton = $dropbutton;
     this.$list = $dropbutton.find('.dropbutton');
->>>>>>> dev
     this.$actions = this.$list.find('li').addClass('dropbutton-action');
 
     if (this.$actions.length > 1) {
       var $primary = this.$actions.slice(0, 1);
-<<<<<<< HEAD
-
-      var $secondary = this.$actions.slice(1);
-      $secondary.addClass('secondary-action');
-
-      $primary.after(Drupal.theme('dropbuttonToggle', options));
-
-      this.$dropbutton.addClass('dropbutton-multiple').on({
-        'mouseleave.dropbutton': $.proxy(this.hoverOut, this),
-
-        'mouseenter.dropbutton': $.proxy(this.hoverIn, this),
-
-        'focusout.dropbutton': $.proxy(this.focusOut, this),
-
-=======
       var $secondary = this.$actions.slice(1);
       $secondary.addClass('secondary-action');
       $primary.after(Drupal.theme('dropbuttonToggle', options));
@@ -49,7 +24,6 @@
         'mouseleave.dropbutton': $.proxy(this.hoverOut, this),
         'mouseenter.dropbutton': $.proxy(this.hoverIn, this),
         'focusout.dropbutton': $.proxy(this.focusOut, this),
->>>>>>> dev
         'focusin.dropbutton': $.proxy(this.focusIn, this)
       });
     } else {
@@ -65,41 +39,25 @@
   Drupal.behaviors.dropButton = {
     attach: function attach(context, settings) {
       var $dropbuttons = $(context).find('.dropbutton-wrapper').once('dropbutton');
-<<<<<<< HEAD
-      if ($dropbuttons.length) {
-        var $body = $('body').once('dropbutton-click');
-=======
 
       if ($dropbuttons.length) {
         var $body = $('body').once('dropbutton-click');
 
->>>>>>> dev
         if ($body.length) {
           $body.on('click', '.dropbutton-toggle', dropbuttonClickHandler);
         }
 
         var il = $dropbuttons.length;
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         for (var i = 0; i < il; i++) {
           DropButton.dropbuttons.push(new DropButton($dropbuttons[i], settings.dropbutton));
         }
       }
     }
   };
-<<<<<<< HEAD
-
   $.extend(DropButton, {
     dropbuttons: []
   });
-
-=======
-  $.extend(DropButton, {
-    dropbuttons: []
-  });
->>>>>>> dev
   $.extend(DropButton.prototype, {
     toggle: function toggle(show) {
       var isBool = typeof show === 'boolean';
@@ -127,20 +85,10 @@
       this.hoverIn.call(this, e);
     }
   });
-<<<<<<< HEAD
-
-  $.extend(Drupal.theme, {
-    dropbuttonToggle: function dropbuttonToggle(options) {
-      return '<li class="dropbutton-toggle"><button type="button"><span class="dropbutton-arrow"><span class="visually-hidden">' + options.title + '</span></span></button></li>';
-    }
-  });
-
-=======
   $.extend(Drupal.theme, {
     dropbuttonToggle: function dropbuttonToggle(options) {
       return "<li class=\"dropbutton-toggle\"><button type=\"button\"><span class=\"dropbutton-arrow\"><span class=\"visually-hidden\">".concat(options.title, "</span></span></button></li>");
     }
   });
->>>>>>> dev
   Drupal.DropButton = DropButton;
 })(jQuery, Drupal);

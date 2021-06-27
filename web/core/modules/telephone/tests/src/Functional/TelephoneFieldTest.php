@@ -18,11 +18,7 @@ class TelephoneFieldTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'field',
     'node',
     'telephone',
@@ -43,11 +39,7 @@ class TelephoneFieldTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalCreateContentType(['type' => 'article']);
@@ -90,30 +82,18 @@ class TelephoneFieldTest extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test to confirm the widget is setup.
-=======
    * Tests to confirm the widget is setup.
->>>>>>> dev
    *
    * @covers \Drupal\telephone\Plugin\Field\FieldWidget\TelephoneDefaultWidget::formElement
    */
   public function testTelephoneWidget() {
     $this->drupalGet('node/add/article');
-<<<<<<< HEAD
-    $this->assertFieldByName("field_telephone[0][value]", '', 'Widget found.');
-=======
     $this->assertSession()->fieldValueEquals("field_telephone[0][value]", '');
->>>>>>> dev
     $this->assertRaw('placeholder="123-456-7890"');
   }
 
   /**
-<<<<<<< HEAD
-   * Test the telephone formatter.
-=======
    * Tests the telephone formatter.
->>>>>>> dev
    *
    * @covers \Drupal\telephone\Plugin\Field\FieldFormatter\TelephoneLinkFormatter::viewElements
    *
@@ -126,12 +106,8 @@ class TelephoneFieldTest extends BrowserTestBase {
       'field_telephone[0][value]' => $input,
     ];
 
-<<<<<<< HEAD
-    $this->drupalPostForm('node/add/article', $edit, t('Save'));
-=======
     $this->drupalGet('node/add/article');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $this->assertRaw('<a href="tel:' . $expected . '">');
   }
 

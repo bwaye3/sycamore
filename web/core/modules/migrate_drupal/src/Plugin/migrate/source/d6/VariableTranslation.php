@@ -11,8 +11,6 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Drupal i18n_variable source from database.
  *
-<<<<<<< HEAD
-=======
  * Available configuration keys:
  * - variables: (required) The list of variable translations to retrieve from
  *   the source database. All translations are retrieved in a single row.
@@ -31,7 +29,6 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
  * @see \Drupal\migrate\Plugin\migrate\source\SqlBase
  * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
  *
->>>>>>> dev
  * @MigrateSource(
  *   id = "d6_variable_translation",
  *   source_module = "i18n",

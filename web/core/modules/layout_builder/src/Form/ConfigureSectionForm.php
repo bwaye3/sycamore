@@ -2,26 +2,17 @@
 
 namespace Drupal\layout_builder\Form;
 
-<<<<<<< HEAD
-=======
 use Drupal\Component\Utility\Html;
->>>>>>> dev
 use Drupal\Core\Ajax\AjaxFormHelperTrait;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Form\SubformState;
 use Drupal\Core\Layout\LayoutInterface;
-<<<<<<< HEAD
-use Drupal\Core\Plugin\PluginFormFactoryInterface;
-use Drupal\Core\Plugin\PluginFormInterface;
-use Drupal\Core\Plugin\PluginWithFormsInterface;
-=======
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Plugin\PluginFormFactoryInterface;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Plugin\PluginWithFormsInterface;
 use Drupal\layout_builder\Context\LayoutBuilderContextTrait;
->>>>>>> dev
 use Drupal\layout_builder\Controller\LayoutRebuildTrait;
 use Drupal\layout_builder\LayoutBuilderHighlightTrait;
 use Drupal\layout_builder\LayoutTempstoreRepositoryInterface;
@@ -38,10 +29,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ConfigureSectionForm extends FormBase {
 
   use AjaxFormHelperTrait;
-<<<<<<< HEAD
-=======
   use LayoutBuilderContextTrait;
->>>>>>> dev
   use LayoutBuilderHighlightTrait;
   use LayoutRebuildTrait;
 
@@ -134,17 +122,12 @@ class ConfigureSectionForm extends FormBase {
     else {
       $section = new Section($plugin_id);
     }
-<<<<<<< HEAD
-    $this->layout = $section->getLayout();
-
-=======
     // Passing available contexts to the layout plugin here could result in an
     // exception since the layout may not have a context mapping for a required
     // context slot on creation.
     $this->layout = $section->getLayout();
 
     $form_state->setTemporaryValue('gathered_contexts', $this->getAvailableContexts($this->sectionStorage));
->>>>>>> dev
     $form['#tree'] = TRUE;
     $form['layout_settings'] = [];
     $subform_state = SubformState::createForSubform($form['layout_settings'], $form, $form_state);
@@ -157,8 +140,6 @@ class ConfigureSectionForm extends FormBase {
     ];
     if ($this->isAjax()) {
       $form['actions']['submit']['#ajax']['callback'] = '::ajaxSubmit';
-<<<<<<< HEAD
-=======
       // @todo static::ajaxSubmit() requires data-drupal-selector to be the same
       //   between the various Ajax requests. A bug in
       //   \Drupal\Core\Form\FormBuilder prevents that from happening unless
@@ -168,7 +149,6 @@ class ConfigureSectionForm extends FormBase {
       //   assume that this form only ever occurs once on a page. Remove this
       //   workaround in https://www.drupal.org/node/2897377.
       $form['#id'] = Html::getId($form_state->getBuildInfo()['form_id']);
->>>>>>> dev
     }
     $target_highlight_id = $this->isUpdate ? $this->sectionUpdateHighlightId($delta) : $this->sectionAddHighlightId($delta);
     $form['#attributes']['data-layout-builder-target-highlight-id'] = $target_highlight_id;
@@ -194,14 +174,11 @@ class ConfigureSectionForm extends FormBase {
     $subform_state = SubformState::createForSubform($form['layout_settings'], $form, $form_state);
     $this->getPluginForm($this->layout)->submitConfigurationForm($form['layout_settings'], $subform_state);
 
-<<<<<<< HEAD
-=======
     // If this layout is context-aware, set the context mapping.
     if ($this->layout instanceof ContextAwarePluginInterface) {
       $this->layout->setContextMapping($subform_state->getValue('context_mapping', []));
     }
 
->>>>>>> dev
     $plugin_id = $this->layout->getPluginId();
     $configuration = $this->layout->getConfiguration();
 

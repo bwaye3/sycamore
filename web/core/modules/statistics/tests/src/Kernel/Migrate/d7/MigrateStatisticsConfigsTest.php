@@ -17,20 +17,12 @@ class MigrateStatisticsConfigsTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['statistics'];
-=======
   protected static $modules = ['statistics'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->executeMigration('statistics_settings');
   }
@@ -40,11 +32,7 @@ class MigrateStatisticsConfigsTest extends MigrateDrupal7TestBase {
    */
   public function testStatisticsSettings() {
     $config = $this->config('statistics.settings');
-<<<<<<< HEAD
-    $this->assertIdentical(1, $config->get('count_content_views'));
-=======
     $this->assertSame(1, $config->get('count_content_views'));
->>>>>>> dev
     $this->assertConfigSchema(\Drupal::service('config.typed'), 'statistics.settings', $config->get());
   }
 

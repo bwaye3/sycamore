@@ -17,11 +17,7 @@ class ColorSafePreviewTest extends BrowserTestBase {
    *
    * @var string[]
    */
-<<<<<<< HEAD
-  public static $modules = ['color', 'color_test'];
-=======
   protected static $modules = ['color', 'color_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -38,11 +34,7 @@ class ColorSafePreviewTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create user.
@@ -57,19 +49,11 @@ class ColorSafePreviewTest extends BrowserTestBase {
     \Drupal::service('theme_installer')->install(['color_test_theme']);
     $this->drupalLogin($this->bigUser);
 
-<<<<<<< HEAD
-    // Markup is being printed from a HTML file located in:
-    // core/modules/color/tests/modules/color_test/themes/color_test_theme/color/preview.html
-    $url = Url::fromRoute('system.theme_settings_theme', ['theme' => 'color_test_theme']);
-    $this->drupalGet($url);
-    $this->assertText('TEST COLOR PREVIEW');
-=======
     // Markup is being printed from an HTML file located in:
     // core/modules/color/tests/modules/color_test/themes/color_test_theme/color/preview.html
     $url = Url::fromRoute('system.theme_settings_theme', ['theme' => 'color_test_theme']);
     $this->drupalGet($url);
     $this->assertSession()->pageTextContains('TEST COLOR PREVIEW');
->>>>>>> dev
 
     $this->assertNoRaw('<script>alert("security filter test");</script>');
     $this->assertRaw('<h2>TEST COLOR PREVIEW</h2>');

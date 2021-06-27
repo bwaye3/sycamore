@@ -2,10 +2,6 @@
 
 namespace Drupal\Tests\language\Functional;
 
-<<<<<<< HEAD
-use Drupal\Core\StringTranslation\StringTranslationTrait;
-=======
->>>>>>> dev
 use Drupal\Tests\BrowserTestBase;
 
 /**
@@ -14,19 +10,10 @@ use Drupal\Tests\BrowserTestBase;
  */
 class LanguageNegotiationUrlTest extends BrowserTestBase {
 
-<<<<<<< HEAD
-  use StringTranslationTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static $modules = [
-=======
   /**
    * {@inheritdoc}
    */
   protected static $modules = [
->>>>>>> dev
     'language',
     'node',
     'path',
@@ -45,11 +32,7 @@ class LanguageNegotiationUrlTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create an Article node type.
@@ -67,12 +50,8 @@ class LanguageNegotiationUrlTest extends BrowserTestBase {
     ]);
     $this->drupalLogin($this->user);
 
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/regional/language/add', ['predefined_langcode' => 'de'], $this->t('Add language'));
-=======
     $this->drupalGet('admin/config/regional/language/add');
     $this->submitForm(['predefined_langcode' => 'de'], 'Add language');
->>>>>>> dev
   }
 
   /**
@@ -88,23 +67,15 @@ class LanguageNegotiationUrlTest extends BrowserTestBase {
       'domain[en]' => $_SERVER['HTTP_HOST'],
       'domain[de]' => "de.$_SERVER[HTTP_HOST]",
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/regional/language/detection/url', $edit, $this->t('Save configuration'));
-=======
     $this->drupalGet('admin/config/regional/language/detection/url');
     $this->submitForm($edit, 'Save configuration');
->>>>>>> dev
 
     $nodeValues = [
       'title[0][value]' => 'Test',
       'path[0][alias]' => '/eng/test',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('node/add/article', $nodeValues, $this->t('Save'));
-=======
     $this->drupalGet('node/add/article');
     $this->submitForm($nodeValues, 'Save');
->>>>>>> dev
     $this->assertSession()->statusCodeEquals(200);
   }
 

@@ -3,11 +3,7 @@
  * Defines the behavior of the Drupal administration toolbar.
  */
 
-<<<<<<< HEAD
-(function($, Drupal, drupalSettings) {
-=======
 (function ($, Drupal, drupalSettings) {
->>>>>>> dev
   // Merge run-time settings with the defaults.
   const options = $.extend(
     {
@@ -51,11 +47,7 @@
       $(context)
         .find('#toolbar-administration')
         .once('toolbar')
-<<<<<<< HEAD
-        .each(function() {
-=======
         .each(function () {
->>>>>>> dev
           // Establish the toolbar models and views.
           const model = new Drupal.toolbar.ToolbarModel({
             locked: JSON.parse(
@@ -71,11 +63,7 @@
 
           // Attach a listener to the configured media query breakpoints.
           // Executes it before Drupal.toolbar.views to avoid extra rendering.
-<<<<<<< HEAD
-          Object.keys(options.breakpoints).forEach(label => {
-=======
           Object.keys(options.breakpoints).forEach((label) => {
->>>>>>> dev
             const mq = options.breakpoints[label];
             const mql = window.matchMedia(mq);
             Drupal.toolbar.mql[label] = mql;
@@ -94,28 +82,6 @@
             );
           });
 
-<<<<<<< HEAD
-          Drupal.toolbar.views.toolbarVisualView = new Drupal.toolbar.ToolbarVisualView(
-            {
-              el: this,
-              model,
-              strings: options.strings,
-            },
-          );
-          Drupal.toolbar.views.toolbarAuralView = new Drupal.toolbar.ToolbarAuralView(
-            {
-              el: this,
-              model,
-              strings: options.strings,
-            },
-          );
-          Drupal.toolbar.views.bodyVisualView = new Drupal.toolbar.BodyVisualView(
-            {
-              el: this,
-              model,
-            },
-          );
-=======
           Drupal.toolbar.views.toolbarVisualView =
             new Drupal.toolbar.ToolbarVisualView({
               el: this,
@@ -133,7 +99,6 @@
               el: this,
               model,
             });
->>>>>>> dev
 
           // Force layout render to fix mobile view. Only needed on load, not
           // for every media query match.
@@ -143,33 +108,17 @@
           // Render collapsible menus.
           const menuModel = new Drupal.toolbar.MenuModel();
           Drupal.toolbar.models.menuModel = menuModel;
-<<<<<<< HEAD
-          Drupal.toolbar.views.menuVisualView = new Drupal.toolbar.MenuVisualView(
-            {
-              el: $(this)
-                .find('.toolbar-menu-administration')
-                .get(0),
-              model: menuModel,
-              strings: options.strings,
-            },
-          );
-=======
           Drupal.toolbar.views.menuVisualView =
             new Drupal.toolbar.MenuVisualView({
               el: $(this).find('.toolbar-menu-administration').get(0),
               model: menuModel,
               strings: options.strings,
             });
->>>>>>> dev
 
           // Handle the resolution of Drupal.toolbar.setSubtrees.
           // This is handled with a deferred so that the function may be invoked
           // asynchronously.
-<<<<<<< HEAD
-          Drupal.toolbar.setSubtrees.done(subtrees => {
-=======
           Drupal.toolbar.setSubtrees.done((subtrees) => {
->>>>>>> dev
             menuModel.set('subtrees', subtrees);
             const theme = drupalSettings.ajaxPageState.theme;
             localStorage.setItem(
@@ -349,11 +298,7 @@
    * @return {string}
    *   A string representing a DOM fragment.
    */
-<<<<<<< HEAD
-  Drupal.theme.toolbarOrientationToggle = function() {
-=======
   Drupal.theme.toolbarOrientationToggle = function () {
->>>>>>> dev
     return (
       '<div class="toolbar-toggle-orientation"><div class="toolbar-lining">' +
       '<button class="toolbar-icon" type="button"></button>' +
@@ -371,11 +316,7 @@
    * @param {number} [status]
    *   XMLHttpRequest status.
    */
-<<<<<<< HEAD
-  Drupal.AjaxCommands.prototype.setToolbarSubtrees = function(
-=======
   Drupal.AjaxCommands.prototype.setToolbarSubtrees = function (
->>>>>>> dev
     ajax,
     response,
     status,

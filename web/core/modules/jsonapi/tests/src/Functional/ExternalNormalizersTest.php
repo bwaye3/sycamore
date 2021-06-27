@@ -59,11 +59,7 @@ class ExternalNormalizersTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setUp() {
-=======
   public function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // This test is not about access control at all, so allow anonymous users to

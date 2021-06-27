@@ -13,11 +13,7 @@ class TermLocalizedTranslationTest extends TermTest {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['taxonomy', 'migrate_drupal'];
-=======
   protected static $modules = ['taxonomy', 'migrate_drupal'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -104,11 +100,7 @@ class TermLocalizedTranslationTest extends TermTest {
         'description' => 'description value 1 (description_field)',
         'weight' => 0,
         'is_container' => '',
-<<<<<<< HEAD
-        'language' => 'en',
-=======
         'language' => 'fr',
->>>>>>> dev
         'i18n_tsid' => '0',
         'machine_name' => 'tags',
         'tdlanguage' => 'und',
@@ -116,11 +108,8 @@ class TermLocalizedTranslationTest extends TermTest {
         'property' => 'name',
         'ltlanguage' => 'fr',
         'translation' => 'fr - name value 1',
-<<<<<<< HEAD
-=======
         'name_translated' => 'fr - name value 1',
         'description_translated' => 'fr - description value 1',
->>>>>>> dev
       ],
       [
         'tid' => 1,
@@ -129,11 +118,7 @@ class TermLocalizedTranslationTest extends TermTest {
         'description' => 'description value 1 (description_field)',
         'weight' => 0,
         'is_container' => '',
-<<<<<<< HEAD
-        'language' => 'en',
-=======
         'language' => 'fr',
->>>>>>> dev
         'i18n_tsid' => '0',
         'machine_name' => 'tags',
         'tdlanguage' => 'und',
@@ -141,9 +126,6 @@ class TermLocalizedTranslationTest extends TermTest {
         'property' => 'description',
         'ltlanguage' => 'fr',
         'translation' => 'fr - description value 1',
-<<<<<<< HEAD
-      ],
-=======
         'name_translated' => 'fr - name value 1',
         'description_translated' => 'fr - description value 1',
       ],
@@ -192,7 +174,6 @@ class TermLocalizedTranslationTest extends TermTest {
 
     // The expected results.
     array_push($tests[1]['expected_data'],
->>>>>>> dev
       [
         'tid' => 3,
         'vid' => 6,
@@ -200,11 +181,7 @@ class TermLocalizedTranslationTest extends TermTest {
         'description' => 'description value 3',
         'weight' => 0,
         'is_container' => '',
-<<<<<<< HEAD
-        'language' => 'en',
-=======
         'language' => 'zu',
->>>>>>> dev
         'i18n_tsid' => '0',
         'machine_name' => 'categories',
         'tdlanguage' => 'und',
@@ -213,13 +190,6 @@ class TermLocalizedTranslationTest extends TermTest {
         'ltlanguage' => 'zu',
         'translation' => 'zu - name value 3',
       ],
-<<<<<<< HEAD
-    ];
-
-    $tests[0]['expected_count'] = NULL;
-    // Empty configuration will return terms for all vocabularies.
-    $tests[0]['configuration'] = [];
-=======
       [
         'tid' => 5,
         'vid' => 6,
@@ -260,7 +230,6 @@ class TermLocalizedTranslationTest extends TermTest {
     $tests[1]['expected_count'] = NULL;
     // Empty configuration will return terms for all vocabularies.
     $tests[1]['configuration'] = [];
->>>>>>> dev
 
     return $tests;
   }

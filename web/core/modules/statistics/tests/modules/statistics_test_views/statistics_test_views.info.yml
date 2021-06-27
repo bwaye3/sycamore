@@ -3,10 +3,6 @@ type: module
 description: 'Provides default views for views statistics tests.'
 package: Testing
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 dependencies:
   - drupal:statistics
   - drupal:views

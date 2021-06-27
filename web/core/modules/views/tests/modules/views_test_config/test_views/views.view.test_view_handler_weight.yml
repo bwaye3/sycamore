@@ -65,10 +65,6 @@ display:
           table: views_test_data
           plugin_id: numeric
     display_plugin: default
-<<<<<<< HEAD
-    display_title: Master
-=======
     display_title: Default
->>>>>>> dev
     id: default
     position: 0

@@ -105,11 +105,7 @@ function hook_field_ui_preconfigured_options_alter(array &$options, $field_type)
  * @see entity_crud
  */
 function hook_field_storage_config_update_forbid(\Drupal\field\FieldStorageConfigInterface $field_storage, \Drupal\field\FieldStorageConfigInterface $prior_field_storage) {
-<<<<<<< HEAD
-  if ($field_storage->module == 'options' && $field_storage->hasData()) {
-=======
   if ($field_storage->getTypeProvider() == 'options' && $field_storage->hasData()) {
->>>>>>> dev
     // Forbid any update that removes allowed values with actual data.
     $allowed_values = $field_storage->getSetting('allowed_values');
     $prior_allowed_values = $prior_field_storage->getSetting('allowed_values');
@@ -188,32 +184,21 @@ function hook_field_widget_info_alter(array &$info) {
  *   - default: A boolean indicating whether the form is being shown as a dummy
  *     form to set default values.
  *
-<<<<<<< HEAD
-=======
  * @deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use
  *   hook_field_widget_single_element_form_alter instead.
  *
  * @see https://www.drupal.org/node/3180429
->>>>>>> dev
  * @see \Drupal\Core\Field\WidgetBaseInterface::form()
  * @see \Drupal\Core\Field\WidgetBase::formSingleElement()
  * @see hook_field_widget_WIDGET_TYPE_form_alter()
  * @see hook_field_widget_multivalue_form_alter()
  */
 function hook_field_widget_form_alter(&$element, \Drupal\Core\Form\FormStateInterface $form_state, $context) {
-<<<<<<< HEAD
-  // Add a css class to widget form elements for all fields of type mytype.
-  $field_definition = $context['items']->getFieldDefinition();
-  if ($field_definition->getType() == 'mytype') {
-    // Be sure not to overwrite existing attributes.
-    $element['#attributes']['class'][] = 'myclass';
-=======
   // Add a css class to widget form elements for all fields of type my_type.
   $field_definition = $context['items']->getFieldDefinition();
   if ($field_definition->getType() == 'my_type') {
     // Be sure not to overwrite existing attributes.
     $element['#attributes']['class'][] = 'my-class';
->>>>>>> dev
   }
 }
 
@@ -238,13 +223,10 @@ function hook_field_widget_form_alter(&$element, \Drupal\Core\Form\FormStateInte
  *   An associative array. See hook_field_widget_form_alter() for the structure
  *   and content of the array.
  *
-<<<<<<< HEAD
-=======
  * @deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use
  *   hook_field_widget_single_element_WIDGET_TYPE_form_alter instead.
  *
  * @see https://www.drupal.org/node/3180429
->>>>>>> dev
  * @see \Drupal\Core\Field\WidgetBaseInterface::form()
  * @see \Drupal\Core\Field\WidgetBase::formSingleElement()
  * @see hook_field_widget_form_alter()
@@ -258,8 +240,6 @@ function hook_field_widget_WIDGET_TYPE_form_alter(&$element, \Drupal\Core\Form\F
 }
 
 /**
-<<<<<<< HEAD
-=======
  * Alter forms for field widgets provided by other modules.
  *
  * This hook can only modify individual elements within a field widget and
@@ -394,7 +374,6 @@ function hook_field_widget_complete_WIDGET_TYPE_form_alter(&$field_widget_comple
 }
 
 /**
->>>>>>> dev
  * Alter forms for multi-value field widgets provided by other modules.
  *
  * To alter the individual elements within the widget, loop over
@@ -415,31 +394,20 @@ function hook_field_widget_complete_WIDGET_TYPE_form_alter(&$field_widget_comple
  *   - default: A boolean indicating whether the form is being shown as a dummy
  *     form to set default values.
  *
-<<<<<<< HEAD
-=======
  * @deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use
  *   hook_field_widget_complete_form_alter instead.
  *
  * @see https://www.drupal.org/node/3180429
->>>>>>> dev
  * @see \Drupal\Core\Field\WidgetBaseInterface::form()
  * @see \Drupal\Core\Field\WidgetBase::formMultipleElements()
  * @see hook_field_widget_multivalue_WIDGET_TYPE_form_alter()
  */
 function hook_field_widget_multivalue_form_alter(array &$elements, \Drupal\Core\Form\FormStateInterface $form_state, array $context) {
-<<<<<<< HEAD
-  // Add a css class to widget form elements for all fields of type mytype.
-  $field_definition = $context['items']->getFieldDefinition();
-  if ($field_definition->getType() == 'mytype') {
-    // Be sure not to overwrite existing attributes.
-    $elements['#attributes']['class'][] = 'myclass';
-=======
   // Add a css class to widget form elements for all fields of type my_type.
   $field_definition = $context['items']->getFieldDefinition();
   if ($field_definition->getType() == 'my_type') {
     // Be sure not to overwrite existing attributes.
     $elements['#attributes']['class'][] = 'my-class';
->>>>>>> dev
   }
 }
 
@@ -462,13 +430,10 @@ function hook_field_widget_multivalue_form_alter(array &$elements, \Drupal\Core\
  *   An associative array. See hook_field_widget_multivalue_form_alter() for
  *   the structure and content of the array.
  *
-<<<<<<< HEAD
-=======
  * @deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use
  *   hook_field_widget_complete_WIDGET_TYPE_form_alter instead.
  *
  * @see https://www.drupal.org/node/3180429
->>>>>>> dev
  * @see \Drupal\Core\Field\WidgetBaseInterface::form()
  * @see \Drupal\Core\Field\WidgetBase::formMultipleElements()
  * @see hook_field_widget_multivalue_form_alter()

@@ -5,10 +5,6 @@ namespace Drupal\Tests\migrate_drupal\Kernel;
 use Drupal\Component\Discovery\YamlDiscovery;
 use Drupal\KernelTests\FileSystemModuleDiscoveryDataProviderTrait;
 use Drupal\migrate_drupal\MigrationConfigurationTrait;
-<<<<<<< HEAD
-use Drupal\Tests\DeprecatedModulesTestTrait;
-=======
->>>>>>> dev
 
 /**
  * Tests that core modules have a migrate_drupal.yml file as needed.
@@ -22,29 +18,16 @@ use Drupal\Tests\DeprecatedModulesTestTrait;
  */
 class StateFileExists extends MigrateDrupalTestBase {
 
-<<<<<<< HEAD
-  use DeprecatedModulesTestTrait;
-=======
->>>>>>> dev
   use FileSystemModuleDiscoveryDataProviderTrait;
   use MigrationConfigurationTrait;
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-    // Test migrations states.
-    'migrate_state_finished_test',
-    'migrate_state_not_finished_test',
-    // Test missing migrate_drupal.yml.
-    'migrate_state_no_file_test',
-=======
   protected static $modules = [
     // Test migrations states.
     'migrate_state_finished_test',
     'migrate_state_not_finished_test',
->>>>>>> dev
   ];
 
   /**
@@ -83,15 +66,9 @@ class StateFileExists extends MigrateDrupalTestBase {
     'options',
     'path',
     'rdf',
-<<<<<<< HEAD
-    'search',
-    'shortcut',
-    'simpletest',
-=======
     'responsive_image',
     'search',
     'shortcut',
->>>>>>> dev
     'statistics',
     'syslog',
     'system',
@@ -115,22 +92,14 @@ class StateFileExists extends MigrateDrupalTestBase {
     $this->enableModules($modules_to_enable);
 
     // Modules with a migrate_drupal.yml file.
-<<<<<<< HEAD
-    $has_state_file = (new YamlDiscovery('migrate_drupal', array_map(function (&$value) {
-=======
     $has_state_file = (new YamlDiscovery('migrate_drupal', array_map(function ($value) {
->>>>>>> dev
       return $value . '/migrations/state';
     }, $module_handler->getModuleDirectories())))->findAll();
 
     foreach ($this->stateFileRequired as $module) {
       $this->assertArrayHasKey($module, $has_state_file, sprintf("Module '%s' should have a migrate_drupal.yml file", $module));
     }
-<<<<<<< HEAD
-    $this->assertEquals(count($this->stateFileRequired), count($has_state_file));
-=======
     $this->assertSame(count($this->stateFileRequired), count($has_state_file));
->>>>>>> dev
   }
 
 }

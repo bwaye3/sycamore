@@ -17,11 +17,7 @@ class UrlAlterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['path', 'url_alter_test', 'user'];
-=======
   protected static $modules = ['path', 'url_alter_test', 'user'];
->>>>>>> dev
 
   public function testUrlWithQueryString() {
     // Test outbound query string altering.

@@ -162,8 +162,6 @@ abstract class SearchPluginBase extends PluginBase implements ContainerFactoryPl
     return $help;
   }
 
-<<<<<<< HEAD
-=======
   /**
    * {@inheritdoc}
    */
@@ -171,5 +169,4 @@ abstract class SearchPluginBase extends PluginBase implements ContainerFactoryPl
     return $this->pluginDefinition['use_admin_theme'];
   }
 
->>>>>>> dev
 }

@@ -12,10 +12,6 @@ use Drupal\views\Views;
  * Tests the views integration of content_moderation.
  *
  * @group content_moderation
-<<<<<<< HEAD
- * @group legacy
-=======
->>>>>>> dev
  */
 class ViewsDataIntegrationTest extends ViewsKernelTestBase {
 
@@ -24,11 +20,7 @@ class ViewsDataIntegrationTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'content_moderation_test_views',
     'node',
     'content_moderation',
@@ -39,11 +31,7 @@ class ViewsDataIntegrationTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->installEntitySchema('node');
@@ -66,81 +54,6 @@ class ViewsDataIntegrationTest extends ViewsKernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests the join from the revision data table to the moderation state table.
-   */
-  public function testContentModerationStateRevisionJoin() {
-    $node = Node::create([
-      'type' => 'page',
-      'title' => 'Test title first revision',
-    ]);
-    $node->moderation_state->value = 'published';
-    $node->save();
-
-    $revision = clone $node;
-    $revision->setNewRevision(TRUE);
-    $revision->isDefaultRevision(FALSE);
-    $revision->title->value = 'Test title second revision';
-    $revision->moderation_state->value = 'draft';
-    $revision->save();
-
-    $view = Views::getView('test_content_moderation_revision_test');
-    $view->execute();
-
-    $expected_result = [
-      [
-        'vid' => $node->getRevisionId(),
-        'moderation_state' => 'published',
-      ],
-      [
-        'vid' => $revision->getRevisionId(),
-        'moderation_state' => 'draft',
-      ],
-    ];
-    $this->assertIdenticalResultset($view, $expected_result, ['vid' => 'vid', 'moderation_state' => 'moderation_state']);
-  }
-
-  /**
-   * Tests the join from the data table to the moderation state table.
-   */
-  public function testContentModerationStateBaseJoin() {
-    $node = Node::create([
-      'type' => 'page',
-      'title' => 'Test title first revision',
-    ]);
-    $node->moderation_state->value = 'published';
-    $node->save();
-
-    $revision = clone $node;
-    $revision->setNewRevision(TRUE);
-    $revision->isDefaultRevision(FALSE);
-    $revision->title->value = 'Test title second revision';
-    $revision->moderation_state->value = 'draft';
-    $revision->save();
-
-    $view = Views::getView('test_content_moderation_base_table_test');
-    $view->execute();
-
-    $expected_result = [
-      [
-        'nid' => $node->id(),
-        // Joins from the base table to the default revision of the
-        // content_moderation.
-        'moderation_state' => 'published',
-        // Joins from the revision table to the default revision of the
-        // content_moderation.
-        'moderation_state_1' => 'published',
-        // Joins from the revision table to the revision of the
-        // content_moderation.
-        'moderation_state_2' => 'published',
-      ],
-    ];
-    $this->assertIdenticalResultset($view, $expected_result, ['nid' => 'nid', 'moderation_state' => 'moderation_state', 'moderation_state_1' => 'moderation_state_1', 'moderation_state_2' => 'moderation_state_2']);
-  }
-
-  /**
-=======
->>>>>>> dev
    * Tests the content moderation state views field.
    */
   public function testContentModerationStateField() {

@@ -48,11 +48,7 @@ trait PathAliasTestTrait {
    */
   protected function loadPathAliasByConditions($conditions) {
     $storage = \Drupal::entityTypeManager()->getStorage('path_alias');
-<<<<<<< HEAD
-    $query = $storage->getQuery();
-=======
     $query = $storage->getQuery()->accessCheck(FALSE);
->>>>>>> dev
     foreach ($conditions as $field => $value) {
       $query->condition($field, $value);
     }
@@ -74,14 +70,10 @@ trait PathAliasTestTrait {
    *   (optional) A message to display with the assertion.
    */
   protected function assertPathAliasExists($alias, $langcode = NULL, $path = NULL, $message = NULL) {
-<<<<<<< HEAD
-    $query = \Drupal::entityTypeManager()->getStorage('path_alias')->getQuery();
-=======
     $query = \Drupal::entityTypeManager()
       ->getStorage('path_alias')
       ->getQuery()
       ->accessCheck(FALSE);
->>>>>>> dev
     $query->condition('alias', $alias, '=');
     if ($langcode) {
       $query->condition('langcode', $langcode, '=');
@@ -107,14 +99,10 @@ trait PathAliasTestTrait {
    *   (optional) A message to display with the assertion.
    */
   protected function assertPathAliasNotExists($alias, $langcode = NULL, $path = NULL, $message = NULL) {
-<<<<<<< HEAD
-    $query = \Drupal::entityTypeManager()->getStorage('path_alias')->getQuery();
-=======
     $query = \Drupal::entityTypeManager()
       ->getStorage('path_alias')
       ->getQuery()
       ->accessCheck(FALSE);
->>>>>>> dev
     $query->condition('alias', $alias, '=');
     if ($langcode) {
       $query->condition('langcode', $langcode, '=');

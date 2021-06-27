@@ -2,10 +2,7 @@
 
 namespace Drupal\Tests\migrate\Unit\process;
 
-<<<<<<< HEAD
-=======
 use Drupal\migrate\MigrateException;
->>>>>>> dev
 use Drupal\migrate\Plugin\migrate\process\Flatten;
 
 /**
@@ -16,14 +13,6 @@ use Drupal\migrate\Plugin\migrate\process\Flatten;
 class FlattenTest extends MigrateProcessTestCase {
 
   /**
-<<<<<<< HEAD
-   * Test that various array flatten operations work properly.
-   */
-  public function testFlatten() {
-    $plugin = new Flatten([], 'flatten', []);
-    $flattened = $plugin->transform([1, 2, [3, 4, [5]], [], [7, 8]], $this->migrateExecutable, $this->row, 'destination_property');
-    $this->assertSame([1, 2, 3, 4, 5, 7, 8], $flattened);
-=======
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -107,7 +96,6 @@ XML;
         $xml_str,
       ],
     ];
->>>>>>> dev
   }
 
 }

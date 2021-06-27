@@ -10,15 +10,9 @@
     attach: function attach(context, settings) {
       var $input = $('input.table-filter-text').once('table-filter-text');
       var $table = $($input.attr('data-table'));
-<<<<<<< HEAD
-      var $rowsAndDetails = void 0;
-      var $rows = void 0;
-      var $details = void 0;
-=======
       var $rowsAndDetails;
       var $rows;
       var $details;
->>>>>>> dev
       var searching = false;
 
       function hidePackageDetails(index, element) {
@@ -29,12 +23,7 @@
 
       function filterModuleList(e) {
         var query = $(e.target).val();
-<<<<<<< HEAD
-
-        var re = new RegExp('\\b' + query, 'i');
-=======
         var re = new RegExp("\\b".concat(query), 'i');
->>>>>>> dev
 
         function showModuleRow(index, row) {
           var $row = $(row);
@@ -48,26 +37,14 @@
         if (query.length >= 2) {
           searching = true;
           $rows.each(showModuleRow);
-<<<<<<< HEAD
-
-          $details.not('[open]').attr('data-drupal-system-state', 'forced-open');
-
-          $details.attr('open', true).each(hidePackageDetails);
-
-=======
           $details.not('[open]').attr('data-drupal-system-state', 'forced-open');
           $details.attr('open', true).each(hidePackageDetails);
->>>>>>> dev
           Drupal.announce(Drupal.t('!modules modules are available in the modified list.', {
             '!modules': $rowsAndDetails.find('tbody tr:visible').length
           }));
         } else if (searching) {
           searching = false;
           $rowsAndDetails.show();
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
           $details.filter('[data-drupal-system-state="forced-open"]').removeAttr('data-drupal-system-state').attr('open', false);
         }
       }
@@ -83,10 +60,6 @@
         $rowsAndDetails = $table.find('tr, details');
         $rows = $table.find('tbody tr');
         $details = $rowsAndDetails.filter('.package-listing');
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         $input.on({
           keyup: debounce(filterModuleList, 200),
           keydown: preventEnterKey

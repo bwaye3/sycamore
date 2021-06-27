@@ -5,10 +5,6 @@ namespace Drupal\Tests\user\Kernel\Views;
 use Drupal\user\Entity\Role;
 use Drupal\views\Entity\View;
 use Drupal\views\Views;
-<<<<<<< HEAD
-use PHPUnit\Framework\Error\Warning;
-=======
->>>>>>> dev
 
 /**
  * Tests the roles filter handler.
@@ -36,11 +32,7 @@ class HandlerFilterRolesTest extends UserKernelTestBase {
     $expected = [
       'module' => ['user'],
     ];
-<<<<<<< HEAD
-    $this->assertEqual($expected, $view->getDependencies());
-=======
     $this->assertEquals($expected, $view->getDependencies());
->>>>>>> dev
 
     $display = &$view->getDisplay('default');
     $display['display_options']['filters']['roles_target_id'] = [
@@ -52,11 +44,7 @@ class HandlerFilterRolesTest extends UserKernelTestBase {
     ];
     $view->save();
     $expected['config'][] = 'user.role.test_user_role';
-<<<<<<< HEAD
-    $this->assertEqual($expected, $view->getDependencies());
-=======
     $this->assertEquals($expected, $view->getDependencies());
->>>>>>> dev
 
     $view = View::load('test_user_name');
     $display = &$view->getDisplay('default');
@@ -72,11 +60,7 @@ class HandlerFilterRolesTest extends UserKernelTestBase {
     ];
     $view->save();
     unset($expected['config']);
-<<<<<<< HEAD
-    $this->assertEqual($expected, $view->getDependencies());
-=======
     $this->assertEquals($expected, $view->getDependencies());
->>>>>>> dev
 
     $view = View::load('test_user_name');
     $display = &$view->getDisplay('default');
@@ -91,20 +75,12 @@ class HandlerFilterRolesTest extends UserKernelTestBase {
       'plugin_id' => 'user_roles',
     ];
     $view->save();
-<<<<<<< HEAD
-    $this->assertEqual($expected, $view->getDependencies());
-=======
     $this->assertEquals($expected, $view->getDependencies());
->>>>>>> dev
 
     $view = Views::getView('test_user_name');
     $view->initDisplay();
     $view->initHandlers();
-<<<<<<< HEAD
-    $this->assertEqual(array_keys($view->filter['roles_target_id']->getValueOptions()), ['test_user_role']);
-=======
     $this->assertEquals(['test_user_role'], array_keys($view->filter['roles_target_id']->getValueOptions()));
->>>>>>> dev
 
     $view = View::load('test_user_name');
     $display = &$view->getDisplay('default');
@@ -116,11 +92,7 @@ class HandlerFilterRolesTest extends UserKernelTestBase {
       'plugin_id' => 'user_roles',
     ];
     $view->save();
-<<<<<<< HEAD
-    $this->assertEqual($expected, $view->getDependencies());
-=======
     $this->assertEquals($expected, $view->getDependencies());
->>>>>>> dev
   }
 
   /**
@@ -142,13 +114,8 @@ class HandlerFilterRolesTest extends UserKernelTestBase {
     // Ensure no warning is triggered before the role is deleted.
     $view->calculateDependencies();
     $role->delete();
-<<<<<<< HEAD
-    $this->expectException(Warning::class);
-    $this->expectExceptionMessage('The test_user_role role does not exist. You should review and fix the configuration of the test_user_name view.');
-=======
     $this->expectWarning();
     $this->expectWarningMessage('The test_user_role role does not exist. You should review and fix the configuration of the test_user_name view.');
->>>>>>> dev
     $view->calculateDependencies();
   }
 

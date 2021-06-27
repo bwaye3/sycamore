@@ -3,15 +3,11 @@
 namespace Drupal\Tests\system\Kernel\System;
 
 use Drupal\Core\Database\Database;
-<<<<<<< HEAD
-use Drupal\KernelTests\KernelTestBase;
-=======
 use Drupal\Core\Queue\DatabaseQueue;
 use Drupal\Core\Queue\Memory;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\cron_queue_test\Plugin\QueueWorker\CronQueueTestDatabaseDelayException;
 use Prophecy\Argument;
->>>>>>> dev
 
 /**
  * Tests the Cron Queue runner.
@@ -25,11 +21,7 @@ class CronQueueTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['system', 'cron_queue_test'];
-=======
   protected static $modules = ['system', 'cron_queue_test'];
->>>>>>> dev
 
   /**
    * The database connection.
@@ -46,19 +38,6 @@ class CronQueueTest extends KernelTestBase {
   protected $cron;
 
   /**
-<<<<<<< HEAD
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-
-    // These additional tables are necessary because $this->cron->run() calls
-    // system_cron().
-    $this->installSchema('system', ['key_value_expire']);
-
-    $this->connection = Database::getConnection();
-    $this->cron = \Drupal::service('cron');
-=======
    * The fake current time used for queue worker / cron testing purposes.
    *
    * This value should be greater than or equal to zero.
@@ -139,7 +118,6 @@ class CronQueueTest extends KernelTestBase {
     $property->setAccessible(TRUE);
     $memory_queue_internal = $property->getValue($memory);
     $this->assertEquals($this->currentTime + $memory_lease_time, reset($memory_queue_internal)->expire);
->>>>>>> dev
   }
 
   /**
@@ -155,17 +133,10 @@ class CronQueueTest extends KernelTestBase {
     // Run cron; the worker for this queue should throw an exception and handle
     // it.
     $this->cron->run();
-<<<<<<< HEAD
-    $this->assertEqual(\Drupal::state()->get('cron_queue_test_exception'), 1);
-
-    // The item should be left in the queue.
-    $this->assertEqual($queue->numberOfItems(), 1, 'Failing item still in the queue after throwing an exception.');
-=======
     $this->assertEquals(1, \Drupal::state()->get('cron_queue_test_exception'));
 
     // The item should be left in the queue.
     $this->assertEquals(1, $queue->numberOfItems(), 'Failing item still in the queue after throwing an exception.');
->>>>>>> dev
 
     // Expire the queue item manually. system_cron() relies in REQUEST_TIME to
     // find queue items whose expire field needs to be reset to 0. This is a
@@ -177,13 +148,8 @@ class CronQueueTest extends KernelTestBase {
       ->fields(['expire' => REQUEST_TIME - 1])
       ->execute();
     $this->cron->run();
-<<<<<<< HEAD
-    $this->assertEqual(\Drupal::state()->get('cron_queue_test_exception'), 2);
-    $this->assertEqual($queue->numberOfItems(), 0, 'Item was processed and removed from the queue.');
-=======
     $this->assertEquals(2, \Drupal::state()->get('cron_queue_test_exception'));
     $this->assertEquals(0, $queue->numberOfItems(), 'Item was processed and removed from the queue.');
->>>>>>> dev
 
     // Get the queue to test the specific SuspendQueueException.
     $queue = $this->container->get('queue')->get('cron_queue_test_broken_queue');
@@ -198,24 +164,14 @@ class CronQueueTest extends KernelTestBase {
     $this->cron->run();
 
     // Only one item should have been processed.
-<<<<<<< HEAD
-    $this->assertEqual($queue->numberOfItems(), 2, 'Failing queue stopped processing at the failing item.');
-=======
     $this->assertEquals(2, $queue->numberOfItems(), 'Failing queue stopped processing at the failing item.');
->>>>>>> dev
 
     // Check the items remaining in the queue. The item that throws the
     // exception gets released by cron, so we can claim it again to check it.
     $item = $queue->claimItem();
-<<<<<<< HEAD
-    $this->assertEqual($item->data, 'crash', 'Failing item remains in the queue.');
-    $item = $queue->claimItem();
-    $this->assertEqual($item->data, 'ignored', 'Item beyond the failing item remains in the queue.');
-=======
     $this->assertEquals('crash', $item->data, 'Failing item remains in the queue.');
     $item = $queue->claimItem();
     $this->assertEquals('ignored', $item->data, 'Item beyond the failing item remains in the queue.');
->>>>>>> dev
 
     // Test the requeueing functionality.
     $queue = $this->container->get('queue')->get('cron_queue_test_requeue_exception');
@@ -226,8 +182,6 @@ class CronQueueTest extends KernelTestBase {
     $this->assertEquals(0, $queue->numberOfItems());
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Tests that database queue implementation complies with interfaces specs.
    */
@@ -247,5 +201,4 @@ class CronQueueTest extends KernelTestBase {
     static::assertFalse($queue->releaseItem($item));
   }
 
->>>>>>> dev
 }

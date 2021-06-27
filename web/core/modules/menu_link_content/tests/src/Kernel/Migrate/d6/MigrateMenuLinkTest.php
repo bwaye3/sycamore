@@ -19,11 +19,7 @@ class MigrateMenuLinkTest extends MigrateNodeTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'content_translation',
     'language',
     'menu_link_content',
@@ -33,11 +29,7 @@ class MigrateMenuLinkTest extends MigrateNodeTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->setUpCurrentUser();
     $this->installEntitySchema('menu_link_content');

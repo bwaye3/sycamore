@@ -11,13 +11,8 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Url;
-<<<<<<< HEAD
-use Drupal\jsonapi\Normalizer\HttpExceptionNormalizer;
-use Drupal\jsonapi\ResourceResponse;
-=======
 use Drupal\jsonapi\CacheableResourceResponse;
 use Drupal\jsonapi\Normalizer\HttpExceptionNormalizer;
->>>>>>> dev
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -43,11 +38,7 @@ trait ResourceResponseTestTrait {
    *   be deduced from the number of responses, because a multiple cardinality
    *   field may have only one value.
    *
-<<<<<<< HEAD
-   * @return \Drupal\jsonapi\ResourceResponse
-=======
    * @return \Drupal\jsonapi\CacheableResourceResponse
->>>>>>> dev
    *   The merged ResourceResponse.
    */
   protected static function toCollectionResourceResponse(array $responses, $self_link, $is_multiple) {
@@ -112,11 +103,7 @@ trait ResourceResponseTestTrait {
     // individual resources in those collections, which means any '4xx-response'
     // cache tags on the individual responses should also be omitted.
     $merged_cacheability->setCacheTags(array_diff($merged_cacheability->getCacheTags(), ['4xx-response']));
-<<<<<<< HEAD
-    return (new ResourceResponse($merged_document, 200))->addCacheableDependency($merged_cacheability);
-=======
     return (new CacheableResourceResponse($merged_document, 200))->addCacheableDependency($merged_cacheability);
->>>>>>> dev
   }
 
   /**
@@ -136,11 +123,7 @@ trait ResourceResponseTestTrait {
     $resource_type = $this->resourceType;
     $resource_data = array_reduce($include_paths, function ($data, $path) use ($request_options, $resource_type) {
       $field_names = explode('.', $path);
-<<<<<<< HEAD
-      /* @var \Drupal\Core\Entity\EntityInterface $entity */
-=======
       /** @var \Drupal\Core\Entity\EntityInterface $entity */
->>>>>>> dev
       $entity = $this->entity;
       $collected_responses = [];
       foreach ($field_names as $public_field_name) {
@@ -220,11 +203,7 @@ trait ResourceResponseTestTrait {
     $basic_cacheability = (new CacheableMetadata())
       ->addCacheTags($this->getExpectedCacheTags())
       ->addCacheContexts($this->getExpectedCacheContexts());
-<<<<<<< HEAD
-    return static::decorateExpectedResponseForIncludedFields(ResourceResponse::create($individual_document), $resource_data['responses'])
-=======
     return static::decorateExpectedResponseForIncludedFields(new CacheableResourceResponse($individual_document), $resource_data['responses'])
->>>>>>> dev
       ->addCacheableDependency($basic_cacheability);
   }
 
@@ -251,11 +230,7 @@ trait ResourceResponseTestTrait {
    * @param \Psr\Http\Message\ResponseInterface $response
    *   A PSR response to be mapped.
    *
-<<<<<<< HEAD
-   * @return \Drupal\jsonapi\ResourceResponse
-=======
    * @return \Drupal\jsonapi\CacheableResourceResponse
->>>>>>> dev
    *   The ResourceResponse.
    */
   protected static function toResourceResponse(ResponseInterface $response) {
@@ -270,11 +245,7 @@ trait ResourceResponseTestTrait {
       $cacheability->setCacheMaxAge(($dynamic_cache[0] === 'UNCACHEABLE' && $response->getStatusCode() < 400) ? 0 : Cache::PERMANENT);
     }
     $related_document = Json::decode($response->getBody());
-<<<<<<< HEAD
-    $resource_response = new ResourceResponse($related_document, $response->getStatusCode());
-=======
     $resource_response = new CacheableResourceResponse($related_document, $response->getStatusCode());
->>>>>>> dev
     return $resource_response->addCacheableDependency($cacheability);
   }
 
@@ -525,11 +496,7 @@ trait ResourceResponseTestTrait {
    *   (optional) Document pointer for the JSON:API error object. FALSE to omit
    *   the pointer.
    *
-<<<<<<< HEAD
-   * @return \Drupal\jsonapi\ResourceResponse
-=======
    * @return \Drupal\jsonapi\CacheableResourceResponse
->>>>>>> dev
    *   The forbidden ResourceResponse.
    */
   protected static function getAccessDeniedResponse(EntityInterface $entity, AccessResultInterface $access, Url $via_link, $relationship_field_name = NULL, $detail = NULL, $pointer = NULL) {
@@ -552,11 +519,7 @@ trait ResourceResponseTestTrait {
       $error['links']['via']['href'] = $via_link->setAbsolute()->toString();
     }
 
-<<<<<<< HEAD
-    return (new ResourceResponse([
-=======
     return (new CacheableResourceResponse([
->>>>>>> dev
       'jsonapi' => static::$jsonApiMember,
       'errors' => [$error],
     ], 403))
@@ -573,11 +536,7 @@ trait ResourceResponseTestTrait {
    * @param string $self_link
    *   The self link for collection ResourceResponse.
    *
-<<<<<<< HEAD
-   * @return \Drupal\jsonapi\ResourceResponse
-=======
    * @return \Drupal\jsonapi\CacheableResourceResponse
->>>>>>> dev
    *   The empty collection ResourceResponse.
    */
   protected function getEmptyCollectionResponse($cardinality, $self_link) {
@@ -590,11 +549,7 @@ trait ResourceResponseTestTrait {
       'url.site',
     ], $this->entity->getEntityType()->isRevisionable() ? ['url.query_args:resourceVersion'] : []);
     $cacheability = (new CacheableMetadata())->addCacheContexts($cache_contexts)->addCacheTags(['http_response']);
-<<<<<<< HEAD
-    return (new ResourceResponse([
-=======
     return (new CacheableResourceResponse([
->>>>>>> dev
       // Empty to-one relationships should be NULL and empty to-many
       // relationships should be an empty array.
       'data' => $cardinality === 1 ? NULL : [],

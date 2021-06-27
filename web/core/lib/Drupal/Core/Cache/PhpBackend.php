@@ -184,11 +184,7 @@ class PhpBackend implements CacheBackendInterface {
    * {@inheritdoc}
    */
   public function invalidate($cid) {
-<<<<<<< HEAD
-    $this->invalidatebyHash($this->normalizeCid($cid));
-=======
     $this->invalidateByHash($this->normalizeCid($cid));
->>>>>>> dev
   }
 
   /**
@@ -197,11 +193,7 @@ class PhpBackend implements CacheBackendInterface {
    * @param string $cidhash
    *   The hashed version of the original cache ID after being normalized.
    */
-<<<<<<< HEAD
-  protected function invalidatebyHash($cidhash) {
-=======
   protected function invalidateByHash($cidhash) {
->>>>>>> dev
     if ($item = $this->getByHash($cidhash)) {
       $item->expire = REQUEST_TIME - 1;
       $this->writeItem($cidhash, $item);
@@ -222,11 +214,7 @@ class PhpBackend implements CacheBackendInterface {
    */
   public function invalidateAll() {
     foreach ($this->storage()->listAll() as $cidhash) {
-<<<<<<< HEAD
-      $this->invalidatebyHash($cidhash);
-=======
       $this->invalidateByHash($cidhash);
->>>>>>> dev
     }
   }
 

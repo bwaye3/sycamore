@@ -28,11 +28,7 @@ class SearchSetLocaleTest extends BrowserTestBase {
    */
   protected $nodeSearchPlugin;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalCreateContentType(['type' => 'page', 'name' => 'Basic page']);

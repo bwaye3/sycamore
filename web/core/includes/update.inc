@@ -10,44 +10,6 @@
 
 use Drupal\Component\Graph\Graph;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
-<<<<<<< HEAD
-use Drupal\Core\Update\UpdateKernel;
-use Drupal\Core\Utility\Error;
-
-/**
- * Disables any extensions that are incompatible with the current core version.
- *
- * @deprecated in Drupal 8.8.5 and is removed from Drupal 9.0.0.
- *
- * @see https://www.drupal.org/node/3026100
- */
-function update_fix_compatibility() {
-  @trigger_error(__FUNCTION__ . '() is deprecated in Drupal 8.8.5 and will be removed before Drupal 9.0.0. There is no replacement. See https://www.drupal.org/node/3026100', E_USER_DEPRECATED);
-  // Fix extension objects if the update is being done via Drush 8. In non-Drush
-  // environments this will already be fixed by the UpdateKernel this point.
-  UpdateKernel::fixSerializedExtensionObjects(\Drupal::getContainer());
-
-  $extension_config = \Drupal::configFactory()->getEditable('core.extension');
-  $save = FALSE;
-  foreach (['module', 'theme'] as $type) {
-    foreach ($extension_config->get($type) as $name => $weight) {
-      if (update_check_incompatibility($name, $type)) {
-        $extension_config->clear("$type.$name");
-        $save = TRUE;
-      }
-    }
-  }
-  if ($save) {
-    $extension_config->set('module', module_config_sort($extension_config->get('module')));
-    $extension_config->save();
-  }
-}
-
-/**
- * Tests the compatibility of a module or theme.
- */
-function update_check_incompatibility($name, $type = 'module') {
-=======
 use Drupal\Core\Utility\Error;
 
 /**
@@ -61,7 +23,6 @@ use Drupal\Core\Utility\Error;
  */
 function update_check_incompatibility($name, $type = 'module') {
   @trigger_error('update_check_incompatibility() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. No direct replacement is provided. See https://www.drupal.org/node/3150727', E_USER_DEPRECATED);
->>>>>>> dev
   static $themes, $modules;
 
   // Store values of expensive functions for future use.
@@ -192,10 +153,6 @@ function _update_fix_missing_schema() {
  *   Name of the module.
  * @param string $schema_version
  *   The schema version the module should be set to.
-<<<<<<< HEAD
- */
-function update_set_schema($module, $schema_version) {
-=======
  *
  * @deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. No direct
  *   replacement is provided.
@@ -204,7 +161,6 @@ function update_set_schema($module, $schema_version) {
  */
 function update_set_schema($module, $schema_version) {
   @trigger_error('update_set_schema() is deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. No direct replacement is provided. See https://www.drupal.org/node/3210925', E_USER_DEPRECATED);
->>>>>>> dev
   \Drupal::keyValue('system.schema')->set($module, $schema_version);
   \Drupal::service('extension.list.profile')->reset();
   \Drupal::service('extension.list.module')->reset();
@@ -281,11 +237,7 @@ function update_do_one($module, $number, $dependency_map, &$context) {
       watchdog_exception('update', $e);
 
       $variables = Error::decodeException($e);
-<<<<<<< HEAD
-      unset($variables['backtrace']);
-=======
       unset($variables['backtrace'], $variables['exception'], $variables['severity_level']);
->>>>>>> dev
       $ret['#abort'] = ['success' => FALSE, 'query' => t('%type: @message in %function (line %line of %file).', $variables)];
     }
   }
@@ -352,11 +304,7 @@ function update_invoke_post_update($function, &$context) {
       watchdog_exception('update', $e);
 
       $variables = Error::decodeException($e);
-<<<<<<< HEAD
-      unset($variables['backtrace']);
-=======
       unset($variables['backtrace'], $variables['exception']);
->>>>>>> dev
       $ret['#abort'] = [
         'success' => FALSE,
         'query' => t('%type: @message in %function (line %line of %file).', $variables),
@@ -455,9 +403,6 @@ function update_get_update_list() {
         if ($update > $schema_version) {
           // The description for an update comes from its Doxygen.
           $func = new ReflectionFunction($module . '_update_' . $update);
-<<<<<<< HEAD
-          $description = str_replace(["\n", '*', '/'], '', $func->getDocComment());
-=======
           $patterns = [
             '/^\s*[\/*]*/',
             '/(\n\s*\**)(.*)/',
@@ -466,7 +411,6 @@ function update_get_update_list() {
           ];
           $replacements = ['', '$2', '', ''];
           $description = preg_replace($patterns, $replacements, $func->getDocComment());
->>>>>>> dev
           $ret[$module]['pending'][$update] = "$update - $description";
           if (!isset($ret[$module]['start'])) {
             $ret[$module]['start'] = $update;
@@ -799,37 +743,3 @@ function update_retrieve_dependencies() {
 
   return $return;
 }
-<<<<<<< HEAD
-
-/**
- * Replace permissions during update.
- *
- * This function can replace one permission to several or even delete an old
- * one.
- *
- * @param array $replace
- *   An associative array. The keys are the old permissions the values are lists
- *   of new permissions. If the list is an empty array, the old permission is
- *   removed.
- */
-function update_replace_permissions($replace) {
-  $prefix = 'user.role.';
-  $cut = strlen($prefix);
-  $role_names = \Drupal::service('config.storage')->listAll($prefix);
-  foreach ($role_names as $role_name) {
-    $rid = substr($role_name, $cut);
-    $config = \Drupal::config("user.role.$rid");
-    $permissions = $config->get('permissions') ?: [];
-    foreach ($replace as $old_permission => $new_permissions) {
-      if (($index = array_search($old_permission, $permissions)) !== FALSE) {
-        unset($permissions[$index]);
-        $permissions = array_unique(array_merge($permissions, $new_permissions));
-      }
-    }
-    $config
-      ->set('permissions', $permissions)
-      ->save();
-  }
-}
-=======
->>>>>>> dev

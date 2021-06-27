@@ -2,21 +2,13 @@
 
 namespace Drupal\Core\Routing;
 
-<<<<<<< HEAD
-use Symfony\Cmf\Component\Routing\PagedRouteProviderInterface;
-=======
->>>>>>> dev
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * A Route Provider front-end for all Drupal-stored routes.
  */
-<<<<<<< HEAD
-class RouteProviderLazyBuilder implements PreloadableRouteProviderInterface, PagedRouteProviderInterface, EventSubscriberInterface {
-=======
 class RouteProviderLazyBuilder implements PreloadableRouteProviderInterface, EventSubscriberInterface {
->>>>>>> dev
 
   /**
    * The route provider service.
@@ -73,10 +65,6 @@ class RouteProviderLazyBuilder implements PreloadableRouteProviderInterface, Eve
   protected function getRouteProvider() {
     if (!$this->rebuilt && !$this->rebuilding) {
       $this->routeBuilder->rebuild();
-<<<<<<< HEAD
-      $this->rebuilt = TRUE;
-=======
->>>>>>> dev
     }
     return $this->routeProvider;
   }
@@ -132,11 +120,6 @@ class RouteProviderLazyBuilder implements PreloadableRouteProviderInterface, Eve
   }
 
   /**
-<<<<<<< HEAD
-   * {@inheritdoc}
-   */
-  public function getRoutesPaged($offset, $length = NULL) {
-=======
    * Returns a chunk of routes.
    *
    * Should only be used in conjunction with an iterator.
@@ -156,16 +139,10 @@ class RouteProviderLazyBuilder implements PreloadableRouteProviderInterface, Eve
    */
   public function getRoutesPaged($offset, $length = NULL) {
     @trigger_error(__METHOD__ . '() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. No direct replacement is provided. See https://www.drupal.org/node/3151009', E_USER_DEPRECATED);
->>>>>>> dev
     return $this->getRouteProvider()->getRoutesPaged($offset, $length);
   }
 
   /**
-<<<<<<< HEAD
-   * {@inheritdoc}
-   */
-  public function getRoutesCount() {
-=======
    * Gets the total count of routes provided by the router.
    *
    * @return int
@@ -178,7 +155,6 @@ class RouteProviderLazyBuilder implements PreloadableRouteProviderInterface, Eve
    */
   public function getRoutesCount() {
     @trigger_error(__METHOD__ . '() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. No direct replacement is provided. See https://www.drupal.org/node/3151009', E_USER_DEPRECATED);
->>>>>>> dev
     return $this->getRouteProvider()->getRoutesCount();
   }
 
@@ -213,10 +189,7 @@ class RouteProviderLazyBuilder implements PreloadableRouteProviderInterface, Eve
    */
   public function routerRebuildFinished() {
     $this->rebuilding = FALSE;
-<<<<<<< HEAD
-=======
     $this->rebuilt = TRUE;
->>>>>>> dev
   }
 
 }

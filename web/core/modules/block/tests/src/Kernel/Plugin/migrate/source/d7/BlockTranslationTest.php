@@ -16,11 +16,7 @@ class BlockTranslationTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['block', 'migrate_drupal'];
-=======
   protected static $modules = ['block', 'migrate_drupal'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

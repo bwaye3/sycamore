@@ -10,10 +10,6 @@
     attach: function attach(context, settings) {
       $(context).find('.js-text-summary').once('text-summary').each(function () {
         var $widget = $(this).closest('.js-text-format-wrapper');
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         var $summary = $widget.find('.js-text-summary-wrapper');
         var $summaryLabel = $summary.find('label').eq(0);
         var $full = $widget.children('.js-form-type-textarea');
@@ -23,11 +19,7 @@
           $fullLabel = $('<label></label>').prependTo($full);
         }
 
-<<<<<<< HEAD
-        var $link = $('<span class="field-edit-link"> (<button type="button" class="link link-edit-summary">' + Drupal.t('Hide summary') + '</button>)</span>');
-=======
         var $link = $("<span class=\"field-edit-link\"> (<button type=\"button\" class=\"link link-edit-summary\">".concat(Drupal.t('Hide summary'), "</button>)</span>"));
->>>>>>> dev
         var $button = $link.find('button');
         var toggleClick = true;
         $link.on('click', function (e) {
@@ -40,10 +32,7 @@
             $button.html(Drupal.t('Hide summary'));
             $link.appendTo($summaryLabel);
           }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
           e.preventDefault();
           toggleClick = !toggleClick;
         }).appendTo($summaryLabel);

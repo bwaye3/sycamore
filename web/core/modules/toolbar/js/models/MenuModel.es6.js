@@ -3,11 +3,7 @@
  * A Backbone Model for collapsible menus.
  */
 
-<<<<<<< HEAD
-(function(Backbone, Drupal) {
-=======
 (function (Backbone, Drupal) {
->>>>>>> dev
   /**
    * Backbone Model for collapsible menus.
    *

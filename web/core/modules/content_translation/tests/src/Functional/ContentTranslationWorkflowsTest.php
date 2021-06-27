@@ -5,12 +5,9 @@ namespace Drupal\Tests\content_translation\Functional;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Url;
-<<<<<<< HEAD
-=======
 use Drupal\entity_test\Entity\EntityTestMulRevPub;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
->>>>>>> dev
 use Drupal\Tests\system\Functional\Cache\AssertPageCacheContextsAndTagsTrait;
 use Drupal\user\UserInterface;
 
@@ -26,17 +23,11 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
   /**
    * The entity used for testing.
    *
-<<<<<<< HEAD
-   * @var \Drupal\Core\Entity\EntityInterface
-=======
    * @var \Drupal\entity_test\Entity\EntityTestMul
->>>>>>> dev
    */
   protected $entity;
 
   /**
-<<<<<<< HEAD
-=======
    * {@inheritdoc}
    */
   protected $entityTypeId = 'entity_test_mulrevpub';
@@ -63,31 +54,21 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
   protected $notEntityOwner;
 
   /**
->>>>>>> dev
    * Modules to enable.
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['language', 'content_translation', 'entity_test'];
-=======
   protected static $modules = [
     'language',
     'content_translation',
     'entity_test',
   ];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp() {
-    parent::setUp();
-    $this->setupEntity();
-=======
   protected function setUp(): void {
     parent::setUp();
 
@@ -143,7 +124,6 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
    */
   protected function getEntityOwnerPermissions() {
     return ['edit own entity_test content', 'translate editable entities', 'view test entity', 'view test entity translations', 'view unpublished test entity translations'];
->>>>>>> dev
   }
 
   /**
@@ -152,11 +132,8 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
   protected function getTranslatorPermissions() {
     $permissions = parent::getTranslatorPermissions();
     $permissions[] = 'view test entity';
-<<<<<<< HEAD
-=======
     $permissions[] = 'view test entity translations';
     $permissions[] = 'view unpublished test entity translations';
->>>>>>> dev
 
     return $permissions;
   }
@@ -165,23 +142,11 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
    * {@inheritdoc}
    */
   protected function getEditorPermissions() {
-<<<<<<< HEAD
-    return ['administer entity_test content'];
-=======
     return ['administer entity_test content', 'view test entity', 'view test entity translations'];
->>>>>>> dev
   }
 
   /**
    * Creates a test entity and translate it.
-<<<<<<< HEAD
-   */
-  protected function setupEntity() {
-    $default_langcode = $this->langcodes[0];
-
-    // Create a test entity.
-    $user = $this->drupalCreateUser();
-=======
    *
    * @param Drupal\User\UserInterface|null $user
    *   (optional) The entity owner.
@@ -191,7 +156,6 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
 
     // Create a test entity.
     $user = $user ?: $this->drupalCreateUser();
->>>>>>> dev
     $values = [
       'name' => $this->randomMachineName(),
       'user_id' => $user->id(),
@@ -200,15 +164,6 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
     $id = $this->createEntity($values, $default_langcode);
     $storage = $this->container->get('entity_type.manager')
       ->getStorage($this->entityTypeId);
-<<<<<<< HEAD
-    $storage->resetCache([$id]);
-    $this->entity = $storage->load($id);
-
-    // Create a translation.
-    $this->drupalLogin($this->translator);
-    $add_translation_url = Url::fromRoute("entity.$this->entityTypeId.content_translation_add", [$this->entityTypeId => $this->entity->id(), 'source' => $default_langcode, 'target' => $this->langcodes[2]]);
-    $this->drupalPostForm($add_translation_url, [], t('Save'));
-=======
 
     // Create a translation that is not published to test view access.
     $this->drupalLogin($this->translator);
@@ -223,16 +178,11 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
     $storage->resetCache([$id]);
     $this->entity = $storage->load($id);
 
->>>>>>> dev
     $this->rebuildContainer();
   }
 
   /**
-<<<<<<< HEAD
-   * Test simple and editorial translation workflows.
-=======
    * Tests simple and editorial translation workflows.
->>>>>>> dev
    */
   public function testWorkflows() {
     // Test workflows for the editor.
@@ -243,11 +193,8 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
       'add_translation' => 403,
       'edit_translation' => 403,
       'delete_translation' => 403,
-<<<<<<< HEAD
-=======
       'view_unpublished_translation' => 403,
       'view_unpublished_translation_reference' => FALSE,
->>>>>>> dev
     ];
     $this->doTestWorkflows($this->editor, $expected_status);
 
@@ -259,11 +206,8 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
       'add_translation' => 200,
       'edit_translation' => 200,
       'delete_translation' => 200,
-<<<<<<< HEAD
-=======
       'view_unpublished_translation' => 200,
       'view_unpublished_translation_reference' => TRUE,
->>>>>>> dev
     ];
     $this->doTestWorkflows($this->translator, $expected_status);
 
@@ -275,11 +219,8 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
       'add_translation' => 200,
       'edit_translation' => 403,
       'delete_translation' => 403,
-<<<<<<< HEAD
-=======
       'view_unpublished_translation' => 200,
       'view_unpublished_translation_reference' => TRUE,
->>>>>>> dev
     ];
     $this->doTestWorkflows($this->administrator, $expected_status);
 
@@ -299,11 +240,7 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
       // for the entity are present.
       $this->assertCacheContext('user.permissions');
       foreach ($this->entity->getCacheTags() as $cache_tag) {
-<<<<<<< HEAD
-        $this->assertCacheTag($cache_tag);
-=======
         $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', $cache_tag);
->>>>>>> dev
       }
 
       foreach ($ops as $op => $label) {
@@ -315,8 +252,6 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
         }
       }
     }
-<<<<<<< HEAD
-=======
 
     // Test workflows for the entity owner with non-editable content.
     $expected_status = [
@@ -357,7 +292,6 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
       'view_unpublished_translation_reference' => TRUE,
     ];
     $this->doTestWorkflows($this->notEntityOwner, $expected_status);
->>>>>>> dev
   }
 
   /**
@@ -396,11 +330,7 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
     $add_translation_url = Url::fromRoute("entity.$this->entityTypeId.content_translation_add", [$this->entityTypeId => $this->entity->id(), 'source' => $default_langcode, 'target' => $langcode], $options);
     if ($expected_status['add_translation'] == 200) {
       $this->clickLink('Add');
-<<<<<<< HEAD
-      $this->assertUrl($add_translation_url->toString(), [], 'The translation overview points to the translation form when creating translations.');
-=======
       $this->assertSession()->addressEquals($add_translation_url);
->>>>>>> dev
       // Check that the translation form does not contain shared elements for
       // translators.
       if ($expected_status['edit'] == 403) {
@@ -421,28 +351,16 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
       $editor = $expected_status['edit'] == 200;
 
       if ($editor) {
-<<<<<<< HEAD
-        $this->clickLink('Edit', 2);
-        // An editor should be pointed to the entity form in multilingual mode.
-        // We need a new expected edit path with a new language.
-        $expected_edit_path = $this->entity->toUrl('edit-form', $options)->toString();
-        $this->assertUrl($expected_edit_path, [], 'The translation overview points to the edit form for editors when editing translations.');
-=======
         $this->clickLink('Edit', 1);
         // An editor should be pointed to the entity form in multilingual mode.
         // We need a new expected edit path with a new language.
         $expected_edit_path = $this->entity->toUrl('edit-form', $options)->toString();
         $this->assertSession()->addressEquals($expected_edit_path);
->>>>>>> dev
       }
       else {
         $this->clickLink('Edit');
         // While a translator should be pointed to the translation form.
-<<<<<<< HEAD
-        $this->assertUrl($edit_translation_url->toString(), [], 'The translation overview points to the translation form for translators when editing translations.');
-=======
         $this->assertSession()->addressEquals($edit_translation_url);
->>>>>>> dev
         // Check that the translation form does not contain shared elements.
         $this->assertNoSharedElements();
       }
@@ -452,11 +370,6 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
     }
     $this->assertSession()->statusCodeEquals($expected_status['edit_translation']);
 
-<<<<<<< HEAD
-    // Check whether the user is allowed to delete a translation.
-    $langcode = $this->langcodes[2];
-    $options['language'] = $languages[$langcode];
-=======
     // When viewing an unpublished entity directly, access is currently denied
     // completely. See https://www.drupal.org/node/2978048.
     $this->drupalGet($this->entity->getTranslation($langcode)->toUrl());
@@ -473,37 +386,24 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
     }
 
     // Check whether the user is allowed to delete a translation.
->>>>>>> dev
     $delete_translation_url = Url::fromRoute("entity.$this->entityTypeId.content_translation_delete", [$this->entityTypeId => $this->entity->id(), 'language' => $langcode], $options);
     if ($expected_status['delete_translation'] == 200) {
       $this->drupalGet($translations_url);
       $editor = $expected_status['delete'] == 200;
 
       if ($editor) {
-<<<<<<< HEAD
-        $this->clickLink('Delete', 2);
-=======
         $this->clickLink('Delete', 1);
->>>>>>> dev
         // An editor should be pointed to the entity deletion form in
         // multilingual mode. We need a new expected delete path with a new
         // language.
         $expected_delete_path = $this->entity->toUrl('delete-form', $options)->toString();
-<<<<<<< HEAD
-        $this->assertUrl($expected_delete_path, [], 'The translation overview points to the delete form for editors when deleting translations.');
-=======
         $this->assertSession()->addressEquals($expected_delete_path);
->>>>>>> dev
       }
       else {
         $this->clickLink('Delete');
         // While a translator should be pointed to the translation deletion
         // form.
-<<<<<<< HEAD
-        $this->assertUrl($delete_translation_url->toString(), [], 'The translation overview points to the translation deletion form for translators when deleting translations.');
-=======
         $this->assertSession()->addressEquals($delete_translation_url);
->>>>>>> dev
       }
     }
     else {
@@ -517,11 +417,7 @@ class ContentTranslationWorkflowsTest extends ContentTranslationTestBase {
    */
   protected function assertNoSharedElements() {
     $language_none = LanguageInterface::LANGCODE_NOT_SPECIFIED;
-<<<<<<< HEAD
-    return $this->assertNoFieldByXPath("//input[@name='field_test_text[$language_none][0][value]']", NULL, 'Shared elements are not available on the translation form.');
-=======
     return $this->assertSession()->fieldNotExists("field_test_text[$language_none][0][value]");
->>>>>>> dev
   }
 
 }

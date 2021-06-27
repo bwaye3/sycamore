@@ -6,7 +6,3 @@ dependencies:
   - drupal:comment
 package: Core
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev

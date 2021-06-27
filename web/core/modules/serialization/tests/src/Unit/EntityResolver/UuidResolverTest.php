@@ -29,22 +29,14 @@ class UuidResolverTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->entityRepository = $this->createMock(EntityRepositoryInterface::class);
 
     $this->resolver = new UuidResolver($this->entityRepository);
   }
 
   /**
-<<<<<<< HEAD
-   * Test resolve() with a class using the incorrect interface.
-=======
    * Tests resolve() with a class using the incorrect interface.
->>>>>>> dev
    */
   public function testResolveNotInInterface() {
     $this->entityRepository->expects($this->never())
@@ -55,11 +47,7 @@ class UuidResolverTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test resolve() with a class using the correct interface but no UUID.
-=======
    * Tests resolve() with a class using the correct interface but no UUID.
->>>>>>> dev
    */
   public function testResolveNoUuid() {
     $this->entityRepository->expects($this->never())
@@ -74,11 +62,7 @@ class UuidResolverTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test resolve() with correct interface but no matching entity for the UUID.
-=======
    * Tests resolve() with correct interface but no matching entity for the UUID.
->>>>>>> dev
    */
   public function testResolveNoEntity() {
     $uuid = '392eab92-35c2-4625-872d-a9dab4da008e';
@@ -98,11 +82,7 @@ class UuidResolverTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test resolve() when a UUID corresponds to an entity.
-=======
    * Tests resolve() when a UUID corresponds to an entity.
->>>>>>> dev
    */
   public function testResolveWithEntity() {
     $uuid = '392eab92-35c2-4625-872d-a9dab4da008e';

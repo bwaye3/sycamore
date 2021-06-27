@@ -4,10 +4,6 @@ namespace Drupal\Tests\path_alias\Functional\Rest;
 
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\path_alias\Entity\PathAlias;
-<<<<<<< HEAD
-use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
-=======
->>>>>>> dev
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 
 /**
@@ -15,19 +11,10 @@ use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
  */
 abstract class PathAliasResourceTestBase extends EntityResourceTestBase {
 
-<<<<<<< HEAD
-  use BcTimestampNormalizerUnixTestTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static $modules = ['path_alias'];
-=======
   /**
    * {@inheritdoc}
    */
   protected static $modules = ['path_alias'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

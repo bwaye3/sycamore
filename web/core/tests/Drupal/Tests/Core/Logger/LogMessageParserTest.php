@@ -12,11 +12,7 @@ use Drupal\Tests\UnitTestCase;
 class LogMessageParserTest extends UnitTestCase {
 
   /**
-<<<<<<< HEAD
-   * Test for LogMessageParserTrait::parseMessagePlaceholders()
-=======
    * Tests for LogMessageParserTrait::parseMessagePlaceholders()
->>>>>>> dev
    *
    * @param array $value
    *   An array containing:

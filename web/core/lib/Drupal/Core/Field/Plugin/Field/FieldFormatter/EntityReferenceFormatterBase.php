@@ -70,11 +70,7 @@ abstract class EntityReferenceFormatterBase extends FormatterBase {
    * {@inheritdoc}
    *
    * @see ::prepareView()
-<<<<<<< HEAD
-   * @see ::getEntitiestoView()
-=======
    * @see ::getEntitiesToView()
->>>>>>> dev
    */
   public function view(FieldItemListInterface $items, $langcode = NULL) {
     $elements = parent::view($items, $langcode);

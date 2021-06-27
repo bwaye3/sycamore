@@ -9,8 +9,5 @@ hidden: true
 install:
   - action
   - language
-<<<<<<< HEAD
-=======
   - testing_config_overrides_module
->>>>>>> dev
   - tour

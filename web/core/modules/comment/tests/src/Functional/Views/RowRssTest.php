@@ -23,11 +23,7 @@ class RowRssTest extends CommentTestBase {
   public static $testViews = ['test_comment_rss'];
 
   /**
-<<<<<<< HEAD
-   * Test comment rss output.
-=======
    * Tests comment rss output.
->>>>>>> dev
    */
   public function testRssRow() {
     $this->drupalGet('test-comment-rss');
@@ -37,11 +33,7 @@ class RowRssTest extends CommentTestBase {
     $result = $this->getSession()->getDriver()->find('//item');
     $this->assertCount(1, $result, 'Just one comment was found in the rss output.');
 
-<<<<<<< HEAD
-    $this->assertEqual($result[0]->find('xpath', '//pubDate')->getHtml(), gmdate('r', $this->comment->getCreatedTime()), 'The right pubDate appears in the rss output.');
-=======
     $this->assertEquals(gmdate('r', $this->comment->getCreatedTime()), $result[0]->find('xpath', '//pubDate')->getHtml(), 'The right pubDate appears in the rss output.');
->>>>>>> dev
   }
 
 }

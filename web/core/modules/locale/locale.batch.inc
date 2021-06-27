@@ -7,10 +7,7 @@
 
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Url;
-<<<<<<< HEAD
-=======
 use GuzzleHttp\Exception\ConnectException;
->>>>>>> dev
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -276,14 +273,11 @@ function locale_translation_http_check($uri) {
       $logger->notice('HTTP request to @url failed with error: @error.', ['@url' => $uri, '@error' => $response->getStatusCode() . ' ' . $response->getReasonPhrase()]);
     }
   }
-<<<<<<< HEAD
-=======
   // We need to handle ConnectException separately because in Guzzle 7 it
   // doesn't have a getResponse() method, so the above will fatal.
   catch (ConnectException $e) {
     $logger->notice('HTTP request to @url failed with error: @error.', ['@url' => $uri, '@error' => $e->getMessage()]);
   }
->>>>>>> dev
 
   return FALSE;
 }

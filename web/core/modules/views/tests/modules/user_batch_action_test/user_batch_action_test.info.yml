@@ -3,13 +3,6 @@ type: module
 description: 'Support module for user batch action testing.'
 package: Testing
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-dependencies:
-  - views
-  - user
-=======
 dependencies:
   - drupal:views
   - drupal:user
->>>>>>> dev

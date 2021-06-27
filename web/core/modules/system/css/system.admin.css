@@ -98,12 +98,6 @@ small .admin-link:after {
   font-size: 1.15em;
 }
 .system-modules details {
-<<<<<<< HEAD
-  overflow: hidden; /* truncates descriptions if too long */
-  white-space: nowrap;
-  text-overflow: ellipsis;
-=======
->>>>>>> dev
   color: #5c5c5b;
   line-height: 20px;
 }
@@ -124,10 +118,6 @@ small .admin-link:after {
   border: 0;
 }
 .system-modules td details {
-<<<<<<< HEAD
-  height: 20px;
-=======
->>>>>>> dev
   margin: 0;
   border: 0;
 }

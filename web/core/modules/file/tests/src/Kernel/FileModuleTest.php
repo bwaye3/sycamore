@@ -17,11 +17,7 @@ class FileModuleTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['file'];
-=======
   protected static $modules = ['file'];
->>>>>>> dev
 
   /**
    * Tests file size upload errors.

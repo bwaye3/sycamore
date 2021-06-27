@@ -18,11 +18,7 @@ class MigrateImageCacheTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installConfig(['image']);
   }
@@ -46,11 +42,7 @@ class MigrateImageCacheTest extends MigrateDrupal6TestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test basic passing migrations.
-=======
    * Tests basic passing migrations.
->>>>>>> dev
    */
   public function testPassingMigration() {
     $this->executeMigration('d6_imagecache_presets');
@@ -59,13 +51,8 @@ class MigrateImageCacheTest extends MigrateDrupal6TestBase {
     $style = ImageStyle::load('big_blue_cheese');
 
     // Check basic Style info.
-<<<<<<< HEAD
-    $this->assertIdentical('big_blue_cheese', $style->get('name'), 'ImageStyle name set correctly');
-    $this->assertIdentical('big_blue_cheese', $style->get('label'), 'ImageStyle label set correctly');
-=======
     $this->assertSame('big_blue_cheese', $style->get('name'), 'ImageStyle name set correctly');
     $this->assertSame('big_blue_cheese', $style->get('label'), 'ImageStyle label set correctly');
->>>>>>> dev
 
     // Test effects.
     $effects = $style->getEffects();
@@ -92,11 +79,7 @@ class MigrateImageCacheTest extends MigrateDrupal6TestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that missing actions causes failures.
-=======
    * Tests that missing actions causes failures.
->>>>>>> dev
    */
   public function testMissingEffectPlugin() {
     Database::getConnection('default', 'migrate')->insert("imagecache_action")
@@ -120,19 +103,11 @@ class MigrateImageCacheTest extends MigrateDrupal6TestBase {
     $messages = iterator_to_array($this->migration->getIdMap()->getMessages());
     $this->assertCount(1, $messages);
     $this->assertStringContainsString('The "image_deprecated_scale" plugin does not exist.', $messages[0]->message);
-<<<<<<< HEAD
-    $this->assertEqual($messages[0]->level, MigrationInterface::MESSAGE_ERROR);
-  }
-
-  /**
-   * Test that missing action's causes failures.
-=======
     $this->assertEquals(MigrationInterface::MESSAGE_ERROR, $messages[0]->level);
   }
 
   /**
    * Tests that missing action's causes failures.
->>>>>>> dev
    */
   public function testInvalidCropValues() {
     Database::getConnection('default', 'migrate')->insert("imagecache_action")
@@ -156,11 +131,7 @@ class MigrateImageCacheTest extends MigrateDrupal6TestBase {
 
     $this->startCollectingMessages();
     $this->executeMigration('d6_imagecache_presets');
-<<<<<<< HEAD
-    $this->assertEqual([
-=======
     $this->assertEquals([
->>>>>>> dev
       'error' => [
         'The Drupal 8 image crop effect does not support numeric values for x and y offsets. Use keywords to set crop effect offsets instead.',
       ],
@@ -181,11 +152,7 @@ class MigrateImageCacheTest extends MigrateDrupal6TestBase {
    */
   protected function assertImageEffect($collection, $id, $config) {
     /** @var \Drupal\image\ConfigurableImageEffectBase $effect */
-<<<<<<< HEAD
-    foreach ($collection as $key => $effect) {
-=======
     foreach ($collection as $effect) {
->>>>>>> dev
       $effect_config = $effect->getConfiguration();
 
       if ($effect_config['id'] == $id && $effect_config['data'] == $config) {

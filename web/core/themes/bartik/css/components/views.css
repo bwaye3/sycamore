@@ -29,16 +29,11 @@
 .views-ui-display-tab-actions .dropbutton .form-submit {
   color: #0071b3;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
 .views-ui-display-tab-actions .dropbutton .form-submit:hover,
 .views-ui-display-tab-actions .dropbutton .form-submit:focus {
   color: #018fe2;
 }
-<<<<<<< HEAD
-=======
 
 /**
  * Responsive grids.
@@ -92,4 +87,3 @@
     border-bottom: 0 none;
   }
 }
->>>>>>> dev

@@ -34,22 +34,13 @@
           element: false,
           progress: false
         });
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         ajaxObject.success(response, 'success');
       }
     }
   }
 
   var interval = drupalSettings.bigPipeInterval || 50;
-<<<<<<< HEAD
-
-  var timeoutID = void 0;
-=======
   var timeoutID;
->>>>>>> dev
 
   function bigPipeProcessDocument(context) {
     if (!context.querySelector('script[data-big-pipe-event="start"]')) {
@@ -62,10 +53,7 @@
       if (timeoutID) {
         clearTimeout(timeoutID);
       }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       return true;
     }
 
@@ -81,18 +69,11 @@
   }
 
   bigPipeProcess();
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
   $(window).on('load', function () {
     if (timeoutID) {
       clearTimeout(timeoutID);
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
     bigPipeProcessDocument(document);
   });
 })(jQuery, Drupal, drupalSettings);

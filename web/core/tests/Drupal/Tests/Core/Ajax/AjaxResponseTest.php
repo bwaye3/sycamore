@@ -6,11 +6,7 @@ use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\EventSubscriber\AjaxResponseSubscriber;
 use Drupal\Tests\UnitTestCase;
 use Symfony\Component\HttpFoundation\Request;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
@@ -26,11 +22,7 @@ class AjaxResponseTest extends UnitTestCase {
    */
   protected $ajaxResponse;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->ajaxResponse = new AjaxResponse();
   }
 
@@ -88,11 +80,7 @@ class AjaxResponseTest extends UnitTestCase {
 
     $ajax_response_attachments_processor = $this->createMock('\Drupal\Core\Render\AttachmentsResponseProcessorInterface');
     $subscriber = new AjaxResponseSubscriber($ajax_response_attachments_processor);
-<<<<<<< HEAD
-    $event = new FilterResponseEvent(
-=======
     $event = new ResponseEvent(
->>>>>>> dev
       $this->createMock('\Symfony\Component\HttpKernel\HttpKernelInterface'),
       $request,
       HttpKernelInterface::MASTER_REQUEST,

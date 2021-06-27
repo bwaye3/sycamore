@@ -21,11 +21,7 @@ class TestMailCollector extends PhpMail implements MailInterface {
    * {@inheritdoc}
    */
   public function mail(array $message) {
-<<<<<<< HEAD
-    $captured_emails = \Drupal::state()->get('system.test_mail_collector') ?: [];
-=======
     $captured_emails = \Drupal::state()->get('system.test_mail_collector', []);
->>>>>>> dev
     $captured_emails[] = $message;
     \Drupal::state()->set('system.test_mail_collector', $captured_emails);
 

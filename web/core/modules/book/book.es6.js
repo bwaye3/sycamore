@@ -1,16 +1,9 @@
 /**
  * @file
-<<<<<<< HEAD
- * Javascript behaviors for the Book module.
- */
-
-(function($, Drupal) {
-=======
  * JavaScript behaviors for the Book module.
  */
 
 (function ($, Drupal) {
->>>>>>> dev
   /**
    * Adds summaries to the book outline form.
    *
@@ -23,11 +16,7 @@
     attach(context) {
       $(context)
         .find('.book-outline-form')
-<<<<<<< HEAD
-        .drupalSetSummary(context => {
-=======
         .drupalSetSummary((context) => {
->>>>>>> dev
           const $select = $(context).find('.book-title-select');
           const val = $select.val();
 

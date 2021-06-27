@@ -3,9 +3,5 @@ type: module
 description: 'Defines a field type for files.'
 package: Field types
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 dependencies:
   - drupal:field

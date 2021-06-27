@@ -6,9 +6,6 @@ use Drupal\migrate\Row;
 use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 
 /**
-<<<<<<< HEAD
- * Drupal config source from database.
-=======
  * Drupal 8+ configuration source from database.
  *
  * Available configuration keys:
@@ -48,7 +45,6 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
  * For additional configuration keys, refer to the parent classes:
  * @see \Drupal\migrate\Plugin\migrate\source\SqlBase
  * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
->>>>>>> dev
  *
  * @MigrateSource(
  *   id = "d8_config",
@@ -77,10 +73,7 @@ class Config extends DrupalSqlBase {
    */
   public function prepareRow(Row $row) {
     $row->setSourceProperty('data', unserialize($row->getSourceProperty('data')));
-<<<<<<< HEAD
-=======
     return parent::prepareRow($row);
->>>>>>> dev
   }
 
   /**

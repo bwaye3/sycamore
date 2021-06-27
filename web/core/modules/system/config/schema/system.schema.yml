@@ -196,26 +196,10 @@ system.rss:
   type: config_object
   label: 'Feed settings'
   mapping:
-<<<<<<< HEAD
-    channel:
-      type: mapping
-      label: 'Feed channel'
-      mapping:
-        description:
-          type: text
-          label: 'Feed description'
-=======
->>>>>>> dev
     items:
       type: mapping
       label: 'Feed items'
       mapping:
-<<<<<<< HEAD
-        limit:
-          type: integer
-          label: 'Feed item limit'
-=======
->>>>>>> dev
         view_mode:
           type: string
           label: 'Feed content'
@@ -319,8 +303,6 @@ system.theme.global:
   type: theme_settings
   label: 'Theme global settings'
 
-<<<<<<< HEAD
-=======
 system.advisories:
   type: config_object
   label: 'Security advisory settings'
@@ -332,7 +314,6 @@ system.advisories:
       type: integer
       label: 'How often to check for security advisories, in hours'
 
->>>>>>> dev
 block.settings.system_branding_block:
   type: block_settings
   label: 'Branding block'

@@ -7,13 +7,10 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\Component\Utility\Xss;
 use PHPUnit\Framework\TestCase;
 
-<<<<<<< HEAD
-=======
 // cspell:ignore ascript barbaz ckers cript CVEs dynsrc fooÿñ metacharacters
 // cspell:ignore msgbox ncript nfocus nmedi nosuchscheme nosuchtag onmediaerror
 // cspell:ignore scrscriptipt tascript vbscript
 
->>>>>>> dev
 /**
  * XSS Filtering tests.
  *
@@ -32,11 +29,7 @@ class XssTest extends TestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $allowed_protocols = [
@@ -491,11 +484,7 @@ class XssTest extends TestCase {
    */
   public function testQuestionSign() {
     $value = Xss::filter('<?xml:namespace ns="urn:schemas-microsoft-com:time">');
-<<<<<<< HEAD
-    $this->assertTrue(stripos($value, '<?xml') === FALSE, 'HTML tag stripping evasion -- starting with a question sign (processing instructions).');
-=======
     $this->assertStringNotContainsStringIgnoringCase('<?xml', $value, 'HTML tag stripping evasion -- starting with a question sign (processing instructions).');
->>>>>>> dev
   }
 
   /**
@@ -609,11 +598,7 @@ class XssTest extends TestCase {
    *   (optional) The group this message belongs to. Defaults to 'Other'.
    */
   protected function assertNormalized($haystack, $needle, $message = '', $group = 'Other') {
-<<<<<<< HEAD
-    $this->assertTrue(strpos(strtolower(Html::decodeEntities($haystack)), $needle) !== FALSE, $message, $group);
-=======
     $this->assertStringContainsString($needle, strtolower(Html::decodeEntities($haystack)), $message);
->>>>>>> dev
   }
 
   /**
@@ -635,11 +620,7 @@ class XssTest extends TestCase {
    *   (optional) The group this message belongs to. Defaults to 'Other'.
    */
   protected function assertNotNormalized($haystack, $needle, $message = '', $group = 'Other') {
-<<<<<<< HEAD
-    $this->assertTrue(strpos(strtolower(Html::decodeEntities($haystack)), $needle) === FALSE, $message, $group);
-=======
     $this->assertStringNotContainsString($needle, strtolower(Html::decodeEntities($haystack)), $message);
->>>>>>> dev
   }
 
 }

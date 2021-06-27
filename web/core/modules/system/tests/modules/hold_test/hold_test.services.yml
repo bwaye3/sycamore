@@ -1,10 +1,6 @@
 services:
   hold_test.response:
     class: Drupal\hold_test\EventSubscriber\HoldTestSubscriber
-<<<<<<< HEAD
-    arguments: ['@site.path']
-=======
     arguments: ['%site.path%']
->>>>>>> dev
     tags:
       - { name: event_subscriber }

@@ -5,10 +5,7 @@ namespace Drupal\test_page_test\Controller;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-<<<<<<< HEAD
-=======
 use Symfony\Component\HttpFoundation\Response;
->>>>>>> dev
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
@@ -100,8 +97,6 @@ class Test {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Sets an HTTP header.
    *
    * @param string $name
@@ -116,7 +111,6 @@ class Test {
   }
 
   /**
->>>>>>> dev
    * Renders a page with encoded markup.
    *
    * @return array
@@ -177,8 +171,6 @@ class Test {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Returns a page render array with 2 elements with the same HTML IDs.
    *
    * @return array
@@ -229,7 +221,6 @@ class Test {
   }
 
   /**
->>>>>>> dev
    * Returns a page while triggering deprecation notices.
    */
   public function deprecations() {

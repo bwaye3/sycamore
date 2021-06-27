@@ -17,11 +17,7 @@ class TwigSettingsTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['theme_test'];
-=======
   protected static $modules = ['theme_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

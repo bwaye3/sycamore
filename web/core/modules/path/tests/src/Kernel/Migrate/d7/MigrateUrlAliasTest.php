@@ -12,11 +12,7 @@ class MigrateUrlAliasTest extends MigrateUrlAliasTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'path_alias',
     'content_translation',
     'migrate_drupal_multilingual',
@@ -25,11 +21,7 @@ class MigrateUrlAliasTest extends MigrateUrlAliasTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->executeMigrations([
       'd7_node_translation',
@@ -38,11 +30,7 @@ class MigrateUrlAliasTest extends MigrateUrlAliasTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the URL alias migration with translated nodes.
-=======
    * Tests the URL alias migration with translated nodes.
->>>>>>> dev
    */
   public function testUrlAliasWithTranslatedNodes() {
     // Alias for the 'The thing about Deep Space 9' node in English.

@@ -36,15 +36,6 @@
       to be exported as printer-friendly HTML.
     #}
 
-<<<<<<< HEAD
-  {% for i in 1..depth-1 if depth > 1 %}
-    <div>
-  {% endfor %}
-  {{ contents }}
-  {% for i in 1..depth-1 if depth > 1 %}
-    </div>
-  {% endfor %}
-=======
   {% if depth > 1 %}{% for i in 1..depth-1 %}
     <div>
   {% endfor %}{% endif %}
@@ -52,6 +43,5 @@
       {% if depth > 1 %}{% for i in 1..depth-1 %}
     </div>
   {% endfor %}{% endif %}
->>>>>>> dev
   </body>
 </html>

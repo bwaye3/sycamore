@@ -26,15 +26,9 @@ class TelephoneFieldRdfaTest extends FieldRdfaTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['telephone', 'text'];
-
-  protected function setUp() {
-=======
   protected static $modules = ['telephone', 'text'];
 
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->createTestField();

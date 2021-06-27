@@ -4,10 +4,6 @@ namespace Drupal\Tests\migrate_drupal_ui\Kernel;
 
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\KernelTests\FileSystemModuleDiscoveryDataProviderTrait;
-<<<<<<< HEAD
-use Drupal\Tests\DeprecatedModulesTestTrait;
-=======
->>>>>>> dev
 use Drupal\Tests\migrate_drupal\Kernel\MigrateDrupalTestBase;
 
 /**
@@ -17,10 +13,6 @@ use Drupal\Tests\migrate_drupal\Kernel\MigrateDrupalTestBase;
  */
 class MigrationLabelExistTest extends MigrateDrupalTestBase {
 
-<<<<<<< HEAD
-  use DeprecatedModulesTestTrait;
-=======
->>>>>>> dev
   use FileSystemModuleDiscoveryDataProviderTrait;
 
   /**

@@ -38,11 +38,7 @@ class ExcludedFieldTokenTest extends ViewTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'entity_test',
     'rest_test_views',
     'node',
@@ -52,17 +48,10 @@ class ExcludedFieldTokenTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-    parent::setUp($import_test_views);
-
-    ViewTestData::createTestViews(get_class($this), ['rest_test_views']);
-=======
   protected function setUp($import_test_views = TRUE): void {
     parent::setUp($import_test_views);
 
     ViewTestData::createTestViews(static::class, ['rest_test_views']);
->>>>>>> dev
 
     // Create some test content.
     for ($i = 1; $i <= 10; $i++) {
@@ -97,11 +86,7 @@ class ExcludedFieldTokenTest extends ViewTestBase {
       ['nothing' => 'Article test 2'],
       ['nothing' => 'Article test 1'],
     ];
-<<<<<<< HEAD
-    $this->assertIdentical($actual_json, json_encode($expected));
-=======
     $this->assertSame(json_encode($expected), $actual_json);
->>>>>>> dev
   }
 
 }

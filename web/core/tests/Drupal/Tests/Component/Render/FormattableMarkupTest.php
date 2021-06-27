@@ -4,10 +4,7 @@ namespace Drupal\Tests\Component\Render;
 
 use Drupal\Component\Render\FormattableMarkup;
 use PHPUnit\Framework\TestCase;
-<<<<<<< HEAD
-=======
 use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
->>>>>>> dev
 
 /**
  * Tests the TranslatableMarkup class.
@@ -17,11 +14,8 @@ use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
  */
 class FormattableMarkupTest extends TestCase {
 
-<<<<<<< HEAD
-=======
   use ExpectDeprecationTrait;
 
->>>>>>> dev
   /**
    * The error message of the last error in the error handler.
    *
@@ -100,16 +94,6 @@ class FormattableMarkupTest extends TestCase {
    */
   public function providerTestUnexpectedPlaceholder() {
     return [
-<<<<<<< HEAD
-      ['Non alpha starting character: ~placeholder', ['~placeholder' => 'replaced'], E_USER_ERROR, 'Invalid placeholder (~placeholder) in string: Non alpha starting character: ~placeholder'],
-      ['Alpha starting character: placeholder', ['placeholder' => 'replaced'], E_USER_DEPRECATED, 'Invalid placeholder (placeholder) in string: Alpha starting character: placeholder'],
-      // Ensure that where the placeholder is located in the string is
-      // irrelevant.
-      ['placeholder', ['placeholder' => 'replaced'], E_USER_DEPRECATED, 'Invalid placeholder (placeholder) in string: placeholder'],
-    ];
-  }
-
-=======
       ['Non alpha starting character: ~placeholder', ['~placeholder' => 'replaced'], E_USER_WARNING, 'Invalid placeholder (~placeholder) with string: "Non alpha starting character: ~placeholder"'],
       ['Alpha starting character: placeholder', ['placeholder' => 'replaced'], E_USER_WARNING, 'Invalid placeholder (placeholder) with string: "Alpha starting character: placeholder"'],
       // Ensure that where the placeholder is located in the string is
@@ -128,5 +112,4 @@ class FormattableMarkupTest extends TestCase {
     $output = (string) $markup;
   }
 
->>>>>>> dev
 }

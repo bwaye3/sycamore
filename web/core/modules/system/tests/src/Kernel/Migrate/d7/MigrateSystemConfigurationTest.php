@@ -11,11 +11,7 @@ use Drupal\Tests\migrate_drupal\Kernel\d7\MigrateDrupal7TestBase;
  */
 class MigrateSystemConfigurationTest extends MigrateDrupal7TestBase {
 
-<<<<<<< HEAD
-  public static $modules = ['action', 'file', 'system'];
-=======
   protected static $modules = ['action', 'file', 'system'];
->>>>>>> dev
 
   protected $expectedConfig = [
     'system.authorize' => [
@@ -98,20 +94,9 @@ class MigrateSystemConfigurationTest extends MigrateDrupal7TestBase {
       'stale_file_threshold' => 2592000,
     ],
     'system.rss' => [
-<<<<<<< HEAD
-      'channel' => [
-        'description' => '',
-      ],
-      'items' => [
-        'limit' => 27,
-        'view_mode' => 'fulltext',
-      ],
-      'langcode' => 'en',
-=======
       'items' => [
         'view_mode' => 'fulltext',
       ],
->>>>>>> dev
     ],
     'system.site' => [
       // uuid is not handled by the migration.
@@ -135,11 +120,6 @@ class MigrateSystemConfigurationTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-    parent::setUp();
-
-=======
   protected function setUp(): void {
     parent::setUp();
 
@@ -155,7 +135,6 @@ class MigrateSystemConfigurationTest extends MigrateDrupal7TestBase {
       ])
       ->execute();
 
->>>>>>> dev
     $migrations = [
       'd7_system_authorize',
       'd7_system_cron',

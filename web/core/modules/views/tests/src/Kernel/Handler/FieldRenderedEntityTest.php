@@ -6,10 +6,7 @@ use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
-<<<<<<< HEAD
-=======
 use Drupal\user\Entity\Role;
->>>>>>> dev
 use Drupal\user\Entity\User;
 use Drupal\views\Entity\View;
 use Drupal\Tests\views\Kernel\ViewsKernelTestBase;
@@ -28,11 +25,7 @@ class FieldRenderedEntityTest extends ViewsKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['entity_test', 'field'];
-=======
   protected static $modules = ['entity_test', 'field'];
->>>>>>> dev
 
   /**
    * Views used by this test.
@@ -56,14 +49,11 @@ class FieldRenderedEntityTest extends ViewsKernelTestBase {
     $this->installEntitySchema('entity_test');
     $this->installConfig(['entity_test']);
 
-<<<<<<< HEAD
-=======
     // Create user 1 so that the user created later in the test has a different
     // user ID.
     // @todo Remove in https://www.drupal.org/node/540008.
     User::create(['uid' => 1, 'name' => 'user1'])->save();
 
->>>>>>> dev
     EntityViewMode::create([
       'id' => 'entity_test.foobar',
       'targetEntityType' => 'entity_test',
@@ -103,10 +93,6 @@ class FieldRenderedEntityTest extends ViewsKernelTestBase {
       ])->save();
     }
 
-<<<<<<< HEAD
-    $this->user = User::create([
-      'name' => 'test user',
-=======
     Role::create([
       'id' => 'test_role',
       'label' => 'Can view test entities',
@@ -116,7 +102,6 @@ class FieldRenderedEntityTest extends ViewsKernelTestBase {
     $this->user = User::create([
       'name' => 'test user',
       'roles' => ['test_role'],
->>>>>>> dev
     ]);
     $this->user->save();
 
@@ -159,11 +144,7 @@ class FieldRenderedEntityTest extends ViewsKernelTestBase {
    *   The render array
    */
   protected function assertCacheabilityMetadata($build) {
-<<<<<<< HEAD
-    $this->assertEqual([
-=======
     $this->assertEquals([
->>>>>>> dev
       'config:core.entity_view_display.entity_test.entity_test.foobar',
       'config:views.view.test_field_entity_test_rendered',
       'entity_test:1',
@@ -173,11 +154,7 @@ class FieldRenderedEntityTest extends ViewsKernelTestBase {
       'entity_test_view',
     ], $build['#cache']['tags']);
 
-<<<<<<< HEAD
-    $this->assertEqual([
-=======
     $this->assertEquals([
->>>>>>> dev
       'entity_test_view_grants',
       'languages:language_interface',
       'theme',
@@ -193,11 +170,7 @@ class FieldRenderedEntityTest extends ViewsKernelTestBase {
    */
   protected function assertConfigDependencies(View $storage) {
     $storage->calculateDependencies();
-<<<<<<< HEAD
-    $this->assertEqual([
-=======
     $this->assertEquals([
->>>>>>> dev
       'config' => ['core.entity_view_mode.entity_test.foobar'],
       'module' => ['entity_test'],
     ], $storage->getDependencies());

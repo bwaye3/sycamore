@@ -4,10 +4,6 @@ description: 'Translates the built-in user interface.'
 configure: locale.translate_page
 package: Multilingual
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 dependencies:
   - drupal:language
   - drupal:file

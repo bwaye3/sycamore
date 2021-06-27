@@ -20,11 +20,7 @@ class PaginationAJAXTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'views', 'views_test_config'];
-=======
   protected static $modules = ['node', 'views', 'views_test_config'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -42,11 +38,7 @@ class PaginationAJAXTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     ViewTestData::createTestViews(self::class, ['views_test_config']);

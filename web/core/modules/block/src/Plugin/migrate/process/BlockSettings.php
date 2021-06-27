@@ -23,11 +23,7 @@ class BlockSettings extends ProcessPluginBase {
     list($plugin, $delta, $old_settings, $title) = $value;
     $settings = [];
     $settings['label'] = $title;
-<<<<<<< HEAD
-    if ($title) {
-=======
     if ($title && $title !== '<none>') {
->>>>>>> dev
       $settings['label_display'] = BlockPluginInterface::BLOCK_LABEL_VISIBLE;
     }
     else {

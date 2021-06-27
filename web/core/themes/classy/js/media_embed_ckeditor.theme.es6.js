@@ -3,11 +3,7 @@
  * Classy theme overrides for the Media Embed CKEditor plugin.
  */
 
-<<<<<<< HEAD
-(Drupal => {
-=======
 ((Drupal) => {
->>>>>>> dev
   /**
    * Themes the error displayed when the media embed preview fails.
    *

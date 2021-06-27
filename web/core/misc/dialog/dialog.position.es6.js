@@ -9,11 +9,7 @@
  * @event dialogContentResize
  */
 
-<<<<<<< HEAD
-(function($, Drupal, drupalSettings, debounce, displace) {
-=======
 (function ($, Drupal, drupalSettings, debounce, displace) {
->>>>>>> dev
   // autoResize option will turn off resizable and draggable.
   drupalSettings.dialog = $.extend(
     { autoResize: true, maxHeight: '95%' },
@@ -36,19 +32,12 @@
     const left = offsets.left - offsets.right;
     const top = offsets.top - offsets.bottom;
 
-<<<<<<< HEAD
-    const leftString = `${(left > 0 ? '+' : '-') +
-      Math.abs(Math.round(left / 2))}px`;
-    const topString = `${(top > 0 ? '+' : '-') +
-      Math.abs(Math.round(top / 2))}px`;
-=======
     const leftString = `${
       (left > 0 ? '+' : '-') + Math.abs(Math.round(left / 2))
     }px`;
     const topString = `${
       (top > 0 ? '+' : '-') + Math.abs(Math.round(top / 2))
     }px`;
->>>>>>> dev
     options.position = {
       my: `center${left !== 0 ? leftString : ''} center${
         top !== 0 ? topString : ''
@@ -125,11 +114,7 @@
   }
 
   $(window).on({
-<<<<<<< HEAD
-    'dialog:aftercreate': function(event, dialog, $element, settings) {
-=======
     'dialog:aftercreate': function (event, dialog, $element, settings) {
->>>>>>> dev
       const autoResize = debounce(resetSize, 20);
       const eventData = { settings, $element };
       if (settings.autoResize === true || settings.autoResize === 'true') {
@@ -147,11 +132,7 @@
         );
       }
     },
-<<<<<<< HEAD
-    'dialog:beforeclose': function(event, dialog, $element) {
-=======
     'dialog:beforeclose': function (event, dialog, $element) {
->>>>>>> dev
       $(window).off('.dialogResize');
       $(document).off('.dialogResize');
     },

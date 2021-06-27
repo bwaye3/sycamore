@@ -9,11 +9,7 @@
     "source": "https://www.drupal.org/project/drupal/git-instructions"
   },
   "require": {
-<<<<<<< HEAD
-    "php": ">=7.0.8"
-=======
     "php": ">=7.3.0"
->>>>>>> dev
   },
   "autoload": {
     "psr-4": {

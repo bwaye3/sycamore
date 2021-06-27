@@ -17,8 +17,6 @@ use Drupal\Core\Form\FormStateInterface;
 interface ModerationHandlerInterface {
 
   /**
-<<<<<<< HEAD
-=======
    * Determines if an entity should be moderated.
    *
    * At the workflow level, moderation is enabled or disabled for entire entity
@@ -42,7 +40,6 @@ interface ModerationHandlerInterface {
   public function isModeratedEntity(ContentEntityInterface $entity);
 
   /**
->>>>>>> dev
    * Operates on moderated content entities preSave().
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity

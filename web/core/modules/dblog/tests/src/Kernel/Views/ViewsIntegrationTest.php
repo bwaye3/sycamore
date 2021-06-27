@@ -26,11 +26,7 @@ class ViewsIntegrationTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['dblog', 'dblog_test_views', 'user'];
-=======
   protected static $modules = ['dblog', 'dblog_test_views', 'user'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -40,21 +36,13 @@ class ViewsIntegrationTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('user');
     $this->installSchema('dblog', ['watchdog']);
 
-<<<<<<< HEAD
-    ViewTestData::createTestViews(get_class($this), ['dblog_test_views']);
-=======
     ViewTestData::createTestViews(static::class, ['dblog_test_views']);
->>>>>>> dev
   }
 
   /**
@@ -75,27 +63,17 @@ class ViewsIntegrationTest extends ViewsKernelTestBase {
       if (!isset($entry['variables'])) {
         continue;
       }
-<<<<<<< HEAD
-      $this->assertEqual($view->style_plugin->getField($index, 'message'), new FormattableMarkup($entry['message'], $entry['variables']));
-=======
       $message_vars = $entry['variables'];
       unset($message_vars['link']);
       $this->assertEquals(new FormattableMarkup($entry['message'], $message_vars), $view->style_plugin->getField($index, 'message'));
->>>>>>> dev
       $link_field = $view->style_plugin->getField($index, 'link');
       // The 3rd entry contains some unsafe markup that needs to get filtered.
       if ($index == 2) {
         // Make sure that unsafe link differs from the rendered link, so we know
         // that some filtering actually happened.
-<<<<<<< HEAD
-        $this->assertNotEqual($link_field, $entry['variables']['link']);
-      }
-      $this->assertEqual($link_field, Xss::filterAdmin($entry['variables']['link']));
-=======
         $this->assertNotEquals($entry['variables']['link'], $link_field);
       }
       $this->assertEquals(Xss::filterAdmin($entry['variables']['link']), $link_field);
->>>>>>> dev
     }
 
     // Disable replacing variables and check that the tokens aren't replaced.
@@ -106,11 +84,7 @@ class ViewsIntegrationTest extends ViewsKernelTestBase {
     $view->initStyle();
     $view->field['message']->options['replace_variables'] = FALSE;
     foreach ($entries as $index => $entry) {
-<<<<<<< HEAD
-      $this->assertEqual($view->style_plugin->getField($index, 'message'), $entry['message']);
-=======
       $this->assertEquals($entry['message'], $view->style_plugin->getField($index, 'message'));
->>>>>>> dev
     }
   }
 
@@ -128,11 +102,7 @@ class ViewsIntegrationTest extends ViewsKernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test views can be filtered by severity and log type.
-=======
    * Tests views can be filtered by severity and log type.
->>>>>>> dev
    */
   public function testFiltering() {
     // Remove the watchdog entries added by the potential batch process.

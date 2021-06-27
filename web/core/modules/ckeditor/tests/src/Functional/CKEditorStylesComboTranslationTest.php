@@ -15,15 +15,9 @@ use Drupal\Tests\BrowserTestBase;
 class CKEditorStylesComboTranslationTest extends BrowserTestBase {
 
   /**
-<<<<<<< HEAD
-   * {inheritdoc}
-   */
-  public static $modules = ['ckeditor', 'config_translation'];
-=======
    * {@inheritdoc}
    */
   protected static $modules = ['ckeditor', 'config_translation'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -47,11 +41,7 @@ class CKEditorStylesComboTranslationTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->format = strtolower($this->randomMachineName());
@@ -83,12 +73,8 @@ class CKEditorStylesComboTranslationTest extends BrowserTestBase {
     $edit = [
       'editor[settings][plugins][stylescombo][styles]' => 'h1.title|Title',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/content/formats/manage/' . $this->format, $edit, 'Save configuration');
-=======
     $this->drupalGet('admin/config/content/formats/manage/' . $this->format);
     $this->submitForm($edit, 'Save configuration');
->>>>>>> dev
 
     $this->drupalGet('admin/config/content/formats/manage/' . $this->format . '/translate/de/add');
     $this->assertEquals('textarea', $this->assertSession()->fieldExists('List of styles')->getTagName());

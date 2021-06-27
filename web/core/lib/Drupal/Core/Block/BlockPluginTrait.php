@@ -177,12 +177,6 @@ trait BlockPluginTrait {
       '#return_value' => BlockPluginInterface::BLOCK_LABEL_VISIBLE,
     ];
 
-<<<<<<< HEAD
-    // Add context mapping UI form elements.
-    $contexts = $form_state->getTemporaryValue('gathered_contexts') ?: [];
-    $form['context_mapping'] = $this->addContextAssignmentElement($this, $contexts);
-=======
->>>>>>> dev
     // Add plugin-specific settings for this block type.
     $form += $this->blockForm($form, $form_state);
     return $form;

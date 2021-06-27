@@ -12,20 +12,12 @@ use Drupal\Tests\migrate_drupal\Kernel\d7\MigrateDrupal7TestBase;
  */
 class MigrateUserPictureEntityFormDisplayTest extends MigrateDrupal7TestBase {
 
-<<<<<<< HEAD
-  public static $modules = ['image', 'file'];
-=======
   protected static $modules = ['image', 'file'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->executeMigrations([
       'user_picture_field',
@@ -39,15 +31,9 @@ class MigrateUserPictureEntityFormDisplayTest extends MigrateDrupal7TestBase {
    */
   public function testEntityFormDisplaySettings() {
     $component = EntityFormDisplay::load('user.user.default')->getComponent('user_picture');
-<<<<<<< HEAD
-    $this->assertIdentical('image_image', $component['type']);
-    $this->assertIdentical('throbber', $component['settings']['progress_indicator']);
-    $this->assertIdentical('thumbnail', $component['settings']['preview_image_style']);
-=======
     $this->assertSame('image_image', $component['type']);
     $this->assertSame('throbber', $component['settings']['progress_indicator']);
     $this->assertSame('thumbnail', $component['settings']['preview_image_style']);
->>>>>>> dev
   }
 
 }

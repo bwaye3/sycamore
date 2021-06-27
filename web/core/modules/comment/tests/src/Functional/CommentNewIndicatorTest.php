@@ -22,11 +22,7 @@ class CommentNewIndicatorTest extends CommentTestBase {
    *
    * @todo Remove this dependency.
    */
-<<<<<<< HEAD
-  public static $modules = ['views'];
-=======
   protected static $modules = ['views'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -64,13 +60,8 @@ class CommentNewIndicatorTest extends CommentTestBase {
     // node.
     $this->drupalLogin($this->adminUser);
     $this->drupalGet('node');
-<<<<<<< HEAD
-    $this->assertSession()->linkNotExists(t('@count comments', ['@count' => 0]));
-    $this->assertSession()->linkExists(t('Read more'));
-=======
     $this->assertSession()->linkNotExists('0 comments');
     $this->assertSession()->linkExists('Read more');
->>>>>>> dev
     // Verify the data-history-node-last-comment-timestamp attribute, which is
     // used by the drupal.node-new-comments-link library to determine whether
     // a "x new comments" link might be necessary or not. We do this in
@@ -108,13 +99,8 @@ class CommentNewIndicatorTest extends CommentTestBase {
     // The data will be pre-seeded on this particular page in drupalSettings, to
     // avoid the need for the client to make a separate request to the server.
     $settings = $this->getDrupalSettings();
-<<<<<<< HEAD
-    $this->assertEqual($settings['history'], ['lastReadTimestamps' => [1 => 0]]);
-    $this->assertEqual($settings['comment'], [
-=======
     $this->assertEquals(['lastReadTimestamps' => [1 => 0]], $settings['history']);
     $this->assertEquals([
->>>>>>> dev
       'newCommentsLinks' => [
         'node' => [
           'comment' => [
@@ -127,11 +113,7 @@ class CommentNewIndicatorTest extends CommentTestBase {
           ],
         ],
       ],
-<<<<<<< HEAD
-    ]);
-=======
     ], $settings['comment']);
->>>>>>> dev
     // Pretend the data was not present in drupalSettings, i.e. test the
     // separate request to the server.
     $response = $this->renderNewCommentsNodeLinks([$this->node->id()]);
@@ -143,11 +125,7 @@ class CommentNewIndicatorTest extends CommentTestBase {
         'first_new_comment_link' => $this->node->toUrl('canonical', ['fragment' => 'new'])->toString(),
       ],
     ];
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $json);
-=======
     $this->assertSame($expected, $json);
->>>>>>> dev
 
     // Failing to specify node IDs for the endpoint should return a 404.
     $response = $this->renderNewCommentsNodeLinks([]);

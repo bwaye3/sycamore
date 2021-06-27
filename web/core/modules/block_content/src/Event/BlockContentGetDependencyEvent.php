@@ -4,11 +4,7 @@ namespace Drupal\block_content\Event;
 
 use Drupal\block_content\BlockContentInterface;
 use Drupal\Core\Access\AccessibleInterface;
-<<<<<<< HEAD
-use Symfony\Component\EventDispatcher\Event;
-=======
 use Drupal\Component\EventDispatcher\Event;
->>>>>>> dev
 
 /**
  * Block content event to allow setting an access dependency.

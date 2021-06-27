@@ -3,11 +3,7 @@
  * Block behaviors.
  */
 
-<<<<<<< HEAD
-(function($, window, Drupal) {
-=======
 (function ($, window, Drupal) {
->>>>>>> dev
   /**
    * Provide the summary information for the block settings vertical tabs.
    *
@@ -55,11 +51,7 @@
 
       $(
         '[data-drupal-selector="edit-visibility-request-path"]',
-<<<<<<< HEAD
-      ).drupalSetSummary(context => {
-=======
       ).drupalSetSummary((context) => {
->>>>>>> dev
         const $pages = $(context).find(
           'textarea[name="visibility[request_path][pages]"]',
         );
@@ -102,11 +94,7 @@
        *   The jQuery object representing the table row.
        */
       function checkEmptyRegions(table, rowObject) {
-<<<<<<< HEAD
-        table.find('tr.region-message').each(function() {
-=======
         table.find('tr.region-message').each(function () {
->>>>>>> dev
           const $this = $(this);
           // If the dragged row is in this region, but above the message row,
           // swap it down one space.
@@ -182,22 +170,14 @@
       // Get the blocks tableDrag object.
       const tableDrag = Drupal.tableDrag.blocks;
       // Add a handler for when a row is swapped, update empty regions.
-<<<<<<< HEAD
-      tableDrag.row.prototype.onSwap = function(swappedRow) {
-=======
       tableDrag.row.prototype.onSwap = function (swappedRow) {
->>>>>>> dev
         checkEmptyRegions(table, this);
         updateLastPlaced(table, this);
       };
 
       // Add a handler so when a row is dropped, update fields dropped into
       // new regions.
-<<<<<<< HEAD
-      tableDrag.onDrop = function() {
-=======
       tableDrag.onDrop = function () {
->>>>>>> dev
         const dragObject = this;
         const $rowElement = $(dragObject.rowObject.element);
         // Use "region-message" row instead of "region" row because
@@ -241,11 +221,7 @@
       $(context)
         .find('select.block-region-select')
         .once('block-region-select')
-<<<<<<< HEAD
-        .on('change', function(event) {
-=======
         .on('change', function (event) {
->>>>>>> dev
           // Make our new row and select field.
           const row = $(this).closest('tr');
           const select = $(this);

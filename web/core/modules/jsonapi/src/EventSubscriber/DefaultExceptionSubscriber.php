@@ -2,10 +2,7 @@
 
 namespace Drupal\jsonapi\EventSubscriber;
 
-<<<<<<< HEAD
-=======
 use Drupal\jsonapi\CacheableResourceResponse;
->>>>>>> dev
 use Drupal\jsonapi\JsonApiResource\ErrorCollection;
 use Drupal\jsonapi\JsonApiResource\JsonApiDocumentTopLevel;
 use Drupal\jsonapi\JsonApiResource\LinkCollection;
@@ -13,11 +10,7 @@ use Drupal\jsonapi\JsonApiResource\NullIncludedData;
 use Drupal\jsonapi\ResourceResponse;
 use Drupal\jsonapi\Routing\Routes;
 use Drupal\serialization\EventSubscriber\DefaultExceptionSubscriber as SerializationDefaultExceptionSubscriber;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
@@ -48,15 +41,6 @@ class DefaultExceptionSubscriber extends SerializationDefaultExceptionSubscriber
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function onException(GetResponseForExceptionEvent $event) {
-    if (!$this->isJsonApiExceptionEvent($event)) {
-      return;
-    }
-    if (($exception = $event->getException()) && !$exception instanceof HttpException) {
-      $exception = new HttpException(500, $exception->getMessage(), $exception);
-      $event->setException($exception);
-=======
   public function onException(ExceptionEvent $event) {
     if (!$this->isJsonApiExceptionEvent($event)) {
       return;
@@ -64,7 +48,6 @@ class DefaultExceptionSubscriber extends SerializationDefaultExceptionSubscriber
     if (($exception = $event->getThrowable()) && !$exception instanceof HttpException) {
       $exception = new HttpException(500, $exception->getMessage(), $exception);
       $event->setThrowable($exception);
->>>>>>> dev
     }
 
     $this->setEventResponse($event, $exception->getStatusCode());
@@ -73,13 +56,6 @@ class DefaultExceptionSubscriber extends SerializationDefaultExceptionSubscriber
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setEventResponse(GetResponseForExceptionEvent $event, $status) {
-    /* @var \Symfony\Component\HttpKernel\Exception\HttpException $exception */
-    $exception = $event->getException();
-    $response = new ResourceResponse(new JsonApiDocumentTopLevel(new ErrorCollection([$exception]), new NullIncludedData(), new LinkCollection([])), $exception->getStatusCode(), $exception->getHeaders());
-    $response->addCacheableDependency($exception);
-=======
   protected function setEventResponse(ExceptionEvent $event, $status) {
     /** @var \Symfony\Component\HttpKernel\Exception\HttpException $exception */
     $exception = $event->getThrowable();
@@ -91,7 +67,6 @@ class DefaultExceptionSubscriber extends SerializationDefaultExceptionSubscriber
     else {
       $response = new ResourceResponse($document, $exception->getStatusCode(), $exception->getHeaders());
     }
->>>>>>> dev
     $event->setResponse($response);
   }
 
@@ -101,21 +76,13 @@ class DefaultExceptionSubscriber extends SerializationDefaultExceptionSubscriber
    * The JSON:API format is supported if the format is explicitly set or the
    * request is for a known JSON:API route.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $exception_event
-=======
    * @param \Symfony\Component\HttpKernel\Event\ExceptionEvent $exception_event
->>>>>>> dev
    *   The exception event.
    *
    * @return bool
    *   TRUE if it needs to be formatted using JSON:API. FALSE otherwise.
    */
-<<<<<<< HEAD
-  protected function isJsonApiExceptionEvent(GetResponseForExceptionEvent $exception_event) {
-=======
   protected function isJsonApiExceptionEvent(ExceptionEvent $exception_event) {
->>>>>>> dev
     $request = $exception_event->getRequest();
     $parameters = $request->attributes->all();
     return $request->getRequestFormat() === 'api_json' || (bool) Routes::getResourceTypeNameFromParameters($parameters);

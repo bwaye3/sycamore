@@ -80,11 +80,7 @@ class EntityListBuilderTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->role = $this->createMock('Drupal\user\RoleInterface');

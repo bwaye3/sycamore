@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 # cspell:ignore imagefield optionwidgets
->>>>>>> dev
 id: d6_field_instance_widget_settings
 label: Field instance widget configuration
 migration_tags:

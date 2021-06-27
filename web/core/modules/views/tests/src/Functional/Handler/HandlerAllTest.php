@@ -24,11 +24,7 @@ class HandlerAllTest extends ViewTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'aggregator',
     'book',
     'block',

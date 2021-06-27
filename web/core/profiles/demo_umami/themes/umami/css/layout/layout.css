@@ -10,8 +10,6 @@
   max-width: 1200px;
   margin: auto;
 }
-<<<<<<< HEAD
-=======
 /* Add responsive side gutters to the outer layout container 'main' at smaller sizes */
 .main {
   padding: 0 4%;
@@ -22,4 +20,3 @@
     padding: 0;
   }
 }
->>>>>>> dev

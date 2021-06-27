@@ -4,10 +4,7 @@ namespace Drupal\Tests\views\Functional\Wizard;
 
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\field\Entity\FieldConfig;
-<<<<<<< HEAD
-=======
 use Drupal\taxonomy\Entity\Term;
->>>>>>> dev
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\Tests\field\Traits\EntityReferenceTestTrait;
 
@@ -25,11 +22,7 @@ class TaggedWithTest extends WizardTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['taxonomy'];
-=======
   protected static $modules = ['taxonomy'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -78,11 +71,7 @@ class TaggedWithTest extends WizardTestBase {
    */
   protected $tagField;
 
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     // Create two content types. One will have an autocomplete tagging field,
@@ -142,16 +131,6 @@ class TaggedWithTest extends WizardTestBase {
     $edit = [];
     $edit['title[0][value]'] = $node_tag1_title = $this->randomMachineName();
     $edit[$this->tagFieldName . '[target_id]'] = 'tag1';
-<<<<<<< HEAD
-    $this->drupalPostForm($node_add_path, $edit, t('Save'));
-    $edit = [];
-    $edit['title[0][value]'] = $node_tag1_tag2_title = $this->randomMachineName();
-    $edit[$this->tagFieldName . '[target_id]'] = 'tag1, tag2';
-    $this->drupalPostForm($node_add_path, $edit, t('Save'));
-    $edit = [];
-    $edit['title[0][value]'] = $node_no_tags_title = $this->randomMachineName();
-    $this->drupalPostForm($node_add_path, $edit, t('Save'));
-=======
     $this->drupalGet($node_add_path);
     $this->submitForm($edit, 'Save');
     $edit = [];
@@ -163,7 +142,6 @@ class TaggedWithTest extends WizardTestBase {
     $edit['title[0][value]'] = $node_no_tags_title = $this->randomMachineName();
     $this->drupalGet($node_add_path);
     $this->submitForm($edit, 'Save');
->>>>>>> dev
 
     // Create a view that filters by taxonomy term "tag1". It should show only
     // the two nodes from above that are tagged with "tag1".
@@ -171,12 +149,8 @@ class TaggedWithTest extends WizardTestBase {
     // First select the node type and update the form so the correct tag field
     // is used.
     $view1['show[type]'] = $this->nodeTypeWithTags->id();
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/add', $view1, t('Update "of type" choice'));
-=======
     $this->drupalGet('admin/structure/views/add');
     $this->submitForm($view1, 'Update "of type" choice');
->>>>>>> dev
     // Now resubmit the entire form to the same URL.
     $view1['label'] = $this->randomMachineName(16);
     $view1['id'] = strtolower($this->randomMachineName(16));
@@ -185,34 +159,21 @@ class TaggedWithTest extends WizardTestBase {
     $view1['page[create]'] = 1;
     $view1['page[title]'] = $this->randomMachineName(16);
     $view1['page[path]'] = $this->randomMachineName(16);
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $view1, t('Save and edit'));
-=======
     $this->submitForm($view1, 'Save and edit');
->>>>>>> dev
     // Visit the page and check that the nodes we expect are present and the
     // ones we don't expect are absent.
     $this->drupalGet($view1['page[path]']);
     $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-    $this->assertText($node_tag1_title);
-    $this->assertText($node_tag1_tag2_title);
-=======
     $this->assertSession()->pageTextContains($node_tag1_title);
     $this->assertSession()->pageTextContains($node_tag1_tag2_title);
->>>>>>> dev
     $this->assertNoText($node_no_tags_title);
 
     // Create a view that filters by taxonomy term "tag2". It should show only
     // the one node from above that is tagged with "tag2".
     $view2 = [];
     $view2['show[type]'] = $this->nodeTypeWithTags->id();
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/add', $view2, t('Update "of type" choice'));
-=======
     $this->drupalGet('admin/structure/views/add');
     $this->submitForm($view2, 'Update "of type" choice');
->>>>>>> dev
     $this->assertSession()->statusCodeEquals(200);
     $view2['label'] = $this->randomMachineName(16);
     $view2['id'] = strtolower($this->randomMachineName(16));
@@ -221,19 +182,11 @@ class TaggedWithTest extends WizardTestBase {
     $view2['page[create]'] = 1;
     $view2['page[title]'] = $this->randomMachineName(16);
     $view2['page[path]'] = $this->randomMachineName(16);
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $view2, t('Save and edit'));
-    $this->assertSession()->statusCodeEquals(200);
-    $this->drupalGet($view2['page[path]']);
-    $this->assertNoText($node_tag1_title);
-    $this->assertText($node_tag1_tag2_title);
-=======
     $this->submitForm($view2, 'Save and edit');
     $this->assertSession()->statusCodeEquals(200);
     $this->drupalGet($view2['page[path]']);
     $this->assertNoText($node_tag1_title);
     $this->assertSession()->pageTextContains($node_tag1_tag2_title);
->>>>>>> dev
     $this->assertNoText($node_no_tags_title);
   }
 
@@ -246,17 +199,6 @@ class TaggedWithTest extends WizardTestBase {
     // by default (when the wizard is configured to display all content) and
     // also when the node type that has the tagging field is selected, but not
     // when the node type that doesn't have the tagging field is selected.
-<<<<<<< HEAD
-    $tags_xpath = '//input[@name="show[tagged_with]"]';
-    $this->drupalGet('admin/structure/views/add');
-    $this->assertFieldByXpath($tags_xpath);
-    $view['show[type]'] = $this->nodeTypeWithTags->id();
-    $this->drupalPostForm('admin/structure/views/add', $view, t('Update "of type" choice'));
-    $this->assertFieldByXpath($tags_xpath);
-    $view['show[type]'] = $this->nodeTypeWithoutTags->id();
-    $this->drupalPostForm(NULL, $view, t('Update "of type" choice (2)'));
-    $this->assertNoFieldByXpath($tags_xpath);
-=======
     $this->drupalGet('admin/structure/views/add');
     $this->assertSession()->fieldExists("show[tagged_with]");
     $view['show[type]'] = $this->nodeTypeWithTags->id();
@@ -266,7 +208,6 @@ class TaggedWithTest extends WizardTestBase {
     $view['show[type]'] = $this->nodeTypeWithoutTags->id();
     $this->submitForm($view, 'Update "of type" choice (2)');
     $this->assertSession()->fieldNotExists("show[tagged_with]");
->>>>>>> dev
 
     // If we add an instance of the tagging field to the second node type, the
     // "tagged with" form element should not appear for it too.
@@ -292,13 +233,6 @@ class TaggedWithTest extends WizardTestBase {
       ->save();
 
     $view['show[type]'] = $this->nodeTypeWithTags->id();
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/add', $view, t('Update "of type" choice'));
-    $this->assertFieldByXpath($tags_xpath);
-    $view['show[type]'] = $this->nodeTypeWithoutTags->id();
-    $this->drupalPostForm(NULL, $view, t('Update "of type" choice (2)'));
-    $this->assertFieldByXpath($tags_xpath);
-=======
     $this->drupalGet('admin/structure/views/add');
     $this->submitForm($view, 'Update "of type" choice');
     $this->assertSession()->fieldExists("show[tagged_with]");
@@ -342,7 +276,6 @@ class TaggedWithTest extends WizardTestBase {
     $this->submitForm(['show[tagged_with]' => 'term1'], 'Save and edit');
     $this->assertSession()->statusCodeEquals(200);
     $this->getSession()->getPage()->hasContent('Has taxonomy term (= term1)');
->>>>>>> dev
   }
 
 }

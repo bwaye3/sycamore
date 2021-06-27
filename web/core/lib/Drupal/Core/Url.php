@@ -4,21 +4,14 @@ namespace Drupal\Core;
 
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Component\Utility\UrlHelper;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Access\AccessResult;
->>>>>>> dev
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Routing\UrlGeneratorInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Utility\UnroutedUrlAssemblerInterface;
-<<<<<<< HEAD
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
-=======
 use Drupal\Core\Routing\RouteObjectInterface;
->>>>>>> dev
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -50,11 +43,7 @@ class Url implements TrustedCallbackInterface {
   protected $urlAssembler;
 
   /**
-<<<<<<< HEAD
-   * The access manager
-=======
    * The access manager.
->>>>>>> dev
    *
    * @var \Drupal\Core\Access\AccessManagerInterface
    */
@@ -346,11 +335,7 @@ class Url implements TrustedCallbackInterface {
    * Create a new Url object for entity URIs.
    *
    * @param array $uri_parts
-<<<<<<< HEAD
-   *   Parts from an URI of the form entity:{entity_type}/{entity_id} as from
-=======
    *   Parts from a URI of the form entity:{entity_type}/{entity_id} as from
->>>>>>> dev
    *   parse_url().
    * @param array $options
    *   An array of options, see \Drupal\Core\Url::fromUri() for details.
@@ -403,20 +388,12 @@ class Url implements TrustedCallbackInterface {
    * - 'internal:/some-path' (path component is '/some-path') to 'some-path'
    *
    * @param array $uri_parts
-<<<<<<< HEAD
-   *   Parts from an URI of the form internal:{path} as from parse_url().
-=======
    *   Parts from a URI of the form internal:{path} as from parse_url().
->>>>>>> dev
    * @param array $options
    *   An array of options, see \Drupal\Core\Url::fromUri() for details.
    *
    * @return static
-<<<<<<< HEAD
-   *   A new Url object for a 'internal:' URI.
-=======
    *   A new Url object for an 'internal:' URI.
->>>>>>> dev
    *
    * @throws \InvalidArgumentException
    *   Thrown when the URI's path component doesn't have a leading slash.
@@ -456,11 +433,7 @@ class Url implements TrustedCallbackInterface {
    * Creates a new Url object for 'route:' URIs.
    *
    * @param array $uri_parts
-<<<<<<< HEAD
-   *   Parts from an URI of the form route:{route_name};{route_parameters} as
-=======
    *   Parts from a URI of the form route:{route_name};{route_parameters} as
->>>>>>> dev
    *   from parse_url(), where the path is the route name optionally followed by
    *   a ";" followed by route parameters in key=value format with & separators.
    * @param array $options
@@ -539,11 +512,7 @@ class Url implements TrustedCallbackInterface {
    * Generates a URI string that represents the data in the Url object.
    *
    * The URI will typically have the scheme of route: even if the object was
-<<<<<<< HEAD
-   * constructed using an entity: or internal: scheme. A internal: URI that
-=======
    * constructed using an entity: or internal: scheme. An internal: URI that
->>>>>>> dev
    * does not match a Drupal route with be returned here with the base: scheme,
    * and external URLs will be returned in their original form.
    *
@@ -838,20 +807,6 @@ class Url implements TrustedCallbackInterface {
    *
    * Determines whether the route is accessible or not.
    *
-<<<<<<< HEAD
-   * @param \Drupal\Core\Session\AccountInterface $account
-   *   (optional) Run access checks for this account. Defaults to the current
-   *   user.
-   *
-   * @return bool
-   *   Returns TRUE if the user has access to the url, otherwise FALSE.
-   */
-  public function access(AccountInterface $account = NULL) {
-    if ($this->isRouted()) {
-      return $this->accessManager()->checkNamedRoute($this->getRouteName(), $this->getRouteParameters(), $account);
-    }
-    return TRUE;
-=======
    * @param \Drupal\Core\Session\AccountInterface|null $account
    *   (optional) Run access checks for this account. NULL for the current user.
    * @param bool $return_as_object
@@ -869,7 +824,6 @@ class Url implements TrustedCallbackInterface {
       return $this->accessManager()->checkNamedRoute($this->getRouteName(), $this->getRouteParameters(), $account, $return_as_object);
     }
     return $return_as_object ? AccessResult::allowed() : TRUE;
->>>>>>> dev
   }
 
   /**

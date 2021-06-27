@@ -15,11 +15,7 @@ class FormElementLabelTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['system'];
-=======
   protected static $modules = ['system'];
->>>>>>> dev
 
   /**
    * Ensures that attributes can be placed for form element label.

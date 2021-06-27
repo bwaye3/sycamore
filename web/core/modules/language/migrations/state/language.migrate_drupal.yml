@@ -8,15 +8,9 @@ finished:
     taxonomy: language
   7:
     i18n_taxonomy: language
-<<<<<<< HEAD
-    locale:
-      - language
-      - system
-=======
     i18n_menu:
       - language
     locale:
       - language
       - system
     system: language
->>>>>>> dev

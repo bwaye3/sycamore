@@ -18,28 +18,16 @@ class DeleteActionTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['system', 'entity_test', 'user'];
-=======
   protected static $modules = ['system', 'entity_test', 'user'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-    parent::setUp();
-    $this->installEntitySchema('entity_test_mulrevpub');
-    $this->installEntitySchema('user');
-    $this->installSchema('system', ['sequences', 'key_value_expire']);
-=======
   protected function setUp(): void {
     parent::setUp();
     $this->installEntitySchema('entity_test_mulrevpub');
     $this->installEntitySchema('user');
     $this->installSchema('system', ['sequences']);
->>>>>>> dev
 
     $this->testUser = User::create([
       'name' => 'foobar',
@@ -92,20 +80,12 @@ class DeleteActionTest extends KernelTestBase {
     $action->save();
 
     $action->execute([$entity]);
-<<<<<<< HEAD
-    $this->assertArraySubset(['module' => ['entity_test']], $action->getDependencies());
-=======
     $this->assertSame(['module' => ['entity_test']], $action->getDependencies());
->>>>>>> dev
 
     /** @var \Drupal\Core\TempStore\PrivateTempStoreFactory $temp_store */
     $temp_store = \Drupal::service('tempstore.private');
     $store_entries = $temp_store->get('entity_delete_multiple_confirm')->get($this->testUser->id() . ':entity_test_mulrevpub');
-<<<<<<< HEAD
-    $this->assertArraySubset([$this->testUser->id() => ['en' => 'en']], $store_entries);
-=======
     $this->assertSame([$this->testUser->id() => ['en' => 'en']], $store_entries);
->>>>>>> dev
   }
 
 }

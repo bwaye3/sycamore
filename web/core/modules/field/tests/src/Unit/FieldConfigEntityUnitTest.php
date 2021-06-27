@@ -29,11 +29,7 @@ class FieldConfigEntityUnitTest extends UnitTestCase {
   protected $entityType;
 
   /**
-<<<<<<< HEAD
-   * The entity manager used for testing.
-=======
    * The entity type manager used for testing.
->>>>>>> dev
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface|\PHPUnit\Framework\MockObject\MockObject
    */
@@ -68,11 +64,7 @@ class FieldConfigEntityUnitTest extends UnitTestCase {
   protected $fieldStorage;
 
   /**
-<<<<<<< HEAD
-   * The mock field type plugin manager;
-=======
    * The mock field type plugin manager.
->>>>>>> dev
    *
    * @var \Drupal\Core\Field\FieldTypePluginManagerInterface|\PHPUnit\Framework\MockObject\MockObject
    */
@@ -81,11 +73,7 @@ class FieldConfigEntityUnitTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->entityTypeId = $this->randomMachineName();
     $this->entityType = $this->createMock('\Drupal\Core\Config\Entity\ConfigEntityTypeInterface');
 
@@ -114,11 +102,7 @@ class FieldConfigEntityUnitTest extends UnitTestCase {
     $this->fieldStorage->expects($this->any())
       ->method('getSettings')
       ->willReturn([]);
-<<<<<<< HEAD
-    // Place the field in the mocked entity manager's field registry.
-=======
     // Place the field in the mocked entity field manager's field registry.
->>>>>>> dev
     $this->entityFieldManager->expects($this->any())
       ->method('getFieldStorageDefinitions')
       ->with('test_entity_type')
@@ -176,11 +160,7 @@ class FieldConfigEntityUnitTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that invalid bundles are handled.
-=======
    * Tests that invalid bundles are handled.
->>>>>>> dev
    */
   public function testCalculateDependenciesIncorrectBundle() {
     $storage = $this->createMock('\Drupal\Core\Config\Entity\ConfigEntityStorageInterface');

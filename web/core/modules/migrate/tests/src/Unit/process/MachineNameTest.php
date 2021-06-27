@@ -3,10 +3,7 @@
 namespace Drupal\Tests\migrate\Unit\process;
 
 use Drupal\migrate\Plugin\migrate\process\MachineName;
-<<<<<<< HEAD
-=======
 use Drupal\migrate\MigrateException;
->>>>>>> dev
 
 /**
  * Tests the machine name process plugin.
@@ -25,11 +22,7 @@ class MachineNameTest extends MigrateProcessTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->transliteration = $this->getMockBuilder('Drupal\Component\Transliteration\TransliterationInterface')
       ->disableOriginalConstructor()
       ->getMock();
@@ -44,18 +37,6 @@ class MachineNameTest extends MigrateProcessTestCase {
 
   /**
    * Tests machine name transformation of non-alphanumeric characters.
-<<<<<<< HEAD
-   */
-  public function testMachineNames() {
-
-    // Tests the following transformations:
-    // - non-alphanumeric character (including spaces) -> underscore,
-    // - Uppercase -> lowercase,
-    // - Multiple consecutive underscore -> single underscore.
-    $human_name_ascii = 'foo2, the.bar;2*&the%baz!YEE____HaW ';
-    $human_name = $human_name_ascii . 'áéő';
-    $expected_result = 'foo2_the_bar_2_the_baz_yee_haw_aeo';
-=======
    *
    * @param string $human_name
    *   The human-readable name that will be converted in the test.
@@ -67,29 +48,20 @@ class MachineNameTest extends MigrateProcessTestCase {
    * @dataProvider providerTestMachineNames
    */
   public function testMachineNames(string $human_name, array $configuration, string $expected_result): void {
->>>>>>> dev
     // Test for calling transliterate on mock object.
     $this->transliteration
       ->expects($this->once())
       ->method('transliterate')
       ->with($human_name)
-<<<<<<< HEAD
-      ->will($this->returnValue($human_name_ascii . 'aeo'));
-
-    $plugin = new MachineName([], 'machine_name', [], $this->transliteration);
-=======
       ->will($this->returnCallback(function (string $string): string {
         return str_replace(['á', 'é', 'ő'], ['a', 'e', 'o'], $string);
       }));
 
     $plugin = new MachineName($configuration, 'machine_name', [], $this->transliteration);
->>>>>>> dev
     $value = $plugin->transform($human_name, $this->migrateExecutable, $this->row, 'destination_property');
     $this->assertEquals($expected_result, $value);
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Provides test cases for MachineNameTest::testMachineNames().
    *
@@ -128,5 +100,4 @@ class MachineNameTest extends MigrateProcessTestCase {
     new MachineName($configuration, 'machine_name', [], $this->transliteration);
   }
 
->>>>>>> dev
 }

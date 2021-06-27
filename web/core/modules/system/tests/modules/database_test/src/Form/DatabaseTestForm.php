@@ -3,11 +3,8 @@
 namespace Drupal\database_test\Form;
 
 use Drupal\Core\Database\Database;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Database\Query\PagerSelectExtender;
 use Drupal\Core\Database\Query\TableSortExtender;
->>>>>>> dev
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\user\Entity\User;
@@ -40,19 +37,11 @@ class DatabaseTestForm extends FormBase {
     $query->condition('u.default_langcode', 1);
 
     $count_query = clone $query;
-<<<<<<< HEAD
-    $count_query->addExpression('COUNT(u.uid)');
-
-    $query = $query
-      ->extend('Drupal\Core\Database\Query\PagerSelectExtender')
-      ->extend('Drupal\Core\Database\Query\TableSortExtender');
-=======
     $count_query->addExpression('COUNT([u].[uid])');
 
     $query = $query
       ->extend(PagerSelectExtender::class)
       ->extend(TableSortExtender::class);
->>>>>>> dev
     $query
       ->fields('u', ['uid'])
       ->limit(50)

@@ -13,11 +13,7 @@ abstract class MessageResourceTestBase extends EntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['contact'];
-=======
   protected static $modules = ['contact'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -105,13 +101,6 @@ abstract class MessageResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
-<<<<<<< HEAD
-    if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
-      return parent::getExpectedUnauthorizedAccessMessage($method);
-    }
-
-=======
->>>>>>> dev
     if ($method === 'POST') {
       return "The 'access site-wide contact form' permission is required.";
     }

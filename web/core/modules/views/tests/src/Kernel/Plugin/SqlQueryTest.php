@@ -2,10 +2,7 @@
 
 namespace Drupal\Tests\views\Kernel\Plugin;
 
-<<<<<<< HEAD
-=======
 use Drupal\Core\Database\Database;
->>>>>>> dev
 use Drupal\Tests\views\Kernel\ViewsKernelTestBase;
 use Drupal\views\Views;
 
@@ -54,13 +51,8 @@ class SqlQueryTest extends ViewsKernelTestBase {
       $this->assertTrue($query->hasTag('test_tag'));
 
       // Check metadata.
-<<<<<<< HEAD
-      $this->assertIdentical($query->getMetaData('key1'), 'test_metadata');
-      $this->assertIdentical($query->getMetaData('key2'), 'test_metadata2');
-=======
       $this->assertSame('test_metadata', $query->getMetaData('key1'));
       $this->assertSame('test_metadata2', $query->getMetaData('key2'));
->>>>>>> dev
     }
 
     $query_options = $view->display_handler->getOption('query');
@@ -83,13 +75,6 @@ class SqlQueryTest extends ViewsKernelTestBase {
       $this->assertFalse($query->hasTag('test_tag'));
 
       // Check metadata.
-<<<<<<< HEAD
-      $this->assertIdentical($query->getMetaData('key1'), NULL);
-      $this->assertIdentical($query->getMetaData('key2'), NULL);
-    }
-  }
-
-=======
       $this->assertNull($query->getMetaData('key1'));
       $this->assertNull($query->getMetaData('key2'));
     }
@@ -142,5 +127,4 @@ class SqlQueryTest extends ViewsKernelTestBase {
     Database::closeConnection('replica', 'corefake');
   }
 
->>>>>>> dev
 }

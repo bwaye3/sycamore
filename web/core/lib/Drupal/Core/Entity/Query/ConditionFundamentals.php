@@ -15,14 +15,9 @@ abstract class ConditionFundamentals {
   protected $conditions = [];
 
   /**
-<<<<<<< HEAD
-   * The conjunction of this condition group. The value is one of the following:
-   *
-=======
    * The conjunction of this condition group.
    *
    * The value is one of the following:
->>>>>>> dev
    * - AND (default)
    * - OR
    *

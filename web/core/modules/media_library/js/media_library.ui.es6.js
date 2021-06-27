@@ -1,11 +1,7 @@
 /**
  * @file media_library.ui.es6.js
  */
-<<<<<<< HEAD
-(($, Drupal, window) => {
-=======
 (($, Drupal, window, { tabbable }) => {
->>>>>>> dev
   /**
    * Wrapper object for the current state of the media library.
    */
@@ -29,20 +25,12 @@
    * @param {number} [status]
    *   The HTTP status code.
    */
-<<<<<<< HEAD
-  Drupal.AjaxCommands.prototype.updateMediaLibrarySelection = function(
-=======
   Drupal.AjaxCommands.prototype.updateMediaLibrarySelection = function (
->>>>>>> dev
     ajax,
     response,
     status,
   ) {
-<<<<<<< HEAD
-    Object.values(response.mediaIds).forEach(value => {
-=======
     Object.values(response.mediaIds).forEach((value) => {
->>>>>>> dev
       Drupal.MediaLibrary.currentSelection.push(value);
     });
   };
@@ -70,11 +58,7 @@
       $menu
         .find('a', context)
         .once('media-library-menu-item')
-<<<<<<< HEAD
-        .on('keypress', e => {
-=======
         .on('keypress', (e) => {
->>>>>>> dev
           // The AJAX link has the button role, so we need to make sure the link
           // is also triggered when pressing the spacebar.
           if (e.which === 32) {
@@ -83,11 +67,7 @@
             $(e.currentTarget).trigger('click');
           }
         })
-<<<<<<< HEAD
-        .on('click', e => {
-=======
         .on('click', (e) => {
->>>>>>> dev
           e.preventDefault();
           e.stopPropagation();
 
@@ -104,11 +84,7 @@
 
           // Override the AJAX success callback to shift focus to the media
           // library content.
-<<<<<<< HEAD
-          ajaxObject.success = function(response, status) {
-=======
           ajaxObject.success = function (response, status) {
->>>>>>> dev
             // Remove the progress element.
             if (this.progress.element) {
               $(this.progress.element).remove();
@@ -119,11 +95,7 @@
             $(this.element).prop('disabled', false);
 
             // Execute the AJAX commands.
-<<<<<<< HEAD
-            Object.keys(response || {}).forEach(i => {
-=======
             Object.keys(response || {}).forEach((i) => {
->>>>>>> dev
               if (response[i].command && this.commands[response[i].command]) {
                 this.commands[response[i].command](this, response[i], status);
               }
@@ -131,9 +103,6 @@
 
             // Set focus to the first tabbable element in the media library
             // content.
-<<<<<<< HEAD
-            $('#media-library-content :tabbable:first').focus();
-=======
             const mediaLibraryContent = document.getElementById(
               'media-library-content',
             );
@@ -143,7 +112,6 @@
                 tabbableContent[0].focus();
               }
             }
->>>>>>> dev
 
             // Remove any response-specific settings so they don't get used on
             // the next call by mistake.
@@ -212,11 +180,7 @@
       //    https://www.drupal.org/project/drupal/issues/3036694
       $('.views-display-link-widget, .views-display-link-widget_table', context)
         .once('media-library-views-display-link')
-<<<<<<< HEAD
-        .on('click', e => {
-=======
         .on('click', (e) => {
->>>>>>> dev
           e.preventDefault();
           e.stopPropagation();
 
@@ -251,11 +215,7 @@
           // to screen readers.
           if (displayAnnouncement || focusSelector) {
             const success = ajaxObject.success;
-<<<<<<< HEAD
-            ajaxObject.success = function(response, status) {
-=======
             ajaxObject.success = function (response, status) {
->>>>>>> dev
               success.bind(this)(response, status);
               // The AJAX link replaces the whole view, including the clicked
               // link. Move the focus back to the clicked link when the view is
@@ -365,11 +325,7 @@
 
       // Update the selection array and the hidden form field when a media item
       // is selected.
-<<<<<<< HEAD
-      $mediaItems.once('media-item-change').on('change', e => {
-=======
       $mediaItems.once('media-item-change').on('change', (e) => {
->>>>>>> dev
         const id = e.currentTarget.value;
 
         // Update the selection.
@@ -401,11 +357,7 @@
       // The hidden selection form field changes when the selection is updated.
       $('#media-library-modal-selection', $form)
         .once('media-library-selection-change')
-<<<<<<< HEAD
-        .on('change', e => {
-=======
         .on('change', (e) => {
->>>>>>> dev
           updateSelectionCount(settings.media_library.selection_remaining);
 
           // Prevent users from selecting more items than allowed.
@@ -423,11 +375,7 @@
       // Apply the current selection to the media library view. Changing the
       // checkbox values triggers the change event for the media items. The
       // change event handles updating the hidden selection field for the form.
-<<<<<<< HEAD
-      currentSelection.forEach(value => {
-=======
       currentSelection.forEach((value) => {
->>>>>>> dev
         $form
           .find(`input[type="checkbox"][value="${value}"]`)
           .prop('checked', true)
@@ -477,14 +425,7 @@
    * @return {string}
    *   The corresponding HTML.
    */
-<<<<<<< HEAD
-  Drupal.theme.mediaLibrarySelectionCount = function() {
-    return `<div class="media-library-selected-count js-media-library-selected-count" role="status" aria-live="polite" aria-atomic="true"></div>`;
-  };
-})(jQuery, Drupal, window);
-=======
   Drupal.theme.mediaLibrarySelectionCount = function () {
     return `<div class="media-library-selected-count js-media-library-selected-count" role="status" aria-live="polite" aria-atomic="true"></div>`;
   };
 })(jQuery, Drupal, window, window.tabbable);
->>>>>>> dev

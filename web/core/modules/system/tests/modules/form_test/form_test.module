@@ -8,11 +8,7 @@
 use Drupal\Core\Form\FormStateInterface;
 
 /**
-<<<<<<< HEAD
- * Implements hook_form_FORM_ID_alter() on behalf of block.module.
-=======
  * Implements hook_form_FORM_ID_alter().
->>>>>>> dev
  */
 function block_form_form_test_alter_form_alter(&$form, FormStateInterface $form_state) {
   \Drupal::messenger()->addStatus('block_form_form_test_alter_form_alter() executed.');
@@ -35,11 +31,7 @@ function form_test_form_form_test_alter_form_alter(&$form, FormStateInterface $f
 }
 
 /**
-<<<<<<< HEAD
- * Implements hook_form_FORM_ID_alter() on behalf of system.module.
-=======
  * Implements hook_form_FORM_ID_alter().
->>>>>>> dev
  */
 function system_form_form_test_alter_form_alter(&$form, FormStateInterface $form_state) {
   \Drupal::messenger()->addStatus('system_form_form_test_alter_form_alter() executed.');

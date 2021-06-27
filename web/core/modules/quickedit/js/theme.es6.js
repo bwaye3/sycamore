@@ -3,11 +3,7 @@
  * Provides theme functions for all of Quick Edit's client-side HTML.
  */
 
-<<<<<<< HEAD
-(function($, Drupal) {
-=======
 (function ($, Drupal) {
->>>>>>> dev
   /**
    * Theme function for a "backstage" for the Quick Edit module.
    *
@@ -19,11 +15,7 @@
    * @return {string}
    *   The corresponding HTML.
    */
-<<<<<<< HEAD
-  Drupal.theme.quickeditBackstage = function(settings) {
-=======
   Drupal.theme.quickeditBackstage = function (settings) {
->>>>>>> dev
     let html = '';
     html += `<div id="${settings.id}"></div>`;
     return html;
@@ -40,11 +32,7 @@
    * @return {string}
    *   The corresponding HTML.
    */
-<<<<<<< HEAD
-  Drupal.theme.quickeditEntityToolbar = function(settings) {
-=======
   Drupal.theme.quickeditEntityToolbar = function (settings) {
->>>>>>> dev
     let html = '';
     html += `<div id="${settings.id}" class="quickedit quickedit-toolbar-container clearfix">`;
     html += '<i class="quickedit-toolbar-pointer"></i>';
@@ -72,11 +60,7 @@
    * @return {string}
    *   The corresponding HTML.
    */
-<<<<<<< HEAD
-  Drupal.theme.quickeditEntityToolbarLabel = function(settings) {
-=======
   Drupal.theme.quickeditEntityToolbarLabel = function (settings) {
->>>>>>> dev
     // @todo Add XSS regression test coverage in https://www.drupal.org/node/2547437
     return `<span class="field">${Drupal.checkPlain(
       settings.fieldLabel,
@@ -89,11 +73,7 @@
    * @return {string}
    *   The corresponding HTML.
    */
-<<<<<<< HEAD
-  Drupal.theme.quickeditEntityToolbarFence = function() {
-=======
   Drupal.theme.quickeditEntityToolbarFence = function () {
->>>>>>> dev
     return '<div id="quickedit-toolbar-fence"></div>';
   };
 
@@ -108,11 +88,7 @@
    * @return {string}
    *   The corresponding HTML.
    */
-<<<<<<< HEAD
-  Drupal.theme.quickeditFieldToolbar = function(settings) {
-=======
   Drupal.theme.quickeditFieldToolbar = function (settings) {
->>>>>>> dev
     return `<div id="${settings.id}"></div>`;
   };
 
@@ -131,11 +107,7 @@
    * @return {string}
    *   The corresponding HTML.
    */
-<<<<<<< HEAD
-  Drupal.theme.quickeditToolgroup = function(settings) {
-=======
   Drupal.theme.quickeditToolgroup = function (settings) {
->>>>>>> dev
     // Classes.
     const classes = settings.classes || [];
     classes.unshift('quickedit-toolgroup');
@@ -166,11 +138,7 @@
    * @return {string}
    *   The corresponding HTML.
    */
-<<<<<<< HEAD
-  Drupal.theme.quickeditButtons = function(settings) {
-=======
   Drupal.theme.quickeditButtons = function (settings) {
->>>>>>> dev
     let html = '';
     for (let i = 0; i < settings.buttons.length; i++) {
       const button = settings.buttons[i];
@@ -180,11 +148,7 @@
       // Attributes.
       const attributes = [];
       const attrMap = settings.buttons[i].attributes || {};
-<<<<<<< HEAD
-      Object.keys(attrMap).forEach(attr => {
-=======
       Object.keys(attrMap).forEach((attr) => {
->>>>>>> dev
         attributes.push(attr + (attrMap[attr] ? `="${attrMap[attr]}"` : ''));
       });
       html += `<button type="${button.type}" class="${
@@ -207,11 +171,7 @@
    * @return {string}
    *   The corresponding HTML.
    */
-<<<<<<< HEAD
-  Drupal.theme.quickeditFormContainer = function(settings) {
-=======
   Drupal.theme.quickeditFormContainer = function (settings) {
->>>>>>> dev
     let html = '';
     html += `<div id="${settings.id}" class="quickedit-form-container">`;
     html += '  <div class="quickedit-form">';

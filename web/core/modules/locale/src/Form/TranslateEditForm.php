@@ -71,11 +71,7 @@ class TranslateEditForm extends TranslateFormBase {
             '#title' => $this->t('Source string (@language)', ['@language' => $this->t('Built-in English')]),
             '#title_display' => 'invisible',
             '#plain_text' => $source_array[0],
-<<<<<<< HEAD
-            '#preffix' => '<span lang="en">',
-=======
             '#prefix' => '<span lang="en">',
->>>>>>> dev
             '#suffix' => '</span>',
           ];
         }
@@ -93,11 +89,7 @@ class TranslateEditForm extends TranslateFormBase {
             '#type' => 'item',
             '#title' => $this->t('Plural form'),
             '#plain_text' => $source_array[1],
-<<<<<<< HEAD
-            '#preffix' => '<span lang="en">',
-=======
             '#prefix' => '<span lang="en">',
->>>>>>> dev
             '#suffix' => '</span>',
           ];
           $form['strings'][$string->lid]['original'] = [

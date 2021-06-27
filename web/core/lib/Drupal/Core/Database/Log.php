@@ -22,13 +22,8 @@ class Log {
    *
    * array(
    *   $logging_key = array(
-<<<<<<< HEAD
-   *     array('query' => '', 'args' => array(), 'caller' => '', 'target' => '', 'time' => 0),
-   *     array('query' => '', 'args' => array(), 'caller' => '', 'target' => '', 'time' => 0),
-=======
    *     array('query' => '', 'args' => array(), 'caller' => '', 'target' => '', 'time' => 0, 'start' => 0),
    *     array('query' => '', 'args' => array(), 'caller' => '', 'target' => '', 'time' => 0, 'start' => 0),
->>>>>>> dev
    *   ),
    * );
    *
@@ -108,16 +103,6 @@ class Log {
   /**
    * Log a query to all active logging keys.
    *
-<<<<<<< HEAD
-   * @param $statement
-   *   The prepared statement object to log.
-   * @param $args
-   *   The arguments passed to the statement object.
-   * @param $time
-   *   The time in milliseconds the query took to execute.
-   */
-  public function log(StatementInterface $statement, $args, $time) {
-=======
    * @param \Drupal\Core\Database\StatementInterface $statement
    *   The prepared statement object to log.
    * @param array $args
@@ -130,7 +115,6 @@ class Log {
    *   with microsecond precision).
    */
   public function log(StatementInterface $statement, $args, $time, float $start = NULL) {
->>>>>>> dev
     foreach (array_keys($this->queryLog) as $key) {
       $this->queryLog[$key][] = [
         'query' => $statement->getQueryString(),
@@ -138,10 +122,7 @@ class Log {
         'target' => $statement->dbh->getTarget(),
         'caller' => $this->findCaller(),
         'time' => $time,
-<<<<<<< HEAD
-=======
         'start' => $start,
->>>>>>> dev
       ];
     }
   }
@@ -149,14 +130,6 @@ class Log {
   /**
    * Determine the routine that called this query.
    *
-<<<<<<< HEAD
-   * We define "the routine that called this query" as the first entry in
-   * the call stack that is not inside the includes/Drupal/Database directory,
-   * does not begin with db_ and does have a file (which excludes
-   * call_user_func_array(), anonymous functions and similar). That makes the
-   * climbing logic very simple, and handles the variable stack depth caused by
-   * the query builders.
-=======
    * Traversing the call stack from the very first call made during the
    * request, we define "the routine that called this query" as the last entry
    * in the call stack that is not any method called from the namespace of the
@@ -164,7 +137,6 @@ class Log {
    * have a file (which excludes call_user_func_array(), anonymous functions
    * and similar). That makes the climbing logic very simple, and handles the
    * variable stack depth caused by the query builders.
->>>>>>> dev
    *
    * See the @link http://php.net/debug_backtrace debug_backtrace() @endlink
    * function.
@@ -177,18 +149,6 @@ class Log {
    *   database call itself.
    */
   public function findCaller() {
-<<<<<<< HEAD
-    $stack = debug_backtrace();
-    for ($i = 0, $stack_count = count($stack); $i < $stack_count; ++$i) {
-      // If the call was made from a function, 'class' will be empty. It's
-      // just easier to give it a default value than to try and integrate
-      // that into the if statement below.
-      if (empty($stack[$i + 1]['class'])) {
-        $stack[$i + 1]['class'] = '';
-      }
-      if (strpos($stack[$i + 1]['class'], __NAMESPACE__) === FALSE && strpos($stack[$i + 1]['function'], 'db_') === FALSE && !empty($stack[$i]['file'])) {
-        $stack[$i] += ['file' => '?', 'line' => '?', 'args' => []];
-=======
     $driver_namespace = Database::getConnectionInfo($this->connectionKey)['default']['namespace'];
     $stack = static::removeDatabaseEntries($this->getDebugBacktrace(), $driver_namespace);
 
@@ -196,27 +156,18 @@ class Log {
     // is, it is not a callback or a closure.
     for ($i = 0; $i < count($stack); $i++) {
       if (!empty($stack[$i]['file'])) {
->>>>>>> dev
         return [
           'file' => $stack[$i]['file'],
           'line' => $stack[$i]['line'],
           'function' => $stack[$i + 1]['function'],
-<<<<<<< HEAD
-          'class' => $stack[$i + 1]['class'],
-          'type' => isset($stack[$i + 1]['type']) ? $stack[$i + 1]['type'] : NULL,
-          'args' => $stack[$i + 1]['args'],
-=======
           'class' => $stack[$i + 1]['class'] ?? NULL,
           'type' => $stack[$i + 1]['type'] ?? NULL,
           'args' => $stack[$i + 1]['args'] ?? [],
->>>>>>> dev
         ];
       }
     }
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Removes database related calls from a backtrace array.
    *
@@ -257,5 +208,4 @@ class Log {
     return debug_backtrace();
   }
 
->>>>>>> dev
 }

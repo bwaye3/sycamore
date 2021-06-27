@@ -141,11 +141,7 @@ trait BrowserHtmlDebugTrait {
     $this->htmlOutputBaseUrl = getenv('BROWSERTEST_OUTPUT_BASE_URL') ?: $GLOBALS['base_url'];
     if ($this->htmlOutputEnabled) {
       $this->htmlOutputFile = $browser_output_file;
-<<<<<<< HEAD
-      $this->htmlOutputClassName = str_replace("\\", "_", get_called_class());
-=======
       $this->htmlOutputClassName = str_replace("\\", "_", static::class);
->>>>>>> dev
       $this->htmlOutputDirectory = DRUPAL_ROOT . '/sites/simpletest/browser_output';
       // Do not use the file_system service so this method can be called before
       // it is available. Checks !is_dir() twice around mkdir() because a
@@ -183,22 +179,15 @@ trait BrowserHtmlDebugTrait {
               $html_output = 'Called from ' . $caller['function'] . ' line ' . $caller['line'];
               $html_output .= '<hr />' . $request->getMethod() . ' request to: ' . $request->getUri();
 
-<<<<<<< HEAD
-=======
               // Get the response body as a string. Any errors are silenced as
               // tests should not fail if there is a problem. On PHP 7.4
               // \Drupal\Tests\migrate\Functional\process\DownloadFunctionalTest
               // fails without the usage of a silence operator.
               $body = @(string) $response->getBody();
->>>>>>> dev
               // On redirect responses (status code starting with '3') we need
               // to remove the meta tag that would do a browser refresh. We
               // don't want to redirect developers away when they look at the
               // debug output file in their browser.
-<<<<<<< HEAD
-              $body = $response->getBody();
-=======
->>>>>>> dev
               $status_code = (string) $response->getStatusCode();
               if ($status_code[0] === '3') {
                 $body = preg_replace('#<meta http-equiv="refresh" content=.+/>#', '', $body, 1);
@@ -224,11 +213,7 @@ trait BrowserHtmlDebugTrait {
     $backtrace = debug_backtrace();
     // Find the test class that has the test method.
     while ($caller = Error::getLastCaller($backtrace)) {
-<<<<<<< HEAD
-      if (isset($caller['class']) && $caller['class'] === get_class($this)) {
-=======
       if (isset($caller['class']) && $caller['class'] === static::class) {
->>>>>>> dev
         break;
       }
       // If the test method is implemented by a test class's parent then the

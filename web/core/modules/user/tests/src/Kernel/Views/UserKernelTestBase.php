@@ -15,11 +15,7 @@ abstract class UserKernelTestBase extends ViewsKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['user_test_views', 'user', 'system', 'field'];
-=======
   protected static $modules = ['user_test_views', 'user', 'system', 'field'];
->>>>>>> dev
 
   /**
    * Users to use during this test.
@@ -45,11 +41,7 @@ abstract class UserKernelTestBase extends ViewsKernelTestBase {
   protected function setUp($import_test_views = TRUE) {
     parent::setUp();
 
-<<<<<<< HEAD
-    ViewTestData::createTestViews(get_class($this), ['user_test_views']);
-=======
     ViewTestData::createTestViews(static::class, ['user_test_views']);
->>>>>>> dev
 
     $this->installEntitySchema('user');
 

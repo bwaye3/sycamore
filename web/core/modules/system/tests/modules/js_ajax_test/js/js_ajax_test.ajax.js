@@ -9,19 +9,10 @@
   Drupal.AjaxCommands.prototype.jsAjaxTestCommand = function (ajax, response) {
     var $domElement = $(response.selector);
     ajax.element_settings.cat = 'catbro';
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
     var data = {
       element_settings: ajax.element_settings.cat || {},
       elementSettings: ajax.elementSettings.cat || {}
     };
-<<<<<<< HEAD
-
-    $domElement.html('<div id="js_ajax_test_form_element">' + JSON.stringify(data) + '</div>');
-=======
     $domElement.html("<div id=\"js_ajax_test_form_element\">".concat(JSON.stringify(data), "</div>"));
->>>>>>> dev
   };
 })(jQuery, Drupal);

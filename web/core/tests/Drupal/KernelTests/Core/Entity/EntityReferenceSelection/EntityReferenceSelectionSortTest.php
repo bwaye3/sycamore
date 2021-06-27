@@ -21,15 +21,9 @@ class EntityReferenceSelectionSortTest extends EntityKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node'];
-
-  protected function setUp() {
-=======
   protected static $modules = ['node'];
 
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create an Article node type.
@@ -118,11 +112,7 @@ class EntityReferenceSelectionSortTest extends EntityKernelTestBase {
       $nodes['published2']->id() => $node_labels['published2'],
       $nodes['published1']->id() => $node_labels['published1'],
     ];
-<<<<<<< HEAD
-    $this->assertIdentical($result['article'], $expected_result, 'Query sorted by field returned expected values.');
-=======
     $this->assertSame($expected_result, $result['article'], 'Query sorted by field returned expected values.');
->>>>>>> dev
 
     // Assert sort by base field.
     $selection_options['sort'] = [
@@ -135,11 +125,7 @@ class EntityReferenceSelectionSortTest extends EntityKernelTestBase {
       $nodes['published1']->id() => $node_labels['published1'],
       $nodes['published2']->id() => $node_labels['published2'],
     ];
-<<<<<<< HEAD
-    $this->assertIdentical($result['article'], $expected_result, 'Query sorted by property returned expected values.');
-=======
     $this->assertSame($expected_result, $result['article'], 'Query sorted by property returned expected values.');
->>>>>>> dev
   }
 
 }

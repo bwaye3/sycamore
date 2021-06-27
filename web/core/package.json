@@ -5,26 +5,16 @@
   "private": true,
   "engines": {
     "yarn": ">= 1.6",
-<<<<<<< HEAD
-    "node": ">= 8.11"
-  },
-  "scripts": {
-    "build": "yarn build:css & yarn build:js",
-=======
     "node": ">= 12.0"
   },
   "scripts": {
     "build": "yarn build:css & yarn build:js & yarn build:jqueryui",
->>>>>>> dev
     "watch": "yarn watch:css & yarn watch:js",
     "build:css": "cross-env BABEL_ENV=legacy node ./scripts/css/postcss-build.js",
     "watch:css": "cross-env BABEL_ENV=legacy node ./scripts/css/postcss-watch.js",
     "build:js": "cross-env BABEL_ENV=legacy node ./scripts/js/babel-es6-build.js",
     "build:js-dev": "cross-env NODE_ENV=development BABEL_ENV=legacy node ./scripts/js/babel-es6-build.js",
-<<<<<<< HEAD
-=======
     "build:jqueryui": "cross-env NODE_ENV=development BABEL_ENV=legacy node ./scripts/js/jqueryui-build.js",
->>>>>>> dev
     "watch:js": "cross-env BABEL_ENV=legacy node ./scripts/js/babel-es6-watch.js",
     "watch:js-dev": "cross-env NODE_ENV=development BABEL_ENV=legacy node ./scripts/js/babel-es6-watch.js",
     "lint:core-js": "node ./node_modules/eslint/bin/eslint.js .",
@@ -32,43 +22,6 @@
     "lint:core-js-stats": "node ./node_modules/eslint/bin/eslint.js --format=./scripts/js/eslint-stats-by-type.js .",
     "lint:css": "stylelint \"**/*.css\"",
     "lint:css-checkstyle": "stylelint \"**/*.css\" --custom-formatter ./node_modules/stylelint-checkstyle-formatter/index.js",
-<<<<<<< HEAD
-    "test:nightwatch": "cross-env BABEL_ENV=development node -r dotenv-safe/config -r babel-register ./node_modules/.bin/nightwatch --config ./tests/Drupal/Nightwatch/nightwatch.conf.js",
-    "prettier": "prettier --write \"./**/*.es6.js\" \"./tests/Drupal/Nightwatch/**/*.js\""
-  },
-  "devDependencies": {
-    "autoprefixer": "^9.6.1",
-    "babel-core": "^6.26.0",
-    "babel-plugin-add-header-comment": "^1.0.3",
-    "babel-preset-env": "^1.4.0",
-    "chalk": "^2.3.0",
-    "chokidar": "^2.0.0",
-    "chromedriver": "^75.1.0",
-    "cross-env": "^5.1.3",
-    "dotenv-safe": "^5.0.1",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-prettier": "^2.6.2",
-    "eslint-plugin-react": "^7.10.0",
-    "glob": "^7.1.2",
-    "minimist": "^1.2.2",
-    "mkdirp": "^0.5.1",
-    "nightwatch": "^1.6.3",
-    "postcss": "^7.0.18",
-    "postcss-calc": "^7.0.1",
-    "postcss-custom-properties": "^10.0.0",
-    "postcss-header": "^1.0.0",
-    "postcss-import": "^12.0.1",
-    "prettier": "^1.14.0",
-    "stylelint": "^9.10.1",
-    "stylelint-checkstyle-formatter": "^0.1.1",
-    "stylelint-config-standard": "^18.2.0",
-    "stylelint-no-browser-hacks": "^1.2.1",
-    "stylelint-order": "^2.1.0"
-=======
     "test:nightwatch": "cross-env BABEL_ENV=development node -r dotenv-safe/config -r @babel/register ./node_modules/.bin/nightwatch --config ./tests/Drupal/Nightwatch/nightwatch.conf.js",
     "prettier": "prettier --write \"./**/*.es6.js\" \"./tests/Drupal/Nightwatch/**/*.js\"",
     "spellcheck": "cspell",
@@ -111,7 +64,6 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-order": "^4.0.0",
     "terser": "^5.3.4"
->>>>>>> dev
   },
   "//": "'development is the default environment, and legacy is for transpiling the old jQuery codebase",
   "babel": {
@@ -119,11 +71,7 @@
       "development": {
         "presets": [
           [
-<<<<<<< HEAD
-            "env",
-=======
             "@babel/preset-env",
->>>>>>> dev
             {
               "modules": "commonjs",
               "targets": {
@@ -136,11 +84,7 @@
       "legacy": {
         "presets": [
           [
-<<<<<<< HEAD
-            "env",
-=======
             "@babel/preset-env",
->>>>>>> dev
             {
               "modules": false
             }

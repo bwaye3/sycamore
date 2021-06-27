@@ -23,11 +23,7 @@ class UserTranslationUITest extends ContentTranslationUITestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'language',
     'content_translation',
     'user',
@@ -39,11 +35,7 @@ class UserTranslationUITest extends ContentTranslationUITestBase {
    */
   protected $defaultTheme = 'classy';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->entityTypeId = 'user';
     $this->testLanguageSelector = FALSE;
     $this->name = $this->randomMachineName();
@@ -94,11 +86,7 @@ class UserTranslationUITest extends ContentTranslationUITestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test translated user deletion.
-=======
    * Tests translated user deletion.
->>>>>>> dev
    */
   public function testTranslatedUserDeletion() {
     $this->drupalLogin($this->administrator);
@@ -114,12 +102,8 @@ class UserTranslationUITest extends ContentTranslationUITestBase {
       'edit-form',
       ['language' => $this->container->get('language_manager')->getLanguage('en')]
     );
-<<<<<<< HEAD
-    $this->drupalPostForm($url, [], t('Cancel account'));
-=======
     $this->drupalGet($url);
     $this->submitForm([], 'Cancel account');
->>>>>>> dev
     $this->assertSession()->statusCodeEquals(200);
   }
 

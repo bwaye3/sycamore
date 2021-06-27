@@ -13,11 +13,7 @@ use Drupal\menu_link_content\Entity\MenuLinkContent;
 class MenuLinkContentTranslationUITest extends ContentTranslationUITestBase {
 
   /**
-<<<<<<< HEAD
-   * {inheritdoc}
-=======
    * {@inheritdoc}
->>>>>>> dev
    */
   protected $defaultCacheContexts = ['languages:language_interface', 'session', 'theme', 'url.path', 'url.query_args', 'user.permissions', 'user.roles:authenticated'];
 
@@ -26,11 +22,7 @@ class MenuLinkContentTranslationUITest extends ContentTranslationUITestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'language',
     'content_translation',
     'menu_link_content',
@@ -45,11 +37,7 @@ class MenuLinkContentTranslationUITest extends ContentTranslationUITestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->entityTypeId = 'menu_link_content';
     $this->bundle = 'menu_link_content';
     parent::setUp();
@@ -85,11 +73,7 @@ class MenuLinkContentTranslationUITest extends ContentTranslationUITestBase {
    */
   public function testTranslationLinkOnMenuEditForm() {
     $this->drupalGet('admin/structure/menu/manage/tools');
-<<<<<<< HEAD
-    $this->assertSession()->linkNotExists(t('Translate'));
-=======
     $this->assertSession()->linkNotExists('Translate');
->>>>>>> dev
 
     $menu_link_content = MenuLinkContent::create([
       'menu_name' => 'tools',
@@ -98,11 +82,7 @@ class MenuLinkContentTranslationUITest extends ContentTranslationUITestBase {
     ]);
     $menu_link_content->save();
     $this->drupalGet('admin/structure/menu/manage/tools');
-<<<<<<< HEAD
-    $this->assertSession()->linkExists(t('Translate'));
-=======
     $this->assertSession()->linkExists('Translate');
->>>>>>> dev
   }
 
   /**
@@ -116,13 +96,6 @@ class MenuLinkContentTranslationUITest extends ContentTranslationUITestBase {
     $this->container->get('theme_installer')->install(['seven']);
     $edit = [];
     $edit['admin_theme'] = 'seven';
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/appearance', $edit, t('Save configuration'));
-    $this->drupalGet('admin/structure/menu/item/' . $entityId . '/edit');
-    $this->assertRaw('core/themes/seven/css/base/elements.css', 'Edit uses admin theme.');
-    $this->drupalGet('admin/structure/menu/item/' . $entityId . '/edit/translations');
-    $this->assertRaw('core/themes/seven/css/base/elements.css', 'Translation uses admin theme as well.');
-=======
     $this->drupalGet('admin/appearance');
     $this->submitForm($edit, 'Save configuration');
     // Check that edit uses the admin theme.
@@ -131,7 +104,6 @@ class MenuLinkContentTranslationUITest extends ContentTranslationUITestBase {
     // Check that translation uses admin theme as well.
     $this->drupalGet('admin/structure/menu/item/' . $entityId . '/edit/translations');
     $this->assertRaw('core/themes/seven/css/base/elements.css');
->>>>>>> dev
   }
 
   /**

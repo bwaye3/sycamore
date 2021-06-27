@@ -24,11 +24,7 @@ class AssetDumper implements AssetDumperInterface {
    * @param \Drupal\Core\File\FileSystemInterface $file_system
    *   The file handler.
    */
-<<<<<<< HEAD
-  public function __construct(FileSystemInterface $file_system = NULL) {
-=======
   public function __construct(FileSystemInterface $file_system) {
->>>>>>> dev
     $this->fileSystem = $file_system;
   }
 
@@ -47,15 +43,9 @@ class AssetDumper implements AssetDumperInterface {
     $path = 'public://' . $file_extension;
     $uri = $path . '/' . $filename;
     // Create the CSS or JS file.
-<<<<<<< HEAD
-    $this->getFileSystem()->prepareDirectory($path, FileSystemInterface::CREATE_DIRECTORY);
-    try {
-      if (!file_exists($uri) && !$this->getFileSystem()->saveData($data, $uri, FileSystemInterface::EXISTS_REPLACE)) {
-=======
     $this->fileSystem->prepareDirectory($path, FileSystemInterface::CREATE_DIRECTORY);
     try {
       if (!file_exists($uri) && !$this->fileSystem->saveData($data, $uri, FileSystemInterface::EXISTS_REPLACE)) {
->>>>>>> dev
         return FALSE;
       }
     }
@@ -72,11 +62,7 @@ class AssetDumper implements AssetDumperInterface {
     // generating a file that won't be used.
     if (extension_loaded('zlib') && \Drupal::config('system.performance')->get($file_extension . '.gzip')) {
       try {
-<<<<<<< HEAD
-        if (!file_exists($uri . '.gz') && !$this->getFileSystem()->saveData(gzencode($data, 9, FORCE_GZIP), $uri . '.gz', FileSystemInterface::EXISTS_REPLACE)) {
-=======
         if (!file_exists($uri . '.gz') && !$this->fileSystem->saveData(gzencode($data, 9, FORCE_GZIP), $uri . '.gz', FileSystemInterface::EXISTS_REPLACE)) {
->>>>>>> dev
           return FALSE;
         }
       }
@@ -87,21 +73,4 @@ class AssetDumper implements AssetDumperInterface {
     return $uri;
   }
 
-<<<<<<< HEAD
-  /**
-   * Helper method for returning the file system service.
-   *
-   * @return \Drupal\Core\File\FileSystemInterface
-   *   The file system service.
-   */
-  private function getFileSystem() {
-    if (!$this->fileSystem) {
-      @trigger_error('\Drupal\Core\File\FileSystemInterface is a dependency of this class in Drupal 8.7.0 and will be required before Drupal 9.0.0. See https://www.drupal.org/node/3006851.', E_USER_DEPRECATED);
-      $this->fileSystem = \Drupal::service('file_system');
-    }
-    return $this->fileSystem;
-  }
-
-=======
->>>>>>> dev
 }

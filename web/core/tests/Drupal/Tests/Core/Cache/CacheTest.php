@@ -4,12 +4,9 @@ namespace Drupal\Tests\Core\Cache;
 
 use Drupal\Core\Cache\Cache;
 use Drupal\Tests\UnitTestCase;
-<<<<<<< HEAD
-=======
 use Prophecy\Argument;
 use Drupal\Core\Cache\Context\CacheContextsManager;
 use Drupal\Core\DependencyInjection\Container;
->>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\Core\Cache\Cache
@@ -47,25 +44,6 @@ class CacheTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * @covers ::validateTags
-   *
-   * @dataProvider validateTagsProvider
-   * @expectedDeprecation Drupal\Core\Cache\Cache::validateTags() is deprecated in drupal:8.0.0 and is removed from drupal:9.0.0. Use assert(\Drupal\Component\Assertion\Inspector::assertAllStrings($tags)) instead.
-   * @group legacy
-   */
-  public function testValidateTags(array $tags, $expected_exception_message) {
-    if ($expected_exception_message !== FALSE) {
-      $this->expectException('LogicException');
-      $this->expectExceptionMessage($expected_exception_message);
-    }
-    // If it doesn't throw an exception, validateTags() returns NULL.
-    $this->assertNull(Cache::validateTags($tags));
-  }
-
-  /**
-=======
->>>>>>> dev
    * Provides a list of pairs of cache tags arrays to be merged.
    *
    * @return array
@@ -73,14 +51,6 @@ class CacheTest extends UnitTestCase {
   public function mergeTagsProvider() {
     return [
       [[], [], []],
-<<<<<<< HEAD
-      [['bar'], ['foo'], ['bar', 'foo']],
-      [['foo'], ['bar'], ['bar', 'foo']],
-      [['foo'], ['bar', 'foo'], ['bar', 'foo']],
-      [['foo'], ['foo', 'bar'], ['bar', 'foo']],
-      [['bar', 'foo'], ['foo', 'bar'], ['bar', 'foo']],
-      [['foo', 'bar'], ['foo', 'bar'], ['bar', 'foo']],
-=======
       [['bar', 'foo'], ['bar'], ['foo']],
       [['bar', 'foo'], ['foo'], ['bar']],
       [['bar', 'foo'], ['foo'], ['bar', 'foo']],
@@ -88,7 +58,6 @@ class CacheTest extends UnitTestCase {
       [['bar', 'foo'], ['bar', 'foo'], ['foo', 'bar']],
       [['bar', 'foo'], ['foo', 'bar'], ['foo', 'bar']],
       [['bar', 'foo', 'llama'], ['bar', 'foo'], ['foo', 'bar'], ['llama', 'foo']],
->>>>>>> dev
     ];
   }
 
@@ -97,13 +66,8 @@ class CacheTest extends UnitTestCase {
    *
    * @dataProvider mergeTagsProvider
    */
-<<<<<<< HEAD
-  public function testMergeTags(array $a, array $b, array $expected) {
-    $this->assertEquals($expected, Cache::mergeTags($a, $b));
-=======
   public function testMergeTags(array $expected, ...$cache_tags) {
     $this->assertEquals($expected, Cache::mergeTags(...$cache_tags));
->>>>>>> dev
   }
 
   /**
@@ -117,16 +81,6 @@ class CacheTest extends UnitTestCase {
       [60, 60, 60],
       [0, 0, 0],
 
-<<<<<<< HEAD
-      [60, 0, 0],
-      [0, 60, 0],
-
-      [Cache::PERMANENT, 0, 0],
-      [0, Cache::PERMANENT, 0],
-
-      [Cache::PERMANENT, 60, 60],
-      [60, Cache::PERMANENT, 60],
-=======
       [0, 60, 0],
       [0, 0, 60],
 
@@ -143,7 +97,6 @@ class CacheTest extends UnitTestCase {
       [60, Cache::PERMANENT, 60, Cache::PERMANENT],
       [60, 60, Cache::PERMANENT, Cache::PERMANENT],
       [60, Cache::PERMANENT, Cache::PERMANENT, 60],
->>>>>>> dev
     ];
   }
 
@@ -152,10 +105,6 @@ class CacheTest extends UnitTestCase {
    *
    * @dataProvider mergeMaxAgesProvider
    */
-<<<<<<< HEAD
-  public function testMergeMaxAges($a, $b, $expected) {
-    $this->assertSame($expected, Cache::mergeMaxAges($a, $b));
-=======
   public function testMergeMaxAges($expected, ...$max_ages) {
     $this->assertSame($expected, Cache::mergeMaxAges(...$max_ages));
   }
@@ -197,7 +146,6 @@ class CacheTest extends UnitTestCase {
     $container->get('cache_contexts_manager')->willReturn($cache_contexts_manager->reveal());
     \Drupal::setContainer($container->reveal());
     $this->assertSame($expected, Cache::mergeContexts(...$contexts));
->>>>>>> dev
   }
 
   /**

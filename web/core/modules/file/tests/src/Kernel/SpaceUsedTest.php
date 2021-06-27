@@ -11,11 +11,7 @@ use Drupal\file\Entity\File;
  */
 class SpaceUsedTest extends FileManagedUnitTestBase {
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create records for a couple of users with different sizes.
@@ -56,32 +52,11 @@ class SpaceUsedTest extends FileManagedUnitTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test different users with the default status.
-=======
    * Tests different users with the default status.
->>>>>>> dev
    */
   public function testFileSpaceUsed() {
     $file = $this->container->get('entity_type.manager')->getStorage('file');
     // Test different users with default status.
-<<<<<<< HEAD
-    $this->assertEqual($file->spaceUsed(2), 70);
-    $this->assertEqual($file->spaceUsed(3), 300);
-    $this->assertEqual($file->spaceUsed(), 370);
-
-    // Test the status fields
-    $this->assertEqual($file->spaceUsed(NULL, 0), 4);
-    $this->assertEqual($file->spaceUsed(NULL, FILE_STATUS_PERMANENT), 370);
-
-    // Test both the user and status.
-    $this->assertEqual($file->spaceUsed(1, 0), 0);
-    $this->assertEqual($file->spaceUsed(1, FILE_STATUS_PERMANENT), 0);
-    $this->assertEqual($file->spaceUsed(2, 0), 1);
-    $this->assertEqual($file->spaceUsed(2, FILE_STATUS_PERMANENT), 70);
-    $this->assertEqual($file->spaceUsed(3, 0), 3);
-    $this->assertEqual($file->spaceUsed(3, FILE_STATUS_PERMANENT), 300);
-=======
     $this->assertEquals(70, $file->spaceUsed(2));
     $this->assertEquals(300, $file->spaceUsed(3));
     $this->assertEquals(370, $file->spaceUsed());
@@ -97,7 +72,6 @@ class SpaceUsedTest extends FileManagedUnitTestBase {
     $this->assertEquals(70, $file->spaceUsed(2, FILE_STATUS_PERMANENT));
     $this->assertEquals(3, $file->spaceUsed(3, 0));
     $this->assertEquals(300, $file->spaceUsed(3, FILE_STATUS_PERMANENT));
->>>>>>> dev
   }
 
 }

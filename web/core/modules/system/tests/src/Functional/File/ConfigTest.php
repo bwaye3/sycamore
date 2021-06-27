@@ -16,11 +16,7 @@ class ConfigTest extends BrowserTestBase {
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->drupalLogin($this->drupalCreateUser([
       'administer site configuration',
@@ -41,15 +37,6 @@ class ConfigTest extends BrowserTestBase {
     ];
 
     // Check that public and private can be selected as default scheme.
-<<<<<<< HEAD
-    $this->assertText('Public local files served by the webserver.');
-    $this->assertText('Private local files served by Drupal.');
-
-    $this->drupalPostForm(NULL, $fields, t('Save configuration'));
-    $this->assertText(t('The configuration options have been saved.'));
-    foreach ($fields as $field => $value) {
-      $this->assertFieldByName($field, $value);
-=======
     $this->assertSession()->pageTextContains('Public local files served by the webserver.');
     $this->assertSession()->pageTextContains('Private local files served by Drupal.');
 
@@ -57,7 +44,6 @@ class ConfigTest extends BrowserTestBase {
     $this->assertSession()->pageTextContains('The configuration options have been saved.');
     foreach ($fields as $field => $value) {
       $this->assertSession()->fieldValueEquals($field, $value);
->>>>>>> dev
     }
 
     // Remove the private path, rebuild the container and verify that private
@@ -70,11 +56,7 @@ class ConfigTest extends BrowserTestBase {
     $this->rebuildContainer();
 
     $this->drupalGet('admin/config/media/file-system');
-<<<<<<< HEAD
-    $this->assertText('Public local files served by the webserver.');
-=======
     $this->assertSession()->pageTextContains('Public local files served by the webserver.');
->>>>>>> dev
     $this->assertNoText('Private local files served by Drupal.');
   }
 

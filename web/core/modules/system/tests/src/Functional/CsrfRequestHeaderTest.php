@@ -17,11 +17,7 @@ class CsrfRequestHeaderTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['system', 'csrf_test'];
-=======
   protected static $modules = ['system', 'csrf_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -35,15 +31,9 @@ class CsrfRequestHeaderTest extends BrowserTestBase {
    * uses the deprecated _access_rest_csrf.
    *
    * @group legacy
-<<<<<<< HEAD
-   * @expectedDeprecation Route requirement _access_rest_csrf is deprecated in drupal:8.2.0 and is removed in drupal:10.0.0. Use _csrf_request_header_token instead. See https://www.drupal.org/node/2772399
-   */
-  public function testRouteAccess() {
-=======
    */
   public function testRouteAccess() {
     $this->expectDeprecation('Route requirement _access_rest_csrf is deprecated in drupal:8.2.0 and is removed in drupal:10.0.0. Use _csrf_request_header_token instead. See https://www.drupal.org/node/2772399');
->>>>>>> dev
     $client = $this->getHttpClient();
     $csrf_token_paths = ['deprecated/session/token', 'session/token'];
     // Test using the both the current path and a test path that returns

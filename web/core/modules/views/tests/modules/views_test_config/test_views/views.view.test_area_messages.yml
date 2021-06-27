@@ -52,10 +52,6 @@ display:
           empty: true
           plugin_id: messages
     display_plugin: default
-<<<<<<< HEAD
-    display_title: Master
-=======
     display_title: Default
->>>>>>> dev
     id: default
     position: 0

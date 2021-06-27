@@ -16,11 +16,7 @@ class QuickEditIntegrationTest extends SettingsTrayTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'node',
     'block_content',
     'quickedit',
@@ -34,11 +30,7 @@ class QuickEditIntegrationTest extends SettingsTrayTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $user = $this->createUser([
       'administer blocks',
@@ -159,11 +151,7 @@ class QuickEditIntegrationTest extends SettingsTrayTestBase {
     $this->assertEquals('', $href);
     $href = array_search('Quick edit settings', $link_labels);
     $destination = (string) $this->loggedInUser->toUrl()->toString();
-<<<<<<< HEAD
-    $this->assertTrue(strstr($href, "/admin/structure/block/manage/custom/settings-tray?destination=$destination") !== FALSE);
-=======
     $this->assertStringContainsString("/admin/structure/block/manage/custom/settings-tray?destination=$destination", $href);
->>>>>>> dev
   }
 
   /**

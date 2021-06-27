@@ -33,11 +33,7 @@ class LargeQueryTest extends DatabaseTestBase {
 
     $long_name = str_repeat('a', $max_allowed_packet + 1);
     try {
-<<<<<<< HEAD
-      $this->connection->query('SELECT name FROM {test} WHERE name = :name', [':name' => $long_name]);
-=======
       $this->connection->query('SELECT [name] FROM {test} WHERE [name] = :name', [':name' => $long_name]);
->>>>>>> dev
       $this->fail("An exception should be thrown for queries larger than 'max_allowed_packet'");
     }
     catch (DatabaseException $e) {

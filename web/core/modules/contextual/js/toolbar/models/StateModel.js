@@ -9,22 +9,6 @@
   Drupal.contextualToolbar.StateModel = Backbone.Model.extend({
     defaults: {
       isViewing: true,
-<<<<<<< HEAD
-
-      isVisible: false,
-
-      contextualCount: 0,
-
-      tabbingContext: null
-    },
-
-    initialize: function initialize(attrs, options) {
-      this.listenTo(options.contextualCollection, 'reset remove add', this.countContextualLinks);
-      this.listenTo(options.contextualCollection, 'add', this.lockNewContextualLinks);
-
-      this.listenTo(this, 'change:contextualCount', this.updateVisibility);
-
-=======
       isVisible: false,
       contextualCount: 0,
       tabbingContext: null
@@ -33,7 +17,6 @@
       this.listenTo(options.contextualCollection, 'reset remove add', this.countContextualLinks);
       this.listenTo(options.contextualCollection, 'add', this.lockNewContextualLinks);
       this.listenTo(this, 'change:contextualCount', this.updateVisibility);
->>>>>>> dev
       this.listenTo(this, 'change:isViewing', function (model, isViewing) {
         options.contextualCollection.each(function (contextualModel) {
           contextualModel.set('isLocked', !isViewing);

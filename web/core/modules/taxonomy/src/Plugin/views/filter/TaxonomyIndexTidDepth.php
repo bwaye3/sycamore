@@ -3,10 +3,6 @@
 namespace Drupal\taxonomy\Plugin\views\filter;
 
 use Drupal\Core\Database\Database;
-<<<<<<< HEAD
-use Drupal\Core\Database\Query\Condition;
-=======
->>>>>>> dev
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -77,16 +73,6 @@ class TaxonomyIndexTidDepth extends TaxonomyIndexTid {
     // Now build the subqueries.
     $subquery = Database::getConnection()->select('taxonomy_index', 'tn');
     $subquery->addField('tn', 'nid');
-<<<<<<< HEAD
-    $where = (new Condition('OR'))->condition('tn.tid', $this->value, $operator);
-    $last = "tn";
-
-    if ($this->options['depth'] > 0) {
-      $subquery->leftJoin('taxonomy_term__parent', 'th', "th.entity_id = tn.tid");
-      $last = "th";
-      foreach (range(1, abs($this->options['depth'])) as $count) {
-        $subquery->leftJoin('taxonomy_term__parent', "th$count", "$last.parent_target_id = th$count.entity_id");
-=======
     $where = ($this->view->query->getConnection()->condition('OR'))->condition('tn.tid', $this->value, $operator);
     $last = "tn";
 
@@ -95,7 +81,6 @@ class TaxonomyIndexTidDepth extends TaxonomyIndexTid {
       $last = "th";
       foreach (range(1, abs($this->options['depth'])) as $count) {
         $subquery->leftJoin('taxonomy_term__parent', "th$count", "[$last].[parent_target_id] = [th$count].[entity_id]");
->>>>>>> dev
         $where->condition("th$count.entity_id", $this->value, $operator);
         $last = "th$count";
       }
@@ -103,11 +88,7 @@ class TaxonomyIndexTidDepth extends TaxonomyIndexTid {
     elseif ($this->options['depth'] < 0) {
       foreach (range(1, abs($this->options['depth'])) as $count) {
         $field = $count == 1 ? 'tid' : 'entity_id';
-<<<<<<< HEAD
-        $subquery->leftJoin('taxonomy_term__parent', "th$count", "$last.$field = th$count.parent_target_id");
-=======
         $subquery->leftJoin('taxonomy_term__parent', "th$count", "[$last].[$field] = [th$count].[parent_target_id]");
->>>>>>> dev
         $where->condition("th$count.entity_id", $this->value, $operator);
         $last = "th$count";
       }

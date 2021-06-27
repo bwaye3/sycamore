@@ -2,19 +2,12 @@
 
 namespace Drupal\Core\Installer\Form;
 
-<<<<<<< HEAD
-=======
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
->>>>>>> dev
 use Drupal\Core\Extension\ModuleInstallerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Locale\CountryManagerInterface;
 use Drupal\Core\Site\Settings;
-<<<<<<< HEAD
-use Drupal\Core\State\StateInterface;
-=======
->>>>>>> dev
 use Drupal\user\UserStorageInterface;
 use Drupal\user\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -26,11 +19,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class SiteConfigureForm extends ConfigFormBase {
 
-<<<<<<< HEAD
-=======
   use DeprecatedServicePropertyTrait;
 
->>>>>>> dev
   /**
    * The site path.
    *
@@ -46,17 +36,9 @@ class SiteConfigureForm extends ConfigFormBase {
   protected $userStorage;
 
   /**
-<<<<<<< HEAD
-   * The state service.
-   *
-   * @var \Drupal\Core\State\StateInterface
-   */
-  protected $state;
-=======
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['state' => 'state'];
->>>>>>> dev
 
   /**
    * The module installer.
@@ -82,8 +64,6 @@ class SiteConfigureForm extends ConfigFormBase {
   /**
    * Constructs a new SiteConfigureForm.
    *
-<<<<<<< HEAD
-=======
    * Note, for BC reasons, we cannot typehint the last 2 parameters since this
    * function used to take 6 arguments, including the 'state' service as the
    * fourth parameter.
@@ -91,30 +71,16 @@ class SiteConfigureForm extends ConfigFormBase {
    * @todo Clean this up in drupal:10.0.0.
    * @see https://www.drupal.org/node/3159456
    *
->>>>>>> dev
    * @param string $root
    *   The app root.
    * @param string $site_path
    *   The site path.
    * @param \Drupal\user\UserStorageInterface $user_storage
    *   The user storage.
-<<<<<<< HEAD
-   * @param \Drupal\Core\State\StateInterface $state
-   *   The state service.
-=======
->>>>>>> dev
    * @param \Drupal\Core\Extension\ModuleInstallerInterface $module_installer
    *   The module installer.
    * @param \Drupal\Core\Locale\CountryManagerInterface $country_manager
    *   The country manager.
-<<<<<<< HEAD
-   */
-  public function __construct($root, $site_path, UserStorageInterface $user_storage, StateInterface $state, ModuleInstallerInterface $module_installer, CountryManagerInterface $country_manager) {
-    $this->root = $root;
-    $this->sitePath = $site_path;
-    $this->userStorage = $user_storage;
-    $this->state = $state;
-=======
    *
    * @throws \InvalidArgumentException
    *   Thrown when either the $module_installer or $country_manager parameters
@@ -135,7 +101,6 @@ class SiteConfigureForm extends ConfigFormBase {
     if (!$country_manager instanceof CountryManagerInterface) {
       throw new \InvalidArgumentException('The fifth argument must implement \Drupal\Core\Locale\CountryManager.');
     }
->>>>>>> dev
     $this->moduleInstaller = $module_installer;
     $this->countryManager = $country_manager;
   }
@@ -145,16 +110,9 @@ class SiteConfigureForm extends ConfigFormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-<<<<<<< HEAD
-      $container->get('app.root'),
-      $container->get('site.path'),
-      $container->get('entity_type.manager')->getStorage('user'),
-      $container->get('state'),
-=======
       $container->getParameter('app.root'),
       $container->getParameter('site.path'),
       $container->get('entity_type.manager')->getStorage('user'),
->>>>>>> dev
       $container->get('module_installer'),
       $container->get('country_manager')
     );
@@ -197,11 +155,7 @@ class SiteConfigureForm extends ConfigFormBase {
     // successfully.)
     $post_params = $this->getRequest()->request->all();
     if (empty($post_params) && (Settings::get('skip_permissions_hardening') || !drupal_verify_install_file($this->root . '/' . $settings_file, FILE_EXIST | FILE_READABLE | FILE_NOT_WRITABLE) || !drupal_verify_install_file($this->root . '/' . $settings_dir, FILE_NOT_WRITABLE, 'dir'))) {
-<<<<<<< HEAD
-      $this->messenger()->addWarning(t('All necessary changes to %dir and %file have been made, so you should remove write permissions to them now in order to avoid security risks. If you are unsure how to do so, consult the <a href=":handbook_url">online handbook</a>.', ['%dir' => $settings_dir, '%file' => $settings_file, ':handbook_url' => 'https://www.drupal.org/server-permissions']));
-=======
       $this->messenger()->addWarning($this->t('All necessary changes to %dir and %file have been made, so you should remove write permissions to them now in order to avoid security risks. If you are unsure how to do so, consult the <a href=":handbook_url">online handbook</a>.', ['%dir' => $settings_dir, '%file' => $settings_file, ':handbook_url' => 'https://www.drupal.org/server-permissions']));
->>>>>>> dev
     }
 
     $form['#attached']['library'][] = 'system/drupal.system';
@@ -377,12 +331,6 @@ class SiteConfigureForm extends ConfigFormBase {
     $account->pass = $account_values['pass'];
     $account->name = $account_values['name'];
     $account->save();
-<<<<<<< HEAD
-
-    // Record when this install ran.
-    $this->state->set('install_time', $_SERVER['REQUEST_TIME']);
-=======
->>>>>>> dev
   }
 
 }

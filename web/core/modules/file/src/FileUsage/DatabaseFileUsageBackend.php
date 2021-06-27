@@ -35,35 +35,8 @@ class DatabaseFileUsageBackend extends FileUsageBase {
    *   information.
    * @param string $table
    *   (optional) The table to store file usage info. Defaults to 'file_usage'.
-<<<<<<< HEAD
-   *
-   * @todo Properly type-hint the constructor arguments in
-   *   https://www.drupal.org/project/drupal/issues/3070114 when the
-   *   drupal:9.0.x branch is opened.
-   */
-  // @codingStandardsIgnoreLine
-  public function __construct($config_factory, $connection = NULL, $table = 'file_usage') {
-
-    // @todo Remove below conditional when the drupal:9.0.x branch is opened.
-    // @see https://www.drupal.org/project/drupal/issues/3070114
-    if (!$config_factory instanceof ConfigFactoryInterface) {
-      @trigger_error('Passing the database connection as the first argument to ' . __METHOD__ . ' is deprecated in drupal:8.8.0 and will throw a fatal error in drupal:9.0.0. Pass the config factory first. See https://www.drupal.org/node/3070148', E_USER_DEPRECATED);
-      if (!$config_factory instanceof Connection) {
-        throw new \InvalidArgumentException("The first argument to " . __METHOD__ . " should be an instance of \Drupal\Core\Config\ConfigFactoryInterface, " . gettype($config_factory) . " given.");
-      }
-      list($connection, $table, $config_factory) = array_pad(func_get_args(), 3, NULL);
-      if (NULL === $table) {
-        $table = 'file_usage';
-      }
-      if (!$config_factory instanceof ConfigFactoryInterface) {
-        $config_factory = \Drupal::configFactory();
-      }
-    }
-
-=======
    */
   public function __construct(ConfigFactoryInterface $config_factory, Connection $connection, $table = 'file_usage') {
->>>>>>> dev
     parent::__construct($config_factory);
     $this->connection = $connection;
     $this->tableName = $table;
@@ -81,11 +54,7 @@ class DatabaseFileUsageBackend extends FileUsageBase {
         'id' => $id,
       ])
       ->fields(['count' => $count])
-<<<<<<< HEAD
-      ->expression('count', 'count + :count', [':count' => $count])
-=======
       ->expression('count', '[count] + :count', [':count' => $count])
->>>>>>> dev
       ->execute();
 
     parent::add($file, $module, $type, $id, $count);
@@ -95,11 +64,7 @@ class DatabaseFileUsageBackend extends FileUsageBase {
    * {@inheritdoc}
    */
   public function delete(FileInterface $file, $module, $type = NULL, $id = NULL, $count = 1) {
-<<<<<<< HEAD
-    // Delete rows that have a exact or less value to prevent empty rows.
-=======
     // Delete rows that have an exact or less value to prevent empty rows.
->>>>>>> dev
     $query = $this->connection->delete($this->tableName)
       ->condition('module', $module)
       ->condition('fid', $file->id());
@@ -123,11 +88,7 @@ class DatabaseFileUsageBackend extends FileUsageBase {
           ->condition('type', $type)
           ->condition('id', $id);
       }
-<<<<<<< HEAD
-      $query->expression('count', 'count - :count', [':count' => $count]);
-=======
       $query->expression('count', '[count] - :count', [':count' => $count]);
->>>>>>> dev
       $query->execute();
     }
 

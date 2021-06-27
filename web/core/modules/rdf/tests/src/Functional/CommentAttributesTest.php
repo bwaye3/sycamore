@@ -25,9 +25,6 @@ class CommentAttributesTest extends CommentTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['views', 'node', 'comment', 'rdf', 'user_hooks_test'];
-=======
   protected static $modules = [
     'views',
     'node',
@@ -35,7 +32,6 @@ class CommentAttributesTest extends CommentTestBase {
     'rdf',
     'user_hooks_test',
   ];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -56,11 +52,7 @@ class CommentAttributesTest extends CommentTestBase {
    */
   protected $nodeUri;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Enables anonymous user comments.
@@ -177,11 +169,7 @@ class CommentAttributesTest extends CommentTestBase {
     // is modified by the RDF module.
     $this->drupalGet('node/' . $this->node->id());
     $this->assertSession()->linkExistsExact($this->webUser->getDisplayName());
-<<<<<<< HEAD
-    $this->assertLinkByHref('user/' . $this->webUser->id());
-=======
     $this->assertSession()->linkByHrefExists('user/' . $this->webUser->id());
->>>>>>> dev
   }
 
   /**
@@ -261,18 +249,11 @@ class CommentAttributesTest extends CommentTestBase {
    *
    * Tests the current page for basic comment RDFa markup.
    *
-<<<<<<< HEAD
-   * @param $comment
-   *   Comment object.
-   * @param $account
-   *   An array containing information about an anonymous user.
-=======
    * @param \Drupal\comment\CommentInterface $comment
    *   Comment object.
    * @param array|null $account
    *   (optional) An array containing information about an anonymous user.
    *   Defaults to NULL.
->>>>>>> dev
    */
   public function _testBasicCommentRdfaMarkup(CommentInterface $comment, $account = NULL) {
     $this->drupalGet($this->node->toUrl());

@@ -16,22 +16,14 @@ class DependencyMissingTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['update_test_0', 'update_test_2'];
-=======
   protected static $modules = ['update_test_0', 'update_test_2'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     // Only install update_test_2.module, even though its updates have a
     // dependency on update_test_3.module.
     parent::setUp();

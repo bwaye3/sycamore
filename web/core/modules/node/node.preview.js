@@ -11,11 +11,7 @@
       function clickPreviewModal(event) {
         if (event.button === 0 && !event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
           event.preventDefault();
-<<<<<<< HEAD
-          var $previewDialog = $('<div>' + Drupal.theme('nodePreviewModal') + '</div>').appendTo('body');
-=======
           var $previewDialog = $("<div>".concat(Drupal.theme('nodePreviewModal'), "</div>")).appendTo('body');
->>>>>>> dev
           Drupal.dialog($previewDialog, {
             title: Drupal.t('Leave preview?'),
             buttons: [{
@@ -34,10 +30,7 @@
       }
 
       var $preview = $(context).once('node-preview');
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       if ($(context).find('.node-preview-container').length) {
         $preview.on('click.preview', 'a:not([href^="#"], .node-preview-container a)', clickPreviewModal);
       }
@@ -45,27 +38,17 @@
     detach: function detach(context, settings, trigger) {
       if (trigger === 'unload') {
         var $preview = $(context).find('.content').removeOnce('node-preview');
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         if ($preview.length) {
           $preview.off('click.preview');
         }
       }
     }
   };
-<<<<<<< HEAD
-
-  Drupal.behaviors.nodePreviewSwitchViewMode = {
-    attach: function attach(context) {
-      var $autosubmit = $(context).find('[data-drupal-autosubmit]').once('autosubmit');
-=======
   Drupal.behaviors.nodePreviewSwitchViewMode = {
     attach: function attach(context) {
       var $autosubmit = $(context).find('[data-drupal-autosubmit]').once('autosubmit');
 
->>>>>>> dev
       if ($autosubmit.length) {
         $autosubmit.on('formUpdated.preview', function () {
           $(this.form).trigger('submit');
@@ -75,10 +58,6 @@
   };
 
   Drupal.theme.nodePreviewModal = function () {
-<<<<<<< HEAD
-    return '<p>' + Drupal.t('Leaving the preview will cause unsaved changes to be lost. Are you sure you want to leave the preview?') + '</p><small class="description">' + Drupal.t('CTRL+Left click will prevent this dialog from showing and proceed to the clicked link.') + '</small>';
-=======
     return "<p>".concat(Drupal.t('Leaving the preview will cause unsaved changes to be lost. Are you sure you want to leave the preview?'), "</p><small class=\"description\">").concat(Drupal.t('CTRL+Left click will prevent this dialog from showing and proceed to the clicked link.'), "</small>");
->>>>>>> dev
   };
 })(jQuery, Drupal);

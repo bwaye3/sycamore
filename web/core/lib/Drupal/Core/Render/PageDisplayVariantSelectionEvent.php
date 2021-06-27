@@ -5,11 +5,7 @@ namespace Drupal\Core\Render;
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 use Drupal\Core\Cache\RefinableCacheableDependencyTrait;
 use Drupal\Core\Routing\RouteMatchInterface;
-<<<<<<< HEAD
-use Symfony\Component\EventDispatcher\Event;
-=======
 use Drupal\Component\EventDispatcher\Event;
->>>>>>> dev
 
 /**
  * Event fired when rendering main content, to select a page display variant.

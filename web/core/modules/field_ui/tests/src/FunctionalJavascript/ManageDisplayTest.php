@@ -15,11 +15,7 @@ class ManageDisplayTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'node',
     'field_ui',
     'field_test',
@@ -50,11 +46,7 @@ class ManageDisplayTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->drupalPlaceBlock('system_breadcrumb_block');
 
@@ -118,11 +110,7 @@ class ManageDisplayTest extends WebDriverTestBase {
     $field_test_settings = $page->find('css', 'input[name="field_test_settings_edit"]');
     $weight_toggle = $page->find('css', '.tabledrag-toggle-weight');
 
-<<<<<<< HEAD
-    // Assert the format typr field is visible and contains the expected
-=======
     // Assert the format type field is visible and contains the expected
->>>>>>> dev
     // formatter.
     $this->assertTrue($field_test_format_type->isVisible());
     $this->assertEquals($format, $field_test_format_type->getValue());

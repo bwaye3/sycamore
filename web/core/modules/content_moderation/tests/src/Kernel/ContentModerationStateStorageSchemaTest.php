@@ -21,11 +21,7 @@ class ContentModerationStateStorageSchemaTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'node',
     'content_moderation',
     'user',
@@ -38,11 +34,7 @@ class ContentModerationStateStorageSchemaTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installSchema('node', 'node_access');
@@ -61,11 +53,7 @@ class ContentModerationStateStorageSchemaTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the ContentModerationState unique keys.
-=======
    * Tests the ContentModerationState unique keys.
->>>>>>> dev
    *
    * @covers ::getEntitySchema
    */

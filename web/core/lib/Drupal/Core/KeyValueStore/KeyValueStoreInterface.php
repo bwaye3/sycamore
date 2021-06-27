@@ -48,12 +48,8 @@ interface KeyValueStoreInterface {
    * @return array
    *   An associative array of items successfully returned, indexed by key.
    *
-<<<<<<< HEAD
-   * @todo What's returned for non-existing keys?
-=======
    * @todo Determine the best return value for non-existing keys in
    *   https://www.drupal.org/node/2787737
->>>>>>> dev
    */
   public function getMultiple(array $keys);
 

@@ -487,11 +487,7 @@ class RendererTest extends RendererTestBase {
     $output = $this->renderer->renderRoot($elements);
 
     // The lowest weight element should appear last in $output.
-<<<<<<< HEAD
-    $this->assertTrue(strpos($output, $second) > strpos($output, $first), 'Elements were sorted correctly by weight.');
-=======
     $this->assertGreaterThan(strpos($output, $first), strpos($output, $second));
->>>>>>> dev
 
     // Confirm that the $elements array has '#sorted' set to TRUE.
     $this->assertTrue($elements['#sorted'], "'#sorted' => TRUE was added to the array");
@@ -500,13 +496,8 @@ class RendererTest extends RendererTestBase {
     // ensure it remains sorted in the correct order. drupal_render() will
     // return an empty string if used on the same array in the same request.
     $children = Element::children($elements);
-<<<<<<< HEAD
-    $this->assertTrue(array_shift($children) == 'first', 'Child found in the correct order.');
-    $this->assertTrue(array_shift($children) == 'second', 'Child found in the correct order.');
-=======
     $this->assertSame('first', array_shift($children), 'Child found in the correct order.');
     $this->assertSame('second', array_shift($children), 'Child found in the correct order.');
->>>>>>> dev
   }
 
   /**
@@ -531,11 +522,7 @@ class RendererTest extends RendererTestBase {
     $output = $this->renderer->renderRoot($elements);
 
     // The elements should appear in output in the same order as the array.
-<<<<<<< HEAD
-    $this->assertTrue(strpos($output, $second) < strpos($output, $first), 'Elements were not sorted.');
-=======
     $this->assertLessThan(strpos($output, $first), strpos($output, $second));
->>>>>>> dev
   }
 
   /**

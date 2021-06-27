@@ -18,11 +18,7 @@ class TestMultiWidthLayoutsTest extends WebDriverTestBase {
    */
   const FIELD_UI_PREFIX = 'admin/structure/types/manage/bundle_with_section_field';
 
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'layout_builder',
     'block',
     'node',
@@ -36,11 +32,7 @@ class TestMultiWidthLayoutsTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->createContentType(['type' => 'bundle_with_section_field']);
@@ -53,27 +45,15 @@ class TestMultiWidthLayoutsTest extends WebDriverTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test changing the columns widths of a multi-width section.
-=======
    * Tests changing the columns widths of a multi-width section.
->>>>>>> dev
    */
   public function testWidthChange() {
     $assert_session = $this->assertSession();
     $page = $this->getSession()->getPage();
 
     // Enable layout builder.
-<<<<<<< HEAD
-    $this->drupalPostForm(
-      static::FIELD_UI_PREFIX . '/display/default',
-      ['layout[enabled]' => TRUE],
-      'Save'
-    );
-=======
     $this->drupalGet(static::FIELD_UI_PREFIX . '/display/default');
     $this->submitForm(['layout[enabled]' => TRUE], 'Save');
->>>>>>> dev
 
     $this->clickLink('Manage layout');
     $assert_session->addressEquals(static::FIELD_UI_PREFIX . '/display/default/layout');

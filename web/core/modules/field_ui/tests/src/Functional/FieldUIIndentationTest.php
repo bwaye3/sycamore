@@ -16,11 +16,7 @@ class FieldUIIndentationTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'field_ui', 'field_ui_test'];
-=======
   protected static $modules = ['node', 'field_ui', 'field_ui_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -30,11 +26,7 @@ class FieldUIIndentationTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create a test user.

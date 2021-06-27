@@ -111,11 +111,7 @@ abstract class InstallerExistingConfigTestBase extends InstallerTestBase {
       'delete' => [],
       'rename' => [],
     ];
-<<<<<<< HEAD
-    $this->assertEqual($expected, $change_list);
-=======
     $this->assertEquals($expected, $change_list);
->>>>>>> dev
   }
 
   /**
@@ -126,11 +122,7 @@ abstract class InstallerExistingConfigTestBase extends InstallerTestBase {
       $edit = [
         'profile' => SelectProfileForm::CONFIG_INSTALL_PROFILE_KEY,
       ];
-<<<<<<< HEAD
-      $this->drupalPostForm(NULL, $edit, $this->translations['Save and continue']);
-=======
       $this->submitForm($edit, $this->translations['Save and continue']);
->>>>>>> dev
     }
     else {
       parent::setUpProfile();

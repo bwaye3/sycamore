@@ -2,13 +2,10 @@
 
 namespace Drupal\Tests\media\Kernel;
 
-<<<<<<< HEAD
-=======
 use Drupal\media\Controller\OEmbedIframeController;
 use Drupal\media\OEmbed\Provider;
 use Drupal\media\OEmbed\Resource;
 use Prophecy\Argument;
->>>>>>> dev
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -19,14 +16,11 @@ use Symfony\Component\HttpFoundation\Request;
 class OEmbedIframeControllerTest extends MediaKernelTestBase {
 
   /**
-<<<<<<< HEAD
-=======
    * {@inheritdoc}
    */
   protected static $modules = ['media_test_oembed'];
 
   /**
->>>>>>> dev
    * Data provider for testBadHashParameter().
    *
    * @return array
@@ -69,8 +63,6 @@ class OEmbedIframeControllerTest extends MediaKernelTestBase {
     $controller($request);
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Tests that resources can be used in media_oembed_iframe preprocess.
    *
@@ -110,5 +102,4 @@ class OEmbedIframeControllerTest extends MediaKernelTestBase {
     $this->assertStringContainsString('&pasta=rigatoni', $content);
   }
 
->>>>>>> dev
 }

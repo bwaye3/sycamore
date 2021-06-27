@@ -456,11 +456,6 @@
 /* Media library entity view display styles. */
 .media-library-item__preview {
   padding-bottom: 34px;
-<<<<<<< HEAD
-  cursor: move;
-}
-
-=======
 }
 
 .field--widget-media-library-widget .media-library-item__preview {
@@ -471,7 +466,6 @@
   cursor: inherit;
 }
 
->>>>>>> dev
 .media-library-item__status {
   position: absolute;
   top: 40px;

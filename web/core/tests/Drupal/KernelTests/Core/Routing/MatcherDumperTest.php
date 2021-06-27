@@ -33,11 +33,7 @@ class MatcherDumperTest extends KernelTestBase {
    */
   protected $state;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->fixtures = new RoutingFixtures();
@@ -72,11 +68,7 @@ class MatcherDumperTest extends KernelTestBase {
     $collection_routes = $collection->all();
 
     foreach ($dumper_routes as $name => $route) {
-<<<<<<< HEAD
-      $this->assertEqual($route->getPath(), $collection_routes[$name]->getPath(), 'Routes match');
-=======
       $this->assertEquals($collection_routes[$name]->getPath(), $route->getPath(), 'Routes match');
->>>>>>> dev
     }
   }
 
@@ -126,16 +118,6 @@ class MatcherDumperTest extends KernelTestBase {
 
     $dumper->dump(['provider' => 'test']);
 
-<<<<<<< HEAD
-    $record = $connection->query("SELECT * FROM {test_routes} WHERE name= :name", [':name' => 'test_route'])->fetchObject();
-
-    $loaded_route = unserialize($record->route);
-
-    $this->assertEqual($record->name, 'test_route', 'Dumped route has correct name.');
-    $this->assertEqual($record->path, '/test/{my}/path', 'Dumped route has correct pattern.');
-    $this->assertEqual($record->pattern_outline, '/test/%/path', 'Dumped route has correct pattern outline.');
-    $this->assertEqual($record->fit, 5 /* 101 in binary */, 'Dumped route has correct fit.');
-=======
     $record = $connection->select('test_routes', 'tr')
       ->fields('tr')
       ->condition('name', 'test_route')
@@ -150,7 +132,6 @@ class MatcherDumperTest extends KernelTestBase {
     // Verify that the dumped route has the correct fit. Note that 5 decimal
     // equals 101 binary.
     $this->assertEquals(5, $record->fit, 'Dumped route has correct fit.');
->>>>>>> dev
     $this->assertInstanceOf(Route::class, $loaded_route);
   }
 
@@ -180,11 +161,7 @@ class MatcherDumperTest extends KernelTestBase {
       bindec('111'),
       bindec('101'),
     ];
-<<<<<<< HEAD
-    $this->assertEqual($this->state->get('routing.menu_masks.test_routes'), $expected);
-=======
     $this->assertEquals($expected, $this->state->get('routing.menu_masks.test_routes'));
->>>>>>> dev
   }
 
 }

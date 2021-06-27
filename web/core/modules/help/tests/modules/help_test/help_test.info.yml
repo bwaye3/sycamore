@@ -1,9 +1,5 @@
 name: help_test
 type: module
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 package: Testing
 dependencies:
   - drupal:help

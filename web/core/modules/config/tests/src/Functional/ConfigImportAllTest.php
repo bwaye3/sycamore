@@ -32,11 +32,7 @@ class ConfigImportAllTest extends ModuleTestBase {
    */
   protected $profile = 'standard';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->webUser = $this->drupalCreateUser(['synchronize configuration']);
@@ -121,21 +117,13 @@ class ConfigImportAllTest extends ModuleTestBase {
     }
 
     // Import the configuration thereby re-installing all the modules.
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/development/configuration', [], t('Import all'));
-=======
     $this->drupalGet('admin/config/development/configuration');
     $this->submitForm([], 'Import all');
->>>>>>> dev
     // Modules have been installed that have services.
     $this->rebuildContainer();
 
     // Check that there are no errors.
-<<<<<<< HEAD
-    $this->assertIdentical($this->configImporter()->getErrors(), []);
-=======
     $this->assertSame([], $this->configImporter()->getErrors());
->>>>>>> dev
 
     // Check that all modules that were uninstalled are now reinstalled.
     $this->assertModules(array_keys($modules_to_uninstall), TRUE);
@@ -149,11 +137,7 @@ class ConfigImportAllTest extends ModuleTestBase {
       $this->container->get('config.storage.sync'),
       $this->container->get('config.storage')
     );
-<<<<<<< HEAD
-    $this->assertIdentical($storage_comparer->createChangelist()->getChangelist(), $storage_comparer->getEmptyChangelist());
-=======
     $this->assertSame($storage_comparer->getEmptyChangelist(), $storage_comparer->createChangelist()->getChangelist());
->>>>>>> dev
 
     // Now we have all configuration imported, test all of them for schema
     // conformance. Ensures all imported default configuration is valid when

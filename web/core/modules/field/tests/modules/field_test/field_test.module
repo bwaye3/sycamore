@@ -5,10 +5,6 @@
  * Helper module for the Field API tests.
  *
  * The module defines
-<<<<<<< HEAD
- * - an entity type (field_test.entity.inc)
-=======
->>>>>>> dev
  * - a field type and its formatters and widgets (field_test.field.inc)
  * - a field storage backend (field_test.storage.inc)
  *
@@ -102,48 +98,18 @@ function field_test_entity_display_build_alter(&$output, $context) {
 }
 
 /**
-<<<<<<< HEAD
- * Implements hook_field_widget_form_alter().
- */
-function field_test_field_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
-=======
  * Implements hook_field_widget_single_element_form_alter().
  */
 function field_test_field_widget_single_element_form_alter(&$element, FormStateInterface $form_state, $context) {
->>>>>>> dev
   // Set a message if this is for the form displayed to set default value for
   // the field.
   if ($context['default']) {
     \Drupal::messenger()
-<<<<<<< HEAD
-      ->addStatus('From hook_field_widget_form_alter(): Default form is true.');
-=======
       ->addStatus('From hook_field_widget_single_element_form_alter(): Default form is true.');
->>>>>>> dev
   }
 }
 
 /**
-<<<<<<< HEAD
- * Implements hook_field_widget_multivalue_form_alter().
- */
-function field_test_field_widget_multivalue_form_alter(array &$elements, FormStateInterface $form_state, array $context) {
-  _field_test_alter_widget("hook_field_widget_multivalue_form_alter", $elements, $form_state, $context);
-}
-
-/**
- * Implements hook_field_widget_multivalue_WIDGET_TYPE_form_alter().
- */
-function field_test_field_widget_multivalue_test_field_widget_multiple_form_alter(array &$elements, FormStateInterface $form_state, array $context) {
-  _field_test_alter_widget("hook_field_widget_multivalue_WIDGET_TYPE_form_alter", $elements, $form_state, $context);
-}
-
-/**
- * Implements hook_field_widget_multivalue_WIDGET_TYPE_form_alter().
- */
-function field_test_field_widget_multivalue_test_field_widget_multiple_single_value_form_alter(array &$elements, FormStateInterface $form_state, array $context) {
-  _field_test_alter_widget("hook_field_widget_multivalue_WIDGET_TYPE_form_alter", $elements, $form_state, $context);
-=======
  * Implements hook_field_widget_complete_form_alter().
  */
 function field_test_field_widget_complete_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, array $context) {
@@ -162,7 +128,6 @@ function field_test_field_widget_complete_test_field_widget_multiple_form_alter(
  */
 function field_test_field_widget_complete_test_field_widget_multiple_single_value_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, array $context) {
   _field_test_alter_widget("hook_field_widget_complete_WIDGET_TYPE_form_alter", $field_widget_complete_form, $form_state, $context);
->>>>>>> dev
 }
 
 /**
@@ -170,13 +135,8 @@ function field_test_field_widget_complete_test_field_widget_multiple_single_valu
  *
  * @see \Drupal\field\Tests\FormTest::widgetAlterTest()
  */
-<<<<<<< HEAD
-function _field_test_alter_widget($hook, array &$elements, FormStateInterface $form_state, array $context) {
-
-=======
 function _field_test_alter_widget($hook, array &$field_widget_complete_form, FormStateInterface $form_state, array $context) {
   $elements = &$field_widget_complete_form['widget'];
->>>>>>> dev
   // Set a message if this is for the form displayed to set default value for
   // the field.
   if ($context['default']) {
@@ -200,11 +160,7 @@ function _field_test_alter_widget($hook, array &$field_widget_complete_form, For
 function field_test_query_efq_table_prefixing_test_alter(&$query) {
   // Add an additional join onto the entity base table. This will cause an
   // exception if the EFQ does not properly prefix the base table.
-<<<<<<< HEAD
-  $query->join('entity_test', 'et2', '%alias.id = entity_test.id');
-=======
   $query->join('entity_test', 'et2', '[%alias].[id] = [entity_test].[id]');
->>>>>>> dev
 }
 
 /**

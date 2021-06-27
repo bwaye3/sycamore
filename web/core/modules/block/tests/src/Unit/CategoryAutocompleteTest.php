@@ -20,11 +20,7 @@ class CategoryAutocompleteTest extends UnitTestCase {
    */
   protected $autocompleteController;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $block_manager = $this->createMock('Drupal\Core\Block\BlockManagerInterface');
     $block_manager->expects($this->any())
       ->method('getCategories')

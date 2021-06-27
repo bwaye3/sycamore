@@ -3,10 +3,7 @@
 namespace Drupal\views\Plugin\views\area;
 
 use Drupal\Core\Form\FormStateInterface;
-<<<<<<< HEAD
-=======
 use Drupal\Component\Utility\Xss;
->>>>>>> dev
 
 /**
  * Tokenized base class for area handlers.
@@ -89,14 +86,11 @@ abstract class TokenizeAreaPluginBase extends AreaPluginBase {
           ];
         }
       }
-<<<<<<< HEAD
-=======
       $form['tokens']['html_help'] = [
         '#markup' => '<p>' . $this->t('You may include the following allowed HTML tags with these "Replacement patterns": <code>@tags</code>', [
           '@tags' => '<' . implode('> <', Xss::getAdminTagList()) . '>',
         ]) . '</p>',
       ];
->>>>>>> dev
     }
 
     $this->globalTokenForm($form, $form_state);

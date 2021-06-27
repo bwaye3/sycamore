@@ -2,13 +2,6 @@
 
 namespace Drupal\Core\Installer;
 
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\ContainerBuilder;
-use Drupal\Core\DependencyInjection\ServiceProviderInterface;
-
-/**
- * Service provider for the non early installer environment.
-=======
 use Drupal\Core\Cache\MemoryBackendFactory;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
@@ -27,7 +20,6 @@ use Symfony\Component\DependencyInjection\Reference;
  *
  * @see install_begin_request()
  * @see \Drupal\Core\Installer\InstallerServiceProvider
->>>>>>> dev
  */
 class NormalInstallerServiceProvider implements ServiceProviderInterface {
 
@@ -35,12 +27,6 @@ class NormalInstallerServiceProvider implements ServiceProviderInterface {
    * {@inheritdoc}
    */
   public function register(ContainerBuilder $container) {
-<<<<<<< HEAD
-    // Use performance-optimized extension lists.
-    $container->getDefinition('extension.list.module')->setClass('Drupal\Core\Installer\InstallerModuleExtensionList');
-    $container->getDefinition('extension.list.theme')->setClass('Drupal\Core\Installer\InstallerThemeExtensionList');
-    $container->getDefinition('extension.list.theme_engine')->setClass('Drupal\Core\Installer\InstallerThemeEngineExtensionList');
-=======
     // Replace cache services with in-memory implementations. The results in
     // less queries to set caches which will only be cleared on the next module
     // install.
@@ -75,7 +61,6 @@ class NormalInstallerServiceProvider implements ServiceProviderInterface {
         ->addArgument(new Reference('router.builder'))
         ->addTag('event_subscriber');
     }
->>>>>>> dev
   }
 
 }

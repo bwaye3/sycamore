@@ -2,11 +2,8 @@
 
 namespace Drupal\Core\Layout;
 
-<<<<<<< HEAD
-=======
 use Drupal\Component\Plugin\Definition\ContextAwarePluginDefinitionInterface;
 use Drupal\Component\Plugin\Definition\ContextAwarePluginDefinitionTrait;
->>>>>>> dev
 use Drupal\Component\Plugin\Definition\DerivablePluginDefinitionInterface;
 use Drupal\Component\Plugin\Definition\PluginDefinitionInterface;
 use Drupal\Component\Plugin\Definition\PluginDefinition;
@@ -16,14 +13,9 @@ use Drupal\Core\Plugin\Definition\DependentPluginDefinitionTrait;
 /**
  * Provides an implementation of a layout definition and its metadata.
  */
-<<<<<<< HEAD
-class LayoutDefinition extends PluginDefinition implements PluginDefinitionInterface, DerivablePluginDefinitionInterface, DependentPluginDefinitionInterface {
-
-=======
 class LayoutDefinition extends PluginDefinition implements PluginDefinitionInterface, DerivablePluginDefinitionInterface, DependentPluginDefinitionInterface, ContextAwarePluginDefinitionInterface {
 
   use ContextAwarePluginDefinitionTrait;
->>>>>>> dev
   use DependentPluginDefinitionTrait;
 
   /**
@@ -140,8 +132,6 @@ class LayoutDefinition extends PluginDefinition implements PluginDefinitionInter
    *   An array of values from the annotation.
    */
   public function __construct(array $definition) {
-<<<<<<< HEAD
-=======
     // If there are context definitions in the plugin definition, they should
     // be added to this object using ::addContextDefinition() so that they can
     // be manipulated using other ContextAwarePluginDefinitionInterface methods.
@@ -152,7 +142,6 @@ class LayoutDefinition extends PluginDefinition implements PluginDefinitionInter
       unset($definition['context_definitions']);
     }
 
->>>>>>> dev
     foreach ($definition as $property => $value) {
       $this->set($property, $value);
     }

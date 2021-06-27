@@ -85,31 +85,16 @@ abstract class EntityStorageBase extends EntityHandlerBase implements EntityStor
    *
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
    *   The entity type definition.
-<<<<<<< HEAD
-   * @param \Drupal\Core\Cache\MemoryCache\MemoryCacheInterface|null $memory_cache
-   *   The memory cache.
-   */
-  public function __construct(EntityTypeInterface $entity_type, MemoryCacheInterface $memory_cache = NULL) {
-=======
    * @param \Drupal\Core\Cache\MemoryCache\MemoryCacheInterface $memory_cache
    *   The memory cache.
    */
   public function __construct(EntityTypeInterface $entity_type, MemoryCacheInterface $memory_cache) {
->>>>>>> dev
     $this->entityTypeId = $entity_type->id();
     $this->entityType = $entity_type;
     $this->idKey = $this->entityType->getKey('id');
     $this->uuidKey = $this->entityType->getKey('uuid');
     $this->langcodeKey = $this->entityType->getKey('langcode');
     $this->entityClass = $this->entityType->getClass();
-<<<<<<< HEAD
-
-    if (!isset($memory_cache)) {
-      @trigger_error('The $memory_cache parameter was added in Drupal 8.6.x and will be required in 9.0.0. See https://www.drupal.org/node/2973262', E_USER_DEPRECATED);
-      $memory_cache = \Drupal::service('entity.memory_cache');
-    }
-=======
->>>>>>> dev
     $this->memoryCache = $memory_cache;
     $this->memoryCacheTag = 'entity.memory_cache:' . $this->entityTypeId;
   }
@@ -602,11 +587,6 @@ abstract class EntityStorageBase extends EntityHandlerBase implements EntityStor
    * {@inheritdoc}
    */
   public function getQuery($conjunction = 'AND') {
-<<<<<<< HEAD
-    // Access the service directly rather than entity.query factory so the
-    // storage's current entity type is used.
-=======
->>>>>>> dev
     return \Drupal::service($this->getQueryServiceName())->get($this->entityType, $conjunction);
   }
 
@@ -614,11 +594,6 @@ abstract class EntityStorageBase extends EntityHandlerBase implements EntityStor
    * {@inheritdoc}
    */
   public function getAggregateQuery($conjunction = 'AND') {
-<<<<<<< HEAD
-    // Access the service directly rather than entity.query factory so the
-    // storage's current entity type is used.
-=======
->>>>>>> dev
     return \Drupal::service($this->getQueryServiceName())->getAggregate($this->entityType, $conjunction);
   }
 

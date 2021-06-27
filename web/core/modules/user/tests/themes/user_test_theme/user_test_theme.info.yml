@@ -3,7 +3,3 @@ type: theme
 base theme: stable
 description: 'Theme for testing the available fields in user twig template'
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev

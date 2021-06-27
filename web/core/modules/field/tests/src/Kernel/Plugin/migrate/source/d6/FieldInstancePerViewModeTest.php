@@ -15,11 +15,7 @@ class FieldInstancePerViewModeTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['field', 'migrate_drupal', 'node', 'user'];
-=======
   protected static $modules = ['field', 'migrate_drupal', 'node', 'user'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

@@ -27,11 +27,7 @@ class FieldTypePluginManager extends DefaultPluginManager implements FieldTypePl
   protected $typedDataManager;
 
   /**
-<<<<<<< HEAD
-   * Constructs the FieldTypePluginManager object
-=======
    * Constructs the FieldTypePluginManager object.
->>>>>>> dev
    *
    * @param \Traversable $namespaces
    *   An object that implements \Traversable which contains the root paths

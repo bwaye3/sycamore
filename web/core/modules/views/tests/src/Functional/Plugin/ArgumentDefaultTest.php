@@ -2,10 +2,6 @@
 
 namespace Drupal\Tests\views\Functional\Plugin;
 
-<<<<<<< HEAD
-use Drupal\Component\Render\FormattableMarkup;
-=======
->>>>>>> dev
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
@@ -44,15 +40,9 @@ class ArgumentDefaultTest extends ViewTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'views_ui', 'block'];
-
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected static $modules = ['node', 'views_ui', 'block'];
 
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();
@@ -80,30 +70,18 @@ class ArgumentDefaultTest extends ViewTestBase {
     $this->assertInstanceOf(ArgumentDefaultTestPlugin::class, $plugin);
 
     // Check that the value of the default argument is as expected.
-<<<<<<< HEAD
-    $this->assertEqual($view->argument[$id]->getDefaultArgument(), 'John', 'The correct argument default value is returned.');
-    // Don't pass in a value for the default argument and make sure the query
-    // just returns John.
-    $this->executeView($view);
-    $this->assertEqual($view->argument[$id]->getValue(), 'John', 'The correct argument value is used.');
-=======
     $this->assertEquals('John', $view->argument[$id]->getDefaultArgument(), 'The correct argument default value is returned.');
     // Don't pass in a value for the default argument and make sure the query
     // just returns John.
     $this->executeView($view);
     $this->assertEquals('John', $view->argument[$id]->getValue(), 'The correct argument value is used.');
->>>>>>> dev
     $expected_result = [['name' => 'John']];
     $this->assertIdenticalResultset($view, $expected_result, ['views_test_data_name' => 'name']);
 
     // Pass in value as argument to be sure that not the default value is used.
     $view->destroy();
     $this->executeView($view, ['George']);
-<<<<<<< HEAD
-    $this->assertEqual($view->argument[$id]->getValue(), 'George', 'The correct argument value is used.');
-=======
     $this->assertEquals('George', $view->argument[$id]->getValue(), 'The correct argument value is used.');
->>>>>>> dev
     $expected_result = [['name' => 'George']];
     $this->assertIdenticalResultset($view, $expected_result, ['views_test_data_name' => 'name']);
   }
@@ -123,12 +101,8 @@ class ArgumentDefaultTest extends ViewTestBase {
     $edit = [
       'options[default_argument_type]' => $argument_type,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/nojs/handler/test_argument_default_current_user/default/argument/uid', $edit, t('Apply'));
-=======
     $this->drupalGet('admin/structure/views/nojs/handler/test_argument_default_current_user/default/argument/uid');
     $this->submitForm($edit, 'Apply');
->>>>>>> dev
 
     // Note, the undefined index error has two spaces after it.
     $error = [
@@ -137,11 +111,7 @@ class ArgumentDefaultTest extends ViewTestBase {
       '%function' => 'views_handler_argument->validateOptionsForm()',
     ];
     $message = t('%type: @message in %function', $error);
-<<<<<<< HEAD
-    $this->assertNoRaw($message, new FormattableMarkup('Did not find error message: @message.', ['@message' => $message]));
-=======
     $this->assertNoRaw($message);
->>>>>>> dev
   }
 
   /**
@@ -156,21 +126,13 @@ class ArgumentDefaultTest extends ViewTestBase {
     $view->display_handler->overrideOption('arguments', $options);
     $view->initHandlers();
 
-<<<<<<< HEAD
-    $this->assertEqual($view->argument['null']->getDefaultArgument(), $random, 'Fixed argument should be used by default.');
-=======
     $this->assertEquals($random, $view->argument['null']->getDefaultArgument(), 'Fixed argument should be used by default.');
->>>>>>> dev
 
     // Make sure that a normal argument provided is used
     $random_string = $this->randomMachineName();
     $view->executeDisplay('default', [$random_string]);
 
-<<<<<<< HEAD
-    $this->assertEqual($view->args[0], $random_string, 'Provided argument should be used.');
-=======
     $this->assertEquals($random_string, $view->args[0], 'Provided argument should be used.');
->>>>>>> dev
   }
 
   /**
@@ -179,11 +141,7 @@ class ArgumentDefaultTest extends ViewTestBase {
   // function testArgumentDefaultPhp() {}
 
   /**
-<<<<<<< HEAD
-   * Test node default argument.
-=======
    * Tests node default argument.
->>>>>>> dev
    */
   public function testArgumentDefaultNode() {
     // Create a user that has permission to place a view block.
@@ -227,21 +185,13 @@ class ArgumentDefaultTest extends ViewTestBase {
     // Check the query parameter default argument fallback value.
     $view->setRequest($request);
     $view->initHandlers();
-<<<<<<< HEAD
-    $this->assertEqual($view->argument['type']->getDefaultArgument(), 'all');
-=======
     $this->assertEquals('all', $view->argument['type']->getDefaultArgument());
->>>>>>> dev
 
     // Check the query parameter default argument with a value.
     $request->query->add(['the_node_type' => 'page']);
     $view->setRequest($request);
     $view->initHandlers();
-<<<<<<< HEAD
-    $this->assertEqual($view->argument['type']->getDefaultArgument(), 'page');
-=======
     $this->assertEquals('page', $view->argument['type']->getDefaultArgument());
->>>>>>> dev
   }
 
 }

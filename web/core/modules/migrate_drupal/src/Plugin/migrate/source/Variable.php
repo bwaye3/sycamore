@@ -9,10 +9,6 @@ use Drupal\migrate\Plugin\MigrationInterface;
 /**
  * Drupal variable source from database.
  *
-<<<<<<< HEAD
- * This source class always returns a single row and as such is not a good
- * example for any normal source class returning multiple rows.
-=======
  * This source class fetches variables from the source Drupal database.
  * Depending on the configuration, this returns zero or a single row and as such
  * is not a good example for any normal source class returning multiple rows.
@@ -77,7 +73,6 @@ use Drupal\migrate\Plugin\MigrationInterface;
  * For additional configuration keys, refer to the parent classes:
  * @see \Drupal\migrate\Plugin\migrate\source\SqlBase
  * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
->>>>>>> dev
  *
  * @MigrateSource(
  *   id = "variable",
@@ -94,8 +89,6 @@ class Variable extends DrupalSqlBase {
   protected $variables;
 
   /**
-<<<<<<< HEAD
-=======
    * The variables that result in no row if any are missing from the source.
    *
    * @var array
@@ -103,33 +96,24 @@ class Variable extends DrupalSqlBase {
   protected $variablesNoRowIfMissing;
 
   /**
->>>>>>> dev
    * {@inheritdoc}
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, StateInterface $state, EntityTypeManagerInterface $entity_type_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $migration, $state, $entity_type_manager);
-<<<<<<< HEAD
-    $this->variables = $this->configuration['variables'];
-=======
     $this->variablesNoRowIfMissing = $this->configuration['variables_no_row_if_missing'] ?? [];
     $variables = $this->configuration['variables'] ?? [];
     $this->variables = array_unique(array_merge(array_values($variables), array_values($this->variablesNoRowIfMissing)));
->>>>>>> dev
   }
 
   /**
    * {@inheritdoc}
    */
   protected function initializeIterator() {
-<<<<<<< HEAD
-    return new \ArrayIterator([$this->values()]);
-=======
     if ($this->count()) {
       return new \ArrayIterator([$this->values()]);
     }
 
     return new \ArrayIterator();
->>>>>>> dev
   }
 
   /**
@@ -151,9 +135,6 @@ class Variable extends DrupalSqlBase {
    * {@inheritdoc}
    */
   public function count($refresh = FALSE) {
-<<<<<<< HEAD
-    // Variable always returns a single row with at minimum an 'id' property.
-=======
     if (empty($this->variablesNoRowIfMissing)) {
       return 1;
     }
@@ -162,7 +143,6 @@ class Variable extends DrupalSqlBase {
     if (!empty(array_diff($this->variablesNoRowIfMissing, $variable_names))) {
       return 0;
     }
->>>>>>> dev
     return 1;
   }
 

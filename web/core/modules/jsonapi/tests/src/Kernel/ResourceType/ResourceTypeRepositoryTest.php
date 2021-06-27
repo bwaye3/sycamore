@@ -18,11 +18,7 @@ class ResourceTypeRepositoryTest extends JsonapiKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'field',
     'node',
     'serialization',
@@ -41,11 +37,7 @@ class ResourceTypeRepositoryTest extends JsonapiKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     // Add the entity schemas.
     $this->installEntitySchema('node');
@@ -125,13 +117,8 @@ class ResourceTypeRepositoryTest extends JsonapiKernelTestBase {
    * Ensures that a naming conflict in the mapping causes an exception to be
    * thrown.
    *
-<<<<<<< HEAD
-   * @covers ::getFieldMapping
-   * @dataProvider getFieldMappingProvider
-=======
    * @covers ::getFields
    * @dataProvider getFieldsProvider
->>>>>>> dev
    */
   public function testMappingNameConflictCheck($field_name_list) {
     $entity_type = \Drupal::entityTypeManager()->getDefinition('node');
@@ -146,11 +133,7 @@ class ResourceTypeRepositoryTest extends JsonapiKernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Data provider for testGetFieldMapping.
-=======
    * Data provider for testMappingNameConflictCheck.
->>>>>>> dev
    *
    * These field name lists are designed to trigger a naming conflict in the
    * mapping: the special-cased names "type" or "id", and the name
@@ -159,11 +142,7 @@ class ResourceTypeRepositoryTest extends JsonapiKernelTestBase {
    * @returns array
    *   The data for the test method.
    */
-<<<<<<< HEAD
-  public function getFieldMappingProvider() {
-=======
   public function getFieldsProvider() {
->>>>>>> dev
     return [
       [['type', 'node_type']],
       [['id', 'node_id']],
@@ -209,8 +188,6 @@ class ResourceTypeRepositoryTest extends JsonapiKernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Tests that resource type fields can be aliased per resource type.
    */
   public function testResourceTypeNameAliasing() {
@@ -221,7 +198,6 @@ class ResourceTypeRepositoryTest extends JsonapiKernelTestBase {
   }
 
   /**
->>>>>>> dev
    * Tests that resource type fields can be disabled per resource type.
    */
   public function testResourceTypeFieldDisabling() {

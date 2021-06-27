@@ -3,11 +3,7 @@
 namespace Drupal\Core\Archiver;
 
 /**
-<<<<<<< HEAD
- * Defines a archiver implementation for .tar files.
-=======
  * Defines an archiver implementation for .tar files.
->>>>>>> dev
  */
 class Tar implements ArchiverInterface {
 

@@ -22,11 +22,7 @@ class MediaTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['media'];
-=======
   protected static $modules = ['media'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -346,10 +342,6 @@ class MediaTest extends ResourceTestBase {
       ->addCacheTags(['media:1']);
   }
 
-<<<<<<< HEAD
-  // @codingStandardsIgnoreStart
-=======
->>>>>>> dev
   /**
    * {@inheritdoc}
    */
@@ -358,10 +350,6 @@ class MediaTest extends ResourceTestBase {
     // @todo Later, use https://www.drupal.org/project/drupal/issues/2958554 to upload files rather than the REST module.
     parent::testPostIndividual();
   }
-<<<<<<< HEAD
-  // @codingStandardsIgnoreEnd
-=======
->>>>>>> dev
 
   /**
    * {@inheritdoc}

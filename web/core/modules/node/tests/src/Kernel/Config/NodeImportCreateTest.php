@@ -19,20 +19,12 @@ class NodeImportCreateTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'field', 'text', 'system', 'user'];
-=======
   protected static $modules = ['node', 'field', 'text', 'system', 'user'];
->>>>>>> dev
 
   /**
    * Set the default field storage backend for fields created during tests.
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('user');
 

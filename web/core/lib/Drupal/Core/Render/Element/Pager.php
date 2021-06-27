@@ -38,11 +38,7 @@ class Pager extends RenderElement {
   public function getInfo() {
     return [
       '#pre_render' => [
-<<<<<<< HEAD
-        get_class($this) . '::preRenderPager',
-=======
         static::class . '::preRenderPager',
->>>>>>> dev
       ],
       '#theme' => 'pager',
       // The pager ID, to distinguish between multiple pagers on the same page.

@@ -6,25 +6,12 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class TypeLinkManager extends LinkManagerBase implements TypeLinkManagerInterface {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * Injected cache backend.
@@ -70,24 +57,12 @@ class TypeLinkManager extends LinkManagerBase implements TypeLinkManagerInterfac
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    */
-<<<<<<< HEAD
-  public function __construct(CacheBackendInterface $cache, ModuleHandlerInterface $module_handler, ConfigFactoryInterface $config_factory, RequestStack $request_stack, EntityTypeBundleInfoInterface $bundle_info_service, EntityTypeManagerInterface $entity_type_manager = NULL) {
-=======
   public function __construct(CacheBackendInterface $cache, ModuleHandlerInterface $module_handler, ConfigFactoryInterface $config_factory, RequestStack $request_stack, EntityTypeBundleInfoInterface $bundle_info_service, EntityTypeManagerInterface $entity_type_manager) {
->>>>>>> dev
     $this->cache = $cache;
     $this->configFactory = $config_factory;
     $this->moduleHandler = $module_handler;
     $this->requestStack = $request_stack;
     $this->bundleInfoService = $bundle_info_service;
-<<<<<<< HEAD
-
-    if (!$entity_type_manager) {
-      @trigger_error('The entity_type.manager service must be passed to TypeLinkManager::__construct(), it is required before Drupal 9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $entity_type_manager = \Drupal::service('entity_type.manager.manager');
-    }
-=======
->>>>>>> dev
     $this->entityTypeManager = $entity_type_manager;
   }
 
@@ -108,10 +83,6 @@ class TypeLinkManager extends LinkManagerBase implements TypeLinkManagerInterfac
     // TypeLinkManager class/service to return the desired URL.
     $uri = $this->getLinkDomain($context) . "/rest/type/$entity_type/$bundle";
     $this->moduleHandler->alter('hal_type_uri', $uri, $context);
-<<<<<<< HEAD
-    $this->moduleHandler->alterDeprecated('This hook is deprecated in Drupal 8.3.x and will be removed before Drupal 9.0.0. Implement hook_hal_type_uri_alter() instead.', 'rest_type_uri', $uri, $context);
-=======
->>>>>>> dev
     return $uri;
   }
 

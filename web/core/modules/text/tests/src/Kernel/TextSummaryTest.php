@@ -20,11 +20,7 @@ class TextSummaryTest extends KernelTestBase {
 
   use UserCreationTrait;
 
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'system',
     'user',
     'filter',
@@ -33,11 +29,7 @@ class TextSummaryTest extends KernelTestBase {
     'entity_test',
   ];
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installConfig(['text']);
@@ -55,18 +47,11 @@ class TextSummaryTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test summary with long example.
-   */
-  public function testLongSentence() {
-    // 125.
-=======
    * Tests summary with long example.
    */
   public function testLongSentence() {
     // 125.
     // cSpell:disable
->>>>>>> dev
     $text =
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ' .
       // 108.
@@ -78,20 +63,13 @@ class TextSummaryTest extends KernelTestBase {
     $expected = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ' .
                 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ' .
                 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
-<<<<<<< HEAD
-=======
     // cSpell:enable
->>>>>>> dev
     // First three sentences add up to: 336, so add one for space and then 3 to get half-way into next word.
     $this->assertTextSummary($text, $expected, NULL, 340);
   }
 
   /**
-<<<<<<< HEAD
-   * Test various summary length edge cases.
-=======
    * Tests various summary length edge cases.
->>>>>>> dev
    */
   public function testLength() {
     FilterFormat::create([
@@ -247,13 +225,8 @@ class TextSummaryTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test text_summary() returns an empty string without any error when called
-   * with an invalid format.
-=======
    * Tests text_summary() returns an empty string without any error when
    * called with an invalid format.
->>>>>>> dev
    */
   public function testInvalidFilterFormat() {
 
@@ -265,22 +238,11 @@ class TextSummaryTest extends KernelTestBase {
    */
   public function assertTextSummary($text, $expected, $format = NULL, $size = NULL) {
     $summary = text_summary($text, $format, $size);
-<<<<<<< HEAD
-    $this->assertIdentical($summary, $expected, new FormattableMarkup('<pre style="white-space: pre-wrap">@actual</pre> is identical to <pre style="white-space: pre-wrap">@expected</pre>', [
-      '@actual' => $summary,
-      '@expected' => $expected,
-    ]));
-  }
-
-  /**
-   * Test required summary.
-=======
     $this->assertSame($expected, $summary, new FormattableMarkup('<pre style="white-space: pre-wrap">@actual</pre> is identical to <pre style="white-space: pre-wrap">@expected</pre>', ['@actual' => $summary, '@expected' => $expected]));
   }
 
   /**
    * Tests required summary.
->>>>>>> dev
    */
   public function testRequiredSummary() {
     $this->installEntitySchema('entity_test');

@@ -29,41 +29,25 @@ class StyleTableTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();
   }
 
   /**
-<<<<<<< HEAD
-   * Test table caption/summary/description.
-=======
    * Tests table caption/summary/description.
->>>>>>> dev
    */
   public function testAccessibilitySettings() {
     $this->drupalGet('test-table');
 
     $result = $this->xpath('//caption/child::text()');
     $this->assertNotEmpty($result, 'The caption appears on the table.');
-<<<<<<< HEAD
-    $this->assertEqual(trim($result[0]->getText()), 'caption-text');
-
-    $result = $this->xpath('//summary/child::text()');
-    $this->assertNotEmpty($result, 'The summary appears on the table.');
-    $this->assertEqual(trim($result[0]->getText()), 'summary-text');
-=======
     $this->assertEquals('caption-text', trim($result[0]->getText()));
 
     $result = $this->xpath('//summary/child::text()');
     $this->assertNotEmpty($result, 'The summary appears on the table.');
     $this->assertEquals('summary-text', trim($result[0]->getText()));
->>>>>>> dev
     // Check that the summary has the right accessibility settings.
     $summary = $this->xpath('//summary')[0];
     $this->assertTrue($summary->hasAttribute('role'));
@@ -71,11 +55,7 @@ class StyleTableTest extends ViewTestBase {
 
     $result = $this->xpath('//caption/details/child::text()[normalize-space()]');
     $this->assertNotEmpty($result, 'The table description appears on the table.');
-<<<<<<< HEAD
-    $this->assertEqual(trim($result[0]->getText()), 'description-text');
-=======
     $this->assertEquals('description-text', trim($result[0]->getText()));
->>>>>>> dev
 
     // Remove the caption and ensure the caption is not displayed anymore.
     $view = View::load('test_table');
@@ -107,11 +87,7 @@ class StyleTableTest extends ViewTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test table fields in columns.
-=======
    * Tests table fields in columns.
->>>>>>> dev
    */
   public function testFieldInColumns() {
     $this->drupalGet('test-table');
@@ -143,11 +119,7 @@ class StyleTableTest extends ViewTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that a number with the value of "0" is displayed in the table.
-=======
    * Tests that a number with the value of "0" is displayed in the table.
->>>>>>> dev
    */
   public function testNumericFieldVisible() {
     // Adds a new datapoint in the views_test_data table to have a person with
@@ -174,11 +146,7 @@ class StyleTableTest extends ViewTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that empty columns are hidden when empty_column is set.
-=======
    * Tests that empty columns are hidden when empty_column is set.
->>>>>>> dev
    */
   public function testEmptyColumn() {
     // Empty the 'job' data.
@@ -242,21 +210,13 @@ class StyleTableTest extends ViewTestBase {
     ];
 
     // Ensure that we don't find the caption containing unsafe markup.
-<<<<<<< HEAD
-    $this->assertNoRaw($unsafe_markup, "Didn't find caption containing unsafe markup.");
-=======
     $this->assertNoRaw($unsafe_markup);
->>>>>>> dev
     // Ensure that the summary isn't shown.
     $this->assertEmpty($this->xpath('//caption/details'));
 
     // Ensure that all expected captions are found.
     foreach ($expected_captions as $raw_caption) {
-<<<<<<< HEAD
-      $this->assertEscaped($raw_caption);
-=======
       $this->assertSession()->assertEscaped($raw_caption);
->>>>>>> dev
     }
 
     $display = &$view->getDisplay('default');
@@ -274,19 +234,11 @@ class StyleTableTest extends ViewTestBase {
     ];
 
     // Ensure that we don't find the caption containing unsafe markup.
-<<<<<<< HEAD
-    $this->assertNoRaw($unsafe_markup, "Didn't find caption containing unsafe markup.");
-
-    // Ensure that all expected captions are found.
-    foreach ($expected_captions as $raw_caption) {
-      $this->assertEscaped($raw_caption);
-=======
     $this->assertNoRaw($unsafe_markup);
 
     // Ensure that all expected captions are found.
     foreach ($expected_captions as $raw_caption) {
       $this->assertSession()->assertEscaped($raw_caption);
->>>>>>> dev
     }
   }
 
@@ -299,15 +251,9 @@ class StyleTableTest extends ViewTestBase {
     $url = 'test-table';
     $this->drupalGet($url);
     $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-    $this->assertEquals('MISS', $this->drupalGetHeader(DynamicPageCacheSubscriber::HEADER));
-    $this->drupalGet($url);
-    $this->assertEquals('HIT', $this->drupalGetHeader(DynamicPageCacheSubscriber::HEADER));
-=======
     $this->assertSession()->responseHeaderEquals(DynamicPageCacheSubscriber::HEADER, 'MISS');
     $this->drupalGet($url);
     $this->assertSession()->responseHeaderEquals(DynamicPageCacheSubscriber::HEADER, 'HIT');
->>>>>>> dev
   }
 
 }

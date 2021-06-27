@@ -86,11 +86,7 @@ class ThemeSettings extends DestinationBase implements ContainerFactoryPluginInt
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function fields(MigrationInterface $migration = NULL) {
-=======
   public function fields() {
->>>>>>> dev
     // Theme settings vary by theme, so no specific fields are defined.
     return [];
   }

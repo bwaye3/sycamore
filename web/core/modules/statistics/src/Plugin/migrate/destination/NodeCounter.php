@@ -68,11 +68,7 @@ class NodeCounter extends DestinationBase implements ContainerFactoryPluginInter
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function fields(MigrationInterface $migration = NULL) {
-=======
   public function fields() {
->>>>>>> dev
     return [
       'nid' => $this->t('The ID of the node to which these statistics apply.'),
       'totalcount' => $this->t('The total number of times the node has been viewed.'),
@@ -98,21 +94,12 @@ class NodeCounter extends DestinationBase implements ContainerFactoryPluginInter
         'totalcount' => $totalcount,
         'timestamp' => $timestamp,
       ])
-<<<<<<< HEAD
-      ->expression('daycount', 'daycount + :daycount', [':daycount' => $daycount])
-      ->expression('totalcount', 'totalcount + :totalcount', [':totalcount' => $totalcount])
-      // Per Drupal policy: "A query may have any number of placeholders, but
-      // all must have unique names even if they have the same value."
-      // https://www.drupal.org/docs/8/api/database-api/static-queries#placeholders
-      ->expression('timestamp', 'CASE WHEN timestamp > :timestamp1 THEN timestamp ELSE :timestamp2 END', [':timestamp1' => $timestamp, ':timestamp2' => $timestamp])
-=======
       ->expression('daycount', '[daycount] + :daycount', [':daycount' => $daycount])
       ->expression('totalcount', '[totalcount] + :totalcount', [':totalcount' => $totalcount])
       // Per Drupal policy: "A query may have any number of placeholders, but
       // all must have unique names even if they have the same value."
       // https://www.drupal.org/docs/8/api/database-api/static-queries#placeholders
       ->expression('timestamp', 'CASE WHEN [timestamp] > :timestamp1 THEN [timestamp] ELSE :timestamp2 END', [':timestamp1' => $timestamp, ':timestamp2' => $timestamp])
->>>>>>> dev
       ->execute();
 
     return [$row->getDestinationProperty('nid')];

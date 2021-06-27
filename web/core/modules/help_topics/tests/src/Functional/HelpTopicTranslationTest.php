@@ -17,11 +17,7 @@ class HelpTopicTranslationTest extends HelpTopicTranslatedTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create user and log in.

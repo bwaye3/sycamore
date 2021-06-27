@@ -1,11 +1,7 @@
 <?php
-<<<<<<< HEAD
-// @codingStandardsIgnoreFile
-=======
 
 // phpcs:ignoreFile Portions of this file are a direct copy of
 // \Symfony\Component\DependencyInjection\Loader\YamlFileLoader.
->>>>>>> dev
 
 namespace Drupal\Core\DependencyInjection;
 
@@ -126,13 +122,9 @@ class YamlFileLoader
             list($provider, ) = explode('.', $basename, 2);
         }
         foreach ($content['services'] as $id => $service) {
-<<<<<<< HEAD
-            $service['tags'][] = ['name' => '_provider', 'provider' => $provider];
-=======
             if (is_array($service)) {
               $service['tags'][] = ['name' => '_provider', 'provider' => $provider];
             }
->>>>>>> dev
             $this->parseDefinition($id, $service, $file);
         }
     }
@@ -160,10 +152,6 @@ class YamlFileLoader
         }
 
         if (isset($service['alias'])) {
-<<<<<<< HEAD
-            $public = !array_key_exists('public', $service) || (bool) $service['public'];
-            $this->container->setAlias($id, new Alias($service['alias'], $public));
-=======
             $alias = $this->container->setAlias($id, new Alias($service['alias']));
 
             if (array_key_exists('public', $service)) {
@@ -180,7 +168,6 @@ class YamlFileLoader
                     $alias->setDeprecated(true, $service['deprecated']);
                 }
             }
->>>>>>> dev
 
             return;
         }
@@ -210,21 +197,15 @@ class YamlFileLoader
         if (isset($service['public'])) {
             $definition->setPublic($service['public']);
         }
-<<<<<<< HEAD
-=======
         else {
             $definition->setPublic(true);
         }
->>>>>>> dev
 
         if (isset($service['abstract'])) {
             $definition->setAbstract($service['abstract']);
         }
 
         if (array_key_exists('deprecated', $service)) {
-<<<<<<< HEAD
-            $definition->setDeprecated(true, $service['deprecated']);
-=======
             if (method_exists($definition, 'getDeprecation')) {
                 $deprecation = \is_array($service['deprecated']) ? $service['deprecated'] : ['message' => $service['deprecated']];
                 $definition->setDeprecated($deprecation['package'] ?? '', $deprecation['version'] ?? '', $deprecation['message']);
@@ -233,7 +214,6 @@ class YamlFileLoader
                 // https://www.drupal.org/project/drupal/issues/3197729
                 $definition->setDeprecated(true, $service['deprecated']);
             }
->>>>>>> dev
         }
 
         if (isset($service['factory'])) {
@@ -336,27 +316,6 @@ class YamlFileLoader
             $definition->setAutowired($service['autowire']);
         }
 
-<<<<<<< HEAD
-        if (isset($service['autowiring_types'])) {
-            if (is_string($service['autowiring_types'])) {
-                $definition->addAutowiringType($service['autowiring_types']);
-            } else {
-                if (!is_array($service['autowiring_types'])) {
-                    throw new InvalidArgumentException(sprintf('Parameter "autowiring_types" must be a string or an array for service "%s" in %s. Check your YAML syntax.', $id, $file));
-                }
-
-                foreach ($service['autowiring_types'] as $autowiringType) {
-                    if (!is_string($autowiringType)) {
-                        throw new InvalidArgumentException(sprintf('A "autowiring_types" attribute must be of type string for service "%s" in %s. Check your YAML syntax.', $id, $file));
-                    }
-
-                    $definition->addAutowiringType($autowiringType);
-                }
-            }
-        }
-
-=======
->>>>>>> dev
         $this->container->setDefinition($id, $definition);
     }
 

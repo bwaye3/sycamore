@@ -225,16 +225,6 @@ class BlockContent extends EditorialContentEntityBase implements BlockContentInt
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function getRevisionLog() {
-    return $this->getRevisionLogMessage();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-=======
->>>>>>> dev
   public function setInfo($info) {
     $this->set('info', $info);
     return $this;
@@ -243,16 +233,6 @@ class BlockContent extends EditorialContentEntityBase implements BlockContentInt
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setRevisionLog($revision_log) {
-    return $this->setRevisionLogMessage($revision_log);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-=======
->>>>>>> dev
   public function getRevisionCreationTime() {
     return $this->get('revision_created')->value;
   }

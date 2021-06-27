@@ -3,11 +3,7 @@
  * Attaches behavior for the Filter module.
  */
 
-<<<<<<< HEAD
-(function($, Drupal) {
-=======
 (function ($, Drupal) {
->>>>>>> dev
   /**
    * Displays the guidelines of the selected text format automatically.
    *

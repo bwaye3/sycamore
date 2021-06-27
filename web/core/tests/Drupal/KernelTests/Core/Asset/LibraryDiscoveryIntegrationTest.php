@@ -23,16 +23,12 @@ class LibraryDiscoveryIntegrationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected static $modules = ['theme_test'];
 
   /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->container->get('theme_installer')->install(['test_theme', 'classy']);
@@ -72,11 +68,7 @@ class LibraryDiscoveryIntegrationTest extends KernelTestBase {
     $this->activateTheme('test_theme');
 
     // Assert that entire library was correctly overridden.
-<<<<<<< HEAD
-    $this->assertEqual($this->libraryDiscovery->getLibraryByName('core', 'drupal.collapse'), $this->libraryDiscovery->getLibraryByName('test_theme', 'collapse'), 'Entire library correctly overridden.');
-=======
     $this->assertEquals($this->libraryDiscovery->getLibraryByName('core', 'drupal.collapse'), $this->libraryDiscovery->getLibraryByName('test_theme', 'collapse'), 'Entire library correctly overridden.');
->>>>>>> dev
 
     // Assert that classy library assets were correctly overridden or removed.
     $this->assertNoAssetInLibrary('core/themes/classy/css/components/button.css', 'classy', 'base', 'css');
@@ -97,12 +89,8 @@ class LibraryDiscoveryIntegrationTest extends KernelTestBase {
     $library = $this->libraryDiscovery->getLibraryByName('core', 'jquery');
     foreach ($library['js'] as $definition) {
       if ($definition['data'] == 'core/modules/system/tests/themes/test_theme/js/collapse.js') {
-<<<<<<< HEAD
-        $this->assertTrue($definition['minified'] && $definition['weight'] == -20, 'Previous attributes retained');
-=======
         $this->assertTrue($definition['minified']);
         $this->assertSame(-20, $definition['weight'], 'Previous attributes retained');
->>>>>>> dev
         break;
       }
     }
@@ -122,11 +110,7 @@ class LibraryDiscoveryIntegrationTest extends KernelTestBase {
     }
     catch (InvalidLibrariesOverrideSpecificationException $e) {
       $expected_message = 'drupalSettings may not be overridden in libraries-override. Trying to override core/drupal.ajax/drupalSettings. Use hook_library_info_alter() instead.';
-<<<<<<< HEAD
-      $this->assertEqual($e->getMessage(), $expected_message, 'Throw Exception when trying to override drupalSettings');
-=======
       $this->assertEquals($expected_message, $e->getMessage(), 'Throw Exception when trying to override drupalSettings');
->>>>>>> dev
     }
   }
 
@@ -144,11 +128,7 @@ class LibraryDiscoveryIntegrationTest extends KernelTestBase {
     }
     catch (InvalidLibrariesOverrideSpecificationException $e) {
       $expected_message = 'Library asset core/drupal.dialog/css is not correctly specified. It should be in the form "extension/library_name/sub_key/path/to/asset.js".';
-<<<<<<< HEAD
-      $this->assertEqual($e->getMessage(), $expected_message, 'Throw Exception when specifying invalid override');
-=======
       $this->assertEquals($expected_message, $e->getMessage(), 'Throw Exception when specifying invalid override');
->>>>>>> dev
     }
   }
 
@@ -167,11 +147,7 @@ class LibraryDiscoveryIntegrationTest extends KernelTestBase {
     $this->assertAssetInLibrary('public://my_css/vertical-tabs.css', 'core', 'drupal.vertical-tabs', 'css');
 
     // Assert a protocol-relative URI.
-<<<<<<< HEAD
-    $this->assertAssetInLibrary('//my-server/my_theme/css/jquery_ui.css', 'core', 'jquery.ui', 'css');
-=======
     $this->assertAssetInLibrary('//my-server/my_theme/js/overridden.js', 'core', 'drupal.displace', 'js');
->>>>>>> dev
 
     // Assert an absolute URI.
     $this->assertAssetInLibrary('http://example.com/my_theme/css/farbtastic.css', 'core', 'jquery.farbtastic', 'css');
@@ -223,11 +199,7 @@ class LibraryDiscoveryIntegrationTest extends KernelTestBase {
     }
     catch (InvalidLibrariesExtendSpecificationException $e) {
       $expected_message = 'The specified library "test_theme_libraries_extend/non_existent_library" does not exist.';
-<<<<<<< HEAD
-      $this->assertEqual($e->getMessage(), $expected_message, 'Throw Exception when specifying non-existent libraries-extend.');
-=======
       $this->assertEquals($expected_message, $e->getMessage(), 'Throw Exception when specifying non-existent libraries-extend.');
->>>>>>> dev
     }
 
     // Also, test non-string libraries-extend. An exception should be thrown.
@@ -238,17 +210,11 @@ class LibraryDiscoveryIntegrationTest extends KernelTestBase {
     }
     catch (InvalidLibrariesExtendSpecificationException $e) {
       $expected_message = 'The libraries-extend specification for each library must be a list of strings.';
-<<<<<<< HEAD
-      $this->assertEqual($e->getMessage(), $expected_message, 'Throw Exception when specifying non-string libraries-extend.');
-=======
       $this->assertEquals($expected_message, $e->getMessage(), 'Throw Exception when specifying non-string libraries-extend.');
->>>>>>> dev
     }
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Test deprecated libraries.
    *
    * @group legacy
@@ -264,7 +230,6 @@ class LibraryDiscoveryIntegrationTest extends KernelTestBase {
   }
 
   /**
->>>>>>> dev
    * Activates a specified theme.
    *
    * Installs the theme if not already installed and makes it the active theme.

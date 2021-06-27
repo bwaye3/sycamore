@@ -86,20 +86,12 @@ class ResolvedLibraryDefinitionsFilesMatchTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['system', 'user', 'path_alias'];
-=======
   protected static $modules = ['system', 'user', 'path_alias'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Install all core themes.
@@ -200,21 +192,13 @@ class ResolvedLibraryDefinitionsFilesMatchTest extends KernelTestBase {
     $extensions = $modules;
     $module_list = array_keys($modules);
     sort($module_list);
-<<<<<<< HEAD
-    $this->assertEqual($this->allModules, $module_list, 'All core modules are installed.');
-=======
     $this->assertEquals($this->allModules, $module_list, 'All core modules are installed.');
->>>>>>> dev
 
     $themes = $this->themeHandler->listInfo();
     $extensions += $themes;
     $theme_list = array_keys($themes);
     sort($theme_list);
-<<<<<<< HEAD
-    $this->assertEqual($this->allThemes, $theme_list, 'All core themes are installed.');
-=======
     $this->assertEquals($this->allThemes, $theme_list, 'All core themes are installed.');
->>>>>>> dev
 
     $libraries['core'] = $this->libraryDiscovery->getLibrariesByExtension('core');
 

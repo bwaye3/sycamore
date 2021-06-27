@@ -21,22 +21,14 @@ class IdMapTableNoDummyTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setUp() {
-=======
   public function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->pluginManager = $this->container->get('plugin.manager.migration');
     $this->pluginManager->createInstance('d6_user');
   }
 
   /**
-<<<<<<< HEAD
-   * Test that dummy map tables do not exist.
-=======
    * Tests that dummy map tables do not exist.
->>>>>>> dev
    */
   public function testNoDummyTables() {
     $database = \Drupal::database();

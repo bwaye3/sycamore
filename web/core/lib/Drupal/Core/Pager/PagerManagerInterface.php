@@ -15,15 +15,6 @@ namespace Drupal\Core\Pager;
  * of the pager element within the 'page' query. The value of the element is an
  * integer telling us the current page number for that pager.
  *
-<<<<<<< HEAD
- * This class generally replaces the functions in core/includes/pager.inc. Those
- * functions use globals to store data which they all use. Since we require
- * backwards compatibility with this behavior, this class presents a public API
- * for using pager information, which is implemented using the same globals as a
- * 'backend.'
- *
-=======
->>>>>>> dev
  * @see \Drupal\Core\Pager\PagerParametersInterface
  */
 interface PagerManagerInterface {
@@ -41,13 +32,8 @@ interface PagerManagerInterface {
    * you can extend the query object with the 'PagerSelectExtender' extender
    * before executing it. For example:
    * @code
-<<<<<<< HEAD
-   *   $query = db_select('some_table')
-   *     ->extend('Drupal\Core\Database\Query\PagerSelectExtender');
-=======
    *   $query = $connection->select('some_table')
    *     ->extend(PagerSelectExtender::class);
->>>>>>> dev
    * @endcode
    *
    * However, if you are using a different method for generating the items to be
@@ -88,13 +74,8 @@ interface PagerManagerInterface {
    *   // PagerManagerInterface::findPage(). This comes from a URL parameter, so
    *   // here we are assuming that the URL parameter corresponds to an actual
    *   // page of results that will exist within the set.
-<<<<<<< HEAD
-   *   $pager_parameters = \Drupal::service('pager.parameters');
-   *   $page = $pager_parameters->findPage();
-=======
    *   $pager_manager = \Drupal::service('pager.manager');
    *   $page = $pager_manager->findPage();
->>>>>>> dev
    *   $num_per_page = \Drupal::config('mymodule.settings')->get('num_per_page');
    *   $offset = $num_per_page * $page;
    *   $result = mymodule_remote_search($keywords, $offset, $num_per_page);
@@ -140,8 +121,6 @@ interface PagerManagerInterface {
   public function getPager($element = 0);
 
   /**
-<<<<<<< HEAD
-=======
    * Returns the current page being requested for display within a pager.
    *
    * @param int $pager_id
@@ -160,7 +139,6 @@ interface PagerManagerInterface {
   public function findPage(int $pager_id = 0): int;
 
   /**
->>>>>>> dev
    * Gets the URL query parameter array of a pager link.
    *
    * Adds to or adjusts the 'page' URL query parameter so that if you follow the
@@ -185,8 +163,6 @@ interface PagerManagerInterface {
    */
   public function getUpdatedParameters(array $query, $element, $index);
 
-<<<<<<< HEAD
-=======
   /**
    * Gets the extent of the pager page element IDs.
    *
@@ -209,5 +185,4 @@ interface PagerManagerInterface {
    */
   public function reservePagerElementId(int $element): void;
 
->>>>>>> dev
 }

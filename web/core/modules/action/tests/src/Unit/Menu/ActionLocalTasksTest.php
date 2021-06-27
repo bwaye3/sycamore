@@ -11,11 +11,7 @@ use Drupal\Tests\Core\Menu\LocalTaskIntegrationTestBase;
  */
 class ActionLocalTasksTest extends LocalTaskIntegrationTestBase {
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->directoryList = ['action' => 'core/modules/action'];
     parent::setUp();
   }

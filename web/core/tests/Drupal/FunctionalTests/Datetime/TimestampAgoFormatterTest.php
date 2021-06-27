@@ -39,11 +39,7 @@ class TimestampAgoFormatterTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['entity_test', 'field_ui'];
-=======
   protected static $modules = ['entity_test', 'field_ui'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -53,11 +49,7 @@ class TimestampAgoFormatterTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $web_user = $this->drupalCreateUser([
@@ -117,27 +109,16 @@ class TimestampAgoFormatterTest extends BrowserTestBase {
       'fields[field_timestamp][region]' => 'content',
       'fields[field_timestamp][type]' => 'timestamp_ago',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save'));
-
-    $this->drupalPostForm(NULL, [], 'field_timestamp_settings_edit');
-=======
     $this->submitForm($edit, 'Save');
 
     $this->submitForm([], 'field_timestamp_settings_edit');
->>>>>>> dev
     $edit = [
       'fields[field_timestamp][settings_edit_form][settings][future_format]' => 'ends in @interval',
       'fields[field_timestamp][settings_edit_form][settings][past_format]' => 'started @interval ago',
       'fields[field_timestamp][settings_edit_form][settings][granularity]' => 1,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, 'Update');
-    $this->drupalPostForm(NULL, [], 'Save');
-=======
     $this->submitForm($edit, 'Update');
     $this->submitForm([], 'Save');
->>>>>>> dev
 
     $this->assertSession()->pageTextContains('ends in 1 year');
     $this->assertSession()->pageTextContains('started 1 year ago');

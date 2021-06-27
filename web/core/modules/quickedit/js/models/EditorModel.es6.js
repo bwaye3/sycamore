@@ -5,11 +5,7 @@
  * @see Drupal.quickedit.EditorView
  */
 
-<<<<<<< HEAD
-(function(Backbone, Drupal) {
-=======
 (function (Backbone, Drupal) {
->>>>>>> dev
   /**
    * @constructor
    *

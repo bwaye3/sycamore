@@ -8,18 +8,10 @@
 (function ($, _ref, _ref2) {
   var behaviors = _ref.behaviors;
   var testMessages = _ref2.testMessages;
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
   var indexes = {};
   testMessages.types.forEach(function (type) {
     indexes[type] = [];
   });
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
   var messageObjects = {
     default: {
       zone: new Drupal.Message(),
@@ -27,23 +19,13 @@
     },
     multiple: []
   };
-<<<<<<< HEAD
-
   messageObjects.default.zone.clear();
-
-=======
-  messageObjects.default.zone.clear();
->>>>>>> dev
   testMessages.selectors.filter(Boolean).forEach(function (selector) {
     messageObjects[selector] = {
       zone: new Drupal.Message(document.querySelector(selector)),
       indexes: indexes
     };
   });
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
   behaviors.js_message_test = {
     attach: function attach() {
       $('[data-drupal-messages-area]').once('messages-details').on('click', '[data-action]', function (e) {
@@ -54,26 +36,18 @@
         var action = $target.attr('data-action');
 
         if (action === 'add') {
-<<<<<<< HEAD
-          messageObjects[area].indexes[type].push(message.add('This is a message of the type, ' + type + '. You be the judge of its importance.', { type: type }));
-=======
           messageObjects[area].indexes[type].push(message.add("This is a message of the type, ".concat(type, ". You be the judge of its importance."), {
             type: type
           }));
->>>>>>> dev
         } else if (action === 'remove') {
           message.remove(messageObjects[area].indexes[type].pop());
         }
       });
       $('[data-action="add-multiple"]').once('add-multiple').on('click', function () {
         [0, 1, 2, 3, 4, 5].forEach(function (i) {
-<<<<<<< HEAD
-          messageObjects.multiple.push(messageObjects.default.zone.add('This is message number ' + i + ' of the type, ' + testMessages.types[i % testMessages.types.length] + '. You be the judge of its importance.', { type: testMessages.types[i % testMessages.types.length] }));
-=======
           messageObjects.multiple.push(messageObjects.default.zone.add("This is message number ".concat(i, " of the type, ").concat(testMessages.types[i % testMessages.types.length], ". You be the judge of its importance."), {
             type: testMessages.types[i % testMessages.types.length]
           }));
->>>>>>> dev
         });
       });
       $('[data-action="remove-multiple"]').once('remove-multiple').on('click', function () {
@@ -84,11 +58,6 @@
       });
       $('[data-action="add-multiple-error"]').once('add-multiple-error').on('click', function () {
         [0, 1, 2, 3, 4, 5].forEach(function (i) {
-<<<<<<< HEAD
-          return messageObjects.default.zone.add('Msg-' + i, { type: 'error' });
-        });
-        messageObjects.default.zone.add('Msg-' + testMessages.types.length * 2, { type: 'status' });
-=======
           return messageObjects.default.zone.add("Msg-".concat(i), {
             type: 'error'
           });
@@ -96,7 +65,6 @@
         messageObjects.default.zone.add("Msg-".concat(testMessages.types.length * 2), {
           type: 'status'
         });
->>>>>>> dev
       });
       $('[data-action="remove-type"]').once('remove-type').on('click', function () {
         Array.prototype.map.call(document.querySelectorAll('[data-drupal-message-id^="error"]'), function (element) {

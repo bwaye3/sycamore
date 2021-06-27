@@ -55,17 +55,6 @@ class ConfigFileContentTest extends KernelTestBase {
     $config = $this->config($name);
 
     // Verify a configuration object is returned.
-<<<<<<< HEAD
-    $this->assertEqual($config->getName(), $name);
-    $this->assertNotEmpty($config, 'Config object created.');
-
-    // Verify the configuration object is empty.
-    $this->assertEqual($config->get(), [], 'New config object is empty.');
-
-    // Verify nothing was saved.
-    $data = $storage->read($name);
-    $this->assertIdentical($data, FALSE);
-=======
     $this->assertEquals($name, $config->getName());
     $this->assertNotEmpty($config, 'Config object created.');
 
@@ -75,7 +64,6 @@ class ConfigFileContentTest extends KernelTestBase {
     // Verify nothing was saved.
     $data = $storage->read($name);
     $this->assertFalse($data);
->>>>>>> dev
 
     // Add a top level value.
     $config = $this->config($name);
@@ -109,20 +97,6 @@ class ConfigFileContentTest extends KernelTestBase {
 
     // Read top level value.
     $config = $this->config($name);
-<<<<<<< HEAD
-    $this->assertEqual($config->getName(), $name);
-    $this->assertNotEmpty($config, 'Config object created.');
-    $this->assertEqual($config->get($key), 'bar', 'Top level configuration value found.');
-
-    // Read nested value.
-    $this->assertEqual($config->get($nested_key), $nested_value, 'Nested configuration value found.');
-
-    // Read array.
-    $this->assertEqual($config->get($array_key), $array_value, 'Top level array configuration value found.');
-
-    // Read nested array.
-    $this->assertEqual($config->get($nested_array_key), $array_value, 'Nested array configuration value found.');
-=======
     $this->assertEquals($name, $config->getName());
     $this->assertNotEmpty($config, 'Config object created.');
     $this->assertEquals('bar', $config->get($key), 'Top level configuration value found.');
@@ -135,7 +109,6 @@ class ConfigFileContentTest extends KernelTestBase {
 
     // Read nested array.
     $this->assertEquals($array_value, $config->get($nested_array_key), 'Nested array configuration value found.');
->>>>>>> dev
 
     // Read a top level value that doesn't exist.
     $this->assertNull($config->get('i_do_not_exist'), 'Non-existent top level value returned NULL.');
@@ -150,17 +123,10 @@ class ConfigFileContentTest extends KernelTestBase {
     $this->assertTrue($config->get($true_key), "Boolean TRUE value returned the TRUE.");
 
     // Read null value.
-<<<<<<< HEAD
-    $this->assertIdentical($config->get('null'), NULL);
-
-    // Read false that had been nested in an array value.
-    $this->assertSame(FALSE, $config->get($casting_array_false_value_key), "Nested boolean FALSE value returned FALSE.");
-=======
     $this->assertNull($config->get('null'));
 
     // Read false that had been nested in an array value.
     $this->assertFalse($config->get($casting_array_false_value_key), "Nested boolean FALSE value returned FALSE.");
->>>>>>> dev
 
     // Unset a top level value.
     $config->clear($key);
@@ -188,11 +154,7 @@ class ConfigFileContentTest extends KernelTestBase {
 
     // Verify the database entry exists from a chained save.
     $data = $storage->read($chained_name);
-<<<<<<< HEAD
-    $this->assertEqual($data, $config->get());
-=======
     $this->assertEquals($config->get(), $data);
->>>>>>> dev
 
     // Get file listing for all files starting with 'foo'. Should return
     // two elements.
@@ -212,11 +174,7 @@ class ConfigFileContentTest extends KernelTestBase {
     // Get file listing for all files starting with 'bar'. Should return
     // an empty array.
     $files = $storage->listAll('bar');
-<<<<<<< HEAD
-    $this->assertEqual($files, [], 'No files listed with the prefix \'bar\'.');
-=======
     $this->assertEquals([], $files, 'No files listed with the prefix \'bar\'.');
->>>>>>> dev
 
     // Delete the configuration.
     $config = $this->config($name);
@@ -224,11 +182,7 @@ class ConfigFileContentTest extends KernelTestBase {
 
     // Verify the database entry no longer exists.
     $data = $storage->read($name);
-<<<<<<< HEAD
-    $this->assertIdentical($data, FALSE);
-=======
     $this->assertFalse($data);
->>>>>>> dev
   }
 
   /**
@@ -246,10 +200,7 @@ class ConfigFileContentTest extends KernelTestBase {
         // UTF-8 in values.
         'UTF-8' => 'FrançAIS is ÜBER-åwesome',
         // Unicode in keys and values.
-<<<<<<< HEAD
-=======
         // cSpell:disable-next-line
->>>>>>> dev
         'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΣὨ' => 'αβγδεζηθικλμνξοσὠ',
       ],
       'invalid xml' => '</title><script type="text/javascript">alert("Title XSS!");</script> & < > " \' ',
@@ -272,10 +223,7 @@ class ConfigFileContentTest extends KernelTestBase {
     $key = 'UTF-8';
     $this->assertSame($config_data['nested keys'][$key], $config_parsed['nested keys'][$key]);
 
-<<<<<<< HEAD
-=======
     // cSpell:disable-next-line
->>>>>>> dev
     $key = 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΣὨ';
     $this->assertSame($config_data['nested keys'][$key], $config_parsed['nested keys'][$key]);
 

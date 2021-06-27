@@ -2,10 +2,6 @@
 
 namespace Drupal\Tests\search\Functional;
 
-<<<<<<< HEAD
-use Drupal\Component\Render\FormattableMarkup;
-=======
->>>>>>> dev
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\Traits\Core\CronRunTrait;
@@ -69,11 +65,7 @@ class SearchNumbersTest extends BrowserTestBase {
    */
   protected $nodes;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalCreateContentType(['type' => 'page', 'name' => 'Basic page']);
@@ -99,11 +91,7 @@ class SearchNumbersTest extends BrowserTestBase {
     // Run cron to ensure the content is indexed.
     $this->cronRun();
     $this->drupalGet('admin/reports/dblog');
-<<<<<<< HEAD
-    $this->assertText(t('Cron run completed'), 'Log shows cron run completed');
-=======
     $this->assertSession()->pageTextContains('Cron run completed');
->>>>>>> dev
   }
 
   /**
@@ -121,19 +109,6 @@ class SearchNumbersTest extends BrowserTestBase {
 
       // Verify that the node title does not appear on the search page
       // with a dummy search.
-<<<<<<< HEAD
-      $this->drupalPostForm('search/node',
-        ['keys' => 'foo'],
-        t('Search'));
-      $this->assertNoText($node->label(), $type . ': node title not shown in dummy search');
-
-      // Verify that the node title does appear as a link on the search page
-      // when searching for the number.
-      $this->drupalPostForm('search/node',
-        ['keys' => $number],
-        t('Search'));
-      $this->assertText($node->label(), new FormattableMarkup('%type: node title shown (search found the node) in search for number %number.', ['%type' => $type, '%number' => $number]));
-=======
       $this->drupalGet('search/node');
       $this->submitForm(['keys' => 'foo'], 'Search');
       $this->assertNoText($node->label());
@@ -143,7 +118,6 @@ class SearchNumbersTest extends BrowserTestBase {
       $this->drupalGet('search/node');
       $this->submitForm(['keys' => $number], 'Search');
       $this->assertSession()->pageTextContains($node->label());
->>>>>>> dev
     }
   }
 

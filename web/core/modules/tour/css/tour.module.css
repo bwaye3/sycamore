@@ -11,11 +11,7 @@
   float: left;
 }
 
-<<<<<<< HEAD
-/* Override placement of the tour progress indicator. */
-=======
 /* Style the tour progress indicator. */
->>>>>>> dev
 .tour-progress {
   position: absolute;
   right: 20px; /* LTR */
@@ -26,15 +22,6 @@
   left: 20px;
 }
 
-<<<<<<< HEAD
-/* Default styles for the container */
-.joyride-tip-guide {
-  position: absolute;
-  z-index: 101;
-  top: 0;
-  left: 0;
-  display: none;
-=======
 /**
  * The following are largely Shepherd's default styles, with a few modifications
  * to facilitate a graceful transition from Joyride, the library used prior to
@@ -83,104 +70,17 @@
 
 .shepherd-element {
   z-index: 101;
->>>>>>> dev
   width: 300px;
   background: #fff;
 }
 
 @media only screen and (max-width: 767px) {
-<<<<<<< HEAD
-  .joyride-tip-guide {
-=======
   .shepherd-element {
->>>>>>> dev
     left: 2.5%;
     width: 85%;
   }
 }
 
-<<<<<<< HEAD
-.joyride-content-wrapper {
-  position: relative;
-  padding: 20px 50px 20px 20px;  /* LTR */
-}
-[dir="rtl"] .joyride-content-wrapper {
-  padding: 20px 20px 20px 50px;
-}
-
-/* Add a little css triangle pip, older browser just miss out on the fanciness of it. */
-.joyride-tip-guide .joyride-nub {
-  position: absolute;
-  left: 22px;
-  display: block;
-  width: 0;
-  height: 0;
-}
-
-.joyride-tip-guide .joyride-nub.top {
-  top: -28px;
-  bottom: auto;
-}
-
-.joyride-tip-guide .joyride-nub.bottom {
-  bottom: -28px;
-}
-
-.joyride-tip-guide .joyride-nub.right {
-  top: 22px;
-  right: -28px;
-  bottom: auto;
-  left: auto;
-}
-
-.joyride-tip-guide .joyride-nub.left {
-  top: 22px;
-  right: auto;
-  bottom: auto;
-  left: -28px;
-}
-
-.joyride-tip-guide .joyride-nub.top-right {
-  top: -28px;
-  right: 28px;
-  bottom: auto;
-  left: auto;
-}
-
-.joyride-tip-guide .tour-tip-label {
-  margin-top: 0;
-}
-
-.joyride-tip-guide p {
-  margin: 0 0 1.4em;
-}
-
-.joyride-timer-indicator-wrap {
-  position: absolute;
-  right: 17px;
-  bottom: 16px;
-  width: 50px;
-  height: 3px;
-}
-.joyride-timer-indicator {
-  display: block;
-  width: 0;
-  height: inherit;
-}
-
-.joyride-close-tip {
-  position: absolute;
-  top: 20px;
-  right: 20px; /* LTR */
-  line-height: 1em;
-}
-[dir="rtl"] .joyride-close-tip {
-  right: auto;
-  left: 20px;
-}
-
-.joyride-modal-bg {
-=======
 .shepherd-enabled.shepherd-element {
   opacity: 1;
 }
@@ -231,29 +131,10 @@
 }
 
 .shepherd-modal-overlay-container {
->>>>>>> dev
   position: fixed;
   z-index: 100;
   top: 0;
   left: 0;
-<<<<<<< HEAD
-  display: none;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
-
-.joyride-expose-wrapper {
-  position: absolute;
-  z-index: 102;
-}
-
-.joyride-expose-cover {
-  position: absolute;
-  z-index: 10000;
-  top: 0;
-  left: 0;
-=======
   overflow: hidden;
   width: 100vw;
   height: 0;
@@ -269,5 +150,4 @@
 
 .shepherd-modal-overlay-container.shepherd-modal-is-visible path {
   pointer-events: all;
->>>>>>> dev
 }

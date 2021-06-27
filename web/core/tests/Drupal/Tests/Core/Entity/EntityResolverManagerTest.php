@@ -30,11 +30,7 @@ class EntityResolverManagerTest extends UnitTestCase {
   protected $entityResolverManager;
 
   /**
-<<<<<<< HEAD
-   * The mocked entity manager.
-=======
    * The mocked entity type manager.
->>>>>>> dev
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface|\PHPUnit\Framework\MockObject\MockObject
    */
@@ -59,11 +55,7 @@ class EntityResolverManagerTest extends UnitTestCase {
    *
    * @covers ::__construct
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->entityTypeManager = $this->createMock('Drupal\Core\Entity\EntityTypeManagerInterface');
     $this->container = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
     $this->classResolver = $this->getClassResolverStub();
@@ -274,11 +266,7 @@ class EntityResolverManagerTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests setRouteOptions() with an form parameter without interface.
-=======
    * Tests setRouteOptions() with a form parameter without interface.
->>>>>>> dev
    *
    * @covers ::setRouteOptions
    * @covers ::getControllerClass
@@ -450,11 +438,7 @@ class EntityResolverManagerTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Creates the entity manager mock returning entity type objects.
-=======
    * Creates the entity type manager mock returning entity type objects.
->>>>>>> dev
    */
   protected function setupEntityTypes() {
     $definition = $this->createMock('Drupal\Core\Entity\EntityTypeInterface');

@@ -16,11 +16,7 @@ class DependencyOrderingTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'update_test_0',
     'update_test_1',
     'update_test_2',
@@ -32,21 +28,13 @@ class DependencyOrderingTest extends BrowserTestBase {
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     require_once $this->root . '/core/includes/update.inc';
   }
 
   /**
-<<<<<<< HEAD
-   * Test that updates within a single module run in the correct order.
-=======
    * Tests that updates within a single module run in the correct order.
->>>>>>> dev
    */
   public function testUpdateOrderingSingleModule() {
     $starting_updates = [
@@ -58,19 +46,11 @@ class DependencyOrderingTest extends BrowserTestBase {
       'update_test_1_update_8003',
     ];
     $actual_updates = array_keys(update_resolve_dependencies($starting_updates));
-<<<<<<< HEAD
-    $this->assertEqual($expected_updates, $actual_updates, 'Updates within a single module run in the correct order.');
-  }
-
-  /**
-   * Test that dependencies between modules are resolved correctly.
-=======
     $this->assertEquals($expected_updates, $actual_updates, 'Updates within a single module run in the correct order.');
   }
 
   /**
    * Tests that dependencies between modules are resolved correctly.
->>>>>>> dev
    */
   public function testUpdateOrderingModuleInterdependency() {
     $starting_updates = [

@@ -21,11 +21,7 @@ class EntityStateChangeValidationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'node',
     'content_moderation',
     'user',
@@ -45,11 +41,7 @@ class EntityStateChangeValidationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installSchema('node', 'node_access');
@@ -63,11 +55,7 @@ class EntityStateChangeValidationTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test valid transitions.
-=======
    * Tests valid transitions.
->>>>>>> dev
    *
    * @covers ::validate
    */
@@ -97,11 +85,7 @@ class EntityStateChangeValidationTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test invalid transitions.
-=======
    * Tests invalid transitions.
->>>>>>> dev
    *
    * @covers ::validate
    */
@@ -131,11 +115,7 @@ class EntityStateChangeValidationTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test validation with an invalid state.
-=======
    * Tests validation with an invalid state.
->>>>>>> dev
    */
   public function testInvalidState() {
     $node_type = NodeType::create([
@@ -158,11 +138,7 @@ class EntityStateChangeValidationTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test validation with content that has no initial state or an invalid state.
-=======
    * Tests validation with no initial state or an invalid state.
->>>>>>> dev
    */
   public function testInvalidStateWithoutExisting() {
     $this->setCurrentUser($this->adminUser);
@@ -211,11 +187,7 @@ class EntityStateChangeValidationTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test state transition validation with multiple languages.
-=======
    * Tests state transition validation with multiple languages.
->>>>>>> dev
    */
   public function testInvalidStateMultilingual() {
     $this->setCurrentUser($this->adminUser);

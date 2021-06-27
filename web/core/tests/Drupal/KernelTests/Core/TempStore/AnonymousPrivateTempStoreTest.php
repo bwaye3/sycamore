@@ -17,11 +17,7 @@ class AnonymousPrivateTempStoreTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['system'];
-=======
   protected static $modules = ['system'];
->>>>>>> dev
 
   /**
    * The private temp store.
@@ -33,19 +29,9 @@ class AnonymousPrivateTempStoreTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-    parent::setUp();
-
-    // Install system tables to test the key/value storage without installing a
-    // full Drupal environment.
-    $this->installSchema('system', ['key_value_expire']);
-
-=======
   protected function setUp(): void {
     parent::setUp();
 
->>>>>>> dev
     $request = Request::create('/');
     $stack = $this->container->get('request_stack');
     $stack->pop();

@@ -23,11 +23,7 @@ class Date extends NumericFilter {
   }
 
   /**
-<<<<<<< HEAD
-   * Add a type selector to the value form
-=======
    * Add a type selector to the value form.
->>>>>>> dev
    */
   protected function valueForm(&$form, FormStateInterface $form_state) {
     if (!$form_state->get('exposed')) {

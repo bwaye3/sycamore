@@ -64,10 +64,7 @@ class Action extends DrupalSqlBase {
       }
       $row->setSourceProperty('aid', $label);
     }
-<<<<<<< HEAD
-=======
     return parent::prepareRow($row);
->>>>>>> dev
   }
 
 }

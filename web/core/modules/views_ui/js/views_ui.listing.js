@@ -10,11 +10,7 @@
     attach: function attach(context, settings) {
       var $input = $('input.views-filter-text').once('views-filter-text');
       var $table = $($input.attr('data-table'));
-<<<<<<< HEAD
-      var $rows = void 0;
-=======
       var $rows;
->>>>>>> dev
 
       function filterViewList(e) {
         var query = $(e.target).val().toLowerCase();

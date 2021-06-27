@@ -21,11 +21,7 @@ class EntitySchemaTest extends EntityKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['entity_test_update'];
-=======
   protected static $modules = ['entity_test_update'];
->>>>>>> dev
 
   /**
    * The database connection used.
@@ -37,11 +33,7 @@ class EntitySchemaTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installSchema('user', ['users_data']);
     $this->installEntitySchema('entity_test_update');
@@ -104,11 +96,7 @@ class EntitySchemaTest extends EntityKernelTestBase {
     // Initially only the base table and the dedicated field data table should
     // exist.
     foreach ($tables as $index => $table) {
-<<<<<<< HEAD
-      $this->assertEqual($schema_handler->tableExists($table), !$index, new FormattableMarkup('Entity schema correct for the @table table.', ['@table' => $table]));
-=======
       $this->assertEquals(!$index, $schema_handler->tableExists($table), new FormattableMarkup('Entity schema correct for the @table table.', ['@table' => $table]));
->>>>>>> dev
     }
     $this->assertTrue($schema_handler->tableExists($dedicated_tables[0]), new FormattableMarkup('Field schema correct for the @table table.', ['@table' => $table]));
 
@@ -126,11 +114,7 @@ class EntitySchemaTest extends EntityKernelTestBase {
     // neither translations nor revisions.
     $this->updateEntityType(FALSE);
     foreach ($tables as $index => $table) {
-<<<<<<< HEAD
-      $this->assertEqual($schema_handler->tableExists($table), !$index, new FormattableMarkup('Entity schema correct for the @table table.', ['@table' => $table]));
-=======
       $this->assertEquals(!$index, $schema_handler->tableExists($table), new FormattableMarkup('Entity schema correct for the @table table.', ['@table' => $table]));
->>>>>>> dev
     }
     $this->assertTrue($schema_handler->tableExists($dedicated_tables[0]), new FormattableMarkup('Field schema correct for the @table table.', ['@table' => $table]));
   }
@@ -152,11 +136,7 @@ class EntitySchemaTest extends EntityKernelTestBase {
       $this->installEntitySchema($entity_type_id);
     }
 
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Entity\EntityDefinitionUpdateManagerInterface $update_manager */
-=======
     /** @var \Drupal\Core\Entity\EntityDefinitionUpdateManagerInterface $update_manager */
->>>>>>> dev
     $update_manager = $this->container->get('entity.definition_update_manager');
     $entity_type = $update_manager->getEntityType($entity_type_id);
 
@@ -234,18 +214,9 @@ class EntitySchemaTest extends EntityKernelTestBase {
     $this->assertSame($expected, $this->findPrimaryKeys($entity_type));
 
     // Now test updating a field with data.
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Entity\FieldableEntityStorageInterface $storage */
-    $storage = $this->entityTypeManager->getStorage($entity_type_id);
-    // The schema of ID fields is incorrectly recreated as 'int' instead of
-    // 'serial', so we manually have to specify an ID.
-    // @todo Remove this in https://www.drupal.org/project/drupal/issues/2928906
-    $storage->create(['id' => 1, 'revision_id' => 1])->save();
-=======
     /** @var \Drupal\Core\Entity\FieldableEntityStorageInterface $storage */
     $storage = $this->entityTypeManager->getStorage($entity_type_id);
     $storage->create()->save();
->>>>>>> dev
     $this->assertTrue($storage->countFieldData($field, TRUE));
     $update_manager->updateFieldStorageDefinition($field);
     $this->assertSame($expected, $this->findPrimaryKeys($entity_type));
@@ -373,11 +344,7 @@ class EntitySchemaTest extends EntityKernelTestBase {
     }
 
     // Ensure that there are storage definitions from the entity_test module.
-<<<<<<< HEAD
-    $this->assertNotEqual($entity_type_id_count, 0, 'There are storage definitions provided by the entity_test module in the schema.');
-=======
     $this->assertNotEquals(0, $entity_type_id_count, 'There are storage definitions provided by the entity_test module in the schema.');
->>>>>>> dev
 
     // Uninstall the entity_test module.
     $this->container->get('module_installer')->uninstall(['entity_test']);
@@ -398,11 +365,7 @@ class EntitySchemaTest extends EntityKernelTestBase {
     }
 
     // Ensure that all storage definitions have been removed from the schema.
-<<<<<<< HEAD
-    $this->assertEqual($entity_type_id_count, 0, 'After uninstalling entity_test module the schema should not contains fields from entities provided by the module.');
-=======
     $this->assertEquals(0, $entity_type_id_count, 'After uninstalling entity_test module the schema should not contains fields from entities provided by the module.');
->>>>>>> dev
   }
 
   /**

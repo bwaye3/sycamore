@@ -31,16 +31,6 @@ class FilterNumericWebTest extends UITestBase {
   public function testFilterNumericUI() {
     // Add a page display to the test_view to be able to test the filtering.
     $path = 'test_view-path';
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/view/test_view/edit', [], 'Add Page');
-    $this->drupalPostForm('admin/structure/views/nojs/display/test_view/page_1/path', ['path' => $path], 'Apply');
-    $this->drupalPostForm(NULL, [], t('Save'));
-
-    $this->drupalPostForm('admin/structure/views/nojs/add-handler/test_view/default/filter', ['name[views_test_data.age]' => TRUE], t('Add and configure @handler', ['@handler' => t('filter criteria')]));
-
-    $this->drupalPostForm(NULL, [], t('Expose filter'));
-    $this->drupalPostForm(NULL, [], t('Grouped filters'));
-=======
     $this->drupalGet('admin/structure/views/view/test_view/edit');
     $this->submitForm([], 'Add Page');
     $this->drupalGet('admin/structure/views/nojs/display/test_view/page_1/path');
@@ -52,7 +42,6 @@ class FilterNumericWebTest extends UITestBase {
 
     $this->submitForm([], 'Expose filter');
     $this->submitForm([], 'Grouped filters');
->>>>>>> dev
 
     $edit = [];
     $edit['options[group_info][group_items][1][title]'] = 'Old';
@@ -66,16 +55,6 @@ class FilterNumericWebTest extends UITestBase {
     $edit['options[group_info][group_items][3][value][min]'] = 26;
     $edit['options[group_info][group_items][3][value][max]'] = 28;
 
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Apply'));
-
-    $this->drupalGet('admin/structure/views/nojs/handler/test_view/default/filter/age');
-    foreach ($edit as $name => $value) {
-      $this->assertFieldByName($name, $value);
-    }
-
-    $this->drupalPostForm('admin/structure/views/view/test_view', [], t('Save'));
-=======
     $this->submitForm($edit, 'Apply');
 
     $this->drupalGet('admin/structure/views/nojs/handler/test_view/default/filter/age');
@@ -85,23 +64,10 @@ class FilterNumericWebTest extends UITestBase {
 
     $this->drupalGet('admin/structure/views/view/test_view');
     $this->submitForm([], 'Save');
->>>>>>> dev
     $this->assertConfigSchemaByName('views.view.test_view');
 
     // Test that the exposed filter works as expected.
     $this->drupalGet('test_view-path');
-<<<<<<< HEAD
-    $this->assertText('John');
-    $this->assertText('Paul');
-    $this->assertText('Ringo');
-    $this->assertText('George');
-    $this->assertText('Meredith');
-    $this->drupalPostForm(NULL, ['age' => '2'], 'Apply');
-    $this->assertText('John');
-    $this->assertText('Paul');
-    $this->assertNoText('Ringo');
-    $this->assertText('George');
-=======
     $this->assertSession()->pageTextContains('John');
     $this->assertSession()->pageTextContains('Paul');
     $this->assertSession()->pageTextContains('Ringo');
@@ -112,18 +78,10 @@ class FilterNumericWebTest extends UITestBase {
     $this->assertSession()->pageTextContains('Paul');
     $this->assertNoText('Ringo');
     $this->assertSession()->pageTextContains('George');
->>>>>>> dev
     $this->assertNoText('Meredith');
 
     // Change the filter to a single filter to test the schema when the operator
     // is not exposed.
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/nojs/handler/test_view/default/filter/age', [], t('Single filter'));
-    $edit = [];
-    $edit['options[value][value]'] = 25;
-    $this->drupalPostForm(NULL, $edit, t('Apply'));
-    $this->drupalPostForm('admin/structure/views/view/test_view', [], t('Save'));
-=======
     $this->drupalGet('admin/structure/views/nojs/handler/test_view/default/filter/age');
     $this->submitForm([], 'Single filter');
     $edit = [];
@@ -131,29 +89,18 @@ class FilterNumericWebTest extends UITestBase {
     $this->submitForm($edit, 'Apply');
     $this->drupalGet('admin/structure/views/view/test_view');
     $this->submitForm([], 'Save');
->>>>>>> dev
     $this->assertConfigSchemaByName('views.view.test_view');
 
     // Test that the filter works as expected.
     $this->drupalGet('test_view-path');
-<<<<<<< HEAD
-    $this->assertText('John');
-=======
     $this->assertSession()->pageTextContains('John');
->>>>>>> dev
     $this->assertNoText('Paul');
     $this->assertNoText('Ringo');
     $this->assertNoText('George');
     $this->assertNoText('Meredith');
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, ['age' => '26'], t('Apply'));
-    $this->assertNoText('John');
-    $this->assertText('Paul');
-=======
     $this->submitForm(['age' => '26'], 'Apply');
     $this->assertNoText('John');
     $this->assertSession()->pageTextContains('Paul');
->>>>>>> dev
     $this->assertNoText('Ringo');
     $this->assertNoText('George');
     $this->assertNoText('Meredith');
@@ -167,18 +114,6 @@ class FilterNumericWebTest extends UITestBase {
     $edit['options[operator]'] = 'between';
     $edit['options[value][min]'] = 26;
     $edit['options[value][max]'] = 28;
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Apply'));
-    $this->drupalPostForm('admin/structure/views/view/test_view', [], t('Save'));
-    $this->assertConfigSchemaByName('views.view.test_view');
-
-    $this->drupalPostForm(NULL, [], t('Update preview'));
-    // Check the max field label.
-    $this->assertRaw('<label for="edit-age-max">And</label>', 'Max field label found');
-    $this->assertRaw('<label for="edit-age-min">Age between</label>', 'Min field label found');
-    // Check that the description is shown in the right place.
-    $this->assertEqual(trim($this->cssSelect('.form-item-age-min .description')[0]->getText()), 'Description of the exposed filter');
-=======
     $this->submitForm($edit, 'Apply');
     $this->drupalGet('admin/structure/views/view/test_view');
     $this->submitForm([], 'Save');
@@ -214,7 +149,6 @@ class FilterNumericWebTest extends UITestBase {
     $this->assertCount(1, $label);
     $fieldset = $this->xpath('//fieldset[contains(@id, "edit-age-wrapper")]');
     $this->assertEmpty($fieldset);
->>>>>>> dev
   }
 
 }

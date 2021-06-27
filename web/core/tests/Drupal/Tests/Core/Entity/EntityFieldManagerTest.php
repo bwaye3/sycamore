@@ -17,10 +17,7 @@ use Drupal\Core\Entity\ContentEntityTypeInterface;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityFieldManager;
 use Drupal\Core\Entity\EntityInterface;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface;
->>>>>>> dev
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -93,11 +90,7 @@ class EntityFieldManagerTest extends UnitTestCase {
   /**
    * The event dispatcher.
    *
-<<<<<<< HEAD
-   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface|\Prophecy\Prophecy\ProphecyInterface
-=======
    * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface|\Prophecy\Prophecy\ProphecyInterface
->>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -151,11 +144,6 @@ class EntityFieldManagerTest extends UnitTestCase {
   protected $entityType;
 
   /**
-<<<<<<< HEAD
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-=======
    * The entity last installed schema repository.
    *
    * @var \Prophecy\Prophecy\ObjectProphecy|\Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface
@@ -166,7 +154,6 @@ class EntityFieldManagerTest extends UnitTestCase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->container = $this->prophesize(ContainerInterface::class);
@@ -196,14 +183,9 @@ class EntityFieldManagerTest extends UnitTestCase {
     $this->entityTypeRepository = $this->prophesize(EntityTypeRepositoryInterface::class);
     $this->entityTypeBundleInfo = $this->prophesize(EntityTypeBundleInfoInterface::class);
     $this->entityDisplayRepository = $this->prophesize(EntityDisplayRepositoryInterface::class);
-<<<<<<< HEAD
-
-    $this->entityFieldManager = new TestEntityFieldManager($this->entityTypeManager->reveal(), $this->entityTypeBundleInfo->reveal(), $this->entityDisplayRepository->reveal(), $this->typedDataManager->reveal(), $this->languageManager->reveal(), $this->keyValueFactory->reveal(), $this->moduleHandler->reveal(), $this->cacheBackend->reveal());
-=======
     $this->entityLastInstalledSchemaRepository = $this->prophesize(EntityLastInstalledSchemaRepositoryInterface::class);
 
     $this->entityFieldManager = new TestEntityFieldManager($this->entityTypeManager->reveal(), $this->entityTypeBundleInfo->reveal(), $this->entityDisplayRepository->reveal(), $this->typedDataManager->reveal(), $this->languageManager->reveal(), $this->keyValueFactory->reveal(), $this->moduleHandler->reveal(), $this->cacheBackend->reveal(), $this->entityLastInstalledSchemaRepository->reveal());
->>>>>>> dev
   }
 
   /**
@@ -280,9 +262,6 @@ class EntityFieldManagerTest extends UnitTestCase {
     $field_storage_definition = $this->prophesize(FieldStorageDefinitionInterface::class);
     $field_storage_definition->getName()->willReturn('field_storage');
 
-<<<<<<< HEAD
-    $definitions = ['field_storage' => $field_storage_definition->reveal()];
-=======
     $base_field_definition = $this->prophesize(BaseFieldDefinition::class);
     $base_field_definition->setProvider('example_module')->shouldBeCalled();
     $base_field_definition->setName('base_field')->shouldBeCalled();
@@ -292,7 +271,6 @@ class EntityFieldManagerTest extends UnitTestCase {
       'base_field' => $base_field_definition->reveal(),
       'field_storage' => $field_storage_definition->reveal(),
     ];
->>>>>>> dev
 
     $this->moduleHandler->getImplementations('entity_base_field_info')->willReturn([]);
     $this->moduleHandler->getImplementations('entity_field_storage_info')->willReturn(['example_module']);
@@ -301,10 +279,7 @@ class EntityFieldManagerTest extends UnitTestCase {
 
     $expected = [
       'id' => $field_definition,
-<<<<<<< HEAD
-=======
       'base_field' => $base_field_definition->reveal(),
->>>>>>> dev
       'field_storage' => $field_storage_definition->reveal(),
     ];
     $this->assertSame($expected, $this->entityFieldManager->getFieldStorageDefinitions('test_entity_type'));
@@ -513,11 +488,7 @@ class EntityFieldManagerTest extends UnitTestCase {
   public function testGetFieldDefinitionsProvider() {
     $this->setUpEntityWithFieldDefinition(TRUE);
 
-<<<<<<< HEAD
-    $module = 'entity_manager_test_module';
-=======
     $module = 'entity_field_manager_test_module';
->>>>>>> dev
 
     // @todo Mock FieldDefinitionInterface once it exposes a proper provider
     //   setter. See https://www.drupal.org/node/2225961.

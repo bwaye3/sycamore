@@ -7,17 +7,9 @@ migration_tags:
 source:
   plugin: variable
   variables:
-<<<<<<< HEAD
-    - feed_default_items
     - feed_item_length
   source_module: system
 process:
-  'items/limit': feed_default_items
-=======
-    - feed_item_length
-  source_module: system
-process:
->>>>>>> dev
   'items/view_mode': feed_item_length
 destination:
   plugin: config

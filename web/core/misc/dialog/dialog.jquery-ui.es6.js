@@ -3,11 +3,7 @@
  * Adds default classes to buttons for styling purposes.
  */
 
-<<<<<<< HEAD
-(function($) {
-=======
 (function ($, { tabbable, isTabbable }) {
->>>>>>> dev
   $.widget('ui.dialog', $.ui.dialog, {
     options: {
       buttonClass: 'button',
@@ -34,10 +30,6 @@
         $buttons.eq(index).addClass(opts.buttonPrimaryClass);
       }
     },
-<<<<<<< HEAD
-  });
-})(jQuery);
-=======
     // Override jQuery UI's `_focusTabbable()` so finding tabbable elements uses
     // the core/tabbable library instead of jQuery UI's `:tabbable` selector.
     _focusTabbable() {
@@ -81,4 +73,3 @@
     },
   });
 })(jQuery, window.tabbable);
->>>>>>> dev

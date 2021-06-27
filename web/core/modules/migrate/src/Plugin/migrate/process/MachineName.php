@@ -7,24 +7,13 @@ use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\MigrateExecutableInterface;
-<<<<<<< HEAD
-=======
 use Drupal\migrate\MigrateException;
->>>>>>> dev
 use Drupal\migrate\Row;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Creates a machine name.
  *
-<<<<<<< HEAD
- * The machine_name process plugin takes the source value and runs it through
- * the transliteration service. This makes the source value lowercase,
- * replaces anything that is not a number or a letter with an underscore,
- * and removes duplicate underscores.
- *
- * Letters will have language decorations and accents removed.
-=======
  * The machine_name process plugin takes the source value and turns it into a
  * machine-readable name via the following four steps:
  * 1. Language decorations and accents are removed by transliterating the source
@@ -42,7 +31,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *     replace special characters with an underscore using preg_replace(). This
  *     can be used to allow additional characters in the machine name.
  *     Defaults to /[^a-z0-9_]+/
->>>>>>> dev
  *
  * Example:
  *
@@ -56,8 +44,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * If the value of foo in the source is 'áéí!' then the destination value of bar
  * will be 'aei_'.
  *
-<<<<<<< HEAD
-=======
  * @code
  * process:
  *   bar:
@@ -70,7 +56,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * in the list of characters not to match) so if the value of foo in the source
  * is 'áéí!.jpg' then the destination value of bar will be 'aei_.jpg'.
  *
->>>>>>> dev
  * @see \Drupal\migrate\Plugin\MigrateProcessInterface
  *
  * @MigrateProcessPlugin(
@@ -87,8 +72,6 @@ class MachineName extends ProcessPluginBase implements ContainerFactoryPluginInt
   protected $transliteration;
 
   /**
-<<<<<<< HEAD
-=======
    * The regular expression pattern.
    *
    * @var string
@@ -96,7 +79,6 @@ class MachineName extends ProcessPluginBase implements ContainerFactoryPluginInt
   protected $replacePattern;
 
   /**
->>>>>>> dev
    * Constructs a MachineName plugin.
    *
    * @param array $configuration
@@ -111,14 +93,11 @@ class MachineName extends ProcessPluginBase implements ContainerFactoryPluginInt
   public function __construct(array $configuration, $plugin_id, $plugin_definition, TransliterationInterface $transliteration) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->transliteration = $transliteration;
-<<<<<<< HEAD
-=======
 
     $this->replacePattern = $this->configuration['replace_pattern'] ?? '/[^a-z0-9_]+/';
     if (!is_string($this->replacePattern)) {
       throw new MigrateException('The replace pattern should be a string');
     }
->>>>>>> dev
   }
 
   /**
@@ -139,11 +118,7 @@ class MachineName extends ProcessPluginBase implements ContainerFactoryPluginInt
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $new_value = $this->transliteration->transliterate($value, LanguageInterface::LANGCODE_DEFAULT, '_');
     $new_value = strtolower($new_value);
-<<<<<<< HEAD
-    $new_value = preg_replace('/[^a-z0-9_]+/', '_', $new_value);
-=======
     $new_value = preg_replace($this->replacePattern, '_', $new_value);
->>>>>>> dev
     return preg_replace('/_+/', '_', $new_value);
   }
 

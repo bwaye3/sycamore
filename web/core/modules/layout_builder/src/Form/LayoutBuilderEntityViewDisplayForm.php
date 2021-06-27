@@ -170,10 +170,7 @@ class LayoutBuilderEntityViewDisplayForm extends EntityViewDisplayEditForm {
 
     $entity_type = $this->entityTypeManager->getDefinition($display->getTargetEntityTypeId());
     $query = $this->entityTypeManager->getStorage($display->getTargetEntityTypeId())->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->exists(OverridesSectionStorage::FIELD_NAME);
     if ($bundle_key = $entity_type->getKey('bundle')) {
       $query->condition($bundle_key, $display->getTargetBundle());

@@ -8,20 +8,11 @@
 (function ($, Drupal, _) {
   Drupal.quickedit.editors.form = Drupal.quickedit.EditorView.extend({
     $formContainer: null,
-<<<<<<< HEAD
-
-    formSaveAjax: null,
-
-    stateChange: function stateChange(fieldModel, state) {
-      var from = fieldModel.previous('state');
-      var to = state;
-=======
     formSaveAjax: null,
     stateChange: function stateChange(fieldModel, state) {
       var from = fieldModel.previous('state');
       var to = state;
 
->>>>>>> dev
       switch (to) {
         case 'inactive':
           break;
@@ -30,10 +21,7 @@
           if (from !== 'inactive') {
             this.removeForm();
           }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
           break;
 
         case 'highlighted':
@@ -43,10 +31,7 @@
           if (from !== 'invalid') {
             this.loadForm();
           }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
           break;
 
         case 'active':
@@ -77,13 +62,7 @@
     },
     loadForm: function loadForm() {
       var fieldModel = this.fieldModel;
-<<<<<<< HEAD
-
-      var id = 'quickedit-form-for-' + fieldModel.id.replace(/[/[\]]/g, '_');
-
-=======
       var id = "quickedit-form-for-".concat(fieldModel.id.replace(/[/[\]]/g, '_'));
->>>>>>> dev
       var $formContainer = $(Drupal.theme('quickeditFormContainer', {
         id: id,
         loadingMsg: Drupal.t('Loading…')
@@ -93,10 +72,6 @@
 
       if (this.$el.css('display') === 'inline') {
         $formContainer.prependTo(this.$el.offsetParent());
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         var pos = this.$el.position();
         $formContainer.css('left', pos.left).css('top', pos.top);
       } else {
@@ -107,23 +82,13 @@
         fieldID: fieldModel.get('fieldID'),
         $el: this.$el,
         nocssjs: false,
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         reset: !fieldModel.get('entity').get('inTempStore')
       };
       Drupal.quickedit.util.form.load(formOptions, function (form, ajax) {
         Drupal.AjaxCommands.prototype.insert(ajax, {
           data: form,
-<<<<<<< HEAD
-          selector: '#' + id + ' .placeholder'
-        });
-
-=======
           selector: "#".concat(id, " .placeholder")
         });
->>>>>>> dev
         $formContainer.on('formUpdated.quickedit', ':input', function (event) {
           var state = fieldModel.get('state');
 
@@ -137,10 +102,6 @@
             return false;
           }
         });
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         fieldModel.set('state', 'active');
       });
     },
@@ -150,10 +111,6 @@
       }
 
       delete this.formSaveAjax;
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
       Drupal.detachBehaviors(this.$formContainer.get(0), null, 'unload');
       this.$formContainer.off('change.quickedit', ':input').off('keypress.quickedit', 'input').remove();
       this.$formContainer = null;
@@ -163,10 +120,6 @@
       var $submit = $formContainer.find('.quickedit-form-submit');
       var editorModel = this.model;
       var fieldModel = this.fieldModel;
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
       var formSaveAjax = Drupal.quickedit.util.form.ajaxifySaving({
         nocssjs: false,
         other_view_modes: fieldModel.findOtherViewModes()
@@ -179,13 +132,7 @@
 
       formSaveAjax.commands.quickeditFieldFormSaved = function (ajax, response, status) {
         cleanUpAjax();
-<<<<<<< HEAD
-
         fieldModel.set('state', 'saved');
-
-=======
-        fieldModel.set('state', 'saved');
->>>>>>> dev
         fieldModel.set('htmlForOtherViewModes', response.other_view_modes);
 
         _.defer(function () {
@@ -201,11 +148,7 @@
       formSaveAjax.commands.quickeditFieldForm = function (ajax, response, status) {
         Drupal.AjaxCommands.prototype.insert(ajax, {
           data: response.data,
-<<<<<<< HEAD
-          selector: '#' + $formContainer.attr('id') + ' form'
-=======
           selector: "#".concat($formContainer.attr('id'), " form")
->>>>>>> dev
         });
       };
 

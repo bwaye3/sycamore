@@ -2,22 +2,15 @@
 
 namespace Drupal\user\Form;
 
-<<<<<<< HEAD
-use Drupal\Core\Config\ConfigFactory;
-=======
 use Drupal\Component\Utility\EmailValidatorInterface;
 use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\Field\BaseFieldDefinition;
->>>>>>> dev
 use Drupal\Core\Flood\FloodInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Render\Element\Email;
-<<<<<<< HEAD
-=======
 use Drupal\Core\TypedData\TypedDataManagerInterface;
->>>>>>> dev
 use Drupal\user\UserInterface;
 use Drupal\user\UserStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -53,8 +46,6 @@ class UserPasswordForm extends FormBase {
   protected $flood;
 
   /**
-<<<<<<< HEAD
-=======
    * The typed data manager.
    *
    * @var \Drupal\Core\TypedData\TypedDataManagerInterface
@@ -69,7 +60,6 @@ class UserPasswordForm extends FormBase {
   protected $emailValidator;
 
   /**
->>>>>>> dev
    * Constructs a UserPasswordForm object.
    *
    * @param \Drupal\user\UserStorageInterface $user_storage
@@ -80,22 +70,6 @@ class UserPasswordForm extends FormBase {
    *   The config factory.
    * @param \Drupal\Core\Flood\FloodInterface $flood
    *   The flood service.
-<<<<<<< HEAD
-   */
-  public function __construct(UserStorageInterface $user_storage, LanguageManagerInterface $language_manager, ConfigFactory $config_factory = NULL, FloodInterface $flood = NULL) {
-    $this->userStorage = $user_storage;
-    $this->languageManager = $language_manager;
-    if (!$config_factory) {
-      @trigger_error('Calling ' . __METHOD__ . ' without the $config_factory is deprecated in drupal:8.8.0 and is required before drupal:9.0.0. See https://www.drupal.org/node/1681832', E_USER_DEPRECATED);
-      $config_factory = \Drupal::configFactory();
-    }
-    $this->configFactory = $config_factory;
-    if (!$flood) {
-      @trigger_error('Calling ' . __METHOD__ . ' without the $flood parameter is deprecated in drupal:8.8.0 and is required before drupal:9.0.0. See https://www.drupal.org/node/1681832', E_USER_DEPRECATED);
-      $flood = \Drupal::service('flood');
-    }
-    $this->flood = $flood;
-=======
    * @param \Drupal\Core\TypedData\TypedDataManagerInterface $typed_data_manager
    *   The typed data manager.
    * @param \Drupal\Component\Utility\EmailValidatorInterface $email_validator
@@ -116,7 +90,6 @@ class UserPasswordForm extends FormBase {
       $email_validator = \Drupal::service('email.validator');
     }
     $this->emailValidator = $email_validator;
->>>>>>> dev
   }
 
   /**
@@ -127,13 +100,9 @@ class UserPasswordForm extends FormBase {
       $container->get('entity_type.manager')->getStorage('user'),
       $container->get('language_manager'),
       $container->get('config.factory'),
-<<<<<<< HEAD
-      $container->get('flood')
-=======
       $container->get('flood'),
       $container->get('typed_data_manager'),
       $container->get('email.validator')
->>>>>>> dev
     );
   }
 
@@ -197,9 +166,6 @@ class UserPasswordForm extends FormBase {
       return;
     }
     $this->flood->register('user.password_request_ip', $flood_config->get('ip_window'));
-<<<<<<< HEAD
-    $name = trim($form_state->getValue('name'));
-=======
     // First, see if the input is possibly valid as a username.
     $name = trim($form_state->getValue('name'));
     $definition = BaseFieldDefinition::create('string')
@@ -214,7 +180,6 @@ class UserPasswordForm extends FormBase {
       return;
     }
 
->>>>>>> dev
     // Try to load by email.
     $users = $this->userStorage->loadByProperties(['mail' => $name]);
     if (empty($users)) {
@@ -222,28 +187,6 @@ class UserPasswordForm extends FormBase {
       $users = $this->userStorage->loadByProperties(['name' => $name]);
     }
     $account = reset($users);
-<<<<<<< HEAD
-    if ($account && $account->id()) {
-      // Blocked accounts cannot request a new password.
-      if (!$account->isActive()) {
-        $form_state->setErrorByName('name', $this->t('%name is blocked or has not been activated yet.', ['%name' => $name]));
-      }
-      else {
-        // Register flood events based on the uid only, so they apply for any
-        // IP address. This allows them to be cleared on successful reset (from
-        // any IP).
-        $identifier = $account->id();
-        if (!$this->flood->isAllowed('user.password_request_user', $flood_config->get('user_limit'), $flood_config->get('user_window'), $identifier)) {
-          $form_state->setErrorByName('name', $this->t('Too many password recovery requests for this account. It is temporarily blocked. Try again later or contact the site administrator.'));
-          return;
-        }
-        $this->flood->register('user.password_request_user', $flood_config->get('user_window'), $identifier);
-        $form_state->setValueForElement(['#parents' => ['account']], $account);
-      }
-    }
-    else {
-      $form_state->setErrorByName('name', $this->t('%name is not recognized as a username or an email address.', ['%name' => $name]));
-=======
     // Blocked accounts cannot request a new password.
     if ($account && $account->id() && $account->isActive()) {
       // Register flood events based on the uid only, so they apply for any
@@ -255,7 +198,6 @@ class UserPasswordForm extends FormBase {
       }
       $this->flood->register('user.password_request_user', $flood_config->get('user_window'), $identifier);
       $form_state->setValueForElement(['#parents' => ['account']], $account);
->>>>>>> dev
     }
   }
 
@@ -263,19 +205,6 @@ class UserPasswordForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-<<<<<<< HEAD
-    $langcode = $this->languageManager->getCurrentLanguage()->getId();
-
-    $account = $form_state->getValue('account');
-    // Mail one time login URL and instructions using current language.
-    $mail = _user_mail_notify('password_reset', $account, $langcode);
-    if (!empty($mail)) {
-      $this->logger('user')->notice('Password reset instructions mailed to %name at %email.', ['%name' => $account->getAccountName(), '%email' => $account->getEmail()]);
-      $this->messenger()->addStatus($this->t('Further instructions have been sent to your email address.'));
-    }
-
-    $form_state->setRedirect('user.page');
-=======
     $account = $form_state->getValue('account');
     if ($account) {
       // Mail one time login URL and instructions using current language.
@@ -302,7 +231,6 @@ class UserPasswordForm extends FormBase {
       ]));
 
     $form_state->setRedirect('<front>');
->>>>>>> dev
   }
 
 }

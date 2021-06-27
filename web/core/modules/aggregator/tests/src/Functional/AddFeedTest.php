@@ -16,11 +16,7 @@ class AddFeedTest extends AggregatorTestBase {
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalPlaceBlock('page_title_block');
@@ -34,22 +30,14 @@ class AddFeedTest extends AggregatorTestBase {
     $feed->refreshItems();
 
     // Check feed data.
-<<<<<<< HEAD
-    $this->assertUrl(Url::fromRoute('aggregator.feed_add', [], ['absolute' => TRUE])->toString(), [], 'Directed to correct URL.');
-=======
     $this->assertSession()->addressEquals(Url::fromRoute('aggregator.feed_add'));
->>>>>>> dev
     $this->assertTrue($this->uniqueFeed($feed->label(), $feed->getUrl()), 'The feed is unique.');
 
     // Check feed source.
     $this->drupalGet('aggregator/sources/' . $feed->id());
     $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-    $this->assertText($feed->label(), 'Page title');
-=======
     // Verify that the feed label is present in the page title.
     $this->assertSession()->pageTextContains($feed->label());
->>>>>>> dev
     $this->assertRaw($feed->getWebsiteUrl());
 
     // Try to add a duplicate.
@@ -58,12 +46,8 @@ class AddFeedTest extends AggregatorTestBase {
       'url[0][value]' => $feed->getUrl(),
       'refresh' => '900',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('aggregator/sources/add', $edit, t('Save'));
-=======
     $this->drupalGet('aggregator/sources/add');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $this->assertRaw(t('A feed named %feed already exists. Enter a unique title.', ['%feed' => $feed->label()]));
     $this->assertRaw(t('A feed with this URL %url already exists. Enter a unique URL.', ['%url' => $feed->getUrl()]));
 
@@ -81,11 +65,7 @@ class AddFeedTest extends AggregatorTestBase {
     $this->drupalGet('aggregator/sources/' . $feed->id());
     $this->assertSession()->statusCodeEquals(200);
 
-<<<<<<< HEAD
-    $this->assertEscaped('Test feed title <script>alert(123);</script>');
-=======
     $this->assertSession()->assertEscaped('Test feed title <script>alert(123);</script>');
->>>>>>> dev
     $this->assertNoRaw('Test feed title <script>alert(123);</script>');
 
     // Ensure the feed icon title is escaped.
@@ -114,12 +94,8 @@ class AddFeedTest extends AggregatorTestBase {
     // Check feed source.
     $this->drupalGet('aggregator/sources/' . $feed->id());
     $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-    $this->assertText($feed->label(), 'Page title');
-=======
     // Verify that the feed label is present in the page title.
     $this->assertSession()->pageTextContains($feed->label());
->>>>>>> dev
 
     // Delete feeds.
     $this->deleteFeed($feed);

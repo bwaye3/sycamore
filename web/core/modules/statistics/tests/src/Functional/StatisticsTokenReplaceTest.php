@@ -28,8 +28,6 @@ class StatisticsTokenReplaceTest extends StatisticsTestBase {
     $this->drupalLogin($user);
     $node = $this->drupalCreateNode(['type' => 'page', 'uid' => $user->id()]);
 
-<<<<<<< HEAD
-=======
     /** @var \Drupal\Core\Datetime\DateFormatterInterface $date_formatter */
     $date_formatter = $this->container->get('date.formatter');
     $request_time = \Drupal::time()->getRequestTime();
@@ -46,7 +44,6 @@ class StatisticsTokenReplaceTest extends StatisticsTestBase {
       $this->assertEquals($expected, $output, new FormattableMarkup('Statistics token %token replaced.', ['%token' => $input]));
     }
 
->>>>>>> dev
     // Hit the node.
     $this->drupalGet('node/' . $node->id());
     // Manually calling statistics.php, simulating ajax behavior.
@@ -64,11 +61,6 @@ class StatisticsTokenReplaceTest extends StatisticsTestBase {
     $tests = [];
     $tests['[node:total-count]'] = 1;
     $tests['[node:day-count]'] = 1;
-<<<<<<< HEAD
-    /** @var \Drupal\Core\Datetime\DateFormatterInterface $date_formatter */
-    $date_formatter = $this->container->get('date.formatter');
-=======
->>>>>>> dev
     $tests['[node:last-view]'] = $date_formatter->format($statistics->getTimestamp());
     $tests['[node:last-view:short]'] = $date_formatter->format($statistics->getTimestamp(), 'short');
 
@@ -77,11 +69,7 @@ class StatisticsTokenReplaceTest extends StatisticsTestBase {
 
     foreach ($tests as $input => $expected) {
       $output = \Drupal::token()->replace($input, ['node' => $node], ['langcode' => $language_interface->getId()]);
-<<<<<<< HEAD
-      $this->assertEqual($output, $expected, new FormattableMarkup('Statistics token %token replaced.', ['%token' => $input]));
-=======
       $this->assertEquals($expected, $output, new FormattableMarkup('Statistics token %token replaced.', ['%token' => $input]));
->>>>>>> dev
     }
   }
 

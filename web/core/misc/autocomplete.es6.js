@@ -3,11 +3,7 @@
  * Autocomplete based on jQuery UI.
  */
 
-<<<<<<< HEAD
-(function($, Drupal) {
-=======
 (function ($, Drupal) {
->>>>>>> dev
   let autocomplete;
 
   /**
@@ -49,11 +45,7 @@
   }
 
   /**
-<<<<<<< HEAD
-   * Returns the last value of an multi-value textfield.
-=======
    * Returns the last value of a multi-value textfield.
->>>>>>> dev
    *
    * @function Drupal.autocomplete.extractLastTerm
    *
@@ -204,13 +196,7 @@
    *   jQuery collection of the ul element.
    */
   function renderItem(ul, item) {
-<<<<<<< HEAD
-    return $('<li>')
-      .append($('<a>').html(item.label))
-      .appendTo(ul);
-=======
     return $('<li>').append($('<a>').html(item.label)).appendTo(ul);
->>>>>>> dev
   }
 
   /**
@@ -238,11 +224,7 @@
           firstCharacterBlacklist: blacklist || '',
         });
         // Use jQuery UI Autocomplete on the textfield.
-<<<<<<< HEAD
-        $autocomplete.autocomplete(autocomplete.options).each(function() {
-=======
         $autocomplete.autocomplete(autocomplete.options).each(function () {
->>>>>>> dev
           $(this).data('ui-autocomplete')._renderItem =
             autocomplete.options.renderItem;
         });

@@ -16,11 +16,7 @@ class TourHelpPageTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['help', 'tour', 'locale', 'language'];
-=======
   protected static $modules = ['help', 'tour', 'locale', 'language'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -44,11 +40,7 @@ class TourHelpPageTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create users. For the Tour user, include permissions for the language
@@ -85,22 +77,14 @@ class TourHelpPageTest extends BrowserTestBase {
     $this->drupalGet('admin/help');
 
     // All users should be able to see the module section.
-<<<<<<< HEAD
-    $this->assertText('Module overviews are provided by modules');
-=======
     $this->assertSession()->pageTextContains('Module overviews are provided by modules');
->>>>>>> dev
     foreach ($this->getModuleList() as $name) {
       $this->assertSession()->linkExists($name);
     }
 
     // Some users should be able to see the tour section.
     if ($tours_ok) {
-<<<<<<< HEAD
-      $this->assertText('Tours guide you through workflows');
-=======
       $this->assertSession()->pageTextContains('Tours guide you through workflows');
->>>>>>> dev
     }
     else {
       $this->assertNoText('Tours guide you through workflows');
@@ -127,11 +111,7 @@ class TourHelpPageTest extends BrowserTestBase {
     // Test the titles that should not be links.
     foreach ($titles[1] as $title) {
       if ($tours_ok) {
-<<<<<<< HEAD
-        $this->assertText($title);
-=======
         $this->assertSession()->pageTextContains($title);
->>>>>>> dev
         $this->assertSession()->linkNotExistsExact($title);
       }
       else {

@@ -37,13 +37,8 @@ class TermNameFieldTest extends TaxonomyTestBase {
     $view->initDisplay();
     $this->executeView($view);
 
-<<<<<<< HEAD
-    $this->assertEqual($this->term1->getName(), $view->getStyle()->getField(0, 'name'));
-    $this->assertEqual($this->term2->getName(), $view->getStyle()->getField(1, 'name'));
-=======
     $this->assertEquals($this->term1->getName(), $view->getStyle()->getField(0, 'name'));
     $this->assertEquals($this->term2->getName(), $view->getStyle()->getField(1, 'name'));
->>>>>>> dev
 
     $view = Views::getView('test_taxonomy_term_name');
     $display =& $view->storage->getDisplay('default');
@@ -51,13 +46,8 @@ class TermNameFieldTest extends TaxonomyTestBase {
     $view->storage->invalidateCaches();
     $this->executeView($view);
 
-<<<<<<< HEAD
-    $this->assertEqual(str_replace(' ', '-', $this->term1->getName()), $view->getStyle()->getField(0, 'name'));
-    $this->assertEqual($this->term2->getName(), $view->getStyle()->getField(1, 'name'));
-=======
     $this->assertEquals(str_replace(' ', '-', $this->term1->getName()), $view->getStyle()->getField(0, 'name'));
     $this->assertEquals($this->term2->getName(), $view->getStyle()->getField(1, 'name'));
->>>>>>> dev
   }
 
 }

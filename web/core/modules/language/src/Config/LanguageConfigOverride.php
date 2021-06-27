@@ -6,11 +6,7 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Config\StorableConfigBase;
 use Drupal\Core\Config\StorageInterface;
 use Drupal\Core\Config\TypedConfigManagerInterface;
-<<<<<<< HEAD
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-=======
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
->>>>>>> dev
 
 /**
  * Defines language configuration overrides.
@@ -22,11 +18,7 @@ class LanguageConfigOverride extends StorableConfigBase {
   /**
    * The event dispatcher.
    *
-<<<<<<< HEAD
-   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
-=======
    * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
->>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -40,11 +32,7 @@ class LanguageConfigOverride extends StorableConfigBase {
    *   configuration override.
    * @param \Drupal\Core\Config\TypedConfigManagerInterface $typed_config
    *   The typed configuration manager service.
-<<<<<<< HEAD
-   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
-=======
    * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
->>>>>>> dev
    *   The event dispatcher.
    */
   public function __construct($name, StorageInterface $storage, TypedConfigManagerInterface $typed_config, EventDispatcherInterface $event_dispatcher) {
@@ -74,11 +62,7 @@ class LanguageConfigOverride extends StorableConfigBase {
     // an update of configuration, but only for a specific language.
     Cache::invalidateTags($this->getCacheTags());
     $this->isNew = FALSE;
-<<<<<<< HEAD
-    $this->eventDispatcher->dispatch(LanguageConfigOverrideEvents::SAVE_OVERRIDE, new LanguageConfigOverrideCrudEvent($this));
-=======
     $this->eventDispatcher->dispatch(new LanguageConfigOverrideCrudEvent($this), LanguageConfigOverrideEvents::SAVE_OVERRIDE);
->>>>>>> dev
     $this->originalData = $this->data;
     return $this;
   }
@@ -91,11 +75,7 @@ class LanguageConfigOverride extends StorableConfigBase {
     $this->storage->delete($this->name);
     Cache::invalidateTags($this->getCacheTags());
     $this->isNew = TRUE;
-<<<<<<< HEAD
-    $this->eventDispatcher->dispatch(LanguageConfigOverrideEvents::DELETE_OVERRIDE, new LanguageConfigOverrideCrudEvent($this));
-=======
     $this->eventDispatcher->dispatch(new LanguageConfigOverrideCrudEvent($this), LanguageConfigOverrideEvents::DELETE_OVERRIDE);
->>>>>>> dev
     $this->originalData = $this->data;
     return $this;
   }

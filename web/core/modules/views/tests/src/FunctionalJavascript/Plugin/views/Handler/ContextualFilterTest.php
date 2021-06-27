@@ -15,16 +15,12 @@ class ContextualFilterTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'views', 'views_ui', 'views_test_config'];
-=======
   protected static $modules = [
     'node',
     'views',
     'views_ui',
     'views_test_config',
   ];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -41,17 +37,10 @@ class ContextualFilterTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-    parent::setUp();
-
-    ViewTestData::createTestViews(get_class($this), ['views_test_config']);
-=======
   protected function setUp(): void {
     parent::setUp();
 
     ViewTestData::createTestViews(static::class, ['views_test_config']);
->>>>>>> dev
 
     // Always show advanced column.
     \Drupal::configFactory()->getEditable('views.settings')->set('ui.show.advanced_column', TRUE)->save();
@@ -66,11 +55,7 @@ class ContextualFilterTest extends WebDriverTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test adding a contextual filter handler through the UI.
-=======
    * Tests adding a contextual filter handler through the UI.
->>>>>>> dev
    */
   public function testAddContextualFilterUI() {
     $this->drupalGet('/admin/structure/views/view/test_field_body');

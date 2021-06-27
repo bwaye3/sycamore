@@ -16,19 +16,11 @@ class CommentBreadcrumbBuilder implements BreadcrumbBuilderInterface {
   use StringTranslationTrait;
 
   /**
-<<<<<<< HEAD
-   * The comment storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
-   */
-  protected $storage;
-=======
    * The entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
   protected $entityTypeManager;
->>>>>>> dev
 
   /**
    * Constructs the CommentBreadcrumbBuilder.
@@ -37,11 +29,7 @@ class CommentBreadcrumbBuilder implements BreadcrumbBuilderInterface {
    *   The entity type manager.
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager) {
-<<<<<<< HEAD
-    $this->storage = $entity_type_manager->getStorage('comment');
-=======
     $this->entityTypeManager = $entity_type_manager;
->>>>>>> dev
   }
 
   /**
@@ -63,11 +51,7 @@ class CommentBreadcrumbBuilder implements BreadcrumbBuilderInterface {
     $breadcrumb->addLink(new Link($entity->label(), $entity->toUrl()));
     $breadcrumb->addCacheableDependency($entity);
 
-<<<<<<< HEAD
-    if (($pid = $route_match->getParameter('pid')) && ($comment = $this->storage->load($pid))) {
-=======
     if (($pid = $route_match->getParameter('pid')) && ($comment = $this->entityTypeManager->getStorage('comment')->load($pid))) {
->>>>>>> dev
       /** @var \Drupal\comment\CommentInterface $comment */
       $breadcrumb->addCacheableDependency($comment);
       // Display link to parent comment.

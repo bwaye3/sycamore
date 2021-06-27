@@ -15,16 +15,11 @@ class EmptyStatementTest extends UnitTestCase {
 
   /**
    * Tests that the empty result set behaves as empty.
-<<<<<<< HEAD
-   */
-  public function testEmpty() {
-=======
    *
    * @group legacy
    */
   public function testEmpty() {
     $this->expectDeprecation('\Drupal\Core\Database\StatementEmpty is deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. There is no replacement. Use mocked StatementInterface classes in tests if needed. See https://www.drupal.org/node/3201283');
->>>>>>> dev
     $result = new StatementEmpty();
 
     $this->assertInstanceOf(StatementInterface::class, $result);

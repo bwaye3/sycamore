@@ -65,8 +65,6 @@ class FieldInstanceSettings extends ProcessPluginBase {
       $instance_settings['handler_settings'] = $field_settings['handler_settings'];
     }
 
-<<<<<<< HEAD
-=======
     if ($row->getSourceProperty('type') == 'node_reference') {
       $instance_settings['handler'] = 'default:node';
 
@@ -104,7 +102,6 @@ class FieldInstanceSettings extends ProcessPluginBase {
       }
     }
 
->>>>>>> dev
     // Get the labels for the list_boolean type.
     if ($row->getSourceProperty('type') === 'list_boolean') {
       if (isset($field_data['settings']['allowed_values'][1])) {
@@ -117,10 +114,7 @@ class FieldInstanceSettings extends ProcessPluginBase {
 
     switch ($widget_type) {
       case 'image_image':
-<<<<<<< HEAD
-=======
       case 'image_miw':
->>>>>>> dev
         $settings = $instance_settings;
         $settings['default_image'] = [
           'alt' => '',

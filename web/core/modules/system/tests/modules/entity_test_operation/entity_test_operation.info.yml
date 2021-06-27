@@ -3,7 +3,3 @@ type: module
 description: 'Provides a test operation to entities.'
 package: Testing
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev

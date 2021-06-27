@@ -15,11 +15,8 @@ trait WorkspaceTestUtilities {
 
   use BlockCreationTrait;
 
-<<<<<<< HEAD
-=======
   protected $switcher_block_configured = FALSE;
 
->>>>>>> dev
   /**
    * Loads a single entity by its label.
    *
@@ -61,12 +58,8 @@ trait WorkspaceTestUtilities {
    *   The workspace that was just created.
    */
   protected function createWorkspaceThroughUi($label, $id, $parent = '_none') {
-<<<<<<< HEAD
-    $this->drupalPostForm('/admin/config/workflow/workspaces/add', [
-=======
     $this->drupalGet('/admin/config/workflow/workspaces/add');
     $this->submitForm([
->>>>>>> dev
       'id' => $id,
       'label' => $label,
       'parent' => $parent,
@@ -95,10 +88,7 @@ trait WorkspaceTestUtilities {
     $page = $this->getSession()->getPage();
 
     $this->assertTrue($page->hasContent('Workspace switcher'));
-<<<<<<< HEAD
-=======
     $this->switcher_block_configured = TRUE;
->>>>>>> dev
   }
 
   /**
@@ -111,18 +101,11 @@ trait WorkspaceTestUtilities {
    *   The workspace to set active.
    */
   protected function switchToWorkspace(WorkspaceInterface $workspace) {
-<<<<<<< HEAD
-    /** @var \Drupal\Tests\WebAssert $session */
-    $session = $this->assertSession();
-    $session->buttonExists('Activate');
-    $this->drupalPostForm(NULL, ['workspace_id' => $workspace->id()], 'Activate');
-=======
     $this->assertTrue($this->switcher_block_configured, 'This test was not written correctly: you must call setupWorkspaceSwitcherBlock() before switchToWorkspace()');
     /** @var \Drupal\Tests\WebAssert $session */
     $session = $this->assertSession();
     $session->buttonExists('Activate');
     $this->submitForm(['workspace_id' => $workspace->id()], 'Activate');
->>>>>>> dev
     $session->pageTextContains($workspace->label() . ' is now the active workspace.');
   }
 
@@ -135,11 +118,7 @@ trait WorkspaceTestUtilities {
   protected function switchToLive() {
     /** @var \Drupal\Tests\WebAssert $session */
     $session = $this->assertSession();
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [], 'Switch to Live');
-=======
     $this->submitForm([], 'Switch to Live');
->>>>>>> dev
     $session->pageTextContains('You are now viewing the live version of the site.');
   }
 

@@ -18,11 +18,7 @@ class PathNoCanonicalLinkTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'path',
     'content_translation_test',
     'language',
@@ -31,19 +27,11 @@ class PathNoCanonicalLinkTest extends KernelTestBase {
     'system',
   ];
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('entity_test');
     $this->installEntitySchema('entity_test_mul');
-<<<<<<< HEAD
-    \Drupal::service('router.builder')->rebuild();
-=======
->>>>>>> dev
 
     // Adding german language.
     ConfigurableLanguage::create(['id' => 'de'])->save();

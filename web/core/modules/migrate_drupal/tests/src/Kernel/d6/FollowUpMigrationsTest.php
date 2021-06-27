@@ -15,11 +15,7 @@ class FollowUpMigrationsTest extends MigrateNodeTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'content_translation',
     'language',
     'menu_ui',
@@ -30,11 +26,7 @@ class FollowUpMigrationsTest extends MigrateNodeTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->executeMigrations([
       'language',
@@ -45,11 +37,7 @@ class FollowUpMigrationsTest extends MigrateNodeTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test entity reference translations.
-=======
    * Tests entity reference translations.
->>>>>>> dev
    */
   public function testEntityReferenceTranslations() {
     // Test the entity reference field before the follow-up migrations.

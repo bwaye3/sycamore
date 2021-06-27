@@ -33,11 +33,7 @@ class EntityComment extends EntityContentBase {
   protected $stubCommentedEntityIds;
 
   /**
-<<<<<<< HEAD
-   * Builds an comment entity destination.
-=======
    * Builds a comment entity destination.
->>>>>>> dev
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.

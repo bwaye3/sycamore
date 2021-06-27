@@ -2,18 +2,11 @@
 
 namespace Drupal\KernelTests\Core\Database;
 
-<<<<<<< HEAD
-use Drupal\Component\Render\FormattableMarkup;
-use Drupal\Core\Database\Database;
-use Drupal\Core\Database\DatabaseExceptionWrapper;
-use Drupal\Core\Database\Query\Condition;
-=======
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Database\DatabaseExceptionWrapper;
 use Drupal\Core\Database\Query\Condition;
 use Drupal\Core\Database\StatementWrapper;
->>>>>>> dev
 
 /**
  * Tests of the core database system.
@@ -37,11 +30,7 @@ class ConnectionTest extends DatabaseTestBase {
 
     $this->assertNotNull($db1, 'default connection is a real connection object.');
     $this->assertNotNull($db2, 'replica connection is a real connection object.');
-<<<<<<< HEAD
-    $this->assertNotIdentical($db1, $db2, 'Each target refers to a different connection.');
-=======
     $this->assertNotSame($db1, $db2, 'Each target refers to a different connection.');
->>>>>>> dev
 
     // Try to open those targets another time, that should return the same objects.
     $db1b = Database::getConnection('default', 'default');
@@ -90,11 +79,7 @@ class ConnectionTest extends DatabaseTestBase {
     $db2 = Database::getConnection('default', 'default');
 
     // Opening a connection after closing it should yield an object different than the original.
-<<<<<<< HEAD
-    $this->assertNotIdentical($db1, $db2, 'Opening the default connection after it is closed returns a new object.');
-=======
     $this->assertNotSame($db1, $db2, 'Opening the default connection after it is closed returns a new object.');
->>>>>>> dev
   }
 
   /**
@@ -109,32 +94,19 @@ class ConnectionTest extends DatabaseTestBase {
 
     // In the MySQL driver, the port can be different, so check individual
     // options.
-<<<<<<< HEAD
-    $this->assertEqual($connection_info['default']['driver'], $connectionOptions['driver'], 'The default connection info driver matches the current connection options driver.');
-    $this->assertEqual($connection_info['default']['database'], $connectionOptions['database'], 'The default connection info database matches the current connection options database.');
-=======
     $this->assertEquals($connection_info['default']['driver'], $connectionOptions['driver'], 'The default connection info driver matches the current connection options driver.');
     $this->assertEquals($connection_info['default']['database'], $connectionOptions['database'], 'The default connection info database matches the current connection options database.');
->>>>>>> dev
 
     // Set up identical replica and confirm connection options are identical.
     Database::addConnectionInfo('default', 'replica', $connection_info['default']);
     $db2 = Database::getConnection('replica', 'default');
     // Getting a driver class ensures the namespace option is set.
-<<<<<<< HEAD
-    $this->assertEquals($db->getDriverClass('select'), $db2->getDriverClass('select'));
-=======
     $this->assertEquals($db->getDriverClass('Select'), $db2->getDriverClass('Select'));
->>>>>>> dev
     $connectionOptions2 = $db2->getConnectionOptions();
 
     // Get a fresh copy of the default connection options.
     $connectionOptions = $db->getConnectionOptions();
-<<<<<<< HEAD
-    $this->assertIdentical($connectionOptions, $connectionOptions2, 'The default and replica connection options are identical.');
-=======
     $this->assertSame($connectionOptions2, $connectionOptions, 'The default and replica connection options are identical.');
->>>>>>> dev
 
     // Set up a new connection with different connection info.
     $test = $connection_info['default'];
@@ -144,9 +116,6 @@ class ConnectionTest extends DatabaseTestBase {
 
     // Get a fresh copy of the default connection options.
     $connectionOptions = $db->getConnectionOptions();
-<<<<<<< HEAD
-    $this->assertNotEqual($connection_info['default']['database'], $connectionOptions['database'], 'The test connection info database does not match the current connection options database.');
-=======
     $this->assertNotEquals($connection_info['default']['database'], $connectionOptions['database'], 'The test connection info database does not match the current connection options database.');
   }
 
@@ -194,7 +163,6 @@ class ConnectionTest extends DatabaseTestBase {
     }
     $this->expectDeprecation('Passing a \\PDOStatement object as a $query argument to Drupal\Core\Database\Connection::query is deprecated in drupal:9.2.0 and is removed in drupal:10.0.0. Call the execute method from the StatementInterface object directly instead. See https://www.drupal.org/node/3154439');
     $this->assertNotNull($db->query($stmt->getClientStatement()));
->>>>>>> dev
   }
 
   /**
@@ -213,42 +181,14 @@ class ConnectionTest extends DatabaseTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Ensure that you cannot execute multiple statements.
-   */
-  public function testMultipleStatements() {
-=======
    * Ensure that you cannot execute multiple statements in a query.
    */
   public function testMultipleStatementsQuery() {
->>>>>>> dev
     $this->expectException(\InvalidArgumentException::class);
     Database::getConnection('default', 'default')->query('SELECT * FROM {test}; SELECT * FROM {test_people}');
   }
 
   /**
-<<<<<<< HEAD
-   * Test the escapeTable(), escapeField() and escapeAlias() methods with all possible reserved words in PostgreSQL.
-   */
-  public function testPostgresqlReservedWords() {
-    if (Database::getConnection()->databaseType() !== 'pgsql') {
-      $this->markTestSkipped("This test only runs for PostgreSQL");
-    }
-
-    $db = Database::getConnection('default', 'default');
-    $stmt = $db->query("SELECT word FROM pg_get_keywords() WHERE catcode IN ('R', 'T')");
-    $stmt->execute();
-    foreach ($stmt->fetchAllAssoc('word') as $word => $row) {
-      $expected = '"' . $word . '"';
-      $this->assertIdentical($db->escapeTable($word), $expected, new FormattableMarkup('The reserved word %word was correctly escaped when used as a table name.', ['%word' => $word]));
-      $this->assertIdentical($db->escapeField($word), $expected, new FormattableMarkup('The reserved word %word was correctly escaped when used as a column name.', ['%word' => $word]));
-      $this->assertIdentical($db->escapeAlias($word), $expected, new FormattableMarkup('The reserved word %word was correctly escaped when used as an alias.', ['%word' => $word]));
-    }
-  }
-
-  /**
-   * Test that the method ::condition() returns a Condition object.
-=======
    * Ensure that you cannot prepare multiple statements.
    */
   public function testMultipleStatements() {
@@ -258,7 +198,6 @@ class ConnectionTest extends DatabaseTestBase {
 
   /**
    * Tests that the method ::condition() returns a Condition object.
->>>>>>> dev
    */
   public function testCondition() {
     $connection = Database::getConnection('default', 'default');

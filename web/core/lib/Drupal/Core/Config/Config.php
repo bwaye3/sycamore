@@ -4,11 +4,7 @@ namespace Drupal\Core\Config;
 
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Cache\Cache;
-<<<<<<< HEAD
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-=======
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
->>>>>>> dev
 
 /**
  * Defines the default configuration object.
@@ -25,11 +21,7 @@ class Config extends StorableConfigBase {
   /**
    * An event dispatcher instance to use for configuration events.
    *
-<<<<<<< HEAD
-   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
-=======
    * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
->>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -65,11 +57,7 @@ class Config extends StorableConfigBase {
    * @param \Drupal\Core\Config\StorageInterface $storage
    *   A storage object to use for reading and writing the
    *   configuration data.
-<<<<<<< HEAD
-   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
-=======
    * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
->>>>>>> dev
    *   An event dispatcher instance to use for configuration events.
    * @param \Drupal\Core\Config\TypedConfigManagerInterface $typed_config
    *   The typed configuration manager service.
@@ -240,11 +228,7 @@ class Config extends StorableConfigBase {
       Cache::invalidateTags($this->getCacheTags());
     }
     $this->isNew = FALSE;
-<<<<<<< HEAD
-    $this->eventDispatcher->dispatch(ConfigEvents::SAVE, new ConfigCrudEvent($this));
-=======
     $this->eventDispatcher->dispatch(new ConfigCrudEvent($this), ConfigEvents::SAVE);
->>>>>>> dev
     $this->originalData = $this->data;
     return $this;
   }
@@ -261,11 +245,7 @@ class Config extends StorableConfigBase {
     Cache::invalidateTags($this->getCacheTags());
     $this->isNew = TRUE;
     $this->resetOverriddenData();
-<<<<<<< HEAD
-    $this->eventDispatcher->dispatch(ConfigEvents::DELETE, new ConfigCrudEvent($this));
-=======
     $this->eventDispatcher->dispatch(new ConfigCrudEvent($this), ConfigEvents::DELETE);
->>>>>>> dev
     $this->originalData = $this->data;
     return $this;
   }

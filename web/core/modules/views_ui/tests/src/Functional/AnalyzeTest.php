@@ -14,11 +14,7 @@ class AnalyzeTest extends UITestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['views_ui'];
-=======
   protected static $modules = ['views_ui'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -39,11 +35,7 @@ class AnalyzeTest extends UITestBase {
     $this->drupalLogin($this->adminUser);
 
     $this->drupalGet('admin/structure/views/view/test_view/edit');
-<<<<<<< HEAD
-    $this->assertSession()->linkExists(t('Analyze view'));
-=======
     $this->assertSession()->linkExists('Analyze view');
->>>>>>> dev
 
     // This redirects the user to the analyze form.
     $this->clickLink(t('Analyze view'));
@@ -55,11 +47,7 @@ class AnalyzeTest extends UITestBase {
     }
 
     // This redirects the user back to the main views edit page.
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [], t('Ok'));
-=======
     $this->submitForm([], 'Ok');
->>>>>>> dev
   }
 
 }

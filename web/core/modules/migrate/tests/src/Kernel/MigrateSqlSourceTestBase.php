@@ -2,13 +2,9 @@
 
 namespace Drupal\Tests\migrate\Kernel;
 
-<<<<<<< HEAD
-use Drupal\Core\Database\Driver\sqlite\Connection;
-=======
 use Drupal\Core\Cache\MemoryCounterBackendFactory;
 use Drupal\Core\Database\Driver\sqlite\Connection;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
->>>>>>> dev
 
 /**
  * Base class for tests of Migrate source plugins that use a database.
@@ -16,8 +12,6 @@ use Drupal\Core\DependencyInjection\ContainerBuilder;
 abstract class MigrateSqlSourceTestBase extends MigrateSourceTestBase {
 
   /**
-<<<<<<< HEAD
-=======
    * {@inheritdoc}
    */
   public function register(ContainerBuilder $container) {
@@ -26,7 +20,6 @@ abstract class MigrateSqlSourceTestBase extends MigrateSourceTestBase {
   }
 
   /**
->>>>>>> dev
    * Builds an in-memory SQLite database from a set of source data.
    *
    * @param array $source_data
@@ -84,21 +77,14 @@ abstract class MigrateSqlSourceTestBase extends MigrateSourceTestBase {
    *   (optional) Configuration for the source plugin.
    * @param mixed $high_water
    *   (optional) The value of the high water field.
-<<<<<<< HEAD
-=======
    * @param string|null $expected_cache_key
    *   (optional) The expected cache key.
->>>>>>> dev
    *
    * @dataProvider providerSource
    *
    * @requires extension pdo_sqlite
    */
-<<<<<<< HEAD
-  public function testSource(array $source_data, array $expected_data, $expected_count = NULL, array $configuration = [], $high_water = NULL) {
-=======
   public function testSource(array $source_data, array $expected_data, $expected_count = NULL, array $configuration = [], $high_water = NULL, $expected_cache_key = NULL) {
->>>>>>> dev
     $plugin = $this->getPlugin($configuration);
 
     // Since we don't yet inject the database connection, we need to use a
@@ -108,8 +94,6 @@ abstract class MigrateSqlSourceTestBase extends MigrateSourceTestBase {
     $property->setAccessible(TRUE);
     $property->setValue($plugin, $this->getDatabase($source_data));
 
-<<<<<<< HEAD
-=======
     /** @var MemoryCounterBackend $cache **/
     $cache = \Drupal::cache('migrate');
     if ($expected_cache_key) {
@@ -137,7 +121,6 @@ abstract class MigrateSqlSourceTestBase extends MigrateSourceTestBase {
       $this->assertSame([], $cache->getCounter('set'));
     }
 
->>>>>>> dev
     parent::testSource($source_data, $expected_data, $expected_count, $configuration, $high_water);
   }
 

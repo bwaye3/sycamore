@@ -49,11 +49,7 @@ class CacheCollectorTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->cacheBackend = $this->createMock('Drupal\Core\Cache\CacheBackendInterface');
     $this->cacheTagsInvalidator = $this->createMock('Drupal\Core\Cache\CacheTagsInvalidatorInterface');
     $this->lock = $this->createMock('Drupal\Core\Lock\LockBackendInterface');
@@ -264,11 +260,7 @@ class CacheCollectorTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests updating the cache when a different request
-=======
    * Tests updating the cache when a different request.
->>>>>>> dev
    */
   public function testUpdateCacheMerge() {
     $key = $this->randomMachineName();

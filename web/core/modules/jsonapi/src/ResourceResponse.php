@@ -2,11 +2,6 @@
 
 namespace Drupal\jsonapi;
 
-<<<<<<< HEAD
-use Drupal\Core\Cache\CacheableResponseInterface;
-use Drupal\Core\Cache\CacheableResponseTrait;
-=======
->>>>>>> dev
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -25,13 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @see \Drupal\rest\ModifiedResourceResponse
  */
-<<<<<<< HEAD
-class ResourceResponse extends Response implements CacheableResponseInterface {
-
-  use CacheableResponseTrait;
-=======
 class ResourceResponse extends Response {
->>>>>>> dev
 
   /**
    * Response data that should be serialized.

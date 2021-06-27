@@ -41,13 +41,10 @@ class FieldSettings extends ProcessPluginBase {
         $value['target_type'] = 'taxonomy_term';
         break;
 
-<<<<<<< HEAD
-=======
       case 'user_reference':
         $value['target_type'] = 'user';
         break;
 
->>>>>>> dev
       default:
         break;
     }

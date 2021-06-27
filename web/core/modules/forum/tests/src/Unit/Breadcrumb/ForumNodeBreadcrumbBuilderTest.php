@@ -3,10 +3,7 @@
 namespace Drupal\Tests\forum\Unit\Breadcrumb;
 
 use Drupal\Core\Cache\Cache;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Entity\EntityTypeManagerInterface;
->>>>>>> dev
 use Drupal\Core\Link;
 use Drupal\forum\Breadcrumb\ForumNodeBreadcrumbBuilder;
 use Drupal\taxonomy\TermStorageInterface;
@@ -22,11 +19,7 @@ class ForumNodeBreadcrumbBuilderTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $cache_contexts_manager = $this->getMockBuilder('Drupal\Core\Cache\Context\CacheContextsManager')
@@ -53,11 +46,7 @@ class ForumNodeBreadcrumbBuilderTest extends UnitTestCase {
    */
   public function testApplies($expected, $route_name = NULL, $parameter_map = []) {
     // Make some test doubles.
-<<<<<<< HEAD
-    $entity_manager = $this->createMock('Drupal\Core\Entity\EntityManagerInterface');
-=======
     $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
->>>>>>> dev
     $config_factory = $this->getConfigFactoryStub([]);
 
     $forum_manager = $this->createMock('Drupal\forum\ForumManagerInterface');
@@ -71,11 +60,7 @@ class ForumNodeBreadcrumbBuilderTest extends UnitTestCase {
     $builder = $this->getMockBuilder('Drupal\forum\Breadcrumb\ForumNodeBreadcrumbBuilder')
       ->setConstructorArgs(
         [
-<<<<<<< HEAD
-          $entity_manager,
-=======
           $entity_type_manager,
->>>>>>> dev
           $config_factory,
           $forum_manager,
           $translation_manager,
@@ -188,17 +173,10 @@ class ForumNodeBreadcrumbBuilderTest extends UnitTestCase {
         ['forums', $prophecy->reveal()],
       ]));
 
-<<<<<<< HEAD
-    $entity_manager = $this->getMockBuilder('Drupal\Core\Entity\EntityManagerInterface')
-      ->disableOriginalConstructor()
-      ->getMock();
-    $entity_manager->expects($this->any())
-=======
     $entity_type_manager = $this->getMockBuilder(EntityTypeManagerInterface::class)
       ->disableOriginalConstructor()
       ->getMock();
     $entity_type_manager->expects($this->any())
->>>>>>> dev
       ->method('getStorage')
       ->will($this->returnValueMap([
         ['taxonomy_vocabulary', $vocab_storage],
@@ -214,11 +192,7 @@ class ForumNodeBreadcrumbBuilderTest extends UnitTestCase {
     );
 
     // Build a breadcrumb builder to test.
-<<<<<<< HEAD
-    $breadcrumb_builder = new ForumNodeBreadcrumbBuilder($entity_manager,
-=======
     $breadcrumb_builder = new ForumNodeBreadcrumbBuilder($entity_type_manager,
->>>>>>> dev
       $config_factory,
       $forum_manager,
       $translation_manager);

@@ -54,11 +54,8 @@ interface ConditionInterface {
    *
    * @param string $field
    * @param string $langcode
-<<<<<<< HEAD
-=======
    *   (optional) For which language the entity should be prepared, defaults to
    *   the current content language.
->>>>>>> dev
    *
    * @return $this
    *

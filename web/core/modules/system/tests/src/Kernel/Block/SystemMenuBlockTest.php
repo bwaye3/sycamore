@@ -7,18 +7,10 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\system\Entity\Menu;
 use Drupal\block\Entity\Block;
 use Drupal\Core\Render\Element;
-<<<<<<< HEAD
-use Drupal\system\Plugin\Block\SystemMenuBlock;
-use Drupal\system\Tests\Routing\MockRouteProvider;
-use Drupal\Tests\Core\Menu\MenuLinkMock;
-use Drupal\user\Entity\User;
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
-=======
 use Drupal\system\Tests\Routing\MockRouteProvider;
 use Drupal\Tests\Core\Menu\MenuLinkMock;
 use Drupal\user\Entity\User;
 use Drupal\Core\Routing\RouteObjectInterface;
->>>>>>> dev
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
@@ -40,11 +32,7 @@ class SystemMenuBlockTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'system',
     'block',
     'menu_test',
@@ -92,11 +80,7 @@ class SystemMenuBlockTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installSchema('system', 'sequences');
     $this->installEntitySchema('user');
@@ -188,11 +172,7 @@ class SystemMenuBlockTest extends KernelTestBase {
         'stark',
       ],
     ];
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $dependencies);
-=======
     $this->assertSame($expected, $dependencies);
->>>>>>> dev
   }
 
   /**
@@ -247,11 +227,7 @@ class SystemMenuBlockTest extends KernelTestBase {
     foreach ($blocks as $id => $block) {
       $block_build = $block->build();
       $items = isset($block_build['#items']) ? $block_build['#items'] : [];
-<<<<<<< HEAD
-      $this->assertIdentical($no_active_trail_expectations[$id], $this->convertBuiltMenuToIdTree($items), new FormattableMarkup('Menu block %id with no active trail renders the expected tree.', ['%id' => $id]));
-=======
       $this->assertSame($no_active_trail_expectations[$id], $this->convertBuiltMenuToIdTree($items), new FormattableMarkup('Menu block %id with no active trail renders the expected tree.', ['%id' => $id]));
->>>>>>> dev
     }
 
     // Scenario 2: test all block instances when there's an active trail.
@@ -303,11 +279,7 @@ class SystemMenuBlockTest extends KernelTestBase {
     foreach ($blocks as $id => $block) {
       $block_build = $block->build();
       $items = isset($block_build['#items']) ? $block_build['#items'] : [];
-<<<<<<< HEAD
-      $this->assertIdentical($active_trail_expectations[$id], $this->convertBuiltMenuToIdTree($items), new FormattableMarkup('Menu block %id with an active trail renders the expected tree.', ['%id' => $id]));
-=======
       $this->assertSame($active_trail_expectations[$id], $this->convertBuiltMenuToIdTree($items), new FormattableMarkup('Menu block %id with an active trail renders the expected tree.', ['%id' => $id]));
->>>>>>> dev
     }
   }
 
@@ -382,23 +354,6 @@ class SystemMenuBlockTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * @deprecationMessage The menu.active_trail service must be passed to SystemMenuBlock::__construct(), it is required before Drupal 9.0.0. See https://www.drupal.org/node/2669550.
-   * @group legacy
-   */
-  public function testConstructorDeprecation() {
-    $block = new SystemMenuBlock([], 'test', ['provider' => 'test'], $this->container->get('menu.link_tree'));
-
-    // Ensure the BC layer injects the correct object.
-    $reflection_object = new \ReflectionObject($block);
-    $reflection_property = $reflection_object->getProperty('menuActiveTrail');
-    $reflection_property->setAccessible(TRUE);
-    $this->assertSame($reflection_property->getValue($block), $this->container->get('menu.active_trail'));
-  }
-
-  /**
-=======
->>>>>>> dev
    * Helper method to allow for easy menu link tree structure assertions.
    *
    * Converts the result of MenuLinkTree::build() in a "menu link ID tree".

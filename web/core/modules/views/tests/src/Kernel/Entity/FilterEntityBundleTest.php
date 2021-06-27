@@ -22,11 +22,7 @@ class FilterEntityBundleTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node'];
-=======
   protected static $modules = ['node'];
->>>>>>> dev
 
   /**
    * Tests the generic bundle filter.

@@ -6,19 +6,12 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
-<<<<<<< HEAD
-=======
 use Drupal\jsonapi\CacheableResourceResponse;
->>>>>>> dev
 use Drupal\jsonapi\JsonApiResource\JsonApiDocumentTopLevel;
 use Drupal\jsonapi\JsonApiResource\LinkCollection;
 use Drupal\jsonapi\JsonApiResource\NullIncludedData;
 use Drupal\jsonapi\JsonApiResource\Link;
 use Drupal\jsonapi\JsonApiResource\ResourceObjectData;
-<<<<<<< HEAD
-use Drupal\jsonapi\ResourceResponse;
-=======
->>>>>>> dev
 use Drupal\jsonapi\ResourceType\ResourceType;
 use Drupal\jsonapi\ResourceType\ResourceTypeRepositoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -130,11 +123,7 @@ class EntryPoint extends ControllerBase {
       }
     }
 
-<<<<<<< HEAD
-    $response = new ResourceResponse(new JsonApiDocumentTopLevel(new ResourceObjectData([]), new NullIncludedData(), $urls, $meta));
-=======
     $response = new CacheableResourceResponse(new JsonApiDocumentTopLevel(new ResourceObjectData([]), new NullIncludedData(), $urls, $meta));
->>>>>>> dev
     return $response->addCacheableDependency($cacheability);
   }
 

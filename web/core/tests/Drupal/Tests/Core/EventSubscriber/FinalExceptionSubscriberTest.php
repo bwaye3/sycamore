@@ -6,11 +6,7 @@ use Drupal\Core\EventSubscriber\FinalExceptionSubscriber;
 use Drupal\Tests\UnitTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
@@ -32,11 +28,7 @@ class FinalExceptionSubscriberTest extends UnitTestCase {
     // of this so we'll hard code it here.
     $request->setRequestFormat('bananas');
     $e = new MethodNotAllowedHttpException(['POST', 'PUT'], 'test message');
-<<<<<<< HEAD
-    $event = new GetResponseForExceptionEvent($kernel->reveal(), $request, HttpKernelInterface::MASTER_REQUEST, $e);
-=======
     $event = new ExceptionEvent($kernel->reveal(), $request, HttpKernelInterface::MASTER_REQUEST, $e);
->>>>>>> dev
     $subscriber = new TestDefaultExceptionSubscriber($config_factory);
     $subscriber->setStringTranslation($this->getStringTranslationStub());
     $subscriber->onException($event);

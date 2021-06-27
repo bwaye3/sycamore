@@ -3,23 +3,15 @@
 namespace Drupal\tracker\Plugin\Menu;
 
 use Drupal\Core\Menu\LocalTaskDefault;
-<<<<<<< HEAD
-use Drupal\Core\Routing\RouteMatchInterface;
-=======
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
->>>>>>> dev
 
 /**
  * Provides route parameters needed to link to the current user tracker tab.
  */
-<<<<<<< HEAD
-class UserTrackerTab extends LocalTaskDefault {
-=======
 class UserTrackerTab extends LocalTaskDefault implements ContainerFactoryPluginInterface {
->>>>>>> dev
 
   /**
    * Current user object.
@@ -29,20 +21,6 @@ class UserTrackerTab extends LocalTaskDefault implements ContainerFactoryPluginI
   protected $currentUser;
 
   /**
-<<<<<<< HEAD
-   * Gets the current active user.
-   *
-   * @todo: https://www.drupal.org/node/2105123 put this method in
-   *   \Drupal\Core\Plugin\PluginBase instead.
-   *
-   * @return \Drupal\Core\Session\AccountInterface
-   */
-  protected function currentUser() {
-    if (!$this->currentUser) {
-      $this->currentUser = \Drupal::currentUser();
-    }
-    return $this->currentUser;
-=======
    * Construct the UserTrackerTab object.
    *
    * @param array $configuration
@@ -69,18 +47,13 @@ class UserTrackerTab extends LocalTaskDefault implements ContainerFactoryPluginI
       $plugin_definition,
       $container->get('current_user')
     );
->>>>>>> dev
   }
 
   /**
    * {@inheritdoc}
    */
   public function getRouteParameters(RouteMatchInterface $route_match) {
-<<<<<<< HEAD
-    return ['user' => $this->currentUser()->Id()];
-=======
     return ['user' => $this->currentUser->id()];
->>>>>>> dev
   }
 
 }

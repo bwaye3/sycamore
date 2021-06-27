@@ -26,11 +26,8 @@ process:
 destination:
   plugin: entity:language_content_settings
 migration_dependencies:
-<<<<<<< HEAD
-=======
   required:
     - language
->>>>>>> dev
   optional:
     - d7_comment_type
     - d7_node_type

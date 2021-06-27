@@ -13,8 +13,6 @@ dialog_renderer_test.modal_content:
     _title: 'Thing 1'
   requirements:
     _access: 'TRUE'
-<<<<<<< HEAD
-=======
 
 dialog_renderer_test.modal_content_link:
   path: '/dialog_renderer-content-link'
@@ -31,4 +29,3 @@ dialog_renderer_test.modal_content_input:
     _title: 'Thing 3'
   requirements:
     _access: 'TRUE'
->>>>>>> dev

@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 # cspell:ignore imagefield optionwidgets
->>>>>>> dev
 id: d6_field_option_translation
 label: Field option configuration translation
 migration_tags:
@@ -146,7 +143,4 @@ destination:
 migration_dependencies:
   required:
     - d6_field
-<<<<<<< HEAD
-=======
     - language
->>>>>>> dev

@@ -261,17 +261,6 @@ class Media extends EditorialContentEntityBase implements MediaInterface {
   /**
    * Determines if the source field value has changed.
    *
-<<<<<<< HEAD
-   * @return bool
-   *   TRUE if the source field value changed, FALSE otherwise.
-   *
-   * @internal
-   */
-  protected function hasSourceFieldChanged() {
-    $source_field_name = $this->getSource()->getConfiguration()['source_field'];
-    $current_items = $this->get($source_field_name);
-    return isset($this->original) && !$current_items->equals($this->original->get($source_field_name));
-=======
    * The comparison uses MediaSourceInterface::getSourceFieldValue() to ensure
    * that the correct property from the source field is used.
    *
@@ -285,7 +274,6 @@ class Media extends EditorialContentEntityBase implements MediaInterface {
   protected function hasSourceFieldChanged() {
     $source = $this->getSource();
     return isset($this->original) && $source->getSourceFieldValue($this) !== $source->getSourceFieldValue($this->original);
->>>>>>> dev
   }
 
   /**
@@ -524,25 +512,6 @@ class Media extends EditorialContentEntityBase implements MediaInterface {
   }
 
   /**
-<<<<<<< HEAD
-   * Default value callback for 'uid' base field definition.
-   *
-   * @see ::baseFieldDefinitions()
-   *
-   * @deprecated The ::getCurrentUserId method is deprecated in 8.6.x and will
-   *   be removed before 9.0.0.
-   *
-   * @return int[]
-   *   An array of default values.
-   */
-  public static function getCurrentUserId() {
-    @trigger_error('The ::getCurrentUserId method is deprecated in 8.6.x and will be removed before 9.0.0.', E_USER_DEPRECATED);
-    return [\Drupal::currentUser()->id()];
-  }
-
-  /**
-=======
->>>>>>> dev
    * {@inheritdoc}
    */
   public static function getRequestTime() {

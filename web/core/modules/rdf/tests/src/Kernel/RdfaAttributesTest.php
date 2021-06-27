@@ -16,17 +16,10 @@ class RdfaAttributesTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['rdf'];
-
-  /**
-   * Test attribute creation for mappings which use 'property'.
-=======
   protected static $modules = ['rdf'];
 
   /**
    * Tests attribute creation for mappings which use 'property'.
->>>>>>> dev
    */
   public function testProperty() {
     $properties = ['dc:title'];
@@ -38,11 +31,7 @@ class RdfaAttributesTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test attribute creation for mappings which use 'datatype'.
-=======
    * Tests attribute creation for mappings which use 'datatype'.
->>>>>>> dev
    */
   public function testDatatype() {
     $properties = ['foo:bar1'];
@@ -61,11 +50,7 @@ class RdfaAttributesTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test attribute creation for mappings which override human-readable content.
-=======
    * Tests attribute creation for mappings that override human-readable content.
->>>>>>> dev
    */
   public function testDatatypeCallback() {
     $properties = ['dc:created'];
@@ -89,11 +74,7 @@ class RdfaAttributesTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test attribute creation for mappings which use data converters.
-=======
    * Tests attribute creation for mappings which use data converters.
->>>>>>> dev
    */
   public function testDatatypeCallbackWithConverter() {
     $properties = ['schema:interactionCount'];
@@ -117,11 +98,7 @@ class RdfaAttributesTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test attribute creation for mappings which use 'rel'.
-=======
    * Tests attribute creation for mappings which use 'rel'.
->>>>>>> dev
    */
   public function testRel() {
     $properties = ['sioc:has_creator', 'dc:creator'];
@@ -152,11 +129,7 @@ class RdfaAttributesTest extends KernelTestBase {
     $attributes = rdf_rdfa_attributes($mapping, $data);
     ksort($expected_attributes);
     ksort($attributes);
-<<<<<<< HEAD
-    $this->assertEqual($expected_attributes, $attributes);
-=======
     $this->assertEquals($expected_attributes, $attributes);
->>>>>>> dev
   }
 
 }

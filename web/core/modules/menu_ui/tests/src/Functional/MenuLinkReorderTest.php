@@ -23,11 +23,7 @@ class MenuLinkReorderTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['menu_ui', 'test_page_test', 'node', 'block'];
-=======
   protected static $modules = ['menu_ui', 'test_page_test', 'node', 'block'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -35,11 +31,7 @@ class MenuLinkReorderTest extends BrowserTestBase {
   protected $defaultTheme = 'stark';
 
   /**
-<<<<<<< HEAD
-   * Test creating, editing, deleting menu links via node form widget.
-=======
    * Tests creating, editing, deleting menu links via node form widget.
->>>>>>> dev
    */
   public function testDefaultMenuLinkReorder() {
 
@@ -62,24 +54,16 @@ class MenuLinkReorderTest extends BrowserTestBase {
     $edit = [
       'links[menu_plugin_id:test_page_test.front_page][weight]' => -10,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/menu/manage/main', $edit, t('Save'));
-=======
     $this->drupalGet('admin/structure/menu/manage/main');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
 
     // The link is still there.
     $this->drupalGet('test-page');
     $this->assertSession()->linkExists('Home');
 
     // Clear all caches.
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/development/performance', [], t('Clear all caches'));
-=======
     $this->drupalGet('admin/config/development/performance');
     $this->submitForm([], 'Clear all caches');
->>>>>>> dev
 
     // Clearing all caches should not affect the state of the menu link.
     $this->drupalGet('test-page');

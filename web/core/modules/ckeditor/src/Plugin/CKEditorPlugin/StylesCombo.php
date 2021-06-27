@@ -141,11 +141,7 @@ class StylesCombo extends CKEditorPluginBase implements CKEditorPluginConfigurab
       }
 
       // Validate syntax: element[.class...]|label pattern expected.
-<<<<<<< HEAD
-      if (!preg_match('@^ *[a-zA-Z0-9]+ *(\\.[a-zA-Z0-9_-]+ *)*\\| *.+ *$@', $style)) {
-=======
       if (!preg_match('@^ *[a-zA-Z0-9-]+ *(\\.[a-zA-Z0-9_-]+ *)*\\| *.+ *$@', $style)) {
->>>>>>> dev
         return FALSE;
       }
 

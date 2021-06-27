@@ -17,11 +17,7 @@ use Drupal\Core\Database\Schema as DatabaseSchema;
 class Schema extends DatabaseSchema {
 
   /**
-<<<<<<< HEAD
-   * Override DatabaseSchema::$defaultSchema
-=======
    * Override DatabaseSchema::$defaultSchema.
->>>>>>> dev
    *
    * @var string
    */
@@ -170,10 +166,7 @@ class Schema extends DatabaseSchema {
    *   The field specification, as per the schema data structure format.
    */
   protected function createFieldSql($name, $spec) {
-<<<<<<< HEAD
-=======
     $name = $this->connection->escapeField($name);
->>>>>>> dev
     if (!empty($spec['auto_increment'])) {
       $sql = $name . " INTEGER PRIMARY KEY AUTOINCREMENT";
       if (!empty($spec['unsigned'])) {
@@ -373,11 +366,7 @@ class Schema extends DatabaseSchema {
       // Build the mapping between the old fields and the new fields.
       $mapping = [];
       if (isset($specification['initial_from_field'])) {
-<<<<<<< HEAD
-        // If we have a initial value, copy it over.
-=======
         // If we have an initial value, copy it over.
->>>>>>> dev
         if (isset($specification['initial'])) {
           $expression = 'COALESCE(' . $specification['initial_from_field'] . ', :default_initial_value)';
           $arguments = [':default_initial_value' => $specification['initial']];
@@ -392,11 +381,7 @@ class Schema extends DatabaseSchema {
         ];
       }
       elseif (isset($specification['initial'])) {
-<<<<<<< HEAD
-        // If we have a initial value, copy it over.
-=======
         // If we have an initial value, copy it over.
->>>>>>> dev
         $mapping[$field] = [
           'expression' => ':newfieldinitial',
           'arguments' => [':newfieldinitial' => $specification['initial']],
@@ -806,41 +791,6 @@ class Schema extends DatabaseSchema {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function fieldSetDefault($table, $field, $default) {
-    @trigger_error('fieldSetDefault() is deprecated in drupal:8.7.0 and will be removed before drupal:9.0.0. Instead, call ::changeField() passing a full field specification. See https://www.drupal.org/node/2999035', E_USER_DEPRECATED);
-    if (!$this->fieldExists($table, $field)) {
-      throw new SchemaObjectDoesNotExistException("Cannot set default value of field '$table.$field': field doesn't exist.");
-    }
-
-    $old_schema = $this->introspectSchema($table);
-    $new_schema = $old_schema;
-
-    $new_schema['fields'][$field]['default'] = $default;
-    $this->alterTable($table, $old_schema, $new_schema);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function fieldSetNoDefault($table, $field) {
-    @trigger_error('fieldSetNoDefault() is deprecated in drupal:8.7.0 and will be removed before drupal:9.0.0. Instead, call ::changeField() passing a full field specification. See https://www.drupal.org/node/2999035', E_USER_DEPRECATED);
-    if (!$this->fieldExists($table, $field)) {
-      throw new SchemaObjectDoesNotExistException("Cannot remove default value of field '$table.$field': field doesn't exist.");
-    }
-
-    $old_schema = $this->introspectSchema($table);
-    $new_schema = $old_schema;
-
-    unset($new_schema['fields'][$field]['default']);
-    $this->alterTable($table, $old_schema, $new_schema);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-=======
->>>>>>> dev
   public function findTables($table_expression) {
     $tables = [];
 

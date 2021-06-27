@@ -3,11 +3,7 @@
  * Attaches behaviors for the Tour module's toolbar tab.
  */
 
-<<<<<<< HEAD
-(function($, Backbone, Drupal, document) {
-=======
 (($, Backbone, Drupal, settings, document, Shepherd) => {
->>>>>>> dev
   const queryString = decodeURI(window.location.search);
 
   /**
@@ -33,10 +29,7 @@
         .once('tour')
         .each(() => {
           const model = new Drupal.tour.models.StateModel();
-<<<<<<< HEAD
-=======
           // eslint-disable-next-line no-new
->>>>>>> dev
           new Drupal.tour.views.ToggleTourView({
             el: $(context).find('#toolbar-tab-tour'),
             model,
@@ -44,16 +37,6 @@
 
           model
             // Allow other scripts to respond to tour events.
-<<<<<<< HEAD
-            .on('change:isActive', (model, isActive) => {
-              $(document).trigger(
-                isActive ? 'drupalTourStarted' : 'drupalTourStopped',
-              );
-            })
-            // Initialization: check whether a tour is available on the current
-            // page.
-            .set('tour', $(context).find('ol#tour'));
-=======
             .on('change:isActive', (tourModel, isActive) => {
               $(document).trigger(
                 isActive ? 'drupalTourStarted' : 'drupalTourStopped',
@@ -64,7 +47,6 @@
           if (settings._tour_internal) {
             model.set('tour', settings._tour_internal);
           }
->>>>>>> dev
 
           // Start the tour immediately if toggled via query string.
           if (/tour=?/i.test(queryString)) {
@@ -159,11 +141,7 @@
         this.$el
           .find('button')
           .toggleClass('is-active', isActive)
-<<<<<<< HEAD
-          .prop('aria-pressed', isActive);
-=======
           .attr('aria-pressed', isActive);
->>>>>>> dev
         return this;
       },
 
@@ -172,29 +150,6 @@
        */
       toggleTour() {
         if (this.model.get('isActive')) {
-<<<<<<< HEAD
-          const $tour = this._getTour();
-          this._removeIrrelevantTourItems($tour, this._getDocument());
-          const that = this;
-          const close = Drupal.t('Close');
-          if ($tour.find('li').length) {
-            $tour.joyride({
-              autoStart: true,
-              postRideCallback() {
-                that.model.set('isActive', false);
-              },
-              // HTML segments for tip layout.
-              template: {
-                link: `<a href="#close" class="joyride-close-tip" aria-label="${close}">&times;</a>`,
-                button:
-                  '<a href="#" class="button button--primary joyride-next-tip"></a>',
-              },
-            });
-            this.model.set({ isActive: true, activeTour: $tour });
-          }
-        } else {
-          this.model.get('activeTour').joyride('destroy');
-=======
           this._removeIrrelevantTourItems(this._getTour());
           const tourItems = this.model.get('tour');
           const that = this;
@@ -294,7 +249,6 @@
           }
         } else {
           this.model.get('activeTour').cancel();
->>>>>>> dev
           this.model.set({ isActive: false, activeTour: [] });
         }
       },
@@ -314,33 +268,14 @@
       /**
        * Gets the tour.
        *
-<<<<<<< HEAD
-       * @return {jQuery}
-       *   A jQuery element pointing to a `<ol>` containing tour items.
-=======
        * @return {array}
        *   An array of Shepherd tour item objects.
->>>>>>> dev
        */
       _getTour() {
         return this.model.get('tour');
       },
 
       /**
-<<<<<<< HEAD
-       * Gets the relevant document as a jQuery element.
-       *
-       * @return {jQuery}
-       *   A jQuery element pointing to the document within which a tour would be
-       *   started given the current state.
-       */
-      _getDocument() {
-        return $(document);
-      },
-
-      /**
-=======
->>>>>>> dev
        * Removes tour items for elements that don't have matching page elements.
        *
        * Or that are explicitly filtered out via the 'tips' query string.
@@ -350,64 +285,6 @@
        * page element or don't have the "bar" class.</caption>
        * http://example.com/foo?tips=bar
        *
-<<<<<<< HEAD
-       * @param {jQuery} $tour
-       *   A jQuery element pointing to a `<ol>` containing tour items.
-       * @param {jQuery} $document
-       *   A jQuery element pointing to the document within which the elements
-       *   should be sought.
-       *
-       * @see Drupal.tour.views.ToggleTourView#_getDocument
-       */
-      _removeIrrelevantTourItems($tour, $document) {
-        let removals = false;
-        const tips = /tips=([^&]+)/.exec(queryString);
-        $tour.find('li').each(function() {
-          const $this = $(this);
-          const itemId = $this.attr('data-id');
-          const itemClass = $this.attr('data-class');
-          // If the query parameter 'tips' is set, remove all tips that don't
-          // have the matching class.
-          if (tips && !$(this).hasClass(tips[1])) {
-            removals = true;
-            $this.remove();
-            return;
-          }
-          // Remove tip from the DOM if there is no corresponding page element.
-          if (
-            (!itemId && !itemClass) ||
-            (itemId && $document.find(`#${itemId}`).length) ||
-            (itemClass && $document.find(`.${itemClass}`).length)
-          ) {
-            return;
-          }
-          removals = true;
-          $this.remove();
-        });
-
-        // If there were removals, we'll have to do some clean-up.
-        if (removals) {
-          const total = $tour.find('li').length;
-          if (!total) {
-            this.model.set({ tour: [] });
-          }
-
-          $tour
-            .find('li')
-            // Rebuild the progress data.
-            .each(function(index) {
-              const progress = Drupal.t('!tour_item of !total', {
-                '!tour_item': index + 1,
-                '!total': total,
-              });
-              $(this)
-                .find('.tour-progress')
-                .text(progress);
-            })
-            // Update the last item to have "End tour" as the button.
-            .eq(-1)
-            .attr('data-text', Drupal.t('End tour'));
-=======
        * @param {Object[]} tourItems
        *   An array containing tour Step config objects.
        *   The object properties relevant to this function:
@@ -454,14 +331,10 @@
             }
           });
           this.model.set('tour', filteredTour);
->>>>>>> dev
         }
       },
     },
   );
-<<<<<<< HEAD
-})(jQuery, Backbone, Drupal, document);
-=======
 
   /**
    * Provides an object that will become the tour item's 'next' button.
@@ -542,4 +415,3 @@
   Drupal.theme.tourItemContent = (tourStepConfig) =>
     `${tourStepConfig.body}<div class="tour-progress">${tourStepConfig.counter}</div>`;
 })(jQuery, Backbone, Drupal, drupalSettings, document, window.Shepherd);
->>>>>>> dev

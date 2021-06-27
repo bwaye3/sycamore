@@ -55,13 +55,10 @@ trait OEmbedTestTrait {
         ],
       ],
     ]);
-<<<<<<< HEAD
-=======
     // Rebuild the container in case there is already an instantiated service
     // that has a dependency on the http_client service.
     $this->container->get('kernel')->rebuildContainer();
     $this->container = $this->container->get('kernel')->getContainer();
->>>>>>> dev
   }
 
   /**

@@ -16,11 +16,7 @@ class NodeQueryAlterTest extends NodeTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node_access_test'];
-=======
   protected static $modules = ['node_access_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -37,11 +33,7 @@ class NodeQueryAlterTest extends NodeTestBase {
    */
   protected $noAccessUser;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     node_access_rebuild();
@@ -78,13 +70,8 @@ class NodeQueryAlterTest extends NodeTestBase {
   public function testNodeQueryAlterLowLevelWithAccess() {
     // User with access should be able to view 4 nodes.
     try {
-<<<<<<< HEAD
-      $query = Database::getConnection()->select('node', 'mytab')
-        ->fields('mytab');
-=======
       $query = Database::getConnection()->select('node', 'n')
         ->fields('n');
->>>>>>> dev
       $query->addTag('node_access');
       $query->addMetaData('op', 'view');
       $query->addMetaData('account', $this->accessUser);
@@ -105,10 +92,7 @@ class NodeQueryAlterTest extends NodeTestBase {
     try {
       $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
       $result = $query
-<<<<<<< HEAD
-=======
         ->accessCheck(TRUE)
->>>>>>> dev
         ->allRevisions()
         ->execute();
 
@@ -128,13 +112,8 @@ class NodeQueryAlterTest extends NodeTestBase {
   public function testNodeQueryAlterLowLevelNoAccess() {
     // User without access should be able to view 0 nodes.
     try {
-<<<<<<< HEAD
-      $query = Database::getConnection()->select('node', 'mytab')
-        ->fields('mytab');
-=======
       $query = Database::getConnection()->select('node', 'n')
         ->fields('n');
->>>>>>> dev
       $query->addTag('node_access');
       $query->addMetaData('op', 'view');
       $query->addMetaData('account', $this->noAccessUser);
@@ -156,13 +135,8 @@ class NodeQueryAlterTest extends NodeTestBase {
   public function testNodeQueryAlterLowLevelEditAccess() {
     // User with view-only access should not be able to edit nodes.
     try {
-<<<<<<< HEAD
-      $query = Database::getConnection()->select('node', 'mytab')
-        ->fields('mytab');
-=======
       $query = Database::getConnection()->select('node', 'n')
         ->fields('n');
->>>>>>> dev
       $query->addTag('node_access');
       $query->addMetaData('op', 'update');
       $query->addMetaData('account', $this->accessUser);
@@ -202,13 +176,8 @@ class NodeQueryAlterTest extends NodeTestBase {
     // privilege after adding the node_access record.
     drupal_static_reset('node_access_view_all_nodes');
     try {
-<<<<<<< HEAD
-      $query = $connection->select('node', 'mytab')
-        ->fields('mytab');
-=======
       $query = $connection->select('node', 'n')
         ->fields('n');
->>>>>>> dev
       $query->addTag('node_access');
       $query->addMetaData('op', 'view');
       $query->addMetaData('account', $this->noAccessUser);
@@ -229,13 +198,8 @@ class NodeQueryAlterTest extends NodeTestBase {
     \Drupal::state()->set('node_access_test.no_access_uid', $this->noAccessUser->id());
     drupal_static_reset('node_access_view_all_nodes');
     try {
-<<<<<<< HEAD
-      $query = $connection->select('node', 'mytab')
-        ->fields('mytab');
-=======
       $query = $connection->select('node', 'n')
         ->fields('n');
->>>>>>> dev
       $query->addTag('node_access');
       $query->addMetaData('op', 'view');
       $query->addMetaData('account', $this->noAccessUser);

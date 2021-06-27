@@ -362,14 +362,11 @@ layout_plugin.settings:
     label:
       type: label
       label: 'Label'
-<<<<<<< HEAD
-=======
     context_mapping:
       type: sequence
       label: 'Context assignments'
       sequence:
         type: string
->>>>>>> dev
 
 layout_plugin.settings.*:
   type: layout_plugin.settings

@@ -13,11 +13,7 @@ abstract class NodeTestBase extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node_test_views'];
-=======
   protected static $modules = ['node_test_views'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -26,11 +22,7 @@ abstract class NodeTestBase extends ViewTestBase {
     parent::setUp($import_test_views);
 
     if ($import_test_views) {
-<<<<<<< HEAD
-      ViewTestData::createTestViews(get_class($this), ['node_test_views']);
-=======
       ViewTestData::createTestViews(static::class, ['node_test_views']);
->>>>>>> dev
     }
   }
 

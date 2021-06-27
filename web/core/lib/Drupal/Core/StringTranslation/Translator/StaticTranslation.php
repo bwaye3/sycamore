@@ -10,11 +10,7 @@ namespace Drupal\Core\StringTranslation\Translator;
 class StaticTranslation implements TranslatorInterface {
 
   /**
-<<<<<<< HEAD
-   * String translations
-=======
    * String translations.
->>>>>>> dev
    *
    * @var array
    *   Array of cached translations indexed by language and context.

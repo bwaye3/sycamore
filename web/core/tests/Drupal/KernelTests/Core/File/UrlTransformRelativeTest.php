@@ -12,11 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class UrlTransformRelativeTest extends KernelTestBase {
 
-<<<<<<< HEAD
-  public static $modules = ['file_test'];
-=======
   protected static $modules = ['file_test'];
->>>>>>> dev
 
   /**
    * Tests file_url_transform_relative function.
@@ -45,43 +41,6 @@ class UrlTransformRelativeTest extends KernelTestBase {
   }
 
   public function providerFileUrlTransformRelative() {
-<<<<<<< HEAD
-    $data = [];
-    $data[] = [
-      'example.com',
-      80,
-      '',
-      'http://example.com/page',
-      '/page',
-    ];
-    $data[] = [
-      'example.com',
-      443,
-      'on',
-      'https://example.com/page',
-      '/page',
-    ];
-    $data[] = [
-      'example.com',
-      8080,
-      '',
-      'https://example.com:8080/page',
-      '/page',
-    ];
-    $data[] = [
-      'example.com',
-      8443,
-      'on',
-      'https://example.com:8443/page',
-      '/page',
-    ];
-    $data[] = [
-      'example.com',
-      80,
-      '',
-      'http://exampleXcom/page',
-      'http://exampleXcom/page',
-=======
     $data = [
       'http' => [
         'example.com',
@@ -132,7 +91,6 @@ class UrlTransformRelativeTest extends KernelTestBase {
         'https://example.com:8443/page',
         'https://example.com:8443/page',
       ],
->>>>>>> dev
     ];
     return $data;
   }

@@ -11,17 +11,6 @@
       var $context = $(context);
       $context.find('#filters-status-wrapper input.form-checkbox').once('filter-status').each(function () {
         var $checkbox = $(this);
-<<<<<<< HEAD
-
-        var $row = $context.find('#' + $checkbox.attr('id').replace(/-status$/, '-weight')).closest('tr');
-
-        var $filterSettings = $context.find('#' + $checkbox.attr('id').replace(/-status$/, '-settings'));
-        var filterSettingsTab = $filterSettings.data('verticalTab');
-
-        $checkbox.on('click.filterUpdate', function () {
-          if ($checkbox.is(':checked')) {
-            $row.show();
-=======
         var $row = $context.find("#".concat($checkbox.attr('id').replace(/-status$/, '-weight'))).closest('tr');
         var $filterSettings = $context.find("[data-drupal-selector='".concat($checkbox.attr('id').replace(/-status$/, '-settings'), "']"));
         var filterSettingsTab = $filterSettings.data('verticalTab');
@@ -29,7 +18,6 @@
           if ($checkbox.is(':checked')) {
             $row.show();
 
->>>>>>> dev
             if (filterSettingsTab) {
               filterSettingsTab.tabShow().updateSummary();
             } else {
@@ -37,10 +25,7 @@
             }
           } else {
             $row.hide();
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
             if (filterSettingsTab) {
               filterSettingsTab.tabHide().updateSummary();
             } else {

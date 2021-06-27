@@ -31,11 +31,7 @@ class SearchLanguageTest extends BrowserTestBase {
    */
   protected $searchableNodes;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalCreateContentType(['type' => 'page', 'name' => 'Basic page']);
@@ -107,24 +103,6 @@ class SearchLanguageTest extends BrowserTestBase {
   public function testLanguages() {
     // Add predefined language.
     $edit = ['predefined_langcode' => 'fr'];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/regional/language/add', $edit, t('Add language'));
-    $this->assertText('French', 'Language added successfully.');
-
-    // Now we should have languages displayed.
-    $this->drupalGet('search/node');
-    $this->assertText(t('Languages'), 'Languages displayed to choose from.');
-    $this->assertText(t('English'), 'English is a possible choice.');
-    $this->assertText(t('French'), 'French is a possible choice.');
-
-    // Ensure selecting no language does not make the query different.
-    $this->drupalPostForm('search/node', [], 'edit-submit--2');
-    $this->assertUrl(Url::fromRoute('search.view_node_search', [], ['query' => ['keys' => ''], 'absolute' => TRUE])->toString(), [], 'Correct page redirection, no language filtering.');
-
-    // Pick French and ensure it is selected.
-    $edit = ['language[fr]' => TRUE];
-    $this->drupalPostForm('search/node', $edit, 'edit-submit--2');
-=======
     $this->drupalGet('admin/config/regional/language/add');
     $this->submitForm($edit, 'Add language');
     $this->assertSession()->pageTextContains('French');
@@ -144,7 +122,6 @@ class SearchLanguageTest extends BrowserTestBase {
     $edit = ['language[fr]' => TRUE];
     $this->drupalGet('search/node');
     $this->submitForm($edit, 'edit-submit--2');
->>>>>>> dev
     // Get the redirected URL.
     $url = $this->getUrl();
     $parts = parse_url($url);
@@ -153,12 +130,8 @@ class SearchLanguageTest extends BrowserTestBase {
 
     // Search for keyword node and language filter as Spanish.
     $edit = ['keys' => 'node', 'language[es]' => TRUE];
-<<<<<<< HEAD
-    $this->drupalPostForm('search/node', $edit, 'edit-submit--2');
-=======
     $this->drupalGet('search/node');
     $this->submitForm($edit, 'edit-submit--2');
->>>>>>> dev
     // Check for Spanish results.
     $this->assertSession()->linkExists('Second node this is the Spanish title', 0, 'Second node Spanish title found in search results');
     $this->assertSession()->linkExists('Third node es', 0, 'Third node Spanish found in search results');
@@ -170,15 +143,6 @@ class SearchLanguageTest extends BrowserTestBase {
     // Change the default language and delete English.
     $path = 'admin/config/regional/language';
     $this->drupalGet($path);
-<<<<<<< HEAD
-    $this->assertFieldChecked('edit-site-default-language-en', 'Default language updated.');
-    $edit = [
-      'site_default_language' => 'fr',
-    ];
-    $this->drupalPostForm($path, $edit, t('Save configuration'));
-    $this->assertNoFieldChecked('edit-site-default-language-en', 'Default language updated.');
-    $this->drupalPostForm('admin/config/regional/language/delete/en', [], t('Delete'));
-=======
     $this->assertSession()->checkboxChecked('edit-site-default-language-en');
     $edit = [
       'site_default_language' => 'fr',
@@ -211,7 +175,6 @@ class SearchLanguageTest extends BrowserTestBase {
     $result = $this->xpath('//div[@class="layout-content"]//ol/li/h3[contains(@lang, "en")]/a');
     $this->assertEquals($node->getTitle(), $result[0]->getText());
     $this->assertSession()->elementExists('xpath', '//div[@class="layout-content"]//ol/li/p[contains(@lang, "en")]');
->>>>>>> dev
   }
 
 }

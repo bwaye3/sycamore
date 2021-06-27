@@ -14,11 +14,7 @@ class UserFieldsAccessChangeTest extends UserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['user_access_test'];
-=======
   protected static $modules = ['user_access_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -39,15 +35,6 @@ class UserFieldsAccessChangeTest extends UserTestBase {
     $this->drupalGet('test_user_fields_access');
 
     // User has access to name and created date by default.
-<<<<<<< HEAD
-    $this->assertText(t('Name'));
-    $this->assertText(t('Created'));
-
-    // User does not by default have access to init, mail and status.
-    $this->assertNoText(t('Init'));
-    $this->assertNoText(t('Email'));
-    $this->assertNoText(t('Status'));
-=======
     $this->assertSession()->pageTextContains('Name');
     $this->assertSession()->pageTextContains('Created');
 
@@ -55,7 +42,6 @@ class UserFieldsAccessChangeTest extends UserTestBase {
     $this->assertNoText('Init');
     $this->assertNoText('Email');
     $this->assertNoText('Status');
->>>>>>> dev
 
     // Assign sub-admin role to grant extra access.
     $user = $this->drupalCreateUser(['sub-admin']);
@@ -63,15 +49,9 @@ class UserFieldsAccessChangeTest extends UserTestBase {
     $this->drupalGet('test_user_fields_access');
 
     // Access for init, mail and status is added in hook_entity_field_access().
-<<<<<<< HEAD
-    $this->assertText(t('Init'));
-    $this->assertText(t('Email'));
-    $this->assertText(t('Status'));
-=======
     $this->assertSession()->pageTextContains('Init');
     $this->assertSession()->pageTextContains('Email');
     $this->assertSession()->pageTextContains('Status');
->>>>>>> dev
   }
 
   /**
@@ -90,11 +70,7 @@ class UserFieldsAccessChangeTest extends UserTestBase {
 
     // No access, so no link.
     $this->drupalGet('test_user_fields_access');
-<<<<<<< HEAD
-    $this->assertText($test_user->getAccountName(), 'Found user in view');
-=======
     $this->assertSession()->pageTextContains($test_user->getAccountName());
->>>>>>> dev
     $result = $this->xpath($xpath);
     $this->assertCount(0, $result, 'User is not a link');
 

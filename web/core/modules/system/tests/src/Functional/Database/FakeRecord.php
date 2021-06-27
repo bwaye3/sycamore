@@ -9,9 +9,6 @@ namespace Drupal\Tests\system\Functional\Database;
  * rather than just a stdClass or array. This class is for testing that
  * functionality. (See testQueryFetchClass() below)
  */
-<<<<<<< HEAD
-class FakeRecord {}
-=======
 class FakeRecord {
 
   /**
@@ -32,4 +29,3 @@ class FakeRecord {
   }
 
 }
->>>>>>> dev

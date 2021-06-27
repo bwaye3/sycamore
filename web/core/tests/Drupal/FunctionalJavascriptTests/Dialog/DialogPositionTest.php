@@ -14,11 +14,7 @@ class DialogPositionTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['block'];
-=======
   protected static $modules = ['block'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -51,11 +47,7 @@ class DialogPositionTest extends WebDriverTestBase {
     $dialog = $page->find('css', '.ui-dialog');
     $this->assertNull($dialog, 'Dialog is closed after clicking the close button.');
 
-<<<<<<< HEAD
-    // Resize the window. The test should pass after waiting for Javascript to
-=======
     // Resize the window. The test should pass after waiting for JavaScript to
->>>>>>> dev
     // finish as no Javascript errors should have been triggered. If there were
     // javascript errors the test will fail on that.
     $session->resizeWindow(625, 625);

@@ -34,11 +34,7 @@ class ContentEntityTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'user',
     'migrate',
     'migrate_drupal',
@@ -94,11 +90,7 @@ class ContentEntityTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('node');
     $this->installEntitySchema('file');
@@ -110,11 +102,7 @@ class ContentEntityTest extends KernelTestBase {
     $this->installSchema('user', 'users_data');
     $this->installSchema('file', 'file_usage');
     $this->installSchema('node', ['node_access']);
-<<<<<<< HEAD
-    $this->installConfig($this->modules);
-=======
     $this->installConfig(static::$modules);
->>>>>>> dev
 
     ConfigurableLanguage::createFromLangcode('fr')->save();
 
@@ -162,15 +150,12 @@ class ContentEntityTest extends KernelTestBase {
     ]);
     $this->user->save();
 
-<<<<<<< HEAD
-=======
     $this->anon = User::create([
       'name' => 'anon',
       'uid' => 0,
     ]);
     $this->anon->save();
 
->>>>>>> dev
     $term = Term::create([
       'vid' => $this->vocabulary,
       'name' => 'Apples',
@@ -294,10 +279,7 @@ class ContentEntityTest extends KernelTestBase {
     $user_source = $migration->getSourcePlugin();
     $this->assertSame('users', $user_source->__toString());
     if (!$configuration['include_translations']) {
-<<<<<<< HEAD
-=======
       // Confirm that the query does not return a row for the anonymous user.
->>>>>>> dev
       $this->assertEquals(1, $user_source->count());
     }
     $this->assertIds($user_source, $configuration);
@@ -488,26 +470,14 @@ class ContentEntityTest extends KernelTestBase {
     $values = $term_source->current()->getSource();
     $this->assertEquals($this->vocabulary, $values['vid'][0]['target_id']);
     $this->assertEquals(1, $values['tid']);
-<<<<<<< HEAD
-    // @TODO: Add test coverage for parent in
-    // https://www.drupal.org/project/drupal/issues/2940198
-    $this->assertEquals('Apples', $values['name'][0]['value']);
-=======
     $this->assertEquals('Apples', $values['name'][0]['value']);
     $this->assertSame([['target_id' => '0']], $values['parent']);
->>>>>>> dev
     $term_source->next();
     $values = $term_source->current()->getSource();
     $this->assertEquals($this->vocabulary, $values['vid'][0]['target_id']);
     $this->assertEquals(2, $values['tid']);
-<<<<<<< HEAD
-    // @TODO: Add test coverage for parent in
-    // https://www.drupal.org/project/drupal/issues/2940198
-    $this->assertEquals('Granny Smith', $values['name'][0]['value']);
-=======
     $this->assertEquals('Granny Smith', $values['name'][0]['value']);
     $this->assertSame([['target_id' => '1']], $values['parent']);
->>>>>>> dev
   }
 
   /**

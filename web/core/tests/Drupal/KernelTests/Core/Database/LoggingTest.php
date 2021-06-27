@@ -2,58 +2,24 @@
 
 namespace Drupal\KernelTests\Core\Database;
 
-<<<<<<< HEAD
-=======
 use Drupal\Core\Database\Log;
->>>>>>> dev
 use Drupal\Core\Database\Database;
 
 /**
  * Tests the query logging facility.
  *
-<<<<<<< HEAD
-=======
  * @coversDefaultClass \Drupal\Core\Database\Log
  *
->>>>>>> dev
  * @group Database
  */
 class LoggingTest extends DatabaseTestBase {
 
   /**
    * Tests that we can log the existence of a query.
-<<<<<<< HEAD
-   *
-   * This test is only marked as legacy to be able to test the deprecated
-   * db_query function().
-   *
-   * @group legacy
-   *
-   * @expectedDeprecationMessage db_query() is deprecated in drupal:8.0.0. It will be removed before drupal:9.0.0. Instead, get a database connection injected into your service from the container and call query() on it. For example, $injected_database->query($query, $args, $options). See https://www.drupal.org/node/2993033
-=======
->>>>>>> dev
    */
   public function testEnableLogging() {
     Database::startLog('testing');
 
-<<<<<<< HEAD
-    $this->connection->query('SELECT name FROM {test} WHERE age > :age', [':age' => 25])->fetchCol();
-    $this->connection->query('SELECT age FROM {test} WHERE name = :name', [':name' => 'Ringo'])->fetchCol();
-
-    // Trigger a call that does not have file in the backtrace.
-    call_user_func_array([Database::getConnection(), 'query'], ['SELECT age FROM {test} WHERE name = :name', [':name' => 'Ringo']])->fetchCol();
-
-    // Make sure that the caller is also detected correctly for the deprecated
-    // db_query() function.
-    db_query('SELECT name FROM {test} WHERE age > :age', [':age' => 25])->fetchCol();
-
-    $queries = Database::getLog('testing', 'default');
-
-    $this->assertCount(4, $queries, 'Correct number of queries recorded.');
-
-    foreach ($queries as $query) {
-      $this->assertEqual($query['caller']['function'], __FUNCTION__, 'Correct function in query log.');
-=======
     $start = microtime(TRUE);
     $this->connection->query('SELECT [name] FROM {test} WHERE [age] > :age', [':age' => 25])->fetchCol();
     $this->connection->query('SELECT [age] FROM {test} WHERE [name] = :name', [':name' => 'Ringo'])->fetchCol();
@@ -69,7 +35,6 @@ class LoggingTest extends DatabaseTestBase {
       $this->assertEquals(__FUNCTION__, $query['caller']['function'], 'Correct function in query log.');
       $this->assertIsFloat($query['start']);
       $this->assertGreaterThanOrEqual($start, $query['start']);
->>>>>>> dev
     }
   }
 
@@ -79,19 +44,11 @@ class LoggingTest extends DatabaseTestBase {
   public function testEnableMultiLogging() {
     Database::startLog('testing1');
 
-<<<<<<< HEAD
-    $this->connection->query('SELECT name FROM {test} WHERE age > :age', [':age' => 25])->fetchCol();
-
-    Database::startLog('testing2');
-
-    $this->connection->query('SELECT age FROM {test} WHERE name = :name', [':name' => 'Ringo'])->fetchCol();
-=======
     $this->connection->query('SELECT [name] FROM {test} WHERE [age] > :age', [':age' => 25])->fetchCol();
 
     Database::startLog('testing2');
 
     $this->connection->query('SELECT [age] FROM {test} WHERE [name] = :name', [':name' => 'Ringo'])->fetchCol();
->>>>>>> dev
 
     $queries1 = Database::getLog('testing1');
     $queries2 = Database::getLog('testing2');
@@ -111,26 +68,15 @@ class LoggingTest extends DatabaseTestBase {
 
     Database::startLog('testing1');
 
-<<<<<<< HEAD
-    $this->connection->query('SELECT name FROM {test} WHERE age > :age', [':age' => 25])->fetchCol();
-
-    Database::getConnection('replica')->query('SELECT age FROM {test} WHERE name = :name', [':name' => 'Ringo'])->fetchCol();
-=======
     $this->connection->query('SELECT [name] FROM {test} WHERE [age] > :age', [':age' => 25])->fetchCol();
 
     Database::getConnection('replica')->query('SELECT [age] FROM {test} WHERE [name] = :name', [':name' => 'Ringo'])->fetchCol();
->>>>>>> dev
 
     $queries1 = Database::getLog('testing1');
 
     $this->assertCount(2, $queries1, 'Recorded queries from all targets.');
-<<<<<<< HEAD
-    $this->assertEqual($queries1[0]['target'], 'default', 'First query used default target.');
-    $this->assertEqual($queries1[1]['target'], 'replica', 'Second query used replica target.');
-=======
     $this->assertEquals('default', $queries1[0]['target'], 'First query used default target.');
     $this->assertEquals('replica', $queries1[1]['target'], 'Second query used replica target.');
->>>>>>> dev
   }
 
   /**
@@ -143,33 +89,20 @@ class LoggingTest extends DatabaseTestBase {
   public function testEnableTargetLoggingNoTarget() {
     Database::startLog('testing1');
 
-<<<<<<< HEAD
-    $this->connection->query('SELECT name FROM {test} WHERE age > :age', [':age' => 25])->fetchCol();
-=======
     $this->connection->query('SELECT [name] FROM {test} WHERE [age] > :age', [':age' => 25])->fetchCol();
->>>>>>> dev
 
     // We use "fake" here as a target because any non-existent target will do.
     // However, because all of the tests in this class share a single page
     // request there is likely to be a target of "replica" from one of the other
     // unit tests, so we use a target here that we know with absolute certainty
     // does not exist.
-<<<<<<< HEAD
-    Database::getConnection('fake')->query('SELECT age FROM {test} WHERE name = :name', [':name' => 'Ringo'])->fetchCol();
-=======
     Database::getConnection('fake')->query('SELECT [age] FROM {test} WHERE [name] = :name', [':name' => 'Ringo'])->fetchCol();
->>>>>>> dev
 
     $queries1 = Database::getLog('testing1');
 
     $this->assertCount(2, $queries1, 'Recorded queries from all targets.');
-<<<<<<< HEAD
-    $this->assertEqual($queries1[0]['target'], 'default', 'First query used default target.');
-    $this->assertEqual($queries1[1]['target'], 'default', 'Second query used default target as fallback.');
-=======
     $this->assertEquals('default', $queries1[0]['target'], 'First query used default target.');
     $this->assertEquals('default', $queries1[1]['target'], 'Second query used default target as fallback.');
->>>>>>> dev
   }
 
   /**
@@ -184,19 +117,11 @@ class LoggingTest extends DatabaseTestBase {
     Database::startLog('testing1');
     Database::startLog('testing1', 'test2');
 
-<<<<<<< HEAD
-    $this->connection->query('SELECT name FROM {test} WHERE age > :age', [':age' => 25])->fetchCol();
-
-    $old_key = Database::setActiveConnection('test2');
-
-    Database::getConnection('replica')->query('SELECT age FROM {test} WHERE name = :name', [':name' => 'Ringo'])->fetchCol();
-=======
     $this->connection->query('SELECT [name] FROM {test} WHERE [age] > :age', [':age' => 25])->fetchCol();
 
     $old_key = Database::setActiveConnection('test2');
 
     Database::getConnection('replica')->query('SELECT [age] FROM {test} WHERE [name] = :name', [':name' => 'Ringo'])->fetchCol();
->>>>>>> dev
 
     Database::setActiveConnection($old_key);
 
@@ -213,9 +138,6 @@ class LoggingTest extends DatabaseTestBase {
   public function testGetLoggingWrongKey() {
     $result = Database::getLog('wrong');
 
-<<<<<<< HEAD
-    $this->assertEqual($result, [], 'The function getLog with a wrong key returns an empty array.');
-=======
     $this->assertEquals([], $result, 'The function getLog with a wrong key returns an empty array.');
   }
 
@@ -405,7 +327,6 @@ class LoggingTest extends DatabaseTestBase {
         ],
       ],
     ];
->>>>>>> dev
   }
 
 }

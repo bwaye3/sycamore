@@ -38,11 +38,7 @@ abstract class Database {
   const RETURN_INSERT_ID = 3;
 
   /**
-<<<<<<< HEAD
-   * An nested array of all active connections. It is keyed by database name
-=======
    * A nested array of all active connections. It is keyed by database name
->>>>>>> dev
    * and target.
    *
    * @var array
@@ -218,10 +214,7 @@ abstract class Database {
     if (empty($info['driver'])) {
       $info = $info[mt_rand(0, count($info) - 1)];
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
     // Parse the prefix information.
     if (!isset($info['prefix'])) {
       // Default to an empty prefix.
@@ -235,15 +228,12 @@ abstract class Database {
         'default' => $info['prefix'],
       ];
     }
-<<<<<<< HEAD
-=======
 
     // Fallback for Drupal 7 settings.php if namespace is not provided.
     if (empty($info['namespace'])) {
       $info['namespace'] = 'Drupal\\Core\\Database\\Driver\\' . $info['driver'];
     }
 
->>>>>>> dev
     return $info;
   }
 
@@ -385,12 +375,7 @@ abstract class Database {
       throw new DriverNotSpecifiedException('Driver not specified for this database connection: ' . $key);
     }
 
-<<<<<<< HEAD
-    $namespace = static::getDatabaseDriverNamespace(self::$databaseInfo[$key][$target]);
-    $driver_class = $namespace . '\\Connection';
-=======
     $driver_class = self::$databaseInfo[$key][$target]['namespace'] . '\\Connection';
->>>>>>> dev
 
     $pdo_connection = $driver_class::open(self::$databaseInfo[$key][$target]);
     $new_connection = new $driver_class($pdo_connection, self::$databaseInfo[$key][$target]);
@@ -420,28 +405,6 @@ abstract class Database {
     if (!isset($key)) {
       $key = self::$activeKey;
     }
-<<<<<<< HEAD
-    // To close a connection, it needs to be set to NULL and removed from the
-    // static variable. In all cases, closeConnection() might be called for a
-    // connection that was not opened yet, in which case the key is not defined
-    // yet and we just ensure that the connection key is undefined.
-    if (isset($target)) {
-      if (isset(self::$connections[$key][$target])) {
-        self::$connections[$key][$target]->destroy();
-        self::$connections[$key][$target] = NULL;
-      }
-      unset(self::$connections[$key][$target]);
-    }
-    else {
-      if (isset(self::$connections[$key])) {
-        foreach (self::$connections[$key] as $target => $connection) {
-          self::$connections[$key][$target]->destroy();
-          self::$connections[$key][$target] = NULL;
-        }
-      }
-      unset(self::$connections[$key]);
-    }
-=======
     if (isset($target)) {
       unset(self::$connections[$key][$target]);
     }
@@ -451,7 +414,6 @@ abstract class Database {
     // Force garbage collection to run. This ensures that PDO connection objects
     // and destroyed and results in the connections being closed.
     gc_collect_cycles();
->>>>>>> dev
   }
 
   /**
@@ -601,11 +563,7 @@ abstract class Database {
     }
 
     // Extract the module information from the namespace.
-<<<<<<< HEAD
-    list(, $module, $module_relative_namespace) = explode('\\', $namespace, 3);
-=======
     [, $module, $module_relative_namespace] = explode('\\', $namespace, 3);
->>>>>>> dev
 
     // The namespace is within a Drupal module. Find the directory where the
     // module is located.
@@ -642,11 +600,7 @@ abstract class Database {
     if (empty($db_info) || empty($db_info['default'])) {
       throw new \RuntimeException("Database connection $key not defined or missing the 'default' settings");
     }
-<<<<<<< HEAD
-    $namespace = static::getDatabaseDriverNamespace($db_info['default']);
-=======
     $namespace = $db_info['default']['namespace'];
->>>>>>> dev
 
     // If the driver namespace is within a Drupal module, add the module name
     // to the connection options to make it easy for the connection class's
@@ -669,10 +623,6 @@ abstract class Database {
    *
    * @return string
    *   The PHP namespace of the driver's database.
-<<<<<<< HEAD
-   */
-  protected static function getDatabaseDriverNamespace(array $connection_info) {
-=======
    *
    * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. There is no
    *   replacement as $connection_info['namespace'] is always set.
@@ -681,7 +631,6 @@ abstract class Database {
    */
   protected static function getDatabaseDriverNamespace(array $connection_info) {
     @trigger_error(__METHOD__ . " is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. There is no replacement as \$connection_info['namespace'] is always set. See https://www.drupal.org/node/3127769.", E_USER_DEPRECATED);
->>>>>>> dev
     if (isset($connection_info['namespace'])) {
       return $connection_info['namespace'];
     }
@@ -707,11 +656,7 @@ abstract class Database {
    *   \Drupal\Core\Database\Database::getConnectionInfoAsUrl() is removed.
    */
   private static function isWithinModuleNamespace(string $namespace) {
-<<<<<<< HEAD
-    list($first, $second) = explode('\\', $namespace, 3);
-=======
     [$first, $second] = explode('\\', $namespace, 3);
->>>>>>> dev
 
     // The namespace for Drupal modules is Drupal\MODULE_NAME, and the module
     // name must be all lowercase. Second-level namespaces containing uppercase

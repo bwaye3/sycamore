@@ -4,10 +4,7 @@ namespace Drupal\Core\Render;
 
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Component\Utility\Html;
-<<<<<<< HEAD
-=======
 use Drupal\Component\Utility\Variable;
->>>>>>> dev
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Cache\Cache;
@@ -21,11 +18,7 @@ use Drupal\Core\Theme\ThemeManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
-<<<<<<< HEAD
- * Turns a render array into a HTML string.
-=======
  * Turns a render array into an HTML string.
->>>>>>> dev
  */
 class Renderer implements RendererInterface {
   use DoTrustedCallbackTrait;
@@ -361,13 +354,10 @@ class Renderer implements RendererInterface {
     // Build the element if it is still empty.
     if (isset($elements['#lazy_builder'])) {
       $new_elements = $this->doCallback('#lazy_builder', $elements['#lazy_builder'][0], $elements['#lazy_builder'][1]);
-<<<<<<< HEAD
-=======
       // Throw an exception if #lazy_builder callback does not return an array;
       // provide helpful details for troubleshooting.
       assert(is_array($new_elements), "#lazy_builder callbacks must return a valid renderable array, got " . gettype($new_elements) . " from " . Variable::callableToString($elements['#lazy_builder'][0]));
 
->>>>>>> dev
       // Retain the original cacheability metadata, plus cache keys.
       CacheableMetadata::createFromRenderArray($elements)
         ->merge(CacheableMetadata::createFromRenderArray($new_elements))
@@ -787,21 +777,13 @@ class Renderer implements RendererInterface {
         $callback = explode('::', $callback, 2);
       }
     }
-<<<<<<< HEAD
-    $message = sprintf('Render %s callbacks must be methods of a class that implements \Drupal\Core\Security\TrustedCallbackInterface or be an anonymous function. The callback was %s. Support for this callback implementation is deprecated in 8.8.0 and will be removed in Drupal 9.0.0. See https://www.drupal.org/node/2966725', $callback_type, '%s');
-=======
     $message = sprintf('Render %s callbacks must be methods of a class that implements \Drupal\Core\Security\TrustedCallbackInterface or be an anonymous function. The callback was %s. See https://www.drupal.org/node/2966725', $callback_type, '%s');
->>>>>>> dev
     // Add \Drupal\Core\Render\Element\RenderCallbackInterface as an extra
     // trusted interface so that:
     // - All public methods on Render elements are considered trusted.
     // - Helper classes that contain only callback methods can implement this
     //   instead of TrustedCallbackInterface.
-<<<<<<< HEAD
-    return $this->doTrustedCallback($callback, $args, $message, TrustedCallbackInterface::TRIGGER_SILENCED_DEPRECATION, RenderCallbackInterface::class);
-=======
     return $this->doTrustedCallback($callback, $args, $message, TrustedCallbackInterface::THROW_EXCEPTION, RenderCallbackInterface::class);
->>>>>>> dev
   }
 
 }

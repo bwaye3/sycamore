@@ -15,11 +15,7 @@ class ContainerDerivativeDiscoveryDecoratorTest extends UnitTestCase {
    * @covers ::getDefinitions
    */
   public function testGetDefinitions() {
-<<<<<<< HEAD
-    $example_service = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
-=======
     $example_service = $this->createMock('Symfony\Contracts\EventDispatcher\EventDispatcherInterface');
->>>>>>> dev
     $example_container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
       ->setMethods(['get'])
       ->getMock();

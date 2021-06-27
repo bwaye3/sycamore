@@ -3,10 +3,6 @@
 namespace Drupal\Core\Config\Entity;
 
 use Drupal\Component\Graph\Graph;
-<<<<<<< HEAD
-use Drupal\Component\Utility\SortArray;
-=======
->>>>>>> dev
 
 /**
  * Provides a class to discover configuration entity dependencies.
@@ -223,59 +219,6 @@ class ConfigDependencyManager {
   }
 
   /**
-<<<<<<< HEAD
-   * Sorts the dependency graph by weight and alphabetically.
-   *
-   * @deprecated in drupal:8.2.0 and is removed from drupal:9.0.0. Use
-   * \Drupal\Core\Config\Entity\ConfigDependencyManager::prepareMultisort() and
-   * array_multisort() instead.
-   *
-   * @param array $a
-   *   First item for comparison. The compared items should be associative
-   *   arrays that include a 'weight' and a 'name' key.
-   * @param array $b
-   *   Second item for comparison.
-   *
-   * @return int
-   *   The comparison result for uasort().
-   */
-  protected static function sortGraphByWeight(array $a, array $b) {
-    $weight_cmp = SortArray::sortByKeyInt($a, $b, 'weight');
-
-    if ($weight_cmp === 0) {
-      return SortArray::sortByKeyString($a, $b, 'name');
-    }
-    return $weight_cmp;
-  }
-
-  /**
-   * Sorts the dependency graph by reverse weight and alphabetically.
-   *
-   * @deprecated in drupal:8.2.0 and is removed from drupal:9.0.0. Use
-   * \Drupal\Core\Config\Entity\ConfigDependencyManager::prepareMultisort() and
-   * array_multisort() instead.
-   *
-   * @param array $a
-   *   First item for comparison. The compared items should be associative
-   *   arrays that include a 'weight' and a 'name' key.
-   * @param array $b
-   *   Second item for comparison.
-   *
-   * @return int
-   *   The comparison result for uasort().
-   */
-  public static function sortGraph(array $a, array $b) {
-    $weight_cmp = SortArray::sortByKeyInt($a, $b, 'weight') * -1;
-
-    if ($weight_cmp === 0) {
-      return SortArray::sortByKeyString($a, $b, 'name');
-    }
-    return $weight_cmp;
-  }
-
-  /**
-=======
->>>>>>> dev
    * Creates a graph of config entity dependencies.
    *
    * @param array $entities_to_check

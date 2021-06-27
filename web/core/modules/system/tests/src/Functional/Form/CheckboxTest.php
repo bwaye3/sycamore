@@ -18,11 +18,7 @@ class CheckboxTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['form_test'];
-=======
   protected static $modules = ['form_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -59,35 +55,12 @@ class CheckboxTest extends BrowserTestBase {
         }
         $checked_in_html = strpos($form, 'checked') !== FALSE;
         $message = new FormattableMarkup('#default_value is %default_value #return_value is %return_value.', ['%default_value' => var_export($default_value, TRUE), '%return_value' => var_export($return_value, TRUE)]);
-<<<<<<< HEAD
-        $this->assertIdentical($checked, $checked_in_html, $message);
-=======
         $this->assertSame($checked, $checked_in_html, $message);
->>>>>>> dev
       }
     }
 
     // Ensure that $form_state->getValues() is populated correctly for a
     // checkboxes group that includes a 0-indexed array of options.
-<<<<<<< HEAD
-    $this->drupalPostForm('form-test/checkboxes-zero/1', [], 'Save');
-    $results = json_decode($this->getSession()->getPage()->getContent());
-    $this->assertIdentical($results->checkbox_off, [0, 0, 0], 'All three in checkbox_off are zeroes: off.');
-    $this->assertIdentical($results->checkbox_zero_default, ['0', 0, 0], 'The first choice is on in checkbox_zero_default');
-    $this->assertIdentical($results->checkbox_string_zero_default, ['0', 0, 0], 'The first choice is on in checkbox_string_zero_default');
-    // Due to Mink driver differences, we cannot submit an empty checkbox value
-    // to drupalPostForm(), even if that empty value is the 'true' value for
-    // the checkbox.
-    $this->drupalGet('form-test/checkboxes-zero/1');
-    $this->assertSession()->fieldExists('checkbox_off[0]')->check();
-    $this->drupalPostForm(NULL, NULL, 'Save');
-    $results = json_decode($this->getSession()->getPage()->getContent());
-    $this->assertIdentical($results->checkbox_off, ['0', 0, 0], 'The first choice is on in checkbox_off but the rest is not');
-
-    // Ensure that each checkbox is rendered correctly for a checkboxes group
-    // that includes a 0-indexed array of options.
-    $this->drupalPostForm('form-test/checkboxes-zero/0', [], 'Save');
-=======
     $this->drupalGet('form-test/checkboxes-zero/1');
     $this->submitForm([], 'Save');
     $results = json_decode($this->getSession()->getPage()->getContent());
@@ -107,23 +80,12 @@ class CheckboxTest extends BrowserTestBase {
     // that includes a 0-indexed array of options.
     $this->drupalGet('form-test/checkboxes-zero/0');
     $this->submitForm([], 'Save');
->>>>>>> dev
     $checkboxes = $this->xpath('//input[@type="checkbox"]');
 
     $this->assertCount(9, $checkboxes, 'Correct number of checkboxes found.');
     foreach ($checkboxes as $checkbox) {
       $checked = $checkbox->isChecked();
       $name = $checkbox->getAttribute('name');
-<<<<<<< HEAD
-      $this->assertIdentical($checked, $name == 'checkbox_zero_default[0]' || $name == 'checkbox_string_zero_default[0]', new FormattableMarkup('Checkbox %name correctly checked', ['%name' => $name]));
-    }
-    // Due to Mink driver differences, we cannot submit an empty checkbox value
-    // to drupalPostForm(), even if that empty value is the 'true' value for
-    // the checkbox.
-    $this->drupalGet('form-test/checkboxes-zero/0');
-    $this->assertSession()->fieldExists('checkbox_off[0]')->check();
-    $this->drupalPostForm(NULL, NULL, 'Save');
-=======
       $this->assertSame($checked, $name == 'checkbox_zero_default[0]' || $name == 'checkbox_string_zero_default[0]', new FormattableMarkup('Checkbox %name correctly checked', ['%name' => $name]));
     }
     // Due to Mink driver differences, we cannot submit an empty checkbox value
@@ -132,18 +94,13 @@ class CheckboxTest extends BrowserTestBase {
     $this->drupalGet('form-test/checkboxes-zero/0');
     $this->assertSession()->fieldExists('checkbox_off[0]')->check();
     $this->submitForm([], 'Save');
->>>>>>> dev
     $checkboxes = $this->xpath('//input[@type="checkbox"]');
 
     $this->assertCount(9, $checkboxes, 'Correct number of checkboxes found.');
     foreach ($checkboxes as $checkbox) {
       $checked = $checkbox->isChecked();
       $name = (string) $checkbox->getAttribute('name');
-<<<<<<< HEAD
-      $this->assertIdentical($checked, $name == 'checkbox_off[0]' || $name == 'checkbox_zero_default[0]' || $name == 'checkbox_string_zero_default[0]', new FormattableMarkup('Checkbox %name correctly checked', ['%name' => $name]));
-=======
       $this->assertSame($checked, $name == 'checkbox_off[0]' || $name == 'checkbox_zero_default[0]' || $name == 'checkbox_string_zero_default[0]', new FormattableMarkup('Checkbox %name correctly checked', ['%name' => $name]));
->>>>>>> dev
     }
   }
 

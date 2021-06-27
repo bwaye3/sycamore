@@ -235,11 +235,7 @@ class DefaultLazyPluginCollectionTest extends LazyPluginCollectionTestBase {
     $this->defaultPluginCollection->setConfiguration(['cherry' => ['value' => 'kiwi', 'id' => 'cherry']]);
     $expected['cherry'] = ['value' => 'kiwi', 'id' => 'cherry'];
     $config = $this->defaultPluginCollection->getConfiguration();
-<<<<<<< HEAD
-    $this->assertSame(['cherry' => ['value' => 'kiwi', 'id' => 'cherry']], $config);
-=======
     $this->assertSame($expected, $config);
->>>>>>> dev
 
   }
 

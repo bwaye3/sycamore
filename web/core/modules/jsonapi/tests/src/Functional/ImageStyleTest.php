@@ -15,11 +15,7 @@ class ImageStyleTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['image'];
-=======
   protected static $modules = ['image'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

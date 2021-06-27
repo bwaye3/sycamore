@@ -22,11 +22,7 @@ class EntityBundleListCacheTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['cache_test', 'entity_test'];
-=======
   protected static $modules = ['cache_test', 'entity_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -36,11 +32,7 @@ class EntityBundleListCacheTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     EntityTestBundle::create([
       'id' => 'bundle_a',

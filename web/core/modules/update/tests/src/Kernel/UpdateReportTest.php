@@ -2,14 +2,10 @@
 
 namespace Drupal\Tests\update\Kernel;
 
-<<<<<<< HEAD
-use Drupal\KernelTests\KernelTestBase;
-=======
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\user\Traits\UserCreationTrait;
->>>>>>> dev
 
 /**
  * Tests update report functionality.
@@ -19,11 +15,8 @@ use Drupal\Tests\user\Traits\UserCreationTrait;
  */
 class UpdateReportTest extends KernelTestBase {
 
-<<<<<<< HEAD
-=======
   use UserCreationTrait;
 
->>>>>>> dev
   /**
    * {@inheritdoc}
    */
@@ -57,11 +50,7 @@ class UpdateReportTest extends KernelTestBase {
       '$variables with data not set' => [
         [],
       ],
-<<<<<<< HEAD
-      '$variables with data as an interger' => [
-=======
       '$variables with data as an integer' => [
->>>>>>> dev
         ['data' => 4],
       ],
       '$variables with data as a string' => [
@@ -70,8 +59,6 @@ class UpdateReportTest extends KernelTestBase {
     ];
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Tests the error message when failing to fetch data without dblog enabled.
    *
@@ -140,5 +127,4 @@ class UpdateReportTest extends KernelTestBase {
     $this->assertArrayHasKey('dblog', $variables['error_message']['items']['#items']);
   }
 
->>>>>>> dev
 }

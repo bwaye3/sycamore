@@ -4,17 +4,11 @@ namespace Drupal\Core\Extension;
 
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheBackendInterface;
-<<<<<<< HEAD
-use Drupal\Core\DrupalKernelInterface;
-use Drupal\Core\Entity\EntityStorageException;
-use Drupal\Core\Entity\FieldableEntityInterface;
-=======
 use Drupal\Core\Database\Connection;
 use Drupal\Core\DrupalKernelInterface;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Installer\InstallerKernel;
->>>>>>> dev
 use Drupal\Core\Serialization\Yaml;
 
 /**
@@ -52,8 +46,6 @@ class ModuleInstaller implements ModuleInstallerInterface {
   protected $root;
 
   /**
-<<<<<<< HEAD
-=======
    * The database connection.
    *
    * @var \Drupal\Core\Database\Connection
@@ -61,7 +53,6 @@ class ModuleInstaller implements ModuleInstallerInterface {
   protected $connection;
 
   /**
->>>>>>> dev
    * The uninstall validators.
    *
    * @var \Drupal\Core\Extension\ModuleUninstallValidatorInterface[]
@@ -77,21 +68,12 @@ class ModuleInstaller implements ModuleInstallerInterface {
    *   The module handler.
    * @param \Drupal\Core\DrupalKernelInterface $kernel
    *   The drupal kernel.
-<<<<<<< HEAD
-=======
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
->>>>>>> dev
    *
    * @see \Drupal\Core\DrupalKernel
    * @see \Drupal\Core\CoreServiceProvider
    */
-<<<<<<< HEAD
-  public function __construct($root, ModuleHandlerInterface $module_handler, DrupalKernelInterface $kernel) {
-    $this->root = $root;
-    $this->moduleHandler = $module_handler;
-    $this->kernel = $kernel;
-=======
   public function __construct($root, ModuleHandlerInterface $module_handler, DrupalKernelInterface $kernel, Connection $connection = NULL) {
     $this->root = $root;
     $this->moduleHandler = $module_handler;
@@ -101,7 +83,6 @@ class ModuleInstaller implements ModuleInstallerInterface {
       $connection = \Drupal::service('database');
     }
     $this->connection = $connection;
->>>>>>> dev
   }
 
   /**
@@ -244,18 +225,6 @@ class ModuleInstaller implements ModuleInstallerInterface {
         $this->moduleHandler->load($module);
         module_load_install($module);
 
-<<<<<<< HEAD
-        // Replace the route provider service with a version that will rebuild
-        // if routes used during installation. This ensures that a module's
-        // routes are available during installation. This has to occur before
-        // any services that depend on it are instantiated otherwise those
-        // services will have the old route provider injected. Note that, since
-        // the container is rebuilt by updating the kernel, the route provider
-        // service is the regular one even though we are in a loop and might
-        // have replaced it before.
-        \Drupal::getContainer()->set('router.route_provider.old', \Drupal::service('router.route_provider'));
-        \Drupal::getContainer()->set('router.route_provider', \Drupal::service('router.route_provider.lazy_builder'));
-=======
         if (!InstallerKernel::installationAttempted()) {
           // Replace the route provider service with a version that will rebuild
           // if routes used during installation. This ensures that a module's
@@ -268,17 +237,12 @@ class ModuleInstaller implements ModuleInstallerInterface {
           \Drupal::getContainer()->set('router.route_provider.old', \Drupal::service('router.route_provider'));
           \Drupal::getContainer()->set('router.route_provider', \Drupal::service('router.route_provider.lazy_builder'));
         }
->>>>>>> dev
 
         // Allow modules to react prior to the installation of a module.
         $this->moduleHandler->invokeAll('module_preinstall', [$module]);
 
         // Now install the module's schema if necessary.
-<<<<<<< HEAD
-        drupal_install_schema($module);
-=======
         $this->installSchema($module);
->>>>>>> dev
 
         // Clear plugin manager caches.
         \Drupal::getContainer()->get('plugin.cache_clearer')->clearCachedDefinitions();
@@ -385,19 +349,6 @@ class ModuleInstaller implements ModuleInstallerInterface {
 
     // If any modules were newly installed, invoke hook_modules_installed().
     if (!empty($modules_installed)) {
-<<<<<<< HEAD
-      // If the container was rebuilt during hook_install() it might not have
-      // the 'router.route_provider.old' service.
-      if (\Drupal::hasService('router.route_provider.old')) {
-        \Drupal::getContainer()->set('router.route_provider', \Drupal::service('router.route_provider.old'));
-      }
-      if (!\Drupal::service('router.route_provider.lazy_builder')->hasRebuilt()) {
-        // Rebuild routes after installing module. This is done here on top of
-        // \Drupal\Core\Routing\RouteBuilder::destruct to not run into errors on
-        // fastCGI which executes ::destruct() after the module installation
-        // page was sent already.
-        \Drupal::service('router.builder')->rebuild();
-=======
       if (!InstallerKernel::installationAttempted()) {
         // If the container was rebuilt during hook_install() it might not have
         // the 'router.route_provider.old' service.
@@ -411,7 +362,6 @@ class ModuleInstaller implements ModuleInstallerInterface {
           // page was sent already.
           \Drupal::service('router.builder')->rebuild();
         }
->>>>>>> dev
       }
 
       $this->moduleHandler->invokeAll('modules_installed', [$modules_installed, $sync_status]);
@@ -533,11 +483,7 @@ class ModuleInstaller implements ModuleInstallerInterface {
       }
 
       // Remove the schema.
-<<<<<<< HEAD
-      drupal_uninstall_schema($module);
-=======
       $this->uninstallSchema($module);
->>>>>>> dev
 
       // Remove the module's entry from the config. Don't check schema when
       // uninstalling a module since we are only clearing a key.
@@ -654,10 +600,7 @@ class ModuleInstaller implements ModuleInstallerInterface {
     // dependencies.
     $container = $this->kernel->getContainer();
     $this->moduleHandler = $container->get('module_handler');
-<<<<<<< HEAD
-=======
     $this->connection = $container->get('database');
->>>>>>> dev
   }
 
   /**
@@ -679,8 +622,6 @@ class ModuleInstaller implements ModuleInstallerInterface {
     return $reasons;
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Creates all tables defined in a module's hook_schema().
    *
@@ -715,5 +656,4 @@ class ModuleInstaller implements ModuleInstallerInterface {
     }
   }
 
->>>>>>> dev
 }

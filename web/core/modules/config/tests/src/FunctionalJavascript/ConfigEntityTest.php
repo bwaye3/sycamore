@@ -14,11 +14,7 @@ class ConfigEntityTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['config_test'];
-=======
   protected static $modules = ['config_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

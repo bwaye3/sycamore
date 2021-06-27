@@ -15,20 +15,12 @@ class MigrateAggregatorItemTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['aggregator'];
-=======
   protected static $modules = ['aggregator'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('aggregator_feed');
     $this->installEntitySchema('aggregator_item');
@@ -37,11 +29,7 @@ class MigrateAggregatorItemTest extends MigrateDrupal7TestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test Drupal 7 aggregator item migration to Drupal 8.
-=======
    * Tests Drupal 7 aggregator item migration to Drupal 8.
->>>>>>> dev
    */
   public function testAggregatorItem() {
     // Since the feed items can change as the fixture is updated normally,
@@ -54,18 +42,6 @@ class MigrateAggregatorItemTest extends MigrateDrupal7TestBase {
     foreach ($items as $original) {
       /** @var \Drupal\aggregator\ItemInterface $item */
       $item = Item::load($original->iid);
-<<<<<<< HEAD
-      $this->assertIdentical($original->fid, $item->getFeedId());
-      $this->assertIdentical($original->title, $item->label());
-      // If $original->author is an empty string, getAuthor() returns NULL so
-      // we need to use assertEqual() here.
-      $this->assertEqual($original->author, $item->getAuthor());
-      $this->assertIdentical($original->description, $item->getDescription());
-      $this->assertIdentical($original->link, $item->getLink());
-      $this->assertIdentical($original->timestamp, $item->getPostedTime());
-      $this->assertIdentical('en', $item->language()->getId());
-      $this->assertIdentical($original->guid, $item->getGuid());
-=======
       $this->assertSame($original->fid, $item->getFeedId());
       $this->assertSame($original->title, $item->label());
       // If $original->author is an empty string, getAuthor() returns NULL so
@@ -76,7 +52,6 @@ class MigrateAggregatorItemTest extends MigrateDrupal7TestBase {
       $this->assertSame($original->timestamp, $item->getPostedTime());
       $this->assertSame('en', $item->language()->getId());
       $this->assertSame($original->guid, $item->getGuid());
->>>>>>> dev
     }
   }
 

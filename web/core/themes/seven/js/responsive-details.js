@@ -24,10 +24,6 @@
         } else {
           var $notPressed = $details.find('> summary[aria-pressed!=true]').attr('aria-expanded', false);
           $notPressed.parent('details').attr('open', false);
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
           $summaries.off('.details-open');
         }
       }

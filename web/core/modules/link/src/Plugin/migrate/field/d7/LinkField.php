@@ -28,8 +28,6 @@ class LinkField extends D6LinkField {
   public function getFieldFormatterMap() {
     return [
       'link_default' => 'link',
-<<<<<<< HEAD
-=======
       'link_title_plain' => 'link',
       'link_host' => 'link',
       'link_url' => 'link',
@@ -40,7 +38,6 @@ class LinkField extends D6LinkField {
       'link_short' => 'link',
       'link_label' => 'link',
       'link_separate' => 'link_separate',
->>>>>>> dev
     ];
   }
 

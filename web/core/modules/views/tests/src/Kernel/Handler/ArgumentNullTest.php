@@ -56,11 +56,7 @@ class ArgumentNullTest extends ViewsKernelTestBase {
     $view->destroy();
     $view->setDisplay();
 
-<<<<<<< HEAD
-    // Add a argument, which has null as handler.
-=======
     // Add an argument, which has null as handler.
->>>>>>> dev
     $view->displayHandlers->get('default')->overrideOption('arguments', [
       'id' => [
         'id' => 'id',

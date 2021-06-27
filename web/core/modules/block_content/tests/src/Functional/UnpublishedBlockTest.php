@@ -18,11 +18,7 @@ class UnpublishedBlockTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['block_content'];
-=======
   protected static $modules = ['block_content'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

@@ -4,11 +4,8 @@ namespace Drupal\Core\Database\Driver\pgsql;
 
 use Drupal\Core\Database\Query\Upsert as QueryUpsert;
 
-<<<<<<< HEAD
-=======
 // cSpell:ignore nextval setval
 
->>>>>>> dev
 /**
  * PostgreSQL implementation of \Drupal\Core\Database\Query\Upsert.
  */
@@ -22,54 +19,6 @@ class Upsert extends QueryUpsert {
       return NULL;
     }
 
-<<<<<<< HEAD
-    // Default options for upsert queries.
-    $this->queryOptions += [
-      'throw_exception' => TRUE,
-    ];
-
-    // Default fields are always placed first for consistency.
-    $insert_fields = array_merge($this->defaultFields, $this->insertFields);
-
-    $table = $this->connection->escapeTable($this->table);
-
-    // We have to execute multiple queries, therefore we wrap everything in a
-    // transaction so that it is atomic where possible.
-    $transaction = $this->connection->startTransaction();
-
-    try {
-      // First, lock the table we're upserting into.
-      $this->connection->query('LOCK TABLE {' . $table . '} IN SHARE ROW EXCLUSIVE MODE', [], $this->queryOptions);
-
-      // Second, delete all items first so we can do one insert.
-      $unique_key_position = array_search($this->key, $insert_fields);
-      $delete_ids = [];
-      foreach ($this->insertValues as $insert_values) {
-        $delete_ids[] = $insert_values[$unique_key_position];
-      }
-
-      // Delete in chunks when a large array is passed.
-      foreach (array_chunk($delete_ids, 1000) as $delete_ids_chunk) {
-        $this->connection->delete($this->table, $this->queryOptions)
-          ->condition($this->key, $delete_ids_chunk, 'IN')
-          ->execute();
-      }
-
-      // Third, insert all the values.
-      $insert = $this->connection->insert($this->table, $this->queryOptions)
-        ->fields($insert_fields);
-      foreach ($this->insertValues as $insert_values) {
-        $insert->values($insert_values);
-      }
-      $insert->execute();
-    }
-    catch (\Exception $e) {
-      // One of the queries failed, rollback the whole batch.
-      $transaction->rollBack();
-
-      // Rethrow the exception for the calling code.
-      throw $e;
-=======
     $stmt = $this->connection->prepareStatement((string) $this, $this->queryOptions);
     $stmt->allowRowCount = TRUE;
 
@@ -121,17 +70,11 @@ class Upsert extends QueryUpsert {
     $options = $this->queryOptions;
     if (!empty($table_information->sequences)) {
       $options['sequence_name'] = $table_information->sequences[0];
->>>>>>> dev
     }
 
     // Re-initialize the values array so that we can re-use this query.
     $this->insertValues = [];
 
-<<<<<<< HEAD
-    // Transaction commits here where $transaction looses scope.
-
-    return TRUE;
-=======
     // Create a savepoint so we can rollback a failed query. This is so we can
     // mimic MySQL and SQLite transactions which don't fail if a single query
     // fails. This is important for tables that are created on demand. For
@@ -146,16 +89,12 @@ class Upsert extends QueryUpsert {
       $this->connection->rollbackSavepoint();
       throw $e;
     }
->>>>>>> dev
   }
 
   /**
    * {@inheritdoc}
    */
   public function __toString() {
-<<<<<<< HEAD
-    // Nothing to do.
-=======
     // Create a sanitized comment string to prepend to the query.
     $comments = $this->connection->makeComment($this->comments);
 
@@ -183,7 +122,6 @@ class Upsert extends QueryUpsert {
     $query .= ' ON CONFLICT (' . $this->connection->escapeField($this->key) . ') DO UPDATE SET ' . implode(', ', $update);
 
     return $query;
->>>>>>> dev
   }
 
 }

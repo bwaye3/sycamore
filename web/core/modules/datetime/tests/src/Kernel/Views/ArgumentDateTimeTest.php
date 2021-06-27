@@ -20,11 +20,7 @@ class ArgumentDateTimeTest extends DateTimeHandlerTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     // Add some basic test nodes.
@@ -50,11 +46,7 @@ class ArgumentDateTimeTest extends DateTimeHandlerTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test year argument.
-=======
    * Tests year argument.
->>>>>>> dev
    *
    * @see \Drupal\datetime\Plugin\views\argument\YearDate
    */
@@ -97,11 +89,7 @@ class ArgumentDateTimeTest extends DateTimeHandlerTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test month argument.
-=======
    * Tests month argument.
->>>>>>> dev
    *
    * @see \Drupal\datetime\Plugin\views\argument\MonthDate
    */
@@ -127,11 +115,7 @@ class ArgumentDateTimeTest extends DateTimeHandlerTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test day argument.
-=======
    * Tests day argument.
->>>>>>> dev
    *
    * @see \Drupal\datetime\Plugin\views\argument\DayDate
    */
@@ -157,11 +141,7 @@ class ArgumentDateTimeTest extends DateTimeHandlerTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test year, month, and day arguments combined.
-=======
    * Tests year, month, and day arguments combined.
->>>>>>> dev
    */
   public function testDatetimeArgumentAll() {
     $view = Views::getView('test_argument_datetime');
@@ -183,11 +163,7 @@ class ArgumentDateTimeTest extends DateTimeHandlerTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test week WW argument.
-=======
    * Tests week WW argument.
->>>>>>> dev
    */
   public function testDatetimeArgumentWeek() {
     $view = Views::getView('test_argument_datetime');
@@ -211,11 +187,7 @@ class ArgumentDateTimeTest extends DateTimeHandlerTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test full_date CCYYMMDD argument.
-=======
    * Tests full_date CCYYMMDD argument.
->>>>>>> dev
    */
   public function testDatetimeArgumentFullDate() {
     $view = Views::getView('test_argument_datetime');
@@ -237,11 +209,7 @@ class ArgumentDateTimeTest extends DateTimeHandlerTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test year_month CCYYMM argument.
-=======
    * Tests year_month CCYYMM argument.
->>>>>>> dev
    */
   public function testDatetimeArgumentYearMonth() {
     $view = Views::getView('test_argument_datetime');

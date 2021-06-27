@@ -6,8 +6,6 @@
  */
 
 /**
-<<<<<<< HEAD
-=======
  * @defgroup help_docs Help and documentation
  * @{
  * Documenting modules, themes, and install profiles
@@ -38,7 +36,6 @@
  */
 
 /**
->>>>>>> dev
  * @addtogroup hooks
  * @{
  */

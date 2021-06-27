@@ -4,11 +4,8 @@ namespace Drupal\Tests\user\Kernel;
 
 use Drupal\Core\Test\AssertMailTrait;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
-<<<<<<< HEAD
-=======
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\locale\Locale;
->>>>>>> dev
 
 /**
  * Tests _user_mail_notify() use of user.settings.notify.*.
@@ -17,8 +14,6 @@ use Drupal\locale\Locale;
  */
 class UserMailNotifyTest extends EntityKernelTestBase {
 
-<<<<<<< HEAD
-=======
   /**
    * Modules to enable.
    *
@@ -29,7 +24,6 @@ class UserMailNotifyTest extends EntityKernelTestBase {
     'language',
   ];
 
->>>>>>> dev
   use AssertMailTrait {
     getMails as drupalGetMails;
   }
@@ -112,8 +106,6 @@ class UserMailNotifyTest extends EntityKernelTestBase {
     $this->assertEmpty($this->getMails());
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Tests the deprecated $langcode argument to _user_mail_notify().
    *
@@ -200,5 +192,4 @@ class UserMailNotifyTest extends EntityKernelTestBase {
 
   }
 
->>>>>>> dev
 }

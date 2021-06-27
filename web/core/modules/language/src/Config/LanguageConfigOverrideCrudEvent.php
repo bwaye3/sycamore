@@ -2,11 +2,7 @@
 
 namespace Drupal\language\Config;
 
-<<<<<<< HEAD
-use Symfony\Component\EventDispatcher\Event;
-=======
 use Drupal\Component\EventDispatcher\Event;
->>>>>>> dev
 
 /**
  * Provides a language override event for event listeners.

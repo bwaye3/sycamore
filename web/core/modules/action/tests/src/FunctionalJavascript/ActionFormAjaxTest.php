@@ -7,11 +7,7 @@ use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\system\Entity\Action;
 
 /**
-<<<<<<< HEAD
- * Tests action plugins using Javascript.
-=======
  * Tests action plugins using JavaScript.
->>>>>>> dev
  *
  * @group action
  */
@@ -30,11 +26,7 @@ class ActionFormAjaxTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $user = $this->drupalCreateUser(['administer actions']);
     $this->drupalLogin($user);

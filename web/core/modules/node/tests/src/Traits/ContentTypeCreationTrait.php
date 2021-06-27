@@ -45,11 +45,7 @@ trait ContentTypeCreationTrait {
       $this->assertSame($status, SAVED_NEW, (new FormattableMarkup('Created content type %type.', ['%type' => $type->id()]))->__toString());
     }
     else {
-<<<<<<< HEAD
-      $this->assertEqual($status, SAVED_NEW, (new FormattableMarkup('Created content type %type.', ['%type' => $type->id()]))->__toString());
-=======
       $this->assertEquals(SAVED_NEW, $status, (new FormattableMarkup('Created content type %type.', ['%type' => $type->id()]))->__toString());
->>>>>>> dev
     }
 
     return $type;

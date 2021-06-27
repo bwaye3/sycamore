@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 # cspell:ignore imagelink
->>>>>>> dev
 id: d6_field_formatter_settings
 label: Field formatter configuration
 migration_tags:

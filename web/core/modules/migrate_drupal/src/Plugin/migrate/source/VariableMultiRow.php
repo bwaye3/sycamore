@@ -10,8 +10,6 @@ use Drupal\migrate\Row;
  * Unlike the variable source plugin, this one returns one row per
  * variable.
  *
-<<<<<<< HEAD
-=======
  * Available configuration keys:
  * - variables: (required) The list of variables to retrieve from the source
  *   database. Each variable is retrieved in a separate row.
@@ -33,7 +31,6 @@ use Drupal\migrate\Row;
  * @see \Drupal\migrate\Plugin\migrate\source\SqlBase
  * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
  *
->>>>>>> dev
  * @MigrateSource(
  *   id = "variable_multirow",
  *   source_module = "system",

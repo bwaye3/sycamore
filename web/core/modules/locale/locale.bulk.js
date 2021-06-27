@@ -9,20 +9,13 @@
   Drupal.behaviors.importLanguageCodeSelector = {
     attach: function attach(context, settings) {
       var $form = $('#locale-translate-import-form').once('autodetect-lang');
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       if ($form.length) {
         var $langcode = $form.find('.langcode-input');
         $form.find('.file-import-input').on('change', function () {
           var matches = $(this).val().match(/([^.][.]*)([\w-]+)\.po$/);
-<<<<<<< HEAD
-          if (matches && $langcode.find('option[value="' + matches[2] + '"]').length) {
-=======
 
           if (matches && $langcode.find("option[value=\"".concat(matches[2], "\"]")).length) {
->>>>>>> dev
             $langcode.val(matches[2]);
           }
         });

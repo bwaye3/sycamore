@@ -2,10 +2,6 @@
 
 namespace Drupal\Tests\workspaces\Functional\EntityResource;
 
-<<<<<<< HEAD
-use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
-=======
->>>>>>> dev
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 use Drupal\user\Entity\User;
 use Drupal\workspaces\Entity\Workspace;
@@ -15,19 +11,10 @@ use Drupal\workspaces\Entity\Workspace;
  */
 abstract class WorkspaceResourceTestBase extends EntityResourceTestBase {
 
-<<<<<<< HEAD
-  use BcTimestampNormalizerUnixTestTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static $modules = ['workspaces'];
-=======
   /**
    * {@inheritdoc}
    */
   protected static $modules = ['workspaces'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -44,8 +31,6 @@ abstract class WorkspaceResourceTestBase extends EntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-=======
   protected static $uniqueFieldNames = [
     'id',
   ];
@@ -53,7 +38,6 @@ abstract class WorkspaceResourceTestBase extends EntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
->>>>>>> dev
   protected static $firstCreatedEntityId = 'running_on_faith';
 
   /**
@@ -114,12 +98,6 @@ abstract class WorkspaceResourceTestBase extends EntityResourceTestBase {
     $author = User::load($this->entity->getOwnerId());
     return [
       'created' => [
-<<<<<<< HEAD
-        $this->formatExpectedTimestampItemValues((int) $this->entity->getCreatedTime()),
-      ],
-      'changed' => [
-        $this->formatExpectedTimestampItemValues($this->entity->getChangedTime()),
-=======
         [
           'value' => (new \DateTime())->setTimestamp((int) $this->entity->getCreatedTime())->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
           'format' => \DateTime::RFC3339,
@@ -130,7 +108,6 @@ abstract class WorkspaceResourceTestBase extends EntityResourceTestBase {
           'value' => (new \DateTime())->setTimestamp($this->entity->getChangedTime())->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
           'format' => \DateTime::RFC3339,
         ],
->>>>>>> dev
       ],
       'id' => [
         [
@@ -185,19 +162,6 @@ abstract class WorkspaceResourceTestBase extends EntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function getSecondNormalizedPostEntity() {
-    $normalized_post_entity = $this->getNormalizedPostEntity();
-    $normalized_post_entity['id'][0]['value'] = static::$secondCreatedEntityId;
-
-    return $normalized_post_entity;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-=======
->>>>>>> dev
   protected function getNormalizedPatchEntity() {
     return [
       'label' => [
@@ -212,23 +176,12 @@ abstract class WorkspaceResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
-<<<<<<< HEAD
-    if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
-      return parent::getExpectedUnauthorizedAccessMessage($method);
-    }
-
-=======
->>>>>>> dev
     switch ($method) {
       case 'GET':
         return "The 'view any workspace' permission is required.";
 
       case 'POST':
-<<<<<<< HEAD
-        return "The 'create workspace' permission is required.";
-=======
         return "The following permissions are required: 'administer workspaces' OR 'create workspace'.";
->>>>>>> dev
 
       case 'PATCH':
         return "The 'edit any workspace' permission is required.";

@@ -15,50 +15,27 @@
   Drupal.behaviors.claroVerticalTabs = {
     attach: function attach(context) {
       $('body').once('vertical-tabs-fragments').on('formFragmentLinkClickOrHashChange.verticalTabs', handleFragmentLinkClickOrHashChange);
-<<<<<<< HEAD
-
-      $(context).find('[data-vertical-tabs-panes]').once('vertical-tabs').each(function initializeVerticalTabs() {
-        var $this = $(this).addClass('vertical-tabs__items--processed');
-        var focusID = $this.find(':hidden.vertical-tabs__active-tab').val();
-        var tabFocus = void 0;
-
-        var $details = $this.find('> details');
-=======
       $(context).find('[data-vertical-tabs-panes]').once('vertical-tabs').each(function initializeVerticalTabs() {
         var $this = $(this).addClass('vertical-tabs__items--processed');
         var focusID = $this.find(':hidden.vertical-tabs__active-tab').val();
         var tabFocus;
         var $details = $this.find('> details');
 
->>>>>>> dev
         if ($details.length === 0) {
           return;
         }
 
         var tabList = $(Drupal.theme.verticalTabListWrapper());
         $this.wrap($(Drupal.theme.verticalTabsWrapper()).addClass('js-vertical-tabs')).before(tabList);
-<<<<<<< HEAD
-
         $details.each(function initializeVerticalTabItems() {
           var $that = $(this);
-
-=======
-        $details.each(function initializeVerticalTabItems() {
-          var $that = $(this);
->>>>>>> dev
           var verticalTab = new Drupal.verticalTab({
             title: $that.find('> summary').text(),
             details: $that
           });
-<<<<<<< HEAD
-
-          tabList.append(verticalTab.item);
-          $that.removeAttr('open').addClass('js-vertical-tabs-pane').data('verticalTab', verticalTab);
-=======
           tabList.append(verticalTab.item);
           $that.removeAttr('open').addClass('js-vertical-tabs-pane').data('verticalTab', verticalTab);
 
->>>>>>> dev
           if (this.id === focusID) {
             tabFocus = $that;
           }
@@ -66,20 +43,14 @@
 
         if (!tabFocus) {
           var $locationHash = $this.find(window.location.hash);
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
           if (window.location.hash && $locationHash.length) {
             tabFocus = $locationHash.is('.js-vertical-tabs-pane') ? $locationHash : $locationHash.closest('.js-vertical-tabs-pane');
           } else {
             tabFocus = $this.find('> .js-vertical-tabs-pane').eq(0);
           }
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         if (tabFocus.length) {
           tabFocus.data('verticalTab').focus(false);
         }
@@ -90,32 +61,12 @@
   Drupal.verticalTab = function verticalTab(settings) {
     var self = this;
     $.extend(this, settings, Drupal.theme('verticalTab', settings));
-<<<<<<< HEAD
-
-    this.item.addClass('js-vertical-tabs-menu-item');
-
-    this.link.attr('href', '#' + settings.details.attr('id'));
-
-    this.detailsSummaryDescription = $(Drupal.theme.verticalTabDetailsDescription()).appendTo(this.details.find('> summary'));
-
-=======
     this.item.addClass('js-vertical-tabs-menu-item');
     this.link.attr('href', "#".concat(settings.details.attr('id')));
->>>>>>> dev
     this.link.on('click', function (event) {
       event.preventDefault();
       self.focus();
     });
-<<<<<<< HEAD
-
-    this.details.on('toggle', function (event) {
-      event.preventDefault();
-    });
-
-    this.details.find('> summary').on('click', function (event) {
-      event.preventDefault();
-      self.details.attr('open', true);
-=======
     this.details.on('toggle', function (event) {
       event.preventDefault();
     });
@@ -123,7 +74,6 @@
       event.preventDefault();
       self.details.attr('open', true);
 
->>>>>>> dev
       if (self.details.hasClass('collapse-processed')) {
         setTimeout(function () {
           self.focus();
@@ -138,25 +88,13 @@
         }, 10);
       }
     });
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
     this.link.on('keydown', function (event) {
       if (event.keyCode === 13) {
         event.preventDefault();
         self.focus();
-<<<<<<< HEAD
-
         self.details.find(':input:visible:enabled').eq(0).trigger('focus');
       }
     });
-
-=======
-        self.details.find(':input:visible:enabled').eq(0).trigger('focus');
-      }
-    });
->>>>>>> dev
     this.details.on('summaryUpdated', function () {
       self.updateSummary();
     }).trigger('summaryUpdated');
@@ -165,15 +103,9 @@
   Drupal.verticalTab.prototype = {
     focus: function focus() {
       var triggerFocus = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-<<<<<<< HEAD
-
-      this.details.siblings('.js-vertical-tabs-pane').each(function closeOtherTabs() {
-        var tab = $(this).data('verticalTab');
-=======
       this.details.siblings('.js-vertical-tabs-pane').each(function closeOtherTabs() {
         var tab = $(this).data('verticalTab');
 
->>>>>>> dev
         if (tab.details.attr('open')) {
           tab.details.removeAttr('open').find('> summary').attr({
             'aria-expanded': 'false',
@@ -182,10 +114,6 @@
           tab.item.removeClass('is-selected');
         }
       }).end().siblings(':hidden.vertical-tabs__active-tab').val(this.details.attr('id'));
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
       this.details.attr('open', true).find('> summary').attr({
         'aria-expanded': 'true',
         'aria-pressed': 'true'
@@ -193,77 +121,41 @@
 
       if (triggerFocus) {
         var $summary = this.details.find('> summary');
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         if ($summary.is(':visible')) {
           $summary.trigger('focus');
         }
       }
-<<<<<<< HEAD
-      this.item.addClass('is-selected');
-
-=======
 
       this.item.addClass('is-selected');
->>>>>>> dev
       this.title.after($(Drupal.theme.verticalTabActiveTabIndicator()).addClass('js-vertical-tab-active'));
     },
     updateSummary: function updateSummary() {
       var summary = this.details.drupalGetSummary();
-<<<<<<< HEAD
-      this.detailsSummaryDescription.html(summary);
-=======
->>>>>>> dev
       this.summary.html(summary);
     },
     tabShow: function tabShow() {
       this.item.removeClass('vertical-tabs__menu-item--hidden').show();
-<<<<<<< HEAD
-
-      this.item.closest('.js-form-type-vertical-tabs').show();
-
-      this.details.removeClass('vertical-tab--hidden js-vertical-tab-hidden').show();
-
-      this.details.parent().children('.js-vertical-tabs-pane').removeClass('vertical-tabs__item--first vertical-tabs__item--last').filter(':visible').eq(0).addClass('vertical-tabs__item--first');
-      this.details.parent().children('.js-vertical-tabs-pane').filter(':visible').eq(-1).addClass('vertical-tabs__item--last');
-
-=======
       this.item.closest('.js-form-type-vertical-tabs').show();
       this.details.removeClass('vertical-tab--hidden js-vertical-tab-hidden').show();
       this.details.parent().children('.js-vertical-tabs-pane').removeClass('vertical-tabs__item--first vertical-tabs__item--last').filter(':visible').eq(0).addClass('vertical-tabs__item--first');
       this.details.parent().children('.js-vertical-tabs-pane').filter(':visible').eq(-1).addClass('vertical-tabs__item--last');
->>>>>>> dev
       this.focus(false);
       return this;
     },
     tabHide: function tabHide() {
       this.item.addClass('vertical-tabs__menu-item--hidden').hide();
-<<<<<<< HEAD
-
-      this.details.addClass('vertical-tab--hidden js-vertical-tab-hidden').hide();
-
-      this.details.parent().children('.js-vertical-tabs-pane').removeClass('vertical-tabs__item--first vertical-tabs__item--last').filter(':visible').eq(0).addClass('vertical-tabs__item--first');
-      this.details.parent().children('.js-vertical-tabs-pane').filter(':visible').eq(-1).addClass('vertical-tabs__item--last');
-
-      var $firstTab = this.details.siblings('.js-vertical-tabs-pane:not(.js-vertical-tab-hidden)').eq(0);
-=======
       this.details.addClass('vertical-tab--hidden js-vertical-tab-hidden').hide();
       this.details.parent().children('.js-vertical-tabs-pane').removeClass('vertical-tabs__item--first vertical-tabs__item--last').filter(':visible').eq(0).addClass('vertical-tabs__item--first');
       this.details.parent().children('.js-vertical-tabs-pane').filter(':visible').eq(-1).addClass('vertical-tabs__item--last');
       var $firstTab = this.details.siblings('.js-vertical-tabs-pane:not(.js-vertical-tab-hidden)').eq(0);
 
->>>>>>> dev
       if ($firstTab.length) {
         $firstTab.data('verticalTab').focus(false);
       } else {
           this.item.closest('.js-form-type-vertical-tabs').hide();
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       return this;
     }
   };
@@ -282,16 +174,7 @@
     return '<ul class="vertical-tabs__menu"></ul>';
   };
 
-<<<<<<< HEAD
-  Drupal.theme.verticalTabDetailsDescription = function () {
-    return '<span class="vertical-tabs__details-summary-summary"></span>';
-  };
-
-  Drupal.theme.verticalTabActiveTabIndicator = function () {
-    return '<span class="visually-hidden">' + Drupal.t('(active tab)') + '</span>';
-=======
   Drupal.theme.verticalTabActiveTabIndicator = function () {
     return "<span class=\"visually-hidden\">".concat(Drupal.t('(active tab)'), "</span>");
->>>>>>> dev
   };
 })(jQuery, Drupal);

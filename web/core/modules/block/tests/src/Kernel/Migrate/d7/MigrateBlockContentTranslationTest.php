@@ -14,11 +14,7 @@ class MigrateBlockContentTranslationTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'node',
     'text',
     'aggregator',
@@ -30,10 +26,6 @@ class MigrateBlockContentTranslationTest extends MigrateDrupal7TestBase {
     'views',
     'block_content',
     'config_translation',
-<<<<<<< HEAD
-    'content_translation',
-=======
->>>>>>> dev
     'language',
     'path_alias',
     'statistics',
@@ -43,11 +35,7 @@ class MigrateBlockContentTranslationTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('block_content');
     $this->installConfig(['block']);

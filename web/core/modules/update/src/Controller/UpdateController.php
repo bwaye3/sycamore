@@ -2,17 +2,11 @@
 
 namespace Drupal\update\Controller;
 
-<<<<<<< HEAD
-use Drupal\update\UpdateManagerInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Controller\ControllerBase;
-=======
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\update\UpdateFetcherInterface;
 use Drupal\update\UpdateManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
->>>>>>> dev
 
 /**
  * Controller routines for update routes.
@@ -27,8 +21,6 @@ class UpdateController extends ControllerBase {
   protected $updateManager;
 
   /**
-<<<<<<< HEAD
-=======
    * The renderer.
    *
    * @var \Drupal\Core\Render\RendererInterface
@@ -36,16 +28,10 @@ class UpdateController extends ControllerBase {
   protected $renderer;
 
   /**
->>>>>>> dev
    * Constructs update status data.
    *
    * @param \Drupal\update\UpdateManagerInterface $update_manager
    *   Update Manager Service.
-<<<<<<< HEAD
-   */
-  public function __construct(UpdateManagerInterface $update_manager) {
-    $this->updateManager = $update_manager;
-=======
    * @param \Drupal\Core\Render\RendererInterface|null $renderer
    *   The renderer.
    */
@@ -56,7 +42,6 @@ class UpdateController extends ControllerBase {
       $renderer = \Drupal::service('renderer');
     }
     $this->renderer = $renderer;
->>>>>>> dev
   }
 
   /**
@@ -64,12 +49,8 @@ class UpdateController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-<<<<<<< HEAD
-      $container->get('update.manager')
-=======
       $container->get('update.manager'),
       $container->get('renderer')
->>>>>>> dev
     );
   }
 
@@ -86,8 +67,6 @@ class UpdateController extends ControllerBase {
     if ($available = update_get_available(TRUE)) {
       $this->moduleHandler()->loadInclude('update', 'compare.inc');
       $build['#data'] = update_calculate_project_data($available);
-<<<<<<< HEAD
-=======
 
       // @todo Consider using 'fetch_failures' from the 'update' collection
       // in the key_value_expire service for this?
@@ -102,7 +81,6 @@ class UpdateController extends ControllerBase {
         $message = ['#theme' => 'update_fetch_error_message'];
         $this->messenger()->addError($this->renderer->renderPlain($message));
       }
->>>>>>> dev
     }
     return $build;
   }

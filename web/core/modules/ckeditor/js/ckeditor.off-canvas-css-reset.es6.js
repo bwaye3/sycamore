@@ -12,11 +12,7 @@
    * @return {string}
    *   The rules from originalCss with extra specificity for off-canvas.
    */
-<<<<<<< HEAD
-  const convertToOffCanvasCss = originalCss => {
-=======
   const convertToOffCanvasCss = (originalCss) => {
->>>>>>> dev
     const selectorPrefix = '#drupal-off-canvas ';
     const skinPath = `${CKEDITOR.basePath}${CKEDITOR.skinName}/`;
     const css = originalCss
@@ -34,11 +30,7 @@
    * @param {string} cssToInsert
    *   CSS rules to be inserted
    */
-<<<<<<< HEAD
-  const insertCss = cssToInsert => {
-=======
   const insertCss = (cssToInsert) => {
->>>>>>> dev
     const offCanvasCss = document.createElement('style');
     offCanvasCss.innerHTML = cssToInsert;
     offCanvasCss.setAttribute('id', 'ckeditor-off-canvas-reset');
@@ -102,11 +94,7 @@
           editorCssPath.indexOf(CKEDITOR.timestamp) !== -1 &&
           dialogCssPath.indexOf(CKEDITOR.timestamp) !== -1
         ) {
-<<<<<<< HEAD
-          Object.keys(window.localStorage).forEach(key => {
-=======
           Object.keys(window.localStorage).forEach((key) => {
->>>>>>> dev
             if (key.indexOf('Drupal.off-canvas.css.') === 0) {
               window.localStorage.removeItem(key);
             }

@@ -28,11 +28,7 @@ class QueryGroupByTest extends ViewsKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'entity_test',
     'system',
     'field',
@@ -50,11 +46,7 @@ class QueryGroupByTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('user');
@@ -79,21 +71,12 @@ class QueryGroupByTest extends ViewsKernelTestBase {
 
     $types = [];
     foreach ($view->result as $item) {
-<<<<<<< HEAD
-      // num_records is a alias for id.
-      $types[$item->entity_test_name] = $item->num_records;
-    }
-
-    $this->assertEqual($types['name1'], 4, 'Groupby the name: name1 returned the expected amount of results.');
-    $this->assertEqual($types['name2'], 3, 'Groupby the name: name2 returned the expected amount of results.');
-=======
       // num_records is an alias for id.
       $types[$item->entity_test_name] = $item->num_records;
     }
 
     $this->assertEquals(4, $types['name1']);
     $this->assertEquals(3, $types['name2']);
->>>>>>> dev
   }
 
   /**
@@ -128,13 +111,8 @@ class QueryGroupByTest extends ViewsKernelTestBase {
     foreach ($view->result as $item) {
       $results[$item->entity_test_name] = $item->id;
     }
-<<<<<<< HEAD
-    $this->assertEqual($results['name1'], $values[0], new FormattableMarkup('Aggregation with @aggregation_function and groupby name: name1 returned the expected amount of results', ['@aggregation_function' => $aggregation_function]));
-    $this->assertEqual($results['name2'], $values[1], new FormattableMarkup('Aggregation with @aggregation_function and groupby name: name2 returned the expected amount of results', ['@aggregation_function' => $aggregation_function]));
-=======
     $this->assertEquals($values[0], $results['name1'], new FormattableMarkup('Aggregation with @aggregation_function and groupby name: name1 returned the expected amount of results', ['@aggregation_function' => $aggregation_function]));
     $this->assertEquals($values[1], $results['name2'], new FormattableMarkup('Aggregation with @aggregation_function and groupby name: name2 returned the expected amount of results', ['@aggregation_function' => $aggregation_function]));
->>>>>>> dev
   }
 
   /**
@@ -276,17 +254,10 @@ class QueryGroupByTest extends ViewsKernelTestBase {
     $this->executeView($view);
     $this->assertCount(2, $view->result);
 
-<<<<<<< HEAD
-    $this->assertEqual('3', $view->getStyle()->getField(0, 'id'));
-    $this->assertEqual('1', $view->getStyle()->getField(0, 'field_test'));
-    $this->assertEqual('6', $view->getStyle()->getField(1, 'id'));
-    $this->assertEqual('2', $view->getStyle()->getField(1, 'field_test'));
-=======
     $this->assertEquals('3', $view->getStyle()->getField(0, 'id'));
     $this->assertEquals('1', $view->getStyle()->getField(0, 'field_test'));
     $this->assertEquals('6', $view->getStyle()->getField(1, 'id'));
     $this->assertEquals('2', $view->getStyle()->getField(1, 'field_test'));
->>>>>>> dev
 
     $entities[2]->field_test[0]->value = 3;
     $entities[2]->field_test[1]->value = 4;
@@ -297,18 +268,6 @@ class QueryGroupByTest extends ViewsKernelTestBase {
     $this->executeView($view);
     $this->assertCount(5, $view->result);
 
-<<<<<<< HEAD
-    $this->assertEqual('3', $view->getStyle()->getField(0, 'id'));
-    $this->assertEqual('1', $view->getStyle()->getField(0, 'field_test'));
-    $this->assertEqual('3', $view->getStyle()->getField(1, 'id'));
-    $this->assertEqual('2', $view->getStyle()->getField(1, 'field_test'));
-    $this->assertEqual('1', $view->getStyle()->getField(2, 'id'));
-    $this->assertEqual('3', $view->getStyle()->getField(2, 'field_test'));
-    $this->assertEqual('1', $view->getStyle()->getField(3, 'id'));
-    $this->assertEqual('4', $view->getStyle()->getField(3, 'field_test'));
-    $this->assertEqual('1', $view->getStyle()->getField(4, 'id'));
-    $this->assertEqual('5', $view->getStyle()->getField(4, 'field_test'));
-=======
     $this->assertEquals('3', $view->getStyle()->getField(0, 'id'));
     $this->assertEquals('1', $view->getStyle()->getField(0, 'field_test'));
     $this->assertEquals('3', $view->getStyle()->getField(1, 'id'));
@@ -319,7 +278,6 @@ class QueryGroupByTest extends ViewsKernelTestBase {
     $this->assertEquals('4', $view->getStyle()->getField(3, 'field_test'));
     $this->assertEquals('1', $view->getStyle()->getField(4, 'id'));
     $this->assertEquals('5', $view->getStyle()->getField(4, 'field_test'));
->>>>>>> dev
 
     // Check that translated values are correctly retrieved and are not grouped
     // into the original entity.
@@ -331,21 +289,12 @@ class QueryGroupByTest extends ViewsKernelTestBase {
     $this->executeView($view);
 
     $this->assertCount(6, $view->result);
-<<<<<<< HEAD
-    $this->assertEqual('3', $view->getStyle()->getField(5, 'id'));
-    $this->assertEqual('6', $view->getStyle()->getField(5, 'field_test'));
-  }
-
-  /**
-   * Tests groupby with a field not existing on some bundle.
-=======
     $this->assertEquals('3', $view->getStyle()->getField(5, 'id'));
     $this->assertEquals('6', $view->getStyle()->getField(5, 'field_test'));
   }
 
   /**
    * Tests groupby with a non-existent field on some bundle.
->>>>>>> dev
    */
   public function testGroupByWithFieldsNotExistingOnBundle() {
     $field_storage = FieldStorageConfig::create([
@@ -382,17 +331,10 @@ class QueryGroupByTest extends ViewsKernelTestBase {
     $this->assertCount(2, $view->result);
     // The first result is coming from entity_test_mul2, so no field could be
     // rendered.
-<<<<<<< HEAD
-    $this->assertEqual('', $view->getStyle()->getField(0, 'field_test'));
-    // The second result is coming from entity_test_mul, so its field value
-    // could be rendered.
-    $this->assertEqual('1', $view->getStyle()->getField(1, 'field_test'));
-=======
     $this->assertEquals('', $view->getStyle()->getField(0, 'field_test'));
     // The second result is coming from entity_test_mul, so its field value
     // could be rendered.
     $this->assertEquals('1', $view->getStyle()->getField(1, 'field_test'));
->>>>>>> dev
   }
 
 }

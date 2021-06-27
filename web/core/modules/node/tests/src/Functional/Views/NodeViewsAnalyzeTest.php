@@ -12,11 +12,7 @@ class NodeViewsAnalyzeTest extends NodeTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['views_ui', 'node_test_views'];
-=======
   protected static $modules = ['views_ui', 'node_test_views'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

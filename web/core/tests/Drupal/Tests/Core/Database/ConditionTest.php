@@ -5,17 +5,10 @@ namespace Drupal\Tests\Core\Database;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Database\Query\Condition;
 use Drupal\Core\Database\Query\PlaceholderInterface;
-<<<<<<< HEAD
-use Drupal\Tests\Core\Database\Stub\StubPDO;
-use Drupal\Tests\UnitTestCase;
-use Prophecy\Argument;
-use PHPUnit\Framework\Error\Error;
-=======
 use Drupal\Tests\Core\Database\Stub\StubConnection;
 use Drupal\Tests\Core\Database\Stub\StubPDO;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
->>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\Core\Database\Query\Condition
@@ -48,10 +41,7 @@ class ConditionTest extends UnitTestCase {
       return preg_replace('/[^A-Za-z0-9_.]+/', '', $args[0]);
     });
     $connection->mapConditionOperator('=')->willReturn(['operator' => '=']);
-<<<<<<< HEAD
-=======
     $connection->condition('AND')->willReturn(new Condition('AND', FALSE));
->>>>>>> dev
     $connection = $connection->reveal();
 
     $query_placeholder = $this->prophesize(PlaceholderInterface::class);
@@ -63,11 +53,7 @@ class ConditionTest extends UnitTestCase {
     $query_placeholder->uniqueIdentifier()->willReturn(4);
     $query_placeholder = $query_placeholder->reveal();
 
-<<<<<<< HEAD
-    $condition = new Condition('AND');
-=======
     $condition = $connection->condition('AND');
->>>>>>> dev
     $condition->condition($field_name, ['value']);
     $condition->compile($connection, $query_placeholder);
 
@@ -97,10 +83,7 @@ class ConditionTest extends UnitTestCase {
       return preg_replace('/[^A-Za-z0-9_.]+/', '', $args[0]);
     });
     $connection->mapConditionOperator(Argument::any())->willReturn(NULL);
-<<<<<<< HEAD
-=======
     $connection->condition('AND')->willReturn(new Condition('AND', FALSE));
->>>>>>> dev
     $connection = $connection->reveal();
 
     $query_placeholder = $this->prophesize(PlaceholderInterface::class);
@@ -112,11 +95,7 @@ class ConditionTest extends UnitTestCase {
     $query_placeholder->uniqueIdentifier()->willReturn(4);
     $query_placeholder = $query_placeholder->reveal();
 
-<<<<<<< HEAD
-    $condition = new Condition('AND');
-=======
     $condition = $connection->condition('AND');
->>>>>>> dev
     $condition->condition($field, $value, $operator);
     $condition->compile($connection, $query_placeholder);
 
@@ -173,10 +152,7 @@ class ConditionTest extends UnitTestCase {
       return preg_replace('/[^A-Za-z0-9_.]+/', '', $args[0]);
     });
     $connection->mapConditionOperator(Argument::any())->willReturn(NULL);
-<<<<<<< HEAD
-=======
     $connection->condition('AND')->willReturn(new Condition('AND', FALSE));
->>>>>>> dev
     $connection = $connection->reveal();
 
     $query_placeholder = $this->prophesize(PlaceholderInterface::class);
@@ -188,15 +164,9 @@ class ConditionTest extends UnitTestCase {
     $query_placeholder->uniqueIdentifier()->willReturn(4);
     $query_placeholder = $query_placeholder->reveal();
 
-<<<<<<< HEAD
-    $condition = new Condition('AND');
-    $condition->condition('name', 'value', $operator);
-    $this->expectException(Error::class);
-=======
     $condition = $connection->condition('AND');
     $condition->condition('name', 'value', $operator);
     $this->expectError();
->>>>>>> dev
     $condition->compile($connection, $query_placeholder);
   }
 
@@ -211,11 +181,7 @@ class ConditionTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that the core Condition can be overridden.
-=======
    * Tests that the core Condition can be overridden.
->>>>>>> dev
    */
   public function testContribCondition() {
     $mockCondition = $this->getMockBuilder(Condition::class)
@@ -223,11 +189,7 @@ class ConditionTest extends UnitTestCase {
       ->setConstructorArgs([NULL])
       ->disableOriginalConstructor()
       ->getMock();
-<<<<<<< HEAD
-    $contrib_namespace = 'Drupal\Driver\Database\mock';
-=======
     $contrib_namespace = 'Drupal\mock\Driver\Database\mock';
->>>>>>> dev
     $mocked_namespace = $contrib_namespace . '\\Condition';
     class_alias('MockCondition', $mocked_namespace);
 
@@ -236,20 +198,11 @@ class ConditionTest extends UnitTestCase {
 
     $mockPdo = $this->createMock(StubPDO::class);
 
-<<<<<<< HEAD
-    $connection = $this->getMockBuilder(Connection::class)
-      ->setConstructorArgs([$mockPdo, $options])
-      ->getMockForAbstractClass();
-
-=======
     $connection = new StubConnection($mockPdo, $options);
->>>>>>> dev
     $condition = $connection->condition('AND');
     $this->assertSame('MockCondition', get_class($condition));
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Tests the deprecation of the class Condition.
    *
@@ -261,5 +214,4 @@ class ConditionTest extends UnitTestCase {
     $this->assertSame('Drupal\Core\Database\Query\Condition', get_class($condition));
   }
 
->>>>>>> dev
 }

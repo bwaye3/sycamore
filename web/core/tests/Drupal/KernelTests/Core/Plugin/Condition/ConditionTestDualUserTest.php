@@ -30,20 +30,12 @@ class ConditionTestDualUserTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['system', 'user', 'condition_test'];
-=======
   protected static $modules = ['system', 'user', 'condition_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installSchema('system', 'sequences');

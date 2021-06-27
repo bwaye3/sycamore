@@ -3,7 +3,3 @@ type: module
 description: 'Module in the experimental package to test hook_requirements() with an experimental module.'
 package: Core (Experimental)
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev

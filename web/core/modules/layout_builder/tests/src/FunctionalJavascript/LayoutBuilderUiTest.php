@@ -22,11 +22,7 @@ class LayoutBuilderUiTest extends WebDriverTestBase {
    */
   const FIELD_UI_PREFIX = 'admin/structure/types/manage/bundle_with_section_field';
 
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'layout_builder',
     'block',
     'node',
@@ -43,11 +39,7 @@ class LayoutBuilderUiTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->createContentType(['type' => 'bundle_with_section_field']);
@@ -61,16 +53,8 @@ class LayoutBuilderUiTest extends WebDriverTestBase {
     ]));
 
     // Enable layout builder.
-<<<<<<< HEAD
-    $this->drupalPostForm(
-      static::FIELD_UI_PREFIX . '/display/default',
-      ['layout[enabled]' => TRUE],
-      'Save'
-    );
-=======
     $this->drupalGet(static::FIELD_UI_PREFIX . '/display/default');
     $this->submitForm(['layout[enabled]' => TRUE], 'Save');
->>>>>>> dev
   }
 
   /**
@@ -128,17 +112,10 @@ class LayoutBuilderUiTest extends WebDriverTestBase {
 
     $this->drupalGet($path);
     $page->clickLink('Add section');
-<<<<<<< HEAD
-    $assert_session->assertWaitOnAjaxRequest();
-    $assert_session->pageTextNotContains('You have unsaved changes.');
-    $page->clickLink('One column');
-    $assert_session->assertWaitOnAjaxRequest();
-=======
     $assert_session->waitForElementVisible('named', ['link', 'One column']);
     $assert_session->pageTextNotContains('You have unsaved changes.');
     $page->clickLink('One column');
     $assert_session->waitForElementVisible('named', ['button', 'Add section']);
->>>>>>> dev
     $page->pressButton('Add section');
     $assert_session->assertWaitOnAjaxRequest();
     $assert_session->pageTextContainsOnce('You have unsaved changes.');
@@ -261,8 +238,6 @@ class LayoutBuilderUiTest extends WebDriverTestBase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Tests removing newly added extra field.
    */
   public function testNewExtraField() {
@@ -287,7 +262,6 @@ class LayoutBuilderUiTest extends WebDriverTestBase {
   }
 
   /**
->>>>>>> dev
    * Confirms the presence of the 'is-layout-builder-highlighted' class.
    *
    * @param string $selector

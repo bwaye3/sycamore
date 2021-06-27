@@ -15,11 +15,7 @@
     attach(context) {
       $('.js-click-to-select-trigger', context)
         .once('media-library-click-to-select')
-<<<<<<< HEAD
-        .on('click', event => {
-=======
         .on('click', (event) => {
->>>>>>> dev
           // Links inside the trigger should not be click-able.
           event.preventDefault();
           // Click the hidden checkbox when the trigger is clicked.

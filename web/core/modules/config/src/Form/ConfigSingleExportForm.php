@@ -4,10 +4,6 @@ namespace Drupal\config\Form;
 
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Config\StorageInterface;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormBase;
@@ -23,17 +19,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @internal
  */
 class ConfigSingleExportForm extends FormBase {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = [
-    'entityManager' => 'entity.manager',
-  ];
-=======
->>>>>>> dev
 
   /**
    * The entity type manager.
@@ -90,11 +75,8 @@ class ConfigSingleExportForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $config_type = NULL, $config_name = NULL) {
-<<<<<<< HEAD
-=======
     $form['#prefix'] = '<div id="js-config-form-wrapper">';
     $form['#suffix'] = '</div>';
->>>>>>> dev
     foreach ($this->entityTypeManager->getDefinitions() as $entity_type => $definition) {
       if ($definition->entityClassImplements(ConfigEntityInterface::class)) {
         $this->definitions[$entity_type] = $definition;
@@ -115,11 +97,7 @@ class ConfigSingleExportForm extends FormBase {
       '#default_value' => $config_type,
       '#ajax' => [
         'callback' => '::updateConfigurationType',
-<<<<<<< HEAD
-        'wrapper' => 'edit-config-type-wrapper',
-=======
         'wrapper' => 'js-config-form-wrapper',
->>>>>>> dev
       ],
     ];
     $default_type = $form_state->getValue('config_type', $config_type);
@@ -158,12 +136,8 @@ class ConfigSingleExportForm extends FormBase {
    */
   public function updateConfigurationType($form, FormStateInterface $form_state) {
     $form['config_name']['#options'] = $this->findConfiguration($form_state->getValue('config_type'));
-<<<<<<< HEAD
-    return $form['config_name'];
-=======
     unset($form['export']['#value']);
     return $form;
->>>>>>> dev
   }
 
   /**

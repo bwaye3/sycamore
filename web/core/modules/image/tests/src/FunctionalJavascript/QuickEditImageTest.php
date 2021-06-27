@@ -20,11 +20,7 @@ class QuickEditImageTest extends QuickEditJavascriptTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'image', 'field_ui'];
-=======
   protected static $modules = ['node', 'image', 'field_ui', 'hold_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -41,11 +37,7 @@ class QuickEditImageTest extends QuickEditJavascriptTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create the Article node type.
@@ -65,11 +57,7 @@ class QuickEditImageTest extends QuickEditJavascriptTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that quick editor works correctly with images.
-=======
    * Tests that quick editor works correctly with images.
->>>>>>> dev
    *
    * @covers ::isCompatible
    * @covers ::getAttachments
@@ -190,10 +178,7 @@ class QuickEditImageTest extends QuickEditJavascriptTestBase {
     $this->prepareRequest();
 
     // Click 'Save'.
-<<<<<<< HEAD
-=======
     hold_test_response(TRUE);
->>>>>>> dev
     $this->saveQuickEdit();
     $this->assertEntityInstanceStates([
       'node/1[0]' => 'committing',
@@ -205,16 +190,10 @@ class QuickEditImageTest extends QuickEditJavascriptTestBase {
       'node/1/body/en/full'                => 'candidate',
       'node/1/' . $field_name . '/en/full' => 'saving',
     ]);
-<<<<<<< HEAD
-    $this->assertEntityInstanceFieldMarkup('node', 1, 0, [
-      'node/1/' . $field_name . '/en/full' => '.quickedit-changed',
-    ]);
-=======
     $this->assertEntityInstanceFieldMarkup([
       'node/1/' . $field_name . '/en/full' => '.quickedit-changed',
     ]);
     hold_test_response(FALSE);
->>>>>>> dev
 
     // Wait for the saving of the image field to complete.
     $this->assertJsCondition("Drupal.quickedit.collections.entities.get('node/1[0]').get('state') === 'closed'");

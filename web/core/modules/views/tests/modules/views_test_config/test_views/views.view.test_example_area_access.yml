@@ -23,10 +23,6 @@ display:
           custom_access: false
           string: 'a custom string'
     display_plugin: default
-<<<<<<< HEAD
-    display_title: Master
-=======
     display_title: Default
->>>>>>> dev
     id: default
     position: 0

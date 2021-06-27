@@ -2,10 +2,7 @@
 
 namespace Drupal\Tests\system\Functional\Form;
 
-<<<<<<< HEAD
-=======
 use Drupal\Core\Serialization\Yaml;
->>>>>>> dev
 use Drupal\Tests\BrowserTestBase;
 
 /**
@@ -18,11 +15,7 @@ class ModulesListFormWebTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['system_test', 'help'];
-=======
   protected static $modules = ['system_test', 'help'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -32,11 +25,7 @@ class ModulesListFormWebTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     \Drupal::state()->set('system_test.module_hidden', FALSE);
     $this->drupalLogin($this->drupalCreateUser([
@@ -52,39 +41,6 @@ class ModulesListFormWebTest extends BrowserTestBase {
     $this->drupalGet('admin/modules');
 
     // Check that system_test's configure link was rendered correctly.
-<<<<<<< HEAD
-    $this->assertFieldByXPath("//a[contains(@href, '/system-test/configure/bar') and text()='Configure ']/span[contains(@class, 'visually-hidden') and text()='the System test module']");
-
-    // Check that system_test's permissions link was rendered correctly.
-    $this->assertFieldByXPath("//a[contains(@href, '/admin/people/permissions#module-system_test') and @title='Configure permissions']");
-
-    // Check that system_test's help link was rendered correctly.
-    $this->assertFieldByXPath("//a[contains(@href, '/admin/help/system_test') and @title='Help']");
-
-    // Ensure that the Testing module's machine name is printed. Testing module
-    // is used because its machine name is different than its human readable
-    // name.
-    $this->assertText('simpletest');
-  }
-
-  public function testModulesListFormWithInvalidInfoFile() {
-    $broken_info_yml = <<<BROKEN
-name: Module With Broken Info file
-type: module
-BROKEN;
-    $path = \Drupal::service('site.path') . "/modules/broken";
-    mkdir($path, 0777, TRUE);
-    file_put_contents("$path/broken.info.yml", $broken_info_yml);
-
-    $this->drupalGet('admin/modules');
-
-    // Confirm that the error message is shown.
-    $this->assertSession()
-      ->pageTextContains("The 'core' or the 'core_version_requirement' key must be present in " . $path . '/broken.info.yml');
-
-    // Check that the module filter text box is available.
-    $this->assertSession()->elementExists('xpath', '//input[@name="text"]');
-=======
     $this->assertSession()->elementExists('xpath', "//a[contains(@href, '/system-test/configure/bar') and text()='Configure ']/span[contains(@class, 'visually-hidden') and text()='the System test module']");
 
     // Check that system_test's permissions link was rendered correctly.
@@ -154,7 +110,6 @@ BROKEN,
       $this->assertSession()->elementExists('xpath', '//input[@name="text"]');
       $this->assertSession()->pageTextNotContains('Modules could not be listed due to an error');
     }
->>>>>>> dev
   }
 
   /**
@@ -166,16 +121,10 @@ BROKEN,
     // Confirm that 'Test Theme Depending on Modules' is listed as being
     // required by the module 'Test Module Required by Theme'.
     $this->assertCount(1, $module_theme_depends_on_description);
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
     // Confirm that the required by message does not appear anywhere else.
     $this->assertSession()->pageTextContains('Test Theme Depending on Modules (Theme) (Disabled)');
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Tests that incompatible modules message is shown.
    */
@@ -229,5 +178,4 @@ BROKEN,
     }
   }
 
->>>>>>> dev
 }

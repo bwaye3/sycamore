@@ -28,11 +28,7 @@ class LayoutBuilderOptInTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create one content type before installing Layout Builder and one after.
@@ -127,12 +123,8 @@ class LayoutBuilderOptInTest extends WebDriverTestBase {
     $assert_session->fieldValueEquals('settings[formatter][type]', 'text_trimmed');
 
     // Disable Layout Builder.
-<<<<<<< HEAD
-    $this->drupalPostForm($field_ui_prefix, ['layout[enabled]' => FALSE], 'Save');
-=======
     $this->drupalGet($field_ui_prefix);
     $this->submitForm(['layout[enabled]' => FALSE], 'Save');
->>>>>>> dev
     $page->pressButton('Confirm');
 
     // The Layout Builder UI is no longer accessible.
@@ -150,12 +142,8 @@ class LayoutBuilderOptInTest extends WebDriverTestBase {
     $assert_session->fieldValueEquals('fields[body][type]', 'text_summary_or_trimmed');
 
     // Reactivate Layout Builder.
-<<<<<<< HEAD
-    $this->drupalPostForm($field_ui_prefix, ['layout[enabled]' => TRUE], 'Save');
-=======
     $this->drupalGet($field_ui_prefix);
     $this->submitForm(['layout[enabled]' => TRUE], 'Save');
->>>>>>> dev
     $assert_session->linkExists('Manage layout');
     $this->clickLink('Manage layout');
     // Ensure the body appears once and only once.

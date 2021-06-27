@@ -22,11 +22,7 @@ class MigrationPluginListTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'migrate',
     // Test with all modules containing Drupal migrations.
     'action',
@@ -66,11 +62,7 @@ class MigrationPluginListTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('user');
@@ -154,8 +146,6 @@ class MigrationPluginListTest extends KernelTestBase {
     }
     Database::addConnectionInfo('migrate', 'default', $connection_info['default']);
 
-<<<<<<< HEAD
-=======
     // Make sure source plugins can be serialized.
     foreach ($migration_plugins as $migration_plugin) {
       $source_plugin = $migration_plugin->getSourcePlugin();
@@ -165,7 +155,6 @@ class MigrationPluginListTest extends KernelTestBase {
       $this->assertNotEmpty(serialize($source_plugin));
     }
 
->>>>>>> dev
     $migration_plugins = $this->container->get('plugin.manager.migration')->getDefinitions();
     // All the plugins provided by core depend on migrate_drupal.
     $this->assertNotEmpty($migration_plugins);

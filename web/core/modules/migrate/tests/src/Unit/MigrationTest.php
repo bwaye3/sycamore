@@ -114,8 +114,6 @@ class MigrationTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Tests getting requirement list.
    *
    * @covers ::getRequirements
@@ -129,7 +127,6 @@ class MigrationTest extends UnitTestCase {
   }
 
   /**
->>>>>>> dev
    * Tests valid migration dependencies configuration returns expected values.
    *
    * @param array|null $source

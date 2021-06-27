@@ -2,10 +2,7 @@
 
 namespace Drupal\dialog_renderer_test\Controller;
 
-<<<<<<< HEAD
-=======
 use Drupal\Component\Serialization\Json;
->>>>>>> dev
 use Drupal\Core\Url;
 
 /**
@@ -27,8 +24,6 @@ class TestController {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Return modal content with link.
    *
    * @return array
@@ -72,7 +67,6 @@ class TestController {
   }
 
   /**
->>>>>>> dev
    * Displays test links that will open in the modal dialog.
    *
    * @return array
@@ -124,8 +118,6 @@ class TestController {
           ],
         ],
       ],
-<<<<<<< HEAD
-=======
       'no_close_modal' => [
         '#title' => 'Hidden close button modal!',
         '#type' => 'link',
@@ -194,7 +186,6 @@ class TestController {
           ],
         ],
       ],
->>>>>>> dev
     ];
   }
 

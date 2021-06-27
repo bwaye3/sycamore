@@ -2,10 +2,7 @@
 
 namespace Drupal\Tests\content_moderation\Functional;
 
-<<<<<<< HEAD
-=======
 use Drupal\block_content\Entity\BlockContentType;
->>>>>>> dev
 use Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\content_moderation\Traits\ContentModerationTestTrait;
@@ -28,10 +25,7 @@ class LayoutBuilderContentModerationIntegrationTest extends BrowserTestBase {
     'node',
     'content_moderation',
     'menu_ui',
-<<<<<<< HEAD
-=======
     'block_content',
->>>>>>> dev
   ];
 
   /**
@@ -42,23 +36,13 @@ class LayoutBuilderContentModerationIntegrationTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // @todo The Layout Builder UI relies on local tasks; fix in
     //   https://www.drupal.org/project/drupal/issues/2917777.
     $this->drupalPlaceBlock('local_tasks_block');
 
-<<<<<<< HEAD
-    // Add a new bundle and add an editorial workflow.
-    $this->createContentType(['type' => 'bundle_with_section_field']);
-    $workflow = $this->createEditorialWorkflow();
-    $workflow->getTypePlugin()->addEntityTypeAndBundle('node', 'bundle_with_section_field');
-=======
     $workflow = $this->createEditorialWorkflow();
 
     // Add a new bundle and add an editorial workflow.
@@ -74,7 +58,6 @@ class LayoutBuilderContentModerationIntegrationTest extends BrowserTestBase {
     block_content_add_body_field('basic');
 
     $workflow->getTypePlugin()->addEntityTypeAndBundle('block_content', 'basic');
->>>>>>> dev
     $workflow->save();
 
     // Enable layout overrides.
@@ -92,10 +75,7 @@ class LayoutBuilderContentModerationIntegrationTest extends BrowserTestBase {
       'view latest version',
       'use editorial transition create_new_draft',
       'use editorial transition publish',
-<<<<<<< HEAD
-=======
       'create and edit custom blocks',
->>>>>>> dev
     ]));
   }
 
@@ -172,8 +152,6 @@ class LayoutBuilderContentModerationIntegrationTest extends BrowserTestBase {
     $assert_session->pageTextNotContains('Powered by Drupal');
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Test placing inline blocks that belong to a moderated custom block bundle.
    */
@@ -214,5 +192,4 @@ class LayoutBuilderContentModerationIntegrationTest extends BrowserTestBase {
     $assert_session->pageTextContains('Example block body');
   }
 
->>>>>>> dev
 }

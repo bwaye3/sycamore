@@ -17,20 +17,12 @@ class MigrateAggregatorConfigsTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['aggregator'];
-=======
   protected static $modules = ['aggregator'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->executeMigration('d6_aggregator_settings');
   }
@@ -40,15 +32,6 @@ class MigrateAggregatorConfigsTest extends MigrateDrupal6TestBase {
    */
   public function testAggregatorSettings() {
     $config = $this->config('aggregator.settings');
-<<<<<<< HEAD
-    $this->assertIdentical('aggregator', $config->get('fetcher'));
-    $this->assertIdentical('aggregator', $config->get('parser'));
-    $this->assertIdentical(['aggregator'], $config->get('processors'));
-    $this->assertIdentical(600, $config->get('items.teaser_length'));
-    $this->assertIdentical('<a> <b> <br /> <dd> <dl> <dt> <em> <i> <li> <ol> <p> <strong> <u> <ul>', $config->get('items.allowed_html'));
-    $this->assertIdentical(9676800, $config->get('items.expire'));
-    $this->assertIdentical(3, $config->get('source.list_max'));
-=======
     $this->assertSame('aggregator', $config->get('fetcher'));
     $this->assertSame('aggregator', $config->get('parser'));
     $this->assertSame(['aggregator'], $config->get('processors'));
@@ -56,7 +39,6 @@ class MigrateAggregatorConfigsTest extends MigrateDrupal6TestBase {
     $this->assertSame('<a> <b> <br /> <dd> <dl> <dt> <em> <i> <li> <ol> <p> <strong> <u> <ul>', $config->get('items.allowed_html'));
     $this->assertSame(9676800, $config->get('items.expire'));
     $this->assertSame(3, $config->get('source.list_max'));
->>>>>>> dev
     $this->assertConfigSchema(\Drupal::service('config.typed'), 'aggregator.settings', $config->get());
   }
 

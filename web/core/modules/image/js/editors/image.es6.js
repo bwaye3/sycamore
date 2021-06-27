@@ -3,11 +3,7 @@
  * Drag+drop based in-place editor for images.
  */
 
-<<<<<<< HEAD
-(function($, _, Drupal) {
-=======
 (function ($, _, Drupal) {
->>>>>>> dev
   Drupal.quickedit.editors.image = Drupal.quickedit.EditorView.extend(
     /** @lends Drupal.quickedit.editors.image# */ {
       /**
@@ -24,11 +20,7 @@
         this.model.set('originalValue', this.$el.html().trim());
         // $.val() callback function for copying input from our custom form to
         // the Quick Edit Field Form.
-<<<<<<< HEAD
-        this.model.set('currentValue', function(index, value) {
-=======
         this.model.set('currentValue', function (index, value) {
->>>>>>> dev
           const matches = $(this)
             .attr('name')
             .match(/(alt|title)]$/);
@@ -97,16 +89,6 @@
               Drupal.t('Drop file here or click to upload'),
             );
 
-<<<<<<< HEAD
-            $dropzone.on('dragenter', function(e) {
-              $(this).addClass('hover');
-            });
-            $dropzone.on('dragleave', function(e) {
-              $(this).removeClass('hover');
-            });
-
-            $dropzone.on('drop', function(e) {
-=======
             $dropzone.on('dragenter', function (e) {
               $(this).addClass('hover');
             });
@@ -115,7 +97,6 @@
             });
 
             $dropzone.on('drop', function (e) {
->>>>>>> dev
               // Only respond when a file is dropped (could be another element).
               if (
                 e.originalEvent.dataTransfer &&
@@ -126,21 +107,13 @@
               }
             });
 
-<<<<<<< HEAD
-            $dropzone.on('click', e => {
-=======
             $dropzone.on('click', (e) => {
->>>>>>> dev
               // Create an <input> element without appending it to the DOM, and
               // trigger a click event. This is the easiest way to arbitrarily
               // open the browser's upload dialog.
               $('<input type="file">')
                 .trigger('click')
-<<<<<<< HEAD
-                .on('change', function() {
-=======
                 .on('change', function () {
->>>>>>> dev
                   if (this.files.length) {
                     self.uploadImage(this.files[0]);
                   }
@@ -149,11 +122,7 @@
 
             // Prevent the browser's default behavior when dragging files onto
             // the document (usually opens them in the same tab).
-<<<<<<< HEAD
-            $dropzone.on('dragover dragenter dragleave drop click', e => {
-=======
             $dropzone.on('dragover dragenter dragleave drop click', (e) => {
->>>>>>> dev
               e.preventDefault();
               e.stopPropagation();
             });
@@ -274,11 +243,7 @@
         const successCallback = ajaxOptions.success;
 
         // Handle the success callback.
-<<<<<<< HEAD
-        ajaxOptions.success = function(response) {
-=======
         ajaxOptions.success = function (response) {
->>>>>>> dev
           if (response.main_error) {
             this.renderDropzone('error', response.main_error);
             if (response.errors.length) {

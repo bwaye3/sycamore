@@ -40,19 +40,6 @@ function statistics_tokens($type, $tokens, array $data, array $options, Bubbleab
 
   if ($type == 'node' & !empty($data['node'])) {
     $node = $data['node'];
-<<<<<<< HEAD
-    /** @var \Drupal\statistics\StatisticsStorageInterface $stats_storage */
-    $stats_storage = \Drupal::service('statistics.storage.node');
-    foreach ($tokens as $name => $original) {
-      if ($name == 'total-count') {
-        $replacements[$original] = $stats_storage->fetchView($node->id())->getTotalCount();
-      }
-      elseif ($name == 'day-count') {
-        $replacements[$original] = $stats_storage->fetchView($node->id())->getDayCount();
-      }
-      elseif ($name == 'last-view') {
-        $replacements[$original] = \Drupal::service('date.formatter')->format($stats_storage->fetchView($node->id())->getTimestamp());
-=======
 
     /** @var \Drupal\statistics\StatisticsStorageInterface $stats_storage */
     $stats_storage = \Drupal::service('statistics.storage.node');
@@ -70,17 +57,12 @@ function statistics_tokens($type, $tokens, array $data, array $options, Bubbleab
       elseif ($name == 'last-view') {
         $node_view = $node_view ?? $stats_storage->fetchView($node->id());
         $replacements[$original] = $node_view ? \Drupal::service('date.formatter')->format($node_view->getTimestamp()) : t('never');
->>>>>>> dev
       }
     }
 
     if ($created_tokens = $token_service->findWithPrefix($tokens, 'last-view')) {
-<<<<<<< HEAD
-      $replacements += $token_service->generate('date', $created_tokens, ['date' => $stats_storage->fetchView($node->id())->getTimestamp()], $options, $bubbleable_metadata);
-=======
       $node_view = $node_view ?? $stats_storage->fetchView($node->id());
       $replacements += $token_service->generate('date', $created_tokens, ['date' => $node_view ? $node_view->getTimestamp() : 0], $options, $bubbleable_metadata);
->>>>>>> dev
     }
   }
 

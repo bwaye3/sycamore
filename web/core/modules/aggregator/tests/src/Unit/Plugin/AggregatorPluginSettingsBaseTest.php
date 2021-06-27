@@ -38,11 +38,7 @@ class AggregatorPluginSettingsBaseTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->configFactory = $this->getConfigFactoryStub(
       [
         'aggregator.settings' => [
@@ -75,11 +71,7 @@ class AggregatorPluginSettingsBaseTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test for AggregatorPluginSettingsBase.
-=======
    * Tests for AggregatorPluginSettingsBase.
->>>>>>> dev
    *
    * Ensure that the settings form calls build, validate and submit methods on
    * plugins that extend AggregatorPluginSettingsBase.

@@ -23,21 +23,13 @@
  */
 #}
 <div{{ attributes.addClass('toolbar') }}>
-<<<<<<< HEAD
-  <nav{{ toolbar_attributes.addClass('toolbar-bar') }}>
-=======
   <nav{{ toolbar_attributes.addClass('toolbar-bar', 'clearfix') }}>
->>>>>>> dev
     <h2 class="visually-hidden">{{ toolbar_heading }}</h2>
     {% for key, tab in tabs %}
       {% set tray = trays[key] %}
       <div{{ tab.attributes.addClass('toolbar-tab') }}>
         {{ tab.link }}
-<<<<<<< HEAD
-        {% spaceless %}
-=======
         {% apply spaceless %}
->>>>>>> dev
           <div{{ tray.attributes }}>
             {% if tray.label %}
               <nav class="toolbar-lining clearfix" role="navigation" aria-label="{{ tray.label }}">
@@ -48,11 +40,7 @@
             {{ tray.links }}
             </nav>
           </div>
-<<<<<<< HEAD
-        {% endspaceless %}
-=======
         {% endapply %}
->>>>>>> dev
       </div>
     {% endfor %}
   </nav>

@@ -34,11 +34,7 @@ abstract class TaxonomyTestBase extends ViewsKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'taxonomy',
     'taxonomy_test_views',
     'text',
@@ -89,11 +85,7 @@ abstract class TaxonomyTestBase extends ViewsKernelTestBase {
     $this->mockStandardInstall();
 
     if ($import_test_views) {
-<<<<<<< HEAD
-      ViewTestData::createTestViews(get_class($this), ['taxonomy_test_views']);
-=======
       ViewTestData::createTestViews(static::class, ['taxonomy_test_views']);
->>>>>>> dev
     }
 
     $this->term1 = $this->createTerm();

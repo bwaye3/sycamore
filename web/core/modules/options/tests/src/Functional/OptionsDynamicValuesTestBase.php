@@ -17,11 +17,7 @@ abstract class OptionsDynamicValuesTestBase extends FieldTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['options', 'entity_test', 'options_test'];
-=======
   protected static $modules = ['options', 'entity_test', 'options_test'];
->>>>>>> dev
 
   /**
    * The created entity.

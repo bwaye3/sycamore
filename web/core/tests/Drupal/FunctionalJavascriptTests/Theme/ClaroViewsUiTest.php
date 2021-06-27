@@ -24,11 +24,7 @@ class ClaroViewsUiTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Disable automatic live preview to make the sequence of calls clearer.
@@ -78,11 +74,7 @@ class ClaroViewsUiTest extends WebDriverTestBase {
     $list_item_selectors = ['li:first-child', 'li:last-child'];
     // Test list item CSS classes.
     foreach ($list_item_selectors as $list_item_selector) {
-<<<<<<< HEAD
-      $this->assertNotNull($extra_actions_dropbutton_list->find('css', "$list_item_selector.dropbutton__item.dropbutton__item--small"));
-=======
       $this->assertNotNull($extra_actions_dropbutton_list->find('css', "$list_item_selector.dropbutton__item"));
->>>>>>> dev
     }
 
     // Click on the Display name and wait for the Views UI dialog.
@@ -97,11 +89,7 @@ class ClaroViewsUiTest extends WebDriverTestBase {
     $this->assertTrue($extra_actions_dropbutton_list->hasClass('dropbutton--small'));
     // Check list item CSS classes.
     foreach ($list_item_selectors as $list_item_selector) {
-<<<<<<< HEAD
-      $this->assertNotNull($extra_actions_dropbutton_list->find('css', "$list_item_selector.dropbutton__item.dropbutton__item--small"));
-=======
       $this->assertNotNull($extra_actions_dropbutton_list->find('css', "$list_item_selector.dropbutton__item"));
->>>>>>> dev
     }
   }
 

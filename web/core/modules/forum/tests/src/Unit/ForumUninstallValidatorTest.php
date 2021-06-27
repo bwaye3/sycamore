@@ -3,10 +3,6 @@
 namespace Drupal\Tests\forum\Unit;
 
 use Drupal\Core\Url;
-<<<<<<< HEAD
-use Drupal\Tests\AssertHelperTrait;
-=======
->>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -15,11 +11,6 @@ use Drupal\Tests\UnitTestCase;
  */
 class ForumUninstallValidatorTest extends UnitTestCase {
 
-<<<<<<< HEAD
-  use AssertHelperTrait;
-
-=======
->>>>>>> dev
   /**
    * @var \Drupal\forum\ForumUninstallValidator|\PHPUnit\Framework\MockObject\MockObject
    */
@@ -28,11 +19,7 @@ class ForumUninstallValidatorTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->forumUninstallValidator = $this->getMockBuilder('Drupal\forum\ForumUninstallValidator')
       ->disableOriginalConstructor()
@@ -55,11 +42,7 @@ class ForumUninstallValidatorTest extends UnitTestCase {
     $module = 'not_forum';
     $expected = [];
     $reasons = $this->forumUninstallValidator->validate($module);
-<<<<<<< HEAD
-    $this->assertSame($expected, $this->castSafeStrings($reasons));
-=======
     $this->assertEquals($expected, $reasons);
->>>>>>> dev
   }
 
   /**
@@ -82,11 +65,7 @@ class ForumUninstallValidatorTest extends UnitTestCase {
     $module = 'forum';
     $expected = [];
     $reasons = $this->forumUninstallValidator->validate($module);
-<<<<<<< HEAD
-    $this->assertSame($expected, $this->castSafeStrings($reasons));
-=======
     $this->assertEquals($expected, $reasons);
->>>>>>> dev
   }
 
   /**
@@ -111,11 +90,7 @@ class ForumUninstallValidatorTest extends UnitTestCase {
       'To uninstall Forum, first delete all <em>Forum</em> content',
     ];
     $reasons = $this->forumUninstallValidator->validate($module);
-<<<<<<< HEAD
-    $this->assertSame($expected, $this->castSafeStrings($reasons));
-=======
     $this->assertEquals($expected, $reasons);
->>>>>>> dev
   }
 
   /**
@@ -153,11 +128,7 @@ class ForumUninstallValidatorTest extends UnitTestCase {
       'To uninstall Forum, first delete all <a href="/path/to/vocabulary/overview"><em class="placeholder">Vocabulary label</em></a> terms',
     ];
     $reasons = $this->forumUninstallValidator->validate($module);
-<<<<<<< HEAD
-    $this->assertSame($expected, $this->castSafeStrings($reasons));
-=======
     $this->assertEquals($expected, $reasons);
->>>>>>> dev
   }
 
   /**
@@ -191,11 +162,7 @@ class ForumUninstallValidatorTest extends UnitTestCase {
       'To uninstall Forum, first delete all <em class="placeholder">Vocabulary label</em> terms',
     ];
     $reasons = $this->forumUninstallValidator->validate($module);
-<<<<<<< HEAD
-    $this->assertSame($expected, $this->castSafeStrings($reasons));
-=======
     $this->assertEquals($expected, $reasons);
->>>>>>> dev
   }
 
   /**
@@ -232,11 +199,7 @@ class ForumUninstallValidatorTest extends UnitTestCase {
       'To uninstall Forum, first delete all <a href="/path/to/vocabulary/overview"><em class="placeholder">Vocabulary label</em></a> terms',
     ];
     $reasons = $this->forumUninstallValidator->validate($module);
-<<<<<<< HEAD
-    $this->assertSame($expected, $this->castSafeStrings($reasons));
-=======
     $this->assertEquals($expected, $reasons);
->>>>>>> dev
   }
 
   /**
@@ -269,11 +232,7 @@ class ForumUninstallValidatorTest extends UnitTestCase {
       'To uninstall Forum, first delete all <em class="placeholder">Vocabulary label</em> terms',
     ];
     $reasons = $this->forumUninstallValidator->validate($module);
-<<<<<<< HEAD
-    $this->assertSame($expected, $this->castSafeStrings($reasons));
-=======
     $this->assertEquals($expected, $reasons);
->>>>>>> dev
   }
 
 }

@@ -3,11 +3,7 @@
  * Attaches behaviors for the Contextual module's edit toolbar tab.
  */
 
-<<<<<<< HEAD
-(function($, Drupal, Backbone) {
-=======
 (function ($, Drupal, Backbone) {
->>>>>>> dev
   const strings = {
     tabbingReleased: Drupal.t(
       'Tabbing is no longer constrained by the Contextual module.',

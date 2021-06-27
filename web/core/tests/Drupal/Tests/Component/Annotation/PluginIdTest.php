@@ -15,22 +15,8 @@ class PluginIdTest extends TestCase {
    * @covers ::get
    */
   public function testGet() {
-<<<<<<< HEAD
-    // Assert plugin starts empty regardless of constructor.
-    $plugin = new PluginID([
-      'foo' => 'bar',
-      'biz' => [
-        'baz' => 'boom',
-      ],
-      'nestedAnnotation' => new PluginID([
-        'foo' => 'bar',
-      ]),
-      'value' => 'biz',
-    ]);
-=======
     // Assert plugin starts empty.
     $plugin = new PluginID();
->>>>>>> dev
     $this->assertEquals([
       'id' => NULL,
       'class' => NULL,
@@ -52,11 +38,7 @@ class PluginIdTest extends TestCase {
    * @covers ::getId
    */
   public function testGetId() {
-<<<<<<< HEAD
-    $plugin = new PluginID([]);
-=======
     $plugin = new PluginID();
->>>>>>> dev
     $plugin->value = 'example';
     $this->assertEquals('example', $plugin->getId());
   }

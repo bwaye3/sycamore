@@ -16,11 +16,7 @@ class AjaxCssTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['ckeditor', 'ckeditor_test'];
-=======
   protected static $modules = ['ckeditor', 'ckeditor_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -30,11 +26,7 @@ class AjaxCssTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     FilterFormat::create([
@@ -127,11 +119,7 @@ class AjaxCssTest extends WebDriverTestBase {
           && typeof CKEDITOR.instances["$instance_id"] !== 'undefined'
           && CKEDITOR.instances["$instance_id"].instanceReady
         );
-<<<<<<< HEAD
-      }());
-=======
       }())
->>>>>>> dev
 JS;
 
     $this->getSession()->wait($timeout, $condition);

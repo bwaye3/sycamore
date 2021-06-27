@@ -16,11 +16,7 @@ class EditorFilterIntegrationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['filter', 'editor', 'editor_test'];
-=======
   protected static $modules = ['filter', 'editor', 'editor_test'];
->>>>>>> dev
 
   /**
    * Tests text format removal or disabling.

@@ -5,9 +5,6 @@
 * @preserve
 **/
 
-<<<<<<< HEAD
-(function ($, Drupal) {
-=======
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -24,7 +21,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   var tabbable = _ref.tabbable,
       isTabbable = _ref.isTabbable;
 
->>>>>>> dev
   function TabbingManager() {
     this.stack = [];
   }
@@ -32,19 +28,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   function TabbingContext(options) {
     $.extend(this, {
       level: null,
-<<<<<<< HEAD
-
-      $tabbableElements: $(),
-
-      $disabledElements: $(),
-
-      released: false,
-
-=======
       $tabbableElements: $(),
       $disabledElements: $(),
       released: false,
->>>>>>> dev
       active: false
     }, options);
   }
@@ -52,29 +38,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   $.extend(TabbingManager.prototype, {
     constrain: function constrain(elements) {
       var il = this.stack.length;
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       for (var i = 0; i < il; i++) {
         this.stack[i].deactivate();
       }
 
-<<<<<<< HEAD
-      var $elements = $(elements).find(':tabbable').addBack(':tabbable');
-
-      var tabbingContext = new TabbingContext({
-        level: this.stack.length,
-        $tabbableElements: $elements
-      });
-
-      this.stack.push(tabbingContext);
-
-      tabbingContext.activate();
-
-      $(document).trigger('drupalTabbingConstrained', tabbingContext);
-
-=======
       var tabbableElements = [];
       $(elements).each(function (index, rootElement) {
         tabbableElements = [].concat(_toConsumableArray(tabbableElements), _toConsumableArray(tabbable(rootElement)));
@@ -90,15 +58,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.stack.push(tabbingContext);
       tabbingContext.activate();
       $(document).trigger('drupalTabbingConstrained', tabbingContext);
->>>>>>> dev
       return tabbingContext;
     },
     release: function release() {
       var toActivate = this.stack.length - 1;
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       while (toActivate >= 0 && this.stack[toActivate].released) {
         toActivate--;
       }
@@ -112,47 +76,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     activate: function activate(tabbingContext) {
       var $set = tabbingContext.$tabbableElements;
       var level = tabbingContext.level;
-<<<<<<< HEAD
-
-      var $disabledSet = $(':tabbable').not($set);
-
-      tabbingContext.$disabledElements = $disabledSet;
-
-      var il = $disabledSet.length;
-=======
       var $disabledSet = $(tabbable(document.body)).not($set);
       tabbingContext.$disabledElements = $disabledSet;
       var il = $disabledSet.length;
 
->>>>>>> dev
       for (var i = 0; i < il; i++) {
         this.recordTabindex($disabledSet.eq(i), level);
       }
 
       $disabledSet.prop('tabindex', -1).prop('autofocus', false);
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
       var $hasFocus = $set.filter('[autofocus]').eq(-1);
 
       if ($hasFocus.length === 0) {
         $hasFocus = $set.eq(0);
       }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       $hasFocus.trigger('focus');
     },
     deactivate: function deactivate(tabbingContext) {
       var $set = tabbingContext.$disabledElements;
       var level = tabbingContext.level;
       var il = $set.length;
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       for (var i = 0; i < il; i++) {
         this.restoreTabindex($set.eq(i), level);
       }
@@ -167,24 +112,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     restoreTabindex: function restoreTabindex($el, level) {
       var tabInfo = $el.data('drupalOriginalTabIndices');
-<<<<<<< HEAD
-      if (tabInfo && tabInfo[level]) {
-        var data = tabInfo[level];
-=======
 
       if (tabInfo && tabInfo[level]) {
         var data = tabInfo[level];
 
->>>>>>> dev
         if (data.tabindex) {
           $el[0].setAttribute('tabindex', data.tabindex);
         } else {
             $el[0].removeAttribute('tabindex');
           }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
         if (data.autofocus) {
           $el[0].setAttribute('autofocus', 'autofocus');
         }
@@ -193,37 +130,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           $el.removeData('drupalOriginalTabIndices');
         } else {
           var levelToDelete = level;
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
           while (tabInfo.hasOwnProperty(levelToDelete)) {
             delete tabInfo[levelToDelete];
             levelToDelete++;
           }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
           $el.data('drupalOriginalTabIndices', tabInfo);
         }
       }
     }
   });
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
   $.extend(TabbingContext.prototype, {
     release: function release() {
       if (!this.released) {
         this.deactivate();
         this.released = true;
         Drupal.tabbingManager.release(this);
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         $(document).trigger('drupalTabbingContextReleased', this);
       }
     },
@@ -231,10 +154,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       if (!this.active && !this.released) {
         this.active = true;
         Drupal.tabbingManager.activate(this);
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         $(document).trigger('drupalTabbingContextActivated', this);
       }
     },
@@ -242,10 +161,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       if (this.active) {
         this.active = false;
         Drupal.tabbingManager.deactivate(this);
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         $(document).trigger('drupalTabbingContextDeactivated', this);
       }
     }
@@ -256,8 +171,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   }
 
   Drupal.tabbingManager = new TabbingManager();
-<<<<<<< HEAD
-})(jQuery, Drupal);
-=======
 })(jQuery, Drupal, window.tabbable);
->>>>>>> dev

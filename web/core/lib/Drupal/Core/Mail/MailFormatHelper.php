@@ -142,11 +142,6 @@ class MailFormatHelper {
     // required).
     // Odd/even counter (tag or no tag).
     $tag = FALSE;
-<<<<<<< HEAD
-    // Case conversion function.
-    $casing = NULL;
-=======
->>>>>>> dev
     $output = '';
     // All current indentation string chunks.
     $indent = [];
@@ -224,26 +219,14 @@ class MailFormatHelper {
           // Fancy headers.
           case 'h1':
             $indent[] = '======== ';
-<<<<<<< HEAD
-            $casing = 'mb_strtoupper';
-=======
->>>>>>> dev
             break;
 
           case 'h2':
             $indent[] = '-------- ';
-<<<<<<< HEAD
-            $casing = 'mb_strtoupper';
-=======
->>>>>>> dev
             break;
 
           case '/h1':
           case '/h2':
-<<<<<<< HEAD
-            $casing = NULL;
-=======
->>>>>>> dev
             // Pad the line with dashes.
             $output = static::htmlToTextPad($output, ($tagname == '/h1') ? '=' : '-', ' ');
             array_pop($indent);
@@ -278,13 +261,6 @@ class MailFormatHelper {
 
       // See if there is something waiting to be output.
       if (isset($chunk)) {
-<<<<<<< HEAD
-        // Apply any necessary case conversion.
-        if (isset($casing)) {
-          $chunk = call_user_func($casing, $chunk);
-        }
-=======
->>>>>>> dev
         $line_endings = Settings::get('mail_line_endings', PHP_EOL);
         // Format it and apply the current indentation.
         $output .= static::wrapMail($chunk, implode('', $indent)) . $line_endings;

@@ -2,27 +2,18 @@
 
 namespace Drupal\Core\Executable;
 
-<<<<<<< HEAD
-use Drupal\Core\Plugin\ContextAwarePluginBase;
-use Drupal\Component\Plugin\Exception\PluginException;
-=======
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Plugin\ContextAwarePluginTrait;
 use Drupal\Core\Plugin\PluginBase;
->>>>>>> dev
 
 /**
  * Provides the basic architecture for executable plugins.
  */
-<<<<<<< HEAD
-abstract class ExecutablePluginBase extends ContextAwarePluginBase implements ExecutableInterface {
-=======
 abstract class ExecutablePluginBase extends PluginBase implements ExecutableInterface, CacheableDependencyInterface, ContextAwarePluginInterface {
 
   use ContextAwarePluginTrait;
->>>>>>> dev
 
   /**
    * Gets an array of definitions of available configuration options.

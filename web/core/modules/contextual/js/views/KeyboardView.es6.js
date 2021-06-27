@@ -3,11 +3,7 @@
  * A Backbone View that provides keyboard interaction for a contextual link.
  */
 
-<<<<<<< HEAD
-(function(Drupal, Backbone) {
-=======
 (function (Drupal, Backbone) {
->>>>>>> dev
   Drupal.contextual.KeyboardView = Backbone.View.extend(
     /** @lends Drupal.contextual.KeyboardView# */ {
       /**
@@ -16,17 +12,10 @@
       events: {
         'focus .trigger': 'focus',
         'focus .contextual-links a': 'focus',
-<<<<<<< HEAD
-        'blur .trigger': function() {
-          this.model.blur();
-        },
-        'blur .contextual-links a': function() {
-=======
         'blur .trigger': function () {
           this.model.blur();
         },
         'blur .contextual-links a': function () {
->>>>>>> dev
           // Set up a timeout to allow a user to tab between the trigger and the
           // contextual links without the menu dismissing.
           const that = this;

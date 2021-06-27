@@ -15,8 +15,6 @@ class Bytes {
   const KILOBYTE = 1024;
 
   /**
-<<<<<<< HEAD
-=======
    * The allowed suffixes of a bytes string in lowercase.
    *
    * @see http://wikipedia.org/wiki/Kilobyte
@@ -61,7 +59,6 @@ class Bytes {
   ];
 
   /**
->>>>>>> dev
    * Parses a given byte size.
    *
    * @param mixed $size
@@ -70,10 +67,6 @@ class Bytes {
    *
    * @return int
    *   An integer representation of the size in bytes.
-<<<<<<< HEAD
-   */
-  public static function toInt($size) {
-=======
    *
    * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use \Drupal\Component\Utility\Bytes::toNumber() instead
    *
@@ -96,7 +89,6 @@ class Bytes {
    *   The floating point value of the size in bytes.
    */
   public static function toNumber($size): float {
->>>>>>> dev
     // Remove the non-unit characters from the size.
     $unit = preg_replace('/[^bkmgtpezy]/i', '', $size);
     // Remove the non-numeric characters from the size.
@@ -112,8 +104,6 @@ class Bytes {
     }
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Validate that a string is a representation of a number of bytes.
    *
@@ -138,5 +128,4 @@ class Bytes {
     return in_array(strtolower($string), self::ALLOWED_SUFFIXES);
   }
 
->>>>>>> dev
 }

@@ -40,11 +40,7 @@ tr .form-item,
   margin-bottom: calc(var(--space-xs) / 2); /* 4px */
   font-size: var(--font-size-s); /* ~14px */
   font-weight: bold;
-<<<<<<< HEAD
-  line-height: calc(18rem / 16); /* 18px */
-=======
   line-height: var(--line-height-form-label);
->>>>>>> dev
 }
 .form-item__label--multiple-value-form {
   margin-top: 0;
@@ -209,8 +205,6 @@ tr .form-item,
     float: none;
   }
 }
-<<<<<<< HEAD
-=======
 
 /**
  * Prevent regression due to explicit line-heights applied to these elements in
@@ -231,4 +225,3 @@ optgroup {
 ::-webkit-file-upload-button {
   -webkit-appearance: push-button;
 }
->>>>>>> dev

@@ -25,21 +25,13 @@ class ExportStorageManagerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installConfig(['system']);
   }
 
   /**
-<<<<<<< HEAD
-   * Test getting the export storage.
-=======
    * Tests getting the export storage.
->>>>>>> dev
    */
   public function testGetStorage() {
     // Get the raw system.site config and set it in the sync storage.
@@ -83,11 +75,7 @@ class ExportStorageManagerTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the export storage when it is locked.
-=======
    * Tests the export storage when it is locked.
->>>>>>> dev
    */
   public function testGetStorageLock() {
     $lock = $this->createMock('Drupal\Core\Lock\LockBackendInterface');

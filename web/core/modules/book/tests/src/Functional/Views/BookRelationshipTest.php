@@ -26,11 +26,7 @@ class BookRelationshipTest extends ViewTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['book_test_views', 'book', 'views'];
-=======
   protected static $modules = ['book_test_views', 'book', 'views'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -54,11 +50,7 @@ class BookRelationshipTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     // Create users.
@@ -70,11 +62,7 @@ class BookRelationshipTest extends ViewTestBase {
         'add content to books',
       ]
     );
-<<<<<<< HEAD
-    ViewTestData::createTestViews(get_class($this), ['book_test_views']);
-=======
     ViewTestData::createTestViews(static::class, ['book_test_views']);
->>>>>>> dev
   }
 
   /**
@@ -133,29 +121,18 @@ class BookRelationshipTest extends ViewTestBase {
     $edit['book[bid]'] = $book_nid;
 
     if ($parent !== NULL) {
-<<<<<<< HEAD
-      $this->drupalPostForm('node/add/book', $edit, t('Change book (update list of parents)'));
-
-      $edit['book[pid]'] = $parent;
-      $this->drupalPostForm(NULL, $edit, t('Save'));
-=======
       $this->drupalGet('node/add/book');
       $this->submitForm($edit, 'Change book (update list of parents)');
 
       $edit['book[pid]'] = $parent;
       $this->submitForm($edit, 'Save');
->>>>>>> dev
       // Make sure the parent was flagged as having children.
       $parent_node = \Drupal::entityTypeManager()->getStorage('node')->loadUnchanged($parent);
       $this->assertFalse(empty($parent_node->book['has_children']), 'Parent node is marked as having children');
     }
     else {
-<<<<<<< HEAD
-      $this->drupalPostForm('node/add/book', $edit, t('Save'));
-=======
       $this->drupalGet('node/add/book');
       $this->submitForm($edit, 'Save');
->>>>>>> dev
     }
 
     // Check to make sure the book node was created.
@@ -172,11 +149,7 @@ class BookRelationshipTest extends ViewTestBase {
   public function testRelationship() {
 
     // Create new book.
-<<<<<<< HEAD
-    // @var \Drupal\node\NodeInterface[] $nodes
-=======
     /** @var \Drupal\node\NodeInterface[] $nodes */
->>>>>>> dev
     $nodes = $this->createBook();
     for ($i = 0; $i < 8; $i++) {
       $this->drupalGet('test-book/' . $nodes[$i]->id());

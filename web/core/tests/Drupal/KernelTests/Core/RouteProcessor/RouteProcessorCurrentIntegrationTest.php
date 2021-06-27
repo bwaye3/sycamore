@@ -6,11 +6,7 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\KernelTests\KernelTestBase;
-<<<<<<< HEAD
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
-=======
 use Drupal\Core\Routing\RouteObjectInterface;
->>>>>>> dev
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route;
 
@@ -25,11 +21,7 @@ class RouteProcessorCurrentIntegrationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['system'];
-=======
   protected static $modules = ['system'];
->>>>>>> dev
 
   /**
    * The URL generator.
@@ -41,11 +33,7 @@ class RouteProcessorCurrentIntegrationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->urlGenerator = \Drupal::urlGenerator();
@@ -76,11 +64,7 @@ class RouteProcessorCurrentIntegrationTest extends KernelTestBase {
     $request_stack->push($request);
     $request_context->fromRequest($request);
     $url = GeneratedUrl::createFromObject($expected_cacheability)->setGeneratedUrl('/subdir/');
-<<<<<<< HEAD
-    $this->assertEqual($url, $this->urlGenerator->generateFromRoute('<current>', [], [], TRUE));
-=======
     $this->assertEquals($this->urlGenerator->generateFromRoute('<current>', [], [], TRUE), $url);
->>>>>>> dev
 
     // Test request with subdir on other page.
     $server = [
@@ -95,11 +79,7 @@ class RouteProcessorCurrentIntegrationTest extends KernelTestBase {
     $request_stack->push($request);
     $request_context->fromRequest($request);
     $url = GeneratedUrl::createFromObject($expected_cacheability)->setGeneratedUrl('/subdir/node/add');
-<<<<<<< HEAD
-    $this->assertEqual($url, $this->urlGenerator->generateFromRoute('<current>', [], [], TRUE));
-=======
     $this->assertEquals($this->urlGenerator->generateFromRoute('<current>', [], [], TRUE), $url);
->>>>>>> dev
 
     // Test request without subdir on the homepage.
     $server = [
@@ -114,11 +94,7 @@ class RouteProcessorCurrentIntegrationTest extends KernelTestBase {
     $request_stack->push($request);
     $request_context->fromRequest($request);
     $url = GeneratedUrl::createFromObject($expected_cacheability)->setGeneratedUrl('/');
-<<<<<<< HEAD
-    $this->assertEqual($url, $this->urlGenerator->generateFromRoute('<current>', [], [], TRUE));
-=======
     $this->assertEquals($this->urlGenerator->generateFromRoute('<current>', [], [], TRUE), $url);
->>>>>>> dev
 
     // Test request without subdir on other page.
     $server = [
@@ -133,11 +109,7 @@ class RouteProcessorCurrentIntegrationTest extends KernelTestBase {
     $request_stack->push($request);
     $request_context->fromRequest($request);
     $url = GeneratedUrl::createFromObject($expected_cacheability)->setGeneratedUrl('/node/add');
-<<<<<<< HEAD
-    $this->assertEqual($url, $this->urlGenerator->generateFromRoute('<current>', [], [], TRUE));
-=======
     $this->assertEquals($this->urlGenerator->generateFromRoute('<current>', [], [], TRUE), $url);
->>>>>>> dev
 
     // Test request without a found route. This happens for example on an
     // not found exception page.
@@ -154,11 +126,7 @@ class RouteProcessorCurrentIntegrationTest extends KernelTestBase {
     // and the cacheability does not depend on the 'route' cache context, since
     // no route was involved at all: this is fallback behavior.
     $url = GeneratedUrl::createFromObject((new BubbleableMetadata())->setCacheMaxAge(Cache::PERMANENT))->setGeneratedUrl('/');
-<<<<<<< HEAD
-    $this->assertEqual($url, $this->urlGenerator->generateFromRoute('<current>', [], [], TRUE));
-=======
     $this->assertEquals($this->urlGenerator->generateFromRoute('<current>', [], [], TRUE), $url);
->>>>>>> dev
   }
 
 }

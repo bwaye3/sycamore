@@ -8,44 +8,23 @@
 (function ($, Drupal, drupalSettings, _) {
   Drupal.quickedit.editors.editor = Drupal.quickedit.EditorView.extend({
     textFormat: null,
-<<<<<<< HEAD
-
-    textFormatHasTransformations: null,
-
-    textEditor: null,
-
-    $textElement: null,
-
-    initialize: function initialize(options) {
-      Drupal.quickedit.EditorView.prototype.initialize.call(this, options);
-
-=======
     textFormatHasTransformations: null,
     textEditor: null,
     $textElement: null,
     initialize: function initialize(options) {
       Drupal.quickedit.EditorView.prototype.initialize.call(this, options);
->>>>>>> dev
       var metadata = Drupal.quickedit.metadata.get(this.fieldModel.get('fieldID'), 'custom');
       this.textFormat = drupalSettings.editor.formats[metadata.format];
       this.textFormatHasTransformations = metadata.formatHasTransformations;
       this.textEditor = Drupal.editors[this.textFormat.editor];
-<<<<<<< HEAD
-
-      var $fieldItems = this.$el.find('.quickedit-field');
-=======
       var $fieldItems = this.$el.find('.quickedit-field');
 
->>>>>>> dev
       if ($fieldItems.length) {
         this.$textElement = $fieldItems.eq(0);
       } else {
         this.$textElement = this.$el;
       }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       this.model.set('originalValue', this.$textElement.html());
     },
     getEditedElement: function getEditedElement() {
@@ -55,10 +34,7 @@
       var editorModel = this.model;
       var from = fieldModel.previous('state');
       var to = state;
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       switch (to) {
         case 'inactive':
           break;
@@ -71,17 +47,11 @@
           if (from === 'active' && this.textFormatHasTransformations) {
             this.revert();
           }
-<<<<<<< HEAD
-          if (from === 'invalid') {
-            this.removeValidationErrors();
-          }
-=======
 
           if (from === 'invalid') {
             this.removeValidationErrors();
           }
 
->>>>>>> dev
           break;
 
         case 'highlighted':
@@ -90,10 +60,7 @@
         case 'activating':
           if (this.textFormatHasTransformations) {
             var $textElement = this.$textElement;
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
             this._getUntransformedText(function (untransformedText) {
               $textElement.html(untransformedText);
               fieldModel.set('state', 'active');
@@ -103,10 +70,7 @@
                 fieldModel.set('state', 'active');
               });
             }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
           break;
 
         case 'active':
@@ -114,10 +78,6 @@
             var textElement = this.$textElement.get(0);
             var toolbarView = fieldModel.toolbarView;
             this.textEditor.attachInlineEditor(textElement, this.textFormat, toolbarView.getMainWysiwygToolgroupId(), toolbarView.getFloatedWysiwygToolgroupId());
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
             this.textEditor.onChange(textElement, function (htmlText) {
               editorModel.set('currentValue', htmlText);
               fieldModel.set('state', 'changed');
@@ -132,10 +92,7 @@
           if (from === 'invalid') {
             this.removeValidationErrors();
           }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
           this.save();
           break;
 
@@ -160,18 +117,11 @@
     },
     _getUntransformedText: function _getUntransformedText(callback) {
       var fieldID = this.fieldModel.get('fieldID');
-<<<<<<< HEAD
-
-      var textLoaderAjax = Drupal.ajax({
-        url: Drupal.quickedit.util.buildUrl(fieldID, Drupal.url('editor/!entity_type/!id/!field_name/!langcode/!view_mode')),
-        submit: { nocssjs: true }
-=======
       var textLoaderAjax = Drupal.ajax({
         url: Drupal.quickedit.util.buildUrl(fieldID, Drupal.url('editor/!entity_type/!id/!field_name/!langcode/!view_mode')),
         submit: {
           nocssjs: true
         }
->>>>>>> dev
       });
 
       textLoaderAjax.commands.editorGetUntransformedText = function (ajax, response, status) {

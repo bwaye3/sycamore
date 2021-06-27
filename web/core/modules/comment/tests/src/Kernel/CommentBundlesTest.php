@@ -15,11 +15,7 @@ class CommentBundlesTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['comment', 'node', 'taxonomy', 'user'];
-=======
   protected static $modules = ['comment', 'node', 'taxonomy', 'user'];
->>>>>>> dev
 
   /**
    * Entity type ids to use for target_entity_type_id on comment bundles.
@@ -36,11 +32,7 @@ class CommentBundlesTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->entityFieldManager = $this->container->get('entity_field.manager');
@@ -64,11 +56,7 @@ class CommentBundlesTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that the entity_id field is set correctly for each comment bundle.
-=======
    * Tests that the entity_id field is set correctly for each comment bundle.
->>>>>>> dev
    */
   public function testEntityIdField() {
     $field_definitions = [];

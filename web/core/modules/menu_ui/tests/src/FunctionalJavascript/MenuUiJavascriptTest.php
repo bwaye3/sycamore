@@ -142,11 +142,7 @@ class MenuUiJavascriptTest extends WebDriverTestBase {
     ];
 
     // Add menu link.
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, 'Save');
-=======
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $this->assertSession()->pageTextContains('The menu link has been saved.');
 
     $storage = $this->container->get('entity_type.manager')->getStorage('menu_link_content');

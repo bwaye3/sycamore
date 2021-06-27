@@ -44,8 +44,6 @@ class DrupalSelenium2Driver extends Selenium2Driver {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * {@inheritdoc}
    */
   public function attachFile($xpath, $path) {
@@ -72,7 +70,6 @@ class DrupalSelenium2Driver extends Selenium2Driver {
   }
 
   /**
->>>>>>> dev
    * Uploads a file to the Selenium instance and returns the remote path.
    *
    * \Behat\Mink\Driver\Selenium2Driver::uploadFile() is a private method so
@@ -106,11 +103,7 @@ class DrupalSelenium2Driver extends Selenium2Driver {
     $tempFilename = tempnam('', 'WebDriverZip');
 
     $archive = new \ZipArchive();
-<<<<<<< HEAD
-    $result = $archive->open($tempFilename, \ZipArchive::CREATE);
-=======
     $result = $archive->open($tempFilename, \ZipArchive::OVERWRITE);
->>>>>>> dev
     if (!$result) {
       throw new DriverException('Zip archive could not be created. Error ' . $result);
     }

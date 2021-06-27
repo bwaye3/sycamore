@@ -2,20 +2,13 @@
 
 namespace Drupal\path_alias;
 
-<<<<<<< HEAD
-use Drupal\Core\Path\AliasRepository as CoreAliasRepository;
-=======
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Database\Query\SelectInterface;
 use Drupal\Core\Language\LanguageInterface;
->>>>>>> dev
 
 /**
  * Provides the default path alias lookup operations.
  */
-<<<<<<< HEAD
-class AliasRepository extends CoreAliasRepository implements AliasRepositoryInterface {}
-=======
 class AliasRepository implements AliasRepositoryInterface {
 
   /**
@@ -146,4 +139,3 @@ class AliasRepository implements AliasRepositoryInterface {
   }
 
 }
->>>>>>> dev

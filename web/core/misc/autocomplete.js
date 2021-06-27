@@ -6,29 +6,18 @@
 **/
 
 (function ($, Drupal) {
-<<<<<<< HEAD
-  var autocomplete = void 0;
-=======
   var autocomplete;
->>>>>>> dev
 
   function autocompleteSplitValues(value) {
     var result = [];
     var quote = false;
     var current = '';
     var valueLength = value.length;
-<<<<<<< HEAD
-    var character = void 0;
-
-    for (var i = 0; i < valueLength; i++) {
-      character = value.charAt(i);
-=======
     var character;
 
     for (var i = 0; i < valueLength; i++) {
       character = value.charAt(i);
 
->>>>>>> dev
       if (character === '"') {
         current += character;
         quote = !quote;
@@ -39,10 +28,7 @@
         current += character;
       }
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
     if (value.length > 0) {
       result.push($.trim(current));
     }
@@ -80,23 +66,15 @@
     function showSuggestions(suggestions) {
       var tagged = autocomplete.splitValues(request.term);
       var il = tagged.length;
-<<<<<<< HEAD
-      for (var i = 0; i < il; i++) {
-        var index = suggestions.indexOf(tagged[i]);
-=======
 
       for (var i = 0; i < il; i++) {
         var index = suggestions.indexOf(tagged[i]);
 
->>>>>>> dev
         if (index >= 0) {
           suggestions.splice(index, 1);
         }
       }
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       response(suggestions);
     }
 
@@ -104,26 +82,18 @@
 
     function sourceCallbackHandler(data) {
       autocomplete.cache[elementId][term] = data;
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
       showSuggestions(data);
     }
 
     if (autocomplete.cache[elementId].hasOwnProperty(term)) {
       showSuggestions(autocomplete.cache[elementId][term]);
     } else {
-<<<<<<< HEAD
-      var options = $.extend({ success: sourceCallbackHandler, data: { q: term } }, autocomplete.ajax);
-=======
       var options = $.extend({
         success: sourceCallbackHandler,
         data: {
           q: term
         }
       }, autocomplete.ajax);
->>>>>>> dev
       $.ajax(this.element.attr('data-autocomplete-path'), options);
     }
   }
@@ -134,19 +104,9 @@
 
   function selectHandler(event, ui) {
     var terms = autocomplete.splitValues(event.target.value);
-<<<<<<< HEAD
-
-    terms.pop();
-
-    terms.push(ui.item.value);
-
-    event.target.value = terms.join(', ');
-
-=======
     terms.pop();
     terms.push(ui.item.value);
     event.target.value = terms.join(', ');
->>>>>>> dev
     return false;
   }
 
@@ -157,26 +117,15 @@
   Drupal.behaviors.autocomplete = {
     attach: function attach(context) {
       var $autocomplete = $(context).find('input.form-autocomplete').once('autocomplete');
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       if ($autocomplete.length) {
         var blacklist = $autocomplete.attr('data-autocomplete-first-character-blacklist');
         $.extend(autocomplete.options, {
           firstCharacterBlacklist: blacklist || ''
         });
-<<<<<<< HEAD
-
         $autocomplete.autocomplete(autocomplete.options).each(function () {
           $(this).data('ui-autocomplete')._renderItem = autocomplete.options.renderItem;
         });
-
-=======
-        $autocomplete.autocomplete(autocomplete.options).each(function () {
-          $(this).data('ui-autocomplete')._renderItem = autocomplete.options.renderItem;
-        });
->>>>>>> dev
         $autocomplete.on('compositionstart.autocomplete', function () {
           autocomplete.options.isComposing = true;
         });
@@ -191,20 +140,10 @@
       }
     }
   };
-<<<<<<< HEAD
-
-  autocomplete = {
-    cache: {},
-
-    splitValues: autocompleteSplitValues,
-    extractLastTerm: extractLastTerm,
-
-=======
   autocomplete = {
     cache: {},
     splitValues: autocompleteSplitValues,
     extractLastTerm: extractLastTerm,
->>>>>>> dev
     options: {
       source: sourceData,
       focus: focusHandler,
@@ -212,13 +151,7 @@
       select: selectHandler,
       renderItem: renderItem,
       minLength: 1,
-<<<<<<< HEAD
-
       firstCharacterBlacklist: '',
-
-=======
-      firstCharacterBlacklist: '',
->>>>>>> dev
       isComposing: false
     },
     ajax: {
@@ -226,9 +159,5 @@
       jsonp: false
     }
   };
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
   Drupal.autocomplete = autocomplete;
 })(jQuery, Drupal);

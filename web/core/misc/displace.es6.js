@@ -24,11 +24,7 @@
  * @event drupalViewportOffsetChange
  */
 
-<<<<<<< HEAD
-(function($, Drupal, debounce) {
-=======
 (function ($, Drupal, debounce) {
->>>>>>> dev
   /**
    * @name Drupal.displace.offsets
    *

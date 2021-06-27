@@ -24,11 +24,7 @@ class RebuildPermissionsForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-<<<<<<< HEAD
-    return t('Are you sure you want to rebuild the permissions on site content?');
-=======
     return $this->t('Are you sure you want to rebuild the permissions on site content?');
->>>>>>> dev
   }
 
   /**
@@ -42,22 +38,14 @@ class RebuildPermissionsForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getConfirmText() {
-<<<<<<< HEAD
-    return t('Rebuild permissions');
-=======
     return $this->t('Rebuild permissions');
->>>>>>> dev
   }
 
   /**
    * {@inheritdoc}
    */
   public function getDescription() {
-<<<<<<< HEAD
-    return t('This action rebuilds all permissions on site content, and may be a lengthy process. This action cannot be undone.');
-=======
     return $this->t('This action rebuilds all permissions on site content, and may be a lengthy process. This action cannot be undone.');
->>>>>>> dev
   }
 
   /**

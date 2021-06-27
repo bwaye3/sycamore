@@ -3,11 +3,7 @@
  * Handles AJAX submission and response in Views UI.
  */
 
-<<<<<<< HEAD
-(function($, Drupal, drupalSettings) {
-=======
 (function ($, Drupal, drupalSettings) {
->>>>>>> dev
   /**
    * Ajax command for highlighting elements.
    *
@@ -20,11 +16,7 @@
    * @param {number} [status]
    *   The HTTP status code.
    */
-<<<<<<< HEAD
-  Drupal.AjaxCommands.prototype.viewsHighlight = function(
-=======
   Drupal.AjaxCommands.prototype.viewsHighlight = function (
->>>>>>> dev
     ajax,
     response,
     status,
@@ -43,11 +35,7 @@
    * @param {string} [status]
    *   The XHR status code?
    */
-<<<<<<< HEAD
-  Drupal.AjaxCommands.prototype.viewsSetForm = function(
-=======
   Drupal.AjaxCommands.prototype.viewsSetForm = function (
->>>>>>> dev
     ajax,
     response,
     status,
@@ -59,17 +47,10 @@
     const $submitButtons = $form
       .find('input[type=submit].js-form-submit, button.js-form-submit')
       .once('views-ajax-submit');
-<<<<<<< HEAD
-    $submitButtons.on('click mousedown', function() {
-      this.form.clk = this;
-    });
-    $form.once('views-ajax-submit').each(function() {
-=======
     $submitButtons.on('click mousedown', function () {
       this.form.clk = this;
     });
     $form.once('views-ajax-submit').each(function () {
->>>>>>> dev
       const $form = $(this);
       const elementSettings = {
         url: response.url,
@@ -94,11 +75,7 @@
    * @param {number} [status]
    *   The HTTP status code.
    */
-<<<<<<< HEAD
-  Drupal.AjaxCommands.prototype.viewsShowButtons = function(
-=======
   Drupal.AjaxCommands.prototype.viewsShowButtons = function (
->>>>>>> dev
     ajax,
     response,
     status,
@@ -119,11 +96,7 @@
    * @param {number} [status]
    *   The HTTP status code.
    */
-<<<<<<< HEAD
-  Drupal.AjaxCommands.prototype.viewsTriggerPreview = function(
-=======
   Drupal.AjaxCommands.prototype.viewsTriggerPreview = function (
->>>>>>> dev
     ajax,
     response,
     status,
@@ -147,11 +120,7 @@
    * @param {number} [status]
    *   The HTTP status code.
    */
-<<<<<<< HEAD
-  Drupal.AjaxCommands.prototype.viewsReplaceTitle = function(
-=======
   Drupal.AjaxCommands.prototype.viewsReplaceTitle = function (
->>>>>>> dev
     ajax,
     response,
     status,
@@ -182,11 +151,7 @@
    * @return {Array}
    *   An array of messages. Always empty array, to get rid of the messages.
    */
-<<<<<<< HEAD
-  Drupal.theme.tableDragChangedWarning = function() {
-=======
   Drupal.theme.tableDragChangedWarning = function () {
->>>>>>> dev
     return [];
   };
 
@@ -203,11 +168,7 @@
     attach(context) {
       $('input#edit-displays-live-preview', context)
         .once('views-ajax')
-<<<<<<< HEAD
-        .on('click', function() {
-=======
         .on('click', function () {
->>>>>>> dev
           if ($(this).is(':checked')) {
             $('#preview-submit').trigger('click');
           }
@@ -227,11 +188,7 @@
     attach(context) {
       $('#views-tabset a')
         .once('views-ajax')
-<<<<<<< HEAD
-        .on('click', function() {
-=======
         .on('click', function () {
->>>>>>> dev
           const href = $(this).attr('href');
           // Cut of #views-tabset.
           const displayId = href.substr(11);
@@ -259,11 +216,7 @@
       // Bind AJAX behaviors to all items showing the class.
       $('a.views-ajax-link', context)
         .once('views-ajax')
-<<<<<<< HEAD
-        .each(function() {
-=======
         .each(function () {
->>>>>>> dev
           const elementSettings = baseElementSettings;
           elementSettings.base = $(this).attr('id');
           elementSettings.element = this;
@@ -276,11 +229,7 @@
 
       $('div#views-live-preview a')
         .once('views-ajax')
-<<<<<<< HEAD
-        .each(function() {
-=======
         .each(function () {
->>>>>>> dev
           // We don't bind to links without a URL.
           if (!$(this).attr('href')) {
             return true;
@@ -309,13 +258,8 @@
       //   of the main Edit form.
       $('div#views-live-preview input[type=submit]')
         .once('views-ajax')
-<<<<<<< HEAD
-        .each(function(event) {
-          $(this).on('click', function() {
-=======
         .each(function (event) {
           $(this).on('click', function () {
->>>>>>> dev
             this.form.clk = this;
             return true;
           });

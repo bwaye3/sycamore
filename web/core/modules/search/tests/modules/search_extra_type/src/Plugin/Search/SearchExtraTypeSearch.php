@@ -12,12 +12,8 @@ use Drupal\search\Plugin\ConfigurableSearchPluginBase;
  *
  * @SearchPlugin(
  *   id = "search_extra_type_search",
-<<<<<<< HEAD
- *   title = @Translation("Dummy search type")
-=======
  *   title = @Translation("Dummy search type"),
  *   use_admin_theme = TRUE,
->>>>>>> dev
  * )
  */
 class SearchExtraTypeSearch extends ConfigurableSearchPluginBase {

@@ -16,11 +16,7 @@ class FilterFormatTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['filter', 'migrate_drupal'];
-=======
   protected static $modules = ['filter', 'migrate_drupal'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

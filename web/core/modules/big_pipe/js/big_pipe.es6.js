@@ -3,11 +3,7 @@
  * Renders BigPipe placeholders using Drupal's Ajax system.
  */
 
-<<<<<<< HEAD
-(function($, Drupal, drupalSettings) {
-=======
 (function ($, Drupal, drupalSettings) {
->>>>>>> dev
   /**
    * Maps textContent of <script type="application/vnd.drupal-ajax"> to an AJAX response.
    *

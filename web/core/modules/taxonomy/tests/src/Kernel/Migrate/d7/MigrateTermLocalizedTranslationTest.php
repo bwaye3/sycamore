@@ -16,11 +16,7 @@ class MigrateTermLocalizedTranslationTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'content_translation',
     'language',
     'taxonomy',
@@ -37,11 +33,7 @@ class MigrateTermLocalizedTranslationTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('taxonomy_term');
     $this->installConfig(static::$modules);
@@ -120,10 +112,7 @@ class MigrateTermLocalizedTranslationTest extends MigrateDrupal7TestBase {
   public function testTranslatedLocalizedTaxonomyTerms() {
     $this->assertEntity(19, 'en', 'Jupiter Station', 'vocablocalized', 'Holographic research.', 'filtered_html', '0', []);
     $this->assertEntity(20, 'en', 'DS9', 'vocablocalized', 'Terok Nor', 'filtered_html', '0', []);
-<<<<<<< HEAD
-=======
     $this->assertEntity(25, 'en', 'Emissary', 'vocablocalized2', 'Pilot episode', 'filtered_html', '0', []);
->>>>>>> dev
 
     /** @var \Drupal\taxonomy\TermInterface $entity */
     $entity = Term::load(19);
@@ -140,8 +129,6 @@ class MigrateTermLocalizedTranslationTest extends MigrateDrupal7TestBase {
     $this->assertSame('fr - DS9 (localized)', $translation->label());
     $this->assertSame('fr - Terok Nor (localized)', $translation->getDescription());
     $this->assertFALSE($entity->hasTranslation('is'));
-<<<<<<< HEAD
-=======
 
     $entity = Term::load(25);
     $this->assertFalse($entity->hasTranslation('is'));
@@ -149,7 +136,6 @@ class MigrateTermLocalizedTranslationTest extends MigrateDrupal7TestBase {
     $translation = $entity->getTranslation('fr');
     $this->assertSame('fr - Emissary', $translation->label());
     $this->assertSame('fr - Pilot episode', $translation->getDescription());
->>>>>>> dev
   }
 
 }

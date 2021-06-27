@@ -5,15 +5,6 @@
 
 .layout-bottom {
   overflow: hidden;
-<<<<<<< HEAD
-  padding: 2rem 1rem;
-  background: #fff;
-}
-
-@media screen and (min-width: 75rem) {
-  .layout-bottom {
-    padding: 3rem 0;
-=======
   padding: 2rem 4%;
   background: #fff;
 }
@@ -21,6 +12,5 @@
 @media screen and (min-width: 80rem) { /* 1200px (large) + 80px (side margins) = 1280px */
   .layout-bottom {
     padding: 2rem 0;
->>>>>>> dev
   }
 }

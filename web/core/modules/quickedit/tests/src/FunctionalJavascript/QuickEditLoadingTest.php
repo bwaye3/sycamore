@@ -33,11 +33,7 @@ class QuickEditLoadingTest extends WebDriverTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'contextual',
     'quickedit',
     'filter',
@@ -51,11 +47,7 @@ class QuickEditLoadingTest extends WebDriverTestBase {
   protected $defaultTheme = 'classy';
 
   /**
-<<<<<<< HEAD
-   * An user with permissions to create and edit articles.
-=======
    * A user with permissions to create and edit articles.
->>>>>>> dev
    *
    * @var \Drupal\user\UserInterface
    */
@@ -69,11 +61,7 @@ class QuickEditLoadingTest extends WebDriverTestBase {
   protected $testNode;
 
   /**
-<<<<<<< HEAD
-   * A author user with permissions to access in-place editor.
-=======
    * An author user with permissions to access in-place editor.
->>>>>>> dev
    *
    * @var \Drupal\user\UserInterface
    */
@@ -82,11 +70,7 @@ class QuickEditLoadingTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create a text format.
@@ -136,11 +120,7 @@ class QuickEditLoadingTest extends WebDriverTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the loading of Quick Edit with different permissions.
-=======
    * Tests the loading of Quick Edit with different permissions.
->>>>>>> dev
    */
   public function testUserPermissions() {
     $assert = $this->assertSession();
@@ -148,16 +128,6 @@ class QuickEditLoadingTest extends WebDriverTestBase {
     $this->drupalGet('node/1');
 
     // Library and in-place editors.
-<<<<<<< HEAD
-    $this->assertNoRaw('core/modules/quickedit/js/quickedit.js', 'Quick Edit library not loaded.');
-    $this->assertNoRaw('core/modules/quickedit/js/editors/formEditor.js', "'form' in-place editor not loaded.");
-
-    // HTML annotation and title class does not exist for users without
-    // permission to in-place edit.
-    $this->assertNoRaw('data-quickedit-entity-id="node/1"');
-    $this->assertNoRaw('data-quickedit-field-id="node/1/body/en/full"');
-    $this->assertNoFieldByXPath('//h1[contains(@class, "js-quickedit-page-title")]');
-=======
     $this->assertNoRaw('core/modules/quickedit/js/quickedit.js');
     $this->assertNoRaw('core/modules/quickedit/js/editors/formEditor.js');
 
@@ -166,7 +136,6 @@ class QuickEditLoadingTest extends WebDriverTestBase {
     $this->assertNoRaw('data-quickedit-entity-id="node/1"');
     $this->assertNoRaw('data-quickedit-field-id="node/1/body/en/full"');
     $this->assertSession()->elementNotExists('xpath', '//h1[contains(@class, "js-quickedit-page-title")]');
->>>>>>> dev
     $assert->linkNotExists('Quick edit');
 
     // Tests the loading of Quick Edit when a user does have access to it.
@@ -188,10 +157,6 @@ class QuickEditLoadingTest extends WebDriverTestBase {
     $this->clickContextualLink('[data-quickedit-entity-id="node/' . $nid . '"]', 'Quick edit');
     // Switch to body field.
     $page->find('css', '[data-quickedit-field-id="node/' . $nid . '/body/en/full"]')->click();
-<<<<<<< HEAD
-    $assert->assertWaitOnAjaxRequest();
-=======
->>>>>>> dev
 
     // Wait and update body field.
     $body_field_locator = '[name="body[0][value]"]';
@@ -200,16 +165,7 @@ class QuickEditLoadingTest extends WebDriverTestBase {
 
     // Wait and click by "Save" button after body field was changed.
     $assert->waitForElementVisible('css', '.quickedit-toolgroup.ops [type="submit"][aria-hidden="false"]')->click();
-<<<<<<< HEAD
-    $assert->assertWaitOnAjaxRequest();
-
-    $node = Node::load($nid);
-    $vids = \Drupal::entityTypeManager()->getStorage('node')->revisionIds($node);
-    $this->assertCount(1, $vids, 'The node has only one revision.');
-    $this->assertSame($original_log, $node->revision_log->value, 'The revision log message is unchanged.');
-=======
     $assert->waitForElementRemoved('css', '.quickedit-toolgroup.ops [type="submit"][aria-hidden="false"]');
->>>>>>> dev
 
     // Ensure that the changes take effect.
     $assert->responseMatches("|\s*$body_text\s*|");
@@ -217,12 +173,6 @@ class QuickEditLoadingTest extends WebDriverTestBase {
     // Reload the page and check for updated body.
     $this->drupalGet('node/' . $nid);
     $assert->pageTextContains($body_text);
-<<<<<<< HEAD
-  }
-
-  /**
-   * Test Quick Edit does not appear for entities with pending revisions.
-=======
 
     // Ensure that a new revision has not been created.
     $node = Node::load($nid);
@@ -233,18 +183,13 @@ class QuickEditLoadingTest extends WebDriverTestBase {
 
   /**
    * Tests Quick Edit does not appear for entities with pending revisions.
->>>>>>> dev
    */
   public function testWithPendingRevision() {
     $this->drupalLogin($this->editorUser);
 
     // Verify that the preview is loaded correctly.
-<<<<<<< HEAD
-    $this->drupalPostForm('node/add/article', ['title[0][value]' => 'foo'], 'Preview');
-=======
     $this->drupalGet('node/add/article');
     $this->submitForm(['title[0][value]' => 'foo'], 'Preview');
->>>>>>> dev
     // Verify that quickedit is not active on preview.
     $this->assertNoRaw('data-quickedit-entity-id="node/' . $this->testNode->id() . '"');
     $this->assertNoRaw('data-quickedit-field-id="node/' . $this->testNode->id() . '/title/' . $this->testNode->language()->getId() . '/full"');
@@ -284,10 +229,6 @@ class QuickEditLoadingTest extends WebDriverTestBase {
     $this->clickContextualLink('[data-quickedit-entity-id="node/' . $nid . '"]', 'Quick edit');
     // Switch to title field.
     $page->find('css', '[data-quickedit-field-id="node/' . $nid . '/title/en/full"]')->click();
-<<<<<<< HEAD
-    $assert->assertWaitOnAjaxRequest();
-=======
->>>>>>> dev
 
     // Wait and update title field.
     $field_locator = '.field--name-title';
@@ -296,11 +237,7 @@ class QuickEditLoadingTest extends WebDriverTestBase {
 
     // Wait and click by "Save" button after title field was changed.
     $this->assertSession()->waitForElementVisible('css', '.quickedit-toolgroup.ops [type="submit"][aria-hidden="false"]')->click();
-<<<<<<< HEAD
-    $assert->assertWaitOnAjaxRequest();
-=======
     $assert->waitForElementRemoved('css', '.quickedit-toolgroup.ops [type="submit"][aria-hidden="false"]');
->>>>>>> dev
 
     // Ensure that the changes take effect.
     $assert->responseMatches("|\s*$text_new\s*|");
@@ -357,10 +294,6 @@ class QuickEditLoadingTest extends WebDriverTestBase {
     $this->clickContextualLink('[data-quickedit-entity-id="node/' . $nid . '"]', 'Quick edit');
     // Switch to body field.
     $page->find('css', '[data-quickedit-field-id="node/' . $nid . '/body/en/full"]')->click();
-<<<<<<< HEAD
-    $assert->assertWaitOnAjaxRequest();
-=======
->>>>>>> dev
 
     // Wait and update body field.
     $body_field_locator = '[name="body[0][value]"]';
@@ -369,11 +302,7 @@ class QuickEditLoadingTest extends WebDriverTestBase {
 
     // Wait and click by "Save" button after body field was changed.
     $assert->waitForElementVisible('css', '.quickedit-toolgroup.ops [type="submit"][aria-hidden="false"]')->click();
-<<<<<<< HEAD
-    $assert->assertWaitOnAjaxRequest();
-=======
     $assert->waitForElementRemoved('css', $body_field_locator);
->>>>>>> dev
 
     // Ensure that the changes take effect.
     $assert->responseMatches("|\s*$body_text\s*|");
@@ -383,11 +312,7 @@ class QuickEditLoadingTest extends WebDriverTestBase {
     $this->loggedInUser = $logged_in_user;
     // Ensure different save timestamps for field editing.
     sleep(2);
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, ['body[0][value]' => '<p>Concurrent edit!</p>'], 'Save');
-=======
     $this->submitForm(['body[0][value]' => '<p>Concurrent edit!</p>'], 'Save');
->>>>>>> dev
 
     $this->getSession()->getPage()->hasContent('The content has either been modified by another user, or you have already submitted modifications. As a result, your changes cannot be saved.');
   }
@@ -451,13 +376,7 @@ class QuickEditLoadingTest extends WebDriverTestBase {
     $page->attachFileToField('files[field_image_0]', $image_path);
     $alt_field = $assert->waitForField('field_image[0][alt]');
     $this->assertNotEmpty($alt_field);
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [
-      'field_image[0][alt]' => 'Vivamus aliquet elit',
-    ], t('Save'));
-=======
     $this->submitForm(['field_image[0][alt]' => 'Vivamus aliquet elit'], 'Save');
->>>>>>> dev
 
     // The image field form should load normally.
     // Wait "Quick edit" button for node.
@@ -466,10 +385,6 @@ class QuickEditLoadingTest extends WebDriverTestBase {
     $this->clickContextualLink('[data-quickedit-entity-id="node/1"]', 'Quick edit');
     // Switch to body field.
     $assert->waitForElement('css', '[data-quickedit-field-id="node/1/field_image/en/full"]')->click();
-<<<<<<< HEAD
-    $assert->assertWaitOnAjaxRequest();
-=======
->>>>>>> dev
 
     $field_locator = '.field--name-field-image';
     $assert->waitForElementVisible('css', $field_locator);

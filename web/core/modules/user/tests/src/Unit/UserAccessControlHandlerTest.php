@@ -33,8 +33,6 @@ class UserAccessControlHandlerTest extends UnitTestCase {
   protected $viewer;
 
   /**
-<<<<<<< HEAD
-=======
    * The mock user account with 'view user email addresses' permission.
    *
    * @var \Drupal\Core\Session\AccountInterface
@@ -42,7 +40,6 @@ class UserAccessControlHandlerTest extends UnitTestCase {
   protected $emailViewer;
 
   /**
->>>>>>> dev
    * The mock user account that is able to change their own account name.
    *
    * @var \Drupal\Core\Session\AccountInterface
@@ -66,11 +63,7 @@ class UserAccessControlHandlerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $cache_contexts_manager = $this->prophesize(CacheContextsManager::class);
@@ -110,8 +103,6 @@ class UserAccessControlHandlerTest extends UnitTestCase {
       ->method('hasPermission')
       ->will($this->returnValue(TRUE));
 
-<<<<<<< HEAD
-=======
     $this->emailViewer = $this->createMock('\Drupal\Core\Session\AccountInterface');
     $this->emailViewer
       ->expects($this->any())
@@ -124,7 +115,6 @@ class UserAccessControlHandlerTest extends UnitTestCase {
       ->method('id')
       ->will($this->returnValue(3));
 
->>>>>>> dev
     $entity_type = $this->createMock('Drupal\Core\Entity\EntityTypeInterface');
 
     $this->accessControlHandler = new UserAccessControlHandler($entity_type);
@@ -269,8 +259,6 @@ class UserAccessControlHandlerTest extends UnitTestCase {
         'view' => TRUE,
         'edit' => TRUE,
       ];
-<<<<<<< HEAD
-=======
       $access_info[] = [
         'field' => $field,
         'viewer' => 'emailViewer',
@@ -279,7 +267,6 @@ class UserAccessControlHandlerTest extends UnitTestCase {
         // See note above.
         'edit' => TRUE,
       ];
->>>>>>> dev
     }
 
     return $access_info;

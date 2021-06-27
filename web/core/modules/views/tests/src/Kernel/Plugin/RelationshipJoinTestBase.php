@@ -18,11 +18,7 @@ abstract class RelationshipJoinTestBase extends PluginKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['system', 'user', 'field'];
-=======
   protected static $modules = ['system', 'user', 'field'];
->>>>>>> dev
 
   /**
    * @var \Drupal\user\Entity\User

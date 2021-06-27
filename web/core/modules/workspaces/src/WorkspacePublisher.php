@@ -62,11 +62,8 @@ class WorkspacePublisher implements WorkspacePublisherInterface {
    *   The workspace manager.
    * @param \Drupal\workspaces\WorkspaceAssociationInterface $workspace_association
    *   The workspace association service.
-<<<<<<< HEAD
-=======
    * @param \Drupal\workspaces\WorkspaceInterface $source
    *   The source workspace entity.
->>>>>>> dev
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager, Connection $database, WorkspaceManagerInterface $workspace_manager, WorkspaceAssociationInterface $workspace_association, WorkspaceInterface $source) {
     $this->entityTypeManager = $entity_type_manager;
@@ -168,10 +165,7 @@ class WorkspacePublisher implements WorkspacePublisherInterface {
       $query = $this->entityTypeManager
         ->getStorage($entity_type_id)
         ->getQuery()
-<<<<<<< HEAD
-=======
         ->accessCheck(FALSE)
->>>>>>> dev
         ->condition($entity_type->getKey('id'), $tracked_revisions, 'IN')
         ->latestRevision();
       $result = $query->execute();

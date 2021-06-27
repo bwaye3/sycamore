@@ -15,11 +15,7 @@ class FileTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['file', 'migrate_drupal'];
-=======
   protected static $modules = ['file', 'migrate_drupal'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -162,8 +158,6 @@ class FileTest extends MigrateSqlSourceTestBase {
       'scheme' => 'public',
     ];
 
-<<<<<<< HEAD
-=======
     // Test getting only private files with absolute file private path.
     $tests[3]['source_data'] = $tests[0]['source_data'];
     $tests[3]['source_data']['variable'][1] = [
@@ -194,7 +188,6 @@ class FileTest extends MigrateSqlSourceTestBase {
       'scheme' => 'private',
     ];
 
->>>>>>> dev
     return $tests;
   }
 

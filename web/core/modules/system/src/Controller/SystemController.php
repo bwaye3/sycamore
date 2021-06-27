@@ -4,10 +4,7 @@ namespace Drupal\system\Controller;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\ControllerBase;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Extension\ModuleDependencyMessageTrait;
->>>>>>> dev
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Form\FormBuilderInterface;
@@ -15,10 +12,6 @@ use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\Theme\ThemeAccessCheck;
 use Drupal\Core\Url;
-<<<<<<< HEAD
-use Drupal\system\ModuleDependencyMessageTrait;
-=======
->>>>>>> dev
 use Drupal\system\SystemManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -125,11 +118,7 @@ class SystemController extends ControllerBase {
    */
   public function overview($link_id) {
     // Check for status report errors.
-<<<<<<< HEAD
-    if ($this->systemManager->checkRequirements() && $this->currentUser()->hasPermission('administer site configuration')) {
-=======
     if ($this->currentUser()->hasPermission('administer site configuration') && $this->systemManager->checkRequirements()) {
->>>>>>> dev
       $this->messenger()->addError($this->t('One or more problems were detected with your Drupal installation. Check the <a href=":status">status report</a> for more information.', [':status' => Url::fromRoute('system.status')->toString()]));
     }
     // Load all menu links below it.
@@ -220,17 +209,12 @@ class SystemController extends ControllerBase {
     $theme_groups = ['installed' => [], 'uninstalled' => []];
     $admin_theme = $config->get('admin');
     $admin_theme_options = [];
-<<<<<<< HEAD
-=======
     $incompatible_installed = FALSE;
->>>>>>> dev
 
     foreach ($themes as &$theme) {
       if (!empty($theme->info['hidden'])) {
         continue;
       }
-<<<<<<< HEAD
-=======
       if (!$incompatible_installed && $theme->info['core_incompatible'] && $theme->status) {
         $incompatible_installed = TRUE;
         $this->messenger()->addWarning($this->t(
@@ -238,7 +222,6 @@ class SystemController extends ControllerBase {
           [':link' => Url::fromRoute('system.status')->toString()]
         ));
       }
->>>>>>> dev
       $theme->is_default = ($theme->getName() == $theme_default);
       $theme->is_admin = ($theme->getName() == $admin_theme || ($theme->is_default && empty($admin_theme)));
       $theme->is_experimental = isset($theme->info['experimental']) && $theme->info['experimental'];

@@ -20,11 +20,7 @@ trait DeprecatedServicePropertyTrait {
     if (isset($this->deprecatedProperties[$name])) {
       $service_name = $this->deprecatedProperties[$name];
       $class_name = static::class;
-<<<<<<< HEAD
-      @trigger_error("The property $name ($service_name service) is deprecated in $class_name and will be removed before Drupal 9.0.0.", E_USER_DEPRECATED);
-=======
       @trigger_error("The property $name ($service_name service) is deprecated in $class_name and will be removed before Drupal 10.0.0.", E_USER_DEPRECATED);
->>>>>>> dev
       return \Drupal::service($service_name);
     }
   }

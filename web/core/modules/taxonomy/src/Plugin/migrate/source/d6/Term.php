@@ -8,8 +8,6 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Taxonomy term source from database.
  *
-<<<<<<< HEAD
-=======
  * Available configuration keys:
  * - bundle: (optional) The taxonomy vocabulary (vid) to filter terms retrieved
  *   from the source - can be an integer or an array. If omitted, all terms are
@@ -39,7 +37,6 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
  * @see \Drupal\migrate\Plugin\migrate\source\SqlBase
  * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
  *
->>>>>>> dev
  * @todo Support term_relation, term_synonym table if possible.
  *
  * @MigrateSource(

@@ -3,11 +3,7 @@
  * A Backbone Model subclass that enforces validation when calling set().
  */
 
-<<<<<<< HEAD
-(function(Drupal, Backbone) {
-=======
 (function (Drupal, Backbone) {
->>>>>>> dev
   Drupal.quickedit.BaseModel = Backbone.Model.extend(
     /** @lends Drupal.quickedit.BaseModel# */ {
       /**

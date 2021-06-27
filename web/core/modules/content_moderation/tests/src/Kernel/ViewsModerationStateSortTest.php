@@ -22,11 +22,7 @@ class ViewsModerationStateSortTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'node',
     'content_moderation',
     'workflows',
@@ -39,11 +35,7 @@ class ViewsModerationStateSortTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp(FALSE);
 
     $this->installEntitySchema('user');
@@ -68,11 +60,7 @@ class ViewsModerationStateSortTest extends ViewsKernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test sorting with a standard data base table.
-=======
    * Tests sorting with a standard data base table.
->>>>>>> dev
    */
   public function testSortBaseTable() {
     $this->enableModules(['content_moderation_test_views']);
@@ -111,11 +99,7 @@ class ViewsModerationStateSortTest extends ViewsKernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test sorting with the revision base table.
-=======
    * Tests sorting with the revision base table.
->>>>>>> dev
    */
   public function testSortRevisionBaseTable() {
     $this->enableModules(['content_moderation_test_views']);

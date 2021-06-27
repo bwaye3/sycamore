@@ -35,34 +35,17 @@ class StyleUITest extends UITestBase {
     $style_options_url = "admin/structure/views/nojs/display/$view_name/default/style_options";
 
     $this->drupalGet($style_plugin_url);
-<<<<<<< HEAD
-    $this->assertFieldByName('style[type]', 'default', 'The default style plugin selected in the UI should be unformatted list.');
-=======
     $this->assertSession()->fieldValueEquals('style[type]', 'default');
->>>>>>> dev
 
     $edit = [
       'style[type]' => 'test_style',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Apply'));
-    $this->assertFieldByName('style_options[test_option]', NULL, 'Make sure the custom settings form from the test plugin appears.');
-=======
     $this->submitForm($edit, 'Apply');
     $this->assertSession()->fieldExists('style_options[test_option]');
->>>>>>> dev
     $random_name = $this->randomMachineName();
     $edit = [
       'style_options[test_option]' => $random_name,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Apply'));
-    $this->drupalGet($style_options_url);
-    $this->assertFieldByName('style_options[test_option]', $random_name, 'Make sure the custom settings form field has the expected value stored.');
-
-    $this->drupalPostForm($view_edit_url, [], t('Save'));
-    $this->assertSession()->linkExists(t('Test style plugin'), 0, 'Make sure the test style plugin is shown in the UI');
-=======
     $this->submitForm($edit, 'Apply');
     $this->drupalGet($style_options_url);
     $this->assertSession()->fieldValueEquals('style_options[test_option]', $random_name);
@@ -70,22 +53,10 @@ class StyleUITest extends UITestBase {
     $this->drupalGet($view_edit_url);
     $this->submitForm([], 'Save');
     $this->assertSession()->linkExists('Test style plugin', 0, 'Make sure the test style plugin is shown in the UI');
->>>>>>> dev
 
     $view = Views::getView($view_name);
     $view->initDisplay();
     $style = $view->display_handler->getOption('style');
-<<<<<<< HEAD
-    $this->assertEqual($style['type'], 'test_style', 'Make sure that the test_style got saved as used style plugin.');
-    $this->assertEqual($style['options']['test_option'], $random_name, 'Make sure that the custom settings field got saved as expected.');
-
-    // Test that fields are working correctly in the UI for style plugins when
-    // a field row plugin is selected.
-    $this->drupalPostForm("admin/structure/views/view/$view_name/edit", [], 'Add Page');
-    $this->drupalPostForm("admin/structure/views/nojs/display/$view_name/page_1/row", ['row[type]' => 'fields'], t('Apply'));
-    // If fields are being used this text will not be shown.
-    $this->assertNoText(t('The selected style or row format does not use fields.'));
-=======
     $this->assertEquals('test_style', $style['type'], 'Make sure that the test_style got saved as used style plugin.');
     $this->assertEquals($random_name, $style['options']['test_option'], 'Make sure that the custom settings field got saved as expected.');
 
@@ -97,7 +68,6 @@ class StyleUITest extends UITestBase {
     $this->submitForm(['row[type]' => 'fields'], 'Apply');
     // If fields are being used this text will not be shown.
     $this->assertNoText('The selected style or row format does not use fields.');
->>>>>>> dev
   }
 
 }

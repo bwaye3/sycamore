@@ -19,11 +19,7 @@ class FeedLanguageTest extends AggregatorTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['language'];
-=======
   protected static $modules = ['language'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -40,11 +36,7 @@ class FeedLanguageTest extends AggregatorTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create test languages.
@@ -76,12 +68,8 @@ class FeedLanguageTest extends AggregatorTestBase {
     $edit['entity_types[aggregator_feed]'] = TRUE;
     $edit['settings[aggregator_feed][aggregator_feed][settings][language][language_alterable]'] = TRUE;
 
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/regional/content-language', $edit, t('Save configuration'));
-=======
     $this->drupalGet('admin/config/regional/content-language');
     $this->submitForm($edit, 'Save configuration');
->>>>>>> dev
 
     /** @var \Drupal\aggregator\FeedInterface[] $feeds */
     $feeds = [];
@@ -90,13 +78,8 @@ class FeedLanguageTest extends AggregatorTestBase {
     $feeds[2] = $this->createFeed(NULL, ['langcode[0][value]' => $this->langcodes[2]]);
 
     // Make sure that the language has been assigned.
-<<<<<<< HEAD
-    $this->assertEqual($feeds[1]->language()->getId(), $this->langcodes[1]);
-    $this->assertEqual($feeds[2]->language()->getId(), $this->langcodes[2]);
-=======
     $this->assertEquals($this->langcodes[1], $feeds[1]->language()->getId());
     $this->assertEquals($this->langcodes[2], $feeds[2]->language()->getId());
->>>>>>> dev
 
     // Create example nodes to create feed items from and then update the feeds.
     $this->createSampleNodes();
@@ -107,16 +90,10 @@ class FeedLanguageTest extends AggregatorTestBase {
     foreach ($feeds as $feed) {
       /** @var \Drupal\aggregator\ItemInterface[] $items */
       $items = \Drupal::entityTypeManager()->getStorage('aggregator_item')->loadByProperties(['fid' => $feed->id()]);
-<<<<<<< HEAD
-      $this->assertTrue(count($items) > 0, 'Feed items were created.');
-      foreach ($items as $item) {
-        $this->assertEqual($item->language()->getId(), $feed->language()->getId());
-=======
       // Verify that the feed items were created.
       $this->assertNotEmpty($items);
       foreach ($items as $item) {
         $this->assertEquals($feed->language()->getId(), $item->language()->getId());
->>>>>>> dev
       }
     }
   }

@@ -18,10 +18,6 @@
       vertical: Drupal.t('Vertical orientation')
     }
   });
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
   Drupal.behaviors.toolbar = {
     attach: function attach(context) {
       if (!window.matchMedia('only screen').matches) {
@@ -34,29 +30,14 @@
           activeTab: document.getElementById(JSON.parse(localStorage.getItem('Drupal.toolbar.activeTabID'))),
           height: $('#toolbar-administration').outerHeight()
         });
-<<<<<<< HEAD
-
         Drupal.toolbar.models.toolbarModel = model;
-
-=======
-        Drupal.toolbar.models.toolbarModel = model;
->>>>>>> dev
         Object.keys(options.breakpoints).forEach(function (label) {
           var mq = options.breakpoints[label];
           var mql = window.matchMedia(mq);
           Drupal.toolbar.mql[label] = mql;
-<<<<<<< HEAD
-
-          mql.addListener(Drupal.toolbar.mediaQueryChangeHandler.bind(null, model, label));
-
-          Drupal.toolbar.mediaQueryChangeHandler.call(null, model, label, mql);
-        });
-
-=======
           mql.addListener(Drupal.toolbar.mediaQueryChangeHandler.bind(null, model, label));
           Drupal.toolbar.mediaQueryChangeHandler.call(null, model, label, mql);
         });
->>>>>>> dev
         Drupal.toolbar.views.toolbarVisualView = new Drupal.toolbar.ToolbarVisualView({
           el: this,
           model: model,
@@ -71,15 +52,8 @@
           el: this,
           model: model
         });
-<<<<<<< HEAD
-
         model.trigger('change:isFixed', model, model.get('isFixed'));
         model.trigger('change:activeTray', model, model.get('activeTray'));
-
-=======
-        model.trigger('change:isFixed', model, model.get('isFixed'));
-        model.trigger('change:activeTray', model, model.get('activeTray'));
->>>>>>> dev
         var menuModel = new Drupal.toolbar.MenuModel();
         Drupal.toolbar.models.menuModel = menuModel;
         Drupal.toolbar.views.menuVisualView = new Drupal.toolbar.MenuVisualView({
@@ -87,23 +61,6 @@
           model: menuModel,
           strings: options.strings
         });
-<<<<<<< HEAD
-
-        Drupal.toolbar.setSubtrees.done(function (subtrees) {
-          menuModel.set('subtrees', subtrees);
-          var theme = drupalSettings.ajaxPageState.theme;
-          localStorage.setItem('Drupal.toolbar.subtrees.' + theme, JSON.stringify(subtrees));
-
-          model.set('areSubtreesLoaded', true);
-        });
-
-        Drupal.toolbar.views.toolbarVisualView.loadSubtrees();
-
-        $(document).on('drupalViewportOffsetChange.toolbar', function (event, offsets) {
-          model.set('offsets', offsets);
-        });
-
-=======
         Drupal.toolbar.setSubtrees.done(function (subtrees) {
           menuModel.set('subtrees', subtrees);
           var theme = drupalSettings.ajaxPageState.theme;
@@ -114,7 +71,6 @@
         $(document).on('drupalViewportOffsetChange.toolbar', function (event, offsets) {
           model.set('offsets', offsets);
         });
->>>>>>> dev
         model.on('change:orientation', function (model, orientation) {
           $(document).trigger('drupalToolbarOrientationChange', orientation);
         }).on('change:activeTab', function (model, tab) {
@@ -136,18 +92,10 @@
 
             if (settings.drupalOffCanvasPosition === 'top') {
               var height = Drupal.offCanvas.getContainer($element).outerHeight();
-<<<<<<< HEAD
-              $toolbar.css('margin-top', height + 'px');
-
-              $element.on('dialogContentResize.off-canvas', function () {
-                var newHeight = Drupal.offCanvas.getContainer($element).outerHeight();
-                $toolbar.css('margin-top', newHeight + 'px');
-=======
               $toolbar.css('margin-top', "".concat(height, "px"));
               $element.on('dialogContentResize.off-canvas', function () {
                 var newHeight = Drupal.offCanvas.getContainer($element).outerHeight();
                 $toolbar.css('margin-top', "".concat(newHeight, "px"));
->>>>>>> dev
               });
             }
           },
@@ -158,24 +106,11 @@
       });
     }
   };
-<<<<<<< HEAD
-
-  Drupal.toolbar = {
-    views: {},
-
-    models: {},
-
-    mql: {},
-
-    setSubtrees: new $.Deferred(),
-
-=======
   Drupal.toolbar = {
     views: {},
     models: {},
     mql: {},
     setSubtrees: new $.Deferred(),
->>>>>>> dev
     mediaQueryChangeHandler: function mediaQueryChangeHandler(model, label, mql) {
       switch (label) {
         case 'toolbar.narrow':
@@ -185,10 +120,6 @@
           });
 
           if (!mql.matches || !model.get('orientation')) {
-<<<<<<< HEAD
-            model.set({ orientation: 'vertical' }, { validate: true });
-          }
-=======
             model.set({
               orientation: 'vertical'
             }, {
@@ -196,7 +127,6 @@
             });
           }
 
->>>>>>> dev
           break;
 
         case 'toolbar.standard':
@@ -208,14 +138,9 @@
         case 'toolbar.wide':
           model.set({
             orientation: mql.matches && !model.get('locked') ? 'horizontal' : 'vertical'
-<<<<<<< HEAD
-          }, { validate: true });
-
-=======
           }, {
             validate: true
           });
->>>>>>> dev
           model.set({
             isTrayToggleVisible: mql.matches
           });

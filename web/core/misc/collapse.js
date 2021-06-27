@@ -9,17 +9,6 @@
   function CollapsibleDetails(node) {
     this.$node = $(node);
     this.$node.data('details', this);
-<<<<<<< HEAD
-
-    var anchor = window.location.hash && window.location.hash !== '#' ? ', ' + window.location.hash : '';
-    if (this.$node.find('.error' + anchor).length) {
-      this.$node.attr('open', true);
-    }
-
-    this.setupSummary();
-
-    this.setupLegend();
-=======
     var anchor = window.location.hash && window.location.hash !== '#' ? ", ".concat(window.location.hash) : '';
 
     if (this.$node.find(".error".concat(anchor)).length) {
@@ -27,37 +16,11 @@
     }
 
     this.setupSummaryPolyfill();
->>>>>>> dev
   }
 
   $.extend(CollapsibleDetails, {
     instances: []
   });
-<<<<<<< HEAD
-
-  $.extend(CollapsibleDetails.prototype, {
-    setupSummary: function setupSummary() {
-      this.$summary = $('<span class="summary"></span>');
-      this.$node.on('summaryUpdated', $.proxy(this.onSummaryUpdated, this)).trigger('summaryUpdated');
-    },
-    setupLegend: function setupLegend() {
-      var $legend = this.$node.find('> summary');
-
-      $('<span class="details-summary-prefix visually-hidden"></span>').append(this.$node.attr('open') ? Drupal.t('Hide') : Drupal.t('Show')).prependTo($legend).after(document.createTextNode(' '));
-
-      $('<a class="details-title"></a>').attr('href', '#' + this.$node.attr('id')).prepend($legend.contents()).appendTo($legend);
-
-      $legend.append(this.$summary).on('click', $.proxy(this.onLegendClick, this));
-    },
-    onLegendClick: function onLegendClick(e) {
-      this.toggle();
-      e.preventDefault();
-    },
-    onSummaryUpdated: function onSummaryUpdated() {
-      var text = $.trim(this.$node.drupalGetSummary());
-      this.$summary.html(text ? ' (' + text + ')' : '');
-    },
-=======
   $.extend(CollapsibleDetails.prototype, {
     setupSummaryPolyfill: function setupSummaryPolyfill() {
       var $summary = this.$node.find('> summary');
@@ -70,16 +33,12 @@
       this.toggle();
       e.preventDefault();
     },
->>>>>>> dev
     toggle: function toggle() {
       var _this = this;
 
       var isOpen = !!this.$node.attr('open');
       var $summaryPrefix = this.$node.find('> summary span.details-summary-prefix');
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
       if (isOpen) {
         $summaryPrefix.html(Drupal.t('Show'));
       } else {
@@ -91,22 +50,14 @@
       }, 0);
     }
   });
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
   Drupal.behaviors.collapse = {
     attach: function attach(context) {
       if (Modernizr.details) {
         return;
       }
-<<<<<<< HEAD
-      var $collapsibleDetails = $(context).find('details').once('collapse').addClass('collapse-processed');
-=======
 
       var $collapsibleDetails = $(context).find('details').once('collapse').addClass('collapse-processed');
 
->>>>>>> dev
       if ($collapsibleDetails.length) {
         for (var i = 0; i < $collapsibleDetails.length; i++) {
           CollapsibleDetails.instances.push(new CollapsibleDetails($collapsibleDetails[i]));
@@ -120,9 +71,5 @@
   };
 
   $('body').on('formFragmentLinkClickOrHashChange.details', handleFragmentLinkClickOrHashChange);
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
   Drupal.CollapsibleDetails = CollapsibleDetails;
 })(jQuery, Modernizr, Drupal);

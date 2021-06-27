@@ -8,10 +8,7 @@
 namespace Drupal\Tests\Component\DependencyInjection;
 
 use Drupal\Component\Utility\Crypt;
-<<<<<<< HEAD
-=======
 use Drupal\Tests\PhpUnitCompatibilityTrait;
->>>>>>> dev
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
@@ -28,11 +25,8 @@ use Prophecy\Argument;
  */
 class ContainerTest extends TestCase {
 
-<<<<<<< HEAD
-=======
   use PhpUnitCompatibilityTrait;
 
->>>>>>> dev
   /**
    * The tested container.
    *
@@ -64,11 +58,7 @@ class ContainerTest extends TestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->machineFormat = TRUE;
     $this->containerClass = '\Drupal\Component\DependencyInjection\Container';
     $this->containerDefinition = $this->getMockContainerDefinition();
@@ -447,11 +437,7 @@ class ContainerTest extends TestCase {
    * @covers ::createService
    */
   public function testGetWithFileInclude() {
-<<<<<<< HEAD
-    $file_service = $this->container->get('container_test_file_service_test');
-=======
     $this->container->get('container_test_file_service_test');
->>>>>>> dev
     $this->assertTrue(function_exists('container_test_file_service_test_service_function'));
     $this->assertEquals('Hello Container', container_test_file_service_test_service_function());
   }

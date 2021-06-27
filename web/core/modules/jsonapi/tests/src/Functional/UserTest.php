@@ -22,11 +22,7 @@ class UserTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['user', 'jsonapi_test_user'];
-=======
   protected static $modules = ['user', 'jsonapi_test_user'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -368,11 +364,7 @@ class UserTest extends ResourceTestBase {
   public function testGetMailFieldOnlyVisibleToOwner() {
     // Create user B, with the same roles (and hence permissions) as user A.
     $user_a = $this->account;
-<<<<<<< HEAD
-    $pass = user_password();
-=======
     $pass = \Drupal::service('password_generator')->generate();
->>>>>>> dev
     $user_b = User::create([
       'name' => 'sibling-of-' . $user_a->getAccountName(),
       'mail' => 'sibling-of-' . $user_a->getAccountName() . '@example.com',
@@ -420,12 +412,6 @@ class UserTest extends ResourceTestBase {
     $this->assertArrayNotHasKey('mail', $doc['data'][2]['attributes']);
     $this->assertSame($user_b->uuid(), $doc['data'][count($doc['data']) - 1]['id']);
     $this->assertArrayHasKey('mail', $doc['data'][count($doc['data']) - 1]['attributes']);
-<<<<<<< HEAD
-  }
-
-  /**
-   * Test good error DX when trying to filter users by role.
-=======
 
     // Now grant permission to view user email addresses and verify.
     $this->grantPermissionsToTestedRole(['view user email addresses']);
@@ -442,7 +428,6 @@ class UserTest extends ResourceTestBase {
 
   /**
    * Tests good error DX when trying to filter users by role.
->>>>>>> dev
    */
   public function testQueryInvolvingRoles() {
     $this->setUpAuthorization('GET');

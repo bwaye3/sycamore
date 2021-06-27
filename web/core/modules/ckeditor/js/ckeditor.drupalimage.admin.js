@@ -10,16 +10,6 @@
     attach: function attach() {
       $('[data-ckeditor-plugin-id="drupalimage"]').drupalSetSummary(function (context) {
         var root = 'input[name="editor[settings][plugins][drupalimage][image_upload]';
-<<<<<<< HEAD
-        var $status = $(root + '[status]"]');
-        var $maxFileSize = $(root + '[max_size]"]');
-        var $maxWidth = $(root + '[max_dimensions][width]"]');
-        var $maxHeight = $(root + '[max_dimensions][height]"]');
-        var $scheme = $(root + '[scheme]"]:checked');
-
-        var maxFileSize = $maxFileSize.val() ? $maxFileSize.val() : $maxFileSize.attr('placeholder');
-        var maxDimensions = $maxWidth.val() && $maxHeight.val() ? '(' + $maxWidth.val() + 'x' + $maxHeight.val() + ')' : '';
-=======
         var $status = $("".concat(root, "[status]\"]"));
         var $maxFileSize = $("".concat(root, "[max_size]\"]"));
         var $maxWidth = $("".concat(root, "[max_dimensions][width]\"]"));
@@ -27,7 +17,6 @@
         var $scheme = $("".concat(root, "[scheme]\"]:checked"));
         var maxFileSize = $maxFileSize.val() ? $maxFileSize.val() : $maxFileSize.attr('placeholder');
         var maxDimensions = $maxWidth.val() && $maxHeight.val() ? "(".concat($maxWidth.val(), "x").concat($maxHeight.val(), ")") : '';
->>>>>>> dev
 
         if (!$status.is(':checked')) {
           return Drupal.t('Uploads disabled');
@@ -38,17 +27,11 @@
           '@size': maxFileSize,
           '@dimensions': maxDimensions
         });
-<<<<<<< HEAD
-        if ($scheme.length) {
-          output += '<br />' + $scheme.attr('data-label');
-        }
-=======
 
         if ($scheme.length) {
           output += "<br />".concat($scheme.attr('data-label'));
         }
 
->>>>>>> dev
         return output;
       });
     }

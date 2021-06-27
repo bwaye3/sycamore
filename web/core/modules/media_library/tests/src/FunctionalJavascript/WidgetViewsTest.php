@@ -12,11 +12,7 @@ class WidgetViewsTest extends MediaLibraryTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create a few example media items for use in selection.

@@ -3,10 +3,6 @@
 namespace Drupal\views\Plugin\EntityReferenceSelection;
 
 use Drupal\Component\Utility\Xss;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
@@ -31,16 +27,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
  * )
  */
 class ViewsSelection extends SelectionPluginBase implements ContainerFactoryPluginInterface {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
   use StringTranslationTrait;
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
-  use StringTranslationTrait;
->>>>>>> dev
 
   /**
    * The loaded View object.
@@ -92,30 +79,15 @@ class ViewsSelection extends SelectionPluginBase implements ContainerFactoryPlug
    *   The module handler service.
    * @param \Drupal\Core\Session\AccountInterface $current_user
    *   The current user.
-<<<<<<< HEAD
-   * @param \Drupal\Core\Render\RendererInterface|null $renderer
-   *   The renderer.
-   */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, ModuleHandlerInterface $module_handler, AccountInterface $current_user, RendererInterface $renderer = NULL) {
-=======
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, ModuleHandlerInterface $module_handler, AccountInterface $current_user, RendererInterface $renderer) {
->>>>>>> dev
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->entityTypeManager = $entity_type_manager;
     $this->moduleHandler = $module_handler;
     $this->currentUser = $current_user;
-<<<<<<< HEAD
-
-    if (!$renderer) {
-      @trigger_error('Calling ' . __METHOD__ . ' without the $renderer argument is deprecated in drupal:8.8.0 and is required in drupal:9.0.0. See https://www.drupal.org/node/2791359', E_USER_DEPRECATED);
-      $renderer = \Drupal::service('renderer');
-    }
-=======
->>>>>>> dev
     $this->renderer = $renderer;
   }
 
@@ -174,11 +146,7 @@ class ViewsSelection extends SelectionPluginBase implements ContainerFactoryPlug
     // into 'view_name' and 'view_display' in the final submitted values, so
     // we massage the data at validate time on the wrapping element (not
     // ideal).
-<<<<<<< HEAD
-    $form['view']['#element_validate'] = [[get_called_class(), 'settingsFormValidate']];
-=======
     $form['view']['#element_validate'] = [[static::class, 'settingsFormValidate']];
->>>>>>> dev
 
     if ($options) {
       $default = !empty($view_settings['view_name']) ? $view_settings['view_name'] . ':' . $view_settings['display_name'] : NULL;

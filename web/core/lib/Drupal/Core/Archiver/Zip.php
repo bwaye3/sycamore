@@ -3,11 +3,7 @@
 namespace Drupal\Core\Archiver;
 
 /**
-<<<<<<< HEAD
- * Defines a archiver implementation for .zip files.
-=======
  * Defines an archiver implementation for .zip files.
->>>>>>> dev
  *
  * @link http://php.net/zip
  */

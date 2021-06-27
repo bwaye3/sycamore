@@ -2,20 +2,13 @@
 
 namespace Drupal\path_alias;
 
-<<<<<<< HEAD
-use Drupal\Core\Path\AliasManager as CoreAliasManager;
-=======
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
->>>>>>> dev
 
 /**
  * The default alias manager implementation.
  */
-<<<<<<< HEAD
-class AliasManager extends CoreAliasManager implements AliasManagerInterface {}
-=======
 class AliasManager implements AliasManagerInterface {
 
   /**
@@ -304,4 +297,3 @@ class AliasManager implements AliasManagerInterface {
   }
 
 }
->>>>>>> dev

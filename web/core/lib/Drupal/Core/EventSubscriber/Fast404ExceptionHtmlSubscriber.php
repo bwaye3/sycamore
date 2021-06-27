@@ -5,11 +5,7 @@ namespace Drupal\Core\EventSubscriber;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Component\Utility\Html;
 use Symfony\Component\HttpFoundation\Response;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
@@ -66,17 +62,10 @@ class Fast404ExceptionHtmlSubscriber extends HttpExceptionSubscriberBase {
   /**
    * Handles a 404 error for HTML.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $event
-   *   The event to process.
-   */
-  public function on404(GetResponseForExceptionEvent $event) {
-=======
    * @param \Symfony\Component\HttpKernel\Event\ExceptionEvent $event
    *   The event to process.
    */
   public function on404(ExceptionEvent $event) {
->>>>>>> dev
     $request = $event->getRequest();
 
     $config = $this->configFactory->get('system.performance');

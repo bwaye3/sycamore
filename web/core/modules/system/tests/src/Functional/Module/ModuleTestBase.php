@@ -8,10 +8,7 @@ use Drupal\Core\Database\Database;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Logger\RfcLogLevel;
 use Drupal\Tests\BrowserTestBase;
-<<<<<<< HEAD
-=======
 use Drupal\TestTools\Extension\SchemaInspector;
->>>>>>> dev
 
 /**
  * Helper class for module test cases.
@@ -23,11 +20,7 @@ abstract class ModuleTestBase extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['system_test'];
-=======
   protected static $modules = ['system_test'];
->>>>>>> dev
 
   protected $adminUser;
 
@@ -42,39 +35,13 @@ abstract class ModuleTestBase extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Assert there are tables that begin with the specified base table name.
-   *
-   * @param $base_table
-   *   Beginning of table name to look for.
-   * @param $count
-   *   (optional) Whether or not to assert that there are tables that match the
-   *   specified base table. Defaults to TRUE.
-   */
-  public function assertTableCount($base_table, $count = TRUE) {
-    $connection = Database::getConnection();
-    $tables = $connection->schema()->findTables($connection->prefixTables('{' . $base_table . '}') . '%');
-
-    if ($count) {
-      return $this->assertNotEmpty($tables, new FormattableMarkup('Tables matching "@base_table" found.', ['@base_table' => $base_table]));
-    }
-    return $this->assertEmpty($tables, new FormattableMarkup('Tables matching "@base_table" not found.', ['@base_table' => $base_table]));
-  }
-
-  /**
-=======
->>>>>>> dev
    * Assert that all tables defined in a module's hook_schema() exist.
    *
    * @param $module
    *   The name of the module.
    */
   public function assertModuleTablesExist($module) {
-<<<<<<< HEAD
-    $tables = array_keys(drupal_get_module_schema($module));
-=======
     $tables = array_keys(SchemaInspector::getTablesSpecification(\Drupal::moduleHandler(), $module));
->>>>>>> dev
     $tables_exist = TRUE;
     $schema = Database::getConnection()->schema();
     foreach ($tables as $table) {
@@ -82,11 +49,7 @@ abstract class ModuleTestBase extends BrowserTestBase {
         $tables_exist = FALSE;
       }
     }
-<<<<<<< HEAD
-    return $this->assertTrue($tables_exist, new FormattableMarkup('All database tables defined by the @module module exist.', ['@module' => $module]));
-=======
     $this->assertTrue($tables_exist, new FormattableMarkup('All database tables defined by the @module module exist.', ['@module' => $module]));
->>>>>>> dev
   }
 
   /**
@@ -96,11 +59,7 @@ abstract class ModuleTestBase extends BrowserTestBase {
    *   The name of the module.
    */
   public function assertModuleTablesDoNotExist($module) {
-<<<<<<< HEAD
-    $tables = array_keys(drupal_get_module_schema($module));
-=======
     $tables = array_keys(SchemaInspector::getTablesSpecification(\Drupal::moduleHandler(), $module));
->>>>>>> dev
     $tables_exist = FALSE;
     $schema = Database::getConnection()->schema();
     foreach ($tables as $table) {
@@ -108,11 +67,7 @@ abstract class ModuleTestBase extends BrowserTestBase {
         $tables_exist = TRUE;
       }
     }
-<<<<<<< HEAD
-    return $this->assertFalse($tables_exist, new FormattableMarkup('None of the database tables defined by the @module module exist.', ['@module' => $module]));
-=======
     $this->assertFalse($tables_exist, new FormattableMarkup('None of the database tables defined by the @module module exist.', ['@module' => $module]));
->>>>>>> dev
   }
 
   /**
@@ -120,14 +75,6 @@ abstract class ModuleTestBase extends BrowserTestBase {
    *
    * @param string $module
    *   The name of the module.
-<<<<<<< HEAD
-   *
-   * @return bool|null
-   *   TRUE if configuration has been installed, FALSE otherwise. Returns NULL
-   *   if the module configuration directory does not exist or does not contain
-   *   any configuration files.
-=======
->>>>>>> dev
    */
   public function assertModuleConfig($module) {
     $module_config_dir = drupal_get_path('module', $module) . '/' . InstallStorage::CONFIG_INSTALL_DIRECTORY;
@@ -161,11 +108,7 @@ abstract class ModuleTestBase extends BrowserTestBase {
     }
     // Verify that all configuration has been installed (which means that $names
     // is empty).
-<<<<<<< HEAD
-    return $this->assertEmpty($names, new FormattableMarkup('All default configuration of @module module found.', ['@module' => $module]));
-=======
     $this->assertEmpty($names, new FormattableMarkup('All default configuration of @module module found.', ['@module' => $module]));
->>>>>>> dev
   }
 
   /**
@@ -173,20 +116,10 @@ abstract class ModuleTestBase extends BrowserTestBase {
    *
    * @param string $module
    *   The name of the module.
-<<<<<<< HEAD
-   *
-   * @return bool
-   *   TRUE if no configuration was found, FALSE otherwise.
-   */
-  public function assertNoModuleConfig($module) {
-    $names = \Drupal::configFactory()->listAll($module . '.');
-    return $this->assertEmpty($names, new FormattableMarkup('No configuration found for @module module.', ['@module' => $module]));
-=======
    */
   public function assertNoModuleConfig($module) {
     $names = \Drupal::configFactory()->listAll($module . '.');
     $this->assertEmpty($names, new FormattableMarkup('No configuration found for @module module.', ['@module' => $module]));
->>>>>>> dev
   }
 
   /**
@@ -206,11 +139,7 @@ abstract class ModuleTestBase extends BrowserTestBase {
       else {
         $message = 'Module "@module" is not enabled.';
       }
-<<<<<<< HEAD
-      $this->assertEqual($this->container->get('module_handler')->moduleExists($module), $enabled, new FormattableMarkup($message, ['@module' => $module]));
-=======
       $this->assertEquals($enabled, $this->container->get('module_handler')->moduleExists($module), new FormattableMarkup($message, ['@module' => $module]));
->>>>>>> dev
     }
   }
 
@@ -235,11 +164,7 @@ abstract class ModuleTestBase extends BrowserTestBase {
    *   A link to associate with the message.
    */
   public function assertLogMessage($type, $message, $variables = [], $severity = RfcLogLevel::NOTICE, $link = '') {
-<<<<<<< HEAD
-    $count = Database::getConnection()->select('watchdog', 'w')
-=======
     $this->assertNotEmpty(Database::getConnection()->select('watchdog', 'w')
->>>>>>> dev
       ->condition('type', $type)
       ->condition('message', $message)
       ->condition('variables', serialize($variables))
@@ -247,13 +172,8 @@ abstract class ModuleTestBase extends BrowserTestBase {
       ->condition('link', $link)
       ->countQuery()
       ->execute()
-<<<<<<< HEAD
-      ->fetchField();
-    $this->assertTrue($count > 0, new FormattableMarkup('watchdog table contains @count rows for @message', ['@count' => $count, '@message' => new FormattableMarkup($message, $variables)]));
-=======
       ->fetchField()
     );
->>>>>>> dev
   }
 
 }

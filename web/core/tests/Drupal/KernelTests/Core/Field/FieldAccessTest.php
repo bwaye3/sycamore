@@ -19,11 +19,7 @@ class FieldAccessTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'entity_test',
     'field',
     'system',
@@ -42,11 +38,7 @@ class FieldAccessTest extends KernelTestBase {
    */
   protected $activeUid;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     // Install field configuration.
     $this->installConfig(['field']);
@@ -89,17 +81,6 @@ class FieldAccessTest extends KernelTestBase {
 
     $this->assertFalse($entity->field_test_text->access('view', $account), 'Access to the field was denied.');
     $expected = AccessResult::forbidden()->addCacheableDependency($entity);
-<<<<<<< HEAD
-    $this->assertEqual($expected, $entity->field_test_text->access('view', $account, TRUE), 'Access to the field was denied.');
-
-    $entity->field_test_text = 'access alter value';
-    $this->assertFalse($entity->field_test_text->access('view', $account), 'Access to the field was denied.');
-    $this->assertEqual($expected, $entity->field_test_text->access('view', $account, TRUE), 'Access to the field was denied.');
-
-    $entity->field_test_text = 'standard value';
-    $this->assertTrue($entity->field_test_text->access('view', $account), 'Access to the field was granted.');
-    $this->assertEqual(AccessResult::allowed(), $entity->field_test_text->access('view', $account, TRUE), 'Access to the field was granted.');
-=======
     $this->assertEquals($expected, $entity->field_test_text->access('view', $account, TRUE), 'Access to the field was denied.');
 
     $entity->field_test_text = 'access alter value';
@@ -109,7 +90,6 @@ class FieldAccessTest extends KernelTestBase {
     $entity->field_test_text = 'standard value';
     $this->assertTrue($entity->field_test_text->access('view', $account), 'Access to the field was granted.');
     $this->assertEquals(AccessResult::allowed(), $entity->field_test_text->access('view', $account, TRUE), 'Access to the field was granted.');
->>>>>>> dev
   }
 
 }

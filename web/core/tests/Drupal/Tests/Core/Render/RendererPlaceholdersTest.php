@@ -25,11 +25,7 @@ class RendererPlaceholdersTest extends RendererTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     // Disable the required cache contexts, so that this test can test just the
     // placeholder replacement behavior.
     $this->rendererConfig['required_cache_contexts'] = [];
@@ -967,8 +963,6 @@ class RendererPlaceholdersTest extends RendererTestBase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Tests that an error is thrown if a lazy builder doesn't return an array.
    */
   public function testNonArrayReturnFromLazyBuilder(): void {
@@ -981,7 +975,6 @@ class RendererPlaceholdersTest extends RendererTestBase {
   }
 
   /**
->>>>>>> dev
    * Create an element with a child and subchild. Each element has the same
    * #lazy_builder callback, but with different contexts. They don't modify
    * markup, only attach additional drupalSettings.
@@ -1053,14 +1046,6 @@ HTML;
       ],
     ];
 
-<<<<<<< HEAD
-    $dom = Html::load($cached_element['#markup']);
-    $xpath = new \DOMXPath($dom);
-    $parent = $xpath->query('//details/summary[text()="Parent"]')->length;
-    $child = $xpath->query('//details/div[@class="details-wrapper"]/details/summary[text()="Child"]')->length;
-    $subchild = $xpath->query('//details/div[@class="details-wrapper"]/details/div[@class="details-wrapper" and text()="Subchild"]')->length;
-    $this->assertTrue($parent && $child && $subchild, 'The correct data is cached: the stored #markup is not affected by placeholder #lazy_builder callbacks.');
-=======
     // Verify that the correct data is cached: the stored #markup is not
     // affected by placeholder #lazy_builder callbacks.
     $dom = Html::load($cached_element['#markup']);
@@ -1068,7 +1053,6 @@ HTML;
     $this->assertNotEmpty($xpath->query('//details/summary[text()="Parent"]')->length);
     $this->assertNotEmpty($xpath->query('//details/div[@class="details-wrapper"]/details/summary[text()="Child"]')->length);
     $this->assertNotEmpty($xpath->query('//details/div[@class="details-wrapper"]/details/div[@class="details-wrapper" and text()="Subchild"]')->length);
->>>>>>> dev
 
     // Remove markup because it's compared above in the xpath.
     unset($cached_element['#markup']);

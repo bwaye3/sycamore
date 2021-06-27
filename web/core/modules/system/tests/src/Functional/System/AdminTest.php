@@ -13,11 +13,7 @@ use Drupal\Tests\BrowserTestBase;
 class AdminTest extends BrowserTestBase {
 
   /**
-<<<<<<< HEAD
-   * User account with all available permissions
-=======
    * User account with all available permissions.
->>>>>>> dev
    *
    * @var \Drupal\Core\Session\AccountInterface
    */
@@ -35,22 +31,14 @@ class AdminTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['locale'];
-=======
   protected static $modules = ['locale'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     // testAdminPages() requires Locale module.
     parent::setUp();
 
@@ -76,15 +64,9 @@ class AdminTest extends BrowserTestBase {
     // the main administration page.
     foreach ($this->getTopLevelMenuLinks() as $item) {
       $this->assertSession()->linkExists($item->getTitle());
-<<<<<<< HEAD
-      $this->assertLinkByHref($item->getUrlObject()->toString());
-      // The description should appear below the link.
-      $this->assertText($item->getDescription());
-=======
       $this->assertSession()->linkByHrefExists($item->getUrlObject()->toString());
       // The description should appear below the link.
       $this->assertSession()->pageTextContains($item->getDescription());
->>>>>>> dev
     }
 
     // For each administrative listing page on which the Locale module appears,
@@ -104,19 +86,6 @@ class AdminTest extends BrowserTestBase {
       // pages.
       $this->drupalLogin($this->adminUser);
       $this->drupalGet($page);
-<<<<<<< HEAD
-      $this->assertLinkByHref('admin/config');
-      $this->assertLinkByHref('admin/config/regional/settings');
-      $this->assertLinkByHref('admin/config/regional/date-time');
-      $this->assertLinkByHref('admin/config/regional/language');
-      $this->assertNoLinkByHref('admin/config/regional/language/detection/session');
-      $this->assertNoLinkByHref('admin/config/regional/language/detection/url');
-      $this->assertLinkByHref('admin/config/regional/translate');
-      // On admin/index only, the administrator should also see a "Configure
-      // permissions" link for the Locale module.
-      if ($page == 'admin/index') {
-        $this->assertLinkByHref("admin/people/permissions#module-locale");
-=======
       $this->assertSession()->linkByHrefExists('admin/config');
       $this->assertSession()->linkByHrefExists('admin/config/regional/settings');
       $this->assertSession()->linkByHrefExists('admin/config/regional/date-time');
@@ -128,26 +97,12 @@ class AdminTest extends BrowserTestBase {
       // permissions" link for the Locale module.
       if ($page == 'admin/index') {
         $this->assertSession()->linkByHrefExists("admin/people/permissions#module-locale");
->>>>>>> dev
       }
 
       // For a less privileged user, verify that there are no links to Locale's
       // primary configuration pages, but a link to the translate page exists.
       $this->drupalLogin($this->webUser);
       $this->drupalGet($page);
-<<<<<<< HEAD
-      $this->assertLinkByHref('admin/config');
-      $this->assertNoLinkByHref('admin/config/regional/settings');
-      $this->assertNoLinkByHref('admin/config/regional/date-time');
-      $this->assertNoLinkByHref('admin/config/regional/language');
-      $this->assertNoLinkByHref('admin/config/regional/language/detection/session');
-      $this->assertNoLinkByHref('admin/config/regional/language/detection/url');
-      $this->assertLinkByHref('admin/config/regional/translate');
-      // This user cannot configure permissions, so even on admin/index should
-      // not see a "Configure permissions" link for the Locale module.
-      if ($page == 'admin/index') {
-        $this->assertNoLinkByHref("admin/people/permissions#module-locale");
-=======
       $this->assertSession()->linkByHrefExists('admin/config');
       $this->assertSession()->linkByHrefNotExists('admin/config/regional/settings');
       $this->assertSession()->linkByHrefNotExists('admin/config/regional/date-time');
@@ -159,7 +114,6 @@ class AdminTest extends BrowserTestBase {
       // not see a "Configure permissions" link for the Locale module.
       if ($page == 'admin/index') {
         $this->assertSession()->linkByHrefNotExists("admin/people/permissions#module-locale");
->>>>>>> dev
       }
     }
   }
@@ -192,11 +146,7 @@ class AdminTest extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test compact mode.
-=======
    * Tests compact mode.
->>>>>>> dev
    */
   public function testCompactMode() {
     $session = $this->getSession();
@@ -208,13 +158,9 @@ class AdminTest extends BrowserTestBase {
 
     $this->drupalGet('admin/compact/on');
     $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-    $this->assertUrl($frontpage_url, [], 'The user is redirected to the front page after turning on compact mode.');
-=======
     // Verify that the user is redirected to the front page after turning on
     // compact mode.
     $this->assertSession()->addressEquals($frontpage_url);
->>>>>>> dev
     $this->assertEquals('1', $session->getCookie('Drupal.visitor.admin_compact_mode'), 'Compact mode turns on.');
     $this->drupalGet('admin/compact/on');
     $this->assertEquals('1', $session->getCookie('Drupal.visitor.admin_compact_mode'), 'Compact mode remains on after a repeat call.');
@@ -223,13 +169,9 @@ class AdminTest extends BrowserTestBase {
 
     $this->drupalGet('admin/compact/off');
     $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-    $this->assertUrl($frontpage_url, [], 'The user is redirected to the front page after turning off compact mode.');
-=======
     // Verify that the user is redirected to the front page after turning off
     // compact mode.
     $this->assertSession()->addressEquals($frontpage_url);
->>>>>>> dev
     $this->assertNull($session->getCookie('Drupal.visitor.admin_compact_mode'), 'Compact mode turns off.');
     $this->drupalGet('admin/compact/off');
     $this->assertNull($session->getCookie('Drupal.visitor.admin_compact_mode'), 'Compact mode remains off after a repeat call.');

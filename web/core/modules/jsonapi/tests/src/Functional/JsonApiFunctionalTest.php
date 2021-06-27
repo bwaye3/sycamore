@@ -19,11 +19,7 @@ class JsonApiFunctionalTest extends JsonApiFunctionalTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'basic_auth',
   ];
 
@@ -33,11 +29,7 @@ class JsonApiFunctionalTest extends JsonApiFunctionalTestBase {
   protected $defaultTheme = 'stark';
 
   /**
-<<<<<<< HEAD
-   * Test the GET method.
-=======
    * Tests the GET method.
->>>>>>> dev
    */
   public function testRead() {
     $this->createDefaultContent(61, 5, TRUE, TRUE, static::IS_NOT_MULTILINGUAL, FALSE);
@@ -64,11 +56,7 @@ class JsonApiFunctionalTest extends JsonApiFunctionalTestBase {
       'query' => ['page' => ['offset' => 3]] + $default_sort,
     ]));
     $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-    $this->assertEquals(OffsetPage::SIZE_MAX, count($collection_output['data']));
-=======
     $this->assertCount(OffsetPage::SIZE_MAX, $collection_output['data']);
->>>>>>> dev
     $this->assertStringContainsString('page%5Boffset%5D=53', $collection_output['links']['next']['href']);
     // 3. Load all articles (1st page, 2 items)
     $collection_output = Json::decode($this->drupalGet('/jsonapi/node/article', [
@@ -208,11 +196,7 @@ class JsonApiFunctionalTest extends JsonApiFunctionalTestBase {
     $this->assertCount(1, $non_help_links);
     $link_keys = array_keys($single_output['meta']['omitted']['links']);
     $this->assertSame('help', reset($link_keys));
-<<<<<<< HEAD
-    $this->assertRegExp('/^item--[a-zA-Z0-9]{7}$/', next($link_keys));
-=======
     $this->assertMatchesRegularExpression('/^item--[a-zA-Z0-9]{7}$/', next($link_keys));
->>>>>>> dev
     $this->nodes[1]->set('status', TRUE);
     $this->nodes[1]->save();
     // 13. Test filtering when using short syntax.
@@ -532,11 +516,7 @@ class JsonApiFunctionalTest extends JsonApiFunctionalTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the GET method on articles referencing the same tag twice.
-=======
    * Tests the GET method on articles referencing the same tag twice.
->>>>>>> dev
    */
   public function testReferencingTwiceRead() {
     $this->createDefaultContent(1, 1, FALSE, FALSE, static::IS_NOT_MULTILINGUAL, TRUE);
@@ -550,11 +530,7 @@ class JsonApiFunctionalTest extends JsonApiFunctionalTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test POST, PATCH and DELETE.
-=======
    * Tests POST, PATCH and DELETE.
->>>>>>> dev
    */
   public function testWrite() {
     $this->config('jsonapi.settings')->set('read_only', FALSE)->save(TRUE);

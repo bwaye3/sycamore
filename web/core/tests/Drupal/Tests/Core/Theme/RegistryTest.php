@@ -71,11 +71,7 @@ class RegistryTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->cache = $this->createMock('Drupal\Core\Cache\CacheBackendInterface');
@@ -91,11 +87,7 @@ class RegistryTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function tearDown() {
-=======
   protected function tearDown(): void {
->>>>>>> dev
     parent::tearDown();
     static::$functions = [];
   }
@@ -198,11 +190,7 @@ class RegistryTest extends UnitTestCase {
     $reflection_method->setAccessible(TRUE);
     $reflection_method->invokeArgs($this->registry, [&$hooks, $theme->reveal()]);
 
-<<<<<<< HEAD
-    $this->assertArrayEquals($expected, $hooks);
-=======
     $this->assertEquals($expected, $hooks);
->>>>>>> dev
   }
 
   /**

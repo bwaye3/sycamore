@@ -2,11 +2,7 @@
 
 namespace Drupal\node\Plugin\views\argument;
 
-<<<<<<< HEAD
-use Drupal\Core\Database\Connection;
-=======
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
->>>>>>> dev
 use Drupal\views\Plugin\views\argument\NumericArgument;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\node\NodeStorageInterface;
@@ -18,21 +14,12 @@ use Drupal\node\NodeStorageInterface;
  */
 class Vid extends NumericArgument {
 
-<<<<<<< HEAD
-  /**
-   * Database Service Object.
-   *
-   * @var \Drupal\Core\Database\Connection
-   */
-  protected $database;
-=======
   use DeprecatedServicePropertyTrait;
 
   /**
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['database' => 'database'];
->>>>>>> dev
 
   /**
    * The node storage.
@@ -50,17 +37,6 @@ class Vid extends NumericArgument {
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-<<<<<<< HEAD
-   * @param \Drupal\Core\Database\Connection $database
-   *   Database Service Object.
-   * @param \Drupal\node\NodeStorageInterface $node_storage
-   *   The node storage.
-   */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, Connection $database, NodeStorageInterface $node_storage) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-
-    $this->database = $database;
-=======
    * @param \Drupal\node\NodeStorageInterface $node_storage
    *   The node storage.
    */
@@ -74,7 +50,6 @@ class Vid extends NumericArgument {
     if (!$node_storage instanceof NodeStorageInterface) {
       throw new \InvalidArgumentException('The fourth argument must implement \Drupal\node\NodeStorageInterface.');
     }
->>>>>>> dev
     $this->nodeStorage = $node_storage;
   }
 
@@ -86,10 +61,6 @@ class Vid extends NumericArgument {
       $configuration,
       $plugin_id,
       $plugin_definition,
-<<<<<<< HEAD
-      $container->get('database'),
-=======
->>>>>>> dev
       $container->get('entity_type.manager')->getStorage('node')
     );
   }
@@ -100,19 +71,6 @@ class Vid extends NumericArgument {
   public function titleQuery() {
     $titles = [];
 
-<<<<<<< HEAD
-    $results = $this->database->query('SELECT nr.vid, nr.nid, npr.title FROM {node_revision} nr WHERE nr.vid IN ( :vids[] )', [':vids[]' => $this->value])->fetchAllAssoc('vid', PDO::FETCH_ASSOC);
-    $nids = [];
-    foreach ($results as $result) {
-      $nids[] = $result['nid'];
-    }
-
-    $nodes = $this->nodeStorage->loadMultiple(array_unique($nids));
-
-    foreach ($results as $result) {
-      $nodes[$result['nid']]->set('title', $result['title']);
-      $titles[] = $nodes[$result['nid']]->label();
-=======
     $results = $this->nodeStorage->getAggregateQuery()
       ->accessCheck(FALSE)
       ->allRevisions()
@@ -121,7 +79,6 @@ class Vid extends NumericArgument {
 
     foreach ($results as $result) {
       $titles[] = $result['title'];
->>>>>>> dev
     }
 
     return $titles;

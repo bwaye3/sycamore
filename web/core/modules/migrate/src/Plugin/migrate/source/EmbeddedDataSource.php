@@ -12,13 +12,6 @@ use Drupal\migrate\Plugin\MigrationInterface;
  * imported, so that it can be referenced by other migrations. Another use case
  * is testing.
  *
-<<<<<<< HEAD
- * Available configuration keys
- * - data_rows: The source data array.
- * - ids: The unique ID field of the data.
- *
- * Examples:
-=======
  * Available configuration keys:
  * - data_rows: The source data array. Each source row should be an associative
  *   array of values keyed by field names.
@@ -27,7 +20,6 @@ use Drupal\migrate\Plugin\MigrationInterface;
  *   information.
  *
  * Example:
->>>>>>> dev
  *
  * @code
  * source:
@@ -44,16 +36,10 @@ use Drupal\migrate\Plugin\MigrationInterface;
  *       type: string
  * @endcode
  *
-<<<<<<< HEAD
- * This example migrates a channel vocabulary.
- *
- * @see \Drupal\migrate\Plugin\MigrateSourceInterface
-=======
  * This example migrates a channel vocabulary specified in the source section.
  *
  * For additional configuration keys, refer to the parent class:
  * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
->>>>>>> dev
  *
  * @MigrateSource(
  *   id = "embedded_data",

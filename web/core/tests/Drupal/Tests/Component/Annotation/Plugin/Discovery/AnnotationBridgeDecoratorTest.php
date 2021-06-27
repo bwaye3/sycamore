@@ -6,10 +6,7 @@ use Drupal\Component\Annotation\Plugin;
 use Drupal\Component\Annotation\Plugin\Discovery\AnnotationBridgeDecorator;
 use Drupal\Component\Plugin\Definition\PluginDefinition;
 use Drupal\Component\Plugin\Discovery\DiscoveryInterface;
-<<<<<<< HEAD
-=======
 use Drupal\Tests\PhpUnitCompatibilityTrait;
->>>>>>> dev
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,11 +15,8 @@ use PHPUnit\Framework\TestCase;
  */
 class AnnotationBridgeDecoratorTest extends TestCase {
 
-<<<<<<< HEAD
-=======
   use PhpUnitCompatibilityTrait;
 
->>>>>>> dev
   /**
    * @covers ::getDefinitions
    */

@@ -37,22 +37,14 @@ function breakpoint_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
-<<<<<<< HEAD
- * Implements hook_themes_installed()
-=======
  * Implements hook_themes_installed().
->>>>>>> dev
  */
 function breakpoint_themes_installed($theme_list) {
   \Drupal::service('breakpoint.manager')->clearCachedDefinitions();
 }
 
 /**
-<<<<<<< HEAD
- * Implements hook_themes_uninstalled()
-=======
  * Implements hook_themes_uninstalled().
->>>>>>> dev
  */
 function breakpoint_themes_uninstalled($theme_list) {
   \Drupal::service('breakpoint.manager')->clearCachedDefinitions();

@@ -17,11 +17,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
 use Drupal\locale\LocaleConfigManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-<<<<<<< HEAD
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-=======
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
->>>>>>> dev
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
@@ -96,11 +92,7 @@ class ConfigNamesMapper extends PluginBase implements ConfigMapperInterface, Con
   /**
    * The event dispatcher.
    *
-<<<<<<< HEAD
-   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
-=======
    * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
->>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -133,11 +125,7 @@ class ConfigNamesMapper extends PluginBase implements ConfigMapperInterface, Con
    *   The string translation manager.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.
-<<<<<<< HEAD
-   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
-=======
    * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
->>>>>>> dev
    *   (optional) The event dispatcher.
    *
    * @throws \Symfony\Component\Routing\Exception\RouteNotFoundException
@@ -396,11 +384,7 @@ class ConfigNamesMapper extends PluginBase implements ConfigMapperInterface, Con
     $this->langcode = $route_match->getParameter('langcode');
 
     $event = new ConfigMapperPopulateEvent($this, $route_match);
-<<<<<<< HEAD
-    $this->eventDispatcher->dispatch(ConfigTranslationEvents::POPULATE_MAPPER, $event);
-=======
     $this->eventDispatcher->dispatch($event, ConfigTranslationEvents::POPULATE_MAPPER);
->>>>>>> dev
   }
 
   /**

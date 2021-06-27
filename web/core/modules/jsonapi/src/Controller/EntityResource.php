@@ -6,10 +6,7 @@ use Drupal\Component\Assertion\Inspector;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\Cache\CacheableMetadata;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Cache\CacheableResponseInterface;
->>>>>>> dev
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
@@ -30,10 +27,7 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\jsonapi\Access\EntityAccessChecker;
-<<<<<<< HEAD
-=======
 use Drupal\jsonapi\CacheableResourceResponse;
->>>>>>> dev
 use Drupal\jsonapi\Context\FieldResolver;
 use Drupal\jsonapi\Entity\EntityValidationTrait;
 use Drupal\jsonapi\Access\TemporaryQueryGuard;
@@ -158,11 +152,7 @@ class EntityResource {
   protected $user;
 
   /**
-<<<<<<< HEAD
-   * Instantiates a EntityResource object.
-=======
    * Instantiates an EntityResource object.
->>>>>>> dev
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
@@ -291,10 +281,6 @@ class EntityResource {
     // we should send "Location" header to the frontend.
     if ($resource_type->isLocatable()) {
       $url = $resource_object->toUrl()->setAbsolute()->toString(TRUE);
-<<<<<<< HEAD
-      $response->addCacheableDependency($url);
-=======
->>>>>>> dev
       $response->headers->set('Location', $url->getGeneratedUrl());
     }
 
@@ -525,22 +511,14 @@ class EntityResource {
    *   The response.
    */
   public function getRelated(ResourceType $resource_type, FieldableEntityInterface $entity, $related, Request $request) {
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $field_list */
-=======
     /** @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $field_list */
->>>>>>> dev
     $resource_relationship = $resource_type->getFieldByPublicName($related);
     $field_list = $entity->get($resource_relationship->getInternalName());
 
     // Remove the entities pointing to a resource that may be disabled. Even
     // though the normalizer skips disabled references, we can avoid unnecessary
     // work by checking here too.
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Entity\EntityInterface[] $referenced_entities */
-=======
     /** @var \Drupal\Core\Entity\EntityInterface[] $referenced_entities */
->>>>>>> dev
     $referenced_entities = array_filter(
       $field_list->referencedEntities(),
       function (EntityInterface $entity) {
@@ -559,13 +537,9 @@ class EntityResource {
 
     // $response does not contain the entity list cache tag. We add the
     // cacheable metadata for the finite list of entities in the relationship.
-<<<<<<< HEAD
-    $response->addCacheableDependency($entity);
-=======
     if ($response instanceof CacheableResponseInterface) {
       $response->addCacheableDependency($entity);
     }
->>>>>>> dev
 
     return $response;
   }
@@ -588,27 +562,17 @@ class EntityResource {
    *   The response.
    */
   public function getRelationship(ResourceType $resource_type, FieldableEntityInterface $entity, $related, Request $request, $response_code = 200) {
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $field_list */
-    $field_list = $entity->get($resource_type->getInternalName($related));
-    // Access will have already been checked by the RelationshipFieldAccess
-=======
     /** @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $field_list */
     $field_list = $entity->get($resource_type->getInternalName($related));
     // Access will have already been checked by the RelationshipRouteAccessCheck
->>>>>>> dev
     // service, so we don't need to call ::getAccessCheckedResourceObject().
     $resource_object = ResourceObject::createFromEntity($resource_type, $entity);
     $relationship = Relationship::createFromEntityReferenceField($resource_object, $field_list);
     $response = $this->buildWrappedResponse($relationship, $request, $this->getIncludes($request, $resource_object), $response_code);
     // Add the host entity as a cacheable dependency.
-<<<<<<< HEAD
-    $response->addCacheableDependency($entity);
-=======
     if ($response instanceof CacheableResponseInterface) {
       $response->addCacheableDependency($entity);
     }
->>>>>>> dev
     return $response;
   }
 
@@ -642,15 +606,9 @@ class EntityResource {
     $internal_relationship_field_name = $resource_type->getInternalName($related);
     // According to the specification, you are only allowed to POST to a
     // relationship if it is a to-many relationship.
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $field_list */
-    $field_list = $entity->{$internal_relationship_field_name};
-    /* @var \Drupal\field\Entity\FieldConfig $field_definition */
-=======
     /** @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $field_list */
     $field_list = $entity->{$internal_relationship_field_name};
     /** @var \Drupal\field\Entity\FieldConfig $field_definition */
->>>>>>> dev
     $field_definition = $field_list->getFieldDefinition();
     $is_multiple = $field_definition->getFieldStorageDefinition()->isMultiple();
     if (!$is_multiple) {
@@ -708,21 +666,12 @@ class EntityResource {
    *   Thrown when the updated entity does not pass validation.
    */
   public function replaceRelationshipData(ResourceType $resource_type, EntityInterface $entity, $related, Request $request) {
-<<<<<<< HEAD
-    $resource_identifiers = $this->deserialize($resource_type, $request, ResourceIdentifier::class, $related);
-    $internal_relationship_field_name = $resource_type->getInternalName($related);
-    /* @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $resource_identifiers */
-    // According to the specification, PATCH works a little bit different if the
-    // relationship is to-one or to-many.
-    /* @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $field_list */
-=======
     /** @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $resource_identifiers */
     $resource_identifiers = $this->deserialize($resource_type, $request, ResourceIdentifier::class, $related);
     $internal_relationship_field_name = $resource_type->getInternalName($related);
     // According to the specification, PATCH works a little bit different if the
     // relationship is to-one or to-many.
     /** @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $field_list */
->>>>>>> dev
     $field_list = $entity->{$internal_relationship_field_name};
     $field_definition = $field_list->getFieldDefinition();
     $is_multiple = $field_definition->getFieldStorageDefinition()->isMultiple();
@@ -802,11 +751,7 @@ class EntityResource {
   public function removeFromRelationshipData(ResourceType $resource_type, EntityInterface $entity, $related, Request $request) {
     $resource_identifiers = $this->deserialize($resource_type, $request, ResourceIdentifier::class, $related);
     $internal_relationship_field_name = $resource_type->getInternalName($related);
-<<<<<<< HEAD
-    /* @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $field_list */
-=======
     /** @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $field_list */
->>>>>>> dev
     $field_list = $entity->{$internal_relationship_field_name};
     $is_multiple = $field_list->getFieldDefinition()
       ->getFieldStorageDefinition()
@@ -1054,15 +999,11 @@ class EntityResource {
       $self_link = new Link(new CacheableMetadata(), self::getRequestLink($request), 'self');
       $links = $links->withLink('self', $self_link);
     }
-<<<<<<< HEAD
-    $response = new ResourceResponse(new JsonApiDocumentTopLevel($data, $includes, $links, $meta), $response_code, $headers);
-=======
     $document = new JsonApiDocumentTopLevel($data, $includes, $links, $meta);
     if (!$request->isMethodCacheable()) {
       return new ResourceResponse($document, $response_code, $headers);
     }
     $response = new CacheableResourceResponse($document, $response_code, $headers);
->>>>>>> dev
     $cacheability = (new CacheableMetadata())->addCacheContexts([
       // Make sure that different sparse fieldsets are cached differently.
       'url.query_args:fields',
@@ -1322,11 +1263,7 @@ class EntityResource {
    *   An associative array with extra data to build the links.
    *
    * @return \Drupal\jsonapi\JsonApiResource\LinkCollection
-<<<<<<< HEAD
-   *   An LinkCollection, with:
-=======
    *   A LinkCollection, with:
->>>>>>> dev
    *   - a 'next' key if it is not the last page;
    *   - 'prev' and 'first' keys if it's not the first page.
    */
@@ -1335,10 +1272,6 @@ class EntityResource {
     if (!empty($link_context['total_count']) && !$total = (int) $link_context['total_count']) {
       return $pager_links;
     }
-<<<<<<< HEAD
-    /* @var \Drupal\jsonapi\Query\OffsetPage $page_param */
-=======
->>>>>>> dev
     $offset = $page_param->getOffset();
     $size = $page_param->getSize();
     if ($size <= 0) {

@@ -22,11 +22,7 @@ class SiteMaintenanceTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node'];
-=======
   protected static $modules = ['node'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -35,11 +31,7 @@ class SiteMaintenanceTest extends BrowserTestBase {
 
   protected $adminUser;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Configure 'node' as front page.
@@ -67,11 +59,7 @@ class SiteMaintenanceTest extends BrowserTestBase {
     $permission_label = $permissions['access site in maintenance mode']['title'];
     $permission_message = t('Visitors will only see the maintenance mode message. Only users with the "@permission-label" <a href=":permissions-url">permission</a> will be able to access the site. Authorized users can log in directly via the <a href=":user-login">user login</a> page.', ['@permission-label' => $permission_label, ':permissions-url' => Url::fromRoute('user.admin_permissions')->toString(), ':user-login' => Url::fromRoute('user.login')->toString()]);
     $this->drupalGet(Url::fromRoute('system.site_maintenance_mode'));
-<<<<<<< HEAD
-    $this->assertRaw($permission_message, 'Found the permission message.');
-=======
     $this->assertRaw($permission_message);
->>>>>>> dev
 
     $this->drupalGet(Url::fromRoute('user.page'));
     // JS should be aggregated, so drupal.js is not in the page source.
@@ -81,44 +69,22 @@ class SiteMaintenanceTest extends BrowserTestBase {
     $edit = [
       'maintenance_mode' => 1,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/development/maintenance', $edit, t('Save configuration'));
-
-    $admin_message = t('Operating in maintenance mode. <a href=":url">Go online.</a>', [':url' => Url::fromRoute('system.site_maintenance_mode')->toString()]);
-    $user_message = t('Operating in maintenance mode.');
-    $offline_message = t('@site is currently under maintenance. We should be back shortly. Thank you for your patience.', ['@site' => $this->config('system.site')->get('name')]);
-=======
     $this->drupalGet('admin/config/development/maintenance');
     $this->submitForm($edit, 'Save configuration');
 
     $admin_message = t('Operating in maintenance mode. <a href=":url">Go online.</a>', [':url' => Url::fromRoute('system.site_maintenance_mode')->toString()]);
     $user_message = 'Operating in maintenance mode.';
     $offline_message = $this->config('system.site')->get('name') . ' is currently under maintenance. We should be back shortly. Thank you for your patience.';
->>>>>>> dev
 
     $this->drupalGet(Url::fromRoute('user.page'));
     // JS should not be aggregated, so drupal.js is expected in the page source.
     $links = $this->xpath('//script[contains(@src, :href)]', [':href' => '/core/misc/drupal.js']);
     $this->assertTrue(isset($links[0]), 'script /core/misc/drupal.js in page');
-<<<<<<< HEAD
-    $this->assertRaw($admin_message, 'Found the site maintenance mode message.');
-=======
     $this->assertRaw($admin_message);
->>>>>>> dev
 
     // Logout and verify that offline message is displayed.
     $this->drupalLogout();
     $this->drupalGet('');
-<<<<<<< HEAD
-    $this->assertEqual('Site under maintenance', $this->cssSelect('main h1')[0]->getText());
-    $this->assertText($offline_message);
-    $this->drupalGet('node');
-    $this->assertEqual('Site under maintenance', $this->cssSelect('main h1')[0]->getText());
-    $this->assertText($offline_message);
-    $this->drupalGet('user/register');
-    $this->assertEqual('Site under maintenance', $this->cssSelect('main h1')[0]->getText());
-    $this->assertText($offline_message);
-=======
     $this->assertEquals('Site under maintenance', $this->cssSelect('main h1')[0]->getText());
     $this->assertSession()->pageTextContains($offline_message);
     $this->drupalGet('node');
@@ -127,7 +93,6 @@ class SiteMaintenanceTest extends BrowserTestBase {
     $this->drupalGet('user/register');
     $this->assertEquals('Site under maintenance', $this->cssSelect('main h1')[0]->getText());
     $this->assertSession()->pageTextContains($offline_message);
->>>>>>> dev
 
     // Verify that user is able to log in.
     $this->drupalGet('user');
@@ -141,76 +106,45 @@ class SiteMaintenanceTest extends BrowserTestBase {
       'name' => $this->user->getAccountName(),
       'pass' => $this->user->pass_raw,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Log in'));
-    $this->assertText($user_message);
-=======
     $this->submitForm($edit, 'Log in');
     $this->assertSession()->pageTextContains($user_message);
->>>>>>> dev
 
     // Log in administrative user and configure a custom site offline message.
     $this->drupalLogout();
     $this->drupalLogin($this->adminUser);
     $this->drupalGet('admin/config/development/maintenance');
-<<<<<<< HEAD
-    $this->assertNoRaw($admin_message, 'Site maintenance mode message not displayed.');
-=======
     $this->assertNoRaw($admin_message);
->>>>>>> dev
 
     $offline_message = 'Sorry, not online.';
     $edit = [
       'maintenance_mode_message' => $offline_message,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save configuration'));
-=======
     $this->submitForm($edit, 'Save configuration');
->>>>>>> dev
 
     // Logout and verify that custom site offline message is displayed.
     $this->drupalLogout();
     $this->drupalGet('');
-<<<<<<< HEAD
-    $this->assertEqual('Site under maintenance', $this->cssSelect('main h1')[0]->getText());
-    $this->assertRaw($offline_message, 'Found the site offline message.');
-
-    // Verify that custom site offline message is not displayed on user/password.
-    $this->drupalGet('user/password');
-    $this->assertText(t('Username or email address'), 'Anonymous users can access user/password');
-=======
     $this->assertEquals('Site under maintenance', $this->cssSelect('main h1')[0]->getText());
     $this->assertRaw($offline_message);
 
     // Verify that custom site offline message is not displayed on user/password.
     $this->drupalGet('user/password');
     $this->assertSession()->pageTextContains('Username or email address');
->>>>>>> dev
 
     // Submit password reset form.
     $edit = [
       'name' => $this->user->getAccountName(),
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('user/password', $edit, t('Submit'));
-=======
     $this->drupalGet('user/password');
     $this->submitForm($edit, 'Submit');
->>>>>>> dev
     $mails = $this->drupalGetMails();
     $start = strpos($mails[0]['body'], 'user/reset/' . $this->user->id());
     $path = substr($mails[0]['body'], $start, 66 + strlen($this->user->id()));
 
     // Log in with temporary login link.
-<<<<<<< HEAD
-    $this->drupalPostForm($path, [], t('Log in'));
-    $this->assertText($user_message);
-=======
     $this->drupalGet($path);
     $this->submitForm([], 'Log in');
     $this->assertSession()->pageTextContains($user_message);
->>>>>>> dev
 
     // Regression test to check if title displays in Bartik on maintenance page.
     \Drupal::service('theme_installer')->install(['bartik']);
@@ -219,11 +153,7 @@ class SiteMaintenanceTest extends BrowserTestBase {
     // Logout and verify that offline message is displayed in Bartik.
     $this->drupalLogout();
     $this->drupalGet('');
-<<<<<<< HEAD
-    $this->assertEqual('Site under maintenance', $this->cssSelect('main h1')[0]->getText());
-=======
     $this->assertEquals('Site under maintenance', $this->cssSelect('main h1')[0]->getText());
->>>>>>> dev
   }
 
   /**

@@ -8,8 +8,6 @@ use Drupal\migrate_drupal\Plugin\migrate\source\d7\FieldableEntity;
 /**
  * Provides Drupal 7 taxonomy term entity translation source plugin.
  *
-<<<<<<< HEAD
-=======
  * Available configuration keys:
  * - bundle: (optional) The taxonomy vocabulary (machine name) to filter terms
  *   retrieved from the source - can be a string or an array. If omitted, all
@@ -39,7 +37,6 @@ use Drupal\migrate_drupal\Plugin\migrate\source\d7\FieldableEntity;
  * @see \Drupal\migrate\Plugin\migrate\source\SqlBase
  * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
  *
->>>>>>> dev
  * @MigrateSource(
  *   id = "d7_taxonomy_term_entity_translation",
  *   source_module = "entity_translation"
@@ -64,13 +61,8 @@ class TermEntityTranslation extends FieldableEntity {
       ->condition('et.entity_type', 'taxonomy_term')
       ->condition('et.source', '', '<>');
 
-<<<<<<< HEAD
-    $query->innerJoin('taxonomy_term_data', 'td', 'td.tid = et.entity_id');
-    $query->innerJoin('taxonomy_vocabulary', 'tv', 'td.vid = tv.vid');
-=======
     $query->innerJoin('taxonomy_term_data', 'td', '[td].[tid] = [et].[entity_id]');
     $query->innerJoin('taxonomy_vocabulary', 'tv', '[td].[vid] = [tv].[vid]');
->>>>>>> dev
 
     if (isset($this->configuration['bundle'])) {
       $query->condition('tv.machine_name', (array) $this->configuration['bundle'], 'IN');

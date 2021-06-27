@@ -5,11 +5,7 @@ namespace Drupal\Core\EventSubscriber;
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Cache\CacheableJsonResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
->>>>>>> dev
 
 /**
  * Default handling for JSON errors.
@@ -35,22 +31,6 @@ class ExceptionJsonSubscriber extends HttpExceptionSubscriberBase {
   /**
    * Handles all 4xx errors for JSON.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $event
-   *   The event to process.
-   */
-  public function on4xx(GetResponseForExceptionEvent $event) {
-    /** @var \Symfony\Component\HttpKernel\Exception\HttpExceptionInterface $exception */
-    $exception = $event->getException();
-
-    // If the exception is cacheable, generate a cacheable response.
-    if ($exception instanceof CacheableDependencyInterface) {
-      $response = new CacheableJsonResponse(['message' => $event->getException()->getMessage()], $exception->getStatusCode(), $exception->getHeaders());
-      $response->addCacheableDependency($exception);
-    }
-    else {
-      $response = new JsonResponse(['message' => $event->getException()->getMessage()], $exception->getStatusCode(), $exception->getHeaders());
-=======
    * @param \Symfony\Component\HttpKernel\Event\ExceptionEvent $event
    *   The event to process.
    */
@@ -65,7 +45,6 @@ class ExceptionJsonSubscriber extends HttpExceptionSubscriberBase {
     }
     else {
       $response = new JsonResponse(['message' => $event->getThrowable()->getMessage()], $exception->getStatusCode(), $exception->getHeaders());
->>>>>>> dev
     }
 
     $event->setResponse($response);

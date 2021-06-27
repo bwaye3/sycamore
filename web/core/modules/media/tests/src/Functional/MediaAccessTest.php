@@ -21,11 +21,7 @@ class MediaAccessTest extends MediaFunctionalTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'block',
     'media_test_source',
   ];
@@ -38,22 +34,14 @@ class MediaAccessTest extends MediaFunctionalTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     // This is needed to provide the user cache context for a below assertion.
     $this->drupalPlaceBlock('local_tasks_block');
   }
 
   /**
-<<<<<<< HEAD
-   * Test some access control functionality.
-=======
    * Tests some access control functionality.
->>>>>>> dev
    */
   public function testMediaAccess() {
     $assert_session = $this->assertSession();
@@ -205,11 +193,7 @@ class MediaAccessTest extends MediaFunctionalTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test view access control on the canonical page.
-=======
    * Tests view access control on the canonical page.
->>>>>>> dev
    */
   public function testCanonicalMediaAccess() {
     $media_type = $this->createMediaType('test');
@@ -344,11 +328,7 @@ class MediaAccessTest extends MediaFunctionalTestBase {
 
     $this->container->get('router.builder')->rebuild();
 
-<<<<<<< HEAD
-    // Create a media type and a entity reference to itself.
-=======
     // Create a media type and an entity reference to itself.
->>>>>>> dev
     $media_type = $this->createMediaType('test');
 
     FieldStorageConfig::create([

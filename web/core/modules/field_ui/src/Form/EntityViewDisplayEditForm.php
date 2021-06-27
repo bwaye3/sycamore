@@ -118,11 +118,7 @@ class EntityViewDisplayEditForm extends EntityDisplayFormBase {
   protected function getDisplayModesLink() {
     return [
       '#type' => 'link',
-<<<<<<< HEAD
-      '#title' => t('Manage view modes'),
-=======
       '#title' => $this->t('Manage view modes'),
->>>>>>> dev
       '#url' => Url::fromRoute('entity.entity_view_mode.collection'),
     ];
   }

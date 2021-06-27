@@ -5,10 +5,6 @@ namespace Drupal\Core\Entity;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Cache\MemoryCache\MemoryCacheInterface;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Language\LanguageInterface;
@@ -19,15 +15,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Base class for content entity storage handlers.
  */
 abstract class ContentEntityStorageBase extends EntityStorageBase implements ContentEntityStorageInterface, DynamicallyFieldableEntityStorageInterface {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * The entity bundle key.
@@ -73,31 +60,16 @@ abstract class ContentEntityStorageBase extends EntityStorageBase implements Con
    *   The entity field manager.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
    *   The cache backend to be used.
-<<<<<<< HEAD
-   * @param \Drupal\Core\Cache\MemoryCache\MemoryCacheInterface|null $memory_cache
-=======
    * @param \Drupal\Core\Cache\MemoryCache\MemoryCacheInterface $memory_cache
->>>>>>> dev
    *   The memory cache backend.
    * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entity_type_bundle_info
    *   The entity type bundle info.
    */
-<<<<<<< HEAD
-  public function __construct(EntityTypeInterface $entity_type, EntityFieldManagerInterface $entity_field_manager, CacheBackendInterface $cache, MemoryCacheInterface $memory_cache = NULL, EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL) {
-=======
   public function __construct(EntityTypeInterface $entity_type, EntityFieldManagerInterface $entity_field_manager, CacheBackendInterface $cache, MemoryCacheInterface $memory_cache, EntityTypeBundleInfoInterface $entity_type_bundle_info) {
->>>>>>> dev
     parent::__construct($entity_type, $memory_cache);
     $this->bundleKey = $this->entityType->getKey('bundle');
     $this->entityFieldManager = $entity_field_manager;
     $this->cacheBackend = $cache;
-<<<<<<< HEAD
-    if (!$entity_type_bundle_info) {
-      @trigger_error('Calling ContentEntityStorageBase::__construct() with the $entity_type_bundle_info argument is supported in drupal:8.7.0 and will be required before drupal:9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $entity_type_bundle_info = \Drupal::service('entity_type.bundle.info');
-    }
-=======
->>>>>>> dev
     $this->entityTypeBundleInfo = $entity_type_bundle_info;
   }
 
@@ -396,11 +368,7 @@ abstract class ContentEntityStorageBase extends EntityStorageBase implements Con
     $entity_type = $this->getEntityType();
 
     // A list of known revision metadata fields which should be skipped from
-<<<<<<< HEAD
-    // the comparision.
-=======
     // the comparison.
->>>>>>> dev
     $field_names = [
       $entity_type->getKey('revision'),
       $entity_type->getKey('revision_translation_affected'),
@@ -612,53 +580,13 @@ abstract class ContentEntityStorageBase extends EntityStorageBase implements Con
   /**
    * Actually loads revision field item values from the storage.
    *
-<<<<<<< HEAD
-   * @param int|string $revision_id
-   *   The revision identifier.
-   *
-   * @return \Drupal\Core\Entity\EntityInterface|null
-   *   The specified entity revision or NULL if not found.
-   *
-   * @deprecated in drupal:8.5.0 and is removed from drupal:9.0.0.
-   *   \Drupal\Core\Entity\ContentEntityStorageBase::doLoadMultipleRevisionsFieldItems()
-   *   should be implemented instead.
-   *
-   * @see https://www.drupal.org/node/2924915
-   */
-  abstract protected function doLoadRevisionFieldItems($revision_id);
-
-  /**
-   * Actually loads revision field item values from the storage.
-   *
-   * This method should always be overridden and not called either directly or
-   * from parent::doLoadMultipleRevisionsFieldItems. It will be marked abstract
-   * in drupal:9.0.0
-   *
-=======
->>>>>>> dev
    * @param array $revision_ids
    *   An array of revision identifiers.
    *
    * @return \Drupal\Core\Entity\EntityInterface[]
    *   The specified entity revisions or an empty array if none are found.
-<<<<<<< HEAD
-   *
-   * @todo Remove this logic and make the method abstract in
-   *   https://www.drupal.org/project/drupal/issues/3069696
-   */
-  protected function doLoadMultipleRevisionsFieldItems($revision_ids) {
-    @trigger_error('Calling ' . __NAMESPACE__ . 'ContentEntityStorageBase::doLoadMultipleRevisionsFieldItems() directly is deprecated in drupal:8.8.0 and the method will be made abstract in drupal:9.0.0. Storage implementations should override and implement their own loading logic. See https://www.drupal.org/node/3069692', E_USER_DEPRECATED);
-    $revisions = [];
-    foreach ($revision_ids as $revision_id) {
-      $revisions[] = $this->doLoadRevisionFieldItems($revision_id);
-    }
-
-    return $revisions;
-  }
-=======
    */
   abstract protected function doLoadMultipleRevisionsFieldItems($revision_ids);
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -1135,9 +1063,6 @@ abstract class ContentEntityStorageBase extends EntityStorageBase implements Con
   }
 
   /**
-<<<<<<< HEAD
-   * {@inheritdoc}
-=======
    * Resets the entity cache.
    *
    * Content entities have both an in-memory static cache and a persistent
@@ -1147,7 +1072,6 @@ abstract class ContentEntityStorageBase extends EntityStorageBase implements Con
    * @param array $ids
    *   (optional) If specified, the cache is reset for the entities with the
    *   given ids only.
->>>>>>> dev
    */
   public function resetCache(array $ids = NULL) {
     if ($ids) {

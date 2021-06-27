@@ -91,10 +91,7 @@ abstract class ConfigEntityBase extends EntityBase implements ConfigEntityInterf
    *
    * @var array
    */
-<<<<<<< HEAD
-=======
   // phpcs:ignore Drupal.Classes.PropertyDeclaration
->>>>>>> dev
   protected $_core = [];
 
   /**
@@ -252,11 +249,7 @@ abstract class ConfigEntityBase extends EntityBase implements ConfigEntityInterf
     $id_key = $entity_type->getKey('id');
     $property_names = $entity_type->getPropertiesToExport($this->id());
     if (empty($property_names)) {
-<<<<<<< HEAD
-      throw new SchemaIncompleteException(sprintf("Entity type '%s' is missing 'config_export' definition in its annotation", get_class($entity_type)));
-=======
       throw new SchemaIncompleteException(sprintf("Entity type '%s' is missing 'config_export' definition in its annotation", $entity_type->getClass()));
->>>>>>> dev
     }
     foreach ($property_names as $property_name => $export_name) {
       // Special handling for IDs so that computed compound IDs work.
@@ -385,34 +378,6 @@ abstract class ConfigEntityBase extends EntityBase implements ConfigEntityInterf
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function urlInfo($rel = 'edit-form', array $options = []) {
-    // Unless language was already provided, avoid setting an explicit language.
-    $options += ['language' => NULL];
-    return parent::urlInfo($rel, $options);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function url($rel = 'edit-form', $options = []) {
-    // Do not remove this override: the default value of $rel is different.
-    return parent::url($rel, $options);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function link($text = NULL, $rel = 'edit-form', array $options = []) {
-    // Do not remove this override: the default value of $rel is different.
-    return parent::link($text, $rel, $options);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-=======
->>>>>>> dev
   public function toUrl($rel = 'edit-form', array $options = []) {
     // Unless language was already provided, avoid setting an explicit language.
     $options += ['language' => NULL];

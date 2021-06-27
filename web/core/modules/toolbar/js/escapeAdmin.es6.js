@@ -3,11 +3,7 @@
  * Replaces the home link in toolbar with a back to site link.
  */
 
-<<<<<<< HEAD
-(function($, Drupal, drupalSettings) {
-=======
 (function ($, Drupal, drupalSettings) {
->>>>>>> dev
   const pathInfo = drupalSettings.path;
   const escapeAdminPath = sessionStorage.getItem('escapeAdminPath');
   const windowLocation = window.location;

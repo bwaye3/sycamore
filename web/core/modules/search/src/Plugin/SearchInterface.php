@@ -145,8 +145,6 @@ interface SearchInterface extends PluginInspectionInterface {
    */
   public function buildSearchUrlQuery(FormStateInterface $form_state);
 
-<<<<<<< HEAD
-=======
   /**
    * Returns whether or not search results should be displayed in admin theme.
    *
@@ -158,5 +156,4 @@ interface SearchInterface extends PluginInspectionInterface {
    */
   public function usesAdminTheme();
 
->>>>>>> dev
 }

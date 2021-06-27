@@ -3,10 +3,6 @@
 namespace Drupal\Tests\file\Functional;
 
 use Drupal\Component\Render\FormattableMarkup;
-<<<<<<< HEAD
-use Drupal\TestTools\PhpUnitCompatibility\RunnerVersion;
-=======
->>>>>>> dev
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\file\FileInterface;
@@ -14,16 +10,6 @@ use Drupal\Tests\BrowserTestBase;
 use Drupal\file\Entity\File;
 use Drupal\Tests\TestFileCreationTrait;
 
-<<<<<<< HEAD
-// In order to manage different method signatures between PHPUnit versions, we
-// dynamically load a compatibility trait dependent on the PHPUnit runner
-// version.
-if (!trait_exists(PhpunitVersionDependentFileFieldTestBaseTrait::class, FALSE)) {
-  class_alias("Drupal\TestTools\PhpUnitCompatibility\PhpUnit" . RunnerVersion::getMajor() . "\FileFieldTestBaseTrait", PhpunitVersionDependentFileFieldTestBaseTrait::class);
-}
-
-=======
->>>>>>> dev
 /**
  * Provides methods specifically for testing File module's field handling.
  */
@@ -33,10 +19,6 @@ abstract class FileFieldTestBase extends BrowserTestBase {
   use TestFileCreationTrait {
     getTestFiles as drupalGetTestFiles;
   }
-<<<<<<< HEAD
-  use PhpunitVersionDependentFileFieldTestBaseTrait;
-=======
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -44,11 +26,7 @@ abstract class FileFieldTestBase extends BrowserTestBase {
   protected static $modules = ['node', 'file', 'file_module_test', 'field_ui'];
 
   /**
-<<<<<<< HEAD
-   * An user with administration permissions.
-=======
    * A user with administration permissions.
->>>>>>> dev
    *
    * @var \Drupal\user\UserInterface
    */
@@ -96,14 +74,10 @@ abstract class FileFieldTestBase extends BrowserTestBase {
    * Retrieves the fid of the last inserted file.
    */
   public function getLastFileId() {
-<<<<<<< HEAD
-    return (int) \Drupal::entityQueryAggregate('file')->aggregate('fid', 'max')->execute()[0]['fid_max'];
-=======
     return (int) \Drupal::entityQueryAggregate('file')
       ->accessCheck(FALSE)
       ->aggregate('fid', 'max')
       ->execute()[0]['fid_max'];
->>>>>>> dev
   }
 
   /**
@@ -183,11 +157,7 @@ abstract class FileFieldTestBase extends BrowserTestBase {
       $node->save();
       $node_storage->resetCache([$nid]);
       $node = $node_storage->load($nid);
-<<<<<<< HEAD
-      $this->assertNotEqual($nid, $node->getRevisionId(), 'Node revision exists.');
-=======
       $this->assertNotEquals($nid, $node->getRevisionId(), 'Node revision exists.');
->>>>>>> dev
     }
     $this->drupalGet("node/$nid/edit");
     $page = $this->getSession()->getPage();
@@ -208,19 +178,11 @@ abstract class FileFieldTestBase extends BrowserTestBase {
       }
       else {
         $page->attachFileToField($name, $file_path);
-<<<<<<< HEAD
-        $this->drupalPostForm(NULL, [], t('Upload'));
-      }
-    }
-
-    $this->drupalPostForm(NULL, $edit, t('Save'));
-=======
         $this->submitForm([], 'Upload');
       }
     }
 
     $this->submitForm($edit, 'Save');
->>>>>>> dev
 
     return $nid;
   }
@@ -235,14 +197,9 @@ abstract class FileFieldTestBase extends BrowserTestBase {
       'revision' => (string) (int) $new_revision,
     ];
 
-<<<<<<< HEAD
-    $this->drupalPostForm('node/' . $nid . '/edit', [], t('Remove'));
-    $this->drupalPostForm(NULL, $edit, t('Save'));
-=======
     $this->drupalGet('node/' . $nid . '/edit');
     $this->submitForm([], 'Remove');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
   }
 
   /**
@@ -254,14 +211,9 @@ abstract class FileFieldTestBase extends BrowserTestBase {
       'revision' => (string) (int) $new_revision,
     ];
 
-<<<<<<< HEAD
-    $this->drupalPostForm('node/' . $nid . '/edit', [], t('Remove'));
-    $this->drupalPostForm(NULL, $edit, t('Save'));
-=======
     $this->drupalGet('node/' . $nid . '/edit');
     $this->submitForm([], 'Remove');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
   }
 
   /**
@@ -271,11 +223,7 @@ abstract class FileFieldTestBase extends BrowserTestBase {
     $this->container->get('entity_type.manager')->getStorage('file')->resetCache();
     $db_file = File::load($file->id());
     $message = isset($message) ? $message : new FormattableMarkup('File %file exists in database at the correct path.', ['%file' => $file->getFileUri()]);
-<<<<<<< HEAD
-    $this->assertEqual($db_file->getFileUri(), $file->getFileUri(), $message);
-=======
     $this->assertEquals($file->getFileUri(), $db_file->getFileUri(), $message);
->>>>>>> dev
   }
 
   /**

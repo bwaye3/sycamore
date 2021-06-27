@@ -26,11 +26,7 @@ class DefaultViewsTest extends UITestBase {
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->placeBlock('page_title_block');
@@ -46,26 +42,12 @@ class DefaultViewsTest extends UITestBase {
     $this->drupalGet('admin/structure/views');
     // @todo Disabled default views do now appear on the front page. Test this
     // behavior with templates instead.
-<<<<<<< HEAD
-    // $this->assertNoLinkByHref($edit_href);
-=======
     // $this->assertSession()->linkByHrefNotExists($edit_href);
->>>>>>> dev
 
     // Enable the view, and make sure it is now visible on the main listing
     // page.
     $this->drupalGet('admin/structure/views');
     $this->clickViewsOperationLink('Enable', '/glossary/');
-<<<<<<< HEAD
-    $this->assertUrl('admin/structure/views');
-    $this->assertLinkByHref($edit_href);
-
-    // It should not be possible to revert the view yet.
-    // @todo Figure out how to handle this with the new configuration system.
-    // $this->assertSession()->linkNotExists(t('Revert'));
-    // $revert_href = 'admin/structure/views/view/glossary/revert';
-    // $this->assertNoLinkByHref($revert_href);
-=======
     $this->assertSession()->addressEquals('admin/structure/views');
     $this->assertSession()->linkByHrefExists($edit_href);
 
@@ -74,23 +56,11 @@ class DefaultViewsTest extends UITestBase {
     // $this->assertSession()->linkNotExists('Revert');
     // $revert_href = 'admin/structure/views/view/glossary/revert';
     // $this->assertSession()->linkByHrefNotExists($revert_href);
->>>>>>> dev
 
     // Edit the view and change the title. Make sure that the new title is
     // displayed.
     $new_title = $this->randomMachineName(16);
     $edit = ['title' => $new_title];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/views/nojs/display/glossary/page_1/title', $edit, t('Apply'));
-    $this->drupalPostForm('admin/structure/views/view/glossary/edit/page_1', [], t('Save'));
-    $this->drupalGet('glossary');
-    $this->assertSession()->statusCodeEquals(200);
-    $this->assertText($new_title);
-
-    // Save another view in the UI.
-    $this->drupalPostForm('admin/structure/views/nojs/display/archive/page_1/title', [], t('Apply'));
-    $this->drupalPostForm('admin/structure/views/view/archive/edit/page_1', [], t('Save'));
-=======
     $this->drupalGet('admin/structure/views/nojs/display/glossary/page_1/title');
     $this->submitForm($edit, 'Apply');
     $this->drupalGet('admin/structure/views/view/glossary/edit/page_1');
@@ -104,32 +74,21 @@ class DefaultViewsTest extends UITestBase {
     $this->submitForm([], 'Apply');
     $this->drupalGet('admin/structure/views/view/archive/edit/page_1');
     $this->submitForm([], 'Save');
->>>>>>> dev
 
     // Check there is an enable link. i.e. The view has not been enabled after
     // editing.
     $this->drupalGet('admin/structure/views');
-<<<<<<< HEAD
-    $this->assertLinkByHref('admin/structure/views/view/archive/enable');
-=======
     $this->assertSession()->linkByHrefExists('admin/structure/views/view/archive/enable');
->>>>>>> dev
     // Enable it again so it can be tested for access permissions.
     $this->clickViewsOperationLink('Enable', '/archive/');
 
     // It should now be possible to revert the view. Do that, and make sure the
     // view title we added above no longer is displayed.
     // $this->drupalGet('admin/structure/views');
-<<<<<<< HEAD
-    // $this->assertSession()->linkExists(t('Revert'));
-    // $this->assertLinkByHref($revert_href);
-    // $this->drupalPostForm($revert_href, array(), t('Revert'));
-=======
     // $this->assertSession()->linkExists('Revert');
     // $this->assertSession()->linkByHrefExists($revert_href);
     // $this->drupalGet($revert_href);
     // $this->submitForm(array(), 'Revert');
->>>>>>> dev
     // $this->drupalGet('glossary');
     // $this->assertNoText($new_title);
 
@@ -139,27 +98,16 @@ class DefaultViewsTest extends UITestBase {
     $edit = [
       'id' => 'duplicate_of_glossary',
     ];
-<<<<<<< HEAD
-    $this->assertTitle('Duplicate of Glossary | Drupal');
-    $this->drupalPostForm(NULL, $edit, t('Duplicate'));
-    $this->assertUrl('admin/structure/views/view/duplicate_of_glossary', [], 'The normal duplicating name schema is applied.');
-=======
     $this->assertSession()->titleEquals('Duplicate of Glossary | Drupal');
     $this->submitForm($edit, 'Duplicate');
     $this->assertSession()->addressEquals('admin/structure/views/view/duplicate_of_glossary');
->>>>>>> dev
 
     // Duplicate a view and set a custom name.
     $this->drupalGet('admin/structure/views');
     $this->clickViewsOperationLink('Duplicate', '/glossary');
     $random_name = strtolower($this->randomMachineName());
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, ['id' => $random_name], t('Duplicate'));
-    $this->assertUrl("admin/structure/views/view/$random_name", [], 'The custom view name got saved.');
-=======
     $this->submitForm(['id' => $random_name], 'Duplicate');
     $this->assertSession()->addressEquals("admin/structure/views/view/$random_name");
->>>>>>> dev
 
     // Now disable the view, and make sure it stops appearing on the main view
     // listing page but instead goes back to displaying on the disabled views
@@ -167,24 +115,14 @@ class DefaultViewsTest extends UITestBase {
     // @todo Test this behavior with templates instead.
     $this->drupalGet('admin/structure/views');
     $this->clickViewsOperationLink('Disable', '/glossary/');
-<<<<<<< HEAD
-    // $this->assertUrl('admin/structure/views');
-    // $this->assertNoLinkByHref($edit_href);
-=======
     // $this->assertSession()->addressEquals('admin/structure/views');
     // $this->assertSession()->linkByHrefNotExists($edit_href);
->>>>>>> dev
     // The easiest way to verify it appears on the disabled views listing page
     // is to try to click the "enable" link from there again.
     $this->drupalGet('admin/structure/views');
     $this->clickViewsOperationLink('Enable', '/glossary/');
-<<<<<<< HEAD
-    $this->assertUrl('admin/structure/views');
-    $this->assertLinkByHref($edit_href);
-=======
     $this->assertSession()->addressEquals('admin/structure/views');
     $this->assertSession()->linkByHrefExists($edit_href);
->>>>>>> dev
 
     // Clear permissions for anonymous users to check access for default views.
     Role::load(RoleInterface::ANONYMOUS_ID)->revokePermission('access content')->save();
@@ -201,16 +139,6 @@ class DefaultViewsTest extends UITestBase {
     $this->drupalGet('admin/structure/views');
     $this->clickViewsOperationLink('Delete', '/glossary/');
     // Submit the confirmation form.
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [], t('Delete'));
-    // Ensure the view is no longer listed.
-    $this->assertUrl('admin/structure/views');
-    $this->assertNoLinkByHref($edit_href);
-    // Ensure the view is no longer available.
-    $this->drupalGet($edit_href);
-    $this->assertSession()->statusCodeEquals(404);
-    $this->assertText('Page not found');
-=======
     $this->submitForm([], 'Delete');
     // Ensure the view is no longer listed.
     $this->assertSession()->addressEquals('admin/structure/views');
@@ -219,17 +147,12 @@ class DefaultViewsTest extends UITestBase {
     $this->drupalGet($edit_href);
     $this->assertSession()->statusCodeEquals(404);
     $this->assertSession()->pageTextContains('Page not found');
->>>>>>> dev
 
     // Delete all duplicated Glossary views.
     $this->drupalGet('admin/structure/views');
     $this->clickViewsOperationLink('Delete', 'duplicate_of_glossary');
     // Submit the confirmation form.
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [], t('Delete'));
-=======
     $this->submitForm([], 'Delete');
->>>>>>> dev
 
     $this->drupalGet('glossary');
     $this->assertSession()->statusCodeEquals(200);
@@ -237,17 +160,10 @@ class DefaultViewsTest extends UITestBase {
     $this->drupalGet('admin/structure/views');
     $this->clickViewsOperationLink('Delete', $random_name);
     // Submit the confirmation form.
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [], t('Delete'));
-    $this->drupalGet('glossary');
-    $this->assertSession()->statusCodeEquals(404);
-    $this->assertText('Page not found');
-=======
     $this->submitForm([], 'Delete');
     $this->drupalGet('glossary');
     $this->assertSession()->statusCodeEquals(404);
     $this->assertSession()->pageTextContains('Page not found');
->>>>>>> dev
   }
 
   /**
@@ -293,15 +209,6 @@ class DefaultViewsTest extends UITestBase {
     $this->drupalGet('admin/structure/views');
 
     // Check that links to views on default tabs are rendered correctly.
-<<<<<<< HEAD
-    $this->assertLinkByHref('test_page_display_menu');
-    $this->assertNoLinkByHref('test_page_display_menu/default');
-    $this->assertLinkByHref('test_page_display_menu/local');
-
-    // Check that a dynamic path is shown as text.
-    $this->assertRaw('test_route_with_suffix/%/suffix');
-    $this->assertNoLinkByHref(Url::fromUri('base:test_route_with_suffix/%/suffix')->toString());
-=======
     $this->assertSession()->linkByHrefExists('test_page_display_menu');
     $this->assertSession()->linkByHrefNotExists('test_page_display_menu/default');
     $this->assertSession()->linkByHrefExists('test_page_display_menu/local');
@@ -309,7 +216,6 @@ class DefaultViewsTest extends UITestBase {
     // Check that a dynamic path is shown as text.
     $this->assertRaw('test_route_with_suffix/%/suffix');
     $this->assertSession()->linkByHrefNotExists(Url::fromUri('base:test_route_with_suffix/%/suffix')->toString());
->>>>>>> dev
   }
 
   /**

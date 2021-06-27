@@ -45,11 +45,7 @@ class DateTimeIso8601NormalizerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $system_date_config = $this->prophesize(ImmutableConfig::class);
@@ -215,24 +211,6 @@ class DateTimeIso8601NormalizerTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests the denormalize function with the date+time deprecated format.
-   *
-   * @covers ::denormalize
-   * @group legacy
-   * @expectedDeprecation The provided datetime string format (Y-m-d\TH:i:s) is deprecated and will be removed before Drupal 9.0.0. Use the RFC3339 format instead (Y-m-d\TH:i:sP).
-   */
-  public function testDenormalizeDateAndTimeDeprecatedFormat() {
-    $normalized = '2016-11-06T08:00:00';
-
-    $field_definition = $this->prophesize(FieldDefinitionInterface::class);
-    $field_definition->getSetting('datetime_type')->willReturn(DateTimeItem::DATETIME_TYPE_DATETIME);
-    $this->normalizer->denormalize($normalized, DateTimeIso8601::class, NULL, ['field_definition' => $field_definition->reveal()]);
-  }
-
-  /**
-=======
->>>>>>> dev
    * Tests the denormalize function with bad data for the date-only case.
    *
    * @covers ::denormalize
@@ -255,11 +233,7 @@ class DateTimeIso8601NormalizerTest extends UnitTestCase {
    */
   public function testDenormalizeDateAndTimeException() {
     $this->expectException(UnexpectedValueException::class);
-<<<<<<< HEAD
-    $this->expectExceptionMessage('The specified date "on a rainy day" is not in an accepted format: "Y-m-d\TH:i:sP" (RFC 3339), "Y-m-d\TH:i:sO" (ISO 8601), "Y-m-d\TH:i:s" (backward compatibility — deprecated).');
-=======
     $this->expectExceptionMessage('The specified date "on a rainy day" is not in an accepted format: "Y-m-d\TH:i:sP" (RFC 3339), "Y-m-d\TH:i:sO" (ISO 8601).');
->>>>>>> dev
 
     $normalized = 'on a rainy day';
 

@@ -5,10 +5,7 @@
  * Functions to support theming in the Seven theme.
  */
 
-<<<<<<< HEAD
-=======
 use Drupal\Component\Utility\Html;
->>>>>>> dev
 use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\media\MediaForm;
@@ -218,8 +215,6 @@ function seven_form_alter(array &$form, FormStateInterface $form_state, $form_id
       $form['header']['media_bulk_form']['#attributes']['class'][] = 'media-library-views-form__bulk_form';
     }
     $form['actions']['submit']['#attributes']['class'] = ['media-library-select'];
-<<<<<<< HEAD
-=======
 
     // This conditional exists because the media-library-views-form class is
     // currently added by Classy, but Seven will eventually not use Classy as a
@@ -231,7 +226,6 @@ function seven_form_alter(array &$form, FormStateInterface $form_state, $form_id
     if (!isset($form['#attributes']['class']) || !in_array('media-library-views-form', $form['#attributes']['class'])) {
       $form['#attributes']['class'][] = 'media-library-views-form';
     }
->>>>>>> dev
   }
   // Add after build to add a CSS class to the form actions.
   if ($form_id === 'views_exposed_form' && strpos($form['#id'], 'views-exposed-form-media-library-widget') === 0) {
@@ -394,8 +388,6 @@ function seven_views_pre_render(ViewExecutable $view) {
 }
 
 /**
-<<<<<<< HEAD
-=======
  * Implements hook_preprocess_links__media_library_menu().
  *
  * This targets the menu of available media types in the media library's modal
@@ -443,7 +435,6 @@ function seven_preprocess_image_widget(array &$variables) {
 }
 
 /**
->>>>>>> dev
  * Prepares variables for update version templates.
  *
  * Default template: update-version.html.twig.
@@ -455,8 +446,6 @@ function seven_preprocess_image_widget(array &$variables) {
 function seven_preprocess_update_version(array &$variables) {
   $variables['#attached']['library'][] = 'seven/update-report';
 }
-<<<<<<< HEAD
-=======
 
 /**
  * Implements template_preprocess_links().
@@ -477,4 +466,3 @@ function seven_preprocess_links(&$variables) {
     }
   }
 }
->>>>>>> dev

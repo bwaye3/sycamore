@@ -162,11 +162,7 @@ class UnroutedUrlAssembler implements UnroutedUrlAssemblerInterface {
   }
 
   /**
-<<<<<<< HEAD
-   * Merges in default defaults
-=======
    * Merges in default defaults.
->>>>>>> dev
    *
    * @param array $options
    *   The options to merge in the defaults.

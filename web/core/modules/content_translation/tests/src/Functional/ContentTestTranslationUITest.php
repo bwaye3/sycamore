@@ -19,15 +19,11 @@ class ContentTestTranslationUITest extends ContentTranslationUITestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['language', 'content_translation', 'entity_test'];
-=======
   protected static $modules = [
     'language',
     'content_translation',
     'entity_test',
   ];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -37,11 +33,7 @@ class ContentTestTranslationUITest extends ContentTranslationUITestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     // Use the entity_test_mul as this has multilingual property support.
     $this->entityTypeId = 'entity_test_mul_changed';
     parent::setUp();

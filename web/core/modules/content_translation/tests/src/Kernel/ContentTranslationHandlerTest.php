@@ -70,11 +70,7 @@ class ContentTranslationHandlerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->state = $this->container->get('state');
@@ -97,10 +93,6 @@ class ContentTranslationHandlerTest extends KernelTestBase {
    *   Whether or not the entity is the default translation.
    * @param bool $translation_form
    *   Whether or not the form is a translation form.
-<<<<<<< HEAD
-   * @param array $expected
-   *   The expected altered element.
-=======
    * @param bool $is_submitted
    *   Whether or not the form should be marked as submitted.
    * @param bool $is_rebuilding
@@ -109,7 +101,6 @@ class ContentTranslationHandlerTest extends KernelTestBase {
    *   The expected altered element.
    * @param bool $display_warning
    *   Whether or not the warning message should be displayed.
->>>>>>> dev
    *
    * @dataProvider providerTestEntityFormSharedElements
    *

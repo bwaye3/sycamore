@@ -32,11 +32,7 @@ class SchemaListenerController extends ControllerBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests the WebTestBase tests can use strict schema checking.
-=======
    * Tests the BrowserTestBase tests can use strict schema checking.
->>>>>>> dev
    */
   public function test() {
     try {

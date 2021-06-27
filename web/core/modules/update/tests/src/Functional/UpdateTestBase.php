@@ -106,16 +106,10 @@ abstract class UpdateTestBase extends BrowserTestBase {
    * Runs a series of assertions that are applicable to all update statuses.
    */
   protected function standardTests() {
-<<<<<<< HEAD
-    $this->assertRaw('<h3>' . t('Drupal core') . '</h3>');
-    $this->assertRaw(Link::fromTextAndUrl(t('Drupal'), Url::fromUri('http://example.com/project/drupal'))->toString(), 'Link to the Drupal project appears.');
-    $this->assertNoText(t('No available releases found'));
-=======
     $this->assertSession()->responseContains('<h3>Drupal core</h3>');
     // Verify that the link to the Drupal project appears.
     $this->assertRaw(Link::fromTextAndUrl(t('Drupal'), Url::fromUri('http://example.com/project/drupal'))->toString());
     $this->assertNoText('No available releases found');
->>>>>>> dev
   }
 
   /**
@@ -147,12 +141,8 @@ abstract class UpdateTestBase extends BrowserTestBase {
       if ($expected_update_message_type === static::SECURITY_UPDATE_REQUIRED) {
         $assert_session->elementTextNotContains('css', $update_element_css_locator, 'Update available');
         $assert_session->elementTextContains('css', $update_element_css_locator, 'Security update required!');
-<<<<<<< HEAD
-        $assert_session->responseContains('error.svg', 'Error icon was found.');
-=======
         // Verify that the error icon is found.
         $assert_session->responseContains('error.svg');
->>>>>>> dev
       }
       else {
         $assert_session->elementTextContains('css', $update_element_css_locator, 'Update available');
@@ -274,8 +264,6 @@ abstract class UpdateTestBase extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Asserts that the update table text does not contain the specified text.
    *
    * @param string $text
@@ -286,7 +274,6 @@ abstract class UpdateTestBase extends BrowserTestBase {
   }
 
   /**
->>>>>>> dev
    * Asserts that the update table element HTML contains the specified text.
    *
    * @param string $text
@@ -300,8 +287,6 @@ abstract class UpdateTestBase extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Asserts that the update table element HTML contains the specified text.
    *
    * @param string $text
@@ -315,7 +300,6 @@ abstract class UpdateTestBase extends BrowserTestBase {
   }
 
   /**
->>>>>>> dev
    * Finds an update page element by label.
    *
    * @param string $label

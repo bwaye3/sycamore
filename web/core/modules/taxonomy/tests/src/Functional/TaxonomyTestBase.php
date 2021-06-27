@@ -19,11 +19,7 @@ abstract class TaxonomyTestBase extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['taxonomy', 'block'];
-=======
   protected static $modules = ['taxonomy', 'block'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

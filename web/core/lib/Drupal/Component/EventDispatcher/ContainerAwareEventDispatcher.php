@@ -6,11 +6,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-<<<<<<< HEAD
-=======
 use Symfony\Contracts\EventDispatcher\Event as ContractsEvent;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface as ContractsEventDispatcherInterface;
->>>>>>> dev
 
 /**
  * A performance optimized container aware event dispatcher.
@@ -91,11 +88,6 @@ class ContainerAwareEventDispatcher implements EventDispatcherInterface {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function dispatch($event_name, Event $event = NULL) {
-    if ($event === NULL) {
-      $event = new Event();
-=======
   public function dispatch($event/*, string $event_name = NULL*/) {
     $event_name = 1 < \func_num_args() ? func_get_arg(1) : NULL;
     if (\is_object($event)) {
@@ -128,7 +120,6 @@ class ContainerAwareEventDispatcher implements EventDispatcherInterface {
     }
     else {
       throw new \TypeError(sprintf('Argument 1 passed to "%s::dispatch()" must be an object, %s given.', ContractsEventDispatcherInterface::class, \gettype($event)));
->>>>>>> dev
     }
 
     if (isset($this->listeners[$event_name])) {

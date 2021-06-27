@@ -16,11 +16,7 @@ class BlockDemoTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['block'];
-=======
   protected static $modules = ['block'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -43,13 +39,8 @@ class BlockDemoTest extends BrowserTestBase {
     $default_theme = $config->get('default');
     $this->drupalGet('admin/structure/block/demo/' . $default_theme);
     $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-    $this->assertLinkByHref('admin/structure/block');
-    $this->assertNoLinkByHref('admin/structure/block/list/' . $default_theme);
-=======
     $this->assertSession()->linkByHrefExists('admin/structure/block');
     $this->assertSession()->linkByHrefNotExists('admin/structure/block/list/' . $default_theme);
->>>>>>> dev
 
     // All available themes in core.
     $available_themes = [
@@ -69,11 +60,7 @@ class BlockDemoTest extends BrowserTestBase {
       $this->drupalGet('admin/structure/block/demo/' . $theme);
       $this->assertSession()->statusCodeEquals(200);
       // Confirm existence of link for "Exit block region demonstration".
-<<<<<<< HEAD
-      $this->assertLinkByHref('admin/structure/block/list/' . $theme);
-=======
       $this->assertSession()->linkByHrefExists('admin/structure/block/list/' . $theme);
->>>>>>> dev
     }
 
     // Confirm access to the block demo page is denied for an invalid theme.

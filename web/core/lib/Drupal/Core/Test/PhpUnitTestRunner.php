@@ -44,11 +44,7 @@ class PhpUnitTestRunner implements ContainerInjectionInterface {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-<<<<<<< HEAD
-      (string) $container->get('app.root'),
-=======
       (string) $container->getParameter('app.root'),
->>>>>>> dev
       (string) $container->get('file_system')->realpath('public://simpletest')
     );
   }
@@ -95,11 +91,7 @@ class PhpUnitTestRunner implements ContainerInjectionInterface {
     // reflection. We can determine the vendor directory based on that filename.
     $autoloader = require $this->appRoot . '/autoload.php';
     $reflector = new \ReflectionClass($autoloader);
-<<<<<<< HEAD
-    $vendor_dir = dirname(dirname($reflector->getFileName()));
-=======
     $vendor_dir = dirname($reflector->getFileName(), 2);
->>>>>>> dev
 
     // The file in Composer's bin dir is a *nix link, which does not work when
     // extracted from a tarball and generally not on Windows.

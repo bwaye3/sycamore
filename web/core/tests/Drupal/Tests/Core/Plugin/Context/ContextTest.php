@@ -44,11 +44,7 @@ class ContextTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->typedDataManager = $this->createMock(TypedDataManagerInterface::class);

@@ -73,13 +73,7 @@
    */
   const handleFragmentLinkClickOrHashChange = (e, $target) => {
     $target.parents('.js-vertical-tabs-pane').each((index, pane) => {
-<<<<<<< HEAD
-      $(pane)
-        .data('verticalTab')
-        .focus();
-=======
       $(pane).data('verticalTab').focus();
->>>>>>> dev
     });
   };
 
@@ -198,24 +192,12 @@
 
     this.link.attr('href', `#${settings.details.attr('id')}`);
 
-<<<<<<< HEAD
-    this.detailsSummaryDescription = $(
-      Drupal.theme.verticalTabDetailsDescription(),
-    ).appendTo(this.details.find('> summary'));
-
-    this.link.on('click', event => {
-=======
     this.link.on('click', (event) => {
->>>>>>> dev
       event.preventDefault();
       self.focus();
     });
 
-<<<<<<< HEAD
-    this.details.on('toggle', event => {
-=======
     this.details.on('toggle', (event) => {
->>>>>>> dev
       // We will control this by summary clicks.
       event.preventDefault();
     });
@@ -223,11 +205,7 @@
     // Open the tab for every browser, with or without details support.
     this.details
       .find('> summary')
-<<<<<<< HEAD
-      .on('click', event => {
-=======
       .on('click', (event) => {
->>>>>>> dev
         event.preventDefault();
         self.details.attr('open', true);
         if (self.details.hasClass('collapse-processed')) {
@@ -238,47 +216,25 @@
           self.focus();
         }
       })
-<<<<<<< HEAD
-      .on('keydown', event => {
-=======
       .on('keydown', (event) => {
->>>>>>> dev
         if (event.keyCode === 13) {
           // Set focus on the first input field of the current visible details/tab
           // pane.
           setTimeout(() => {
-<<<<<<< HEAD
-            self.details
-              .find(':input:visible:enabled')
-              .eq(0)
-              .trigger('focus');
-=======
             self.details.find(':input:visible:enabled').eq(0).trigger('focus');
->>>>>>> dev
           }, 10);
         }
       });
 
     // Keyboard events added:
     // Pressing the Enter key will open the tab pane.
-<<<<<<< HEAD
-    this.link.on('keydown', event => {
-=======
     this.link.on('keydown', (event) => {
->>>>>>> dev
       if (event.keyCode === 13) {
         event.preventDefault();
         self.focus();
         // Set focus on the first input field of the current visible details/tab
         // pane.
-<<<<<<< HEAD
-        self.details
-          .find(':input:visible:enabled')
-          .eq(0)
-          .trigger('focus');
-=======
         self.details.find(':input:visible:enabled').eq(0).trigger('focus');
->>>>>>> dev
       }
     });
 
@@ -302,20 +258,10 @@
         .each(function closeOtherTabs() {
           const tab = $(this).data('verticalTab');
           if (tab.details.attr('open')) {
-<<<<<<< HEAD
-            tab.details
-              .removeAttr('open')
-              .find('> summary')
-              .attr({
-                'aria-expanded': 'false',
-                'aria-pressed': 'false',
-              });
-=======
             tab.details.removeAttr('open').find('> summary').attr({
               'aria-expanded': 'false',
               'aria-pressed': 'false',
             });
->>>>>>> dev
             tab.item.removeClass('is-selected');
           }
         })
@@ -354,10 +300,6 @@
      */
     updateSummary() {
       const summary = this.details.drupalGetSummary();
-<<<<<<< HEAD
-      this.detailsSummaryDescription.html(summary);
-=======
->>>>>>> dev
       this.summary.html(summary);
     },
 
@@ -452,11 +394,7 @@
    *       (jQuery version)
    *   - summary: The jQuery element that contains the tab summary
    */
-<<<<<<< HEAD
-  Drupal.theme.verticalTab = settings => {
-=======
   Drupal.theme.verticalTab = (settings) => {
->>>>>>> dev
     const tab = {};
     tab.item = $(
       '<li class="vertical-tabs__menu-item" tabindex="-1"></li>',
@@ -497,18 +435,6 @@
     '<ul class="vertical-tabs__menu"></ul>';
 
   /**
-<<<<<<< HEAD
-   * The wrapper of the details summary message added to the summary element.
-   *
-   * @return {string}
-   *   A string representing the DOM fragment.
-   */
-  Drupal.theme.verticalTabDetailsDescription = () =>
-    '<span class="vertical-tabs__details-summary-summary"></span>';
-
-  /**
-=======
->>>>>>> dev
    * Themes the active vertical tab menu item message.
    *
    * @return {string}

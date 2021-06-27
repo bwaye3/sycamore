@@ -17,11 +17,7 @@ class ContextualLinksTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['block', 'contextual'];
-=======
   protected static $modules = ['block', 'contextual'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -31,11 +27,7 @@ class ContextualLinksTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalLogin($this->createUser(['access contextual links']));
@@ -72,11 +64,7 @@ class ContextualLinksTest extends WebDriverTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test clicking contextual links.
-=======
    * Tests clicking contextual links.
->>>>>>> dev
    */
   public function testContextualLinksClick() {
     $this->container->get('module_installer')->install(['contextual_test']);
@@ -110,11 +98,7 @@ class ContextualLinksTest extends WebDriverTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the contextual links destination.
-=======
    * Tests the contextual links destination.
->>>>>>> dev
    */
   public function testContextualLinksDestination() {
     $this->grantPermissions(Role::load(Role::AUTHENTICATED_ID), [

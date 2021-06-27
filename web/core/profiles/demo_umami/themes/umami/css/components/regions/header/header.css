@@ -16,23 +16,11 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-<<<<<<< HEAD
-  padding: 0.75rem 1rem;
-=======
   padding: 0.75rem 4%;
->>>>>>> dev
 }
 
 @media screen and (min-width: 48em) {
   .region-header {
-<<<<<<< HEAD
-    padding: 0 1rem;
-  }
-}
-
-/* 77em == the max width of .container + 1em either side */
-@media screen and (min-width: 77em) {
-=======
     padding-top: 0;
   }
 }
@@ -44,7 +32,6 @@
 }
 /* Extra large + side margins */
 @media screen and (min-width: 80rem) { /* 1200px (large) + 80px (side margins) = 1280px */
->>>>>>> dev
   .region-header {
     padding: 0;
   }

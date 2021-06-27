@@ -15,11 +15,7 @@ class ContactCategoryTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['contact', 'migrate_drupal', 'user'];
-=======
   protected static $modules = ['contact', 'migrate_drupal', 'user'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

@@ -28,12 +28,9 @@ class DiscoverServiceProvidersTest extends UnitTestCase {
     $kernel = new DrupalKernel('prod', new ClassLoader());
     $kernel->discoverServiceProviders();
 
-<<<<<<< HEAD
-=======
     $reflected_yamls = (new \ReflectionObject($kernel))->getProperty('serviceYamls');
     $reflected_yamls->setAccessible(TRUE);
 
->>>>>>> dev
     $expect = [
       'app' => [
         'core' => 'core/core.services.yml',
@@ -42,12 +39,7 @@ class DiscoverServiceProvidersTest extends UnitTestCase {
         __DIR__ . '/fixtures/custom.yml',
       ],
     ];
-<<<<<<< HEAD
-
-    $this->assertAttributeSame($expect, 'serviceYamls', $kernel);
-=======
     $this->assertSame($expect, $reflected_yamls->getValue($kernel));
->>>>>>> dev
   }
 
   /**
@@ -58,23 +50,16 @@ class DiscoverServiceProvidersTest extends UnitTestCase {
     $kernel = new DrupalKernel('prod', new ClassLoader());
     $kernel->discoverServiceProviders();
 
-<<<<<<< HEAD
-=======
     $reflected_yamls = (new \ReflectionObject($kernel))->getProperty('serviceYamls');
     $reflected_yamls->setAccessible(TRUE);
 
->>>>>>> dev
     $expect = [
       'app' => [
         'core' => 'core/core.services.yml',
       ],
       'site' => [],
     ];
-<<<<<<< HEAD
-    $this->assertAttributeSame($expect, 'serviceYamls', $kernel);
-=======
     $this->assertSame($expect, $reflected_yamls->getValue($kernel));
->>>>>>> dev
   }
 
 }

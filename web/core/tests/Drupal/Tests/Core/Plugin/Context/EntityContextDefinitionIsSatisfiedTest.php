@@ -45,11 +45,7 @@ class EntityContextDefinitionIsSatisfiedTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $namespaces = new \ArrayObject([
@@ -87,15 +83,9 @@ class EntityContextDefinitionIsSatisfiedTest extends UnitTestCase {
    *
    * @param bool $expected
    *   The expected outcome.
-<<<<<<< HEAD
-   * @param \Drupal\Core\Plugin\Context\EntityContextDefinition $requirement
-   *   The requirement to check against.
-   * @param \Drupal\Core\Plugin\Context\EntityContextDefinition $definition
-=======
    * @param \Drupal\Core\Plugin\Context\ContextDefinition $requirement
    *   The requirement to check against.
    * @param \Drupal\Core\Plugin\Context\ContextDefinition $definition
->>>>>>> dev
    *   The context definition to check.
    * @param mixed $value
    *   (optional) The value to set on the context, defaults to NULL.

@@ -7,11 +7,7 @@ use Drupal\Core\Routing\RouteMatch;
 use Drupal\Core\Url;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -45,19 +41,11 @@ class AccessDeniedSubscriber implements EventSubscriberInterface {
   /**
    * Redirects users when access is denied.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $event
-   *   The event to process.
-   */
-  public function onException(GetResponseForExceptionEvent $event) {
-    $exception = $event->getException();
-=======
    * @param \Symfony\Component\HttpKernel\Event\ExceptionEvent $event
    *   The event to process.
    */
   public function onException(ExceptionEvent $event) {
     $exception = $event->getThrowable();
->>>>>>> dev
     if ($exception instanceof AccessDeniedHttpException) {
       $route_name = RouteMatch::createFromRequest($event->getRequest())->getRouteName();
       $redirect_url = NULL;
@@ -77,12 +65,9 @@ class AccessDeniedSubscriber implements EventSubscriberInterface {
       elseif ($route_name === 'user.page') {
         $redirect_url = Url::fromRoute('user.login', [], ['absolute' => TRUE]);
       }
-<<<<<<< HEAD
-=======
       elseif ($route_name === 'user.logout') {
         $redirect_url = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
       }
->>>>>>> dev
 
       if ($redirect_url) {
         $event->setResponse(new RedirectResponse($redirect_url->toString()));

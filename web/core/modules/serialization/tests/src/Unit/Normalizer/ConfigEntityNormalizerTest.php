@@ -75,12 +75,8 @@ class ConfigEntityNormalizerTest extends UnitTestCase {
         return $entity;
       });
 
-<<<<<<< HEAD
-    // Stubs for the denormalizer going from entity manager to entity storage.
-=======
     // Stubs for the denormalizer going from entity type manager to entity
     // storage.
->>>>>>> dev
     $entity_type_id = $this->randomMachineName();
     $entity_type_class = $this->randomMachineName();
     $entity_type_manager = $this->prophesize(EntityTypeManagerInterface::class);

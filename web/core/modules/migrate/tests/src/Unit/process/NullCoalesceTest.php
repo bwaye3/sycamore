@@ -77,18 +77,6 @@ class NullCoalesceTest extends MigrateProcessTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests null_coalesce with default value.
-   *
-   * @covers ::transform
-   */
-  public function testTransformWithDefault() {
-    $plugin = new NullCoalesce(['default_value' => 'default'], 'null_coalesce', []);
-    $result = $plugin->transform([NULL, NULL, 'Test', 'Test 2'], $this->migrateExecutable, $this->row, 'destination_property');
-    $this->assertSame('Test', $result);
-
-    $this->assertSame('default', $plugin->transform([NULL, NULL], $this->migrateExecutable, $this->row, 'destination_property'));
-=======
    * Tests null_coalesce.
    *
    * @param array $source
@@ -131,7 +119,6 @@ class NullCoalesceTest extends MigrateProcessTestCase {
         'expected_result' => NULL,
       ],
     ];
->>>>>>> dev
   }
 
 }

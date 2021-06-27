@@ -17,11 +17,7 @@ class MigrateUserRoleTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->executeMigration('d7_user_role');
   }
@@ -40,11 +36,7 @@ class MigrateUserRoleTest extends MigrateDrupal7TestBase {
     /** @var \Drupal\user\RoleInterface $entity */
     $entity = Role::load($id);
     $this->assertInstanceOf(RoleInterface::class, $entity);
-<<<<<<< HEAD
-    $this->assertIdentical($label, $entity->label());
-=======
     $this->assertSame($label, $entity->label());
->>>>>>> dev
 
     if (isset($original_rid)) {
       $permissions = Database::getConnection('default', 'migrate')
@@ -54,11 +46,7 @@ class MigrateUserRoleTest extends MigrateDrupal7TestBase {
         ->execute()
         ->fetchCol();
       sort($permissions);
-<<<<<<< HEAD
-      $this->assertIdentical($permissions, $entity->getPermissions());
-=======
       $this->assertSame($permissions, $entity->getPermissions());
->>>>>>> dev
     }
   }
 

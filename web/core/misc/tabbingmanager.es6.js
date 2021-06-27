@@ -27,11 +27,7 @@
  * @event drupalTabbingContextDeactivated
  */
 
-<<<<<<< HEAD
-(function($, Drupal) {
-=======
 (function ($, Drupal, { tabbable, isTabbable }) {
->>>>>>> dev
   /**
    * Provides an API for managing page tabbing order modifications.
    *
@@ -120,15 +116,9 @@
        * Makes elements outside of the specified set of elements unreachable via
        * the tab key.
        *
-<<<<<<< HEAD
-       * @param {jQuery} elements
-       *   The set of elements to which tabbing should be constrained. Can also
-       *   be a jQuery-compatible selector string.
-=======
        * @param {jQuery|Selector|Element|ElementArray|object|selection} elements
        *   The set of elements to which tabbing should be constrained. Can also
        *   be any jQuery-compatible argument.
->>>>>>> dev
        *
        * @return {Drupal~TabbingContext}
        *   The TabbingContext instance.
@@ -146,11 +136,6 @@
 
         // The "active tabbing set" are the elements tabbing should be constrained
         // to.
-<<<<<<< HEAD
-        const $elements = $(elements)
-          .find(':tabbable')
-          .addBack(':tabbable');
-=======
         let tabbableElements = [];
         $(elements).each((index, rootElement) => {
           tabbableElements = [...tabbableElements, ...tabbable(rootElement)];
@@ -158,17 +143,12 @@
             tabbableElements = [...tabbableElements, rootElement];
           }
         });
->>>>>>> dev
 
         const tabbingContext = new TabbingContext({
           // The level is the current height of the stack before this new
           // tabbingContext is pushed on top of the stack.
           level: this.stack.length,
-<<<<<<< HEAD
-          $tabbableElements: $elements,
-=======
           $tabbableElements: $(tabbableElements),
->>>>>>> dev
         });
 
         this.stack.push(tabbingContext);
@@ -222,11 +202,7 @@
         const $set = tabbingContext.$tabbableElements;
         const level = tabbingContext.level;
         // Determine which elements are reachable via tabbing by default.
-<<<<<<< HEAD
-        const $disabledSet = $(':tabbable')
-=======
         const $disabledSet = $(tabbable(document.body))
->>>>>>> dev
           // Exclude elements of the active tabbing set.
           .not($set);
         // Set the disabled set on the tabbingContext.
@@ -394,8 +370,4 @@
    * @type {Drupal~TabbingManager}
    */
   Drupal.tabbingManager = new TabbingManager();
-<<<<<<< HEAD
-})(jQuery, Drupal);
-=======
 })(jQuery, Drupal, window.tabbable);
->>>>>>> dev

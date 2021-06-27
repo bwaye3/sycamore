@@ -113,11 +113,7 @@ class DbUpdateController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-<<<<<<< HEAD
-      $container->get('app.root'),
-=======
       $container->getParameter('app.root'),
->>>>>>> dev
       $container->get('keyvalue.expirable'),
       $container->get('cache.default'),
       $container->get('state'),
@@ -514,13 +510,10 @@ class DbUpdateController extends ControllerBase {
   /**
    * Renders a list of requirement errors or warnings.
    *
-<<<<<<< HEAD
-=======
    * @param $severity
    *   The severity of the message, as per RFC 3164.
    * @param array $requirements
    *   The array of requirement values.
->>>>>>> dev
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The current request.
    *

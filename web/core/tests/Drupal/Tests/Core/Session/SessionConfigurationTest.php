@@ -246,8 +246,6 @@ class SessionConfigurationTest extends UnitTestCase {
     }, $data);
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Tests constructor's default settings.
    *
@@ -277,5 +275,4 @@ class SessionConfigurationTest extends UnitTestCase {
     ];
   }
 
->>>>>>> dev
 }

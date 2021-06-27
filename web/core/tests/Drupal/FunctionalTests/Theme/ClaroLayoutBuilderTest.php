@@ -19,11 +19,7 @@ class ClaroLayoutBuilderTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'views',
     'layout_builder',
     'layout_builder_views_test',
@@ -37,11 +33,7 @@ class ClaroLayoutBuilderTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalPlaceBlock('local_tasks_block', ['region' => 'header']);
@@ -94,11 +86,7 @@ class ClaroLayoutBuilderTest extends BrowserTestBase {
     $assert_session->linkNotExists('Manage layout');
     $assert_session->fieldDisabled('layout[allow_custom]');
 
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, ['layout[enabled]' => TRUE], 'Save');
-=======
     $this->submitForm(['layout[enabled]' => TRUE], 'Save');
->>>>>>> dev
     $assert_session->linkExists('Manage layout');
     $this->clickLink('Manage layout');
 

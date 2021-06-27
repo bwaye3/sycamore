@@ -58,10 +58,6 @@ display:
           offset: 0
         type: none
     display_plugin: default
-<<<<<<< HEAD
-    display_title: Master
-=======
     display_title: Default
->>>>>>> dev
     id: default
     position: 0

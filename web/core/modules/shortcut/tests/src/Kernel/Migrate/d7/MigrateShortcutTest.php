@@ -18,11 +18,7 @@ class MigrateShortcutTest extends MigrateDrupal7TestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'link',
     'field',
     'shortcut',
@@ -32,23 +28,12 @@ class MigrateShortcutTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-    parent::setUp();
-    $this->installEntitySchema('shortcut');
-    $this->installEntitySchema('menu_link_content');
-    \Drupal::service('router.builder')->rebuild();
-    $this->executeMigration('d7_shortcut_set');
-    $this->executeMigration('d7_menu');
-    $this->executeMigration('d7_menu_links');
-=======
   protected function setUp(): void {
     parent::setUp();
     $this->installEntitySchema('shortcut');
     $this->installEntitySchema('menu_link_content');
     $this->executeMigration('d7_shortcut_set');
     $this->executeMigration('d7_menu');
->>>>>>> dev
     $this->executeMigration('d7_shortcut');
   }
 
@@ -68,15 +53,6 @@ class MigrateShortcutTest extends MigrateDrupal7TestBase {
     $shortcut = Shortcut::load($id);
     $this->assertInstanceOf(ShortcutInterface::class, $shortcut);
     /** @var \Drupal\shortcut\ShortcutInterface $shortcut */
-<<<<<<< HEAD
-    $this->assertIdentical($title, $shortcut->getTitle());
-    $this->assertIdentical($weight, $shortcut->getWeight());
-    $this->assertIdentical($url, $shortcut->getUrl()->toString());
-  }
-
-  /**
-   * Test the shortcut migration.
-=======
     $this->assertSame($title, $shortcut->getTitle());
     $this->assertSame($weight, $shortcut->getWeight());
     $this->assertSame($url, $shortcut->getUrl()->toString());
@@ -84,7 +60,6 @@ class MigrateShortcutTest extends MigrateDrupal7TestBase {
 
   /**
    * Tests the shortcut migration.
->>>>>>> dev
    */
   public function testShortcutMigration() {
     // Check if the 4 shortcuts were migrated correctly.

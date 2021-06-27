@@ -9,10 +9,6 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
-<<<<<<< HEAD
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-=======
->>>>>>> dev
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -20,11 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Base class for 'DateTime Field formatter' plugin implementations.
  */
-<<<<<<< HEAD
-abstract class DateTimeFormatterBase extends FormatterBase implements ContainerFactoryPluginInterface {
-=======
 abstract class DateTimeFormatterBase extends FormatterBase {
->>>>>>> dev
 
   /**
    * The date formatter service.

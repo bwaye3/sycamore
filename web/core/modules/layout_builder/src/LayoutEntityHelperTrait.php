@@ -11,10 +11,6 @@ use Drupal\Core\Plugin\Context\Context;
 use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\Core\Plugin\Context\EntityContext;
 use Drupal\layout_builder\Entity\LayoutEntityDisplayInterface;
-<<<<<<< HEAD
-use Drupal\layout_builder\Plugin\SectionStorage\OverridesSectionStorage;
-=======
->>>>>>> dev
 
 /**
  * Methods to help with entities using the layout builder.
@@ -128,31 +124,6 @@ trait LayoutEntityHelperTrait {
   }
 
   /**
-<<<<<<< HEAD
-   * Determines if an entity is using a field for the layout override.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *   The entity.
-   *
-   * @return bool
-   *   TRUE if the entity is using a field for a layout override.
-   *
-   * @deprecated in drupal:8.7.0 and is removed from drupal:9.0.0.
-   *   To determine if an entity has a layout override, use
-   *   \Drupal\layout_builder\LayoutEntityHelperTrait::getSectionStorageForEntity()
-   *   and check whether the result is an instance of
-   *   \Drupal\layout_builder\DefaultsSectionStorageInterface.
-   *
-   * @see https://www.drupal.org/node/3030609
-   */
-  protected function isEntityUsingFieldOverride(EntityInterface $entity) {
-    @trigger_error('\Drupal\layout_builder\LayoutEntityHelperTrait::isEntityUsingFieldOverride() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. Internal storage of overrides may change so the existence of the field does not necessarily guarantee an overridable entity. See https://www.drupal.org/node/3030609.', E_USER_DEPRECATED);
-    return $entity instanceof FieldableEntityInterface && $entity->hasField(OverridesSectionStorage::FIELD_NAME);
-  }
-
-  /**
-=======
->>>>>>> dev
    * Determines if the original entity used the default section storage.
    *
    * This method can be used during the entity save process to determine whether

@@ -17,11 +17,7 @@ class MessageEntityTest extends EntityKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'system',
     'contact',
     'field',
@@ -29,36 +25,19 @@ class MessageEntityTest extends EntityKernelTestBase {
     'contact_test',
   ];
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installConfig(['contact', 'contact_test']);
   }
 
   /**
-<<<<<<< HEAD
-   * Test some of the methods.
-=======
    * Tests some of the methods.
->>>>>>> dev
    */
   public function testMessageMethods() {
     $message_storage = $this->container->get('entity_type.manager')->getStorage('contact_message');
     $message = $message_storage->create(['contact_form' => 'feedback']);
 
     // Check for empty values first.
-<<<<<<< HEAD
-    $this->assertEqual($message->getMessage(), '');
-    $this->assertEqual($message->getSenderName(), '');
-    $this->assertEqual($message->getSenderMail(), '');
-    $this->assertFalse($message->copySender());
-
-    // Check for default values.
-    $this->assertEqual('feedback', $message->getContactForm()->id());
-=======
     $this->assertEquals('', $message->getMessage());
     $this->assertEquals('', $message->getSenderName());
     $this->assertEquals('', $message->getSenderMail());
@@ -66,7 +45,6 @@ class MessageEntityTest extends EntityKernelTestBase {
 
     // Check for default values.
     $this->assertEquals('feedback', $message->getContactForm()->id());
->>>>>>> dev
     $this->assertFalse($message->isPersonal());
 
     // Set some values and check for them afterwards.
@@ -75,15 +53,9 @@ class MessageEntityTest extends EntityKernelTestBase {
     $message->setSenderMail('sender_mail');
     $message->setCopySender(TRUE);
 
-<<<<<<< HEAD
-    $this->assertEqual($message->getMessage(), 'welcome_message');
-    $this->assertEqual($message->getSenderName(), 'sender_name');
-    $this->assertEqual($message->getSenderMail(), 'sender_mail');
-=======
     $this->assertEquals('welcome_message', $message->getMessage());
     $this->assertEquals('sender_name', $message->getSenderName());
     $this->assertEquals('sender_mail', $message->getSenderMail());
->>>>>>> dev
     $this->assertTrue($message->copySender());
 
     $no_access_user = $this->createUser(['uid' => 2]);

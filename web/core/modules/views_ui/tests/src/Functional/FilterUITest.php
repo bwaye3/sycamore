@@ -22,11 +22,7 @@ class FilterUITest extends UITestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['views_ui', 'node'];
-=======
   protected static $modules = ['views_ui', 'node'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -36,11 +32,7 @@ class FilterUITest extends UITestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
     $this->drupalCreateContentType(['type' => 'page']);
   }
@@ -58,30 +50,18 @@ class FilterUITest extends UITestBase {
     $path = 'admin/structure/views/nojs/handler/test_filter_in_operator_ui/default/filter/type';
     $this->drupalGet($path);
     // Verifies that "Limit list to selected items" option is not selected.
-<<<<<<< HEAD
-    $this->assertFieldByName('options[expose][reduce]', FALSE);
-=======
     $this->assertSession()->fieldValueEquals('options[expose][reduce]', FALSE);
->>>>>>> dev
 
     // Select "Limit list to selected items" option and apply.
     $edit = [
       'options[expose][reduce]' => TRUE,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm($path, $edit, t('Apply'));
-
-    // Verifies that the option was saved as expected.
-    $this->drupalGet($path);
-    $this->assertFieldByName('options[expose][reduce]', TRUE);
-=======
     $this->drupalGet($path);
     $this->submitForm($edit, 'Apply');
 
     // Verifies that the option was saved as expected.
     $this->drupalGet($path);
     $this->assertSession()->fieldValueEquals('options[expose][reduce]', TRUE);
->>>>>>> dev
   }
 
   /**
@@ -100,25 +80,6 @@ class FilterUITest extends UITestBase {
 
     // Tests that we can create a new filter group from UI.
     $this->drupalGet('admin/structure/views/nojs/rearrange-filter/test_filter_groups/page');
-<<<<<<< HEAD
-    $this->assertNoRaw('<span>Group 3</span>', 'Group 3 has not been added yet.');
-
-    // Create 2 new groups.
-    $this->drupalPostForm(NULL, [], t('Create new filter group'));
-    $this->drupalPostForm(NULL, [], t('Create new filter group'));
-
-    // Remove the new group 3.
-    $this->drupalPostForm(NULL, [], t('Remove group 3'));
-
-    // Verify that the group 4 is now named as 3.
-    $this->assertRaw('<span>Group 3</span>', 'Group 3 still exists.');
-
-    // Remove the group 3 again.
-    $this->drupalPostForm(NULL, [], t('Remove group 3'));
-
-    // Group 3 now does not exist.
-    $this->assertNoRaw('<span>Group 3</span>', 'Group 3 has not been added yet.');
-=======
     $this->assertNoRaw('<span>Group 3</span>');
 
     // Create 2 new groups.
@@ -136,7 +97,6 @@ class FilterUITest extends UITestBase {
 
     // Group 3 now does not exist.
     $this->assertNoRaw('<span>Group 3</span>');
->>>>>>> dev
   }
 
   /**
@@ -154,41 +114,26 @@ class FilterUITest extends UITestBase {
     $edit = [
       'options[expose][identifier]' => '',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm($path, $edit, t('Apply'));
-    $this->assertText('The identifier is required if the filter is exposed.');
-=======
     $this->drupalGet($path);
     $this->submitForm($edit, 'Apply');
     $this->assertSession()->pageTextContains('The identifier is required if the filter is exposed.');
->>>>>>> dev
 
     // Set the identifier to 'value'.
     $edit = [
       'options[expose][identifier]' => 'value',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm($path, $edit, t('Apply'));
-    $this->assertText('This identifier is not allowed.');
-=======
     $this->drupalGet($path);
     $this->submitForm($edit, 'Apply');
     $this->assertSession()->pageTextContains('This identifier is not allowed.');
->>>>>>> dev
 
     // Try a few restricted values for the identifier.
     foreach (['value value', 'value^value'] as $identifier) {
       $edit = [
         'options[expose][identifier]' => $identifier,
       ];
-<<<<<<< HEAD
-      $this->drupalPostForm($path, $edit, t('Apply'));
-      $this->assertText('This identifier has illegal characters.');
-=======
       $this->drupalGet($path);
       $this->submitForm($edit, 'Apply');
       $this->assertSession()->pageTextContains('This identifier has illegal characters.');
->>>>>>> dev
     }
   }
 

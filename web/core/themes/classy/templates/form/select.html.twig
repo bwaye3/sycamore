@@ -10,11 +10,7 @@
  * @see template_preprocess_select()
  */
 #}
-<<<<<<< HEAD
-{% spaceless %}
-=======
 {% apply spaceless %}
->>>>>>> dev
   <select{{ attributes }}>
     {% for option in options %}
       {% if option.type == 'optgroup' %}
@@ -28,8 +24,4 @@
       {% endif %}
     {% endfor %}
   </select>
-<<<<<<< HEAD
-{% endspaceless %}
-=======
 {% endapply %}
->>>>>>> dev

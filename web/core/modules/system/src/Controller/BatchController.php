@@ -35,11 +35,7 @@ class BatchController implements ContainerInjectionInterface {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-<<<<<<< HEAD
-      $container->get('app.root')
-=======
       $container->getParameter('app.root')
->>>>>>> dev
     );
   }
 

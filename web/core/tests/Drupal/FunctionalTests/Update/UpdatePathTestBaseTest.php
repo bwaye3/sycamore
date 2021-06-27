@@ -10,10 +10,6 @@ use Drupal\Core\Database\Database;
  * Tests the update path base class.
  *
  * @group Update
-<<<<<<< HEAD
- * @group legacy
-=======
->>>>>>> dev
  */
 class UpdatePathTestBaseTest extends UpdatePathTestBase {
 
@@ -26,11 +22,7 @@ class UpdatePathTestBaseTest extends UpdatePathTestBase {
    * {@inheritdoc}
    */
   protected function setDatabaseDumpFiles() {
-<<<<<<< HEAD
-    $this->databaseDumpFiles[] = __DIR__ . '/../../../../modules/system/tests/fixtures/update/drupal-8.8.0.bare.standard.php.gz';
-=======
     $this->databaseDumpFiles[] = __DIR__ . '/../../../../modules/system/tests/fixtures/update/drupal-9.0.0.bare.standard.php.gz';
->>>>>>> dev
     $this->databaseDumpFiles[] = __DIR__ . '/../../../../modules/system/tests/fixtures/update/drupal-8.update-test-schema-enabled.php';
     $this->databaseDumpFiles[] = __DIR__ . '/../../../../modules/system/tests/fixtures/update/drupal-8.update-test-semver-update-n-enabled.php';
   }
@@ -42,26 +34,17 @@ class UpdatePathTestBaseTest extends UpdatePathTestBase {
     // Set a value in the cache to prove caches are cleared.
     \Drupal::service('cache.default')->set(__CLASS__, 'Test');
 
-<<<<<<< HEAD
-    foreach (['user' => 8100, 'node' => 8700, 'system' => 8805, 'update_test_schema' => 8000] as $module => $schema) {
-      $this->assertEqual(drupal_get_installed_schema_version($module), $schema, new FormattableMarkup('Module @module schema is @schema', ['@module' => $module, '@schema' => $schema]));
-=======
     foreach (['user' => 8100, 'node' => 8700, 'system' => 8901, 'update_test_schema' => 8000] as $module => $schema) {
       $this->assertEquals($schema, drupal_get_installed_schema_version($module), new FormattableMarkup('Module @module schema is @schema', ['@module' => $module, '@schema' => $schema]));
->>>>>>> dev
     }
 
     // Ensure that all {router} entries can be unserialized. If they cannot be
     // unserialized a notice will be thrown by PHP.
 
-<<<<<<< HEAD
-    $result = \Drupal::database()->query("SELECT name, route from {router}")->fetchAllKeyed(0, 1);
-=======
     $result = \Drupal::database()->select('router', 'r')
       ->fields('r', ['name', 'route'])
       ->execute()
       ->fetchAllKeyed(0, 1);
->>>>>>> dev
     // For the purpose of fetching the notices and displaying more helpful error
     // messages, let's override the error handler temporarily.
     set_error_handler(function ($severity, $message, $filename, $lineno) {
@@ -81,38 +64,23 @@ class UpdatePathTestBaseTest extends UpdatePathTestBase {
     // be broken.
     $this->runUpdates();
     $this->assertEquals('standard', \Drupal::config('core.extension')->get('profile'));
-<<<<<<< HEAD
-    $this->assertEqual(\Drupal::config('system.site')->get('name'), 'Site-Install');
-    $this->drupalGet('<front>');
-    $this->assertText('Site-Install');
-=======
     $this->assertEquals('Site-Install', \Drupal::config('system.site')->get('name'));
     $this->drupalGet('<front>');
     $this->assertSession()->pageTextContains('Site-Install');
->>>>>>> dev
 
     // Ensure that the database tasks have been run during set up. Neither MySQL
     // nor SQLite make changes that are testable.
     $database = $this->container->get('database');
     if ($database->driver() == 'pgsql') {
-<<<<<<< HEAD
-      $this->assertEqual('on', $database->query("SHOW standard_conforming_strings")->fetchField());
-      $this->assertEqual('escape', $database->query("SHOW bytea_output")->fetchField());
-=======
       $this->assertEquals('on', $database->query("SHOW standard_conforming_strings")->fetchField());
       $this->assertEquals('escape', $database->query("SHOW bytea_output")->fetchField());
->>>>>>> dev
     }
     // Ensure the test runners cache has been cleared.
     $this->assertFalse(\Drupal::service('cache.default')->get(__CLASS__));
   }
 
   /**
-<<<<<<< HEAD
-   * Test that updates are properly run.
-=======
    * Tests that updates are properly run.
->>>>>>> dev
    */
   public function testUpdateHookN() {
     $connection = Database::getConnection();
@@ -129,19 +97,11 @@ class UpdatePathTestBaseTest extends UpdatePathTestBase {
     $container_cannot_be_saved_messages = array_filter(iterator_to_array($select->execute()), function ($row) {
       return strpos($row->message, 'Container cannot be saved to cache.') !== FALSE;
     });
-<<<<<<< HEAD
-    $this->assertEqual([], $container_cannot_be_saved_messages);
-
-    // Ensure schema has changed.
-    $this->assertEqual(drupal_get_installed_schema_version('update_test_schema', TRUE), 8001);
-    $this->assertEqual(drupal_get_installed_schema_version('update_test_semver_update_n', TRUE), 8001);
-=======
     $this->assertEquals([], $container_cannot_be_saved_messages);
 
     // Ensure schema has changed.
     $this->assertEquals(8001, drupal_get_installed_schema_version('update_test_schema', TRUE));
     $this->assertEquals(8001, drupal_get_installed_schema_version('update_test_semver_update_n', TRUE));
->>>>>>> dev
     // Ensure the index was added for column a.
     $this->assertTrue($connection->schema()->indexExists('update_test_schema_table', 'test'), 'Version 8001 of the update_test_schema module is installed.');
     // Ensure update_test_semver_update_n_update_8001 was run.
@@ -253,11 +213,7 @@ class UpdatePathTestBaseTest extends UpdatePathTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the database fixtures are setup correctly.
-=======
    * Tests the database fixtures are setup correctly.
->>>>>>> dev
    */
   public function testFixturesSetup() {
     $this->assertCount(3, $this->databaseDumpFiles);

@@ -21,11 +21,7 @@ class GlossaryTest extends ViewTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node'];
-=======
   protected static $modules = ['node'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -66,11 +62,7 @@ class GlossaryTest extends ViewTestBase {
 
     // Check that the amount of nodes per char.
     foreach ($view->result as $item) {
-<<<<<<< HEAD
-      $this->assertEqual($nodes_per_char[$item->title_truncated], $item->num_records);
-=======
       $this->assertEquals($nodes_per_char[$item->title_truncated], $item->num_records);
->>>>>>> dev
     }
 
     // Enable the glossary to be displayed.
@@ -129,11 +121,7 @@ class GlossaryTest extends ViewTestBase {
       // The rendered output looks like "<a href=''>X</a> | (count)" so let's
       // figure out the int.
       $result_count = explode(' ', trim(str_replace(['|', '(', ')'], '', $result[0]->getText())))[1];
-<<<<<<< HEAD
-      $this->assertEqual($result_count, $count, 'The expected number got rendered.');
-=======
       $this->assertEquals($count, $result_count, 'The expected number got rendered.');
->>>>>>> dev
     }
   }
 

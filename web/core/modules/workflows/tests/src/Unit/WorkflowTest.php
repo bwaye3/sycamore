@@ -21,11 +21,7 @@ class WorkflowTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     // Create a container so that the plugin manager and workflow type can be
     // mocked.
@@ -86,13 +82,8 @@ class WorkflowTest extends UnitTestCase {
     $workflow = new Workflow(['id' => 'test', 'type' => 'test_type'], 'workflow');
 
     // Getting states works when there are none.
-<<<<<<< HEAD
-    $this->assertArrayEquals([], array_keys($workflow->getTypePlugin()->getStates()));
-    $this->assertArrayEquals([], array_keys($workflow->getTypePlugin()->getStates([])));
-=======
     $this->assertSame([], $workflow->getTypePlugin()->getStates());
     $this->assertSame([], $workflow->getTypePlugin()->getStates([]));
->>>>>>> dev
 
     $workflow
       ->getTypePlugin()
@@ -101,11 +92,7 @@ class WorkflowTest extends UnitTestCase {
       ->addState('archived', 'Archived');
 
     // States are stored in alphabetical key order.
-<<<<<<< HEAD
-    $this->assertArrayEquals([
-=======
     $this->assertEquals([
->>>>>>> dev
       'archived',
       'draft',
       'published',
@@ -115,27 +102,6 @@ class WorkflowTest extends UnitTestCase {
     $this->assertInstanceOf(State::class, $workflow->getTypePlugin()->getStates()['draft']);
 
     // Passing in no IDs returns all states.
-<<<<<<< HEAD
-    $this->assertArrayEquals(['draft', 'published', 'archived'], array_keys($workflow->getTypePlugin()->getStates()));
-
-    // The order of states is by weight.
-    $workflow->getTypePlugin()->setStateWeight('published', -1);
-    $this->assertArrayEquals(['published', 'draft', 'archived'], array_keys($workflow->getTypePlugin()->getStates()));
-
-    // The label is also used for sorting if weights are equal.
-    $workflow->getTypePlugin()->setStateWeight('archived', 0);
-    $this->assertArrayEquals(['published', 'archived', 'draft'], array_keys($workflow->getTypePlugin()->getStates()));
-
-    // You can limit the states returned by passing in states IDs.
-    $this->assertArrayEquals(['archived', 'draft'], array_keys($workflow->getTypePlugin()->getStates(['draft', 'archived'])));
-
-    // An empty array does not load all states.
-    $this->assertArrayEquals([], array_keys($workflow->getTypePlugin()->getStates([])));
-  }
-
-  /**
-   * Test numeric IDs when added to a workflow.
-=======
     $this->assertEquals(['draft', 'published', 'archived'], array_keys($workflow->getTypePlugin()->getStates()));
 
     // The order of states is by weight.
@@ -155,7 +121,6 @@ class WorkflowTest extends UnitTestCase {
 
   /**
    * Tests numeric IDs when added to a workflow.
->>>>>>> dev
    */
   public function testNumericIdSorting() {
     $workflow = new Workflow(['id' => 'test', 'type' => 'test_type'], 'workflow');
@@ -429,13 +394,8 @@ class WorkflowTest extends UnitTestCase {
     $workflow = new Workflow(['id' => 'test', 'type' => 'test_type'], 'workflow');
 
     // Getting transitions works when there are none.
-<<<<<<< HEAD
-    $this->assertArrayEquals([], array_keys($workflow->getTypePlugin()->getTransitions()));
-    $this->assertArrayEquals([], array_keys($workflow->getTypePlugin()->getTransitions([])));
-=======
     $this->assertSame([], $workflow->getTypePlugin()->getTransitions());
     $this->assertSame([], $workflow->getTypePlugin()->getTransitions([]));
->>>>>>> dev
 
     // By default states are ordered in the order added.
     $workflow
@@ -446,35 +406,12 @@ class WorkflowTest extends UnitTestCase {
       ->addTransition('a_a', 'A to A', ['a'], 'a');
 
     // Transitions are stored in alphabetical key order in configuration.
-<<<<<<< HEAD
-    $this->assertArrayEquals(['a_a', 'a_b'], array_keys($workflow->getTypePlugin()->getConfiguration()['transitions']));
-=======
     $this->assertEquals(['a_a', 'a_b'], array_keys($workflow->getTypePlugin()->getConfiguration()['transitions']));
->>>>>>> dev
 
     // Ensure we're returning transition objects.
     $this->assertInstanceOf(Transition::class, $workflow->getTypePlugin()->getTransitions()['a_a']);
 
     // Passing in no IDs returns all transitions.
-<<<<<<< HEAD
-    $this->assertArrayEquals(['a_b', 'a_a'], array_keys($workflow->getTypePlugin()->getTransitions()));
-
-    // The order of states is by weight.
-    $workflow->getTypePlugin()->setTransitionWeight('a_a', -1);
-    $this->assertArrayEquals(['a_a', 'a_b'], array_keys($workflow->getTypePlugin()->getTransitions()));
-
-    // If all weights are equal it will fallback to labels.
-    $workflow->getTypePlugin()->setTransitionWeight('a_a', 0);
-    $this->assertArrayEquals(['a_a', 'a_b'], array_keys($workflow->getTypePlugin()->getTransitions()));
-    $workflow->getTypePlugin()->setTransitionLabel('a_b', 'A B');
-    $this->assertArrayEquals(['a_b', 'a_a'], array_keys($workflow->getTypePlugin()->getTransitions()));
-
-    // You can limit the states returned by passing in states IDs.
-    $this->assertArrayEquals(['a_a'], array_keys($workflow->getTypePlugin()->getTransitions(['a_a'])));
-
-    // An empty array does not load all states.
-    $this->assertArrayEquals([], array_keys($workflow->getTypePlugin()->getTransitions([])));
-=======
     $this->assertEquals(['a_b', 'a_a'], array_keys($workflow->getTypePlugin()->getTransitions()));
 
     // The order of states is by weight.
@@ -492,7 +429,6 @@ class WorkflowTest extends UnitTestCase {
 
     // An empty array does not load all states.
     $this->assertSame([], $workflow->getTypePlugin()->getTransitions([]));
->>>>>>> dev
   }
 
   /**

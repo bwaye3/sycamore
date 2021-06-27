@@ -2,10 +2,6 @@
 
 namespace Drupal\Tests\views\Functional;
 
-<<<<<<< HEAD
-use Drupal\Component\Render\FormattableMarkup;
-=======
->>>>>>> dev
 use Drupal\Tests\Traits\Core\CronRunTrait;
 
 /**
@@ -22,11 +18,7 @@ class SearchIntegrationTest extends ViewTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'search'];
-=======
   protected static $modules = ['node', 'search'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -125,15 +117,9 @@ class SearchIntegrationTest extends ViewTestBase {
     $xpath = '//div[@class="views-row"]//a';
     /** @var \Behat\Mink\Element\NodeElement[] $results */
     $results = $this->xpath($xpath);
-<<<<<<< HEAD
-    $this->assertEqual($results[0]->getText(), "Drupal's search rocks <em>really</em> rocks!");
-    $this->assertEqual($results[1]->getText(), "Drupal's search rocks.");
-    $this->assertEscaped("Drupal's search rocks <em>really</em> rocks!");
-=======
     $this->assertEquals("Drupal's search rocks <em>really</em> rocks!", $results[0]->getText());
     $this->assertEquals("Drupal's search rocks.", $results[1]->getText());
     $this->assertSession()->assertEscaped("Drupal's search rocks <em>really</em> rocks!");
->>>>>>> dev
 
     // Test sorting with another set of titles.
     $node = [
@@ -148,13 +134,8 @@ class SearchIntegrationTest extends ViewTestBase {
     $xpath = '//div[@class="views-row"]//a';
     /** @var \SimpleXMLElement[] $results */
     $results = $this->xpath($xpath);
-<<<<<<< HEAD
-    $this->assertEqual($results[0]->getText(), "Testing one one one");
-    $this->assertEqual($results[1]->getText(), "Testing one two two two");
-=======
     $this->assertEquals("Testing one one one", $results[0]->getText());
     $this->assertEquals("Testing one two two two", $results[1]->getText());
->>>>>>> dev
   }
 
   /**
@@ -164,14 +145,6 @@ class SearchIntegrationTest extends ViewTestBase {
    *   Link label to assert.
    *
    * @return bool
-<<<<<<< HEAD
-   *   TRUE if the assertion succeeded, FALSE otherwise.
-   */
-  protected function assertOneLink($label) {
-    $links = $this->xpath('//a[normalize-space(text())=:label]', [':label' => $label]);
-    $message = new FormattableMarkup('Link with label %label found once.', ['%label' => $label]);
-    return $this->assert(isset($links[0]) && !isset($links[1]), $message);
-=======
    *   TRUE if the assertion succeeded.
    */
   protected function assertOneLink($label) {
@@ -180,7 +153,6 @@ class SearchIntegrationTest extends ViewTestBase {
     ]);
     $this->assertSession()->elementsCount('xpath', $xpath, 1);
     return TRUE;
->>>>>>> dev
   }
 
 }

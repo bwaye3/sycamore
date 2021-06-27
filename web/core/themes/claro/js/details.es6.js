@@ -17,11 +17,7 @@
     attach(context) {
       $(context)
         .once('claroDetails')
-<<<<<<< HEAD
-        .on('click', event => {
-=======
         .on('click', (event) => {
->>>>>>> dev
           if (event.target.nodeName === 'SUMMARY') {
             $(event.target).trigger('focus');
           }
@@ -48,26 +44,15 @@
       $(context)
         .find('details .details-title')
         .once('claroDetailsToggleShim')
-<<<<<<< HEAD
-        .on('keypress', event => {
-          const keyCode = event.keyCode || event.charCode;
-          if (keyCode === 32) {
-            $(event.target)
-              .closest('summary')
-              .trigger('click');
-=======
         .on('keypress', (event) => {
           const keyCode = event.keyCode || event.charCode;
           if (keyCode === 32) {
             $(event.target).closest('summary').trigger('click');
->>>>>>> dev
             event.preventDefault();
           }
         });
     },
   };
-<<<<<<< HEAD
-=======
 
   /**
    * Theme override providing a wrapper for summarized details content.
@@ -87,5 +72,4 @@
    *   The formatted summarized content text.
    */
   Drupal.theme.detailsSummarizedContentText = (text) => text || '';
->>>>>>> dev
 })(jQuery, Modernizr, Drupal);

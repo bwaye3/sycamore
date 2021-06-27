@@ -3,10 +3,6 @@
 namespace Drupal\Core\Condition;
 
 use Drupal\Component\Plugin\ConfigurableInterface;
-<<<<<<< HEAD
-use Drupal\Component\Plugin\ConfigurablePluginInterface;
-=======
->>>>>>> dev
 use Drupal\Component\Plugin\DependentPluginInterface;
 use Drupal\Component\Plugin\PluginInspectionInterface;
 use Drupal\Core\Cache\CacheableDependencyInterface;
@@ -47,11 +43,7 @@ use Drupal\Core\Plugin\PluginFormInterface;
  *
  * @ingroup plugin_api
  */
-<<<<<<< HEAD
-interface ConditionInterface extends ExecutableInterface, PluginFormInterface, ConfigurableInterface, DependentPluginInterface, ConfigurablePluginInterface, PluginInspectionInterface, CacheableDependencyInterface {
-=======
 interface ConditionInterface extends ExecutableInterface, PluginFormInterface, ConfigurableInterface, DependentPluginInterface, PluginInspectionInterface, CacheableDependencyInterface {
->>>>>>> dev
 
   /**
    * Determines whether condition result will be negated.

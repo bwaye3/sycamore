@@ -14,11 +14,7 @@ use Symfony\Component\DependencyInjection\Reference;
  * $conf['container_service_providers'] and required to prevent various services
  * from trying to retrieve data from storages that do not exist yet.
  */
-<<<<<<< HEAD
-class InstallerServiceProvider implements ServiceProviderInterface, ServiceModifierInterface {
-=======
 class InstallerServiceProvider extends NormalInstallerServiceProvider implements ServiceProviderInterface, ServiceModifierInterface {
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -30,13 +26,6 @@ class InstallerServiceProvider extends NormalInstallerServiceProvider implements
     $container->register('config.storage', 'Drupal\Core\Config\InstallStorage');
 
     // Replace services with in-memory implementations.
-<<<<<<< HEAD
-    $definition = $container->getDefinition('cache_factory');
-    $definition->setClass('Drupal\Core\Cache\MemoryBackendFactory');
-    $definition->setArguments([]);
-    $definition->setMethodCalls([]);
-=======
->>>>>>> dev
     $container
       ->register('keyvalue', 'Drupal\Core\KeyValueStore\KeyValueMemoryFactory');
     $container
@@ -44,11 +33,6 @@ class InstallerServiceProvider extends NormalInstallerServiceProvider implements
 
     // Replace services with no-op implementations.
     $container
-<<<<<<< HEAD
-      ->register('lock', 'Drupal\Core\Lock\NullLockBackend');
-    $container
-=======
->>>>>>> dev
       ->register('url_generator', 'Drupal\Core\Routing\NullGenerator')
       ->addArgument(new Reference('request_stack'));
     $container
@@ -56,15 +40,6 @@ class InstallerServiceProvider extends NormalInstallerServiceProvider implements
     $container
       ->register('router.dumper', 'Drupal\Core\Routing\NullMatcherDumper');
 
-<<<<<<< HEAD
-    // Remove the cache tags invalidator tag from the cache tags storage, so
-    // that we don't call it when cache tags are invalidated very early in the
-    // installer.
-    $container->getDefinition('cache_tags.invalidator.checksum')
-      ->clearTag('cache_tags_invalidator');
-
-=======
->>>>>>> dev
     // Replace the route builder with an empty implementation.
     // @todo Convert installer steps into routes; add an installer.routing.yml.
     $definition = $container->getDefinition('router.builder');
@@ -73,12 +48,7 @@ class InstallerServiceProvider extends NormalInstallerServiceProvider implements
       // we don't need to ship with a custom proxy class.
       ->setLazy(FALSE);
 
-<<<<<<< HEAD
-    // Use a performance optimised module extension list.
-    $container->getDefinition('extension.list.module')->setClass('Drupal\Core\Installer\InstallerModuleExtensionList');
-=======
     parent::register($container);
->>>>>>> dev
   }
 
   /**

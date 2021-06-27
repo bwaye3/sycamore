@@ -36,11 +36,7 @@ class SessionHttpsTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['session_test'];
-=======
   protected static $modules = ['session_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -50,11 +46,7 @@ class SessionHttpsTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $request = Request::createFromGlobals();
@@ -95,20 +87,12 @@ class SessionHttpsTest extends BrowserTestBase {
 
     // Verify that user is logged in on secure URL.
     $this->drupalGet($this->httpsUrl('admin/config'));
-<<<<<<< HEAD
-    $this->assertText(t('Configuration'));
-=======
     $this->assertSession()->pageTextContains('Configuration');
->>>>>>> dev
     $this->assertSession()->statusCodeEquals(200);
 
     // Verify that user is not logged in on non-secure URL.
     $this->drupalGet($this->httpUrl('admin/config'));
-<<<<<<< HEAD
-    $this->assertNoText(t('Configuration'));
-=======
     $this->assertNoText('Configuration');
->>>>>>> dev
     $this->assertSession()->statusCodeEquals(403);
 
     // Verify that empty SID cannot be used on the non-secure site.
@@ -258,29 +242,15 @@ class SessionHttpsTest extends BrowserTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that there exists a session with two specific session IDs.
-=======
    * Tests that there exists a session with two specific session IDs.
->>>>>>> dev
    *
    * @param $sid
    *   The insecure session ID to search for.
    * @param $assertion_text
    *   The text to display when we perform the assertion.
-<<<<<<< HEAD
-   *
-   * @return
-   *   The result of assertTrue() that there's a session in the system that
-   *   has the given insecure and secure session IDs.
-   */
-  protected function assertSessionIds($sid, $assertion_text) {
-    return $this->assertNotEmpty(\Drupal::database()->select('sessions', 's')->fields('s', ['timestamp'])->condition('sid', Crypt::hashBase64($sid))->execute()->fetchField(), $assertion_text);
-=======
    */
   protected function assertSessionIds($sid, $assertion_text) {
     $this->assertNotEmpty(\Drupal::database()->select('sessions', 's')->fields('s', ['timestamp'])->condition('sid', Crypt::hashBase64($sid))->execute()->fetchField(), $assertion_text);
->>>>>>> dev
   }
 
   /**

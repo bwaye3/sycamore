@@ -17,20 +17,12 @@ class MigrateSearchSettingsTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['search'];
-=======
   protected static $modules = ['search'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->executeMigration('d6_search_settings');
   }
@@ -40,17 +32,10 @@ class MigrateSearchSettingsTest extends MigrateDrupal6TestBase {
    */
   public function testSearchSettings() {
     $config = $this->config('search.settings');
-<<<<<<< HEAD
-    $this->assertIdentical(3, $config->get('index.minimum_word_size'));
-    $this->assertIdentical(TRUE, $config->get('index.overlap_cjk'));
-    $this->assertIdentical(100, $config->get('index.cron_limit'));
-    $this->assertIdentical(TRUE, $config->get('logging'));
-=======
     $this->assertSame(3, $config->get('index.minimum_word_size'));
     $this->assertTrue($config->get('index.overlap_cjk'));
     $this->assertSame(100, $config->get('index.cron_limit'));
     $this->assertTrue($config->get('logging'));
->>>>>>> dev
     $this->assertConfigSchema(\Drupal::service('config.typed'), 'search.settings', $config->get());
   }
 

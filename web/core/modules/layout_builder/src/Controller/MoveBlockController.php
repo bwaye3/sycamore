@@ -62,11 +62,7 @@ class MoveBlockController implements ContainerInjectionInterface {
    * @return \Drupal\Core\Ajax\AjaxResponse
    *   An AJAX response.
    */
-<<<<<<< HEAD
-  public function build(SectionStorageInterface $section_storage, $delta_from, $delta_to, $region_to, $block_uuid, $preceding_block_uuid = NULL) {
-=======
   public function build(SectionStorageInterface $section_storage, int $delta_from, int $delta_to, $region_to, $block_uuid, $preceding_block_uuid = NULL) {
->>>>>>> dev
     $section = $section_storage->getSection($delta_from);
 
     $component = $section->getComponent($block_uuid);

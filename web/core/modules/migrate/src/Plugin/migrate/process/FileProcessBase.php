@@ -25,11 +25,7 @@ abstract class FileProcessBase extends ProcessPluginBase {
    *   The plugin configuration.
    * @param string $plugin_id
    *   The plugin ID.
-<<<<<<< HEAD
-   * @param mixed $plugin_definition
-=======
    * @param array $plugin_definition
->>>>>>> dev
    *   The plugin definition.
    */
   public function __construct(array $configuration, $plugin_id, array $plugin_definition) {
@@ -47,21 +43,6 @@ abstract class FileProcessBase extends ProcessPluginBase {
           $configuration['file_exists'] = FileSystemInterface::EXISTS_REPLACE;
       }
     }
-<<<<<<< HEAD
-    if (array_key_exists('reuse', $configuration)) {
-      @trigger_error("Using the key 'reuse' is deprecated, use 'file_exists' => 'use existing' instead. See https://www.drupal.org/node/2981389.", E_USER_DEPRECATED);
-      if (!empty($configuration['reuse'])) {
-        $configuration['file_exists'] = FileSystemInterface::EXISTS_ERROR;
-      }
-    }
-    if (array_key_exists('rename', $configuration)) {
-      @trigger_error("Using the key 'rename' is deprecated, use 'file_exists' => 'rename' instead. See https://www.drupal.org/node/2981389.", E_USER_DEPRECATED);
-      if (!empty($configuration['rename'])) {
-        $configuration['file_exists'] = FileSystemInterface::EXISTS_RENAME;
-      }
-    }
-=======
->>>>>>> dev
     $configuration += ['file_exists' => FileSystemInterface::EXISTS_REPLACE];
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }

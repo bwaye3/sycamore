@@ -12,11 +12,7 @@ use Drupal\Tests\UnitTestCase;
 class DrupalDateTimeTest extends UnitTestCase {
 
   /**
-<<<<<<< HEAD
-   * Test date diffs.
-=======
    * Tests date diffs.
->>>>>>> dev
    *
    * @param mixed $input1
    *   A DrupalDateTime object.
@@ -35,11 +31,7 @@ class DrupalDateTimeTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test date diff exception caused by invalid input.
-=======
    * Tests date diff exception caused by invalid input.
->>>>>>> dev
    *
    * @param mixed $input1
    *   A DateTimePlus object.
@@ -93,11 +85,7 @@ class DrupalDateTimeTest extends UnitTestCase {
         'expected' => $positive_19_hours,
       ],
       // In 1970 Sydney did not observe daylight savings time
-<<<<<<< HEAD
-      // So there is only a 18 hour time interval.
-=======
       // So there is only an 18 hour time interval.
->>>>>>> dev
       [
         'input2' => DrupalDateTime::createFromFormat('Y-m-d H:i:s', '1970-01-01 00:00:00', new \DateTimeZone('Australia/Sydney'), $settings),
         'input1' => DrupalDateTime::createFromFormat('Y-m-d H:i:s', '1970-01-01 00:00:00', new \DateTimeZone('America/Los_Angeles'), $settings),

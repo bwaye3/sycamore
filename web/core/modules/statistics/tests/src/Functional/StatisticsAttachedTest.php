@@ -17,11 +17,7 @@ class StatisticsAttachedTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'statistics'];
-=======
   protected static $modules = ['node', 'statistics'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -31,11 +27,7 @@ class StatisticsAttachedTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalCreateContentType(['type' => 'page']);
@@ -64,11 +56,7 @@ class StatisticsAttachedTest extends BrowserTestBase {
     $node->save();
     $this->drupalGet('node/' . $node->id());
 
-<<<<<<< HEAD
-    $this->assertRaw('core/modules/statistics/statistics.js', 'Statistics library is available');
-=======
     $this->assertRaw('core/modules/statistics/statistics.js');
->>>>>>> dev
   }
 
 }

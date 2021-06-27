@@ -16,11 +16,7 @@ class AggregatorPluginManagerTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['aggregator', 'aggregator_test'];
-=======
   protected static $modules = ['aggregator', 'aggregator_test'];
->>>>>>> dev
 
   /**
    * Tests that the fetcher info alter hook works.

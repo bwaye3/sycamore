@@ -78,11 +78,7 @@ trait ViewResultAssertionTrait {
    *   (optional) The message to display with the assertion.
    *
    * @return bool
-<<<<<<< HEAD
-   *   TRUE if the assertion succeeded, or FALSE otherwise.
-=======
    *   TRUE if the assertion succeeded.
->>>>>>> dev
    */
   protected function assertIdenticalResultsetHelper($view, $expected_result, $column_map, $assert_method, $message = NULL) {
     // Convert $view->result to an array of arrays.
@@ -130,15 +126,6 @@ trait ViewResultAssertionTrait {
       $expected_result[$key] = $row;
     }
 
-<<<<<<< HEAD
-    $this->verbose('<pre style="white-space: pre-wrap;">'
-      . "\n\nQuery:\n" . $view->build_info['query']
-      . "\n\nQuery arguments:\n" . var_export($view->build_info['query']->getArguments(), TRUE)
-      . "\n\nActual result:\n" . var_export($result, TRUE)
-      . "\n\nExpected result:\n" . var_export($expected_result, TRUE));
-
-=======
->>>>>>> dev
     // Reset the numbering of the arrays.
     $result = array_values($result);
     $expected_result = array_values($expected_result);
@@ -151,9 +138,6 @@ trait ViewResultAssertionTrait {
         '@expected' => var_export($expected_result, TRUE),
       ]);
     }
-<<<<<<< HEAD
-    return $this->$assert_method($result, $expected_result, $message);
-=======
 
     switch ($assert_method) {
       case 'assertIdentical':
@@ -165,7 +149,6 @@ trait ViewResultAssertionTrait {
         return TRUE;
 
     }
->>>>>>> dev
   }
 
 }

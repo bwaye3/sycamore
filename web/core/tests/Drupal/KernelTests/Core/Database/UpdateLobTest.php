@@ -16,11 +16,7 @@ class UpdateLobTest extends DatabaseTestBase {
    */
   public function testUpdateOneBlob() {
     $data = "This is\000a test.";
-<<<<<<< HEAD
-    $this->assertTrue(strlen($data) === 15, 'Test data contains a NULL.');
-=======
     $this->assertSame(15, strlen($data), 'Test data contains a NULL.');
->>>>>>> dev
     $id = $this->connection->insert('test_one_blob')
       ->fields(['blob1' => $data])
       ->execute();
@@ -31,13 +27,8 @@ class UpdateLobTest extends DatabaseTestBase {
       ->fields(['blob1' => $data])
       ->execute();
 
-<<<<<<< HEAD
-    $r = $this->connection->query('SELECT * FROM {test_one_blob} WHERE id = :id', [':id' => $id])->fetchAssoc();
-    $this->assertTrue($r['blob1'] === $data, new FormattableMarkup('Can update a blob: id @id, @data.', ['@id' => $id, '@data' => serialize($r)]));
-=======
     $r = $this->connection->query('SELECT * FROM {test_one_blob} WHERE [id] = :id', [':id' => $id])->fetchAssoc();
     $this->assertSame($data, $r['blob1'], new FormattableMarkup('Can update a blob: id @id, @data.', ['@id' => $id, '@data' => serialize($r)]));
->>>>>>> dev
   }
 
   /**
@@ -56,14 +47,9 @@ class UpdateLobTest extends DatabaseTestBase {
       ->fields(['blob1' => 'and so', 'blob2' => 'is this'])
       ->execute();
 
-<<<<<<< HEAD
-    $r = $this->connection->query('SELECT * FROM {test_two_blobs} WHERE id = :id', [':id' => $id])->fetchAssoc();
-    $this->assertTrue($r['blob1'] === 'and so' && $r['blob2'] === 'is this', 'Can update multiple blobs per row.');
-=======
     $r = $this->connection->query('SELECT * FROM {test_two_blobs} WHERE [id] = :id', [':id' => $id])->fetchAssoc();
     $this->assertSame('and so', $r['blob1']);
     $this->assertSame('is this', $r['blob2']);
->>>>>>> dev
   }
 
 }

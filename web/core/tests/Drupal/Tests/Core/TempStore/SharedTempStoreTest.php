@@ -2,25 +2,18 @@
 
 namespace Drupal\Tests\Core\TempStore;
 
-<<<<<<< HEAD
-use Drupal\Core\TempStore\Lock;
-=======
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\KeyValueStore\KeyValueExpirableFactoryInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\TempStore\Lock;
 use Drupal\Core\TempStore\SharedTempStoreFactory;
->>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 use Drupal\Core\TempStore\SharedTempStore;
 use Drupal\Core\TempStore\TempStoreException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-<<<<<<< HEAD
-=======
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
->>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\Core\TempStore\SharedTempStore
@@ -80,29 +73,19 @@ class SharedTempStoreTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->keyValue = $this->createMock('Drupal\Core\KeyValueStore\KeyValueStoreExpirableInterface');
     $this->lock = $this->createMock('Drupal\Core\Lock\LockBackendInterface');
     $this->requestStack = new RequestStack();
     $request = Request::createFromGlobals();
-<<<<<<< HEAD
-    $this->requestStack->push($request);
-
-    $this->tempStore = new SharedTempStore($this->keyValue, $this->lock, $this->owner, $this->requestStack, 604800);
-=======
     $session = $this->createMock(SessionInterface::class);
     $request->setSession($session);
     $this->requestStack->push($request);
     $current_user = $this->createMock(AccountProxyInterface::class);
 
     $this->tempStore = new SharedTempStore($this->keyValue, $this->lock, $this->owner, $this->requestStack, $current_user, 604800);
->>>>>>> dev
 
     $this->ownObject = (object) [
       'data' => 'test_data',
@@ -299,39 +282,6 @@ class SharedTempStoreTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * @covers ::getMetadata
-   * @expectedDeprecation Using the "owner" public property of a TempStore lock is deprecated in Drupal 8.7.0 and will not be allowed in Drupal 9.0.0. Use \Drupal\Core\TempStore\Lock::getOwnerId() instead. See https://www.drupal.org/node/3025869.
-   * @group legacy
-   */
-  public function testGetMetadataOwner() {
-    $this->keyValue->expects($this->once())
-      ->method('get')
-      ->with('test')
-      ->will($this->returnValue($this->ownObject));
-
-    $metadata = $this->tempStore->getMetadata('test');
-    $this->assertSame(1, $metadata->owner);
-  }
-
-  /**
-   * @covers ::getMetadata
-   * @expectedDeprecation Using the "updated" public property of a TempStore lock is deprecated in Drupal 8.7.0 and will not be allowed in Drupal 9.0.0. Use \Drupal\Core\TempStore\Lock::getUpdated() instead. See https://www.drupal.org/node/3025869.
-   * @group legacy
-   */
-  public function testGetMetadataUpdated() {
-    $this->keyValue->expects($this->once())
-      ->method('get')
-      ->with('test')
-      ->will($this->returnValue($this->ownObject));
-
-    $metadata = $this->tempStore->getMetadata('test');
-    $this->assertSame($metadata->getUpdated(), $metadata->updated);
-  }
-
-  /**
-=======
->>>>>>> dev
    * Tests the delete() method.
    *
    * @covers ::delete
@@ -434,19 +384,13 @@ class SharedTempStoreTest extends UnitTestCase {
     $store = unserialize(serialize($this->tempStore));
     $this->assertInstanceOf(SharedTempStore::class, $store);
 
-<<<<<<< HEAD
-    $request_stack = $this->getObjectAttribute($store, 'requestStack');
-=======
     $reflected_request_stack = (new \ReflectionObject($store))->getProperty('requestStack');
     $reflected_request_stack->setAccessible(TRUE);
     $request_stack = $reflected_request_stack->getValue($store);
->>>>>>> dev
     $this->assertEquals($this->requestStack, $request_stack);
     $this->assertSame($unserializable_request, $request_stack->pop());
   }
 
-<<<<<<< HEAD
-=======
   /**
    * @group legacy
    */
@@ -493,5 +437,4 @@ class SharedTempStoreTest extends UnitTestCase {
     $this->assertSame(1000, $expire_property->getValue($store));
   }
 
->>>>>>> dev
 }

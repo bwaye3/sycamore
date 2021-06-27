@@ -3,10 +3,6 @@
 namespace Drupal\Core\Entity;
 
 use Drupal\Core\Controller\FormController;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface;
@@ -15,15 +11,6 @@ use Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface;
  * Wrapping controller for entity forms that serve as the main page body.
  */
 class HtmlEntityFormController extends FormController {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * The entity type manager service.
@@ -44,17 +31,7 @@ class HtmlEntityFormController extends FormController {
    */
   public function __construct(ArgumentResolverInterface $argument_resolver, FormBuilderInterface $form_builder, EntityTypeManagerInterface $entity_type_manager) {
     parent::__construct($argument_resolver, $form_builder);
-<<<<<<< HEAD
-    if ($entity_type_manager instanceof EntityManagerInterface) {
-      @trigger_error('Passing the entity.manager service to HtmlEntityFormController::__construct() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. Pass the new dependencies instead. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $this->entityTypeManager = \Drupal::entityTypeManager();
-    }
-    else {
-      $this->entityTypeManager = $entity_type_manager;
-    }
-=======
     $this->entityTypeManager = $entity_type_manager;
->>>>>>> dev
   }
 
   /**

@@ -18,10 +18,7 @@ interface QueryInterface extends AlterableInterface {
    * Gets the ID of the entity type for this query.
    *
    * @return string
-<<<<<<< HEAD
-=======
    *   The entity type ID.
->>>>>>> dev
    */
   public function getEntityTypeId();
 
@@ -32,23 +29,15 @@ interface QueryInterface extends AlterableInterface {
    * and the Polish 'siema' within a 'greetings' text field:
    * @code
    *   $entity_ids = \Drupal::entityQuery($entity_type)
-<<<<<<< HEAD
-=======
    *     ->accessCheck(FALSE)
->>>>>>> dev
    *     ->condition('greetings', 'merhaba', '=', 'tr')
    *     ->condition('greetings.value', 'siema', '=', 'pl')
    *     ->execute();
    * @endcode
    *
-<<<<<<< HEAD
-   * @param $field
-   *   Name of the field being queried. It must contain a field name, optionally
-=======
    * @param string|\Drupal\Core\Condition\ConditionInterface $field
    *   Name of the field being queried or an instance of ConditionInterface.
    *   In the case of the name, it must contain a field name, optionally
->>>>>>> dev
    *   followed by a column name. The column can be the reference property,
    *   usually "entity", for reference fields and that can be followed
    *   similarly by a field name and so on. Additionally, the target entity type
@@ -87,14 +76,6 @@ interface QueryInterface extends AlterableInterface {
    *   will only find the "news" tag if it is not the first value. It should be
    *   noted that conditions on specific deltas and delta ranges are only
    *   supported when querying content entities.
-<<<<<<< HEAD
-   * @param $value
-   *   The value for $field. In most cases, this is a scalar and it's treated as
-   *   case-insensitive. For more complex operators, it is an array. The meaning
-   *   of each element in the array is dependent on $operator.
-   * @param $operator
-   *   Possible values:
-=======
    * @param string|int|bool|array|null $value
    *   (optional) The value for $field. In most cases, this is a scalar and it's
    *   treated as case-insensitive. For more complex operators, it is an array.
@@ -103,27 +84,11 @@ interface QueryInterface extends AlterableInterface {
    *   it always makes the condition false.
    * @param string|null $operator
    *   (optional) The comparison operator. Possible values:
->>>>>>> dev
    *   - '=', '<>', '>', '>=', '<', '<=', 'STARTS_WITH', 'CONTAINS',
    *     'ENDS_WITH': These operators expect $value to be a literal of the
    *     same type as the column.
    *   - 'IN', 'NOT IN': These operators expect $value to be an array of
    *     literals of the same type as the column.
-<<<<<<< HEAD
-   *   - 'BETWEEN': This operator expects $value to be an array of two literals
-   *     of the same type as the column.
-   * @param $langcode
-   *   Language code (optional). If omitted, any translation satisfies the
-   *   condition. However, if two or more conditions omit the langcode within
-   *   one condition group then they are presumed to apply to the same
-   *   translation. If within one condition group one condition has a langcode
-   *   and another does not they are not presumed to apply to the same
-   *   translation.
-   *
-   * @return $this
-   * @see \Drupal\Core\Entity\Query\andConditionGroup
-   * @see \Drupal\Core\Entity\Query\orConditionGroup
-=======
    *   - 'IS NULL', 'IS NOT NULL': These operators ignore $value, for that
    *     reason it is recommended to use a $value of NULL for clarity.
    *   - 'BETWEEN', 'NOT BETWEEN': These operators expect $value to be an array
@@ -144,25 +109,17 @@ interface QueryInterface extends AlterableInterface {
    * @see \Drupal\Core\Entity\Query\ConditionInterface
    * @see \Drupal\Core\Entity\Query\QueryInterface::exists()
    * @see \Drupal\Core\Entity\Query\QueryInterface::notExists()
->>>>>>> dev
    */
   public function condition($field, $value = NULL, $operator = NULL, $langcode = NULL);
 
   /**
    * Queries for a non-empty value on a field.
    *
-<<<<<<< HEAD
-   * @param $field
-   *   Name of a field.
-   * @param $langcode
-   *   Language code (optional).
-=======
    * @param string $field
    *   Name of a field.
    * @param string|null $langcode
    *   (optional) The language code allows filtering results by specific
    *   language. If omitted (NULL), any translation satisfies the condition.
->>>>>>> dev
    *
    * @return $this
    */
@@ -171,18 +128,11 @@ interface QueryInterface extends AlterableInterface {
   /**
    * Queries for an empty field.
    *
-<<<<<<< HEAD
-   * @param $field
-   *   Name of a field.
-   * @param $langcode
-   *   Language code (optional).
-=======
    * @param string $field
    *   Name of a field.
    * @param string|null $langcode
    *   (optional) The language code allows filtering results by specific
    *   language. If omitted (NULL), any translation satisfies the condition.
->>>>>>> dev
    *
    * @return $this
    */
@@ -191,17 +141,6 @@ interface QueryInterface extends AlterableInterface {
   /**
    * Enables a pager for the query.
    *
-<<<<<<< HEAD
-   * @param $limit
-   *   An integer specifying the number of elements per page.  If passed a false
-   *   value (FALSE, 0, NULL), the pager is disabled.
-   * @param $element
-   *   An optional integer to distinguish between multiple pagers on one page.
-   *   If not provided, one is automatically calculated.
-   *
-   * @return $this
-   *   The called object.
-=======
    * @param int $limit
    *   (optional) An integer specifying the number of elements per page. If
    *   passed 0, the pager is disabled.
@@ -211,17 +150,10 @@ interface QueryInterface extends AlterableInterface {
    *   next pager element value.
    *
    * @return $this
->>>>>>> dev
    */
   public function pager($limit = 10, $element = NULL);
 
   /**
-<<<<<<< HEAD
-   * @param null $start
-   * @param null $length
-   * @return $this
-   *   The called object.
-=======
    * Defines the range of the query.
    *
    * @param int|null $start
@@ -234,20 +166,10 @@ interface QueryInterface extends AlterableInterface {
    *   generated.
    *
    * @return $this
->>>>>>> dev
    */
   public function range($start = NULL, $length = NULL);
 
   /**
-<<<<<<< HEAD
-   * @param $field
-   *   Name of a field.
-   * @param string $direction
-   * @param $langcode
-   *   Language code (optional).
-   * @return $this
-   *   The called object.
-=======
    * Sorts the result set by a given field.
    *
    * @param string $field
@@ -263,7 +185,6 @@ interface QueryInterface extends AlterableInterface {
    *
    * @todo standardize $direction options in
    * https://www.drupal.org/project/drupal/issues/3079258
->>>>>>> dev
    */
   public function sort($field, $direction = 'ASC', $langcode = NULL);
 
@@ -273,46 +194,29 @@ interface QueryInterface extends AlterableInterface {
    * For count queries, execute() returns the number entities found.
    *
    * @return $this
-<<<<<<< HEAD
-   *   The called object.
-=======
->>>>>>> dev
    */
   public function count();
 
   /**
    * Enables sortable tables for this query.
    *
-<<<<<<< HEAD
-   * @param $headers
-=======
    * @param array $headers
->>>>>>> dev
    *   An array of headers of the same structure as described in
    *   template_preprocess_table(). Use a 'specifier' in place of a 'field' to
    *   specify what to sort on. This can be an entity or a field as described
    *   in condition().
    *
    * @return $this
-<<<<<<< HEAD
-   *   The called object.
-=======
->>>>>>> dev
    */
   public function tableSort(&$headers);
 
   /**
-<<<<<<< HEAD
-   * @return $this
-   *   The called object.
-=======
    * Enables or disables access checking for this query.
    *
    * @param bool $access_check
    *   (optional) Whether access check is requested or not. Defaults to TRUE.
    *
    * @return $this
->>>>>>> dev
    */
   public function accessCheck($access_check = TRUE);
 
@@ -333,11 +237,7 @@ interface QueryInterface extends AlterableInterface {
    * field containing 'shape' and 'color' columns. To find all drawings
    * containing both a red triangle and a blue circle:
    * @code
-<<<<<<< HEAD
-   *   $query = \Drupal::entityQuery('drawing');
-=======
    *   $query = \Drupal::entityQuery('drawing')->accessCheck(FALSE);
->>>>>>> dev
    *   $group = $query->andConditionGroup()
    *     ->condition('figures.color', 'red')
    *     ->condition('figures.shape', 'triangle');
@@ -350,10 +250,7 @@ interface QueryInterface extends AlterableInterface {
    * @endcode
    *
    * @return \Drupal\Core\Entity\Query\ConditionInterface
-<<<<<<< HEAD
-=======
    *   A condition object whose conditions will be combined with AND.
->>>>>>> dev
    */
   public function andConditionGroup();
 
@@ -361,17 +258,10 @@ interface QueryInterface extends AlterableInterface {
    * Creates a new group of conditions ORed together.
    *
    * For example, consider a map entity with an 'attributes' field
-<<<<<<< HEAD
-   * containing 'building_type' and 'color' columns.  To find all green and
-   * red bikesheds:
-   * @code
-   *   $query = \Drupal::entityQuery('map');
-=======
    * containing 'building_type' and 'color' columns. To find all green and
    * red bikesheds:
    * @code
    *   $query = \Drupal::entityQuery('map')->accessCheck(FALSE);
->>>>>>> dev
    *   $group = $query->orConditionGroup()
    *     ->condition('attributes.color', 'red')
    *     ->condition('attributes.color', 'green');
@@ -383,20 +273,13 @@ interface QueryInterface extends AlterableInterface {
    * Note that this particular example can be simplified:
    * @code
    *   $entity_ids = $query
-<<<<<<< HEAD
-   *     ->condition('attributes.color', array('red', 'green'))
-=======
    *     ->condition('attributes.color', ['red', 'green'])
->>>>>>> dev
    *     ->condition('attributes.building_type', 'bikeshed')
    *     ->execute();
    * @endcode
    *
    * @return \Drupal\Core\Entity\Query\ConditionInterface
-<<<<<<< HEAD
-=======
    *   A condition object whose conditions will be combined with OR.
->>>>>>> dev
    */
   public function orConditionGroup();
 

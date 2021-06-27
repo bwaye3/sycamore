@@ -2,11 +2,7 @@
 
 namespace Drupal\Core\Pager;
 
-<<<<<<< HEAD
-use Drupal\Component\Utility\DeprecatedArray;
-=======
 use Drupal\Core\Database\Query\PagerSelectExtender;
->>>>>>> dev
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 
 /**
@@ -37,8 +33,6 @@ class PagerManager implements PagerManagerInterface {
   protected $pagers;
 
   /**
-<<<<<<< HEAD
-=======
    * The highest pager ID created so far.
    *
    * @var int
@@ -46,7 +40,6 @@ class PagerManager implements PagerManagerInterface {
   protected $maxPagerElementId = -1;
 
   /**
->>>>>>> dev
    * Construct a PagerManager object.
    *
    * @param \Drupal\Core\Pager\PagerParametersInterface $pager_params
@@ -76,8 +69,6 @@ class PagerManager implements PagerManagerInterface {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-=======
   public function findPage(int $pager_id = 0): int {
     return $this->pagerParams->findPage($pager_id);
   }
@@ -85,7 +76,6 @@ class PagerManager implements PagerManagerInterface {
   /**
    * {@inheritdoc}
    */
->>>>>>> dev
   public function getUpdatedParameters(array $query, $element, $index) {
     // Build the 'page' query parameter. This is built based on the current
     // page of each pager element (or NULL if the pager is not set), with the
@@ -108,15 +98,6 @@ class PagerManager implements PagerManagerInterface {
   }
 
   /**
-<<<<<<< HEAD
-   * Gets the extent of the pager page element IDs.
-   *
-   * @return int
-   *   The maximum element ID available, -1 if there are no elements.
-   */
-  protected function getMaxPagerElementId() {
-    return empty($this->pagers) ? -1 : max(array_keys($this->pagers));
-=======
    * {@inheritdoc}
    */
   public function getMaxPagerElementId() {
@@ -131,7 +112,6 @@ class PagerManager implements PagerManagerInterface {
     // BC for PagerSelectExtender::$maxElement.
     // @todo remove the line below in D10.
     PagerSelectExtender::$maxElement = $this->getMaxPagerElementId();
->>>>>>> dev
   }
 
   /**
@@ -143,36 +123,8 @@ class PagerManager implements PagerManagerInterface {
    *   The pager index.
    */
   protected function setPager(Pager $pager, $element = 0) {
-<<<<<<< HEAD
-    $this->pagers[$element] = $pager;
-    $this->updateGlobals();
-  }
-
-  /**
-   * Updates global variables with a pager data for backwards compatibility.
-   */
-  protected function updateGlobals() {
-    $pager_total_items = [];
-    $pager_total = [];
-    $pager_page_array = [];
-    $pager_limits = [];
-
-    /** @var $pager \Drupal\Core\Pager\Pager */
-    foreach ($this->pagers as $pager_id => $pager) {
-      $pager_total_items[$pager_id] = $pager->getTotalItems();
-      $pager_total[$pager_id] = $pager->getTotalPages();
-      $pager_page_array[$pager_id] = $pager->getCurrentPage();
-      $pager_limits[$pager_id] = $pager->getLimit();
-    }
-
-    $GLOBALS['pager_total_items'] = new DeprecatedArray($pager_total_items, 'Global variable $pager_total_items is deprecated in drupal:8.8.0 and is removed in drupal:9.0.0. Use \Drupal\Core\Pager\PagerManagerInterface instead. See https://www.drupal.org/node/2779457');
-    $GLOBALS['pager_total'] = new DeprecatedArray($pager_total, 'Global variable $pager_total is deprecated in drupal:8.8.0 and is removed in drupal:9.0.0. Use \Drupal\Core\Pager\PagerManagerInterface instead. See https://www.drupal.org/node/2779457');
-    $GLOBALS['pager_page_array'] = new DeprecatedArray($pager_page_array, 'Global variable $pager_page_array is deprecated in drupal:8.8.0 and is removed in drupal:9.0.0. Use \Drupal\Core\Pager\PagerManagerInterface instead. See https://www.drupal.org/node/2779457');
-    $GLOBALS['pager_limits'] = new DeprecatedArray($pager_limits, 'Global variable $pager_limits is deprecated in drupal:8.8.0 and is removed in drupal:9.0.0. Use \Drupal\Core\Pager\PagerManagerInterface instead. See https://www.drupal.org/node/2779457');
-=======
     $this->maxPagerElementId = max($element, $this->maxPagerElementId);
     $this->pagers[$element] = $pager;
->>>>>>> dev
   }
 
 }

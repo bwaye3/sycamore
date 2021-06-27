@@ -31,11 +31,7 @@ class FieldWebTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node'];
-=======
   protected static $modules = ['node'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -51,11 +47,7 @@ class FieldWebTest extends ViewTestBase {
     'views_test_data_name' => 'name',
   ];
 
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();
@@ -78,15 +70,9 @@ class FieldWebTest extends ViewTestBase {
     $this->assertSession()->statusCodeEquals(200);
 
     // Only the id and name should be click sortable, but not the name.
-<<<<<<< HEAD
-    $this->assertLinkByHref(Url::fromRoute('<none>', [], ['query' => ['order' => 'id', 'sort' => 'asc']])->toString());
-    $this->assertLinkByHref(Url::fromRoute('<none>', [], ['query' => ['order' => 'name', 'sort' => 'desc']])->toString());
-    $this->assertNoLinkByHref(Url::fromRoute('<none>', [], ['query' => ['order' => 'created']])->toString());
-=======
     $this->assertSession()->linkByHrefExists(Url::fromRoute('<none>', [], ['query' => ['order' => 'id', 'sort' => 'asc']])->toString());
     $this->assertSession()->linkByHrefExists(Url::fromRoute('<none>', [], ['query' => ['order' => 'name', 'sort' => 'desc']])->toString());
     $this->assertSession()->linkByHrefNotExists(Url::fromRoute('<none>', [], ['query' => ['order' => 'created']])->toString());
->>>>>>> dev
 
     // Check that the view returns the click sorting cache contexts.
     $expected_contexts = [
@@ -99,17 +85,10 @@ class FieldWebTest extends ViewTestBase {
     // Clicking a click sort should change the order.
     $this->clickLink(t('ID'));
     $href = Url::fromRoute('<none>', [], ['query' => ['order' => 'id', 'sort' => 'desc']])->toString();
-<<<<<<< HEAD
-    $this->assertLinkByHref($href);
-    // Check that the output has the expected order (asc).
-    $ids = $this->clickSortLoadIdsFromOutput();
-    $this->assertEqual($ids, range(1, 5));
-=======
     $this->assertSession()->linkByHrefExists($href);
     // Check that the output has the expected order (asc).
     $ids = $this->clickSortLoadIdsFromOutput();
     $this->assertEquals(range(1, 5), $ids);
->>>>>>> dev
     // Check that the rel attribute has the correct value.
     $result = $this->xpath('//a[@href="' . $href . '"]');
     $this->assertEquals('nofollow', $result[0]->getAttribute('rel'));
@@ -117,11 +96,7 @@ class FieldWebTest extends ViewTestBase {
     $this->clickLink(t('ID Sort descending'));
     // Check that the output has the expected order (desc).
     $ids = $this->clickSortLoadIdsFromOutput();
-<<<<<<< HEAD
-    $this->assertEqual($ids, range(5, 1, -1));
-=======
     $this->assertEquals(range(5, 1, -1), $ids);
->>>>>>> dev
   }
 
   /**
@@ -150,18 +125,9 @@ class FieldWebTest extends ViewTestBase {
    *   The message to display along with the assertion.
    * @param string $group
    *   The type of assertion - examples are "Browser", "PHP".
-<<<<<<< HEAD
-   *
-   * @return bool
-   *   TRUE if the assertion succeeded, FALSE otherwise.
-   */
-  protected function assertSubString($haystack, $needle, $message = '', $group = 'Other') {
-    return $this->assertStringContainsString($needle, $haystack, $message);
-=======
    */
   protected function assertSubString($haystack, $needle, $message = '', $group = 'Other') {
     $this->assertStringContainsString($needle, $haystack, $message);
->>>>>>> dev
   }
 
   /**
@@ -175,18 +141,9 @@ class FieldWebTest extends ViewTestBase {
    *   The message to display along with the assertion.
    * @param string $group
    *   The type of assertion - examples are "Browser", "PHP".
-<<<<<<< HEAD
-   *
-   * @return bool
-   *   TRUE if the assertion succeeded, FALSE otherwise.
-   */
-  protected function assertNotSubString($haystack, $needle, $message = '', $group = 'Other') {
-    return $this->assertStringNotContainsString($needle, $haystack, $message);
-=======
    */
   protected function assertNotSubString($haystack, $needle, $message = '', $group = 'Other') {
     $this->assertStringNotContainsString($needle, $haystack, $message);
->>>>>>> dev
   }
 
   /**
@@ -225,11 +182,7 @@ class FieldWebTest extends ViewTestBase {
    */
   protected function xpathContent($content, $xpath, array $arguments = []) {
     if ($elements = $this->parseContent($content)) {
-<<<<<<< HEAD
-      $xpath = $this->buildXPathQuery($xpath, $arguments);
-=======
       $xpath = $this->assertSession()->buildXPathQuery($xpath, $arguments);
->>>>>>> dev
       $result = $elements->xpath($xpath);
       // Some combinations of PHP / libxml versions return an empty array
       // instead of the documented FALSE. Forcefully convert any falsish values
@@ -539,11 +492,7 @@ class FieldWebTest extends ViewTestBase {
       'marquee',
     ];
 
-<<<<<<< HEAD
-    $this->assertEqual(array_keys($element_types), $expected_elements);
-=======
     $this->assertEquals($expected_elements, array_keys($element_types));
->>>>>>> dev
   }
 
   /**

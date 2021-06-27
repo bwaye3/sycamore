@@ -3,10 +3,6 @@ type: theme
 description: 'Test Theme with libraries-extend'
 version: VERSION
 base theme: classy
-<<<<<<< HEAD
-core: 8.x
-=======
->>>>>>> dev
 libraries-extend:
   classy/book-navigation:
     - test_theme_libraries_extend/extend_one

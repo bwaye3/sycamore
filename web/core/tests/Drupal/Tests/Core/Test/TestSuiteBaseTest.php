@@ -2,10 +2,6 @@
 
 namespace Drupal\Tests\Core\Test;
 
-<<<<<<< HEAD
-use Drupal\TestTools\PhpUnitCompatibility\RunnerVersion;
-=======
->>>>>>> dev
 use Drupal\Tests\TestSuites\TestSuiteBase;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
@@ -14,16 +10,6 @@ use PHPUnit\Framework\TestCase;
 // manually.
 require_once __DIR__ . '/../../../../TestSuites/TestSuiteBase.php';
 
-<<<<<<< HEAD
-// In order to manage different method signatures between PHPUnit versions, we
-// dynamically load a compatibility trait dependent on the PHPUnit runner
-// version.
-if (!trait_exists(PhpunitVersionDependentStubTestSuiteBaseTrait::class, FALSE)) {
-  class_alias("Drupal\TestTools\PhpUnitCompatibility\PhpUnit" . RunnerVersion::getMajor() . "\StubTestSuiteBaseTrait", PhpunitVersionDependentStubTestSuiteBaseTrait::class);
-}
-
-=======
->>>>>>> dev
 /**
  * @coversDefaultClass \Drupal\Tests\TestSuites\TestSuiteBase
  *
@@ -134,11 +120,6 @@ class TestSuiteBaseTest extends TestCase {
  */
 class StubTestSuiteBase extends TestSuiteBase {
 
-<<<<<<< HEAD
-  use PhpunitVersionDependentStubTestSuiteBaseTrait;
-
-=======
->>>>>>> dev
   /**
    * Test files discovered by addTestsBySuiteNamespace().
    *
@@ -158,8 +139,6 @@ class StubTestSuiteBase extends TestSuiteBase {
     return [];
   }
 
-<<<<<<< HEAD
-=======
   /**
    * {@inheritdoc}
    */
@@ -172,5 +151,4 @@ class StubTestSuiteBase extends TestSuiteBase {
     $this->testFiles = array_merge($this->testFiles, $filenames);
   }
 
->>>>>>> dev
 }

@@ -25,11 +25,7 @@ class MediaDisplayTest extends MediaJavascriptTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Install the optional configs from the standard profile.
@@ -50,11 +46,7 @@ class MediaDisplayTest extends MediaJavascriptTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test basic media display.
-=======
    * Tests basic media display.
->>>>>>> dev
    */
   public function testMediaDisplay() {
     $assert_session = $this->assertSession();
@@ -99,10 +91,7 @@ class MediaDisplayTest extends MediaJavascriptTestBase {
       ->get('entity_type.manager')
       ->getStorage('media')
       ->getQuery()
-<<<<<<< HEAD
-=======
       ->accessCheck(FALSE)
->>>>>>> dev
       ->sort('mid', 'DESC')
       ->execute();
     $image_media_id = reset($image_media_id);

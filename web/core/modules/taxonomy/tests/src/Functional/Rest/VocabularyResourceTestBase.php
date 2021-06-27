@@ -10,11 +10,7 @@ abstract class VocabularyResourceTestBase extends EntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['taxonomy'];
-=======
   protected static $modules = ['taxonomy'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -73,13 +69,6 @@ abstract class VocabularyResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
-<<<<<<< HEAD
-    if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
-      return parent::getExpectedUnauthorizedAccessMessage($method);
-    }
-
-=======
->>>>>>> dev
     if ($method === 'GET') {
       return "The following permissions are required: 'access taxonomy overview' OR 'administer taxonomy'.";
     }

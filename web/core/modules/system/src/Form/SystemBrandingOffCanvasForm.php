@@ -8,10 +8,7 @@ use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginFormBase;
 use Drupal\Core\Session\AccountInterface;
-<<<<<<< HEAD
-=======
 use Drupal\Core\StringTranslation\StringTranslationTrait;
->>>>>>> dev
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -21,11 +18,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class SystemBrandingOffCanvasForm extends PluginFormBase implements ContainerInjectionInterface {
 
-<<<<<<< HEAD
-=======
   use StringTranslationTrait;
 
->>>>>>> dev
   /**
    * The block plugin.
    *
@@ -87,35 +81,21 @@ class SystemBrandingOffCanvasForm extends PluginFormBase implements ContainerInj
     $site_config_immutable = $this->configFactory->get('system.site');
     $form['site_information'] = [
       '#type' => 'details',
-<<<<<<< HEAD
-      '#title' => t('Site details'),
-=======
       '#title' => $this->t('Site details'),
->>>>>>> dev
       '#open' => TRUE,
       '#access' => $this->currentUser->hasPermission('administer site configuration') && !$site_config_immutable->hasOverrides('name') && !$site_config_immutable->hasOverrides('slogan'),
     ];
     $form['site_information']['site_name'] = [
       '#type' => 'textfield',
-<<<<<<< HEAD
-      '#title' => t('Site name'),
-=======
       '#title' => $this->t('Site name'),
->>>>>>> dev
       '#default_value' => $site_config->get('name'),
       '#required' => TRUE,
     ];
     $form['site_information']['site_slogan'] = [
       '#type' => 'textfield',
-<<<<<<< HEAD
-      '#title' => t('Slogan'),
-      '#default_value' => $site_config->get('slogan'),
-      '#description' => t("How this is used depends on your site's theme."),
-=======
       '#title' => $this->t('Slogan'),
       '#default_value' => $site_config->get('slogan'),
       '#description' => $this->t("How this is used depends on your site's theme."),
->>>>>>> dev
     ];
 
     return $form;

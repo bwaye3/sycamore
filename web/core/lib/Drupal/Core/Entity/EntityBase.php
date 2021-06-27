@@ -65,25 +65,6 @@ abstract class EntityBase implements EntityInterface {
   }
 
   /**
-<<<<<<< HEAD
-   * Gets the entity manager.
-   *
-   * @return \Drupal\Core\Entity\EntityManagerInterface
-   *
-   * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0.
-   *   Use \Drupal::entityTypeManager() instead in most cases. If the needed
-   *   method is not on \Drupal\Core\Entity\EntityTypeManagerInterface, see the
-   *   deprecated \Drupal\Core\Entity\EntityManager to find the
-   *   correct interface or service.
-   */
-  protected function entityManager() {
-    @trigger_error('Entity::getEntityManager() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. Use ::getEntityTypeManager() instead. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-    return \Drupal::entityManager();
-  }
-
-  /**
-=======
->>>>>>> dev
    * Gets the entity type manager.
    *
    * @return \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -167,30 +148,9 @@ abstract class EntityBase implements EntityInterface {
    * {@inheritdoc}
    */
   public function label() {
-<<<<<<< HEAD
-    $label = NULL;
-    $entity_type = $this->getEntityType();
-    if (($label_callback = $entity_type->get('label_callback')) && is_callable($label_callback)) {
-      @trigger_error('Entity type ' . $this->getEntityTypeId() . ' defines a label callback. Support for that is deprecated in drupal:8.0.0 and will be removed in drupal:9.0.0. Override the EntityInterface::label() method instead. See https://www.drupal.org/node/3050794', E_USER_DEPRECATED);
-      $label = call_user_func($label_callback, $this);
-    }
-    elseif (($label_key = $entity_type->getKey('label')) && isset($this->{$label_key})) {
-      $label = $this->{$label_key};
-    }
-    return $label;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function urlInfo($rel = 'canonical', array $options = []) {
-    @trigger_error('EntityInterface::urlInfo() is deprecated in Drupal 8.0.0 and will be removed in Drupal 9.0.0. EntityInterface::toUrl() instead. See https://www.drupal.org/node/2614344', E_USER_DEPRECATED);
-    return $this->toUrl($rel, $options);
-=======
     if (($label_key = $this->getEntityType()->getKey('label')) && isset($this->{$label_key})) {
       return $this->{$label_key};
     }
->>>>>>> dev
   }
 
   /**
@@ -277,17 +237,6 @@ abstract class EntityBase implements EntityInterface {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function link($text = NULL, $rel = 'canonical', array $options = []) {
-    @trigger_error("EntityInterface::link() is deprecated in Drupal 8.0.0 and will be removed in Drupal 9.0.0. Use EntityInterface::toLink()->toString() instead. Note, the default relationship for configuration entities changes from 'edit-form' to 'canonical'. See https://www.drupal.org/node/2614344", E_USER_DEPRECATED);
-    return $this->toLink($text, $rel, $options)->toString();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-=======
->>>>>>> dev
   public function toLink($text = NULL, $rel = 'canonical', array $options = []) {
     if (!isset($text)) {
       $text = $this->label();
@@ -299,26 +248,6 @@ abstract class EntityBase implements EntityInterface {
   }
 
   /**
-<<<<<<< HEAD
-   * {@inheritdoc}
-   */
-  public function url($rel = 'canonical', $options = []) {
-    @trigger_error('EntityInterface::url() is deprecated in Drupal 8.0.0 and will be removed in Drupal 9.0.0. EntityInterface::toUrl() instead. Note, a \Drupal\Core\Url object is returned. See https://www.drupal.org/node/2614344', E_USER_DEPRECATED);
-    // While self::toUrl() will throw an exception if the entity has no id,
-    // the expected result for a URL is always a string.
-    if ($this->id() === NULL || !$this->hasLinkTemplate($rel)) {
-      return '';
-    }
-
-    $uri = $this->toUrl($rel);
-    $options += $uri->getOptions();
-    $uri->setOptions($options);
-    return $uri->toString();
-  }
-
-  /**
-=======
->>>>>>> dev
    * Gets an array of placeholders for this entity.
    *
    * Individual entity classes may override this method to add additional
@@ -342,11 +271,7 @@ abstract class EntityBase implements EntityInterface {
       $parameter_name = $this->getEntityType()->getBundleEntityType() ?: $this->getEntityType()->getKey('bundle');
       $uri_route_parameters[$parameter_name] = $this->bundle();
     }
-<<<<<<< HEAD
-    if ($rel === 'revision' && $this instanceof RevisionableInterface) {
-=======
     if ($this instanceof RevisionableInterface && strpos($rel, 'revision') === 0) {
->>>>>>> dev
       $uri_route_parameters[$this->getEntityTypeId() . '_revision'] = $this->getRevisionId();
     }
 
@@ -559,11 +484,7 @@ abstract class EntityBase implements EntityInterface {
   public static function load($id) {
     $entity_type_repository = \Drupal::service('entity_type.repository');
     $entity_type_manager = \Drupal::entityTypeManager();
-<<<<<<< HEAD
-    $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(get_called_class()));
-=======
     $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(static::class));
->>>>>>> dev
     return $storage->load($id);
   }
 
@@ -573,11 +494,7 @@ abstract class EntityBase implements EntityInterface {
   public static function loadMultiple(array $ids = NULL) {
     $entity_type_repository = \Drupal::service('entity_type.repository');
     $entity_type_manager = \Drupal::entityTypeManager();
-<<<<<<< HEAD
-    $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(get_called_class()));
-=======
     $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(static::class));
->>>>>>> dev
     return $storage->loadMultiple($ids);
   }
 
@@ -587,11 +504,7 @@ abstract class EntityBase implements EntityInterface {
   public static function create(array $values = []) {
     $entity_type_repository = \Drupal::service('entity_type.repository');
     $entity_type_manager = \Drupal::entityTypeManager();
-<<<<<<< HEAD
-    $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(get_called_class()));
-=======
     $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(static::class));
->>>>>>> dev
     return $storage->create($values);
   }
 

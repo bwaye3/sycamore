@@ -35,11 +35,7 @@ class EntryPointTest extends BrowserTestBase {
   protected $defaultTheme = 'stark';
 
   /**
-<<<<<<< HEAD
-   * Test GETing the entry point.
-=======
    * Test GET to the entry point.
->>>>>>> dev
    */
   public function testEntryPoint() {
     $request_options = [];
@@ -54,15 +50,9 @@ class EntryPointTest extends BrowserTestBase {
     $optimized_expected_cache_contexts = \Drupal::service('cache_contexts_manager')->optimizeTokens($expected_cache_contexts);
     $this->assertSame($optimized_expected_cache_contexts, explode(' ', $response->getHeader('X-Drupal-Cache-Contexts')[0]));
     $links = $document['links'];
-<<<<<<< HEAD
-    $this->assertRegExp('/.*\/jsonapi/', $links['self']['href']);
-    $this->assertRegExp('/.*\/jsonapi\/user\/user/', $links['user--user']['href']);
-    $this->assertRegExp('/.*\/jsonapi\/node_type\/node_type/', $links['node_type--node_type']['href']);
-=======
     $this->assertMatchesRegularExpression('/.*\/jsonapi/', $links['self']['href']);
     $this->assertMatchesRegularExpression('/.*\/jsonapi\/user\/user/', $links['user--user']['href']);
     $this->assertMatchesRegularExpression('/.*\/jsonapi\/node_type\/node_type/', $links['node_type--node_type']['href']);
->>>>>>> dev
     $this->assertArrayNotHasKey('meta', $document);
 
     // A `me` link must be present for authenticated users.

@@ -2,28 +2,12 @@
 
 namespace Drupal\sitemap\Tests;
 
-<<<<<<< HEAD
-use Drupal\simpletest\WebTestBase;
-
-=======
->>>>>>> dev
 /**
  * Tests the inclusion of the sitemap css file based on sitemap settings.
  *
  * @group sitemap
  */
-<<<<<<< HEAD
-class SitemapCssTest extends WebTestBase {
-
-  /**
-   * Modules to enable.
-   *
-   * @var array
-   */
-  public static $modules = array('sitemap');
-=======
 class SitemapCssTest extends SitemapTestBase {
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -31,16 +15,7 @@ class SitemapCssTest extends SitemapTestBase {
   protected function setUp() {
     parent::setUp();
 
-<<<<<<< HEAD
-    // Create user then login.
-    $this->user = $this->drupalCreateUser(array(
-      'administer sitemap',
-      'access sitemap',
-    ));
-    $this->drupalLogin($this->user);
-=======
     $this->drupalLogin($this->userAdmin);
->>>>>>> dev
   }
 
   /**
@@ -52,15 +27,8 @@ class SitemapCssTest extends SitemapTestBase {
     $this->assertRaw('sitemap.theme.css');
 
     // Change module not to include css file.
-<<<<<<< HEAD
-    $edit = array(
-      'css' => FALSE,
-    );
-    $this->drupalPostForm('admin/config/search/sitemap', $edit, t('Save configuration'));
-=======
     $this->saveSitemapForm(['include_css' => FALSE]);
     drupal_flush_all_caches();
->>>>>>> dev
 
     // Assert that css file is not included.
     $this->drupalGet('/sitemap');

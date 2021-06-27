@@ -5,11 +5,7 @@ namespace Drupal\router_test;
 use Drupal\Core\Cache\CacheableResponse;
 use Drupal\Core\ParamConverter\ParamNotConvertedException;
 use Drupal\user\UserInterface;
-<<<<<<< HEAD
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
-=======
 use Drupal\Core\Routing\RouteObjectInterface;
->>>>>>> dev
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Laminas\Diactoros\Response\HtmlResponse;
@@ -69,11 +65,7 @@ class TestControllers {
   }
 
   /**
-<<<<<<< HEAD
-   * Test controller for ExceptionHandlingTest::testBacktraceEscaping().
-=======
    * Tests controller for ExceptionHandlingTest::testBacktraceEscaping().
->>>>>>> dev
    *
    * Passes unsafe HTML as an argument to a method which throws an exception.
    * This can be used to test if the generated backtrace is properly escaped.

@@ -32,11 +32,7 @@ class PasswordConfirm extends FormElement {
    * {@inheritdoc}
    */
   public function getInfo() {
-<<<<<<< HEAD
-    $class = get_class($this);
-=======
     $class = static::class;
->>>>>>> dev
     return [
       '#input' => TRUE,
       '#markup' => '',
@@ -94,11 +90,7 @@ class PasswordConfirm extends FormElement {
       ],
       '#error_no_message' => TRUE,
     ];
-<<<<<<< HEAD
-    $element['#element_validate'] = [[get_called_class(), 'validatePasswordConfirm']];
-=======
     $element['#element_validate'] = [[static::class, 'validatePasswordConfirm']];
->>>>>>> dev
     $element['#tree'] = TRUE;
 
     if (isset($element['#size'])) {

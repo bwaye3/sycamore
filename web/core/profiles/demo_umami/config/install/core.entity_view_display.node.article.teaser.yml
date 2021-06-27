@@ -6,10 +6,7 @@ dependencies:
     - field.field.node.article.body
     - field.field.node.article.field_media_image
     - field.field.node.article.field_tags
-<<<<<<< HEAD
-=======
     - field.field.node.article.layout_builder__layout
->>>>>>> dev
     - node.type.article
   module:
     - text
@@ -52,7 +49,4 @@ content:
 hidden:
   content_moderation_control: true
   langcode: true
-<<<<<<< HEAD
-=======
   layout_builder__layout: true
->>>>>>> dev

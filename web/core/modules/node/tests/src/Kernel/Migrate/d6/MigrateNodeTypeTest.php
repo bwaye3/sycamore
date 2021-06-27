@@ -16,20 +16,12 @@ class MigrateNodeTypeTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['menu_ui'];
-=======
   protected static $modules = ['menu_ui'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installConfig(['node']);
     $this->executeMigration('d6_node_type');
@@ -42,17 +34,6 @@ class MigrateNodeTypeTest extends MigrateDrupal6TestBase {
     $id_map = $this->getMigration('d6_node_type')->getIdMap();
     // Test the test_page content type.
     $node_type_page = NodeType::load('test_page');
-<<<<<<< HEAD
-    $this->assertIdentical('test_page', $node_type_page->id(), 'Node type test_page loaded');
-    $this->assertIdentical(TRUE, $node_type_page->displaySubmitted());
-    $this->assertIdentical(FALSE, $node_type_page->shouldCreateNewRevision());
-    $this->assertIdentical(DRUPAL_OPTIONAL, $node_type_page->getPreviewMode());
-    $this->assertIdentical($id_map->lookupDestinationIds(['test_page']), [['test_page']]);
-
-    // Test we have a body field.
-    $field = FieldConfig::loadByName('node', 'test_page', 'body');
-    $this->assertIdentical('This is the body field label', $field->getLabel(), 'Body field was found.');
-=======
     $this->assertSame('test_page', $node_type_page->id(), 'Node type test_page loaded');
     $this->assertTrue($node_type_page->displaySubmitted());
     $this->assertFalse($node_type_page->shouldCreateNewRevision());
@@ -62,7 +43,6 @@ class MigrateNodeTypeTest extends MigrateDrupal6TestBase {
     // Test we have a body field.
     $field = FieldConfig::loadByName('node', 'test_page', 'body');
     $this->assertSame('This is the body field label', $field->getLabel(), 'Body field was found.');
->>>>>>> dev
 
     // Test default menus.
     $expected_available_menus = ['navigation'];
@@ -72,18 +52,6 @@ class MigrateNodeTypeTest extends MigrateDrupal6TestBase {
 
     // Test the test_story content type.
     $node_type_story = NodeType::load('test_story');
-<<<<<<< HEAD
-    $this->assertIdentical('test_story', $node_type_story->id(), 'Node type test_story loaded');
-
-    $this->assertIdentical(TRUE, $node_type_story->displaySubmitted());
-    $this->assertIdentical(FALSE, $node_type_story->shouldCreateNewRevision());
-    $this->assertIdentical(DRUPAL_OPTIONAL, $node_type_story->getPreviewMode());
-    $this->assertIdentical($id_map->lookupDestinationIds(['test_story']), [['test_story']]);
-
-    // Test we don't have a body field.
-    $field = FieldConfig::loadByName('node', 'test_story', 'body');
-    $this->assertIdentical(NULL, $field, 'No body field found');
-=======
     $this->assertSame('test_story', $node_type_story->id(), 'Node type test_story loaded');
 
     $this->assertTrue($node_type_story->displaySubmitted());
@@ -94,7 +62,6 @@ class MigrateNodeTypeTest extends MigrateDrupal6TestBase {
     // Test we don't have a body field.
     $field = FieldConfig::loadByName('node', 'test_story', 'body');
     $this->assertNull($field, 'No body field found');
->>>>>>> dev
 
     // Test default menus.
     $expected_available_menus = ['navigation'];
@@ -104,18 +71,6 @@ class MigrateNodeTypeTest extends MigrateDrupal6TestBase {
 
     // Test the test_event content type.
     $node_type_event = NodeType::load('test_event');
-<<<<<<< HEAD
-    $this->assertIdentical('test_event', $node_type_event->id(), 'Node type test_event loaded');
-
-    $this->assertIdentical(TRUE, $node_type_event->displaySubmitted());
-    $this->assertIdentical(TRUE, $node_type_event->shouldCreateNewRevision());
-    $this->assertIdentical(DRUPAL_OPTIONAL, $node_type_event->getPreviewMode());
-    $this->assertIdentical($id_map->lookupDestinationIds(['test_event']), [['test_event']]);
-
-    // Test we have a body field.
-    $field = FieldConfig::loadByName('node', 'test_event', 'body');
-    $this->assertIdentical('Body', $field->getLabel(), 'Body field was found.');
-=======
     $this->assertSame('test_event', $node_type_event->id(), 'Node type test_event loaded');
 
     $this->assertTrue($node_type_event->displaySubmitted());
@@ -126,19 +81,15 @@ class MigrateNodeTypeTest extends MigrateDrupal6TestBase {
     // Test we have a body field.
     $field = FieldConfig::loadByName('node', 'test_event', 'body');
     $this->assertSame('Body', $field->getLabel(), 'Body field was found.');
->>>>>>> dev
 
     $expected_available_menus = ['navigation'];
     $this->assertSame($expected_available_menus, $node_type_event->getThirdPartySetting('menu_ui', 'available_menus'));
     $expected_parent = 'navigation:';
     $this->assertSame($expected_parent, $node_type_event->getThirdPartySetting('menu_ui', 'parent'));
-<<<<<<< HEAD
-=======
 
     // Test the 32 character type name exists.
     $node_type = NodeType::load('a_thirty_two_character_type_name');
     $this->assertSame('a_thirty_two_character_type_name', $node_type->id());
->>>>>>> dev
   }
 
 }

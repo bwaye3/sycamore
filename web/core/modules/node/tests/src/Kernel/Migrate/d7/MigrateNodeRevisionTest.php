@@ -25,11 +25,7 @@ class MigrateNodeRevisionTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'content_translation',
     'comment',
     'datetime',
@@ -48,11 +44,7 @@ class MigrateNodeRevisionTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->fileMigrationSetup();
@@ -110,11 +102,7 @@ class MigrateNodeRevisionTest extends MigrateDrupal7TestBase {
     $this->assertSame($title, $revision->getTitle());
     $this->assertSame($langcode, $revision->language()->getId());
     $this->assertSame($log, $revision->revision_log->value);
-<<<<<<< HEAD
-    $this->assertIdentical($timestamp, $revision->getRevisionCreationTime());
-=======
     $this->assertSame($timestamp, $revision->getRevisionCreationTime());
->>>>>>> dev
   }
 
   /**
@@ -134,8 +122,6 @@ class MigrateNodeRevisionTest extends MigrateDrupal7TestBase {
     foreach ($ids as $id) {
       $this->assertNull($this->nodeStorage->loadRevision($id));
     }
-<<<<<<< HEAD
-=======
 
     // Test the migration of node and user reference fields.
     $revision = $this->nodeStorage->loadRevision(2);
@@ -144,7 +130,6 @@ class MigrateNodeRevisionTest extends MigrateDrupal7TestBase {
 
     $this->assertCount(1, $revision->field_user_reference);
     $this->assertSame('Bob', $revision->field_user_reference[0]->entity->getAccountName());
->>>>>>> dev
   }
 
 }

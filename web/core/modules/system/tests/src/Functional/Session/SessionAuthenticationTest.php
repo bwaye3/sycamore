@@ -25,11 +25,7 @@ class SessionAuthenticationTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['basic_auth', 'session_test'];
-=======
   protected static $modules = ['basic_auth', 'session_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -39,11 +35,7 @@ class SessionAuthenticationTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create a test administrator user.
@@ -73,11 +65,7 @@ class SessionAuthenticationTest extends BrowserTestBase {
     $this->assertSession()->statusCodeEquals(200);
 
     // Check that the correct user is logged in.
-<<<<<<< HEAD
-    $this->assertEqual($this->user->id(), json_decode($session->getPage()->getContent())->user, 'The correct user is authenticated on a route with basic authentication.');
-=======
     $this->assertEquals($this->user->id(), json_decode($session->getPage()->getContent())->user, 'The correct user is authenticated on a route with basic authentication.');
->>>>>>> dev
     $session->restart();
 
     // If we now try to access a page without basic authentication then we
@@ -118,17 +106,10 @@ class SessionAuthenticationTest extends BrowserTestBase {
    */
   protected function assertSessionData($response, $expected) {
     $response = json_decode($response, TRUE);
-<<<<<<< HEAD
-    $this->assertEqual(['test_value' => $expected], $response['session'], 'The session data matches the expected value.');
-
-    // Check that we are logged in as the correct user.
-    $this->assertEqual($this->user->id(), $response['user'], 'The correct user is logged in.');
-=======
     $this->assertEquals(['test_value' => $expected], $response['session'], 'The session data matches the expected value.');
 
     // Check that we are logged in as the correct user.
     $this->assertEquals($this->user->id(), $response['user'], 'The correct user is logged in.');
->>>>>>> dev
   }
 
   /**
@@ -155,12 +136,8 @@ class SessionAuthenticationTest extends BrowserTestBase {
     $this->drupalGet($cookie_url);
     $this->assertEmpty($this->getSessionCookies());
     $edit = ['name' => $this->user->getAccountName(), 'pass' => $this->user->passRaw];
-<<<<<<< HEAD
-    $this->drupalPostForm($cookie_url, $edit, t('Log in'));
-=======
     $this->drupalGet($cookie_url);
     $this->submitForm($edit, 'Log in');
->>>>>>> dev
     $this->assertNotEmpty($this->getSessionCookies());
   }
 

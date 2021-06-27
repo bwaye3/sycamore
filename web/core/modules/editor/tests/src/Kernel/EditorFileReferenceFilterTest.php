@@ -3,17 +3,11 @@
 namespace Drupal\Tests\editor\Kernel;
 
 use Drupal\Core\Cache\Cache;
-<<<<<<< HEAD
-use Drupal\file\Entity\File;
-use Drupal\filter\FilterPluginCollection;
-use Drupal\KernelTests\KernelTestBase;
-=======
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
 use Drupal\filter\FilterPluginCollection;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\TestFileCreationTrait;
->>>>>>> dev
 
 /**
  * Tests Editor module's file reference filter.
@@ -22,21 +16,14 @@ use Drupal\Tests\TestFileCreationTrait;
  */
 class EditorFileReferenceFilterTest extends KernelTestBase {
 
-<<<<<<< HEAD
-=======
   use TestFileCreationTrait;
 
->>>>>>> dev
   /**
    * Modules to enable.
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'system',
     'filter',
     'editor',
@@ -53,11 +40,7 @@ class EditorFileReferenceFilterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installConfig(['system']);
     $this->installEntitySchema('file');
@@ -95,67 +78,39 @@ class EditorFileReferenceFilterTest extends KernelTestBase {
     // No data-entity-type and no data-entity-uuid attribute.
     $input = '<img src="llama.jpg" />';
     $output = $test($input);
-<<<<<<< HEAD
-    $this->assertIdentical($input, $output->getProcessedText());
-=======
     $this->assertSame($input, $output->getProcessedText());
->>>>>>> dev
 
     // A non-file data-entity-type attribute value.
     $input = '<img src="llama.jpg" data-entity-type="invalid-entity-type-value" data-entity-uuid="' . $uuid . '" />';
     $output = $test($input);
-<<<<<<< HEAD
-    $this->assertIdentical($input, $output->getProcessedText());
-=======
     $this->assertSame($input, $output->getProcessedText());
->>>>>>> dev
 
     // One data-entity-uuid attribute.
     $input = '<img src="llama.jpg" data-entity-type="file" data-entity-uuid="' . $uuid . '" />';
     $expected_output = '<img src="/' . $this->siteDirectory . '/files/llama.jpg" data-entity-type="file" data-entity-uuid="' . $uuid . '" />';
     $output = $test($input);
-<<<<<<< HEAD
-    $this->assertIdentical($expected_output, $output->getProcessedText());
-    $this->assertEqual($cache_tag, $output->getCacheTags());
-=======
     $this->assertSame($expected_output, $output->getProcessedText());
     $this->assertEquals($cache_tag, $output->getCacheTags());
->>>>>>> dev
 
     // One data-entity-uuid attribute with odd capitalization.
     $input = '<img src="llama.jpg" data-entity-type="file" DATA-entity-UUID =   "' . $uuid . '" />';
     $expected_output = '<img src="/' . $this->siteDirectory . '/files/llama.jpg" data-entity-type="file" data-entity-uuid="' . $uuid . '" />';
     $output = $test($input);
-<<<<<<< HEAD
-    $this->assertIdentical($expected_output, $output->getProcessedText());
-    $this->assertEqual($cache_tag, $output->getCacheTags());
-=======
     $this->assertSame($expected_output, $output->getProcessedText());
     $this->assertEquals($cache_tag, $output->getCacheTags());
->>>>>>> dev
 
     // One data-entity-uuid attribute on a non-image tag.
     $input = '<video src="llama.jpg" data-entity-type="file" data-entity-uuid="' . $uuid . '" />';
     $expected_output = '<video src="/' . $this->siteDirectory . '/files/llama.jpg" data-entity-type="file" data-entity-uuid="' . $uuid . '"></video>';
     $output = $test($input);
-<<<<<<< HEAD
-    $this->assertIdentical($expected_output, $output->getProcessedText());
-    $this->assertEqual($cache_tag, $output->getCacheTags());
-=======
     $this->assertSame($expected_output, $output->getProcessedText());
     $this->assertEquals($cache_tag, $output->getCacheTags());
->>>>>>> dev
 
     // One data-entity-uuid attribute with an invalid value.
     $input = '<img src="llama.jpg" data-entity-type="file" data-entity-uuid="invalid-' . $uuid . '" />';
     $output = $test($input);
-<<<<<<< HEAD
-    $this->assertIdentical($input, $output->getProcessedText());
-    $this->assertEqual([], $output->getCacheTags());
-=======
     $this->assertSame($input, $output->getProcessedText());
     $this->assertEquals([], $output->getCacheTags());
->>>>>>> dev
 
     // Two different data-entity-uuid attributes.
     $input = '<img src="llama.jpg" data-entity-type="file" data-entity-uuid="' . $uuid . '" />';
@@ -163,13 +118,8 @@ class EditorFileReferenceFilterTest extends KernelTestBase {
     $expected_output = '<img src="/' . $this->siteDirectory . '/files/llama.jpg" data-entity-type="file" data-entity-uuid="' . $uuid . '" />';
     $expected_output .= '<img src="/' . $this->siteDirectory . '/files/alpaca.jpg" data-entity-type="file" data-entity-uuid="' . $uuid_2 . '" />';
     $output = $test($input);
-<<<<<<< HEAD
-    $this->assertIdentical($expected_output, $output->getProcessedText());
-    $this->assertEqual(Cache::mergeTags($cache_tag, $cache_tag_2), $output->getCacheTags());
-=======
     $this->assertSame($expected_output, $output->getProcessedText());
     $this->assertEquals(Cache::mergeTags($cache_tag, $cache_tag_2), $output->getCacheTags());
->>>>>>> dev
 
     // Two identical  data-entity-uuid attributes.
     $input = '<img src="llama.jpg" data-entity-type="file" data-entity-uuid="' . $uuid . '" />';
@@ -177,10 +127,6 @@ class EditorFileReferenceFilterTest extends KernelTestBase {
     $expected_output = '<img src="/' . $this->siteDirectory . '/files/llama.jpg" data-entity-type="file" data-entity-uuid="' . $uuid . '" />';
     $expected_output .= '<img src="/' . $this->siteDirectory . '/files/llama.jpg" data-entity-type="file" data-entity-uuid="' . $uuid . '" />';
     $output = $test($input);
-<<<<<<< HEAD
-    $this->assertIdentical($expected_output, $output->getProcessedText());
-    $this->assertEqual($cache_tag, $output->getCacheTags());
-=======
     $this->assertSame($expected_output, $output->getProcessedText());
     $this->assertEquals($cache_tag, $output->getCacheTags());
 
@@ -205,7 +151,6 @@ class EditorFileReferenceFilterTest extends KernelTestBase {
     $output = $test($input);
     $this->assertSame($expected_output, $output->getProcessedText());
     $this->assertEquals($cache_tag, $output->getCacheTags());
->>>>>>> dev
   }
 
 }

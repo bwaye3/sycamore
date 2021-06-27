@@ -1,11 +1,2 @@
-<<<<<<< HEAD
-channel:
-  description: ''
-items:
-  limit: 10
-  view_mode: rss
-langcode: en
-=======
 items:
   view_mode: rss
->>>>>>> dev

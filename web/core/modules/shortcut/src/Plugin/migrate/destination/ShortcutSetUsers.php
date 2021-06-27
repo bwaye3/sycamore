@@ -73,11 +73,7 @@ class ShortcutSetUsers extends DestinationBase implements ContainerFactoryPlugin
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function fields(MigrationInterface $migration = NULL) {
-=======
   public function fields() {
->>>>>>> dev
     return [
       'uid' => 'The users.uid for this set.',
       'source' => 'The shortcut_set.set_name that will be displayed for this user.',

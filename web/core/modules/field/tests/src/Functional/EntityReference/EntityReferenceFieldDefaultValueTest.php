@@ -22,11 +22,7 @@ class EntityReferenceFieldDefaultValueTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['field_ui', 'node'];
-=======
   protected static $modules = ['field_ui', 'node'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -40,11 +36,7 @@ class EntityReferenceFieldDefaultValueTest extends BrowserTestBase {
    */
   protected $adminUser;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create default content type.
@@ -94,46 +86,27 @@ class EntityReferenceFieldDefaultValueTest extends BrowserTestBase {
     $field_edit = [
       'default_value_input[' . $field_name . '][0][target_id]' => $referenced_node->getTitle() . ' (' . $referenced_node->id() . ')',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/types/manage/reference_content/fields/node.reference_content.' . $field_name, $field_edit, t('Save settings'));
-
-    // Check that default value is selected in default value form.
-    $this->drupalGet('admin/structure/types/manage/reference_content/fields/node.reference_content.' . $field_name);
-    $this->assertRaw('name="default_value_input[' . $field_name . '][0][target_id]" value="' . $referenced_node->getTitle() . ' (' . $referenced_node->id() . ')', 'The default value is selected in instance settings page');
-=======
     $this->drupalGet('admin/structure/types/manage/reference_content/fields/node.reference_content.' . $field_name);
     $this->submitForm($field_edit, 'Save settings');
 
     // Check that default value is selected in default value form.
     $this->drupalGet('admin/structure/types/manage/reference_content/fields/node.reference_content.' . $field_name);
     $this->assertRaw('name="default_value_input[' . $field_name . '][0][target_id]" value="' . $referenced_node->getTitle() . ' (' . $referenced_node->id() . ')');
->>>>>>> dev
 
     // Check if the ID has been converted to UUID in config entity.
     $config_entity = $this->config('field.field.node.reference_content.' . $field_name)->get();
     $this->assertTrue(isset($config_entity['default_value'][0]['target_uuid']), 'Default value contains target_uuid property');
-<<<<<<< HEAD
-    $this->assertEqual($config_entity['default_value'][0]['target_uuid'], $referenced_node->uuid(), 'Content uuid and config entity uuid are the same');
-    // Ensure the configuration has the expected dependency on the entity that
-    // is being used a default value.
-    $this->assertEqual([$referenced_node->getConfigDependencyName()], $config_entity['dependencies']['content']);
-=======
     $this->assertEquals($referenced_node->uuid(), $config_entity['default_value'][0]['target_uuid'], 'Content uuid and config entity uuid are the same');
     // Ensure the configuration has the expected dependency on the entity that
     // is being used a default value.
     $this->assertEquals([$referenced_node->getConfigDependencyName()], $config_entity['dependencies']['content']);
->>>>>>> dev
 
     // Clear field definitions cache in order to avoid stale cache values.
     \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
 
     // Create a new node to check that UUID has been converted to numeric ID.
     $new_node = Node::create(['type' => 'reference_content']);
-<<<<<<< HEAD
-    $this->assertEqual($new_node->get($field_name)->offsetGet(0)->target_id, $referenced_node->id());
-=======
     $this->assertEquals($new_node->get($field_name)->offsetGet(0)->target_id, $referenced_node->id());
->>>>>>> dev
 
     // Ensure that the entity reference config schemas are correct.
     $field_config = $this->config('field.field.node.reference_content.' . $field_name);
@@ -178,12 +151,8 @@ class EntityReferenceFieldDefaultValueTest extends BrowserTestBase {
       'default_value_input[' . $field_name . '][0][target_id]' => $referenced_node_type->label() . ' (' . $referenced_node_type->id() . ')',
       'default_value_input[' . $field_name . '][1][target_id]' => $referenced_node_type2->label() . ' (' . $referenced_node_type2->id() . ')',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/types/manage/reference_content/fields/node.reference_content.' . $field_name, $field_edit, t('Save settings'));
-=======
     $this->drupalGet('admin/structure/types/manage/reference_content/fields/node.reference_content.' . $field_name);
     $this->submitForm($field_edit, 'Save settings');
->>>>>>> dev
 
     // Check that the field has a dependency on the default value.
     $config_entity = $this->config('field.field.node.reference_content.' . $field_name)->get();

@@ -78,10 +78,6 @@ class Condition implements ConditionInterface, \Countable {
    *
    * @param string $conjunction
    *   The operator to use to combine conditions: 'AND' or 'OR'.
-<<<<<<< HEAD
-   */
-  public function __construct($conjunction) {
-=======
    * @param bool $trigger_deprecation
    *   If TRUE then trigger the deprecation warning.
    *
@@ -95,7 +91,6 @@ class Condition implements ConditionInterface, \Countable {
       @trigger_error('Creating an instance of this class is deprecated in drupal:9.1.0 and is removed in drupal:10.0.0. Use Database::getConnection()->condition() instead. See https://www.drupal.org/node/3159568', E_USER_DEPRECATED);
     }
 
->>>>>>> dev
     $this->conditions['#conjunction'] = $conjunction;
   }
 

@@ -20,11 +20,7 @@ class EarlyRenderingControllerTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['system', 'early_rendering_controller_test'];
-=======
   protected static $modules = ['system', 'early_rendering_controller_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -39,19 +35,11 @@ class EarlyRenderingControllerTest extends BrowserTestBase {
     $this->drupalGet(Url::fromRoute('early_rendering_controller_test.render_array'));
     $this->assertSession()->statusCodeEquals(200);
     $this->assertRaw('Hello world!');
-<<<<<<< HEAD
-    $this->assertCacheTag('foo');
-    $this->drupalGet(Url::fromRoute('early_rendering_controller_test.render_array.early'));
-    $this->assertSession()->statusCodeEquals(200);
-    $this->assertRaw('Hello world!');
-    $this->assertCacheTag('foo');
-=======
     $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'foo');
     $this->drupalGet(Url::fromRoute('early_rendering_controller_test.render_array.early'));
     $this->assertSession()->statusCodeEquals(200);
     $this->assertRaw('Hello world!');
     $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'foo');
->>>>>>> dev
 
     // AjaxResponse: non-early & early.
     // @todo Add cache tags assertion when AjaxResponse is made cacheable in

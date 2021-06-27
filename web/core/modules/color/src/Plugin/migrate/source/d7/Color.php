@@ -2,10 +2,6 @@
 
 namespace Drupal\color\Plugin\migrate\source\d7;
 
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Extension\ThemeHandler;
 use Drupal\migrate\Row;
 use Drupal\migrate_drupal\Plugin\migrate\source\VariableMultiRow;
@@ -23,15 +19,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class Color extends VariableMultiRow {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * The theme handler.

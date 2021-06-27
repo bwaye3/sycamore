@@ -38,11 +38,7 @@ class FieldCrudTest extends FieldKernelTestBase {
    */
   protected $fieldDefinition;
 
-<<<<<<< HEAD
-  public function setUp() {
-=======
   public function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->fieldStorageDefinition = [
@@ -66,11 +62,7 @@ class FieldCrudTest extends FieldKernelTestBase {
   // and for testUpdateField
 
   /**
-<<<<<<< HEAD
-   * Test the creation of a field.
-=======
    * Tests the creation of a field.
->>>>>>> dev
    */
   public function testCreateField() {
     $field = FieldConfig::create($this->fieldDefinition);
@@ -95,17 +87,6 @@ class FieldCrudTest extends FieldKernelTestBase {
     unset($config['settings']['config_data_from_field_setting']);
 
     // Check that default values are set.
-<<<<<<< HEAD
-    $this->assertEqual($config['required'], FALSE, 'Required defaults to false.');
-    $this->assertIdentical($config['label'], $this->fieldDefinition['field_name'], 'Label defaults to field name.');
-    $this->assertIdentical($config['description'], '', 'Description defaults to empty string.');
-
-    // Check that default settings are set.
-    $this->assertEqual($config['settings'], $field_type_manager->getDefaultFieldSettings($this->fieldStorageDefinition['type']), 'Default field settings have been written.');
-
-    // Check that the denormalized 'field_type' was properly written.
-    $this->assertEqual($config['field_type'], $this->fieldStorageDefinition['type']);
-=======
     $this->assertFalse($config['required'], 'Required defaults to false.');
     $this->assertSame($config['label'], $this->fieldDefinition['field_name'], 'Label defaults to field name.');
     $this->assertSame('', $config['description'], 'Description defaults to empty string.');
@@ -115,7 +96,6 @@ class FieldCrudTest extends FieldKernelTestBase {
 
     // Check that the denormalized 'field_type' was properly written.
     $this->assertEquals($config['field_type'], $this->fieldStorageDefinition['type']);
->>>>>>> dev
 
     // Guarantee that the field/bundle combination is unique.
     try {
@@ -215,11 +195,7 @@ class FieldCrudTest extends FieldKernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test creating a field with custom storage set.
-=======
    * Tests creating a field with custom storage set.
->>>>>>> dev
    */
   public function testCreateFieldCustomStorage() {
     $field_name = mb_strtolower($this->randomMachineName());
@@ -248,11 +224,7 @@ class FieldCrudTest extends FieldKernelTestBase {
     // Save an entity with a value in the custom storage field and verify no
     // data is retrieved on load.
     $entity = EntityTest::create(['name' => $this->randomString(), $field_name => 'Test value']);
-<<<<<<< HEAD
-    $this->assertIdentical('Test value', $entity->{$field_name}->value, 'The test value is set on the field.');
-=======
     $this->assertSame('Test value', $entity->{$field_name}->value, 'The test value is set on the field.');
->>>>>>> dev
 
     $entity->save();
     $entity = EntityTest::load($entity->id());
@@ -261,26 +233,13 @@ class FieldCrudTest extends FieldKernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test reading back a field definition.
-=======
    * Tests reading back a field definition.
->>>>>>> dev
    */
   public function testReadField() {
     FieldConfig::create($this->fieldDefinition)->save();
 
     // Read the field back.
     $field = FieldConfig::load('entity_test.' . $this->fieldDefinition['bundle'] . '.' . $this->fieldDefinition['field_name']);
-<<<<<<< HEAD
-    $this->assertTrue($this->fieldDefinition['field_name'] == $field->getName(), 'The field was properly read.');
-    $this->assertTrue($this->fieldDefinition['entity_type'] == $field->getTargetEntityTypeId(), 'The field was properly read.');
-    $this->assertTrue($this->fieldDefinition['bundle'] == $field->getTargetBundle(), 'The field was properly read.');
-  }
-
-  /**
-   * Test the update of a field.
-=======
     $this->assertSame($this->fieldDefinition['field_name'], $field->getName(), 'The field was properly read.');
     $this->assertSame($this->fieldDefinition['entity_type'], $field->getTargetEntityTypeId(), 'The field was properly read.');
     $this->assertSame($this->fieldDefinition['bundle'], $field->getTargetBundle(), 'The field was properly read.');
@@ -288,7 +247,6 @@ class FieldCrudTest extends FieldKernelTestBase {
 
   /**
    * Tests the update of a field.
->>>>>>> dev
    */
   public function testUpdateField() {
     FieldConfig::create($this->fieldDefinition)->save();
@@ -302,25 +260,15 @@ class FieldCrudTest extends FieldKernelTestBase {
     $field->save();
 
     $field_new = FieldConfig::load('entity_test.' . $this->fieldDefinition['bundle'] . '.' . $this->fieldDefinition['field_name']);
-<<<<<<< HEAD
-    $this->assertEqual($field->isRequired(), $field_new->isRequired(), '"required" change is saved');
-    $this->assertEqual($field->getLabel(), $field_new->getLabel(), '"label" change is saved');
-    $this->assertEqual($field->getDescription(), $field_new->getDescription(), '"description" change is saved');
-=======
     $this->assertEquals($field->isRequired(), $field_new->isRequired(), '"required" change is saved');
     $this->assertEquals($field->getLabel(), $field_new->getLabel(), '"label" change is saved');
     $this->assertEquals($field->getDescription(), $field_new->getDescription(), '"description" change is saved');
->>>>>>> dev
 
     // TODO: test failures.
   }
 
   /**
-<<<<<<< HEAD
-   * Test the deletion of a field with no data.
-=======
    * Tests the deletion of a field with no data.
->>>>>>> dev
    */
   public function testDeleteFieldNoData() {
     // Deleting and purging fields with data is tested in
@@ -336,11 +284,7 @@ class FieldCrudTest extends FieldKernelTestBase {
 
     // Test that the first field is not deleted, and then delete it.
     $field = current(\Drupal::entityTypeManager()->getStorage('field_config')->loadByProperties(['entity_type' => 'entity_test', 'field_name' => $this->fieldDefinition['field_name'], 'bundle' => $this->fieldDefinition['bundle'], 'include_deleted' => TRUE]));
-<<<<<<< HEAD
-    $this->assertTrue(!empty($field) && empty($field->deleted), 'A new field is not marked for deletion.');
-=======
     $this->assertFalse($field->isDeleted());
->>>>>>> dev
     $field->delete();
 
     // Make sure the field was deleted without being marked for purging as there
@@ -354,11 +298,7 @@ class FieldCrudTest extends FieldKernelTestBase {
 
     // Make sure the other field is not deleted.
     $another_field = FieldConfig::load('entity_test.' . $another_field_definition['bundle'] . '.' . $another_field_definition['field_name']);
-<<<<<<< HEAD
-    $this->assertTrue(!empty($another_field) && !$another_field->isDeleted(), 'A non-deleted field is not marked for deletion.');
-=======
     $this->assertFalse($another_field->isDeleted());
->>>>>>> dev
   }
 
   /**

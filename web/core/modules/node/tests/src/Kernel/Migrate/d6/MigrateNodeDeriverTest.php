@@ -20,21 +20,13 @@ class MigrateNodeDeriverTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setUp() {
-=======
   public function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->pluginManager = $this->container->get('plugin.manager.migration');
   }
 
   /**
-<<<<<<< HEAD
-   * Test node translation migrations with translation disabled.
-=======
    * Tests node translation migrations with translation disabled.
->>>>>>> dev
    */
   public function testNoTranslations() {
     // Without content_translation, there should be no translation migrations.
@@ -44,11 +36,7 @@ class MigrateNodeDeriverTest extends MigrateDrupal6TestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test node translation migrations with translation enabled.
-=======
    * Tests node translation migrations with translation enabled.
->>>>>>> dev
    */
   public function testTranslations() {
     // With content_translation, there should be translation migrations for

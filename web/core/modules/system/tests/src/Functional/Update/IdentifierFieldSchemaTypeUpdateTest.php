@@ -10,10 +10,6 @@ use Drupal\FunctionalTests\Update\UpdatePathTestBase;
  * @see https://www.drupal.org/node/2928906
  *
  * @group Update
-<<<<<<< HEAD
- * @group legacy
-=======
->>>>>>> dev
  */
 class IdentifierFieldSchemaTypeUpdateTest extends UpdatePathTestBase {
 

@@ -5,10 +5,7 @@ namespace Drupal\Tests\field\Kernel\String;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
-<<<<<<< HEAD
-=======
 use Drupal\entity_test\Entity\EntityTestLabel;
->>>>>>> dev
 use Drupal\entity_test\Entity\EntityTestRev;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
@@ -26,11 +23,7 @@ class StringFormatterTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'field',
     'text',
     'entity_test',
@@ -69,22 +62,13 @@ class StringFormatterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Configure the theme system.
     $this->installConfig(['system', 'field']);
-<<<<<<< HEAD
-    \Drupal::service('router.builder')->rebuild();
-    $this->installEntitySchema('entity_test_rev');
-=======
     $this->installEntitySchema('entity_test_rev');
     $this->installEntitySchema('entity_test_label');
->>>>>>> dev
 
     $this->entityType = 'entity_test_rev';
     $this->bundle = $this->entityType;
@@ -203,8 +187,6 @@ class StringFormatterTest extends KernelTestBase {
     $this->assertLinkByHref($entity->toUrl('canonical')->toString());
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Test "link_to_entity" feature on fields which are added to config entity.
    */
@@ -247,5 +229,4 @@ class StringFormatterTest extends KernelTestBase {
     $this->assertRaw($value);
   }
 
->>>>>>> dev
 }

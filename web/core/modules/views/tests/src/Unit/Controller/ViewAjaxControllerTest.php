@@ -66,11 +66,7 @@ class ViewAjaxControllerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->viewStorage = $this->createMock('Drupal\Core\Entity\EntityStorageInterface');
     $this->executableFactory = $this->getMockBuilder('Drupal\views\ViewExecutableFactory')
       ->disableOriginalConstructor()
@@ -121,11 +117,7 @@ class ViewAjaxControllerTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests missing view_name and view_display_id
-=======
    * Tests missing view_name and view_display_id.
->>>>>>> dev
    */
   public function testMissingViewName() {
     $request = new Request();
@@ -134,11 +126,7 @@ class ViewAjaxControllerTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests with view_name and view_display_id but not existing view.
-=======
    * Tests non-existent view with view_name and view_display_id.
->>>>>>> dev
    */
   public function testMissingView() {
     $request = new Request();
@@ -204,8 +192,6 @@ class ViewAjaxControllerTest extends UnitTestCase {
     $this->redirectDestination->expects($this->atLeastOnce())
       ->method('set')
       ->with('/test-page?type=article');
-<<<<<<< HEAD
-=======
     $this->currentPath->expects($this->once())
       ->method('setPath')
       ->with('/test-page', $request);
@@ -238,7 +224,6 @@ class ViewAjaxControllerTest extends UnitTestCase {
     $this->currentPath->expects($this->once())
       ->method('setPath')
       ->with('/test-page');
->>>>>>> dev
 
     $response = $this->viewAjaxController->ajaxView($request);
     $this->assertInstanceOf(ViewAjaxResponse::class, $response);

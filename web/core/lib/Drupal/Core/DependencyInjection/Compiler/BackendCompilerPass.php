@@ -37,10 +37,7 @@ class BackendCompilerPass implements CompilerPassInterface {
    * {@inheritdoc}
    */
   public function process(ContainerBuilder $container) {
-<<<<<<< HEAD
-=======
     $driver_backend = NULL;
->>>>>>> dev
     if ($container->hasParameter('default_backend')) {
       $default_backend = $container->getParameter('default_backend');
       // Opt out from the default backend.
@@ -50,12 +47,8 @@ class BackendCompilerPass implements CompilerPassInterface {
     }
     else {
       try {
-<<<<<<< HEAD
-        $default_backend = $container->get('database')->driver();
-=======
         $driver_backend = $container->get('database')->driver();
         $default_backend = $container->get('database')->databaseType();
->>>>>>> dev
         $container->set('database', NULL);
       }
       catch (\Exception $e) {
@@ -71,14 +64,10 @@ class BackendCompilerPass implements CompilerPassInterface {
       if ($container->hasAlias($id)) {
         continue;
       }
-<<<<<<< HEAD
-      if ($container->hasDefinition("$default_backend.$id") || $container->hasAlias("$default_backend.$id")) {
-=======
       if ($container->hasDefinition("$driver_backend.$id") || $container->hasAlias("$driver_backend.$id")) {
         $container->setAlias($id, new Alias("$driver_backend.$id"));
       }
       elseif ($container->hasDefinition("$default_backend.$id") || $container->hasAlias("$default_backend.$id")) {
->>>>>>> dev
         $container->setAlias($id, new Alias("$default_backend.$id"));
       }
     }

@@ -26,8 +26,6 @@ final class LayoutBuilderEvents {
    */
   const SECTION_COMPONENT_BUILD_RENDER_ARRAY = 'section_component.build.render_array';
 
-<<<<<<< HEAD
-=======
   /**
    * Name of the event fired in when preparing a layout builder element.
    *
@@ -41,5 +39,4 @@ final class LayoutBuilderEvents {
    */
   const PREPARE_LAYOUT = 'prepare_layout';
 
->>>>>>> dev
 }

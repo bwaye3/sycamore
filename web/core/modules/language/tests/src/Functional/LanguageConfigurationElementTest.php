@@ -20,11 +20,7 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'taxonomy',
     'node',
     'language',
@@ -37,11 +33,7 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $user = $this->drupalCreateUser([
       'access administration pages',
@@ -58,17 +50,6 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
     $this->drupalGet('language-tests/language_configuration_element');
     $edit['lang_configuration[langcode]'] = 'current_interface';
     $edit['lang_configuration[language_alterable]'] = FALSE;
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, 'Save');
-    $lang_conf = ContentLanguageSettings::loadByEntityTypeBundle('entity_test', 'some_bundle');
-
-    // Check that the settings have been saved.
-    $this->assertEqual($lang_conf->getDefaultLangcode(), 'current_interface');
-    $this->assertFalse($lang_conf->isLanguageAlterable());
-    $this->drupalGet('language-tests/language_configuration_element');
-    $this->assertOptionSelected('edit-lang-configuration-langcode', 'current_interface');
-    $this->assertNoFieldChecked('edit-lang-configuration-language-alterable');
-=======
     $this->submitForm($edit, 'Save');
     $lang_conf = ContentLanguageSettings::loadByEntityTypeBundle('entity_test', 'some_bundle');
 
@@ -78,23 +59,11 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
     $this->drupalGet('language-tests/language_configuration_element');
     $this->assertTrue($this->assertSession()->optionExists('edit-lang-configuration-langcode', 'current_interface')->isSelected());
     $this->assertSession()->checkboxNotChecked('edit-lang-configuration-language-alterable');
->>>>>>> dev
 
     // Reload the page and save again.
     $this->drupalGet('language-tests/language_configuration_element');
     $edit['lang_configuration[langcode]'] = 'authors_default';
     $edit['lang_configuration[language_alterable]'] = TRUE;
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, 'Save');
-    $lang_conf = ContentLanguageSettings::loadByEntityTypeBundle('entity_test', 'some_bundle');
-
-    // Check that the settings have been saved.
-    $this->assertEqual($lang_conf->getDefaultLangcode(), 'authors_default');
-    $this->assertTrue($lang_conf->isLanguageAlterable());
-    $this->drupalGet('language-tests/language_configuration_element');
-    $this->assertOptionSelected('edit-lang-configuration-langcode', 'authors_default');
-    $this->assertFieldChecked('edit-lang-configuration-language-alterable');
-=======
     $this->submitForm($edit, 'Save');
     $lang_conf = ContentLanguageSettings::loadByEntityTypeBundle('entity_test', 'some_bundle');
 
@@ -104,7 +73,6 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
     $this->drupalGet('language-tests/language_configuration_element');
     $this->assertTrue($this->assertSession()->optionExists('edit-lang-configuration-langcode', 'authors_default')->isSelected());
     $this->assertSession()->checkboxChecked('edit-lang-configuration-language-alterable');
->>>>>>> dev
 
     // Test if content type settings have been saved.
     $edit = [
@@ -113,14 +81,6 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
       'language_configuration[langcode]' => 'authors_default',
       'language_configuration[language_alterable]' => TRUE,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/types/add', $edit, 'Save and manage fields');
-
-    // Make sure the settings are saved when creating the content type.
-    $this->drupalGet('admin/structure/types/manage/page');
-    $this->assertOptionSelected('edit-language-configuration-langcode', 'authors_default');
-    $this->assertFieldChecked('edit-language-configuration-language-alterable');
-=======
     $this->drupalGet('admin/structure/types/add');
     $this->submitForm($edit, 'Save and manage fields');
 
@@ -128,7 +88,6 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
     $this->drupalGet('admin/structure/types/manage/page');
     $this->assertTrue($this->assertSession()->optionExists('edit-language-configuration-langcode', 'authors_default')->isSelected());
     $this->assertSession()->checkboxChecked('edit-language-configuration-language-alterable');
->>>>>>> dev
 
   }
 
@@ -151,11 +110,7 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
       ->save();
 
     $langcode = language_get_default_langcode('entity_test', 'custom_bundle');
-<<<<<<< HEAD
-    $this->assertEqual($langcode, 'bb');
-=======
     $this->assertEquals('bb', $langcode);
->>>>>>> dev
 
     // Current interface.
     ContentLanguageSettings::loadByEntityTypeBundle('entity_test', 'custom_bundle')
@@ -165,11 +120,7 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
 
     $langcode = language_get_default_langcode('entity_test', 'custom_bundle');
     $language_interface = \Drupal::languageManager()->getCurrentLanguage();
-<<<<<<< HEAD
-    $this->assertEqual($langcode, $language_interface->getId());
-=======
     $this->assertEquals($langcode, $language_interface->getId());
->>>>>>> dev
 
     // Site's default.
     $old_default = \Drupal::languageManager()->getDefaultLanguage();
@@ -183,11 +134,7 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
       ->setDefaultLangcode(LanguageInterface::LANGCODE_SITE_DEFAULT)
       ->save();
     $langcode = language_get_default_langcode('entity_test', 'custom_bundle');
-<<<<<<< HEAD
-    $this->assertEqual($langcode, 'cc');
-=======
     $this->assertEquals('cc', $langcode);
->>>>>>> dev
 
     // Ensure the language entity default value is correct.
     $configurable_language = ConfigurableLanguage::load($old_default->getId());
@@ -200,11 +147,7 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
 
     // Check the default value of a language field when authors preferred option
     // is selected.
-<<<<<<< HEAD
-    // Create first an user and assign a preferred langcode.
-=======
     // First create a user, then assign a langcode.
->>>>>>> dev
     $some_user = $this->drupalCreateUser();
     $some_user->preferred_langcode = 'bb';
     $some_user->save();
@@ -217,11 +160,7 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
       ->save();
 
     $this->drupalGet('language-tests/language_configuration_element_test');
-<<<<<<< HEAD
-    $this->assertOptionSelected('edit-langcode', 'bb');
-=======
     $this->assertTrue($this->assertSession()->optionExists('edit-langcode', 'bb')->isSelected());
->>>>>>> dev
   }
 
   /**
@@ -239,33 +178,17 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
       'language_configuration[langcode]' => 'current_interface',
       'language_configuration[language_alterable]' => TRUE,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/types/manage/article', $edit, t('Save content type'));
-    // Check the language default configuration for the articles.
-    $configuration = ContentLanguageSettings::loadByEntityTypeBundle('node', 'article');
-    $uuid = $configuration->uuid();
-    $this->assertEqual($configuration->getDefaultLangcode(), 'current_interface', 'The default language configuration has been saved on the Article content type.');
-=======
     $this->drupalGet('admin/structure/types/manage/article');
     $this->submitForm($edit, 'Save content type');
     // Check the language default configuration for the articles.
     $configuration = ContentLanguageSettings::loadByEntityTypeBundle('node', 'article');
     $uuid = $configuration->uuid();
     $this->assertEquals('current_interface', $configuration->getDefaultLangcode(), 'The default language configuration has been saved on the Article content type.');
->>>>>>> dev
     $this->assertTrue($configuration->isLanguageAlterable(), 'The alterable language configuration has been saved on the Article content type.');
     // Update the article content type by changing the title label.
     $edit = [
       'title_label' => 'Name',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/types/manage/article', $edit, t('Save content type'));
-    // Check that we still have the settings for the updated node type.
-    $configuration = ContentLanguageSettings::loadByEntityTypeBundle('node', 'article');
-    $this->assertEqual($configuration->getDefaultLangcode(), 'current_interface', 'The default language configuration has been kept on the updated Article content type.');
-    $this->assertTrue($configuration->isLanguageAlterable(), 'The alterable language configuration has been kept on the updated Article content type.');
-    $this->assertEqual($configuration->uuid(), $uuid, 'The language configuration uuid has been kept on the updated Article content type.');
-=======
     $this->drupalGet('admin/structure/types/manage/article');
     $this->submitForm($edit, 'Save content type');
     // Check that we still have the settings for the updated node type.
@@ -273,7 +196,6 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
     $this->assertEquals('current_interface', $configuration->getDefaultLangcode(), 'The default language configuration has been kept on the updated Article content type.');
     $this->assertTrue($configuration->isLanguageAlterable(), 'The alterable language configuration has been kept on the updated Article content type.');
     $this->assertEquals($uuid, $configuration->uuid(), 'The language configuration uuid has been kept on the updated Article content type.');
->>>>>>> dev
   }
 
   /**
@@ -296,24 +218,16 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
       'language_configuration[langcode]' => 'authors_default',
       'language_configuration[language_alterable]' => TRUE,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/types/manage/article', $edit, t('Save content type'));
-=======
     $this->drupalGet('admin/structure/types/manage/article');
     $this->submitForm($edit, 'Save content type');
->>>>>>> dev
 
     // Check the language default configuration for articles is present.
     $configuration = \Drupal::entityTypeManager()->getStorage('language_content_settings')->load('node.article');
     $this->assertNotEmpty($configuration, 'The language configuration is present.');
 
     // Delete 'article' bundle.
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/types/manage/article/delete', [], t('Delete'));
-=======
     $this->drupalGet('admin/structure/types/manage/article/delete');
     $this->submitForm([], 'Delete');
->>>>>>> dev
 
     // Check that the language configuration has been deleted.
     \Drupal::entityTypeManager()->getStorage('language_content_settings')->resetCache();
@@ -337,34 +251,18 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
       'default_language[langcode]' => 'current_interface',
       'default_language[language_alterable]' => TRUE,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/taxonomy/manage/country', $edit, t('Save'));
-=======
     $this->drupalGet('admin/structure/taxonomy/manage/country');
     $this->submitForm($edit, 'Save');
->>>>>>> dev
 
     // Check the language default configuration.
     $configuration = ContentLanguageSettings::loadByEntityTypeBundle('taxonomy_term', 'country');
     $uuid = $configuration->uuid();
-<<<<<<< HEAD
-    $this->assertEqual($configuration->getDefaultLangcode(), 'current_interface', 'The default language configuration has been saved on the Country vocabulary.');
-=======
     $this->assertEquals('current_interface', $configuration->getDefaultLangcode(), 'The default language configuration has been saved on the Country vocabulary.');
->>>>>>> dev
     $this->assertTrue($configuration->isLanguageAlterable(), 'The alterable language configuration has been saved on the Country vocabulary.');
     // Update the vocabulary.
     $edit = [
       'name' => 'Nation',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/structure/taxonomy/manage/country', $edit, t('Save'));
-    // Check that we still have the settings for the updated vocabulary.
-    $configuration = ContentLanguageSettings::loadByEntityTypeBundle('taxonomy_term', 'country');
-    $this->assertEqual($configuration->getDefaultLangcode(), 'current_interface', 'The default language configuration has been kept on the updated Country vocabulary.');
-    $this->assertTrue($configuration->isLanguageAlterable(), 'The alterable language configuration has been kept on the updated Country vocabulary.');
-    $this->assertEqual($configuration->uuid(), $uuid, 'The language configuration uuid has been kept on the updated Country vocabulary.');
-=======
     $this->drupalGet('admin/structure/taxonomy/manage/country');
     $this->submitForm($edit, 'Save');
     // Check that we still have the settings for the updated vocabulary.
@@ -372,7 +270,6 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
     $this->assertEquals('current_interface', $configuration->getDefaultLangcode(), 'The default language configuration has been kept on the updated Country vocabulary.');
     $this->assertTrue($configuration->isLanguageAlterable(), 'The alterable language configuration has been kept on the updated Country vocabulary.');
     $this->assertEquals($uuid, $configuration->uuid(), 'The language configuration uuid has been kept on the updated Country vocabulary.');
->>>>>>> dev
   }
 
 }

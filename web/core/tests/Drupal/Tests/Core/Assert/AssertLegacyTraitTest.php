@@ -10,10 +10,7 @@ use Drupal\FunctionalTests\AssertLegacyTrait;
 use Drupal\Tests\UnitTestCase;
 use Drupal\Tests\WebAssert;
 use PHPUnit\Framework\ExpectationFailedException;
-<<<<<<< HEAD
-=======
 use Prophecy\Argument;
->>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\FunctionalTests\AssertLegacyTrait
@@ -48,11 +45,7 @@ class AssertLegacyTraitTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setUp() {
-=======
   public function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->page = $this->prophesize(DocumentElement::class);
@@ -62,11 +55,6 @@ class AssertLegacyTraitTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * @covers ::assertUniqueText
-   */
-  public function testAssertUniqueText() {
-=======
    * @covers ::assertTextHelper
    */
   public function testAssertTextHelper() {
@@ -98,7 +86,6 @@ class AssertLegacyTraitTest extends UnitTestCase {
    */
   public function testAssertUniqueText() {
     $this->expectDeprecation('AssertLegacyTrait::assertUniqueText() is deprecated in drupal:8.2.0 and is removed from drupal:10.0.0. Use $this->getSession()->pageTextContainsOnce() or $this->getSession()->pageTextMatchesCount() instead. See https://www.drupal.org/node/3129738');
->>>>>>> dev
     $this->page->getText()->willReturn('foo bar bar');
     $this->assertUniqueText('foo');
   }
@@ -107,10 +94,7 @@ class AssertLegacyTraitTest extends UnitTestCase {
    * @covers ::assertUniqueText
    */
   public function testAssertUniqueTextFail() {
-<<<<<<< HEAD
-=======
     $this->expectDeprecation('AssertLegacyTrait::assertUniqueText() is deprecated in drupal:8.2.0 and is removed from drupal:10.0.0. Use $this->getSession()->pageTextContainsOnce() or $this->getSession()->pageTextMatchesCount() instead. See https://www.drupal.org/node/3129738');
->>>>>>> dev
     $this->page->getText()->willReturn('foo bar bar');
     $this->expectException(ExpectationFailedException::class);
     $this->assertUniqueText('bar');
@@ -120,10 +104,7 @@ class AssertLegacyTraitTest extends UnitTestCase {
    * @covers ::assertUniqueText
    */
   public function testAssertUniqueTextUnknown() {
-<<<<<<< HEAD
-=======
     $this->expectDeprecation('AssertLegacyTrait::assertUniqueText() is deprecated in drupal:8.2.0 and is removed from drupal:10.0.0. Use $this->getSession()->pageTextContainsOnce() or $this->getSession()->pageTextMatchesCount() instead. See https://www.drupal.org/node/3129738');
->>>>>>> dev
     $this->page->getText()->willReturn('foo bar bar');
     $this->expectException(ExpectationFailedException::class);
     $this->assertUniqueText('alice');
@@ -133,10 +114,7 @@ class AssertLegacyTraitTest extends UnitTestCase {
    * @covers ::assertUniqueText
    */
   public function testAssertUniqueTextMarkup() {
-<<<<<<< HEAD
-=======
     $this->expectDeprecation('AssertLegacyTrait::assertUniqueText() is deprecated in drupal:8.2.0 and is removed from drupal:10.0.0. Use $this->getSession()->pageTextContainsOnce() or $this->getSession()->pageTextMatchesCount() instead. See https://www.drupal.org/node/3129738');
->>>>>>> dev
     $this->page->getText()->willReturn('foo bar bar');
     $markupObject = $this->prophesize(MarkupInterface::class);
     $markupObject->__toString()->willReturn('foo');
@@ -147,10 +125,7 @@ class AssertLegacyTraitTest extends UnitTestCase {
    * @covers ::assertNoUniqueText
    */
   public function testAssertNoUniqueText() {
-<<<<<<< HEAD
-=======
     $this->expectDeprecation('AssertLegacyTrait::assertNoUniqueText() is deprecated in drupal:8.2.0 and is removed from drupal:10.0.0. Instead, use $this->getSession()->pageTextMatchesCount() if you know the cardinality in advance, or $this->getSession()->getPage()->getText() and substr_count(). See https://www.drupal.org/node/3129738');
->>>>>>> dev
     $this->page->getText()->willReturn('foo bar bar');
     $this->assertNoUniqueText('bar');
   }
@@ -159,10 +134,7 @@ class AssertLegacyTraitTest extends UnitTestCase {
    * @covers ::assertNoUniqueText
    */
   public function testAssertNoUniqueTextFail() {
-<<<<<<< HEAD
-=======
     $this->expectDeprecation('AssertLegacyTrait::assertNoUniqueText() is deprecated in drupal:8.2.0 and is removed from drupal:10.0.0. Instead, use $this->getSession()->pageTextMatchesCount() if you know the cardinality in advance, or $this->getSession()->getPage()->getText() and substr_count(). See https://www.drupal.org/node/3129738');
->>>>>>> dev
     $this->page->getText()->willReturn('foo bar bar');
     $this->expectException(ExpectationFailedException::class);
     $this->assertNoUniqueText('foo');
@@ -172,10 +144,7 @@ class AssertLegacyTraitTest extends UnitTestCase {
    * @covers ::assertNoUniqueText
    */
   public function testAssertNoUniqueTextUnknown() {
-<<<<<<< HEAD
-=======
     $this->expectDeprecation('AssertLegacyTrait::assertNoUniqueText() is deprecated in drupal:8.2.0 and is removed from drupal:10.0.0. Instead, use $this->getSession()->pageTextMatchesCount() if you know the cardinality in advance, or $this->getSession()->getPage()->getText() and substr_count(). See https://www.drupal.org/node/3129738');
->>>>>>> dev
     $this->page->getText()->willReturn('foo bar bar');
     $this->expectException(ExpectationFailedException::class);
     $this->assertNoUniqueText('alice');
@@ -185,10 +154,7 @@ class AssertLegacyTraitTest extends UnitTestCase {
    * @covers ::assertNoUniqueText
    */
   public function testAssertNoUniqueTextMarkup() {
-<<<<<<< HEAD
-=======
     $this->expectDeprecation('AssertLegacyTrait::assertNoUniqueText() is deprecated in drupal:8.2.0 and is removed from drupal:10.0.0. Instead, use $this->getSession()->pageTextMatchesCount() if you know the cardinality in advance, or $this->getSession()->getPage()->getText() and substr_count(). See https://www.drupal.org/node/3129738');
->>>>>>> dev
     $this->page->getText()->willReturn('foo bar bar');
     $markupObject = $this->prophesize(MarkupInterface::class);
     $markupObject->__toString()->willReturn('bar');
@@ -199,65 +165,38 @@ class AssertLegacyTraitTest extends UnitTestCase {
    * @covers ::assertOptionSelected
    */
   public function testAssertOptionSelected() {
-<<<<<<< HEAD
-=======
     $this->expectDeprecation('AssertLegacyTrait::assertOptionSelected() is deprecated in drupal:8.2.0 and is removed from drupal:10.0.0. Use $this->assertSession()->optionExists() instead and check the "selected" attribute. See https://www.drupal.org/node/3129738');
->>>>>>> dev
     $option_field = $this->prophesize(NodeElement::class);
     $option_field->hasAttribute('selected')->willReturn(TRUE);
 
     $this->webAssert
-<<<<<<< HEAD
-      ->optionExists('myselect', 'two')
-      ->willReturn($option_field->reveal());
-
-    $this->assertOptionSelected('myselect', 'two');
-=======
       ->optionExists('my_select', 'two')
       ->willReturn($option_field->reveal());
 
     $this->assertOptionSelected('my_select', 'two');
->>>>>>> dev
   }
 
   /**
    * @covers ::assertOptionSelected
    */
   public function testAssertOptionSelectedFail() {
-<<<<<<< HEAD
-=======
     $this->expectDeprecation('AssertLegacyTrait::assertOptionSelected() is deprecated in drupal:8.2.0 and is removed from drupal:10.0.0. Use $this->assertSession()->optionExists() instead and check the "selected" attribute. See https://www.drupal.org/node/3129738');
->>>>>>> dev
     $option_field = $this->prophesize(NodeElement::class);
     $option_field->hasAttribute('selected')->willReturn(FALSE);
 
     $this->webAssert
-<<<<<<< HEAD
-      ->optionExists('myselect', 'two')
-      ->willReturn($option_field->reveal());
-
-    $this->expectException(ExpectationFailedException::class);
-    $this->assertOptionSelected('myselect', 'two');
-=======
       ->optionExists('my_select', 'two')
       ->willReturn($option_field->reveal());
 
     $this->expectException(ExpectationFailedException::class);
     $this->assertOptionSelected('my_select', 'two');
->>>>>>> dev
   }
 
   /**
    * @covers ::assertNoPattern
-<<<<<<< HEAD
-   * @expectedDeprecation AssertLegacyTrait::assertNoPattern() is deprecated in drupal:8.4.0 and is removed from drupal:10.0.0. Use $this->assertSession()->responseNotMatches() instead. See https://www.drupal.org/node/3129738
-   */
-  public function testAssertNoPattern() {
-=======
    */
   public function testAssertNoPattern() {
     $this->expectDeprecation('AssertLegacyTrait::assertNoPattern() is deprecated in drupal:8.4.0 and is removed from drupal:10.0.0. Use $this->assertSession()->responseNotMatches() instead. See https://www.drupal.org/node/3129738');
->>>>>>> dev
     $this->webAssert
       ->responseNotMatches('/.*foo$/')
       ->shouldBeCalled();
@@ -266,12 +205,6 @@ class AssertLegacyTraitTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * @covers ::assertNoCacheTag
-   * @expectedDeprecation AssertLegacyTrait::assertNoCacheTag() is deprecated in drupal:8.4.0 and is removed from drupal:10.0.0. Use $this->assertSession()->responseHeaderNotContains() instead. See https://www.drupal.org/node/3129738
-   */
-  public function testAssertNoCacheTag() {
-=======
    * @covers ::assertCacheTag
    */
   public function testAssertCacheTag() {
@@ -288,7 +221,6 @@ class AssertLegacyTraitTest extends UnitTestCase {
    */
   public function testAssertNoCacheTag() {
     $this->expectDeprecation('AssertLegacyTrait::assertNoCacheTag() is deprecated in drupal:8.4.0 and is removed from drupal:10.0.0. Use $this->assertSession()->responseHeaderNotContains() instead. See https://www.drupal.org/node/3129738');
->>>>>>> dev
     $this->webAssert
       ->responseHeaderNotContains('X-Drupal-Cache-Tags', 'some-cache-tag')
       ->shouldBeCalled();
@@ -297,8 +229,6 @@ class AssertLegacyTraitTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * @covers ::assertUrl
    */
   public function testAssertUrl() {
@@ -380,7 +310,6 @@ class AssertLegacyTraitTest extends UnitTestCase {
   }
 
   /**
->>>>>>> dev
    * Returns a mocked behat session object.
    *
    * @return \Behat\Mink\Session

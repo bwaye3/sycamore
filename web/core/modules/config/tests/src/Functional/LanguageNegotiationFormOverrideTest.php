@@ -12,11 +12,7 @@ use Drupal\Tests\BrowserTestBase;
  */
 class LanguageNegotiationFormOverrideTest extends BrowserTestBase {
 
-<<<<<<< HEAD
-  public static $modules = ['language', 'locale', 'locale_test'];
-=======
   protected static $modules = ['language', 'locale', 'locale_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -42,44 +38,26 @@ class LanguageNegotiationFormOverrideTest extends BrowserTestBase {
     $edit = [
       'predefined_langcode' => 'es',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm('admin/config/regional/language/add', $edit, t('Add language'));
-=======
     $this->drupalGet('admin/config/regional/language/add');
     $this->submitForm($edit, 'Add language');
->>>>>>> dev
 
     // Overridden string for language-negotiation should not exist in the form.
     $this->drupalGet('admin/config/regional/language/detection/url');
 
     // The language-negotiation form should be found.
-<<<<<<< HEAD
-    $this->assertText('Path prefix configuration', 'Language-negotiation form found for English.');
-
-    // The English override should not be found.
-    $this->assertNoFieldByName('prefix[en]', $overridden_value_en, 'Language-negotiation config override not found in English.');
-=======
     $this->assertSession()->pageTextContains('Path prefix configuration');
 
     // The English override should not be found.
     $this->assertSession()->fieldValueNotEquals('prefix[en]', $overridden_value_en);
->>>>>>> dev
 
     // Now check the Spanish version of the page for the same thing.
     $this->drupalGet($overridden_value_es . '/admin/config/regional/language/detection/url');
 
     // The language-negotiation form should be found.
-<<<<<<< HEAD
-    $this->assertText('Path prefix configuration', 'Language-negotiation form found for Spanish using the overridden prefix.');
-
-    // The Spanish override should not be found.
-    $this->assertNoFieldByName('prefix[es]', $overridden_value_es, 'Language-negotiation config override not found in Spanish.');
-=======
     $this->assertSession()->pageTextContains('Path prefix configuration');
 
     // The Spanish override should not be found.
     $this->assertSession()->fieldValueNotEquals('prefix[es]', $overridden_value_es);
->>>>>>> dev
 
   }
 

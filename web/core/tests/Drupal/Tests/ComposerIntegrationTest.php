@@ -2,15 +2,11 @@
 
 namespace Drupal\Tests;
 
-<<<<<<< HEAD
-use Drupal\Tests\Composer\ComposerIntegrationTrait;
-=======
 use Drupal\Composer\Plugin\VendorHardening\Config;
 use Drupal\Core\Composer\Composer;
 use Drupal\Tests\Composer\ComposerIntegrationTrait;
 use Drupal\TestTools\PhpUnitCompatibility\RunnerVersion;
 use Symfony\Component\Yaml\Yaml;
->>>>>>> dev
 
 /**
  * Tests Composer integration.
@@ -23,14 +19,11 @@ class ComposerIntegrationTest extends UnitTestCase {
 
   /**
    * Tests composer.lock content-hash.
-<<<<<<< HEAD
-=======
    *
    * If you have made a change to composer.json, you may need to reconstruct
    * composer.lock. Follow the link below for further instructions.
    *
    * @see https://www.drupal.org/about/core/policies/core-dependencies-policies/managing-composer-updates-for-drupal-core
->>>>>>> dev
    */
   public function testComposerLockHash() {
     $content_hash = self::getContentHash(file_get_contents($this->root . '/composer.json'));
@@ -113,11 +106,6 @@ class ComposerIntegrationTest extends UnitTestCase {
     $discard = ['.', '..'];
     foreach ($folders as $file_name) {
       if ((!in_array($file_name, $discard)) && is_dir($module_path . '/' . $file_name)) {
-<<<<<<< HEAD
-        $module_names[] = $file_name;
-      }
-    }
-=======
         // Skip any modules marked as hidden.
         $info_yml = $module_path . '/' . $file_name . '/' . $file_name . '.info.yml';
         if (file_exists($info_yml)) {
@@ -130,7 +118,6 @@ class ComposerIntegrationTest extends UnitTestCase {
       }
     }
     $this->assertNotEmpty($module_names);
->>>>>>> dev
 
     // Assert that each core module has a corresponding 'replace' in
     // composer.json.
@@ -160,11 +147,7 @@ class ComposerIntegrationTest extends UnitTestCase {
       ['example.gitignore', 'assets/scaffold/files/example.gitignore'],
       ['index.php', 'assets/scaffold/files/index.php'],
       ['INSTALL.txt', 'assets/scaffold/files/drupal.INSTALL.txt'],
-<<<<<<< HEAD
-      ['README.txt', 'assets/scaffold/files/drupal.README.txt'],
-=======
       ['README.md', 'assets/scaffold/files/drupal.README.md'],
->>>>>>> dev
       ['robots.txt', 'assets/scaffold/files/robots.txt'],
       ['update.php', 'assets/scaffold/files/update.php'],
       ['web.config', 'assets/scaffold/files/web.config'],
@@ -222,11 +205,7 @@ class ComposerIntegrationTest extends UnitTestCase {
     $this->assertFileEquals($this->root . '/core/' . $sourceRelPath, $this->root . '/' . $destRelPath, 'Scaffold source and destination files must have the same contents.');
   }
 
-<<<<<<< HEAD
-  // @codingStandardsIgnoreStart
-=======
   // phpcs:disable
->>>>>>> dev
   /**
    * The following method is copied from \Composer\Package\Locker.
    *
@@ -270,9 +249,6 @@ class ComposerIntegrationTest extends UnitTestCase {
 
     return md5(json_encode($relevantContent));
   }
-<<<<<<< HEAD
-  // @codingStandardsIgnoreEnd
-=======
   // phpcs:enable
 
   /**
@@ -311,6 +287,5 @@ class ComposerIntegrationTest extends UnitTestCase {
       [Config::class, 'defaultConfig'],
     ];
   }
->>>>>>> dev
 
 }

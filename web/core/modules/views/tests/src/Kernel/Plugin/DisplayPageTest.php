@@ -31,11 +31,7 @@ class DisplayPageTest extends ViewsKernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['system', 'user', 'field', 'views_test_data'];
-=======
   protected static $modules = ['system', 'user', 'field', 'views_test_data'];
->>>>>>> dev
 
   /**
    * The router dumper to get all routes.
@@ -51,17 +47,6 @@ class DisplayPageTest extends ViewsKernelTestBase {
     \Drupal::currentUser()->setAccount(new AnonymousUserSession());
     $subrequest = Request::create('/test_page_display_403', 'GET');
     $response = $this->container->get('http_kernel')->handle($subrequest, HttpKernelInterface::SUB_REQUEST);
-<<<<<<< HEAD
-    $this->assertEqual($response->getStatusCode(), 403);
-
-    $subrequest = Request::create('/test_page_display_404', 'GET');
-    $response = $this->container->get('http_kernel')->handle($subrequest, HttpKernelInterface::SUB_REQUEST);
-    $this->assertEqual($response->getStatusCode(), 404);
-
-    $subrequest = Request::create('/test_page_display_200', 'GET');
-    $response = $this->container->get('http_kernel')->handle($subrequest, HttpKernelInterface::SUB_REQUEST);
-    $this->assertEqual($response->getStatusCode(), 200);
-=======
     $this->assertEquals(403, $response->getStatusCode());
 
     $subrequest = Request::create('/test_page_display_404', 'GET');
@@ -71,7 +56,6 @@ class DisplayPageTest extends ViewsKernelTestBase {
     $subrequest = Request::create('/test_page_display_200', 'GET');
     $response = $this->container->get('http_kernel')->handle($subrequest, HttpKernelInterface::SUB_REQUEST);
     $this->assertEquals(200, $response->getStatusCode());
->>>>>>> dev
 
     $subrequest = Request::create('/test_page_display_200', 'GET');
     \Drupal::getContainer()->get('request_stack')->push($subrequest);
@@ -85,54 +69,25 @@ class DisplayPageTest extends ViewsKernelTestBase {
     \Drupal::service('router.builder')->rebuild();
 
     $response = $this->container->get('http_kernel')->handle($subrequest, HttpKernelInterface::SUB_REQUEST);
-<<<<<<< HEAD
-    $this->assertEqual($response->getStatusCode(), 404);
-  }
-
-  /**
-   * Checks that the router items are properly registered
-=======
     $this->assertEquals(404, $response->getStatusCode());
   }
 
   /**
    * Checks that the router items are properly registered.
->>>>>>> dev
    */
   public function testPageRouterItems() {
     $collection = \Drupal::service('views.route_subscriber')->routes();
 
     // Check the controller defaults.
     foreach ($collection as $id => $route) {
-<<<<<<< HEAD
-      $this->assertEqual($route->getDefault('_controller'), 'Drupal\views\Routing\ViewPageController::handle');
-      $id_parts = explode('.', $id);
-      $this->assertEqual($route->getDefault('view_id'), $id_parts[1]);
-      $this->assertEqual($route->getDefault('display_id'), $id_parts[2]);
-=======
       $this->assertEquals('Drupal\\views\\Routing\\ViewPageController::handle', $route->getDefault('_controller'));
       $id_parts = explode('.', $id);
       $this->assertEquals($id_parts[1], $route->getDefault('view_id'));
       $this->assertEquals($id_parts[2], $route->getDefault('display_id'));
->>>>>>> dev
     }
 
     // Check the generated patterns and default values.
     $route = $collection->get('view.test_page_display_route.page_1');
-<<<<<<< HEAD
-    $this->assertEqual($route->getPath(), '/test_route_without_arguments');
-
-    $route = $collection->get('view.test_page_display_route.page_2');
-    $this->assertEqual($route->getPath(), '/test_route_with_argument/{arg_0}');
-    $this->assertTrue($route->hasDefault('arg_0'), 'A default value is set for the optional argument id.');
-
-    $route = $collection->get('view.test_page_display_route.page_3');
-    $this->assertEqual($route->getPath(), '/test_route_with_argument/{arg_0}/suffix');
-    $this->assertFalse($route->hasDefault('arg_0'), 'No default value is set for the required argument id.');
-
-    $route = $collection->get('view.test_page_display_route.page_4');
-    $this->assertEqual($route->getPath(), '/test_route_with_argument/{arg_0}/suffix/{arg_1}');
-=======
     $this->assertEquals('/test_route_without_arguments', $route->getPath());
 
     $route = $collection->get('view.test_page_display_route.page_2');
@@ -145,25 +100,16 @@ class DisplayPageTest extends ViewsKernelTestBase {
 
     $route = $collection->get('view.test_page_display_route.page_4');
     $this->assertEquals('/test_route_with_argument/{arg_0}/suffix/{arg_1}', $route->getPath());
->>>>>>> dev
     $this->assertFalse($route->hasDefault('arg_0'), 'No default value is set for the required argument id.');
     $this->assertTrue($route->hasDefault('arg_1'), 'A default value is set for the optional argument id_2.');
 
     $route = $collection->get('view.test_page_display_route.page_5');
-<<<<<<< HEAD
-    $this->assertEqual($route->getPath(), '/test_route_with_argument/{arg_0}/{arg_1}');
-=======
     $this->assertEquals('/test_route_with_argument/{arg_0}/{arg_1}', $route->getPath());
->>>>>>> dev
     $this->assertTrue($route->hasDefault('arg_0'), 'A default value is set for the optional argument id.');
     $this->assertTrue($route->hasDefault('arg_1'), 'A default value is set for the optional argument id_2.');
 
     $route = $collection->get('view.test_page_display_route.page_6');
-<<<<<<< HEAD
-    $this->assertEqual($route->getPath(), '/test_route_with_argument/{arg_0}/{arg_1}');
-=======
     $this->assertEquals('/test_route_with_argument/{arg_0}/{arg_1}', $route->getPath());
->>>>>>> dev
     $this->assertFalse($route->hasDefault('arg_0'), 'No default value is set for the required argument id.');
     $this->assertFalse($route->hasDefault('arg_1'), 'No default value is set for the required argument id_2.');
   }
@@ -176,15 +122,9 @@ class DisplayPageTest extends ViewsKernelTestBase {
     $tree = \Drupal::menuTree()->load('admin', new MenuTreeParameters());
     $this->assertTrue(isset($tree['system.admin']->subtree['views_view:views.test_page_display_menu.page_4']));
     $menu_link = $tree['system.admin']->subtree['views_view:views.test_page_display_menu.page_4']->link;
-<<<<<<< HEAD
-    $this->assertEqual($menu_link->getTitle(), 'Test child (with parent)');
-    $this->assertEqual($menu_link->isExpanded(), TRUE);
-    $this->assertEqual($menu_link->getDescription(), 'Sample description.');
-=======
     $this->assertEquals('Test child (with parent)', $menu_link->getTitle());
     $this->assertEquals(TRUE, $menu_link->isExpanded());
     $this->assertEquals('Sample description.', $menu_link->getDescription());
->>>>>>> dev
   }
 
   /**
@@ -192,22 +132,14 @@ class DisplayPageTest extends ViewsKernelTestBase {
    */
   public function testDependencies() {
     $view = Views::getView('test_page_display');
-<<<<<<< HEAD
-    $this->assertIdentical(['module' => ['views_test_data']], $view->getDependencies());
-=======
     $this->assertSame(['module' => ['views_test_data']], $view->getDependencies());
->>>>>>> dev
 
     $view = Views::getView('test_page_display_route');
     $expected = [
       'content' => ['StaticTest'],
       'module' => ['views_test_data'],
     ];
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $view->getDependencies());
-=======
     $this->assertSame($expected, $view->getDependencies());
->>>>>>> dev
 
     $view = Views::getView('test_page_display_menu');
     $expected = [
@@ -219,11 +151,7 @@ class DisplayPageTest extends ViewsKernelTestBase {
         'views_test_data',
       ],
     ];
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $view->getDependencies());
-=======
     $this->assertSame($expected, $view->getDependencies());
->>>>>>> dev
   }
 
   /**
@@ -243,13 +171,8 @@ class DisplayPageTest extends ViewsKernelTestBase {
 
     $this->setRawContent($output);
     $result = $this->xpath('//div[@class=:class]/a', [':class' => 'more-link']);
-<<<<<<< HEAD
-    $this->assertEqual($result[0]->attributes()->href, Url::fromRoute('view.test_display_more.page_1')->toString(), 'The right more link is shown.');
-    $this->assertEqual(trim($result[0][0]), $expected_more_text, 'The right link text is shown.');
-=======
     $this->assertEquals(Url::fromRoute('view.test_display_more.page_1')->toString(), $result[0]->attributes()->href, 'The right more link is shown.');
     $this->assertEquals($expected_more_text, trim($result[0][0]), 'The right link text is shown.');
->>>>>>> dev
 
     // Test the renderMoreLink method directly. This could be directly unit
     // tested.
@@ -257,22 +180,13 @@ class DisplayPageTest extends ViewsKernelTestBase {
     $more_link = $renderer->renderRoot($more_link);
     $this->setRawContent($more_link);
     $result = $this->xpath('//div[@class=:class]/a', [':class' => 'more-link']);
-<<<<<<< HEAD
-    $this->assertEqual($result[0]->attributes()->href, Url::fromRoute('view.test_display_more.page_1')->toString(), 'The right more link is shown.');
-    $this->assertEqual(trim($result[0][0]), $expected_more_text, 'The right link text is shown.');
-=======
     $this->assertEquals(Url::fromRoute('view.test_display_more.page_1')->toString(), $result[0]->attributes()->href, 'The right more link is shown.');
     $this->assertEquals($expected_more_text, trim($result[0][0]), 'The right link text is shown.');
->>>>>>> dev
 
     // Test the useMoreText method directly. This could be directly unit
     // tested.
     $more_text = $view->display_handler->useMoreText();
-<<<<<<< HEAD
-    $this->assertEqual($more_text, $expected_more_text, 'The right more text is chosen.');
-=======
     $this->assertEquals($expected_more_text, $more_text, 'The right more text is chosen.');
->>>>>>> dev
 
     $view = Views::getView('test_display_more');
     $view->setDisplay();

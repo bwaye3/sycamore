@@ -28,21 +28,13 @@ class InstallerPostInstallTest extends InstallerTestBase {
     $this->resetAll();
     // Confirm that the install_profile is correct.
     $this->drupalGet('/system-test/get-install-profile');
-<<<<<<< HEAD
-    $this->assertText('minimal');
-=======
     $this->assertSession()->pageTextContains('minimal');
->>>>>>> dev
     // Make an anonymous visit to the installer
     $this->drupalLogout();
     $this->visitInstaller();
     // Ensure that the install profile is still correct.
     $this->drupalGet('/system-test/get-install-profile');
-<<<<<<< HEAD
-    $this->assertText('minimal');
-=======
     $this->assertSession()->pageTextContains('minimal');
->>>>>>> dev
   }
 
 }

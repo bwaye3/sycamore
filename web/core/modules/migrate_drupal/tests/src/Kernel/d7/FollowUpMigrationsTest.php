@@ -17,11 +17,7 @@ class FollowUpMigrationsTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'content_translation',
     'comment',
     'datetime',
@@ -40,11 +36,7 @@ class FollowUpMigrationsTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->fileMigrationSetup();
@@ -76,11 +68,7 @@ class FollowUpMigrationsTest extends MigrateDrupal7TestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test entity reference translations.
-=======
    * Tests entity reference translations.
->>>>>>> dev
    */
   public function testEntityReferenceTranslations() {
     // Test the entity reference field before the follow-up migrations.

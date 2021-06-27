@@ -16,11 +16,7 @@ class LanguageContentTaxonomyVocabularySettingsTest extends MigrateSqlSourceTest
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['taxonomy', 'language', 'migrate_drupal'];
-=======
   protected static $modules = ['taxonomy', 'language', 'migrate_drupal'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

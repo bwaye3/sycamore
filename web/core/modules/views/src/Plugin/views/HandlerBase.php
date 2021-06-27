@@ -24,11 +24,7 @@ use Drupal\views\ViewsData;
 abstract class HandlerBase extends PluginBase implements ViewsHandlerInterface {
 
   /**
-<<<<<<< HEAD
-   * Where the $query object will reside:
-=======
    * Where the $query object will reside.
->>>>>>> dev
    *
    * @var \Drupal\views\Plugin\views\query\QueryPluginBase
    */
@@ -258,11 +254,7 @@ abstract class HandlerBase extends PluginBase implements ViewsHandlerInterface {
     // be moved into one because of the $form_state->getValues() hierarchy. Those
     // elements can add a #fieldset => 'fieldset_name' property, and they'll
     // be moved to their fieldset during pre_render.
-<<<<<<< HEAD
-    $form['#pre_render'][] = [get_class($this), 'preRenderAddFieldsetMarkup'];
-=======
     $form['#pre_render'][] = [static::class, 'preRenderAddFieldsetMarkup'];
->>>>>>> dev
 
     parent::buildOptionsForm($form, $form_state);
 
@@ -409,29 +401,17 @@ abstract class HandlerBase extends PluginBase implements ViewsHandlerInterface {
   public function exposedInfo() {}
 
   /**
-<<<<<<< HEAD
-   * Render our chunk of the exposed handler form when selecting
-=======
    * Render our chunk of the exposed handler form when selecting.
->>>>>>> dev
    */
   public function buildExposedForm(&$form, FormStateInterface $form_state) {}
 
   /**
-<<<<<<< HEAD
-   * Validate the exposed handler form
-=======
    * Validate the exposed handler form.
->>>>>>> dev
    */
   public function validateExposed(&$form, FormStateInterface $form_state) {}
 
   /**
-<<<<<<< HEAD
-   * Submit the exposed handler form
-=======
    * Submit the exposed handler form.
->>>>>>> dev
    */
   public function submitExposed(&$form, FormStateInterface $form_state) {}
 
@@ -858,11 +838,7 @@ abstract class HandlerBase extends PluginBase implements ViewsHandlerInterface {
   }
 
   /**
-<<<<<<< HEAD
-   * Calculates options stored on the handler
-=======
    * Calculates options stored on the handler.
->>>>>>> dev
    *
    * @param array $options
    *   The options stored in the handler

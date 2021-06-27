@@ -20,11 +20,7 @@ class ContactLanguageTest extends BrowserTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'contact',
     'language',
     'contact_test',
@@ -38,11 +34,7 @@ class ContactLanguageTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create and log in administrative user.
@@ -60,31 +52,19 @@ class ContactLanguageTest extends BrowserTestBase {
     // Ensure that contact form by default does not show the language select.
     $this->drupalGet('contact');
     $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-    $this->assertNoField('edit-langcode-0-value');
-=======
     $this->assertSession()->fieldNotExists('edit-langcode-0-value');
->>>>>>> dev
 
     // Enable language select from content language settings page.
     $settings_path = 'admin/config/regional/content-language';
     $edit['entity_types[contact_message]'] = TRUE;
     $edit['settings[contact_message][feedback][settings][language][language_alterable]'] = TRUE;
-<<<<<<< HEAD
-    $this->drupalPostForm($settings_path, $edit, t('Save configuration'));
-=======
     $this->drupalGet($settings_path);
     $this->submitForm($edit, 'Save configuration');
->>>>>>> dev
 
     // Ensure that contact form now shows the language select.
     $this->drupalGet('contact');
     $this->assertSession()->statusCodeEquals(200);
-<<<<<<< HEAD
-    $this->assertField('edit-langcode-0-value');
-=======
     $this->assertSession()->fieldExists('edit-langcode-0-value');
->>>>>>> dev
   }
 
 }

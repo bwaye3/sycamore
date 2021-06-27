@@ -217,8 +217,6 @@ function hook_block_access(\Drupal\block\Entity\Block $block, $operation, \Drupa
 }
 
 /**
-<<<<<<< HEAD
-=======
  * Allow modules to alter the block plugin definitions.
  *
  * @param array[] $definitions
@@ -236,6 +234,5 @@ function hook_block_alter(&$definitions) {
 }
 
 /**
->>>>>>> dev
  * @} End of "addtogroup hooks".
  */

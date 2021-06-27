@@ -3,11 +3,7 @@
  * Statistics functionality.
  */
 
-<<<<<<< HEAD
-(function($, Drupal, drupalSettings) {
-=======
 (function ($, Drupal, drupalSettings) {
->>>>>>> dev
   $(document).ready(() => {
     $.ajax({
       type: 'POST',

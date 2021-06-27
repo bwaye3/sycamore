@@ -6,11 +6,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\RenderCacheInterface;
 use Drupal\jsonapi\JsonApiResource\ResourceObject;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\PostResponseEvent;
-=======
 use Symfony\Component\HttpKernel\Event\TerminateEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -109,17 +105,10 @@ class ResourceObjectNormalizationCacher implements EventSubscriberInterface {
   /**
    * Writes normalizations of entities to cache, if any were created.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\PostResponseEvent $event
-   *   The Event to process.
-   */
-  public function onTerminate(PostResponseEvent $event) {
-=======
    * @param \Symfony\Component\HttpKernel\Event\TerminateEvent $event
    *   The Event to process.
    */
   public function onTerminate(TerminateEvent $event) {
->>>>>>> dev
     foreach ($this->toCache as $value) {
       list($object, $normalization_parts) = $value;
       $this->set($object, $normalization_parts);

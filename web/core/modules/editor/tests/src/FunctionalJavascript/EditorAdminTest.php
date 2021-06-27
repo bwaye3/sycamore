@@ -31,11 +31,7 @@ class EditorAdminTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->user = $this->drupalCreateUser([
       'access administration pages',

@@ -6,11 +6,7 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\user\Entity\User;
 
 /**
-<<<<<<< HEAD
- * Tests the handling of user_role entity from the user module
-=======
  * Tests the handling of user_role entity from the user module.
->>>>>>> dev
  *
  * @group user
  */
@@ -21,15 +17,9 @@ class UserRoleDeleteTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['system', 'user', 'field'];
-
-  protected function setUp() {
-=======
   protected static $modules = ['system', 'user', 'field'];
 
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('user');
   }

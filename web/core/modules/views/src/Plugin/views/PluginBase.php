@@ -88,11 +88,7 @@ abstract class PluginBase extends ComponentPluginBase implements ContainerFactor
   public $displayHandler;
 
   /**
-<<<<<<< HEAD
-   * Plugins's definition
-=======
    * Plugins's definition.
->>>>>>> dev
    *
    * @var array
    */
@@ -272,11 +268,7 @@ abstract class PluginBase extends ComponentPluginBase implements ContainerFactor
     // be moved into one because of the $form_state->getValues() hierarchy. Those
     // elements can add a #fieldset => 'fieldset_name' property, and they'll
     // be moved to their fieldset during pre_render.
-<<<<<<< HEAD
-    $form['#pre_render'][] = [get_class($this), 'preRenderAddFieldsetMarkup'];
-=======
     $form['#pre_render'][] = [static::class, 'preRenderAddFieldsetMarkup'];
->>>>>>> dev
   }
 
   /**
@@ -611,11 +603,7 @@ abstract class PluginBase extends ComponentPluginBase implements ContainerFactor
           // If this (non-configurable) type is among the current values,
           // add that option too, so it is not lost. If not among the current
           // values, skip displaying it to avoid user confusion.
-<<<<<<< HEAD
-          if (isset($type['name']) && !isset($list[$id]) && in_array($id, $current_values)) {
-=======
           if (isset($type['name']) && !isset($list[$id]) && in_array($id, $current_values, TRUE)) {
->>>>>>> dev
             $list[$id] = $this->t('@type language selected for page', ['@type' => $type['name']]);
           }
         }

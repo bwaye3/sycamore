@@ -18,11 +18,7 @@ class MigrateFieldTest extends MigrateDrupal7TestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'comment',
     'datetime',
     'file',
@@ -38,11 +34,7 @@ class MigrateFieldTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->installConfig(static::$modules);
     $this->executeMigration('d7_field');
@@ -112,11 +104,8 @@ class MigrateFieldTest extends MigrateDrupal7TestBase {
     $this->assertEntity('node.field_term_entityreference', 'entity_reference', TRUE, -1);
     $this->assertEntity('node.field_date_without_time', 'datetime', TRUE, 1);
     $this->assertEntity('node.field_datetime_without_time', 'datetime', TRUE, 1);
-<<<<<<< HEAD
-=======
     $this->assertEntity('node.field_file_mfw', 'file', TRUE, 1);
     $this->assertEntity('node.field_image_miw', 'image', TRUE, 1);
->>>>>>> dev
 
     // Tests that fields created by the Title module are not migrated.
     $title_field = FieldStorageConfig::load('node.title_field');
@@ -156,15 +145,12 @@ class MigrateFieldTest extends MigrateDrupal7TestBase {
     $field = FieldStorageConfig::load('node.field_date_with_end_time');
     $this->assertNull($field->getSetting('datetime_type'));
 
-<<<<<<< HEAD
-=======
     // Assert node and user reference fields.
     $field = FieldStorageConfig::load('node.field_node_reference');
     $this->assertEquals('node', $field->getSetting('target_type'));
     $field = FieldStorageConfig::load('node.field_user_reference');
     $this->assertEquals('user', $field->getSetting('target_type'));
 
->>>>>>> dev
     // Test the migration of text fields with different text processing.
     // All text and text_long field bases that have only plain text instances
     // should be migrated to string and string_long fields.

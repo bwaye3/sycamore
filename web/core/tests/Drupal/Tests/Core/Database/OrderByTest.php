@@ -3,11 +3,8 @@
 namespace Drupal\Tests\Core\Database;
 
 use Drupal\Core\Database\Query\Select;
-<<<<<<< HEAD
-=======
 use Drupal\Tests\Core\Database\Stub\StubConnection;
 use Drupal\Tests\Core\Database\Stub\StubPDO;
->>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -27,18 +24,10 @@ class OrderByTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-    $connection = $this->getMockBuilder('Drupal\Core\Database\Connection')
-      ->disableOriginalConstructor()
-      ->getMockForAbstractClass();
-    $this->query = new Select('test', NULL, $connection);
-=======
   protected function setUp(): void {
     $mockPdo = $this->createMock(StubPDO::class);
     $connection = new StubConnection($mockPdo, []);
     $this->query = new Select($connection, 'test', NULL);
->>>>>>> dev
   }
 
   /**

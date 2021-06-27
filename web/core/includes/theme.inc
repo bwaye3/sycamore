@@ -8,10 +8,7 @@
  * customized by user themes.
  */
 
-<<<<<<< HEAD
-=======
 use Drupal\Component\Render\FormattableMarkup;
->>>>>>> dev
 use Drupal\Core\Url;
 use Drupal\Component\Serialization\Json;
 use Drupal\Component\Utility\Crypt;
@@ -146,11 +143,7 @@ function drupal_find_theme_functions($cache, $prefixes) {
       // Find theme functions that implement possible "suggestion" variants of
       // registered theme hooks and add those as new registered theme hooks.
       // The 'pattern' key defines a common prefix that all suggestions must
-<<<<<<< HEAD
-      // start with. The default is the name of the hook followed by '__'. An
-=======
       // start with. The default is the name of the hook followed by '__'. A
->>>>>>> dev
       // 'base hook' key is added to each entry made for a found suggestion,
       // so that common functionality can be implemented for all suggestions of
       // the same base hook. To keep things simple, deep hierarchy of
@@ -560,10 +553,7 @@ function template_preprocess_datetime_form(&$variables) {
   $element = $variables['element'];
 
   $variables['attributes'] = [];
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
   if (isset($element['#id'])) {
     $variables['attributes']['id'] = $element['#id'];
   }
@@ -572,8 +562,6 @@ function template_preprocess_datetime_form(&$variables) {
   }
 
   $variables['content'] = $element;
-<<<<<<< HEAD
-=======
 
   // Add instructional text describing the required date and time formats.
   // This will be hidden on JavaScript-enabled browsers that have a native
@@ -595,7 +583,6 @@ function template_preprocess_datetime_form(&$variables) {
       $variables['content']['time']['#attributes']['data-help'] = $help_time;
     }
   }
->>>>>>> dev
 }
 
 /**
@@ -629,10 +616,7 @@ function template_preprocess_datetime_wrapper(&$variables) {
     if (!empty($element['#id'])) {
       $description_attributes['id'] = $element['#id'] . '--description';
     }
-<<<<<<< HEAD
-=======
     $description_attributes['data-drupal-field-elements'] = 'description';
->>>>>>> dev
     $variables['description'] = $element['#description'];
     $variables['description_attributes'] = new Attribute($description_attributes);
   }
@@ -867,8 +851,6 @@ function template_preprocess_image(&$variables) {
       $variables['attributes'][$key] = $variables[$key];
     }
   }
-<<<<<<< HEAD
-=======
 
   // Without dimensions specified, layout shifts can occur,
   // which are more noticeable on pages that take some time to load.
@@ -876,7 +858,6 @@ function template_preprocess_image(&$variables) {
   if (isset($variables['width'], $variables['height']) && !isset($variables['attributes']['loading'])) {
     $variables['attributes']['loading'] = 'lazy';
   }
->>>>>>> dev
 }
 
 /**
@@ -1399,11 +1380,6 @@ function template_preprocess_html(&$variables) {
   }
 
   $variables['head_title'] = $head_title;
-<<<<<<< HEAD
-  // @deprecated in Drupal 8.0.0, will be removed before Drupal 9.0.0.
-  $variables['head_title_array'] = $head_title;
-=======
->>>>>>> dev
 
   // Create placeholder strings for these keys.
   // @see \Drupal\Core\Render\HtmlResponseSubscriber
@@ -1782,8 +1758,6 @@ function template_preprocess_breadcrumb(&$variables) {
 }
 
 /**
-<<<<<<< HEAD
-=======
  * Prepares variables for pager templates.
  *
  * Default template: pager.html.twig.
@@ -1998,7 +1972,6 @@ function template_preprocess_menu_local_action(&$variables) {
 }
 
 /**
->>>>>>> dev
  * Callback for usort() within template_preprocess_field_multiple_value_form().
  *
  * Sorts using ['_weight']['#value']
@@ -2100,10 +2073,6 @@ function drupal_common_theme() {
       'includes' => ['core/includes/theme.maintenance.inc'],
       'template' => 'authorize-report',
     ],
-<<<<<<< HEAD
-    // From pager.inc.
-=======
->>>>>>> dev
     'pager' => [
       'render element' => 'pager',
     ],

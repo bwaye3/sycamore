@@ -4,14 +4,10 @@ namespace Drupal\book;
 
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
-<<<<<<< HEAD
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-=======
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
->>>>>>> dev
 use Drupal\Core\Link;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -39,8 +35,6 @@ class BookBreadcrumbBuilder implements BreadcrumbBuilderInterface {
   protected $account;
 
   /**
-<<<<<<< HEAD
-=======
    * The entity repository service.
    *
    * @var \Drupal\Core\Entity\EntityRepositoryInterface
@@ -55,19 +49,12 @@ class BookBreadcrumbBuilder implements BreadcrumbBuilderInterface {
   protected $languageManager;
 
   /**
->>>>>>> dev
    * Constructs the BookBreadcrumbBuilder.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager service.
    * @param \Drupal\Core\Session\AccountInterface $account
    *   The current user account.
-<<<<<<< HEAD
-   */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, AccountInterface $account) {
-    $this->nodeStorage = $entity_type_manager->getStorage('node');
-    $this->account = $account;
-=======
    * @param \Drupal\Core\Entity\EntityRepositoryInterface|null $entity_repository
    *   The entity repository service.
    * @param \Drupal\Core\Language\LanguageManagerInterface|null $language_manager
@@ -86,7 +73,6 @@ class BookBreadcrumbBuilder implements BreadcrumbBuilderInterface {
     }
     $this->entityRepository = $entity_repository;
     $this->languageManager = $language_manager;
->>>>>>> dev
   }
 
   /**
@@ -104,15 +90,11 @@ class BookBreadcrumbBuilder implements BreadcrumbBuilderInterface {
     $book_nids = [];
     $breadcrumb = new Breadcrumb();
 
-<<<<<<< HEAD
-    $links = [Link::createFromRoute($this->t('Home'), '<front>')];
-=======
     $links = [Link::createFromRoute($this->t('Home'), '<front>', [], [
       'language' => $this->languageManager->getCurrentLanguage(LanguageInterface::TYPE_CONTENT),
     ]),
     ];
     $breadcrumb->addCacheContexts(['languages:' . LanguageInterface::TYPE_CONTENT]);
->>>>>>> dev
     $book = $route_match->getParameter('node')->book;
     $depth = 1;
     // We skip the current node.
@@ -120,13 +102,9 @@ class BookBreadcrumbBuilder implements BreadcrumbBuilderInterface {
       $book_nids[] = $book['p' . $depth];
       $depth++;
     }
-<<<<<<< HEAD
-    $parent_books = $this->nodeStorage->loadMultiple($book_nids);
-=======
     /** @var \Drupal\node\NodeInterface[] $parent_books */
     $parent_books = $this->nodeStorage->loadMultiple($book_nids);
     $parent_books = array_map([$this->entityRepository, 'getTranslationFromContext'], $parent_books);
->>>>>>> dev
     if (count($parent_books) > 0) {
       $depth = 1;
       while (!empty($book['p' . ($depth + 1)])) {
@@ -135,11 +113,7 @@ class BookBreadcrumbBuilder implements BreadcrumbBuilderInterface {
           $breadcrumb->addCacheableDependency($access);
           if ($access->isAllowed()) {
             $breadcrumb->addCacheableDependency($parent_book);
-<<<<<<< HEAD
-            $links[] = Link::createFromRoute($parent_book->label(), 'entity.node.canonical', ['node' => $parent_book->id()]);
-=======
             $links[] = $parent_book->toLink();
->>>>>>> dev
           }
         }
         $depth++;

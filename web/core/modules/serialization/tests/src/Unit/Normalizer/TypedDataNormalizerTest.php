@@ -25,11 +25,7 @@ class TypedDataNormalizerTest extends UnitTestCase {
    */
   protected $typedData;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->normalizer = new TypedDataNormalizer();
     $this->typedData = $this->createMock('Drupal\Core\TypedData\TypedDataInterface');
   }

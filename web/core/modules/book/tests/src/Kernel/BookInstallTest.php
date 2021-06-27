@@ -21,11 +21,7 @@ class BookInstallTest extends KernelTestBase {
   ];
 
   /**
-<<<<<<< HEAD
-   * Test Book install with pre-existing content type.
-=======
    * Tests Book install with pre-existing content type.
->>>>>>> dev
    *
    * Tests that Book module can be installed if content type with machine name
    * 'book' already exists.

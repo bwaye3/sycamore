@@ -19,16 +19,12 @@ class FieldTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'views', 'views_ui', 'views_test_config'];
-=======
   protected static $modules = [
     'node',
     'views',
     'views_ui',
     'views_test_config',
   ];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -52,17 +48,10 @@ class FieldTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-    parent::setUp();
-
-    ViewTestData::createTestViews(get_class($this), ['views_test_config']);
-=======
   protected function setUp(): void {
     parent::setUp();
 
     ViewTestData::createTestViews(static::class, ['views_test_config']);
->>>>>>> dev
 
     // Disable automatic live preview to make the sequence of calls clearer.
     \Drupal::configFactory()->getEditable('views.settings')->set('ui.always_live_preview', FALSE)->save();

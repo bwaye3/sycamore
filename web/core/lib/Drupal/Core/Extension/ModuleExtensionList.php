@@ -28,11 +28,7 @@ class ModuleExtensionList extends ExtensionList {
     'description' => '',
     'package' => 'Other',
     'version' => NULL,
-<<<<<<< HEAD
-    'php' => DRUPAL_MINIMUM_PHP,
-=======
     'php' => \Drupal::MINIMUM_PHP,
->>>>>>> dev
   ];
 
   /**

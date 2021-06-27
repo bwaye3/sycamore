@@ -7,12 +7,9 @@ use Drupal\Core\Block\BlockPluginTrait;
 use Drupal\Core\Cache\CacheableDependencyTrait;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginBase;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
->>>>>>> dev
 
 /**
  * Defines a fallback plugin for missing block plugins.
@@ -23,22 +20,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   category = @Translation("Block"),
  * )
  */
-<<<<<<< HEAD
-class Broken extends PluginBase implements BlockPluginInterface {
-=======
 class Broken extends PluginBase implements BlockPluginInterface, ContainerFactoryPluginInterface {
->>>>>>> dev
 
   use BlockPluginTrait;
   use CacheableDependencyTrait;
 
   /**
-<<<<<<< HEAD
-   * {@inheritdoc}
-   */
-  public function build() {
-    return $this->brokenMessage();
-=======
    * The current user.
    *
    * @var \Drupal\Core\Session\AccountInterface
@@ -83,7 +70,6 @@ class Broken extends PluginBase implements BlockPluginInterface, ContainerFactor
       $build += $this->brokenMessage();
     }
     return $build;
->>>>>>> dev
   }
 
   /**

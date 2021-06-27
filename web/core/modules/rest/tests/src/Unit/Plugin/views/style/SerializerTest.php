@@ -32,11 +32,7 @@ class SerializerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->view = $this->getMockBuilder(ViewExecutable::class)

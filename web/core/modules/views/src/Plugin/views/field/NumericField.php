@@ -8,11 +8,7 @@ use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
 use Drupal\views\ResultRow;
 
 /**
-<<<<<<< HEAD
- * Render a field as a numeric value
-=======
  * Render a field as a numeric value.
->>>>>>> dev
  *
  * Definition terms:
  * - float: If true this field contains a decimal value. If unset this field

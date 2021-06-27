@@ -4,11 +4,7 @@ namespace Drupal\user\Plugin\Search;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Database\Connection;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
 use Drupal\Core\Database\Query\PagerSelectExtender;
->>>>>>> dev
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -25,15 +21,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class UserSearch extends SearchPluginBase implements AccessibleInterface {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * The database connection.
@@ -133,11 +120,7 @@ class UserSearch extends SearchPluginBase implements AccessibleInterface {
     // Run the query to find matching users.
     $query = $this->database
       ->select('users_field_data', 'users')
-<<<<<<< HEAD
-      ->extend('Drupal\Core\Database\Query\PagerSelectExtender');
-=======
       ->extend(PagerSelectExtender::class);
->>>>>>> dev
     $query->fields('users', ['uid']);
     $query->condition('default_langcode', 1);
     if ($this->currentUser->hasPermission('administer users')) {

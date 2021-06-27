@@ -16,11 +16,7 @@ class ConfigDiffTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['config_test', 'system'];
-=======
   protected static $modules = ['config_test', 'system'];
->>>>>>> dev
 
   /**
    * Tests calculating the difference between two sets of configuration.
@@ -90,11 +86,7 @@ class ConfigDiffTest extends KernelTestBase {
     $diff = \Drupal::service('config.manager')->diff($active, $sync, $config_name, $config_name);
     // Prove the fields match.
     $edits = $diff->getEdits();
-<<<<<<< HEAD
-    $this->assertEqual($edits[0]->type, 'copy', 'The first item in the diff is a copy.');
-=======
     $this->assertEquals('copy', $edits[0]->type, 'The first item in the diff is a copy.');
->>>>>>> dev
     $this->assertCount(1, $edits, 'There is one item in the diff');
 
     // Rename the entity.
@@ -109,11 +101,7 @@ class ConfigDiffTest extends KernelTestBase {
       ['id: ' . $new_test_entity_id],
       ['id: ' . $test_entity_id]);
     $this->assertYamlEdit($edits, 'label', 'copy');
-<<<<<<< HEAD
-    $this->assertEqual($edits[2]->type, 'copy', 'The third item in the diff is a copy.');
-=======
     $this->assertEquals('copy', $edits[2]->type, 'The third item in the diff is a copy.');
->>>>>>> dev
     $this->assertCount(3, $edits, 'There are three items in the diff.');
   }
 
@@ -139,11 +127,7 @@ class ConfigDiffTest extends KernelTestBase {
     // Test the fields match in the default collection diff.
     $diff = \Drupal::service('config.manager')->diff($active, $sync, $config_name);
     $edits = $diff->getEdits();
-<<<<<<< HEAD
-    $this->assertEqual($edits[0]->type, 'copy', 'The first item in the diff is a copy.');
-=======
     $this->assertEquals('copy', $edits[0]->type, 'The first item in the diff is a copy.');
->>>>>>> dev
     $this->assertCount(1, $edits, 'There is one item in the diff');
 
     // Test that the differences are detected when diffing the collection.
@@ -162,19 +146,11 @@ class ConfigDiffTest extends KernelTestBase {
    * @param string $type
    *   The type of edit that is being asserted.
    * @param mixed $orig
-<<<<<<< HEAD
-   *   (optional) The original value of the edit. If not supplied, assertion is
-   *   skipped.
-   * @param mixed $closing
-   *   (optional) The closing value of the edit. If not supplied, assertion is
-   *   skipped.
-=======
    *   (optional) The original value of the edit. If not supplied, assertion
    *   is skipped.
    * @param mixed $closing
    *   (optional) The closing value of the edit. If not supplied, assertion
    *   is skipped.
->>>>>>> dev
    */
   protected function assertYamlEdit(array $edits, $field, $type, $orig = NULL, $closing = NULL) {
     $match = FALSE;
@@ -187,16 +163,6 @@ class ConfigDiffTest extends KernelTestBase {
           if (strpos($item, $field . ':') === 0) {
             $match = TRUE;
             // Assert that the edit is of the type specified.
-<<<<<<< HEAD
-            $this->assertEqual($edit->type, $type, "The $field item in the diff is a $type");
-            // If an original value was given, assert that it matches.
-            if (isset($orig)) {
-              $this->assertIdentical($edit->orig, $orig, "The original value for key '$field' is correct.");
-            }
-            // If a closing value was given, assert that it matches.
-            if (isset($closing)) {
-              $this->assertIdentical($edit->closing, $closing, "The closing value for key '$field' is correct.");
-=======
             $this->assertEquals($type, $edit->type, "The {$field} item in the diff is a {$type}");
             // If an original value was given, assert that it matches.
             if (isset($orig)) {
@@ -205,7 +171,6 @@ class ConfigDiffTest extends KernelTestBase {
             // If a closing value was given, assert that it matches.
             if (isset($closing)) {
               $this->assertSame($closing, $edit->closing, "The closing value for key '{$field}' is correct.");
->>>>>>> dev
             }
             // Break out of the search entirely.
             break 2;

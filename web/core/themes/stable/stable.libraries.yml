@@ -7,8 +7,6 @@ drupal.user:
   version: VERSION
   js:
     js/user.theme.js: {}
-<<<<<<< HEAD
-=======
 
 normalize:
   remote: https://github.com/necolas/normalize.css
@@ -26,4 +24,3 @@ tour:
   version: VERSION
   js:
     js/tour.js: {}
->>>>>>> dev

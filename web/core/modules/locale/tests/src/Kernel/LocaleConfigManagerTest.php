@@ -18,11 +18,7 @@ class LocaleConfigManagerTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'system',
     'language',
     'locale',
@@ -84,11 +80,7 @@ class LocaleConfigManagerTest extends KernelTestBase {
     $this->installConfig(['language']);
     $this->assertNull(\Drupal::service('locale.config_manager')->getDefaultConfigLangcode('locale_test_translate.settings'), 'Before installing a module the locale config manager can not access the shipped configuration.');
     \Drupal::service('module_installer')->install(['locale_test_translate']);
-<<<<<<< HEAD
-    $this->assertEqual('en', \Drupal::service('locale.config_manager')->getDefaultConfigLangcode('locale_test_translate.settings'), 'After installing a module the locale config manager can get the shipped configuration langcode.');
-=======
     $this->assertEquals('en', \Drupal::service('locale.config_manager')->getDefaultConfigLangcode('locale_test_translate.settings'), 'After installing a module the locale config manager can get the shipped configuration langcode.');
->>>>>>> dev
 
     $simple_config = \Drupal::configFactory()->getEditable('locale_test_translate.simple_config_extra');
     $simple_config->set('foo', 'bar')->save();
@@ -123,20 +115,12 @@ class LocaleConfigManagerTest extends KernelTestBase {
     // module.
     $block->delete();
     $this->installConfig(['locale_test']);
-<<<<<<< HEAD
-    $this->assertEqual('en', \Drupal::service('locale.config_manager')->getDefaultConfigLangcode('block.block.test_default_config'), 'The block.block.test_default_config is shipped configuration.');
-=======
     $this->assertEquals('en', \Drupal::service('locale.config_manager')->getDefaultConfigLangcode('block.block.test_default_config'), 'The block.block.test_default_config is shipped configuration.');
->>>>>>> dev
 
     // Test the special case for configurable_language config entities.
     $fr_language = ConfigurableLanguage::createFromLangcode('fr');
     $fr_language->save();
-<<<<<<< HEAD
-    $this->assertEqual('en', \Drupal::service('locale.config_manager')->getDefaultConfigLangcode('language.entity.fr'), 'The language.entity.fr is treated as shipped configuration because it is a configurable_language config entity and in the standard language list.');
-=======
     $this->assertEquals('en', \Drupal::service('locale.config_manager')->getDefaultConfigLangcode('language.entity.fr'), 'The language.entity.fr is treated as shipped configuration because it is a configurable_language config entity and in the standard language list.');
->>>>>>> dev
     $custom_language = ConfigurableLanguage::createFromLangcode('custom');
     $custom_language->save();
     $this->assertNull(\Drupal::service('locale.config_manager')->getDefaultConfigLangcode('language.entity.custom'), 'The language.entity.custom is not shipped configuration because it is not in the standard language list.');

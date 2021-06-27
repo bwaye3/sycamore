@@ -6,10 +6,6 @@ use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Component\Uuid\UuidInterface;
 use Drupal\Core\Cache\MemoryCache\MemoryCacheInterface;
 use Drupal\Core\Config\Entity\ConfigEntityStorage;
-<<<<<<< HEAD
-use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
@@ -24,15 +20,6 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
  * Storage handler for "field storage" configuration entities.
  */
 class FieldStorageConfigStorage extends ConfigEntityStorage {
-<<<<<<< HEAD
-  use DeprecatedServicePropertyTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
-=======
->>>>>>> dev
 
   /**
    * The module handler.
@@ -126,11 +113,7 @@ class FieldStorageConfigStorage extends ConfigEntityStorage {
     if (empty($conditions['deleted'])) {
       if (isset($conditions['entity_type']) && isset($conditions['field_name'])) {
         // Optimize for the most frequent case where we do have a specific ID.
-<<<<<<< HEAD
-        $id = $conditions['entity_type'] . $conditions['field_name'];
-=======
         $id = $conditions['entity_type'] . '.' . $conditions['field_name'];
->>>>>>> dev
         $storages = $this->loadMultiple([$id]);
       }
       else {

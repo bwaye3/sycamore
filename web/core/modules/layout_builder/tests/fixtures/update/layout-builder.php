@@ -11,15 +11,7 @@ $connection = Database::getConnection();
 
 // Set the schema version.
 $connection->merge('key_value')
-<<<<<<< HEAD
-  ->fields([
-    'value' => 'i:8000;',
-    'name' => 'layout_builder',
-    'collection' => 'system.schema',
-  ])
-=======
   ->fields(['value' => 'i:8602;'])
->>>>>>> dev
   ->condition('collection', 'system.schema')
   ->condition('name', 'layout_builder')
   ->execute();
@@ -34,18 +26,6 @@ $extensions = $connection->select('config')
 $extensions = unserialize($extensions);
 $extensions['module']['layout_builder'] = 0;
 $extensions['module']['layout_discovery'] = 0;
-<<<<<<< HEAD
-$extensions['module']['layout_test'] = 0;
-$connection->update('config')
-  ->fields([
-    'data' => serialize($extensions),
-    'collection' => '',
-    'name' => 'core.extension',
-  ])
-  ->condition('collection', '')
-  ->condition('name', 'core.extension')
-  ->execute();
-=======
 $connection->update('config')
   ->fields(['data' => serialize($extensions)])
   ->condition('collection', '')
@@ -72,4 +52,3 @@ $connection->update('key_value')
   ->condition('collection', 'post_update')
   ->condition('name', 'existing_updates')
   ->execute();
->>>>>>> dev

@@ -3,11 +3,7 @@
  * Machine name functionality.
  */
 
-<<<<<<< HEAD
-(function($, Drupal, drupalSettings) {
-=======
 (function ($, Drupal, drupalSettings) {
->>>>>>> dev
   /**
    * Attach the machine-readable name form element behavior.
    *
@@ -82,11 +78,7 @@
         }
         if (baseValue.toLowerCase() !== expected) {
           timeout = setTimeout(() => {
-<<<<<<< HEAD
-            xhr = self.transliterate(baseValue, options).done(machine => {
-=======
             xhr = self.transliterate(baseValue, options).done((machine) => {
->>>>>>> dev
               self.showMachineName(machine.substr(0, options.maxlength), data);
             });
           }, 300);
@@ -95,11 +87,7 @@
         }
       }
 
-<<<<<<< HEAD
-      Object.keys(settings.machineName).forEach(sourceId => {
-=======
       Object.keys(settings.machineName).forEach((sourceId) => {
->>>>>>> dev
         const options = settings.machineName[sourceId];
 
         const $source = $context
@@ -161,11 +149,7 @@
         // If no initial value, determine machine name based on the
         // human-readable form element value.
         if (machine === '' && $source.val() !== '') {
-<<<<<<< HEAD
-          self.transliterate($source.val(), options).done(machineName => {
-=======
           self.transliterate($source.val(), options).done((machineName) => {
->>>>>>> dev
             self.showMachineName(
               machineName.substr(0, options.maxlength),
               eventData,

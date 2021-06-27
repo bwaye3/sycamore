@@ -6,8 +6,6 @@ global-styling:
       css/base/typography.css: {}
       css/base/print.css: {}
     component:
-<<<<<<< HEAD
-=======
       css/classy/components/action-links.css: {}
       css/classy/components/breadcrumb.css: {}
       css/classy/components/button.css: {}
@@ -30,7 +28,6 @@ global-styling:
       css/classy/components/tabs.css: {}
       css/classy/components/textarea.css: {}
       css/classy/components/ui-dialog.css: {}
->>>>>>> dev
       css/components/admin-list.css: {}
       css/components/content-header.css: {}
       css/components/container-inline.css: {}
@@ -107,10 +104,6 @@ drupal.nav-tabs:
   js:
     js/nav-tabs.js: {}
   dependencies:
-<<<<<<< HEAD
-    - core/matchmedia
-=======
->>>>>>> dev
     - core/jquery
     - core/drupal
     - core/jquery.once
@@ -122,11 +115,6 @@ drupal.responsive-detail:
   js:
     js/responsive-details.js: {}
   dependencies:
-<<<<<<< HEAD
-    - core/matchmedia
-    - core/matchmedia.addListener
-=======
->>>>>>> dev
     - core/jquery
     - core/jquery.once
     - core/collapse
@@ -181,8 +169,6 @@ layout_builder_content_translation_admin:
     component:
       css/components/layout-builder-content-translation.css: {}
 
-<<<<<<< HEAD
-=======
 user:
   version: VERSION
   css:
@@ -195,7 +181,6 @@ filter:
     component:
       css/theme/filter.admin.css: {}
 
->>>>>>> dev
 classy.book-navigation:
   version: VERSION
   css:
@@ -266,12 +251,3 @@ classy.search-results:
   css:
     component:
       css/classy/components/search-results.css: {}
-<<<<<<< HEAD
-
-classy.user:
-  version: VERSION
-  css:
-    component:
-      css/classy/components/user.css: { weight: -10 }
-=======
->>>>>>> dev

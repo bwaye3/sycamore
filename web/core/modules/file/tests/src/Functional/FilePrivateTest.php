@@ -18,22 +18,14 @@ class FilePrivateTest extends FileFieldTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node_access_test', 'field_test'];
-=======
   protected static $modules = ['node_access_test', 'field_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     node_access_test_add_field(NodeType::load('article'));
     node_access_rebuild();
@@ -58,20 +50,12 @@ class FilePrivateTest extends FileFieldTestBase {
     $test_file = $this->getTestFile('text');
     $nid = $this->uploadNodeFile($test_file, $field_name, $type_name, TRUE, ['private' => TRUE]);
     \Drupal::entityTypeManager()->getStorage('node')->resetCache([$nid]);
-<<<<<<< HEAD
-    /* @var \Drupal\node\NodeInterface $node */
-=======
     /** @var \Drupal\node\NodeInterface $node */
->>>>>>> dev
     $node = $node_storage->load($nid);
     $node_file = File::load($node->{$field_name}->target_id);
     // Ensure the file can be viewed.
     $this->drupalGet('node/' . $node->id());
-<<<<<<< HEAD
-    $this->assertRaw($node_file->getFilename(), 'File reference is displayed after attaching it');
-=======
     $this->assertRaw($node_file->getFilename());
->>>>>>> dev
     // Ensure the file can be downloaded.
     $this->drupalGet(file_create_url($node_file->getFileUri()));
     $this->assertSession()->statusCodeEquals(200);
@@ -99,16 +83,6 @@ class FilePrivateTest extends FileFieldTestBase {
     // Attempt to reuse the file when editing a node.
     $edit = [];
     $edit['title[0][value]'] = $this->randomMachineName();
-<<<<<<< HEAD
-    $this->drupalPostForm('node/add/' . $type_name, $edit, t('Save'));
-    $new_node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
-
-    // Can't use drupalPostForm() to set hidden fields.
-    $this->drupalGet('node/' . $new_node->id() . '/edit');
-    $this->getSession()->getPage()->find('css', 'input[name="' . $field_name . '[0][fids]"]')->setValue($node_file->id());
-    $this->getSession()->getPage()->pressButton(t('Save'));
-    $this->assertUrl('node/' . $new_node->id());
-=======
     $this->drupalGet('node/add/' . $type_name);
     $this->submitForm($edit, 'Save');
     $new_node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
@@ -118,7 +92,6 @@ class FilePrivateTest extends FileFieldTestBase {
     $this->getSession()->getPage()->find('css', 'input[name="' . $field_name . '[0][fids]"]')->setValue($node_file->id());
     $this->getSession()->getPage()->pressButton(t('Save'));
     $this->assertSession()->addressEquals('node/' . $new_node->id());
->>>>>>> dev
     // Make sure the submitted hidden file field is empty.
     $new_node = \Drupal::entityTypeManager()->getStorage('node')->loadUnchanged($new_node->id());
     $this->assertTrue($new_node->get($field_name)->isEmpty());
@@ -126,21 +99,13 @@ class FilePrivateTest extends FileFieldTestBase {
     // that access is still denied.
     $edit = [];
     $edit['title[0][value]'] = $this->randomMachineName();
-<<<<<<< HEAD
-    // Can't use drupalPostForm() to set hidden fields.
-=======
     // Can't use submitForm() to set hidden fields.
->>>>>>> dev
     $this->drupalGet('node/add/' . $type_name);
     $this->getSession()->getPage()->find('css', 'input[name="title[0][value]"]')->setValue($edit['title[0][value]']);
     $this->getSession()->getPage()->find('css', 'input[name="' . $field_name . '[0][fids]"]')->setValue($node_file->id());
     $this->getSession()->getPage()->pressButton(t('Save'));
     $new_node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
-<<<<<<< HEAD
-    $this->assertUrl('node/' . $new_node->id());
-=======
     $this->assertSession()->addressEquals('node/' . $new_node->id());
->>>>>>> dev
     // Make sure the submitted hidden file field is empty.
     $new_node = \Drupal::entityTypeManager()->getStorage('node')->loadUnchanged($new_node->id());
     $this->assertTrue($new_node->get($field_name)->isEmpty());
@@ -177,11 +142,7 @@ class FilePrivateTest extends FileFieldTestBase {
     $test_file = $this->getTestFile('text');
     $this->drupalGet('node/add/' . $type_name);
     $edit = ['files[' . $field_name . '_0]' => $file_system->realpath($test_file->getFileUri())];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Upload'));
-=======
     $this->submitForm($edit, 'Upload');
->>>>>>> dev
     /** @var \Drupal\file\FileStorageInterface $file_storage */
     $file_storage = $this->container->get('entity_type.manager')->getStorage('file');
     $files = $file_storage->loadByProperties(['uid' => 0]);
@@ -208,11 +169,7 @@ class FilePrivateTest extends FileFieldTestBase {
     $edit = [];
     $edit['title[0][value]'] = $this->randomMachineName();
     $edit['files[' . $field_name . '_0]'] = $file_system->realpath($test_file->getFileUri());
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save'));
-=======
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $new_node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
     $file_id = $new_node->{$field_name}->target_id;
     $file = File::load($file_id);
@@ -241,11 +198,7 @@ class FilePrivateTest extends FileFieldTestBase {
     $edit = [];
     $edit['title[0][value]'] = $this->randomMachineName();
     $edit['files[' . $field_name . '_0]'] = $file_system->realpath($test_file->getFileUri());
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save'));
-=======
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $new_node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
     $file = File::load($new_node->{$field_name}->target_id);
     $this->assertTrue($file->isPermanent(), 'File is permanent.');
@@ -270,11 +223,7 @@ class FilePrivateTest extends FileFieldTestBase {
     $edit = [];
     $edit['title[0][value]'] = $this->randomMachineName();
     $edit['files[' . $field_name . '_0]'] = $file_system->realpath($test_file->getFileUri());
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save'));
-=======
     $this->submitForm($edit, 'Save');
->>>>>>> dev
     $new_node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
     $new_node->setUnpublished();
     $new_node->save();

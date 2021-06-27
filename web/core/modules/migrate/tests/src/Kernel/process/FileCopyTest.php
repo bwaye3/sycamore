@@ -23,11 +23,7 @@ class FileCopyTest extends FileTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['migrate', 'system'];
-=======
   protected static $modules = ['migrate', 'system'];
->>>>>>> dev
 
   /**
    * The file system service.
@@ -39,22 +35,14 @@ class FileCopyTest extends FileTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->fileSystem = $this->container->get('file_system');
     $this->container->get('stream_wrapper_manager')->registerWrapper('temporary', 'Drupal\Core\StreamWrapper\TemporaryStream', StreamWrapperInterface::LOCAL_NORMAL);
   }
 
   /**
-<<<<<<< HEAD
-   * Test successful imports/copies.
-=======
    * Tests successful imports/copies.
->>>>>>> dev
    */
   public function testSuccessfulCopies() {
     $file = $this->createUri(NULL, NULL, 'temporary');
@@ -87,11 +75,7 @@ class FileCopyTest extends FileTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test successful file reuse.
-=======
    * Tests successful file reuse.
->>>>>>> dev
    *
    * @dataProvider providerSuccessfulReuse
    *
@@ -139,11 +123,7 @@ class FileCopyTest extends FileTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test successful moves.
-=======
    * Tests successful moves.
->>>>>>> dev
    */
   public function testSuccessfulMoves() {
     $file_1 = $this->createUri(NULL, NULL, 'temporary');
@@ -172,21 +152,13 @@ class FileCopyTest extends FileTestBase {
       list($source_path, $destination_path) = $data;
       $actual_destination = $this->doTransform($source_path, $destination_path, ['move' => TRUE]);
       $this->assertFileExists($destination_path);
-<<<<<<< HEAD
-      $this->assertFileNotExists($source_path);
-=======
       $this->assertFileDoesNotExist($source_path);
->>>>>>> dev
       $this->assertSame($actual_destination, $destination_path, 'The importer returned the moved filename.');
     }
   }
 
   /**
-<<<<<<< HEAD
-   * Test that non-existent files throw an exception.
-=======
    * Tests that non-existent files throw an exception.
->>>>>>> dev
    */
   public function testNonExistentSourceFile() {
     $source = '/non/existent/file';
@@ -223,11 +195,7 @@ class FileCopyTest extends FileTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the 'rename' overwrite mode.
-=======
    * Tests the 'rename' overwrite mode.
->>>>>>> dev
    */
   public function testRenameFile() {
     $source = $this->createUri(NULL, NULL, 'temporary');

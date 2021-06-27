@@ -2,21 +2,14 @@
 
 namespace Drupal\path_alias;
 
-<<<<<<< HEAD
-use Drupal\Core\Path\AliasWhitelist as CoreAliasWhitelist;
-=======
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Cache\CacheCollector;
 use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\Core\State\StateInterface;
->>>>>>> dev
 
 /**
  * Extends CacheCollector to build the path alias whitelist over time.
  */
-<<<<<<< HEAD
-class AliasWhitelist extends CoreAliasWhitelist implements AliasWhitelistInterface {}
-=======
 class AliasWhitelist extends CacheCollector implements AliasWhitelistInterface {
 
   /**
@@ -125,4 +118,3 @@ class AliasWhitelist extends CacheCollector implements AliasWhitelistInterface {
   }
 
 }
->>>>>>> dev

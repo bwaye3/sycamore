@@ -114,11 +114,7 @@ class SqlContentEntityStorageTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $this->entityType = $this->createMock('Drupal\Core\Entity\ContentEntityTypeInterface');
     $this->entityType->expects($this->any())
       ->method('id')
@@ -172,11 +168,7 @@ class SqlContentEntityStorageTest extends UnitTestCase {
    * Provides test data for testGetBaseTable().
    *
    * @return array[]
-<<<<<<< HEAD
-   *   An nested array where each inner array has the base table to be returned
-=======
    *   A nested array where each inner array has the base table to be returned
->>>>>>> dev
    *   by the mocked entity type as the first value and the expected return
    *   value of SqlContentEntityStorage::getBaseTable() as the second
    *   value.
@@ -224,11 +216,7 @@ class SqlContentEntityStorageTest extends UnitTestCase {
    * Provides test data for testGetRevisionTable().
    *
    * @return array[]
-<<<<<<< HEAD
-   *   An nested array where each inner array has the revision table to be
-=======
    *   A nested array where each inner array has the revision table to be
->>>>>>> dev
    *   returned by the mocked entity type as the first value and the expected
    *   return value of SqlContentEntityStorage::getRevisionTable() as the
    *   second value.
@@ -306,11 +294,7 @@ class SqlContentEntityStorageTest extends UnitTestCase {
    * Provides test data for testGetRevisionDataTable().
    *
    * @return array[]
-<<<<<<< HEAD
-   *   An nested array where each inner array has the revision data table to be
-=======
    *   A nested array where each inner array has the revision data table to be
->>>>>>> dev
    *   returned by the mocked entity type as the first value and the expected
    *   return value of SqlContentEntityStorage::getRevisionDataTable() as
    *   the second value.
@@ -400,10 +384,6 @@ class SqlContentEntityStorageTest extends UnitTestCase {
       ->will($this->returnValueMap([
         // SqlContentEntityStorageSchema::initializeBaseTable()
         ['revision', FALSE],
-<<<<<<< HEAD
-        // SqlContentEntityStorageSchema::processBaseTable()
-=======
->>>>>>> dev
         ['id', TRUE],
       ]));
     $this->entityType->expects($this->any())
@@ -416,10 +396,6 @@ class SqlContentEntityStorageTest extends UnitTestCase {
         ['bundle', NULL],
         // SqlContentEntityStorageSchema::initializeBaseTable()
         ['id' => 'id'],
-<<<<<<< HEAD
-        // SqlContentEntityStorageSchema::processBaseTable()
-=======
->>>>>>> dev
         ['id' => 'id'],
       ]));
 
@@ -1475,21 +1451,6 @@ class SqlContentEntityStorageTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * @covers ::getFieldStorageDefinitions
-   *
-   * @expectedDeprecation SqlContentEntityStorage::getFieldStorageDefinitions() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. Use \Drupal\Core\Entity\EntityFieldManagerInterface::getActiveFieldStorageDefinitions() instead. See https://www.drupal.org/node/3040966.
-   *
-   * @group legacy
-   */
-  public function testGetFieldStorageDefinitions() {
-    $this->setUpEntityStorage();
-    $this->entityStorage->getFieldStorageDefinitions();
-  }
-
-  /**
-=======
->>>>>>> dev
    * Sets up the module handler with no implementations.
    */
   protected function setUpModuleHandlerNoImplementations() {

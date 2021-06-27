@@ -25,17 +25,11 @@ class Menu extends DrupalSqlBase {
    * {@inheritdoc}
    */
   public function fields() {
-<<<<<<< HEAD
-    return [
-=======
     $fields = [
->>>>>>> dev
       'menu_name' => $this->t('The menu name. Primary key.'),
       'title' => $this->t('The human-readable name of the menu.'),
       'description' => $this->t('A description of the menu'),
     ];
-<<<<<<< HEAD
-=======
 
     if ($this->database->schema()->fieldExists('menu_custom', 'language')) {
       $fields += [
@@ -44,7 +38,6 @@ class Menu extends DrupalSqlBase {
       ];
     }
     return $fields;
->>>>>>> dev
   }
 
   /**

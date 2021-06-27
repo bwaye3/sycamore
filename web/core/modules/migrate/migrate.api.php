@@ -27,18 +27,9 @@ use Drupal\migrate\Row;
  * data source. The data can be migrated from a database, loaded from a file
  * (for example CSV, JSON or XML) or fetched from a web service (for example RSS
  * or REST). The row is sent to the process phase where it is transformed as
-<<<<<<< HEAD
- * needed or marked to be skipped. Processing can also determine if a 'stub'
- * needs to be created. For example, if a term has a parent term which hasn't
- * been migrated yet, a stub term is created so that the parent relation can be
- * established, and the stub is updated at a later point. After processing, the
- * transformed row is passed to the destination phase where it is loaded (saved)
- * into the target Drupal site.
-=======
  * needed or marked to be skipped. After processing, the transformed row is
  * passed to the destination phase where it is loaded (saved) into the target
  * Drupal site.
->>>>>>> dev
  *
  * Migrate API uses the Drupal plugin system for many different purposes. Most
  * importantly, the overall ETL process is defined as a migration plugin and the
@@ -88,8 +79,6 @@ use Drupal\migrate\Row;
  *
  * @link https://api.drupal.org/api/drupal/namespace/Drupal!migrate!Plugin!migrate!destination List of destination plugins for Drupal configuration and content entities provided by the core Migrate module. @endlink
  *
-<<<<<<< HEAD
-=======
  * @section sec_key_concepts Migrate API key concepts
  * @subsection sec_stubs Stubs
  * Taxonomy terms are an example of a data structure where an entity can have a
@@ -135,7 +124,6 @@ use Drupal\migrate\Row;
  * not provide correct results for all migrated data. Rollbacks allow you to
  * undo a migration and then execute it again after adjusting it.
  *
->>>>>>> dev
  * @section sec_more_info Documentation handbooks
  * @link https://www.drupal.org/docs/8/api/migrate-api Migrate API handbook. @endlink
  * @link https://www.drupal.org/docs/8/upgrade Upgrading to Drupal 8 handbook. @endlink
@@ -167,11 +155,7 @@ use Drupal\migrate\Row;
  */
 function hook_migrate_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
   if ($migration->id() == 'd6_filter_formats') {
-<<<<<<< HEAD
-    $value = $source->getDatabase()->query('SELECT value FROM {variable} WHERE name = :name', [':name' => 'mymodule_filter_foo_' . $row->getSourceProperty('format')])->fetchField();
-=======
     $value = $source->getDatabase()->query('SELECT [value] FROM {variable} WHERE [name] = :name', [':name' => 'mymodule_filter_foo_' . $row->getSourceProperty('format')])->fetchField();
->>>>>>> dev
     if ($value) {
       $row->setSourceProperty('settings:mymodule:foo', unserialize($value));
     }
@@ -194,11 +178,7 @@ function hook_migrate_prepare_row(Row $row, MigrateSourceInterface $source, Migr
  * @ingroup migration
  */
 function hook_migrate_MIGRATION_ID_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
-<<<<<<< HEAD
-  $value = $source->getDatabase()->query('SELECT value FROM {variable} WHERE name = :name', [':name' => 'mymodule_filter_foo_' . $row->getSourceProperty('format')])->fetchField();
-=======
   $value = $source->getDatabase()->query('SELECT [value] FROM {variable} WHERE [name] = :name', [':name' => 'mymodule_filter_foo_' . $row->getSourceProperty('format')])->fetchField();
->>>>>>> dev
   if ($value) {
     $row->setSourceProperty('settings:mymodule:foo', unserialize($value));
   }

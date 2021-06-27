@@ -19,11 +19,7 @@ class EditModeTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'node',
     'block',
     'user',
@@ -41,11 +37,7 @@ class EditModeTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->drupalLogin($this->createUser([
@@ -139,11 +131,7 @@ class EditModeTest extends WebDriverTestBase {
    */
   protected function getTabbableElementsCount() {
     // Mark all tabbable elements.
-<<<<<<< HEAD
-    $this->getSession()->executeScript("jQuery(':tabbable').attr('data-marked', '');");
-=======
     $this->getSession()->executeScript("jQuery(window.tabbable.tabbable(document.body)).attr('data-marked', '');");
->>>>>>> dev
     // Count all marked elements.
     $count = count($this->getSession()->getPage()->findAll('css', "[data-marked]"));
     // Remove set attributes.

@@ -15,11 +15,7 @@ class AddFeedTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['system'];
-=======
   protected static $modules = ['system'];
->>>>>>> dev
 
   /**
    * Tests attaching feeds with paths, URLs, and titles.
@@ -98,11 +94,7 @@ class AddFeedTest extends KernelTestBase {
       '#title' => '<>&"\'',
     ];
     $text = \Drupal::service('renderer')->renderRoot($variables);
-<<<<<<< HEAD
-    $this->assertEqual(trim(strip_tags($text)), 'Subscribe to &lt;&gt;&amp;&quot;&#039;', 'feed_icon template escapes reserved HTML characters.');
-=======
     $this->assertEquals('Subscribe to &lt;&gt;&amp;&quot;&#039;', trim(strip_tags($text)), 'feed_icon template escapes reserved HTML characters.');
->>>>>>> dev
   }
 
 }

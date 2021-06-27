@@ -79,11 +79,7 @@ class LoggerChannel implements LoggerChannelInterface {
   protected $currentUser;
 
   /**
-<<<<<<< HEAD
-   * Constructs a LoggerChannel object
-=======
    * Constructs a LoggerChannel object.
->>>>>>> dev
    *
    * @param string $channel
    *   The channel name for this instance.

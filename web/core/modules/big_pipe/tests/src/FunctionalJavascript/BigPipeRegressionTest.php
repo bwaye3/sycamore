@@ -29,11 +29,7 @@ class BigPipeRegressionTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'big_pipe',
     'big_pipe_regression_test',
   ];
@@ -46,11 +42,7 @@ class BigPipeRegressionTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public function setUp() {
-=======
   public function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Use the big_pipe_test_theme theme.
@@ -122,11 +114,7 @@ class BigPipeRegressionTest extends WebDriverTestBase {
     $javascript = <<<JS
     (function(){
       return Object.keys(CKEDITOR.instances).length > 0;
-<<<<<<< HEAD
-    }());
-=======
     }())
->>>>>>> dev
 JS;
     $this->assertJsCondition($javascript);
   }
@@ -147,23 +135,12 @@ JS;
     $javascript = <<<JS
     (function(){
       return Object.keys(Drupal.ajax.instances).length > 0;
-<<<<<<< HEAD
-    }());
-=======
     }())
->>>>>>> dev
 JS;
     $this->assertJsCondition($javascript);
 
     // Besides verifying there is no JavaScript syntax error, also verify the
     // HTML structure.
-<<<<<<< HEAD
-    $this->assertSession()
-      ->responseContains(BigPipe::STOP_SIGNAL . "\n\n\n</body></html>", 'The BigPipe stop signal is present just before the closing </body> and </html> tags.');
-    $js_code_until_closing_body_tag = substr(BigPipeRegressionTestController::MARKER_2678662, 0, strpos(BigPipeRegressionTestController::MARKER_2678662, '</body>'));
-    $this->assertSession()
-      ->responseNotContains($js_code_until_closing_body_tag . "\n" . BigPipe::START_SIGNAL, 'The BigPipe start signal does NOT start at the closing </body> tag string in an inline script.');
-=======
     // The BigPipe stop signal is present just before the closing </body> and
     // </html> tags.
     $this->assertSession()
@@ -173,7 +150,6 @@ JS;
     // in an inline script.
     $this->assertSession()
       ->responseNotContains($js_code_until_closing_body_tag . "\n" . BigPipe::START_SIGNAL);
->>>>>>> dev
   }
 
   /**

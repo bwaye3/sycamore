@@ -5,11 +5,7 @@ namespace Drupal\Tests\Composer\Plugin\Scaffold\Integration;
 use Drupal\Composer\Plugin\Scaffold\Operations\ReplaceOp;
 use Drupal\Composer\Plugin\Scaffold\ScaffoldOptions;
 use Drupal\Tests\Composer\Plugin\Scaffold\Fixtures;
-<<<<<<< HEAD
-use Drupal\Tests\PhpunitCompatibilityTrait;
-=======
 use Drupal\Tests\Traits\PhpUnitWarnings;
->>>>>>> dev
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,11 +14,7 @@ use PHPUnit\Framework\TestCase;
  * @group Scaffold
  */
 class ReplaceOpTest extends TestCase {
-<<<<<<< HEAD
-  use PhpunitCompatibilityTrait;
-=======
   use PhpUnitWarnings;
->>>>>>> dev
 
   /**
    * @covers ::process
@@ -34,11 +26,7 @@ class ReplaceOpTest extends TestCase {
     $options = ScaffoldOptions::create([]);
     $sut = new ReplaceOp($source, TRUE);
     // Assert that there is no target file before we run our test.
-<<<<<<< HEAD
-    $this->assertFileNotExists($destination->fullPath());
-=======
     $this->assertFileDoesNotExist($destination->fullPath());
->>>>>>> dev
     // Test the system under test.
     $sut->process($destination, $fixtures->io(), $options);
     // Assert that the target file was created.

@@ -16,11 +16,7 @@ class MigrateUploadTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'language',
     'content_translation',
     'menu_ui',
@@ -29,11 +25,7 @@ class MigrateUploadTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('file');
@@ -72,11 +64,7 @@ class MigrateUploadTest extends MigrateDrupal6TestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test upload migration from Drupal 6 to Drupal 8.
-=======
    * Tests upload migration from Drupal 6 to Drupal 8.
->>>>>>> dev
    */
   public function testUpload() {
     $this->container->get('entity_type.manager')
@@ -87,34 +75,19 @@ class MigrateUploadTest extends MigrateDrupal6TestBase {
     $node = $nodes[1];
     $this->assertEquals('en', $node->langcode->value);
     $this->assertCount(1, $node->upload);
-<<<<<<< HEAD
-    $this->assertIdentical('1', $node->upload[0]->target_id);
-    $this->assertIdentical('file 1-1-1', $node->upload[0]->description);
-    $this->assertIdentical(FALSE, $node->upload[0]->isDisplayed());
-=======
     $this->assertSame('1', $node->upload[0]->target_id);
     $this->assertSame('file 1-1-1', $node->upload[0]->description);
     $this->assertFalse($node->upload[0]->isDisplayed());
->>>>>>> dev
 
     $node = $nodes[2];
     $this->assertEquals('en', $node->langcode->value);
     $this->assertCount(2, $node->upload);
-<<<<<<< HEAD
-    $this->assertIdentical('3', $node->upload[0]->target_id);
-    $this->assertIdentical('file 2-3-3', $node->upload[0]->description);
-    $this->assertIdentical(FALSE, $node->upload[0]->isDisplayed());
-    $this->assertIdentical('2', $node->upload[1]->target_id);
-    $this->assertIdentical(TRUE, $node->upload[1]->isDisplayed());
-    $this->assertIdentical('file 2-3-2', $node->upload[1]->description);
-=======
     $this->assertSame('3', $node->upload[0]->target_id);
     $this->assertSame('file 2-3-3', $node->upload[0]->description);
     $this->assertFalse($node->upload[0]->isDisplayed());
     $this->assertSame('2', $node->upload[1]->target_id);
     $this->assertTrue($node->upload[1]->isDisplayed());
     $this->assertSame('file 2-3-2', $node->upload[1]->description);
->>>>>>> dev
 
     $node = $nodes[12];
     $this->assertEquals('zu', $node->langcode->value);

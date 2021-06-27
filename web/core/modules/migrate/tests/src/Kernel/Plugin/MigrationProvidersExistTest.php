@@ -5,16 +5,10 @@ namespace Drupal\Tests\migrate\Kernel\Plugin;
 use Drupal\KernelTests\FileSystemModuleDiscoveryDataProviderTrait;
 use Drupal\migrate\Plugin\Exception\BadPluginDefinitionException;
 use Drupal\migrate_drupal\Plugin\MigrateFieldPluginManager;
-<<<<<<< HEAD
-use Drupal\Tests\DeprecatedModulesTestTrait;
-use Drupal\Tests\migrate_drupal\Kernel\MigrateDrupalTestBase;
-
-=======
 use Drupal\Tests\migrate_drupal\Kernel\MigrateDrupalTestBase;
 
 // cspell:ignore imagefield optionwidgets
 
->>>>>>> dev
 /**
  * Tests that modules exist for all source and destination plugins.
  *
@@ -22,10 +16,6 @@ use Drupal\Tests\migrate_drupal\Kernel\MigrateDrupalTestBase;
  */
 class MigrationProvidersExistTest extends MigrateDrupalTestBase {
 
-<<<<<<< HEAD
-  use DeprecatedModulesTestTrait;
-=======
->>>>>>> dev
   use FileSystemModuleDiscoveryDataProviderTrait;
 
   /**
@@ -110,13 +100,10 @@ class MigrationProvidersExistTest extends MigrateDrupalTestBase {
         'source_module' => 'phone',
         'destination_module' => 'telephone',
       ],
-<<<<<<< HEAD
-=======
       'telephone' => [
         'source_module' => 'telephone',
         'destination_module' => 'telephone',
       ],
->>>>>>> dev
       'link' => [
         'source_module' => 'link',
         'destination_module' => 'link',
@@ -157,8 +144,6 @@ class MigrationProvidersExistTest extends MigrateDrupalTestBase {
         'source_module' => 'entityreference',
         'destination_module' => 'core',
       ],
-<<<<<<< HEAD
-=======
       'node_reference' => [
         'source_module' => 'node_reference',
         'destination_module' => 'core',
@@ -167,7 +152,6 @@ class MigrationProvidersExistTest extends MigrateDrupalTestBase {
         'source_module' => 'user_reference',
         'destination_module' => 'core',
       ],
->>>>>>> dev
     ];
     $this->enableAllModules();
 
@@ -180,11 +164,7 @@ class MigrationProvidersExistTest extends MigrateDrupalTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test a missing required definition.
-=======
    * Tests a missing required definition.
->>>>>>> dev
    *
    * @param array $definitions
    *   A field plugin definition.

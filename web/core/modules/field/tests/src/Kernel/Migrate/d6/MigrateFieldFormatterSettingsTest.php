@@ -15,24 +15,15 @@ class MigrateFieldFormatterSettingsTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['menu_ui', 'node'];
-=======
   protected static $modules = ['comment', 'menu_ui', 'node'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-    parent::setUp();
-=======
   protected function setUp(): void {
     parent::setUp();
     $this->installConfig(['comment']);
     $this->executeMigration('d6_comment_type');
->>>>>>> dev
     $this->migrateFields();
   }
 
@@ -50,11 +41,7 @@ class MigrateFieldFormatterSettingsTest extends MigrateDrupal6TestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that migrated entity display settings can be loaded using D8 API's.
-=======
    * Tests that migrated entity display settings can be loaded using D8 API's.
->>>>>>> dev
    */
   public function testEntityDisplaySettings() {
     // Run tests.
@@ -70,39 +57,23 @@ class MigrateFieldFormatterSettingsTest extends MigrateDrupal6TestBase {
 
     // Can we load any entity display.
     $display = EntityViewDisplay::load('node.story.teaser');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $display->getComponent($field_name));
-=======
     $this->assertSame($expected, $display->getComponent($field_name));
->>>>>>> dev
 
     // Test migrate worked with multiple bundles.
     $display = EntityViewDisplay::load('node.test_page.teaser');
     $expected['weight'] = 35;
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $display->getComponent($field_name));
-=======
     $this->assertSame($expected, $display->getComponent($field_name));
->>>>>>> dev
 
     // Test RSS because that has been converted from 4 to rss.
     $display = EntityViewDisplay::load('node.story.rss');
     $expected['weight'] = 1;
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $display->getComponent($field_name));
-=======
     $this->assertSame($expected, $display->getComponent($field_name));
->>>>>>> dev
 
     // Test the default format with text_default which comes from a static map.
     $expected['type'] = 'text_default';
     $expected['settings'] = [];
     $display = EntityViewDisplay::load('node.story.default');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $display->getComponent($field_name));
-=======
     $this->assertSame($expected, $display->getComponent($field_name));
->>>>>>> dev
 
     // Check that we can migrate multiple fields.
     $content = $display->get('content');
@@ -120,11 +91,7 @@ class MigrateFieldFormatterSettingsTest extends MigrateDrupal6TestBase {
       'prefix_suffix' => TRUE,
     ];
     $component = $display->getComponent('field_test_two');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $component);
-=======
     $this->assertSame($expected, $component);
->>>>>>> dev
     $expected['weight'] = 2;
     $expected['type'] = 'number_decimal';
     $expected['settings'] = [
@@ -134,22 +101,14 @@ class MigrateFieldFormatterSettingsTest extends MigrateDrupal6TestBase {
        'prefix_suffix' => TRUE,
     ];
     $component = $display->getComponent('field_test_three');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $component);
-=======
     $this->assertSame($expected, $component);
->>>>>>> dev
 
     // Test the email field formatter settings are correct.
     $expected['weight'] = 6;
     $expected['type'] = 'email_mailto';
     $expected['settings'] = [];
     $component = $display->getComponent('field_test_email');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $component);
-=======
     $this->assertSame($expected, $component);
->>>>>>> dev
 
     // Test the link field formatter settings.
     $expected['weight'] = 7;
@@ -162,20 +121,12 @@ class MigrateFieldFormatterSettingsTest extends MigrateDrupal6TestBase {
       'target' => '0',
     ];
     $component = $display->getComponent('field_test_link');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $component);
-=======
     $this->assertSame($expected, $component);
->>>>>>> dev
     $expected['settings']['url_only'] = FALSE;
     $expected['settings']['url_plain'] = FALSE;
     $display = EntityViewDisplay::load('node.story.teaser');
     $component = $display->getComponent('field_test_link');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $component);
-=======
     $this->assertSame($expected, $component);
->>>>>>> dev
 
     // Test the file field formatter settings.
     $expected['weight'] = 8;
@@ -184,50 +135,30 @@ class MigrateFieldFormatterSettingsTest extends MigrateDrupal6TestBase {
       'use_description_as_link_text' => TRUE,
     ];
     $component = $display->getComponent('field_test_filefield');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $component);
-=======
     $this->assertSame($expected, $component);
->>>>>>> dev
     $display = EntityViewDisplay::load('node.story.default');
     $expected['type'] = 'file_url_plain';
     $expected['settings'] = [];
     $component = $display->getComponent('field_test_filefield');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $component);
-=======
     $this->assertSame($expected, $component);
->>>>>>> dev
 
     // Test the image field formatter settings.
     $expected['weight'] = 9;
     $expected['type'] = 'image';
     $expected['settings'] = ['image_style' => '', 'image_link' => ''];
     $component = $display->getComponent('field_test_imagefield');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $component);
-    $display = EntityViewDisplay::load('node.story.teaser');
-    $expected['settings']['image_link'] = 'file';
-    $component = $display->getComponent('field_test_imagefield');
-    $this->assertIdentical($expected, $component);
-=======
     $this->assertSame($expected, $component);
     $display = EntityViewDisplay::load('node.story.teaser');
     $expected['settings']['image_link'] = 'file';
     $component = $display->getComponent('field_test_imagefield');
     $this->assertSame($expected, $component);
->>>>>>> dev
 
     // Test phone field.
     $expected['weight'] = 13;
     $expected['type'] = 'basic_string';
     $expected['settings'] = [];
     $component = $display->getComponent('field_test_phone');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $component);
-=======
     $this->assertSame($expected, $component);
->>>>>>> dev
 
     // Test date field.
     $defaults = ['format_type' => 'fallback', 'timezone_override' => ''];
@@ -235,70 +166,40 @@ class MigrateFieldFormatterSettingsTest extends MigrateDrupal6TestBase {
     $expected['type'] = 'datetime_default';
     $expected['settings'] = ['format_type' => 'fallback'] + $defaults;
     $component = $display->getComponent('field_test_date');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $component);
-    $display = EntityViewDisplay::load('node.story.default');
-    $expected['settings']['format_type'] = 'long';
-    $component = $display->getComponent('field_test_date');
-    $this->assertIdentical($expected, $component);
-=======
     $this->assertSame($expected, $component);
     $display = EntityViewDisplay::load('node.story.default');
     $expected['settings']['format_type'] = 'long';
     $component = $display->getComponent('field_test_date');
     $this->assertSame($expected, $component);
->>>>>>> dev
 
     // Test date stamp field.
     $expected['weight'] = 11;
     $expected['settings']['format_type'] = 'fallback';
     $component = $display->getComponent('field_test_datestamp');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $component);
-    $display = EntityViewDisplay::load('node.story.teaser');
-    $expected['settings'] = ['format_type' => 'medium'] + $defaults;
-    $component = $display->getComponent('field_test_datestamp');
-    $this->assertIdentical($expected, $component);
-=======
     $this->assertSame($expected, $component);
     $display = EntityViewDisplay::load('node.story.teaser');
     $expected['settings'] = ['format_type' => 'medium'] + $defaults;
     $component = $display->getComponent('field_test_datestamp');
     $this->assertSame($expected, $component);
->>>>>>> dev
 
     // Test datetime field.
     $expected['weight'] = 12;
     $expected['settings'] = ['format_type' => 'short'] + $defaults;
     $component = $display->getComponent('field_test_datetime');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $component);
-    $display = EntityViewDisplay::load('node.story.default');
-    $expected['settings']['format_type'] = 'fallback';
-    $component = $display->getComponent('field_test_datetime');
-    $this->assertIdentical($expected, $component);
-=======
     $this->assertSame($expected, $component);
     $display = EntityViewDisplay::load('node.story.default');
     $expected['settings']['format_type'] = 'fallback';
     $component = $display->getComponent('field_test_datetime');
     $this->assertSame($expected, $component);
->>>>>>> dev
 
     // Test a date field with a random format which should be mapped
     // to datetime_default.
     $display = EntityViewDisplay::load('node.story.rss');
     $expected['settings']['format_type'] = 'fallback';
     $component = $display->getComponent('field_test_datetime');
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $component);
-    // Test that our Id map has the correct data.
-    $this->assertIdentical([['node', 'story', 'teaser', 'field_test']], $this->getMigration('d6_field_formatter_settings')->getIdMap()->lookupDestinationIds(['story', 'teaser', 'node', 'field_test']));
-=======
     $this->assertSame($expected, $component);
     // Test that our Id map has the correct data.
     $this->assertSame([['node', 'story', 'teaser', 'field_test']], $this->getMigration('d6_field_formatter_settings')->getIdMap()->lookupDestinationIds(['story', 'teaser', 'node', 'field_test']));
->>>>>>> dev
 
     // Test hidden field.
     $this->assertComponentNotExists('node.test_planet.teaser', 'field_test_text_single_checkbox');
@@ -326,14 +227,11 @@ class MigrateFieldFormatterSettingsTest extends MigrateDrupal6TestBase {
     $this->assertSame('entity_reference_label', $component['type']);
     // The default user reference formatter links to the referenced user.
     $this->assertTrue($component['settings']['link']);
-<<<<<<< HEAD
-=======
 
     $display = EntityViewDisplay::load('comment.comment_node_a_thirty_two_char.default');
     $component = $display->getComponent('comment_body');
     $this->assertIsArray($component);
     $this->assertSame('text_default', $component['type']);
->>>>>>> dev
   }
 
 }

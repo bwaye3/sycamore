@@ -59,11 +59,7 @@ class UpdateRootFactory {
     // than having the tests enable a module which overrides the update root
     // factory service) to ensure that the parent site is automatically kept
     // clean without relying on test authors to take any explicit steps. See
-<<<<<<< HEAD
-    // also \Drupal\update\Tests\UpdateTestBase::setUp().
-=======
     // also \Drupal\update\Tests\Functional\UpdateTestBase::setUp().
->>>>>>> dev
     if (DRUPAL_TEST_IN_CHILD_SITE) {
       $kernel = $this->drupalKernel;
       $request = $this->requestStack->getCurrentRequest();

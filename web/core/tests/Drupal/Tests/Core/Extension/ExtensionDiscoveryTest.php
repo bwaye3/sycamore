@@ -2,10 +2,7 @@
 
 namespace Drupal\Tests\Core\Extension;
 
-<<<<<<< HEAD
-=======
 use Drupal\Component\FileCache\FileCacheFactory;
->>>>>>> dev
 use Drupal\Core\Extension\Extension;
 use Drupal\Core\Extension\ExtensionDiscovery;
 use Drupal\Tests\UnitTestCase;
@@ -50,11 +47,7 @@ class ExtensionDiscoveryTest extends UnitTestCase {
       }
       if ($type === 'profile') {
         // Set profile directories for discovery of the other extension types.
-<<<<<<< HEAD
-        $extension_discovery->setProfileDirectories(['myprofile' => 'profiles/myprofile']);
-=======
         $extension_discovery->setProfileDirectories(['my_profile' => 'profiles/my_profile']);
->>>>>>> dev
       }
     }
 
@@ -72,8 +65,6 @@ class ExtensionDiscoveryTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Tests changing extension discovery file cache objects to arrays.
    *
    * @covers ::scan
@@ -108,7 +99,6 @@ class ExtensionDiscoveryTest extends UnitTestCase {
   }
 
   /**
->>>>>>> dev
    * Adds example files to the filesystem structure.
    *
    * @param array $filesystem_structure
@@ -129,17 +119,6 @@ class ExtensionDiscoveryTest extends UnitTestCase {
       'sites/default/profiles/minimal/minimal.info.yml' => [
         'type' => 'profile',
       ],
-<<<<<<< HEAD
-      'profiles/myprofile/myprofile.info.yml' => [
-        'type' => 'profile',
-      ],
-      'profiles/myprofile/modules/myprofile_nested_module/myprofile_nested_module.info.yml' => [],
-      'profiles/otherprofile/otherprofile.info.yml' => [
-        'type' => 'profile',
-      ],
-      'core/modules/user/user.info.yml' => [],
-      'profiles/otherprofile/modules/otherprofile_nested_module/otherprofile_nested_module.info.yml' => [],
-=======
       'profiles/my_profile/my_profile.info.yml' => [
         'type' => 'profile',
       ],
@@ -149,7 +128,6 @@ class ExtensionDiscoveryTest extends UnitTestCase {
       ],
       'core/modules/user/user.info.yml' => [],
       'profiles/other_profile/modules/other_profile_nested_module/other_profile_nested_module.info.yml' => [],
->>>>>>> dev
       'core/modules/system/system.info.yml' => [],
       'core/themes/seven/seven.info.yml' => [
         'type' => 'theme',
@@ -189,11 +167,7 @@ class ExtensionDiscoveryTest extends UnitTestCase {
       $this->addFileToFilesystemStructure($filesystem_structure, $pieces, $content);
     }
 
-<<<<<<< HEAD
-    unset($files_by_type_and_name_expected['module']['otherprofile_nested_module']);
-=======
     unset($files_by_type_and_name_expected['module']['other_profile_nested_module']);
->>>>>>> dev
 
     return $files_by_type_and_name_expected;
   }

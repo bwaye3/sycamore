@@ -31,14 +31,6 @@ class ImageFieldWidgetTest extends ImageFieldTestBase {
     ];
     $this->createImageField($field_name, 'article', [], $field_settings, [], [], 'Image test on [site:name]');
     $this->drupalGet('node/add/article');
-<<<<<<< HEAD
-    $this->assertNotCount(0, $this->xpath('//div[contains(@class, "field--widget-image-image")]'), 'Image field widget found on add/node page', NULL);
-    $this->assertNotCount(0, $this->xpath('//input[contains(@accept, "image/*")]'), 'Image field widget limits accepted files.', NULL);
-    $this->assertNoText('Image test on [site:name]');
-
-    // Check for allowed image file extensions - default.
-    $this->assertText('Allowed types: png gif jpg jpeg.');
-=======
     // Verify that the image field widget is found on add/node page.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--widget-image-image")]');
     // Verify that the image field widget limits accepted files.
@@ -47,28 +39,19 @@ class ImageFieldWidgetTest extends ImageFieldTestBase {
 
     // Check for allowed image file extensions - default.
     $this->assertSession()->pageTextContains('Allowed types: png gif jpg jpeg.');
->>>>>>> dev
 
     // Try adding to the field config an unsupported extension, should not
     // appear in the allowed types.
     $field_config = FieldConfig::loadByName('node', 'article', $field_name);
     $field_config->setSetting('file_extensions', 'png gif jpg jpeg tiff')->save();
     $this->drupalGet('node/add/article');
-<<<<<<< HEAD
-    $this->assertText('Allowed types: png gif jpg jpeg.');
-=======
     $this->assertSession()->pageTextContains('Allowed types: png gif jpg jpeg.');
->>>>>>> dev
 
     // Add a supported extension and remove some supported ones, we should see
     // the intersect of those entered in field config with those supported.
     $field_config->setSetting('file_extensions', 'png jpe tiff')->save();
     $this->drupalGet('node/add/article');
-<<<<<<< HEAD
-    $this->assertText('Allowed types: png jpe.');
-=======
     $this->assertSession()->pageTextContains('Allowed types: png jpe.');
->>>>>>> dev
   }
 
 }

@@ -21,8 +21,6 @@ use PHPUnit\Framework\TestCase;
 class VariableTest extends TestCase {
 
   /**
-<<<<<<< HEAD
-=======
    * A bogus callable for testing ::callableToString().
    */
   public static function fake(): void {
@@ -95,7 +93,6 @@ class VariableTest extends TestCase {
   }
 
   /**
->>>>>>> dev
    * Data provider for testExport().
    *
    * @return array

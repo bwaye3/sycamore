@@ -14,11 +14,6 @@ drupal.ckeditor:
     - core/drupal.displace
     - core/ckeditor
     - editor/drupal.editor
-<<<<<<< HEAD
-    # Ensure to run after core/matchmedia.
-    - core/matchmedia
-=======
->>>>>>> dev
 
 drupal.ckeditor.plugins.drupalimagecaption:
   version: VERSION

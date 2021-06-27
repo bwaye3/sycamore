@@ -19,11 +19,7 @@ class BlockFormMessagesTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'layout_builder',
     'block',
     'node',
@@ -38,11 +34,7 @@ class BlockFormMessagesTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->createContentType(['type' => 'bundle_with_section_field']);
   }
@@ -65,16 +57,8 @@ class BlockFormMessagesTest extends WebDriverTestBase {
     ]));
     $field_ui_prefix = 'admin/structure/types/manage/bundle_with_section_field';
     // Enable layout builder.
-<<<<<<< HEAD
-    $this->drupalPostForm(
-      $field_ui_prefix . '/display/default',
-      ['layout[enabled]' => TRUE],
-      'Save'
-    );
-=======
     $this->drupalGet($field_ui_prefix . '/display/default');
     $this->submitForm(['layout[enabled]' => TRUE], 'Save');
->>>>>>> dev
     $this->clickElementWhenClickable($page->findLink('Manage layout'));
     $assert_session->addressEquals($field_ui_prefix . '/display/default/layout');
     $this->clickElementWhenClickable($page->findLink('Add block'));
@@ -118,11 +102,7 @@ class BlockFormMessagesTest extends WebDriverTestBase {
     /** @var \Behat\Mink\Element\NodeElement[] $top_form_elements */
     $top_form_elements = $page->findAll('css', '#drupal-off-canvas form > *');
     // Ensure the messages are the first top level element of the form.
-<<<<<<< HEAD
-    $this->assertTrue(stristr($top_form_elements[0]->getText(), 'Title field is required.') !== FALSE);
-=======
     $this->assertStringContainsStringIgnoringCase('Title field is required.', $top_form_elements[0]->getText());
->>>>>>> dev
     $this->assertGreaterThan(4, count($top_form_elements));
   }
 

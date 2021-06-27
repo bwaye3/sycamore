@@ -10,11 +10,7 @@ use Drupal\module_autoload_test\SomeClass;
 class ModuleTestController {
 
   /**
-<<<<<<< HEAD
-   * Returns dynamically invoked hook results for the 'module_test' module
-=======
    * Returns dynamically invoked hook results for the 'module_test' module.
->>>>>>> dev
    *
    * @return array
    *   Renderable array.

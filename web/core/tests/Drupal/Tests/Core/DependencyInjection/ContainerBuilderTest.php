@@ -78,39 +78,18 @@ class ContainerBuilderTest extends UnitTestCase {
    * @covers ::setDefinition
    */
   public function testSetDefinition() {
-<<<<<<< HEAD
-    // Test a service with defaults.
-    $container = new ContainerBuilder();
-    $definition = new Definition();
-    $service = $container->setDefinition('foo', $definition);
-    $this->assertTrue($service->isPublic());
-    $this->assertFalse($service->isPrivate());
-=======
     // Test a service with public set to true.
     $container = new ContainerBuilder();
     $definition = new Definition();
     $definition->setPublic(TRUE);
     $service = $container->setDefinition('foo', $definition);
     $this->assertTrue($service->isPublic());
->>>>>>> dev
 
     // Test a service with public set to false.
     $definition = new Definition();
     $definition->setPublic(FALSE);
     $service = $container->setDefinition('foo', $definition);
     $this->assertFalse($service->isPublic());
-<<<<<<< HEAD
-    $this->assertFalse($service->isPrivate());
-
-    // Test a service with private set to true. Drupal does not support this.
-    // We only support using setPublic() to make things not available outside
-    // the container.
-    $definition = new Definition();
-    $definition->setPrivate(TRUE);
-    $service = $container->setDefinition('foo', $definition);
-    $this->assertTrue($service->isPublic());
-    $this->assertFalse($service->isPrivate());
-=======
   }
 
   /**
@@ -125,7 +104,6 @@ class ContainerBuilderTest extends UnitTestCase {
     $this->expectDeprecation('Not marking service definitions as public is deprecated in drupal:9.2.0 and is required in drupal:10.0.0. Call $definition->setPublic(TRUE) before calling ::setDefinition(). See https://www.drupal.org/node/3194517');
     $service = $container->setDefinition('foo', $definition);
     $this->assertTrue($service->isPublic());
->>>>>>> dev
   }
 
   /**

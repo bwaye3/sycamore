@@ -38,26 +38,15 @@ class LayoutEntityHelperTraitTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-    parent::setUp();
-
-    $this->installSchema('system', ['key_value_expire']);
-=======
   protected function setUp(): void {
     parent::setUp();
 
->>>>>>> dev
     $this->installEntitySchema('user');
     $this->installEntitySchema('entity_test');
   }
 
   /**
-<<<<<<< HEAD
-   * Dataprovider for testGetSectionStorageForEntity().
-=======
    * Data provider for testGetSectionStorageForEntity().
->>>>>>> dev
    */
   public function providerTestGetSectionStorageForEntity() {
     $data = [];
@@ -130,11 +119,7 @@ class LayoutEntityHelperTraitTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Dataprovider for testOriginalEntityUsesDefaultStorage().
-=======
    * Data provider for testOriginalEntityUsesDefaultStorage().
->>>>>>> dev
    */
   public function providerTestOriginalEntityUsesDefaultStorage() {
     return [

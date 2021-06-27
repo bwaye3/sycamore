@@ -7,15 +7,11 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 use Drupal\content_translation\Plugin\migrate\source\I18nQueryTrait;
 
 /**
-<<<<<<< HEAD
- * Gets Drupal 7 custom block translation from database.
-=======
  * Gets Drupal 7 i18n custom block translations from database.
  *
  * For available configuration keys, refer to the parent classes:
  * @see \Drupal\migrate\Plugin\migrate\source\SqlBase
  * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
->>>>>>> dev
  *
  * @MigrateSource(
  *   id = "d7_block_custom_translation",
@@ -52,19 +48,11 @@ class BlockCustomTranslation extends DrupalSqlBase {
 
     // Add in the property, which is either title or body. Cast the bid to text
     // so PostgreSQL can make the join.
-<<<<<<< HEAD
-    $query->leftJoin(static::I18N_STRING_TABLE, 'i18n', 'i18n.objectid = CAST(b.bid AS CHAR(255))');
-    $query->condition('i18n.type', 'block');
-
-    // Add in the translation for the property.
-    $query->innerJoin('locales_target', 'lt', 'lt.lid = i18n.lid');
-=======
     $query->leftJoin(static::I18N_STRING_TABLE, 'i18n', '[i18n].[objectid] = CAST([b].[bid] AS CHAR(255))');
     $query->condition('i18n.type', 'block');
 
     // Add in the translation for the property.
     $query->innerJoin('locales_target', 'lt', '[lt].[lid] = [i18n].[lid]');
->>>>>>> dev
     return $query;
   }
 
@@ -72,13 +60,9 @@ class BlockCustomTranslation extends DrupalSqlBase {
    * {@inheritdoc}
    */
   public function prepareRow(Row $row) {
-<<<<<<< HEAD
-    parent::prepareRow($row);
-=======
     if (!parent::prepareRow($row)) {
       return FALSE;
     }
->>>>>>> dev
     // Set the i18n string table for use in I18nQueryTrait.
     $this->i18nStringTable = static::I18N_STRING_TABLE;
     // Save the translation for this property.

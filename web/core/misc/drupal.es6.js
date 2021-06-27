@@ -42,9 +42,6 @@ window.Drupal = { behaviors: {}, locale: {} };
 
 // JavaScript should be made compatible with libraries other than jQuery by
 // wrapping it in an anonymous closure.
-<<<<<<< HEAD
-(function(Drupal, drupalSettings, drupalTranslations, console, Proxy, Reflect) {
-=======
 (function (
   Drupal,
   drupalSettings,
@@ -53,7 +50,6 @@ window.Drupal = { behaviors: {}, locale: {} };
   Proxy,
   Reflect,
 ) {
->>>>>>> dev
   /**
    * Helper to rethrow errors asynchronously.
    *
@@ -63,11 +59,7 @@ window.Drupal = { behaviors: {}, locale: {} };
    * @param {Error|string} error
    *   The error to be thrown.
    */
-<<<<<<< HEAD
-  Drupal.throwError = function(error) {
-=======
   Drupal.throwError = function (error) {
->>>>>>> dev
     setTimeout(() => {
       throw error;
     }, 0);
@@ -162,20 +154,12 @@ window.Drupal = { behaviors: {}, locale: {} };
    *
    * @throws {Drupal~DrupalBehaviorError}
    */
-<<<<<<< HEAD
-  Drupal.attachBehaviors = function(context, settings) {
-=======
   Drupal.attachBehaviors = function (context, settings) {
->>>>>>> dev
     context = context || document;
     settings = settings || drupalSettings;
     const behaviors = Drupal.behaviors;
     // Execute all of them.
-<<<<<<< HEAD
-    Object.keys(behaviors || {}).forEach(i => {
-=======
     Object.keys(behaviors || {}).forEach((i) => {
->>>>>>> dev
       if (typeof behaviors[i].attach === 'function') {
         // Don't stop the execution of behaviors in case of an error.
         try {
@@ -228,21 +212,13 @@ window.Drupal = { behaviors: {}, locale: {} };
    * @see Drupal~behaviorDetach
    * @see Drupal.attachBehaviors
    */
-<<<<<<< HEAD
-  Drupal.detachBehaviors = function(context, settings, trigger) {
-=======
   Drupal.detachBehaviors = function (context, settings, trigger) {
->>>>>>> dev
     context = context || document;
     settings = settings || drupalSettings;
     trigger = trigger || 'unload';
     const behaviors = Drupal.behaviors;
     // Execute all of them.
-<<<<<<< HEAD
-    Object.keys(behaviors || {}).forEach(i => {
-=======
     Object.keys(behaviors || {}).forEach((i) => {
->>>>>>> dev
       if (typeof behaviors[i].detach === 'function') {
         // Don't stop the execution of behaviors in case of an error.
         try {
@@ -265,11 +241,7 @@ window.Drupal = { behaviors: {}, locale: {} };
    *
    * @ingroup sanitization
    */
-<<<<<<< HEAD
-  Drupal.checkPlain = function(str) {
-=======
   Drupal.checkPlain = function (str) {
->>>>>>> dev
     str = str
       .toString()
       .replace(/&/g, '&amp;')
@@ -300,19 +272,11 @@ window.Drupal = { behaviors: {}, locale: {} };
    *
    * @see Drupal.t
    */
-<<<<<<< HEAD
-  Drupal.formatString = function(str, args) {
-    // Keep args intact.
-    const processedArgs = {};
-    // Transform arguments before inserting them.
-    Object.keys(args || {}).forEach(key => {
-=======
   Drupal.formatString = function (str, args) {
     // Keep args intact.
     const processedArgs = {};
     // Transform arguments before inserting them.
     Object.keys(args || {}).forEach((key) => {
->>>>>>> dev
       switch (key.charAt(0)) {
         // Escaped only.
         case '@':
@@ -350,11 +314,7 @@ window.Drupal = { behaviors: {}, locale: {} };
    * @return {string}
    *   The replaced string.
    */
-<<<<<<< HEAD
-  Drupal.stringReplace = function(str, args, keys) {
-=======
   Drupal.stringReplace = function (str, args, keys) {
->>>>>>> dev
     if (str.length === 0) {
       return str;
     }
@@ -405,11 +365,7 @@ window.Drupal = { behaviors: {}, locale: {} };
    *   The formatted string.
    *   The translated string.
    */
-<<<<<<< HEAD
-  Drupal.t = function(str, args, options) {
-=======
   Drupal.t = function (str, args, options) {
->>>>>>> dev
     options = options || {};
     options.context = options.context || '';
 
@@ -438,11 +394,7 @@ window.Drupal = { behaviors: {}, locale: {} };
    * @return {string}
    *   The full URL.
    */
-<<<<<<< HEAD
-  Drupal.url = function(path) {
-=======
   Drupal.url = function (path) {
->>>>>>> dev
     return drupalSettings.path.baseUrl + drupalSettings.path.pathPrefix + path;
   };
 
@@ -459,11 +411,7 @@ window.Drupal = { behaviors: {}, locale: {} };
    * @see https://grack.com/blog/2009/11/17/absolutizing-url-in-javascript
    * @see https://github.com/jquery/jquery-ui/blob/1.11.4/ui/tabs.js#L53
    */
-<<<<<<< HEAD
-  Drupal.url.toAbsolute = function(url) {
-=======
   Drupal.url.toAbsolute = function (url) {
->>>>>>> dev
     const urlParsingNode = document.createElement('a');
 
     // Decode the URL first; this is required by IE <= 6. Decoding non-UTF-8
@@ -492,11 +440,7 @@ window.Drupal = { behaviors: {}, locale: {} };
    *
    * @see https://github.com/jquery/jquery-ui/blob/1.11.4/ui/tabs.js#L58
    */
-<<<<<<< HEAD
-  Drupal.url.isLocal = function(url) {
-=======
   Drupal.url.isLocal = function (url) {
->>>>>>> dev
     // Always use browser-derived absolute URLs in the comparison, to avoid
     // attempts to break out of the base path using directory traversal.
     let absoluteUrl = Drupal.url.toAbsolute(url);
@@ -561,11 +505,7 @@ window.Drupal = { behaviors: {}, locale: {} };
    * @return {string}
    *   A translated string.
    */
-<<<<<<< HEAD
-  Drupal.formatPlural = function(count, singular, plural, args, options) {
-=======
   Drupal.formatPlural = function (count, singular, plural, args, options) {
->>>>>>> dev
     args = args || {};
     args['@count'] = count;
 
@@ -604,11 +544,7 @@ window.Drupal = { behaviors: {}, locale: {} };
    * @return {string}
    *   The encoded path.
    */
-<<<<<<< HEAD
-  Drupal.encodePath = function(item) {
-=======
   Drupal.encodePath = function (item) {
->>>>>>> dev
     return window.encodeURIComponent(item).replace(/%2F/g, '/');
   };
 
@@ -691,11 +627,7 @@ window.Drupal = { behaviors: {}, locale: {} };
    *   Any data the theme function returns. This could be a plain HTML string,
    *   but also a complex object.
    */
-<<<<<<< HEAD
-  Drupal.theme = function(func, ...args) {
-=======
   Drupal.theme = function (func, ...args) {
->>>>>>> dev
     if (func in Drupal.theme) {
       return Drupal.theme[func](...args);
     }
@@ -710,11 +642,7 @@ window.Drupal = { behaviors: {}, locale: {} };
    * @return {string}
    *   The formatted text (html).
    */
-<<<<<<< HEAD
-  Drupal.theme.placeholder = function(str) {
-=======
   Drupal.theme.placeholder = function (str) {
->>>>>>> dev
     return `<em class="placeholder">${Drupal.checkPlain(str)}</em>`;
   };
 })(

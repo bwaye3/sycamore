@@ -14,8 +14,6 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Routing\UrlGeneratorInterface;
 use Drupal\Core\Theme\ThemeManagerInterface;
 use Drupal\Core\Url;
-<<<<<<< HEAD
-=======
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\Markup as TwigMarkup;
@@ -24,7 +22,6 @@ use Twig\Node\Expression\ConstantExpression;
 use Twig\Node\Node;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
->>>>>>> dev
 
 /**
  * A class providing Drupal Twig extensions.
@@ -34,11 +31,7 @@ use Twig\TwigFunction;
  *
  * @see \Drupal\Core\CoreServiceProvider
  */
-<<<<<<< HEAD
-class TwigExtension extends \Twig_Extension {
-=======
 class TwigExtension extends AbstractExtension {
->>>>>>> dev
 
   /**
    * The URL generator.
@@ -88,88 +81,11 @@ class TwigExtension extends AbstractExtension {
   }
 
   /**
-<<<<<<< HEAD
-   * Sets the URL generator.
-   *
-   * @param \Drupal\Core\Routing\UrlGeneratorInterface $url_generator
-   *   The URL generator.
-   *
-   * @return $this
-   *
-   * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0.
-   */
-  public function setGenerators(UrlGeneratorInterface $url_generator) {
-    return $this->setUrlGenerator($url_generator);
-  }
-
-  /**
-   * Sets the URL generator.
-   *
-   * @param \Drupal\Core\Routing\UrlGeneratorInterface $url_generator
-   *   The URL generator.
-   *
-   * @return $this
-   *
-   * @deprecated in drupal:8.3.0 and is removed from drupal:9.0.0.
-   */
-  public function setUrlGenerator(UrlGeneratorInterface $url_generator) {
-    $this->urlGenerator = $url_generator;
-    return $this;
-  }
-
-  /**
-   * Sets the theme manager.
-   *
-   * @param \Drupal\Core\Theme\ThemeManagerInterface $theme_manager
-   *   The theme manager.
-   *
-   * @return $this
-   *
-   * @deprecated in drupal:8.3.0 and is removed from drupal:9.0.0.
-   */
-  public function setThemeManager(ThemeManagerInterface $theme_manager) {
-    $this->themeManager = $theme_manager;
-    return $this;
-  }
-
-  /**
-   * Sets the date formatter.
-   *
-   * @param \Drupal\Core\Datetime\DateFormatter $date_formatter
-   *   The date formatter.
-   *
-   * @return $this
-   *
-   * @deprecated in drupal:8.3.0 and is removed from drupal:9.0.0.
-   */
-  public function setDateFormatter(DateFormatterInterface $date_formatter) {
-    $this->dateFormatter = $date_formatter;
-    return $this;
-  }
-
-  /**
-=======
->>>>>>> dev
    * {@inheritdoc}
    */
   public function getFunctions() {
     return [
       // This function will receive a renderable array, if an array is detected.
-<<<<<<< HEAD
-      new \Twig_SimpleFunction('render_var', [$this, 'renderVar']),
-      // The url and path function are defined in close parallel to those found
-      // in \Symfony\Bridge\Twig\Extension\RoutingExtension
-      new \Twig_SimpleFunction('url', [$this, 'getUrl'], ['is_safe_callback' => [$this, 'isUrlGenerationSafe']]),
-      new \Twig_SimpleFunction('path', [$this, 'getPath'], ['is_safe_callback' => [$this, 'isUrlGenerationSafe']]),
-      new \Twig_SimpleFunction('link', [$this, 'getLink']),
-      new \Twig_SimpleFunction('file_url', function ($uri) {
-        return file_url_transform_relative(file_create_url($uri));
-      }),
-      new \Twig_SimpleFunction('attach_library', [$this, 'attachLibrary']),
-      new \Twig_SimpleFunction('active_theme_path', [$this, 'getActiveThemePath']),
-      new \Twig_SimpleFunction('active_theme', [$this, 'getActiveTheme']),
-      new \Twig_SimpleFunction('create_attribute', [$this, 'createAttribute']),
-=======
       new TwigFunction('render_var', [$this, 'renderVar']),
       // The url and path function are defined in close parallel to those found
       // in \Symfony\Bridge\Twig\Extension\RoutingExtension
@@ -183,7 +99,6 @@ class TwigExtension extends AbstractExtension {
       new TwigFunction('active_theme_path', [$this, 'getActiveThemePath']),
       new TwigFunction('active_theme', [$this, 'getActiveTheme']),
       new TwigFunction('create_attribute', [$this, 'createAttribute']),
->>>>>>> dev
     ];
   }
 
@@ -193,46 +108,21 @@ class TwigExtension extends AbstractExtension {
   public function getFilters() {
     return [
       // Translation filters.
-<<<<<<< HEAD
-      new \Twig_SimpleFilter('t', 't', ['is_safe' => ['html']]),
-      new \Twig_SimpleFilter('trans', 't', ['is_safe' => ['html']]),
-=======
       new TwigFilter('t', 't', ['is_safe' => ['html']]),
       new TwigFilter('trans', 't', ['is_safe' => ['html']]),
->>>>>>> dev
       // The "raw" filter is not detectable when parsing "trans" tags. To detect
       // which prefix must be used for translation (@, !, %), we must clone the
       // "raw" filter and give it identifiable names. These filters should only
       // be used in "trans" tags.
       // @see TwigNodeTrans::compileString()
-<<<<<<< HEAD
-      new \Twig_SimpleFilter('placeholder', [$this, 'escapePlaceholder'], ['is_safe' => ['html'], 'needs_environment' => TRUE]),
-
-      // Replace twig's escape filter with our own.
-      new \Twig_SimpleFilter('drupal_escape', [$this, 'escapeFilter'], ['needs_environment' => TRUE, 'is_safe_callback' => 'twig_escape_filter_is_safe']),
-=======
       new TwigFilter('placeholder', [$this, 'escapePlaceholder'], ['is_safe' => ['html'], 'needs_environment' => TRUE]),
 
       // Replace twig's escape filter with our own.
       new TwigFilter('drupal_escape', [$this, 'escapeFilter'], ['needs_environment' => TRUE, 'is_safe_callback' => 'twig_escape_filter_is_safe']),
->>>>>>> dev
 
       // Implements safe joining.
       // @todo Make that the default for |join? Upstream issue:
       //   https://github.com/fabpot/Twig/issues/1420
-<<<<<<< HEAD
-      new \Twig_SimpleFilter('safe_join', [$this, 'safeJoin'], ['needs_environment' => TRUE, 'is_safe' => ['html']]),
-
-      // Array filters.
-      new \Twig_SimpleFilter('without', [$this, 'withoutFilter']),
-
-      // CSS class and ID filters.
-      new \Twig_SimpleFilter('clean_class', '\Drupal\Component\Utility\Html::getClass'),
-      new \Twig_SimpleFilter('clean_id', '\Drupal\Component\Utility\Html::getId'),
-      // This filter will render a renderable array to use the string results.
-      new \Twig_SimpleFilter('render', [$this, 'renderVar']),
-      new \Twig_SimpleFilter('format_date', [$this->dateFormatter, 'format']),
-=======
       new TwigFilter('safe_join', [$this, 'safeJoin'], ['needs_environment' => TRUE, 'is_safe' => ['html']]),
 
       // Array filters.
@@ -244,7 +134,6 @@ class TwigExtension extends AbstractExtension {
       // This filter will render a renderable array to use the string results.
       new TwigFilter('render', [$this, 'renderVar']),
       new TwigFilter('format_date', [$this->dateFormatter, 'format']),
->>>>>>> dev
     ];
   }
 
@@ -359,11 +248,7 @@ class TwigExtension extends AbstractExtension {
     }
     // The text has been processed by twig already, convert it to a safe object
     // for the render system.
-<<<<<<< HEAD
-    if ($text instanceof \Twig_Markup) {
-=======
     if ($text instanceof TwigMarkup) {
->>>>>>> dev
       $text = Markup::create($text);
     }
     $build = [
@@ -415,31 +300,18 @@ class TwigExtension extends AbstractExtension {
    * If param1 and param2 reference placeholders in the route, it would not
    * need to be escaped, but we don't know that in advance.
    *
-<<<<<<< HEAD
-   * @param \Twig_Node $args_node
-=======
    * @param \Twig\Node\Node $args_node
->>>>>>> dev
    *   The arguments of the path/url functions.
    *
    * @return array
    *   An array with the contexts the URL is safe
    */
-<<<<<<< HEAD
-  public function isUrlGenerationSafe(\Twig_Node $args_node) {
-    // Support named arguments.
-    $parameter_node = $args_node->hasNode('parameters') ? $args_node->getNode('parameters') : ($args_node->hasNode(1) ? $args_node->getNode(1) : NULL);
-
-    if (!isset($parameter_node) || $parameter_node instanceof \Twig_Node_Expression_Array && count($parameter_node) <= 2 &&
-        (!$parameter_node->hasNode(1) || $parameter_node->getNode(1) instanceof \Twig_Node_Expression_Constant)) {
-=======
   public function isUrlGenerationSafe(Node $args_node) {
     // Support named arguments.
     $parameter_node = $args_node->hasNode('parameters') ? $args_node->getNode('parameters') : ($args_node->hasNode(1) ? $args_node->getNode(1) : NULL);
 
     if (!isset($parameter_node) || $parameter_node instanceof ArrayExpression && count($parameter_node) <= 2 &&
         (!$parameter_node->hasNode(1) || $parameter_node->getNode(1) instanceof ConstantExpression)) {
->>>>>>> dev
       return ['html'];
     }
 
@@ -469,24 +341,15 @@ class TwigExtension extends AbstractExtension {
   /**
    * Provides a placeholder wrapper around ::escapeFilter.
    *
-<<<<<<< HEAD
-   * @param \Twig_Environment $env
-   *   A Twig_Environment instance.
-=======
    * @param \Twig\Environment $env
    *   A Twig Environment instance.
->>>>>>> dev
    * @param mixed $string
    *   The value to be escaped.
    *
    * @return string|null
    *   The escaped, rendered output, or NULL if there is no valid output.
    */
-<<<<<<< HEAD
-  public function escapePlaceholder(\Twig_Environment $env, $string) {
-=======
   public function escapePlaceholder(Environment $env, $string) {
->>>>>>> dev
     $return = $this->escapeFilter($env, $string);
 
     return $return ? '<em class="placeholder">' . $return . '</em>' : NULL;
@@ -500,13 +363,8 @@ class TwigExtension extends AbstractExtension {
    * Note: This function should be kept in sync with
    * theme_render_and_autoescape().
    *
-<<<<<<< HEAD
-   * @param \Twig_Environment $env
-   *   A Twig_Environment instance.
-=======
    * @param \Twig\Environment $env
    *   A Twig Environment instance.
->>>>>>> dev
    * @param mixed $arg
    *   The value to be escaped.
    * @param string $strategy
@@ -527,11 +385,7 @@ class TwigExtension extends AbstractExtension {
    * @todo Refactor this to keep it in sync with theme_render_and_autoescape()
    *   in https://www.drupal.org/node/2575065
    */
-<<<<<<< HEAD
-  public function escapeFilter(\Twig_Environment $env, $arg, $strategy = 'html', $charset = NULL, $autoescape = FALSE) {
-=======
   public function escapeFilter(Environment $env, $arg, $strategy = 'html', $charset = NULL, $autoescape = FALSE) {
->>>>>>> dev
     // Check for a numeric zero int or float.
     if ($arg === 0 || $arg === 0.0) {
       return 0;
@@ -544,13 +398,8 @@ class TwigExtension extends AbstractExtension {
 
     $this->bubbleArgMetadata($arg);
 
-<<<<<<< HEAD
-    // Keep Twig_Markup objects intact to support autoescaping.
-    if ($autoescape && ($arg instanceof \Twig_Markup || $arg instanceof MarkupInterface)) {
-=======
     // Keep \Twig\Markup objects intact to support autoescaping.
     if ($autoescape && ($arg instanceof TwigMarkup || $arg instanceof MarkupInterface)) {
->>>>>>> dev
       return $arg;
     }
 
@@ -638,11 +487,7 @@ class TwigExtension extends AbstractExtension {
    * If an object is passed which does not implement __toString(),
    * RenderableInterface or toString() then an exception is thrown;
    * Other objects are casted to string. However in the case that the
-<<<<<<< HEAD
-   * object is an instance of a Twig_Markup object it is returned directly
-=======
    * object is an instance of a \Twig\Markup object it is returned directly
->>>>>>> dev
    * to support auto escaping.
    *
    * If an array is passed it is rendered via render() and scalar values are
@@ -656,11 +501,7 @@ class TwigExtension extends AbstractExtension {
    *   RenderableInterface or toString().
    *
    * @return mixed
-<<<<<<< HEAD
-   *   The rendered output or an Twig_Markup object.
-=======
    *   The rendered output or a \Twig\Markup object.
->>>>>>> dev
    *
    * @see render
    * @see TwigNodeVisitor
@@ -712,13 +553,8 @@ class TwigExtension extends AbstractExtension {
   /**
    * Joins several strings together safely.
    *
-<<<<<<< HEAD
-   * @param \Twig_Environment $env
-   *   A Twig_Environment instance.
-=======
    * @param \Twig\Environment $env
    *   A Twig Environment instance.
->>>>>>> dev
    * @param mixed[]|\Traversable|null $value
    *   The pieces to join.
    * @param string $glue
@@ -729,11 +565,7 @@ class TwigExtension extends AbstractExtension {
    * @return string
    *   The strings joined together.
    */
-<<<<<<< HEAD
-  public function safeJoin(\Twig_Environment $env, $value, $glue = '') {
-=======
   public function safeJoin(Environment $env, $value, $glue = '') {
->>>>>>> dev
     if ($value instanceof \Traversable) {
       $value = iterator_to_array($value, FALSE);
     }

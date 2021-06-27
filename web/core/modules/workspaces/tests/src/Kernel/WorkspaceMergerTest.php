@@ -51,11 +51,7 @@ class WorkspaceMergerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->entityTypeManager = \Drupal::entityTypeManager();
@@ -65,11 +61,7 @@ class WorkspaceMergerTest extends KernelTestBase {
 
     $this->installConfig(['filter', 'node', 'system']);
 
-<<<<<<< HEAD
-    $this->installSchema('system', ['key_value_expire', 'sequences']);
-=======
     $this->installSchema('system', ['sequences']);
->>>>>>> dev
     $this->installSchema('node', ['node_access']);
 
     $this->createContentType(['type' => 'article']);

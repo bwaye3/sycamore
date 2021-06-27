@@ -40,10 +40,7 @@ services:
     public: false
     tags:
       - { name: page_cache_response_policy }
-<<<<<<< HEAD
-=======
       - { name: dynamic_page_cache_response_policy }
->>>>>>> dev
   cache_context.user.node_grants:
     class: Drupal\node\Cache\NodeAccessGrantsCacheContext
     arguments: ['@current_user']

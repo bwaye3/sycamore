@@ -27,11 +27,7 @@ update.report_install:
   path: '/admin/reports/updates/install'
   defaults:
     _form: '\Drupal\update\Form\UpdateManagerInstall'
-<<<<<<< HEAD
-    _title: 'Install'
-=======
     _title: 'Add new module or theme'
->>>>>>> dev
   requirements:
     _permission: 'administer software updates'
     _access_update_manager: 'TRUE'
@@ -49,11 +45,7 @@ update.module_install:
   path: '/admin/modules/install'
   defaults:
     _form: '\Drupal\update\Form\UpdateManagerInstall'
-<<<<<<< HEAD
-    _title: 'Install new module'
-=======
     _title: 'Add new module'
->>>>>>> dev
   requirements:
     _permission: 'administer software updates'
     _access_update_manager: 'TRUE'
@@ -71,11 +63,7 @@ update.theme_install:
   path: '/admin/theme/install'
   defaults:
     _form: '\Drupal\update\Form\UpdateManagerInstall'
-<<<<<<< HEAD
-    _title: 'Install new theme'
-=======
     _title: 'Add new theme'
->>>>>>> dev
   requirements:
     _permission: 'administer software updates'
     _access_update_manager: 'TRUE'

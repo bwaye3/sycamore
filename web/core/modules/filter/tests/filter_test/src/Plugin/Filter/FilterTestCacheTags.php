@@ -6,11 +6,7 @@ use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 
 /**
-<<<<<<< HEAD
- * Provides a test filter to associate cache tags
-=======
  * Provides a test filter to associate cache tags.
->>>>>>> dev
  *
  * @Filter(
  *   id = "filter_test_cache_tags",

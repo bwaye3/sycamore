@@ -1,16 +1,9 @@
 /**
  * @file
-<<<<<<< HEAD
- * Defines Javascript behaviors for the media form.
- */
-
-(function($, Drupal) {
-=======
  * Defines JavaScript behaviors for the media form.
  */
 
 (function ($, Drupal) {
->>>>>>> dev
   /**
    * Behaviors for summaries for tabs in the media edit form.
    *
@@ -23,11 +16,7 @@
     attach(context) {
       const $context = $(context);
 
-<<<<<<< HEAD
-      $context.find('.media-form-author').drupalSetSummary(context => {
-=======
       $context.find('.media-form-author').drupalSetSummary((context) => {
->>>>>>> dev
         const $authorContext = $(context);
         const name = $authorContext.find('.field--name-uid input').val();
         const date = $authorContext.find('.field--name-created input').val();

@@ -5,20 +5,14 @@
  * Provides hook implementations for Layout Builder tests.
  */
 
-<<<<<<< HEAD
-=======
 use Drupal\Core\Breadcrumb\Breadcrumb;
->>>>>>> dev
 use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Link;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
->>>>>>> dev
 
 /**
  * Implements hook_plugin_filter_TYPE__CONSUMER_alter().
@@ -57,15 +51,12 @@ function layout_builder_test_entity_extra_field_info() {
     'description' => t('Extra description'),
     'weight' => 0,
   ];
-<<<<<<< HEAD
-=======
   $extra['node']['bundle_with_section_field']['display']['layout_builder_test_2'] = [
     'label' => t('Extra Field 2'),
     'description' => t('Extra Field 2 description'),
     'weight' => 0,
     'visible' => FALSE,
   ];
->>>>>>> dev
   return $extra;
 }
 
@@ -78,14 +69,11 @@ function layout_builder_test_node_view(array &$build, EntityInterface $entity, E
       '#markup' => 'Extra, Extra read all about it.',
     ];
   }
-<<<<<<< HEAD
-=======
   if ($display->getComponent('layout_builder_test_2')) {
     $build['layout_builder_test_2'] = [
       '#markup' => 'Extra Field 2 is hidden by default.',
     ];
   }
->>>>>>> dev
 }
 
 /**
@@ -122,8 +110,6 @@ function layout_builder_entity_form_display_alter(EntityFormDisplayInterface $fo
     ]);
   }
 }
-<<<<<<< HEAD
-=======
 
 /**
  * Implements hook_system_breadcrumb_alter().
@@ -145,4 +131,3 @@ function layout_builder_test_module_implements_alter(&$implementations, $hook) {
     ] + $implementations;
   }
 }
->>>>>>> dev

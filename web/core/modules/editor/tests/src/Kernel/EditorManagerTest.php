@@ -18,11 +18,7 @@ class EditorManagerTest extends KernelTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['system', 'user', 'filter', 'editor'];
-=======
   protected static $modules = ['system', 'user', 'filter', 'editor'];
->>>>>>> dev
 
   /**
    * The manager for text editor plugins.
@@ -31,11 +27,7 @@ class EditorManagerTest extends KernelTestBase {
    */
   protected $editorManager;
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Install the Filter module.
@@ -67,15 +59,9 @@ class EditorManagerTest extends KernelTestBase {
     // - listOptions() should return an empty list of options
     // - getAttachments() should return an empty #attachments array (and not
     //   a JS settings structure that is empty)
-<<<<<<< HEAD
-    $this->assertIdentical([], $this->editorManager->listOptions(), 'When no text editor is enabled, the manager works correctly.');
-    $this->assertIdentical([], $this->editorManager->getAttachments([]), 'No attachments when no text editor is enabled and retrieving attachments for zero text formats.');
-    $this->assertIdentical([], $this->editorManager->getAttachments(['filtered_html', 'full_html']), 'No attachments when no text editor is enabled and retrieving attachments for multiple text formats.');
-=======
     $this->assertSame([], $this->editorManager->listOptions(), 'When no text editor is enabled, the manager works correctly.');
     $this->assertSame([], $this->editorManager->getAttachments([]), 'No attachments when no text editor is enabled and retrieving attachments for zero text formats.');
     $this->assertSame([], $this->editorManager->getAttachments(['filtered_html', 'full_html']), 'No attachments when no text editor is enabled and retrieving attachments for multiple text formats.');
->>>>>>> dev
 
     // Enable the Text Editor Test module, which has the Unicorn Editor and
     // clear the editor manager's cache so it is picked up.
@@ -84,11 +70,7 @@ class EditorManagerTest extends KernelTestBase {
     $this->editorManager->clearCachedDefinitions();
 
     // Case 2: a text editor available.
-<<<<<<< HEAD
-    $this->assertIdentical('Unicorn Editor', (string) $this->editorManager->listOptions()['unicorn'], 'When some text editor is enabled, the manager works correctly.');
-=======
     $this->assertSame('Unicorn Editor', (string) $this->editorManager->listOptions()['unicorn'], 'When some text editor is enabled, the manager works correctly.');
->>>>>>> dev
 
     // Case 3: a text editor available & associated (but associated only with
     // the 'Full HTML' text format).
@@ -98,11 +80,7 @@ class EditorManagerTest extends KernelTestBase {
       'editor' => 'unicorn',
     ]);
     $editor->save();
-<<<<<<< HEAD
-    $this->assertIdentical([], $this->editorManager->getAttachments([]), 'No attachments when one text editor is enabled and retrieving attachments for zero text formats.');
-=======
     $this->assertSame([], $this->editorManager->getAttachments([]), 'No attachments when one text editor is enabled and retrieving attachments for zero text formats.');
->>>>>>> dev
     $expected = [
       'library' => [
         0 => 'editor_test/unicorn',
@@ -121,21 +99,13 @@ class EditorManagerTest extends KernelTestBase {
         ],
       ],
     ];
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $this->editorManager->getAttachments(['filtered_html', 'full_html']), 'Correct attachments when one text editor is enabled and retrieving attachments for multiple text formats.');
-=======
     $this->assertSame($expected, $this->editorManager->getAttachments(['filtered_html', 'full_html']), 'Correct attachments when one text editor is enabled and retrieving attachments for multiple text formats.');
->>>>>>> dev
 
     // Case 4: a text editor available associated, but now with its JS settings
     // being altered via hook_editor_js_settings_alter().
     \Drupal::state()->set('editor_test_js_settings_alter_enabled', TRUE);
     $expected['drupalSettings']['editor']['formats']['full_html']['editorSettings']['ponyModeEnabled'] = FALSE;
-<<<<<<< HEAD
-    $this->assertIdentical($expected, $this->editorManager->getAttachments(['filtered_html', 'full_html']), 'hook_editor_js_settings_alter() works correctly.');
-=======
     $this->assertSame($expected, $this->editorManager->getAttachments(['filtered_html', 'full_html']), 'hook_editor_js_settings_alter() works correctly.');
->>>>>>> dev
   }
 
 }

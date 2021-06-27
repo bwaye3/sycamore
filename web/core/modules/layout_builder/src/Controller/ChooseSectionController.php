@@ -8,10 +8,7 @@ use Drupal\Core\Layout\LayoutPluginManagerInterface;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
-<<<<<<< HEAD
-=======
 use Drupal\layout_builder\Context\LayoutBuilderContextTrait;
->>>>>>> dev
 use Drupal\layout_builder\LayoutBuilderHighlightTrait;
 use Drupal\layout_builder\SectionStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -25,10 +22,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ChooseSectionController implements ContainerInjectionInterface {
 
   use AjaxHelperTrait;
-<<<<<<< HEAD
-=======
   use LayoutBuilderContextTrait;
->>>>>>> dev
   use LayoutBuilderHighlightTrait;
   use StringTranslationTrait;
 
@@ -69,15 +63,9 @@ class ChooseSectionController implements ContainerInjectionInterface {
    * @return array
    *   The render array.
    */
-<<<<<<< HEAD
-  public function build(SectionStorageInterface $section_storage, $delta) {
-    $items = [];
-    $definitions = $this->layoutManager->getFilteredDefinitions('layout_builder', [], ['section_storage' => $section_storage]);
-=======
   public function build(SectionStorageInterface $section_storage, int $delta) {
     $items = [];
     $definitions = $this->layoutManager->getFilteredDefinitions('layout_builder', $this->getAvailableContexts($section_storage), ['section_storage' => $section_storage]);
->>>>>>> dev
     foreach ($definitions as $plugin_id => $definition) {
       $layout = $this->layoutManager->createInstance($plugin_id);
       $item = [

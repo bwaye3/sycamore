@@ -42,11 +42,7 @@ class TranslationsTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     // Create some languages.
@@ -85,20 +81,14 @@ class TranslationsTest extends WebDriverTestBase {
     $image->save();
 
     // Create a translated and untranslated media item in each language.
-<<<<<<< HEAD
-=======
     // cSpell:disable
->>>>>>> dev
     $media_items = [
       ['nl' => 'Eekhoorn', 'es' => 'Ardilla'],
       ['es' => 'Zorro', 'nl' => 'Vos'],
       ['nl' => 'Hert'],
       ['es' => 'Tejón'],
     ];
-<<<<<<< HEAD
-=======
     // cSpell:enable
->>>>>>> dev
     foreach ($media_items as $translations) {
       $default_langcode = key($translations);
       $default_name = array_shift($translations);
@@ -143,10 +133,7 @@ class TranslationsTest extends WebDriverTestBase {
       $media_names[] = $media_item->getText();
     }
     sort($media_names);
-<<<<<<< HEAD
-=======
     // cSpell:disable-next-line
->>>>>>> dev
     $this->assertSame(['Ardilla', 'Eekhoorn', 'Hert', 'Tejón', 'Vos', 'Zorro'], $media_names);
 
     $this->drupalGet('es/admin/content/media-grid');
@@ -157,10 +144,7 @@ class TranslationsTest extends WebDriverTestBase {
       $media_names[] = $media_item->getText();
     }
     sort($media_names);
-<<<<<<< HEAD
-=======
     // cSpell:disable-next-line
->>>>>>> dev
     $this->assertSame(['Ardilla', 'Eekhoorn', 'Hert', 'Tejón', 'Vos', 'Zorro'], $media_names);
 
     // All media should only be shown once, and should be shown in the interface
@@ -175,10 +159,7 @@ class TranslationsTest extends WebDriverTestBase {
       $media_names[] = $media_item->getText();
     }
     sort($media_names);
-<<<<<<< HEAD
-=======
     // cSpell:disable-next-line
->>>>>>> dev
     $this->assertSame(['Eekhoorn', 'Hert', 'Tejón', 'Vos'], $media_names);
 
     $this->drupalGet('es/node/add/article');
@@ -191,10 +172,7 @@ class TranslationsTest extends WebDriverTestBase {
       $media_names[] = $media_item->getText();
     }
     sort($media_names);
-<<<<<<< HEAD
-=======
     // cSpell:disable-next-line
->>>>>>> dev
     $this->assertSame(['Ardilla', 'Hert', 'Tejón', 'Zorro'], $media_names);
   }
 

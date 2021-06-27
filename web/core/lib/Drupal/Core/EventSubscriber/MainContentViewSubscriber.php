@@ -7,11 +7,7 @@ use Drupal\Core\Cache\CacheableResponseInterface;
 use Drupal\Core\DependencyInjection\ClassResolverInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-<<<<<<< HEAD
-use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
-=======
 use Symfony\Component\HttpKernel\Event\ViewEvent;
->>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -76,17 +72,10 @@ class MainContentViewSubscriber implements EventSubscriberInterface {
   /**
    * Sets a response given a (main content) render array.
    *
-<<<<<<< HEAD
-   * @param \Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent $event
-   *   The event to process.
-   */
-  public function onViewRenderArray(GetResponseForControllerResultEvent $event) {
-=======
    * @param \Symfony\Component\HttpKernel\Event\ViewEvent $event
    *   The event to process.
    */
   public function onViewRenderArray(ViewEvent $event) {
->>>>>>> dev
     $request = $event->getRequest();
     $result = $event->getControllerResult();
 

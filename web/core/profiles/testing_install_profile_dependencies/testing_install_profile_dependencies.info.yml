@@ -2,16 +2,9 @@ name: 'Testing install profile dependencies'
 type: profile
 description: 'Profile for testing that install profiles can require a module.'
 version: VERSION
-<<<<<<< HEAD
-core: 8.x
-hidden: true
-dependencies:
-  - dblog
-=======
 hidden: true
 dependencies:
   - drupal:dblog
->>>>>>> dev
 install:
   - ban
 themes:

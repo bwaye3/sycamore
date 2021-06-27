@@ -14,11 +14,7 @@ class ExtractTest extends MigrateProcessTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $configuration['index'] = ['foo'];
     $this->plugin = new Extract($configuration, 'map', []);
     parent::setUp();
@@ -34,13 +30,6 @@ class ExtractTest extends MigrateProcessTestCase {
 
   /**
    * Tests invalid input.
-<<<<<<< HEAD
-   */
-  public function testExtractFromString() {
-    $this->expectException(MigrateException::class);
-    $this->expectExceptionMessage('Input should be an array.');
-    $this->plugin->transform('bar', $this->migrateExecutable, $this->row, 'destination_property');
-=======
    *
    * @dataProvider providerTestExtractInvalid
    */
@@ -49,7 +38,6 @@ class ExtractTest extends MigrateProcessTestCase {
     $type = gettype($value);
     $this->expectExceptionMessage(sprintf("Input should be an array, instead it was of type '%s'", $type));
     $this->plugin->transform($value, $this->migrateExecutable, $this->row, 'destination_property');
->>>>>>> dev
   }
 
   /**
@@ -57,11 +45,7 @@ class ExtractTest extends MigrateProcessTestCase {
    */
   public function testExtractFail() {
     $this->expectException(MigrateException::class);
-<<<<<<< HEAD
-    $this->expectExceptionMessage('Array index missing, extraction failed.');
-=======
     $this->expectExceptionMessage("Array index missing, extraction failed for 'array(\n  'bar' => 'foo',\n)'. Consider adding a `default` key to the configuration.");
->>>>>>> dev
     $this->plugin->transform(['bar' => 'foo'], $this->migrateExecutable, $this->row, 'destination_property');
   }
 
@@ -74,8 +58,6 @@ class ExtractTest extends MigrateProcessTestCase {
     $this->assertSame('test', $value, '');
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Test the extract plugin with default values.
    *
@@ -196,5 +178,4 @@ class ExtractTest extends MigrateProcessTestCase {
     ];
   }
 
->>>>>>> dev
 }

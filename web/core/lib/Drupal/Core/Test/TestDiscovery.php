@@ -7,10 +7,7 @@ use Drupal\Component\Annotation\Reflection\MockFileFinder;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Extension\ExtensionDiscovery;
 use Drupal\Core\Test\Exception\MissingGroupException;
-<<<<<<< HEAD
-=======
 use Drupal\TestTools\PhpUnitCompatibility\PhpUnit8\ClassWriter;
->>>>>>> dev
 use PHPUnit\Util\Test;
 
 /**
@@ -120,13 +117,10 @@ class TestDiscovery {
       $this->classLoader->addPsr4($prefix, $paths);
     }
 
-<<<<<<< HEAD
-=======
     $loader = require __DIR__ . '/../../../../../autoload.php';
     // Ensure we have a valid TestCase class.
     ClassWriter::mutateTestBase($loader);
 
->>>>>>> dev
     return $this->testNamespaces;
   }
 
@@ -142,10 +136,7 @@ class TestDiscovery {
    *   An array of tests keyed by the group name. If a test is annotated to
    *   belong to multiple groups, it will appear under all group keys it belongs
    *   to.
-<<<<<<< HEAD
-=======
    *
->>>>>>> dev
    * @code
    *     $groups['block'] => array(
    *       'Drupal\Tests\block\Functional\BlockTest' => array(

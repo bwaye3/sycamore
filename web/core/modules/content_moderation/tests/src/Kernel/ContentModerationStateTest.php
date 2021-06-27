@@ -48,10 +48,7 @@ class ContentModerationStateTest extends KernelTestBase {
     'text',
     'workflows',
     'path_alias',
-<<<<<<< HEAD
-=======
     'taxonomy',
->>>>>>> dev
   ];
 
   /**
@@ -69,11 +66,7 @@ class ContentModerationStateTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->installSchema('node', 'node_access');
@@ -485,11 +478,7 @@ class ContentModerationStateTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test changing the language of content without adding a translation.
-=======
    * Tests changing the language of content without adding a translation.
->>>>>>> dev
    */
   public function testChangingContentLangcode() {
     $this->createContentType([
@@ -624,11 +613,7 @@ class ContentModerationStateTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the content moderation workflow dependencies for non-config bundles.
-=======
    * Tests the content moderation workflow dependencies for non-config bundles.
->>>>>>> dev
    */
   public function testWorkflowNonConfigBundleDependencies() {
     // Create a bundle not based on any particular configuration.
@@ -663,11 +648,7 @@ class ContentModerationStateTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test the revision default state of the moderation state entity revisions.
-=======
    * Tests the revision default state of the moderation state entity revisions.
->>>>>>> dev
    *
    * @param string $entity_type_id
    *   The ID of entity type to be tested.
@@ -698,19 +679,6 @@ class ContentModerationStateTest extends KernelTestBase {
   }
 
   /**
-<<<<<<< HEAD
-   * Tests the legacy method used as the default entity owner.
-   *
-   * @group legacy
-   * @expectedDeprecation The ::getCurrentUserId method is deprecated in 8.6.x and will be removed before 9.0.0.
-   */
-  public function testGetCurrentUserId() {
-    $this->assertEquals(['0'], ContentModerationState::getCurrentUserId());
-  }
-
-  /**
-=======
->>>>>>> dev
    * Creates an entity.
    *
    * The entity will have required fields populated and the corresponding bundle
@@ -820,8 +788,6 @@ class ContentModerationStateTest extends KernelTestBase {
     }
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Tests that the 'taxonomy_term' entity type cannot be moderated.
    */
@@ -832,5 +798,4 @@ class ContentModerationStateTest extends KernelTestBase {
     $this->assertFalse($moderation_info->canModerateEntitiesOfEntityType($entity_type));
   }
 
->>>>>>> dev
 }

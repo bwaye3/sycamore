@@ -14,11 +14,7 @@ use Drupal\Tests\UnitTestCase;
 class CacheFactoryTest extends UnitTestCase {
 
   /**
-<<<<<<< HEAD
-   * Test that the cache factory falls back to the built-in default service.
-=======
    * Tests that the cache factory falls back to the built-in default service.
->>>>>>> dev
    *
    * @covers ::__construct
    * @covers ::get
@@ -44,11 +40,7 @@ class CacheFactoryTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that the cache factory falls back to customized default service.
-=======
    * Tests that the cache factory falls back to customized default service.
->>>>>>> dev
    *
    * @covers ::__construct
    * @covers ::get
@@ -78,11 +70,7 @@ class CacheFactoryTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that the cache factory uses the correct default bin backend.
-=======
    * Tests that the cache factory uses the correct default bin backend.
->>>>>>> dev
    *
    * @covers ::__construct
    * @covers ::get
@@ -118,11 +106,7 @@ class CacheFactoryTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-   * Test that the cache factory picks the correct per-bin service.
-=======
    * Tests that the cache factory picks the correct per-bin service.
->>>>>>> dev
    *
    * @covers ::__construct
    * @covers ::get

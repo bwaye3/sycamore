@@ -14,11 +14,7 @@ class RenderCacheWebTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  public static $modules = ['node', 'block'];
-=======
   protected static $modules = ['node', 'block', 'views_test_render_cache'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -40,11 +36,7 @@ class RenderCacheWebTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $node_type = $this->drupalCreateContentType(['type' => 'test_type']);
@@ -61,33 +53,12 @@ class RenderCacheWebTest extends ViewTestBase {
     ]);
     $node->save();
     $this->nodes[] = $node;
-<<<<<<< HEAD
-
-    $this->placeBlock('views_block:node_id_argument-block_1', ['region' => 'header']);
-=======
->>>>>>> dev
   }
 
   /**
    * Tests rendering caching of a views block with arguments.
    */
   public function testEmptyView() {
-<<<<<<< HEAD
-    $this->drupalGet('<front>');
-    $this->assertEqual([], $this->cssSelect('div.region-header div.views-field-title'));
-
-    $this->drupalGet($this->nodes[0]->toUrl());
-    $result = $this->cssSelect('div.region-header div.views-field-title')[0]->getText();
-    $this->assertEqual('test title 1', $result);
-
-    $this->drupalGet($this->nodes[1]->toUrl());
-    $result = $this->cssSelect('div.region-header div.views-field-title')[0]->getText();
-    $this->assertEqual('test title 2', $result);
-
-    $this->drupalGet($this->nodes[0]->toUrl());
-    $result = $this->cssSelect('div.region-header div.views-field-title')[0]->getText();
-    $this->assertEqual('test title 1', $result);
-=======
     $this->placeBlock('views_block:node_id_argument-block_1', ['region' => 'header']);
     $this->drupalGet('<front>');
     $this->assertEquals([], $this->cssSelect('div.region-header div.views-field-title'));
@@ -117,7 +88,6 @@ class RenderCacheWebTest extends ViewTestBase {
     $this->assertSame($this->nodes[0]->getTitle(), $displays[0]->getText());
     // Second display should only have test title 2.
     $this->assertSame($this->nodes[1]->getTitle(), $displays[1]->getText());
->>>>>>> dev
   }
 
 }

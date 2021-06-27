@@ -2,10 +2,6 @@
 
 namespace Drupal\Tests\system\Functional\System;
 
-<<<<<<< HEAD
-use Drupal\Component\Render\FormattableMarkup;
-=======
->>>>>>> dev
 use Drupal\Tests\BrowserTestBase;
 
 /**
@@ -27,11 +23,7 @@ class DefaultMobileMetaTagsTest extends BrowserTestBase {
    */
   protected $defaultTheme = 'stark';
 
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->defaultMetaTags = [
       'viewport' => '<meta name="viewport" content="width=device-width, initial-scale=1.0" />',
@@ -44,11 +36,7 @@ class DefaultMobileMetaTagsTest extends BrowserTestBase {
   public function testDefaultMetaTagsExist() {
     $this->drupalGet('');
     foreach ($this->defaultMetaTags as $name => $metatag) {
-<<<<<<< HEAD
-      $this->assertRaw($metatag, new FormattableMarkup('Default Mobile meta tag "@name" displayed properly.', ['@name' => $name]), 'System');
-=======
       $this->assertRaw($metatag);
->>>>>>> dev
     }
   }
 
@@ -59,11 +47,7 @@ class DefaultMobileMetaTagsTest extends BrowserTestBase {
     \Drupal::service('module_installer')->install(['system_module_test']);
     $this->drupalGet('');
     foreach ($this->defaultMetaTags as $name => $metatag) {
-<<<<<<< HEAD
-      $this->assertNoRaw($metatag, new FormattableMarkup('Default Mobile meta tag "@name" removed properly.', ['@name' => $name]), 'System');
-=======
       $this->assertNoRaw($metatag);
->>>>>>> dev
     }
   }
 

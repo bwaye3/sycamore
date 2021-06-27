@@ -5,39 +5,6 @@
 * @preserve
 **/
 
-<<<<<<< HEAD
-(function ($, Modernizr, Drupal) {
-  Drupal.behaviors.date = {
-    attach: function attach(context, settings) {
-      var $context = $(context);
-
-      if (Modernizr.inputtypes.date === true) {
-        return;
-      }
-      $context.find('input[data-drupal-date-format]').once('datePicker').each(function () {
-        var $input = $(this);
-        var datepickerSettings = {};
-        var dateFormat = $input.data('drupalDateFormat');
-
-        datepickerSettings.dateFormat = dateFormat.replace('Y', 'yy').replace('m', 'mm').replace('d', 'dd');
-
-        if ($input.attr('min')) {
-          datepickerSettings.minDate = $input.attr('min');
-        }
-        if ($input.attr('max')) {
-          datepickerSettings.maxDate = $input.attr('max');
-        }
-        $input.datepicker(datepickerSettings);
-      });
-    },
-    detach: function detach(context, settings, trigger) {
-      if (trigger === 'unload') {
-        $(context).find('input[data-drupal-date-format]').findOnce('datePicker').datepicker('destroy');
-      }
-    }
-  };
-})(jQuery, Modernizr, Drupal);
-=======
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -125,4 +92,3 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     return "<div class=\"no-native-datepicker-help\">\n       <span id=\"".concat(dateId, "\">").concat(dateDesc, "</span> <span id=\"").concat(timeId, "\">").concat(timeDesc, "</span>\n     </div>");
   };
 })(jQuery, Modernizr, Drupal, once);
->>>>>>> dev

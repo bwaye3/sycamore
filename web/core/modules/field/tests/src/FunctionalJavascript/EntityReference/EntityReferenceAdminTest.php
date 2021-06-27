@@ -2,13 +2,6 @@
 
 namespace Drupal\Tests\field\FunctionalJavascript\EntityReference;
 
-<<<<<<< HEAD
-use Drupal\Core\Url;
-use Behat\Mink\Element\NodeElement;
-use Drupal\Component\Render\FormattableMarkup;
-use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
-use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
-=======
 use Behat\Mink\Element\NodeElement;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Url;
@@ -16,7 +9,6 @@ use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
->>>>>>> dev
 
 /**
  * Tests for the administrative UI.
@@ -35,11 +27,7 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = [
-=======
   protected static $modules = [
->>>>>>> dev
     'node',
     'field_ui',
     'path',
@@ -61,11 +49,6 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
   protected $type;
 
   /**
-<<<<<<< HEAD
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-=======
    * The name of a second content type to be used as a target of entity
    * references.
    *
@@ -77,7 +60,6 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
     $this->drupalPlaceBlock('system_breadcrumb_block');
 
@@ -86,8 +68,6 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
     $type = $this->drupalCreateContentType(['name' => $type_name, 'type' => $type_name]);
     $this->type = $type->id();
 
-<<<<<<< HEAD
-=======
     // Create a second content type, to be a target for entity reference fields.
     $type_name = strtolower($this->randomMachineName(8)) . '_test';
     $type = $this->drupalCreateContentType(['name' => $type_name, 'type' => $type_name]);
@@ -115,20 +95,14 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
       'required' => FALSE,
     ])->save();
 
->>>>>>> dev
     // Create test user.
     $admin_user = $this->drupalCreateUser([
       'access content',
       'administer node fields',
       'administer node display',
       'administer views',
-<<<<<<< HEAD
-      'create ' . $type_name . ' content',
-      'edit own ' . $type_name . ' content',
-=======
       'create ' . $this->type . ' content',
       'edit own ' . $this->type . ' content',
->>>>>>> dev
     ]);
     $this->drupalLogin($admin_user);
   }
@@ -146,46 +120,26 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
     $this->drupalGet($bundle_path . '/fields/add-field');
 
     // Check if the commonly referenced entity types appear in the list.
-<<<<<<< HEAD
-    $this->assertOption('edit-new-storage-type', 'field_ui:entity_reference:node');
-    $this->assertOption('edit-new-storage-type', 'field_ui:entity_reference:user');
-
-    $page->findField('new_storage_type')->setValue('entity_reference');
-    $assert_session->waitForField('label')->setValue('Test');
-    $machine_name = $assert_session->waitForElement('xpath', '//*[@id="edit-label-machine-name-suffix"]/span[2]/span[contains(text(), "field_test")]');
-=======
     $this->assertSession()->optionExists('edit-new-storage-type', 'field_ui:entity_reference:node');
     $this->assertSession()->optionExists('edit-new-storage-type', 'field_ui:entity_reference:user');
 
     $page->findField('new_storage_type')->setValue('entity_reference');
     $assert_session->waitForField('label')->setValue('Test');
     $machine_name = $assert_session->waitForElement('xpath', '//*[@id="edit-label-machine-name-suffix"]/span[contains(text(), "field_test")]');
->>>>>>> dev
     $this->assertNotEmpty($machine_name);
     $page->pressButton('Save and continue');
 
     // Node should be selected by default.
-<<<<<<< HEAD
-    $this->assertFieldByName('settings[target_type]', 'node');
-=======
     $this->assertSession()->fieldValueEquals('settings[target_type]', 'node');
->>>>>>> dev
 
     // Check that all entity types can be referenced.
     $this->assertFieldSelectOptions('settings[target_type]', array_keys(\Drupal::entityTypeManager()->getDefinitions()));
 
     // Second step: 'Field settings' form.
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [], t('Save field settings'));
-
-    // The base handler should be selected by default.
-    $this->assertFieldByName('settings[handler]', 'default:node');
-=======
     $this->submitForm([], 'Save field settings');
 
     // The base handler should be selected by default.
     $this->assertSession()->fieldValueEquals('settings[handler]', 'default:node');
->>>>>>> dev
 
     // The base handler settings should be displayed.
     $entity_type_id = 'node';
@@ -195,33 +149,13 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
     $sort_by = $page->findField('settings[handler_settings][sort][field]');
     $this->assertNotEmpty($sort_by);
     $this->assertFalse($sort_by->isVisible(), 'The "sort by" options are hidden.');
-<<<<<<< HEAD
-    // Select all bundles so that sort options are available.
-    $bundles = $this->container->get('entity_type.bundle.info')->getBundleInfo($entity_type_id);
-    foreach ($bundles as $bundle_name => $bundle_info) {
-      $this->assertFieldByName('settings[handler_settings][target_bundles][' . $bundle_name . ']');
-      $page->findField('settings[handler_settings][target_bundles][' . $bundle_name . ']')->setValue($bundle_name);
-      $assert_session->assertWaitOnAjaxRequest();
-=======
     $bundles = $this->container->get('entity_type.bundle.info')->getBundleInfo($entity_type_id);
     foreach ($bundles as $bundle_name => $bundle_info) {
       $this->assertSession()->fieldExists('settings[handler_settings][target_bundles][' . $bundle_name . ']');
->>>>>>> dev
     }
 
     reset($bundles);
 
-<<<<<<< HEAD
-    // Test the sort settings.
-    // Option 0: no sort.
-    $this->assertFieldByName('settings[handler_settings][sort][field]', '_none');
-    $sort_by = $page->findField('settings[handler_settings][sort][field]');
-    $this->assertNoFieldByName('settings[handler_settings][sort][direction]');
-    // Option 1: sort by field.
-    $sort_by->setValue('nid');
-    $assert_session->waitForField('settings[handler_settings][sort][direction]');
-    $this->assertFieldByName('settings[handler_settings][sort][direction]', 'ASC');
-=======
     // Initially, no bundles are selected so no sort options are available.
     $this->assertFieldSelectOptions('settings[handler_settings][sort][field]', ['_none']);
 
@@ -271,7 +205,6 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
     $assert_session->assertWaitOnAjaxRequest();
     $this->assertTrue($sort_direction->isVisible());
     $this->assertSession()->fieldValueEquals('settings[handler_settings][sort][direction]', 'ASC');
->>>>>>> dev
 
     // Test that the sort-by options are sorted.
     $labels = array_map(function (NodeElement $element) {
@@ -285,27 +218,6 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
     }
     $this->assertTrue($sorted, 'The "sort by" options are sorted.');
 
-<<<<<<< HEAD
-    // Test that a non-translatable base field is a sort option.
-    $this->assertFieldByXPath("//select[@name='settings[handler_settings][sort][field]']/option[@value='nid']");
-    // Test that a translatable base field is a sort option.
-    $this->assertFieldByXPath("//select[@name='settings[handler_settings][sort][field]']/option[@value='title']");
-    // Test that a configurable field is a sort option.
-    $this->assertFieldByXPath("//select[@name='settings[handler_settings][sort][field]']/option[@value='body.value']");
-
-    // Set back to no sort.
-    $sort_by->setValue('_none');
-    $assert_session->assertWaitOnAjaxRequest();
-    $this->assertNoFieldByName('settings[handler_settings][sort][direction]');
-
-    // Third step: confirm.
-    $this->drupalPostForm(NULL, [
-      'required' => '1',
-    ], t('Save settings'));
-
-    // Check that the field appears in the overview form.
-    $this->assertFieldByXPath('//table[@id="field-overview"]//tr[@id="field-test"]/td[1]', 'Test', 'Field was created and appears in the overview page.');
-=======
     // Set back to no sort.
     $sort_by->setValue('_none');
     $assert_session->assertWaitOnAjaxRequest();
@@ -342,17 +254,12 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
 
     // Check that the field appears in the overview form.
     $this->assertSession()->elementTextContains('xpath', '//table[@id="field-overview"]//tr[@id="field-test"]/td[1]', "Test");
->>>>>>> dev
 
     // Check that the field settings form can be submitted again, even when the
     // field is required.
     // The first 'Edit' link is for the Body field.
     $this->clickLink(t('Edit'), 1);
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [], t('Save settings'));
-=======
     $this->submitForm([], 'Save settings');
->>>>>>> dev
 
     // Switch the target type to 'taxonomy_term' and check that the settings
     // specific to its selection handler are displayed.
@@ -360,16 +267,10 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
     $edit = [
       'settings[target_type]' => 'taxonomy_term',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm($bundle_path . '/fields/' . $field_name . '/storage', $edit, t('Save field settings'));
-    $this->drupalGet($bundle_path . '/fields/' . $field_name);
-    $this->assertFieldByName('settings[handler_settings][auto_create]');
-=======
     $this->drupalGet($bundle_path . '/fields/' . $field_name . '/storage');
     $this->submitForm($edit, 'Save field settings');
     $this->drupalGet($bundle_path . '/fields/' . $field_name);
     $this->assertSession()->fieldExists('settings[handler_settings][auto_create]');
->>>>>>> dev
 
     // Switch the target type to 'user' and check that the settings specific to
     // its selection handler are displayed.
@@ -377,12 +278,6 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
     $edit = [
       'settings[target_type]' => 'user',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm($bundle_path . '/fields/' . $field_name . '/storage', $edit, t('Save field settings'));
-    $this->drupalGet($bundle_path . '/fields/' . $field_name);
-    $this->assertFieldByName('settings[handler_settings][filter][type]', '_none');
-    $this->assertFieldByName('settings[handler_settings][sort][field]', '_none');
-=======
     $this->drupalGet($bundle_path . '/fields/' . $field_name . '/storage');
     $this->submitForm($edit, 'Save field settings');
     $this->drupalGet($bundle_path . '/fields/' . $field_name);
@@ -397,19 +292,14 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
     $sort_by->setValue('name');
     $assert_session->assertWaitOnAjaxRequest();
     $this->assertTrue($sort_direction->isVisible());
->>>>>>> dev
 
     // Switch the target type to 'node'.
     $field_name = 'node.' . $this->type . '.field_test';
     $edit = [
       'settings[target_type]' => 'node',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm($bundle_path . '/fields/' . $field_name . '/storage', $edit, t('Save field settings'));
-=======
     $this->drupalGet($bundle_path . '/fields/' . $field_name . '/storage');
     $this->submitForm($edit, 'Save field settings');
->>>>>>> dev
 
     // Try to select the views handler.
     $this->drupalGet($bundle_path . '/fields/' . $field_name);
@@ -421,11 +311,7 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
     $assert_session->waitForElement('xpath', '//a[contains(text(), "Create a view")]');
     $assert_session->responseContains($views_text);
 
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [], t('Save settings'));
-=======
     $this->submitForm([], 'Save settings');
->>>>>>> dev
     // If no eligible view is available we should see a message.
     $assert_session->pageTextContains('The views entity selection mode requires a view.');
 
@@ -438,23 +324,15 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
     $assert_session
       ->waitForField('settings[handler_settings][view][view_and_display]')
       ->setValue('test_entity_reference:entity_reference_1');
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, [], t('Save settings'));
-=======
     $this->submitForm([], 'Save settings');
->>>>>>> dev
     $assert_session->pageTextContains('Saved Test configuration.');
 
     // Switch the target type to 'entity_test'.
     $edit = [
       'settings[target_type]' => 'entity_test',
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm($bundle_path . '/fields/' . $field_name . '/storage', $edit, t('Save field settings'));
-=======
     $this->drupalGet($bundle_path . '/fields/' . $field_name . '/storage');
     $this->submitForm($edit, 'Save field settings');
->>>>>>> dev
     $this->drupalGet($bundle_path . '/fields/' . $field_name);
     $page->findField('settings[handler]')->setValue('views');
     $assert_session
@@ -463,11 +341,7 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
     $edit = [
       'required' => FALSE,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm(NULL, $edit, t('Save settings'));
-=======
     $this->submitForm($edit, 'Save settings');
->>>>>>> dev
     $assert_session->pageTextContains('Saved Test configuration.');
   }
 
@@ -480,29 +354,6 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
    *   An array of expected options.
    */
   protected function assertFieldSelectOptions($name, array $expected_options) {
-<<<<<<< HEAD
-    $xpath = $this->buildXPathQuery('//select[@name=:name]', [':name' => $name]);
-    $fields = $this->xpath($xpath);
-    if ($fields) {
-      $field = $fields[0];
-      $options = $field->findAll('xpath', 'option');
-      $optgroups = $field->findAll('xpath', 'optgroup');
-      foreach ($optgroups as $optgroup) {
-        $options = array_merge($options, $optgroup->findAll('xpath', 'option'));
-      }
-      array_walk($options, function (NodeElement &$option) {
-        $option = $option->getAttribute('value');
-      });
-
-      sort($options);
-      sort($expected_options);
-
-      $this->assertIdentical($options, $expected_options);
-    }
-    else {
-      $this->fail('Unable to find field ' . $name);
-    }
-=======
     $field = $this->assertSession()->selectExists($name);
     $options = $field->findAll('xpath', 'option');
     $optgroups = $field->findAll('xpath', 'optgroup');
@@ -513,7 +364,6 @@ class EntityReferenceAdminTest extends WebDriverTestBase {
       $option = $option->getAttribute('value');
     });
     $this->assertEqualsCanonicalizing($expected_options, $options);
->>>>>>> dev
   }
 
 }

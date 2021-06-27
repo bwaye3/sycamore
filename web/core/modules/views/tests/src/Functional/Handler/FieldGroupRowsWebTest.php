@@ -26,11 +26,7 @@ class FieldGroupRowsWebTest extends ViewTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node'];
-=======
   protected static $modules = ['node'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -68,11 +64,7 @@ class FieldGroupRowsWebTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     // Create content type with unlimited text field.
@@ -113,11 +105,7 @@ class FieldGroupRowsWebTest extends ViewTestBase {
     foreach ($result as $row) {
       $rendered_value[] = $row->getText();
     }
-<<<<<<< HEAD
-    $this->assertEqual(['a, b, c'], $rendered_value);
-=======
     $this->assertEquals(['a, b, c'], $rendered_value);
->>>>>>> dev
   }
 
   /**
@@ -130,11 +118,7 @@ class FieldGroupRowsWebTest extends ViewTestBase {
     foreach ($result as $row) {
       $rendered_value[] = $row->getText();
     }
-<<<<<<< HEAD
-    $this->assertEqual(['a', 'b', 'c'], $rendered_value);
-=======
     $this->assertEquals(['a', 'b', 'c'], $rendered_value);
->>>>>>> dev
   }
 
 }

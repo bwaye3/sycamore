@@ -14,11 +14,7 @@ class BlockContentPageViewTest extends BlockContentTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['block_content_test'];
-=======
   protected static $modules = ['block_content_test'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}

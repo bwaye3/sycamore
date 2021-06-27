@@ -26,11 +26,7 @@ class ProxyBuilderTest extends TestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     parent::setUp();
 
     $this->proxyBuilder = new ProxyBuilder();
@@ -137,13 +133,8 @@ EOS;
 /**
  * {@inheritdoc}
  */
-<<<<<<< HEAD
-public function complexMethod($parameter, callable $function, \Drupal\Tests\Component\ProxyBuilder\TestServiceNoMethod $test_service = NULL, array &$elements = array (
-))
-=======
 public function complexMethod(string $parameter, callable $function, ?\Drupal\Tests\Component\ProxyBuilder\TestServiceNoMethod $test_service = NULL, array &$elements = array (
 )): array
->>>>>>> dev
 {
     return $this->lazyLoadItself()->complexMethod($parameter, $function, $test_service, $elements);
 }
@@ -154,8 +145,6 @@ EOS;
   }
 
   /**
-<<<<<<< HEAD
-=======
    * @covers ::buildMethodBody
    */
   public function testBuildServiceMethodReturnsVoid() {
@@ -180,7 +169,6 @@ EOS;
   }
 
   /**
->>>>>>> dev
    * @covers ::buildMethod
    * @covers ::buildMethodBody
    */
@@ -296,12 +284,6 @@ EOS;
   }
 
   /**
-<<<<<<< HEAD
-   * Constructs the expected class output.
-   *
-   * @param string $expected_methods_body
-   *   The expected body of decorated methods.
-=======
    * @covers ::buildMethod
    * @covers ::buildParameter
    * @covers ::buildMethodBody
@@ -336,7 +318,6 @@ EOS;
    *   The expected body of decorated methods.
    * @param string $interface_string
    *   (optional) The expected "implements" clause of the class definition.
->>>>>>> dev
    *
    * @return string
    *   The code of the entire proxy.
@@ -454,9 +435,6 @@ class TestServiceMethodWithParameter {
 
 class TestServiceComplexMethod {
 
-<<<<<<< HEAD
-  public function complexMethod($parameter, callable $function, TestServiceNoMethod $test_service = NULL, array &$elements = []) {
-=======
   public function complexMethod(string $parameter, callable $function, TestServiceNoMethod $test_service = NULL, array &$elements = []): array {
 
   }
@@ -474,7 +452,6 @@ class TestServiceNullableTypehintSelf {
 class TestServiceMethodReturnsVoid {
 
   public function methodReturnsVoid(string $parameter): void {
->>>>>>> dev
 
   }
 

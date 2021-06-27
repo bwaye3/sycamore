@@ -3,11 +3,7 @@
  * A Backbone Model for the state of a contextual link's trigger, list & region.
  */
 
-<<<<<<< HEAD
-(function(Drupal, Backbone) {
-=======
 (function (Drupal, Backbone) {
->>>>>>> dev
   /**
    * Models the state of a contextual link's trigger, list & region.
    *
@@ -106,11 +102,7 @@
       focus() {
         this.set('hasFocus', true);
         const cid = this.cid;
-<<<<<<< HEAD
-        this.collection.each(model => {
-=======
         this.collection.each((model) => {
->>>>>>> dev
           if (model.cid !== cid) {
             model.close().blur();
           }

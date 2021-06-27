@@ -3,10 +3,6 @@
 namespace Drupal\Core\Entity\Query\Sql;
 
 use Drupal\Core\Database\Query\SelectInterface;
-<<<<<<< HEAD
-use Drupal\Core\Database\Query\Condition as SqlCondition;
-=======
->>>>>>> dev
 use Drupal\Core\Entity\Query\ConditionBase;
 use Drupal\Core\Entity\Query\ConditionInterface;
 
@@ -43,11 +39,7 @@ class Condition extends ConditionBase {
     $tables = $this->query->getTables($sql_query);
     foreach ($this->conditions as $condition) {
       if ($condition['field'] instanceof ConditionInterface) {
-<<<<<<< HEAD
-        $sql_condition = new SqlCondition($condition['field']->getConjunction());
-=======
         $sql_condition = $sql_query->getConnection()->condition($condition['field']->getConjunction());
->>>>>>> dev
         // Add the SQL query to the object before calling this method again.
         $sql_condition->sqlQuery = $sql_query;
         $condition['field']->nestedInsideOrCondition = $this->nestedInsideOrCondition || strtoupper($this->conjunction) === 'OR';
@@ -57,8 +49,6 @@ class Condition extends ConditionBase {
       else {
         $type = $this->nestedInsideOrCondition || strtoupper($this->conjunction) === 'OR' || $condition['operator'] === 'IS NULL' ? 'LEFT' : 'INNER';
         $field = $tables->addField($condition['field'], $type, $condition['langcode']);
-<<<<<<< HEAD
-=======
         // If the field is trying to query on %delta for a single value field
         // then the only supported delta is 0. No other value than 0 makes
         // sense. \Drupal\Core\Entity\Query\Sql\Tables::addField() returns 0 as
@@ -69,7 +59,6 @@ class Condition extends ConditionBase {
           }
           continue;
         }
->>>>>>> dev
         $condition['real_field'] = $field;
         static::translateCondition($condition, $sql_query, $tables->isFieldCaseSensitive($condition['field']));
 

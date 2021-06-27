@@ -3,11 +3,7 @@ services:
     class: Drupal\Core\Cache\CacheBackendInterface
     tags:
       - { name: cache.bin }
-<<<<<<< HEAD
-    factory: cache_factory:get
-=======
     factory: ['@cache_factory', 'get']
->>>>>>> dev
     arguments: [toolbar]
   toolbar.page_cache_request_policy.allow_toolbar_path:
     class: Drupal\toolbar\PageCache\AllowToolbarPath

@@ -9,11 +9,8 @@ use Drupal\Component\Utility\Xss;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Database\Query\PagerSelectExtender;
 use Drupal\Core\Database\Query\TableSortExtender;
->>>>>>> dev
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormBuilderInterface;
@@ -166,13 +163,8 @@ class DbLogController extends ControllerBase {
     ];
 
     $query = $this->database->select('watchdog', 'w')
-<<<<<<< HEAD
-      ->extend('\Drupal\Core\Database\Query\PagerSelectExtender')
-      ->extend('\Drupal\Core\Database\Query\TableSortExtender');
-=======
       ->extend(PagerSelectExtender::class)
       ->extend(TableSortExtender::class);
->>>>>>> dev
     $query->fields('w', [
       'wid',
       'uid',
@@ -183,11 +175,7 @@ class DbLogController extends ControllerBase {
       'variables',
       'link',
     ]);
-<<<<<<< HEAD
-    $query->leftJoin('users_field_data', 'ufd', 'w.uid = ufd.uid');
-=======
     $query->leftJoin('users_field_data', 'ufd', '[w].[uid] = [ufd].[uid]');
->>>>>>> dev
 
     if (!empty($filter['where'])) {
       $query->where($filter['where'], $filter['args']);
@@ -262,11 +250,7 @@ class DbLogController extends ControllerBase {
    *   If no event found for the given ID.
    */
   public function eventDetails($event_id) {
-<<<<<<< HEAD
-    $dblog = $this->database->query('SELECT w.*, u.uid FROM {watchdog} w LEFT JOIN {users} u ON u.uid = w.uid WHERE w.wid = :id', [':id' => $event_id])->fetchObject();
-=======
     $dblog = $this->database->query('SELECT [w].*, [u].[uid] FROM {watchdog} [w] LEFT JOIN {users} [u] ON [u].[uid] = [w].[uid] WHERE [w].[wid] = :id', [':id' => $event_id])->fetchObject();
->>>>>>> dev
 
     if (empty($dblog)) {
       throw new NotFoundHttpException();
@@ -441,15 +425,6 @@ class DbLogController extends ControllerBase {
     ];
 
     $count_query = $this->database->select('watchdog');
-<<<<<<< HEAD
-    $count_query->addExpression('COUNT(DISTINCT(message))');
-    $count_query->condition('type', $type);
-
-    $query = $this->database->select('watchdog', 'w')
-      ->extend('\Drupal\Core\Database\Query\PagerSelectExtender')
-      ->extend('\Drupal\Core\Database\Query\TableSortExtender');
-    $query->addExpression('COUNT(wid)', 'count');
-=======
     $count_query->addExpression('COUNT(DISTINCT([message]))');
     $count_query->condition('type', $type);
 
@@ -457,7 +432,6 @@ class DbLogController extends ControllerBase {
       ->extend(PagerSelectExtender::class)
       ->extend(TableSortExtender::class);
     $query->addExpression('COUNT([wid])', 'count');
->>>>>>> dev
     $query = $query
       ->fields('w', ['message', 'variables'])
       ->condition('w.type', $type)

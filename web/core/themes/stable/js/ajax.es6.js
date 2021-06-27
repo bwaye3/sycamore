@@ -3,11 +3,7 @@
  * Provides backwards compatibility layer for Ajax-related markup.
  */
 
-<<<<<<< HEAD
-(Drupal => {
-=======
 ((Drupal) => {
->>>>>>> dev
   /**
    * Override the default ajaxProgressBar for backwards compatibility.
    *
@@ -16,10 +12,6 @@
    * @return {string}
    *   The HTML markup for the progress bar.
    */
-<<<<<<< HEAD
-  Drupal.theme.ajaxProgressBar = $element =>
-=======
   Drupal.theme.ajaxProgressBar = ($element) =>
->>>>>>> dev
     $element.addClass('ajax-progress ajax-progress-bar');
 })(Drupal);

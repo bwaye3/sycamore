@@ -4,13 +4,10 @@ namespace Drupal\Tests\Core\EventSubscriber;
 
 use Drupal\Tests\UnitTestCase;
 use Drupal\Core\EventSubscriber\PsrResponseSubscriber;
-<<<<<<< HEAD
-=======
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
->>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\Core\EventSubscriber\PsrResponseSubscriber
@@ -35,11 +32,7 @@ class PsrResponseSubscriberTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-=======
   protected function setUp(): void {
->>>>>>> dev
     $factory = $this->getMockBuilder('Symfony\Bridge\PsrHttpMessage\HttpFoundationFactoryInterface')
       ->disableOriginalConstructor()
       ->getMock();
@@ -59,18 +52,9 @@ class PsrResponseSubscriberTest extends UnitTestCase {
    * @covers ::onKernelView
    */
   public function testConvertsControllerResult() {
-<<<<<<< HEAD
-    $event = $this->createEventMock($this->createMock('Psr\Http\Message\ResponseInterface'));
-    $event
-      ->expects($this->once())
-      ->method('setResponse')
-      ->with($this->isInstanceOf('Symfony\Component\HttpFoundation\Response'));
-    $this->psrResponseSubscriber->onKernelView($event);
-=======
     $event = $this->createEvent($this->createMock('Psr\Http\Message\ResponseInterface'));
     $this->psrResponseSubscriber->onKernelView($event);
     $this->assertInstanceOf(Response::class, $event->getResponse());
->>>>>>> dev
   }
 
   /**
@@ -79,22 +63,6 @@ class PsrResponseSubscriberTest extends UnitTestCase {
    * @covers ::onKernelView
    */
   public function testDoesNotConvertControllerResult() {
-<<<<<<< HEAD
-    $event = $this->createEventMock([]);
-    $event
-      ->expects($this->never())
-      ->method('setResponse');
-    $this->psrResponseSubscriber->onKernelView($event);
-    $event = $this->createEventMock(NULL);
-    $event
-      ->expects($this->never())
-      ->method('setResponse');
-    $this->psrResponseSubscriber->onKernelView($event);
-  }
-
-  /**
-   * Sets up an alias event that return $controllerResult.
-=======
     $event = $this->createEvent([]);
     $this->psrResponseSubscriber->onKernelView($event);
     $this->assertNull($event->getResponse());
@@ -106,25 +74,10 @@ class PsrResponseSubscriberTest extends UnitTestCase {
 
   /**
    * Sets up an event that returns $controllerResult.
->>>>>>> dev
    *
    * @param mixed $controller_result
    *   The return Object.
    *
-<<<<<<< HEAD
-   * @return \Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent|\PHPUnit\Framework\MockObject\MockObject
-   *   A mock object to test.
-   */
-  protected function createEventMock($controller_result) {
-    $event = $this->getMockBuilder('Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent')
-      ->disableOriginalConstructor()
-      ->getMock();
-    $event
-      ->expects($this->once())
-      ->method('getControllerResult')
-      ->willReturn($controller_result);
-    return $event;
-=======
    * @return \Symfony\Component\HttpKernel\Event\ViewEvent
    *   A ViewEvent object to test.
    */
@@ -135,7 +88,6 @@ class PsrResponseSubscriberTest extends UnitTestCase {
       HttpKernelInterface::MASTER_REQUEST,
       $controller_result
     );
->>>>>>> dev
   }
 
 }

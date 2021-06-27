@@ -13,11 +13,8 @@ use Drupal\Core\Asset\Exception\LibraryDefinitionMissingLicenseException;
 use Drupal\Core\Asset\LibrariesDirectoryFileFinder;
 use Drupal\Core\Asset\LibraryDiscoveryParser;
 use Drupal\Core\StreamWrapper\StreamWrapperManagerInterface;
-<<<<<<< HEAD
-=======
 use Drupal\Core\Theme\ActiveTheme;
 use Drupal\Core\Theme\ThemeManagerInterface;
->>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -55,8 +52,6 @@ class LibraryDiscoveryParserTest extends UnitTestCase {
   protected $themeManager;
 
   /**
-<<<<<<< HEAD
-=======
    * The mocked active theme.
    *
    * @var \Drupal\Core\Theme\ActiveTheme|\PHPUnit\Framework\MockObject\MockObject
@@ -64,7 +59,6 @@ class LibraryDiscoveryParserTest extends UnitTestCase {
   protected $activeTheme;
 
   /**
->>>>>>> dev
    * The mocked lock backend.
    *
    * @var \Drupal\Core\Lock\LockBackendInterface|\PHPUnit\Framework\MockObject\MockObject
@@ -88,17 +82,6 @@ class LibraryDiscoveryParserTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-<<<<<<< HEAD
-  protected function setUp() {
-    parent::setUp();
-
-    $this->moduleHandler = $this->createMock('Drupal\Core\Extension\ModuleHandlerInterface');
-    $this->themeManager = $this->createMock('Drupal\Core\Theme\ThemeManagerInterface');
-    $mock_active_theme = $this->getMockBuilder('Drupal\Core\Theme\ActiveTheme')
-      ->disableOriginalConstructor()
-      ->getMock();
-    $mock_active_theme->expects($this->any())
-=======
   protected function setUp(): void {
     parent::setUp();
 
@@ -108,16 +91,11 @@ class LibraryDiscoveryParserTest extends UnitTestCase {
       ->disableOriginalConstructor()
       ->getMock();
     $this->activeTheme->expects($this->any())
->>>>>>> dev
       ->method('getLibrariesOverride')
       ->willReturn([]);
     $this->themeManager->expects($this->any())
       ->method('getActiveTheme')
-<<<<<<< HEAD
-      ->willReturn($mock_active_theme);
-=======
       ->willReturn($this->activeTheme);
->>>>>>> dev
     $this->streamWrapperManager = $this->createMock(StreamWrapperManagerInterface::class);
     $this->librariesDirectoryFileFinder = $this->createMock(LibrariesDirectoryFileFinder::class);
     $this->libraryDiscoveryParser = new TestLibraryDiscoveryParser($this->root, $this->moduleHandler, $this->themeManager, $this->streamWrapperManager, $this->librariesDirectoryFileFinder);
@@ -142,11 +120,7 @@ class LibraryDiscoveryParserTest extends UnitTestCase {
     $library = $libraries['example'];
 
     $this->assertCount(0, $library['js']);
-<<<<<<< HEAD
-    $this->assertCount(1, $library['css']);
-=======
     $this->assertCount(2, $library['css']);
->>>>>>> dev
     $this->assertCount(0, $library['dependencies']);
     $this->assertEquals($path . '/css/example.css', $library['css'][0]['data']);
 
@@ -580,8 +554,6 @@ class LibraryDiscoveryParserTest extends UnitTestCase {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Tests libraries with overrides.
    *
    * @covers ::applyLibrariesOverride
@@ -673,7 +645,6 @@ class LibraryDiscoveryParserTest extends UnitTestCase {
   }
 
   /**
->>>>>>> dev
    * Verifies assertions catch invalid CSS declarations.
    *
    * @dataProvider providerTestCssAssert

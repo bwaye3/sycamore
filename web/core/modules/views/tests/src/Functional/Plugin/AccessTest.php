@@ -27,11 +27,7 @@ class AccessTest extends ViewTestBase {
    *
    * @var array
    */
-<<<<<<< HEAD
-  public static $modules = ['node'];
-=======
   protected static $modules = ['node'];
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -52,20 +48,12 @@ class AccessTest extends ViewTestBase {
    */
   protected $normalUser;
 
-<<<<<<< HEAD
-  protected function setUp($import_test_views = TRUE) {
-=======
   protected function setUp($import_test_views = TRUE): void {
->>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();
 
-<<<<<<< HEAD
-    ViewTestData::createTestViews(get_class($this), ['views_test_data']);
-=======
     ViewTestData::createTestViews(static::class, ['views_test_data']);
->>>>>>> dev
 
     $this->webUser = $this->drupalCreateUser();
 
