@@ -6,7 +6,11 @@
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
 <<<<<<< HEAD
+<<<<<<< HEAD
         'reference' => '5a9f02269308bd42198d57be10f4a7796531e4aa',
+=======
+        'reference' => 'c245c738ff59ea92deca8e81fb4ed67b6467b64d',
+>>>>>>> parent of 1a5c6b3e5... d9 core
 =======
         'reference' => 'c245c738ff59ea92deca8e81fb4ed67b6467b64d',
 >>>>>>> parent of 1a5c6b3e5... d9 core
@@ -1250,7 +1254,11 @@
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
 <<<<<<< HEAD
+<<<<<<< HEAD
             'reference' => '5a9f02269308bd42198d57be10f4a7796531e4aa',
+=======
+            'reference' => 'c245c738ff59ea92deca8e81fb4ed67b6467b64d',
+>>>>>>> parent of 1a5c6b3e5... d9 core
 =======
             'reference' => 'c245c738ff59ea92deca8e81fb4ed67b6467b64d',
 >>>>>>> parent of 1a5c6b3e5... d9 core
@@ -1739,6 +1747,50 @@
             'reference' => '2c37c6c520b995b761674de3be8455a381679067',
             'dev_requirement' => false,
         ),
+<<<<<<< HEAD
+        'mathieuviossat/arraytotexttable' => array(
+            'pretty_version' => 'v1.0.8',
+            'version' => '1.0.8.0',
+=======
+        'masterminds/html5' => array(
+            'pretty_version' => '2.3.0',
+            'version' => '2.3.0.0',
+>>>>>>> parent of 1a5c6b3e5... d9 core
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../mathieuviossat/arraytotexttable',
+            'aliases' => array(),
+            'reference' => '6b1af924478cb9c3a903269e304fff006fe0dbf4',
+            'dev_requirement' => false,
+        ),
+        'mglaman/phpstan-drupal' => array(
+            'pretty_version' => '0.12.10',
+            'version' => '0.12.10.0',
+            'type' => 'phpstan-extension',
+            'install_path' => __DIR__ . '/../mglaman/phpstan-drupal',
+            'aliases' => array(),
+            'reference' => 'b8b6642861662cefb86bf19d9faab01715f38b68',
+            'dev_requirement' => false,
+        ),
+        'nette/finder' => array(
+            'pretty_version' => 'v2.5.2',
+            'version' => '2.5.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../nette/finder',
+            'aliases' => array(),
+            'reference' => '4ad2c298eb8c687dd0e74ae84206a4186eeaed50',
+            'dev_requirement' => false,
+        ),
+        'nette/utils' => array(
+            'pretty_version' => 'v3.2.2',
+            'version' => '3.2.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../nette/utils',
+            'aliases' => array(),
+<<<<<<< HEAD
+=======
+            'reference' => '2c37c6c520b995b761674de3be8455a381679067',
+            'dev_requirement' => false,
+        ),
         'mathieuviossat/arraytotexttable' => array(
             'pretty_version' => 'v1.0.8',
             'version' => '1.0.8.0',
@@ -1772,6 +1824,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../nette/utils',
             'aliases' => array(),
+>>>>>>> parent of 1a5c6b3e5... d9 core
             'reference' => '967cfc4f9a1acd5f1058d76715a424c53343c20c',
             'dev_requirement' => false,
         ),
@@ -1858,6 +1911,7 @@
             'version' => '0.12.90.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpstan/phpstan',
+<<<<<<< HEAD
             'aliases' => array(),
             'reference' => 'f0e4b56630fc3d4eb5be86606d07212ac212ede4',
             'dev_requirement' => false,
@@ -1868,6 +1922,18 @@
             'type' => 'phpstan-extension',
             'install_path' => __DIR__ . '/../phpstan/phpstan-deprecation-rules',
             'aliases' => array(),
+=======
+            'aliases' => array(),
+            'reference' => 'f0e4b56630fc3d4eb5be86606d07212ac212ede4',
+            'dev_requirement' => false,
+        ),
+        'phpstan/phpstan-deprecation-rules' => array(
+            'pretty_version' => '0.12.6',
+            'version' => '0.12.6.0',
+            'type' => 'phpstan-extension',
+            'install_path' => __DIR__ . '/../phpstan/phpstan-deprecation-rules',
+            'aliases' => array(),
+>>>>>>> parent of 1a5c6b3e5... d9 core
             'reference' => '46dbd43c2db973d2876d6653e53f5c2cc3a01fbb',
             'dev_requirement' => false,
         ),

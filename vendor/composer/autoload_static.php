@@ -366,6 +366,18 @@ class ComposerStaticInitc657d82ea878c53b87eea0aa678b1b16
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
         ),
         'PHPStan\\' => 
+<<<<<<< HEAD
+=======
+        array (
+            0 => __DIR__ . '/..' . '/mglaman/phpstan-drupal/src',
+            1 => __DIR__ . '/..' . '/phpstan/phpstan-deprecation-rules/src',
+        ),
+        'MathieuViossat\\Util\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mathieuviossat/arraytotexttable/src',
+        ),
+        'Masterminds\\' => 
+>>>>>>> parent of 1a5c6b3e5... d9 core
         array (
             0 => __DIR__ . '/..' . '/mglaman/phpstan-drupal/src',
             1 => __DIR__ . '/..' . '/phpstan/phpstan-deprecation-rules/src',
