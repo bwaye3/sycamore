@@ -2,16 +2,105 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abc1eed9-3474-47d9-b88b-ac069eba6b84" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.htaccess-backup" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android-chrome-192x192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android-chrome-512x512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apple-touch-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/favicon-16x16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/favicon-32x32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/site.webmanifest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/sites/default/settings.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/sites/default/settings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b___string_template__6a2704_OWddjYfcqi6Qlc3_cwg-HkITu/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b___string_template__6a2704_OWddjYfcqi6Qlc3_cwg-HkITu/tJq-XreLt1jUCpRFa8x2KWdWyE8y1_1pRd4_2-Tt6ew.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b___string_template__d3e79b_OhaLX-REegUWBD8QibEADuFzg/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b___string_template__d3e79b_OhaLX-REegUWBD8QibEADuFzg/JJHxHR3Fun9aM9m_MDDaeBtYV2jokT_UEFaxGpkdRGc.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b___string_template__e346a4_xCH07-L37s02GwBhGdlYv9x80/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b___string_template__e346a4_xCH07-L37s02GwBhGdlYv9x80/7IZ8hDIjXnEVj3e4zNwCumgpFmrzmsfcHmsBV4s1vBM.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_addtoany-standard.html.tw_8YPDN3XgIrEm5XhglRSDKsol9/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_addtoany-standard.html.tw_8YPDN3XgIrEm5XhglRSDKsol9/GE76xA050HXweudtz9pfr2v_MBHyFkAOldNUiQvdBKY.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_block--search-form-block._sq6u_hM9XKdNKcXi_NldIBSMd/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_block--search-form-block._sq6u_hM9XKdNKcXi_NldIBSMd/h6AHuTz4ppLLWICCbSIKs6yO1zBwMLqKJ3rT3qFAKDM.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_block--system-branding-bl_ibuiWzq7bY8W2wUr419jsZ2SK/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_block--system-branding-bl_ibuiWzq7bY8W2wUr419jsZ2SK/VP_hNHFSPVqXJdE2Tx0yHujpfGqqNI7amggBl0FD-P8.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_block--system-menu-block.__pVrKhFAY4n7rEaPxe5apj0-e/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_block--system-menu-block.__pVrKhFAY4n7rEaPxe5apj0-e/Pzpio5-hNwock-8DkIfSVpDFY1pPDFVwJgUPPDPam74.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_block--system-messages-bl_no-x7ZNP3SoTT8dn3y_jwfSLI/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_block--system-messages-bl_no-x7ZNP3SoTT8dn3y_jwfSLI/J7Eyy8CydndopnRHyWymnijPrBjFSpqgwc6X2f6anAU.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_block-slider.html.twig_dQ9Dj2PLKRABmj8v8xjtGdLwy/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_block-slider.html.twig_dQ9Dj2PLKRABmj8v8xjtGdLwy/hh67YcyuNw3g0ieFbRMSL6l2JZ-sfemt_x5I7YLD4ec.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_block.html.twig_QnibAZV1hmI9qcpsSQmpJ-cmm/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_block.html.twig_QnibAZV1hmI9qcpsSQmpJ-cmm/XUkvr6fZvub9GetEvH5FTnZbSmu0r8l7l0cTPDPb8BI.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_builder.html.twig_E4qsO_R8PTxbXFjwiAVmuNdKs/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_builder.html.twig_E4qsO_R8PTxbXFjwiAVmuNdKs/iZgb9M3raDD9JwGznTTi-Fw_oJmZ_tDmnJ3xESct-ac.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_commerce-cart-block.html._03Q1jyvTgsbwWHFUgTCNmoHyo/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_commerce-cart-block.html._03Q1jyvTgsbwWHFUgTCNmoHyo/oIYBc3I-VvEdZ2C5-E7bsTY6cr5HvLeeftgoO1XvT6g.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_commerce-product--campaig_gefBGvQQhOVyXjS1fnVc0daO5/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_commerce-product--campaig_gefBGvQQhOVyXjS1fnVc0daO5/Kn7wQW9xzWZk-dUx3AUcccFlkRTzQwkqmqZLa8C3SPw.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_container.html.twig_iQ5Sb_rUi8cwJSSQQG9wwUgAy/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_container.html.twig_iQ5Sb_rUi8cwJSSQQG9wwUgAy/ULtavSMkOUwPn6LyODb_N7WOBrbW53w8VurI7fzwQIc.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_eu_cookie_compliance_popu_bVWlX8M1tz7UBTn2gbvtHe60f/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_eu_cookie_compliance_popu_bVWlX8M1tz7UBTn2gbvtHe60f/PKp1ns6WvfrgA2gjVE4L9_5UR2a6XwJVfIlnleS3kto.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_eu_cookie_compliance_with_vARGU1NLtIDGOsy72w6L58zMI/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_eu_cookie_compliance_with_vARGU1NLtIDGOsy72w6L58zMI/bJ4vNVbNf8qJaob6eFKKJyn2egHiLPxNa7pxHdA8FBQ.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_field--commerce-product--_Ibqs2kDfnZafqLwvKPSPNcrfT/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_field--commerce-product--_Ibqs2kDfnZafqLwvKPSPNcrfT/xqiEyYvms9ABxtue8jQnOh-7UQvPMKeXDRk2r7mg_fc.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_field--commerce-product--_qWGQ3s8O02l31DUfY9_oUkCUI/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_field--commerce-product--_qWGQ3s8O02l31DUfY9_oUkCUI/yequWvR-gkR1QFiWE9yZuzWaKMfWo9hacyNX45RUPGY.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_field--node--created.html_845Zge2ahdzl-PAk0PX4UnL15/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_field--node--created.html_845Zge2ahdzl-PAk0PX4UnL15/GLI057kojRPcWK0P4D2gRIr-aqw2O9WxWZHSl24kNrM.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_field--node--title.html.t_4FrBzMeDcdOQ0DYFJhOr21Z6U/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_field--node--title.html.t_4FrBzMeDcdOQ0DYFJhOr21Z6U/FVaX31_onbG0HXyES6RpdwXveG94IVAq0dRjop4yKqU.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_field--node--uid.html.twi_pvi4sd-EhZpaDGrMG9rHuKuDa/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_field--node--uid.html.twi_pvi4sd-EhZpaDGrMG9rHuKuDa/waNewWDuZKT5IRFoexgOM_TVFvZ6JmFMXSdKGFac4nM.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_field.html.twig_9EG-txA0RseHuzoOXNC4R91F6/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_field.html.twig_9EG-txA0RseHuzoOXNC4R91F6/QZQl7-NK0EWfgSPv5_AiCG91fIn2BwimguDsa63a7wE.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_footer.html.twig_oWbo5PbugysE-Ev4ZF58PnLBY/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_footer.html.twig_oWbo5PbugysE-Ev4ZF58PnLBY/xKVNfQ3sA-rgOe9E1qLvh7apmJNnhCbUUoL0GKRuhGI.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_form--search-block-form.h_U3-rxAsoYAMVLXRoHO4Y5fbTJ/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_form--search-block-form.h_U3-rxAsoYAMVLXRoHO4Y5fbTJ/hq5XXD55VDbHRz6lxNYExC3f8jU3AkzBX6e6i8E8X2Y.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_form-element-label.html.t_xDMDgNN-LcrrVx6lsFV-j7flA/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_form-element-label.html.t_xDMDgNN-LcrrVx6lsFV-j7flA/sQQNzGMZMnDPGMipxXq0duj_-sT9d1kf9FWIwUTzmgo.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_form-element.html.twig_ys065dzHIV88fFUBvErG-b7Rp/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_form-element.html.twig_ys065dzHIV88fFUBvErG-b7Rp/RJOjzGVaanEJ51VTVle1ZuQu_7xZYb7FKb1JM2y4EE4.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_header.html.twig_Vb5TWVbIx0N2bXqcIx7t0qzGu/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_header.html.twig_Vb5TWVbIx0N2bXqcIx7t0qzGu/DmWLzBq51rii9k5HgauMtkZ0M_U-NzhJLuBU2bXUBq4.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_html.html.twig_uAP99OSlpchFcJALcoHYu_0vH/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_html.html.twig_uAP99OSlpchFcJALcoHYu_0vH/YIrrTDZMyXPUBMbntvy-lS3uUs-UsgPvesEisVOzq5g.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_image-formatter.html.twig_8KGnUREWcpORN71piBvYcBxxQ/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_image-formatter.html.twig_8KGnUREWcpORN71piBvYcBxxQ/P20GHmw9Vaybcfnca4EWyIge98O5NNfrki1Ggj3xVT0.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_image-style.html.twig_1L5KOm0-yGSpWybcq_2byG-J8/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_image-style.html.twig_1L5KOm0-yGSpWybcq_2byG-J8/19amipMa2yLX6Oe4YHsN2hkryJwEKbnuflmRE9Hbnvg.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_image.html.twig_CNDBl8EY3FWNQbypSYYJS6HFy/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_image.html.twig_CNDBl8EY3FWNQbypSYYJS6HFy/znpAihf8HhduR_Kx1ejL-Q_mxqAfjxe5Mjep510HRL4.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_input.html.twig_RIhLPGViV8q86DViqmf0nC0Su/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_input.html.twig_RIhLPGViV8q86DViqmf0nC0Su/xnjw2voY4g4bhnq2qogu7ieUI7W0WGjKfdtnoYalido.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_main-no-sidebar.html.twig_LsK9kmbDkGd7GvXuFSUdSoE6U/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_main-no-sidebar.html.twig_LsK9kmbDkGd7GvXuFSUdSoE6U/fDk1g2obtcwT5Z8_6ahPCGlZZjGVknyu21mgMyahfec.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_menu--main.html.twig_Kv0AJYCVz84Ite9bzBtjcQcf5/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_menu--main.html.twig_Kv0AJYCVz84Ite9bzBtjcQcf5/ongNAX7_vgRMeUbR71pspYY8q1en6OKMkTVz73J06Vk.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_node--page.html.twig_3D3epix2N0Fe2SOtoDNQfyP6X/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_node--page.html.twig_3D3epix2N0Fe2SOtoDNQfyP6X/ll8ZCHFg611gRm73-2OzloS8T4UHkmESOzQidEq0zm4.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_node--team.html.twig_tGbVjUPGsLtXVO-GR4BY7SUD7/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_node--team.html.twig_tGbVjUPGsLtXVO-GR4BY7SUD7/6GFode3TxZtMsSPE3wJUqED6w03ba_N-6DVT5HphrYQ.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_off-canvas-page-wrapper.h_LMKJUiiXZ1LQzHfsd-DzedT9l/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_off-canvas-page-wrapper.h_LMKJUiiXZ1LQzHfsd-DzedT9l/kYv51JyaUyI_D1sW7DOevlsyHjdLBdKqJCbX61PdGqY.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_page--layout--fw.html.twi_POKfwkwMQzViEIt4vRAlcTyaz/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_page--layout--fw.html.twi_POKfwkwMQzViEIt4vRAlcTyaz/veA3ZMCJUrdiIFqtlKbl-X9WekWDIQobbHziR72i8m0.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_region.html.twig_0NfBKM_qOoi8WDsR4eHcxFjiC/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_region.html.twig_0NfBKM_qOoi8WDsR4eHcxFjiC/voQgXAEvdf9SQ6R5tSFtZvHIPxjDf8bqOQnei1WNjLI.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_seo-checklist-getting-sta_d2YJ_DzxlaOtYcuCJhDKvjfmE/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_seo-checklist-getting-sta_d2YJ_DzxlaOtYcuCJhDKvjfmE/WZZSvNN3h5gT2QtEEcDg__SzMK4DiQMY4JBtWmYuogQ.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_username.html.twig_j3ud9uNb_-8sSDNEnPBv6mJvi/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_username.html.twig_j3ud9uNb_-8sSDNEnPBv6mJvi/THhnmB4BXlXYf5_39G3mhsyi9EmWFCVYCkCpVxbQdIc.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_video-embed-iframe.html.t_JM5nOtL3T1nykCJblnYKasbMG/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_video-embed-iframe.html.t_JM5nOtL3T1nykCJblnYKasbMG/1odFGPMbZj0jwQPrSB52fXKQuGm_OL0rEIesRnUqPAU.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_views-infinite-scroll-pag_SwnVRd8LRdle2r_rArcUoSc-k/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_views-infinite-scroll-pag_SwnVRd8LRdle2r_rArcUoSc-k/zAdztGPHth3drlrfHfZXMBKCinUpultkph27XHchjTA.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_views-view-field.html.twi_VDCPxbPojeXpLVn-2p2lORUwY/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_views-view-field.html.twi_VDCPxbPojeXpLVn-2p2lORUwY/932B2pkC5EaFOpCLVb4UqONsJaSVVSJ8BMgGMb6L6OI.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_views-view-fields.html.tw_-fTa--NgR6MmIDjFQWJNicExp/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_views-view-fields.html.tw_-fTa--NgR6MmIDjFQWJNicExp/0-Zq4Xg1adXx_92SLpiKaPYr2V8TXUvTlBHRJX9Wi5I.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_views-view-gvaowl.html.tw_7FOdePG-YZ0SfUn1WmbBhkVbl/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_views-view-gvaowl.html.tw_7FOdePG-YZ0SfUn1WmbBhkVbl/1PBxkxdMfpwDbACGNaOMQxLOVs8TwJvIGZ7qZ13rvhU.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_views-view-list.html.twig_xRL9fDXd7NmfIZFwxkpVLyu54/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_views-view-list.html.twig_xRL9fDXd7NmfIZFwxkpVLyu54/4yuCyWPZHc7S7J5oBqPzud54d8FVkDgGifIFWPVSWrY.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_views-view-mlayout-5.html_uejicH6NmR239jORqMU_EOvyH/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_views-view-mlayout-5.html_uejicH6NmR239jORqMU_EOvyH/Q0Wob8ftNpam_rrJNLtA1kvXxqy62R7w7U7qFBRCHJQ.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_views-view.html.twig_vPh9IqlaK32TJ3FHDNOlutS8M/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sites/default/files/php/twig/60d8dd443e20b_views-view.html.twig_vPh9IqlaK32TJ3FHDNOlutS8M/ZlstH49S-HfBBsmdMLpAy99a8zP-SZhz294D0qZ8mno.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,7 +329,7 @@
       <workItem from="1624638675393" duration="105000" />
       <workItem from="1624638820260" duration="117000" />
       <workItem from="1624732632735" duration="3701000" />
-      <workItem from="1624813864456" duration="348000" />
+      <workItem from="1624813864456" duration="679000" />
     </task>
     <servers />
   </component>
