@@ -5,6 +5,7 @@
  * Post update functions for Custom Block.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Config\Entity\ConfigEntityUpdater;
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
 
@@ -92,4 +93,13 @@ function block_content_post_update_add_views_reusable_filter(&$sandbox = NULL) {
     }
     return $save_view;
   });
+=======
+/**
+ * Implements hook_removed_post_updates().
+ */
+function block_content_removed_post_updates() {
+  return [
+    'block_content_post_update_add_views_reusable_filter' => '9.0.0',
+  ];
+>>>>>>> dev
 }

@@ -4,7 +4,10 @@ namespace Drupal\Tests\Core\StackMiddleware;
 
 use Drupal\Core\Site\Settings;
 use Drupal\Core\StackMiddleware\ReverseProxyMiddleware;
+<<<<<<< HEAD
 use Drupal\Tests\Traits\ExpectDeprecationTrait;
+=======
+>>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -14,7 +17,10 @@ use Symfony\Component\HttpFoundation\Request;
  * @group StackMiddleware
  */
 class ReverseProxyMiddlewareTest extends UnitTestCase {
+<<<<<<< HEAD
   use ExpectDeprecationTrait;
+=======
+>>>>>>> dev
 
   /**
    * @var \Symfony\Component\HttpKernel\HttpKernelInterface|\PHPUnit\Framework\MockObject\MockObject
@@ -24,7 +30,11 @@ class ReverseProxyMiddlewareTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->mockHttpKernel = $this->createMock('Symfony\Component\HttpKernel\HttpKernelInterface');
   }
 
@@ -65,7 +75,11 @@ class ReverseProxyMiddlewareTest extends UnitTestCase {
     return [
       'Proxy with default trusted headers' => [
         ['reverse_proxy_addresses' => ['127.0.0.2', '127.0.0.3']],
+<<<<<<< HEAD
         Request::HEADER_FORWARDED | Request::HEADER_X_FORWARDED_ALL,
+=======
+        Request::HEADER_FORWARDED | Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_HOST | Request::HEADER_X_FORWARDED_PORT | Request::HEADER_X_FORWARDED_PROTO,
+>>>>>>> dev
       ],
       'Proxy with AWS trusted headers' => [
         [
@@ -85,6 +99,7 @@ class ReverseProxyMiddlewareTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests that subscriber sets trusted headers when reverse proxy is set.
    *
    * @dataProvider reverseProxyEnabledProviderLegacy
@@ -137,6 +152,8 @@ class ReverseProxyMiddlewareTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests that trusted headers are set correctly.
    *
    * \Symfony\Component\HttpFoundation\Request::setTrustedProxies() should

@@ -29,7 +29,11 @@ use Drupal\Core\Render\Element;
 class Email extends FormElement {
 
   /**
+<<<<<<< HEAD
    * Defines the max length for an email address
+=======
+   * Defines the max length for an email address.
+>>>>>>> dev
    *
    * The maximum length of an email address is 254 characters. RFC 3696
    * specifies a total length of 320 characters, but mentions that
@@ -44,7 +48,11 @@ class Email extends FormElement {
    * {@inheritdoc}
    */
   public function getInfo() {
+<<<<<<< HEAD
     $class = get_class($this);
+=======
+    $class = static::class;
+>>>>>>> dev
     return [
       '#input' => TRUE,
       '#size' => 60,

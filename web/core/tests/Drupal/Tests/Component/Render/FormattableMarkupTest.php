@@ -4,6 +4,10 @@ namespace Drupal\Tests\Component\Render;
 
 use Drupal\Component\Render\FormattableMarkup;
 use PHPUnit\Framework\TestCase;
+<<<<<<< HEAD
+=======
+use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
+>>>>>>> dev
 
 /**
  * Tests the TranslatableMarkup class.
@@ -13,6 +17,11 @@ use PHPUnit\Framework\TestCase;
  */
 class FormattableMarkupTest extends TestCase {
 
+<<<<<<< HEAD
+=======
+  use ExpectDeprecationTrait;
+
+>>>>>>> dev
   /**
    * The error message of the last error in the error handler.
    *
@@ -91,6 +100,7 @@ class FormattableMarkupTest extends TestCase {
    */
   public function providerTestUnexpectedPlaceholder() {
     return [
+<<<<<<< HEAD
       ['Non alpha starting character: ~placeholder', ['~placeholder' => 'replaced'], E_USER_ERROR, 'Invalid placeholder (~placeholder) in string: Non alpha starting character: ~placeholder'],
       ['Alpha starting character: placeholder', ['placeholder' => 'replaced'], E_USER_DEPRECATED, 'Invalid placeholder (placeholder) in string: Alpha starting character: placeholder'],
       // Ensure that where the placeholder is located in the string is
@@ -99,4 +109,24 @@ class FormattableMarkupTest extends TestCase {
     ];
   }
 
+=======
+      ['Non alpha starting character: ~placeholder', ['~placeholder' => 'replaced'], E_USER_WARNING, 'Invalid placeholder (~placeholder) with string: "Non alpha starting character: ~placeholder"'],
+      ['Alpha starting character: placeholder', ['placeholder' => 'replaced'], E_USER_WARNING, 'Invalid placeholder (placeholder) with string: "Alpha starting character: placeholder"'],
+      // Ensure that where the placeholder is located in the string is
+      // irrelevant.
+      ['placeholder', ['placeholder' => 'replaced'], E_USER_WARNING, 'Invalid placeholder (placeholder) with string: "placeholder"'],
+    ];
+  }
+
+  /**
+   * @group legacy
+   */
+  public function testNoReplacementUnsupportedVariable() {
+    $this->expectDeprecation('Support for keys without a placeholder prefix is deprecated in Drupal 9.1.0 and will be removed in Drupal 10.0.0. Invalid placeholder (foo) with string: "No replacements"');
+    $markup = new FormattableMarkup('No replacements', ['foo' => 'bar']);
+    // Cast it to a string which will generate the deprecation notice.
+    $output = (string) $markup;
+  }
+
+>>>>>>> dev
 }

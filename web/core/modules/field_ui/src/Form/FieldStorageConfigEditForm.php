@@ -41,6 +41,13 @@ class FieldStorageConfigEditForm extends EntityForm {
   /**
    * {@inheritdoc}
    *
+<<<<<<< HEAD
+=======
+   * @param array $form
+   *   A nested array form elements comprising the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+>>>>>>> dev
    * @param string $field_config
    *   The ID of the field config whose field storage config is being edited.
    */

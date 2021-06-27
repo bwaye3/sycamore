@@ -19,7 +19,11 @@ class Book extends DrupalSqlBase {
    */
   public function query() {
     $query = $this->select('book', 'b')->fields('b', ['nid', 'bid']);
+<<<<<<< HEAD
     $query->join('menu_links', 'ml', 'b.mlid = ml.mlid');
+=======
+    $query->join('menu_links', 'ml', '[b].[mlid] = [ml].[mlid]');
+>>>>>>> dev
     $ml_fields = ['mlid', 'plid', 'weight', 'has_children', 'depth'];
     foreach (range(1, 9) as $i) {
       $field = "p$i";

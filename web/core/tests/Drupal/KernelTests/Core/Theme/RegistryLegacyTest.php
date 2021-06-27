@@ -20,16 +20,26 @@ class RegistryLegacyTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['theme_test', 'system'];
+=======
+  protected static $modules = ['theme_test', 'system'];
+>>>>>>> dev
 
   protected $profile = 'testing';
 
   /**
    * Tests the theme registry with theme functions and multiple subthemes.
+<<<<<<< HEAD
    *
    * @expectedDeprecation Theme functions are deprecated in drupal:8.0.0 and are removed from drupal:10.0.0. Use Twig templates instead of theme_theme_test(). See https://www.drupal.org/node/1831138
    */
   public function testMultipleSubThemes() {
+=======
+   */
+  public function testMultipleSubThemes() {
+    $this->expectDeprecation('Unsilenced deprecation: Theme functions are deprecated in drupal:8.0.0 and are removed from drupal:10.0.0. Use Twig templates instead of theme_theme_test(). See https://www.drupal.org/node/1831138');
+>>>>>>> dev
     $theme_handler = \Drupal::service('theme_handler');
     \Drupal::service('module_installer')->install(['theme_legacy_test']);
     \Drupal::service('theme_installer')->install(['test_basetheme']);
@@ -46,10 +56,16 @@ class RegistryLegacyTest extends KernelTestBase {
 
   /**
    * Tests the theme registry with theme functions with suggestions.
+<<<<<<< HEAD
    *
    * @expectedDeprecation Theme functions are deprecated in drupal:8.0.0 and are removed from drupal:10.0.0. Use Twig templates instead of test_legacy_theme_theme_test_preprocess_suggestions__kitten__meerkat(). See https://www.drupal.org/node/1831138
    */
   public function testSuggestionPreprocessFunctions() {
+=======
+   */
+  public function testSuggestionPreprocessFunctions() {
+    $this->expectDeprecation('Unsilenced deprecation: Theme functions are deprecated in drupal:8.0.0 and are removed from drupal:10.0.0. Use Twig templates instead of test_legacy_theme_theme_test_preprocess_suggestions__kitten__meerkat(). See https://www.drupal.org/node/1831138');
+>>>>>>> dev
     $theme_handler = \Drupal::service('theme_handler');
     \Drupal::service('theme_installer')->install(['test_legacy_theme']);
 

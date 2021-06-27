@@ -27,7 +27,11 @@ class PathWidget extends WidgetBase {
     $entity = $items->getEntity();
 
     $element += [
+<<<<<<< HEAD
       '#element_validate' => [[get_class($this), 'validateFormElement']],
+=======
+      '#element_validate' => [[static::class, 'validateFormElement']],
+>>>>>>> dev
     ];
     $element['alias'] = [
       '#type' => 'textfield',

@@ -24,7 +24,11 @@ class DisplayKernelTest extends ViewsKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['block', 'node', 'field', 'user'];
+=======
+  protected static $modules = ['block', 'node', 'field', 'user'];
+>>>>>>> dev
 
   /**
    * Views plugin types to test.
@@ -76,12 +80,20 @@ class DisplayKernelTest extends ViewsKernelTestBase {
       // Test the view plugin options against the storage.
       foreach ($this->pluginTypes as $type) {
         $options = $display->getOption($type);
+<<<<<<< HEAD
         $this->assertIdentical($display_data[$id]['display_options'][$type]['options'], $options['options']);
+=======
+        $this->assertSame($display_data[$id]['display_options'][$type]['options'], $options['options']);
+>>>>>>> dev
       }
       // Test the view handler options against the storage.
       foreach ($this->handlerTypes as $type) {
         $options = $display->getOption($type);
+<<<<<<< HEAD
         $this->assertIdentical($display_data[$id]['display_options'][$type], $options);
+=======
+        $this->assertSame($display_data[$id]['display_options'][$type], $options);
+>>>>>>> dev
       }
     }
   }
@@ -112,7 +124,11 @@ class DisplayKernelTest extends ViewsKernelTestBase {
     $view->initDisplay();
     $first = spl_object_hash($display_handler->getPlugin('style'));
     $second = spl_object_hash($display_handler->getPlugin('style'));
+<<<<<<< HEAD
     $this->assertIdentical($first, $second, 'The same plugin instance was returned.');
+=======
+    $this->assertSame($first, $second, 'The same plugin instance was returned.');
+>>>>>>> dev
   }
 
   /**

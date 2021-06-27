@@ -13,7 +13,11 @@ use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
+<<<<<<< HEAD
  * Configuration entity that contains widget options for all components of a
+=======
+ * Configuration entity that contains widget options for all components of an
+>>>>>>> dev
  * entity form in a given form mode.
  *
  * @ConfigEntityType(
@@ -81,6 +85,12 @@ class EntityFormDisplay extends EntityDisplayBase implements EntityFormDisplayIn
     $entity_type = $entity->getEntityTypeId();
     $bundle = $entity->bundle();
 
+<<<<<<< HEAD
+=======
+    // Allow modules to change the form mode.
+    \Drupal::moduleHandler()->alter('entity_form_mode', $form_mode, $entity);
+
+>>>>>>> dev
     // Check the existence and status of:
     // - the display for the form mode,
     // - the 'default' display.

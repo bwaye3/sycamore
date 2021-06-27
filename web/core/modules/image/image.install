@@ -33,9 +33,13 @@ function image_uninstall() {
 }
 
 /**
+<<<<<<< HEAD
  * Implements hook_requirements() to check the PHP GD Library.
  *
  * @param $phase
+=======
+ * Implements hook_requirements().
+>>>>>>> dev
  */
 function image_requirements($phase) {
   if ($phase != 'runtime') {
@@ -73,6 +77,7 @@ function image_requirements($phase) {
 }
 
 /**
+<<<<<<< HEAD
  * Flush caches as we changed field formatter metadata.
  */
 function image_update_8201() {
@@ -81,4 +86,10 @@ function image_update_8201() {
   // Use hook_post_update_NAME() instead to clear the cache. The use of
   // hook_update_N() to clear the cache has been deprecated see
   // https://www.drupal.org/node/2960601 for more details.
+=======
+ * Implements hook_update_last_removed().
+ */
+function image_update_last_removed() {
+  return 8201;
+>>>>>>> dev
 }

@@ -4,6 +4,11 @@ namespace Drupal\migrate_state_active_test\Plugin\migrate\field\d7;
 
 use Drupal\migrate_drupal\Plugin\migrate\field\FieldPluginBase;
 
+<<<<<<< HEAD
+=======
+// cspell:ignore fieldright
+
+>>>>>>> dev
 /**
  * Field migration for testing migration states.
  *

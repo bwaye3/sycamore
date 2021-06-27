@@ -55,7 +55,11 @@ abstract class SortPluginBase extends HandlerBase implements CacheableDependency
   }
 
   /**
+<<<<<<< HEAD
    * Display whether or not the sort order is ascending or descending
+=======
+   * Display whether or not the sort order is ascending or descending.
+>>>>>>> dev
    */
   public function adminSummary() {
     if (!empty($this->options['exposed'])) {
@@ -74,7 +78,11 @@ abstract class SortPluginBase extends HandlerBase implements CacheableDependency
   }
 
   /**
+<<<<<<< HEAD
    * Basic options for all sort criteria
+=======
+   * Basic options for all sort criteria.
+>>>>>>> dev
    */
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildOptionsForm($form, $form_state);
@@ -139,7 +147,11 @@ abstract class SortPluginBase extends HandlerBase implements CacheableDependency
   }
 
   /**
+<<<<<<< HEAD
    * Simple validate handler
+=======
+   * Simple validate handler.
+>>>>>>> dev
    */
   public function validateOptionsForm(&$form, FormStateInterface $form_state) {
     $this->sortValidate($form, $form_state);
@@ -150,7 +162,11 @@ abstract class SortPluginBase extends HandlerBase implements CacheableDependency
   }
 
   /**
+<<<<<<< HEAD
    * Simple submit handler
+=======
+   * Simple submit handler.
+>>>>>>> dev
    */
   public function submitOptionsForm(&$form, FormStateInterface $form_state) {
     // Do not store this values.
@@ -183,6 +199,10 @@ abstract class SortPluginBase extends HandlerBase implements CacheableDependency
 
   /**
    * Provide a list of options for the default sort form.
+<<<<<<< HEAD
+=======
+   *
+>>>>>>> dev
    * Should be overridden by classes that don't override sort_form
    */
   protected function sortOptions() {
@@ -197,7 +217,11 @@ abstract class SortPluginBase extends HandlerBase implements CacheableDependency
     // prior to rendering. That's why the preRender for it needs to run first,
     // so that when the next preRender (the one for fieldsets) runs, it gets
     // the flattened data.
+<<<<<<< HEAD
     array_unshift($form['#pre_render'], [get_class($this), 'preRenderFlattenData']);
+=======
+    array_unshift($form['#pre_render'], [static::class, 'preRenderFlattenData']);
+>>>>>>> dev
     $form['expose']['#flatten'] = TRUE;
 
     $form['expose']['label'] = [

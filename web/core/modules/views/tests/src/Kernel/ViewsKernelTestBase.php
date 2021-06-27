@@ -3,7 +3,10 @@
 namespace Drupal\Tests\views\Kernel;
 
 use Drupal\Core\Database\Database;
+<<<<<<< HEAD
 use Drupal\Core\Database\Query\SelectInterface;
+=======
+>>>>>>> dev
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\views\Tests\ViewResultAssertionTrait;
 use Drupal\views\Tests\ViewTestData;
@@ -28,7 +31,11 @@ abstract class ViewsKernelTestBase extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'path_alias',
     'system',
     'views',
@@ -48,11 +55,19 @@ abstract class ViewsKernelTestBase extends KernelTestBase {
   protected function setUp($import_test_views = TRUE) {
     parent::setUp();
 
+<<<<<<< HEAD
     $this->installSchema('system', ['sequences', 'key_value_expire']);
     $this->setUpFixtures();
 
     if ($import_test_views) {
       ViewTestData::createTestViews(get_class($this), ['views_test_config']);
+=======
+    $this->installSchema('system', ['sequences']);
+    $this->setUpFixtures();
+
+    if ($import_test_views) {
+      ViewTestData::createTestViews(static::class, ['views_test_config']);
+>>>>>>> dev
     }
   }
 
@@ -118,7 +133,11 @@ abstract class ViewsKernelTestBase extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Executes a view with debugging.
+=======
+   * Executes a view.
+>>>>>>> dev
    *
    * @param \Drupal\views\ViewExecutable $view
    *   The view object.
@@ -129,11 +148,14 @@ abstract class ViewsKernelTestBase extends KernelTestBase {
     $view->setDisplay();
     $view->preExecute($args);
     $view->execute();
+<<<<<<< HEAD
     $verbose_message = '<pre>Executed view: ' . ((string) $view->build_info['query']) . '</pre>';
     if ($view->build_info['query'] instanceof SelectInterface) {
       $verbose_message .= '<pre>Arguments: ' . print_r($view->build_info['query']->getArguments(), TRUE) . '</pre>';
     }
     $this->verbose($verbose_message);
+=======
+>>>>>>> dev
   }
 
   /**

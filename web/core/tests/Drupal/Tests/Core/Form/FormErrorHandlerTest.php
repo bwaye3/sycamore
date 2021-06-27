@@ -29,7 +29,11 @@ class FormErrorHandlerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->messenger = $this->createMock(MessengerInterface::class);

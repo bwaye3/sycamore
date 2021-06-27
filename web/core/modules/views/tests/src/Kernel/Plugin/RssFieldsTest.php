@@ -21,7 +21,11 @@ class RssFieldsTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'field', 'text', 'filter'];
+=======
+  protected static $modules = ['node', 'field', 'text', 'filter'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -31,7 +35,11 @@ class RssFieldsTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->installConfig(['node', 'filter']);

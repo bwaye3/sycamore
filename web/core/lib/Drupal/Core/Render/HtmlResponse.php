@@ -8,12 +8,21 @@ use Drupal\Core\Cache\CacheableResponseTrait;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
+<<<<<<< HEAD
  * A response that contains and can expose cacheability metadata and attachments.
+=======
+ * Response that contains and can expose cacheability metadata and attachments.
+>>>>>>> dev
  *
  * Supports Drupal's caching concepts: cache tags for invalidation and cache
  * contexts for variations.
  *
+<<<<<<< HEAD
  * Supports Drupal's idea of #attached metadata: libraries, settings, http_header and html_head.
+=======
+ * Supports Drupal's idea of #attached metadata: libraries, settings,
+ * http_header and html_head.
+>>>>>>> dev
  *
  * @see \Drupal\Core\Cache\CacheableResponse
  * @see \Drupal\Core\Render\AttachmentsInterface
@@ -25,7 +34,34 @@ class HtmlResponse extends Response implements CacheableResponseInterface, Attac
   use AttachmentsTrait;
 
   /**
+<<<<<<< HEAD
    * {@inheritdoc}
+=======
+   * Constructs a HtmlResponse object.
+   *
+   * @param array|string $content
+   *   The response content, see setContent().
+   * @param int $status
+   *   The response status code.
+   * @param array $headers
+   *   An array of response headers.
+   *
+   * @throws \InvalidArgumentException
+   *   When the HTTP status code is not valid.
+   */
+  public function __construct($content = '', int $status = 200, array $headers = []) {
+    parent::__construct('', $status, $headers);
+    $this->setContent($content);
+  }
+
+  /**
+   * Sets the response content.
+   *
+   * @param mixed $content
+   *   Content that can be cast to string, or a render array.
+   *
+   * @return $this
+>>>>>>> dev
    */
   public function setContent($content) {
     // A render array can automatically be converted to a string and set the

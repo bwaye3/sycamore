@@ -163,7 +163,11 @@ abstract class ArgumentPluginBase extends HandlerBase implements CacheableDepend
 
     $argument_text = $this->view->display_handler->getArgumentText();
 
+<<<<<<< HEAD
     $form['#pre_render'][] = [get_class($this), 'preRenderMoveArgumentOptions'];
+=======
+    $form['#pre_render'][] = [static::class, 'preRenderMoveArgumentOptions'];
+>>>>>>> dev
 
     $form['description'] = [
       '#markup' => $argument_text['description'],
@@ -764,7 +768,11 @@ abstract class ArgumentPluginBase extends HandlerBase implements CacheableDepend
   }
 
   /**
+<<<<<<< HEAD
    * Default action: empty
+=======
+   * Default action: empty.
+>>>>>>> dev
    *
    * If an argument was expected and was not given, in this case, display
    * the view's empty text
@@ -926,6 +934,12 @@ abstract class ArgumentPluginBase extends HandlerBase implements CacheableDepend
    *
    * @param $order
    *   The order selected in the UI.
+<<<<<<< HEAD
+=======
+   * @param string|null $by
+   *   (optional) This parameter sets the direction for which to order.
+   *   Defaults to NULL.
+>>>>>>> dev
    */
   public function summarySort($order, $by = NULL) {
     $this->query->addOrderBy(NULL, NULL, $order, (!empty($by) ? $by : $this->name_alias));
@@ -1034,7 +1048,11 @@ abstract class ArgumentPluginBase extends HandlerBase implements CacheableDepend
   }
 
   /**
+<<<<<<< HEAD
    * Set the input for this argument
+=======
+   * Set the input for this argument.
+>>>>>>> dev
    *
    * @return TRUE if it successfully validates; FALSE if it does not.
    */

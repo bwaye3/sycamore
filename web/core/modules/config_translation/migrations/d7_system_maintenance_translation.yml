@@ -15,3 +15,10 @@ destination:
   plugin: config
   config_name: system.maintenance
   translations: true
+<<<<<<< HEAD
+=======
+migration_dependencies:
+  required:
+    - language
+    - system_maintenance
+>>>>>>> dev

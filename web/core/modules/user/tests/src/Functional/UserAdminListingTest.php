@@ -91,6 +91,7 @@ class UserAdminListingTest extends BrowserTestBase {
 
     $this->assertEmpty(array_keys(array_diff_key($result_accounts, $accounts)), 'Ensure all accounts are listed.');
     foreach ($result_accounts as $name => $values) {
+<<<<<<< HEAD
       $this->assertEqual($values['status'] == t('active'), $accounts[$name]->status->value, 'Ensure the status is displayed properly.');
     }
 
@@ -100,6 +101,17 @@ class UserAdminListingTest extends BrowserTestBase {
     $this->assertEqual($result_accounts[$timestamp_user]['member_for'], \Drupal::service('date.formatter')->formatTimeDiffSince($accounts[$timestamp_user]->created->value), 'Ensure the right member time is displayed.');
 
     $this->assertEqual($result_accounts[$timestamp_user]['last_access'], 'never', 'Ensure the last access time is "never".');
+=======
+      $this->assertEquals($accounts[$name]->status->value, $values['status'] == t('active'), 'Ensure the status is displayed properly.');
+    }
+
+    $expected_roles = ['custom_role_1', 'custom_role_2'];
+    $this->assertEquals($expected_roles, $result_accounts[$role_account_name]['roles'], 'Ensure roles are listed properly.');
+
+    $this->assertEquals(\Drupal::service('date.formatter')->formatTimeDiffSince($accounts[$timestamp_user]->created->value), $result_accounts[$timestamp_user]['member_for'], 'Ensure the right member time is displayed.');
+
+    $this->assertEquals('never', $result_accounts[$timestamp_user]['last_access'], 'Ensure the last access time is "never".');
+>>>>>>> dev
   }
 
 }

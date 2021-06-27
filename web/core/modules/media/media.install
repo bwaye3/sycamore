@@ -5,14 +5,20 @@
  * Install, uninstall and update hooks for Media module.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Entity\Sql\SqlEntityStorageInterface;
+=======
+>>>>>>> dev
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Url;
 use Drupal\media\Entity\MediaType;
 use Drupal\media\MediaTypeInterface;
 use Drupal\media\Plugin\media\Source\OEmbedInterface;
+<<<<<<< HEAD
 use Drupal\user\Entity\Role;
+=======
+>>>>>>> dev
 use Drupal\user\RoleInterface;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -137,7 +143,11 @@ function media_requirements($phase) {
         ->getViewDisplay('media', $type->id());
 
       $source_field_definition = $type->getSource()->getSourceFieldDefinition($type);
+<<<<<<< HEAD
       if (!is_a($source_field_definition->getItemDefinition()->getClass(), ImageItem::class, TRUE)) {
+=======
+      if (empty($source_field_definition) || !is_a($source_field_definition->getItemDefinition()->getClass(), ImageItem::class, TRUE)) {
+>>>>>>> dev
         continue;
       }
 
@@ -176,6 +186,7 @@ function media_requirements($phase) {
 }
 
 /**
+<<<<<<< HEAD
  * Introduce per-bundle permissions.
  */
 function media_update_8500() {
@@ -256,4 +267,10 @@ function media_update_8700() {
   $entity_type->set('entity_keys', $keys);
   $definition_update_manager->updateEntityType($entity_type);
   $definition_update_manager->updateFieldStorageDefinition($definition_update_manager->getFieldStorageDefinition('uid', 'media'));
+=======
+ * Implements hook_update_last_removed().
+ */
+function media_update_last_removed() {
+  return 8700;
+>>>>>>> dev
 }

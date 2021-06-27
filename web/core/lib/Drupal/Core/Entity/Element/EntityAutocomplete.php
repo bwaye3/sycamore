@@ -72,7 +72,11 @@ class EntityAutocomplete extends Textfield {
    */
   public function getInfo() {
     $info = parent::getInfo();
+<<<<<<< HEAD
     $class = get_class($this);
+=======
+    $class = static::class;
+>>>>>>> dev
 
     // Apply default form element properties.
     $info['#target_type'] = NULL;
@@ -323,17 +327,29 @@ class EntityAutocomplete extends Textfield {
     $params = [
       '%value' => $input,
       '@value' => $input,
+<<<<<<< HEAD
+=======
+      '@entity_type_plural' => \Drupal::entityTypeManager()->getDefinition($element['#target_type'])->getPluralLabel(),
+>>>>>>> dev
     ];
     if (empty($entities)) {
       if ($strict) {
         // Error if there are no entities available for a required field.
+<<<<<<< HEAD
         $form_state->setError($element, t('There are no entities matching "%value".', $params));
+=======
+        $form_state->setError($element, t('There are no @entity_type_plural matching "%value".', $params));
+>>>>>>> dev
       }
     }
     elseif (count($entities) > 5) {
       $params['@id'] = key($entities);
       // Error if there are more than 5 matching entities.
+<<<<<<< HEAD
       $form_state->setError($element, t('Many entities are called %value. Specify the one you want by appending the id in parentheses, like "@value (@id)".', $params));
+=======
+      $form_state->setError($element, t('Many @entity_type_plural are called %value. Specify the one you want by appending the id in parentheses, like "@value (@id)".', $params));
+>>>>>>> dev
     }
     elseif (count($entities) > 1) {
       // More helpful error if there are only a few matching entities.
@@ -342,7 +358,11 @@ class EntityAutocomplete extends Textfield {
         $multiples[] = $name . ' (' . $id . ')';
       }
       $params['@id'] = $id;
+<<<<<<< HEAD
       $form_state->setError($element, t('Multiple entities match this reference; "%multiple". Specify the one you want by appending the id in parentheses, like "@value (@id)".', ['%multiple' => strip_tags(implode('", "', $multiples))] + $params));
+=======
+      $form_state->setError($element, t('Multiple @entity_type_plural match this reference; "%multiple". Specify the one you want by appending the id in parentheses, like "@value (@id)".', ['%multiple' => strip_tags(implode('", "', $multiples))] + $params));
+>>>>>>> dev
     }
     else {
       // Take the one and only matching entity.

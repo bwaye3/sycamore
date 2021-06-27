@@ -2,4 +2,7 @@ name: 'Element info test'
 type: module
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

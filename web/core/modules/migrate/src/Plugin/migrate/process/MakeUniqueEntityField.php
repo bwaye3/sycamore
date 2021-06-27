@@ -128,6 +128,10 @@ class MakeUniqueEntityField extends MakeUniqueBase implements ContainerFactoryPl
       ->entityTypeManager
       ->getStorage($this->configuration['entity_type'])
       ->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->condition($this->configuration['field'], $value);
     if (!empty($this->configuration['migrated'])) {
       // Check if each entity is in the ID map.

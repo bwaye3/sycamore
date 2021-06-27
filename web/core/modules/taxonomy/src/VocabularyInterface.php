@@ -25,6 +25,7 @@ interface VocabularyInterface extends ConfigEntityInterface {
   const HIERARCHY_MULTIPLE = 2;
 
   /**
+<<<<<<< HEAD
    * Returns the vocabulary hierarchy.
    *
    * @return int
@@ -53,6 +54,8 @@ interface VocabularyInterface extends ConfigEntityInterface {
   public function setHierarchy($hierarchy);
 
   /**
+=======
+>>>>>>> dev
    * Returns the vocabulary description.
    *
    * @return string

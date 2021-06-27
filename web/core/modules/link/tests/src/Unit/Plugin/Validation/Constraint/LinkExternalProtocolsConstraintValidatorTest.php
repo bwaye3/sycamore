@@ -42,7 +42,11 @@ class LinkExternalProtocolsConstraintValidatorTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Data provider for ::testValidate
+=======
+   * Data provider for ::testValidate.
+>>>>>>> dev
    */
   public function providerValidate() {
     $data = [];
@@ -50,6 +54,10 @@ class LinkExternalProtocolsConstraintValidatorTest extends UnitTestCase {
     // Test allowed protocols.
     $data[] = ['http://www.drupal.org', TRUE];
     $data[] = ['https://www.drupal.org', TRUE];
+<<<<<<< HEAD
+=======
+    // cSpell:disable-next-line
+>>>>>>> dev
     $data[] = ['magnet:?xt=urn:sha1:YNCKHTQCWBTRNJIV4WNAE52SJUQCZO5C', TRUE];
 
     // Invalid protocols.

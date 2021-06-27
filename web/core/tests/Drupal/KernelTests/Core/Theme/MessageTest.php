@@ -14,7 +14,11 @@ class MessageTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['system'];
+=======
+  protected static $modules = ['system'];
+>>>>>>> dev
 
   /**
    * Tests setting messages output.

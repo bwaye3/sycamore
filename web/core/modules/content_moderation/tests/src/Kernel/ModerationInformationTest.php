@@ -19,7 +19,11 @@ class ModerationInformationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'content_moderation',
     'entity_test',
     'user',
@@ -38,7 +42,11 @@ class ModerationInformationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('entity_test_rev');
@@ -79,6 +87,7 @@ class ModerationInformationTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * @covers ::getLatestRevisionId
    * @group legacy
    * @expectedDeprecation Drupal\content_moderation\ModerationInformation::getLatestRevisionId is deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Use RevisionableStorageInterface::getLatestRevisionId() instead. See https://www.drupal.org/node/3087295
@@ -143,6 +152,8 @@ class ModerationInformationTest extends KernelTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * @covers ::isDefaultRevisionPublished
    * @dataProvider isDefaultRevisionPublishedTestCases
    */

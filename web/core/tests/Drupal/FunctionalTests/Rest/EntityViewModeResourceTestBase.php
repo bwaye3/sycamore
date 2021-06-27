@@ -12,7 +12,11 @@ abstract class EntityViewModeResourceTestBase extends EntityResourceTestBase {
    *
    * @todo: Remove 'field_ui' when https://www.drupal.org/node/2867266.
    */
+<<<<<<< HEAD
   public static $modules = ['user', 'field_ui'];
+=======
+  protected static $modules = ['user', 'field_ui'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

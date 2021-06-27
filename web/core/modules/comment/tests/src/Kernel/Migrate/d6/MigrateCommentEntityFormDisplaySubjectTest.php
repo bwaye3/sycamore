@@ -16,12 +16,20 @@ class MigrateCommentEntityFormDisplaySubjectTest extends MigrateDrupal6TestBase 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['comment'];
+=======
+  protected static $modules = ['comment'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installConfig(['comment']);
     $this->executeMigrations([

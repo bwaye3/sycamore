@@ -3,5 +3,8 @@ type: module
 description: 'Allows users to configure available languages.'
 package: Multilingual
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 configure: entity.configurable_language.collection

@@ -36,7 +36,11 @@ class ContextualLinksTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $user = $this->drupalCreateUser([
@@ -71,11 +75,19 @@ class ContextualLinksTest extends WebDriverTestBase {
     $field_ui_prefix = 'admin/structure/types/manage/bundle_with_section_field';
 
     // Enable Layout Builder and overrides.
+<<<<<<< HEAD
     $this->drupalPostForm(
       "$field_ui_prefix/display/default",
       ['layout[enabled]' => TRUE, 'layout[allow_custom]' => TRUE],
       'Save'
     );
+=======
+    $this->drupalGet("{$field_ui_prefix}/display/default");
+    $this->submitForm([
+      'layout[enabled]' => TRUE,
+      'layout[allow_custom]' => TRUE,
+    ], 'Save');
+>>>>>>> dev
 
     $this->drupalGet('node/1/layout');
 

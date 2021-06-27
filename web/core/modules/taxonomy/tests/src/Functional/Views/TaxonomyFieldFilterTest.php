@@ -22,7 +22,11 @@ class TaxonomyFieldFilterTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'language',
     'taxonomy',
     'taxonomy_test_views',
@@ -57,7 +61,11 @@ class TaxonomyFieldFilterTest extends ViewTestBase {
    */
   public $termNames = [];
 
+<<<<<<< HEAD
   public function setUp($import_test_views = TRUE) {
+=======
+  public function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     // Add two new languages.
@@ -103,8 +111,12 @@ class TaxonomyFieldFilterTest extends ViewTestBase {
 
     Views::viewsData()->clear();
 
+<<<<<<< HEAD
     ViewTestData::createTestViews(get_class($this), ['taxonomy_test_views']);
     $this->container->get('router.builder')->rebuild();
+=======
+    ViewTestData::createTestViews(static::class, ['taxonomy_test_views']);
+>>>>>>> dev
   }
 
   /**
@@ -157,7 +169,11 @@ class TaxonomyFieldFilterTest extends ViewTestBase {
     // page, and they are the same. So the title/body string should appear on
     // the page twice as many times as the input count.
     foreach ($counts as $langcode => $count) {
+<<<<<<< HEAD
       $this->assertEqual(substr_count($text, $this->termNames[$langcode]), 2 * $count, 'Translation ' . $langcode . ' has count ' . $count . ' with ' . $message);
+=======
+      $this->assertEquals(2 * $count, substr_count($text, $this->termNames[$langcode]), 'Translation ' . $langcode . ' has count ' . $count . ' with ' . $message);
+>>>>>>> dev
     }
   }
 

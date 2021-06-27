@@ -19,7 +19,11 @@ class BooleanFieldTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'entity_test',
     'field_ui',
     'options',
@@ -48,7 +52,11 @@ class BooleanFieldTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalLogin($this->drupalCreateUser([
@@ -106,18 +114,31 @@ class BooleanFieldTest extends BrowserTestBase {
 
     // Display creation form.
     $this->drupalGet('entity_test/add');
+<<<<<<< HEAD
     $this->assertFieldByName("{$field_name}[value]", '', 'Widget found.');
     $this->assertText($this->field->label(), 'Uses field label by default.');
     $this->assertNoRaw($on, 'Does not use the "On" label.');
+=======
+    $this->assertSession()->fieldValueEquals("{$field_name}[value]", '');
+    $this->assertSession()->pageTextContains($this->field->label());
+    $this->assertNoRaw($on);
+>>>>>>> dev
 
     // Submit and ensure it is accepted.
     $edit = [
       "{$field_name}[value]" => 1,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, t('Save'));
     preg_match('|entity_test/manage/(\d+)|', $this->getUrl(), $match);
     $id = $match[1];
     $this->assertText(t('entity_test @id has been created.', ['@id' => $id]));
+=======
+    $this->submitForm($edit, 'Save');
+    preg_match('|entity_test/manage/(\d+)|', $this->getUrl(), $match);
+    $id = $match[1];
+    $this->assertSession()->pageTextContains('entity_test ' . $id . ' has been created.');
+>>>>>>> dev
 
     // Verify that boolean value is displayed.
     $entity = EntityTest::load($id);
@@ -135,7 +156,11 @@ class BooleanFieldTest extends BrowserTestBase {
       ->save();
 
     $this->drupalGet('entity_test/add');
+<<<<<<< HEAD
     $this->assertFieldByName("{$field_name}[value]", '', 'Widget found.');
+=======
+    $this->assertSession()->fieldValueEquals("{$field_name}[value]", '');
+>>>>>>> dev
     $this->assertRaw($on);
     $this->assertNoText($this->field->label());
 
@@ -144,7 +169,12 @@ class BooleanFieldTest extends BrowserTestBase {
     $edit = [
       'settings[on_label]' => $on,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('entity_test/structure/entity_test/fields/entity_test.entity_test.' . $field_name, $edit, t('Save settings'));
+=======
+    $this->drupalGet('entity_test/structure/entity_test/fields/entity_test.entity_test.' . $field_name);
+    $this->submitForm($edit, 'Save settings');
+>>>>>>> dev
     // Check if we see the updated labels in the creation form.
     $this->drupalGet('entity_test/add');
     $this->assertRaw($on);
@@ -155,6 +185,7 @@ class BooleanFieldTest extends BrowserTestBase {
     $this->drupalGet($fieldEditUrl);
 
     // Click on the widget settings button to open the widget settings form.
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, [], $field_name . "_settings_edit");
 
     $this->assertText(
@@ -166,10 +197,21 @@ class BooleanFieldTest extends BrowserTestBase {
     $edit = ['fields[' . $field_name . '][settings_edit_form][settings][display_label]' => 1];
     $this->drupalPostForm(NULL, $edit, $field_name . "_plugin_settings_update");
     $this->drupalPostForm(NULL, NULL, 'Save');
+=======
+    $this->submitForm([], $field_name . "_settings_edit");
+
+    $this->assertSession()->pageTextContains('Use field label instead of the "On" label as the label.');
+
+    // Enable setting.
+    $edit = ['fields[' . $field_name . '][settings_edit_form][settings][display_label]' => 1];
+    $this->submitForm($edit, $field_name . "_plugin_settings_update");
+    $this->submitForm([], 'Save');
+>>>>>>> dev
 
     // Go again to the form display page and check if the setting
     // is stored and has the expected effect.
     $this->drupalGet($fieldEditUrl);
+<<<<<<< HEAD
     $this->assertText('Use field label: Yes', 'Checking the display settings checkbox updated the value.');
 
     $this->drupalPostForm(NULL, [], $field_name . "_settings_edit");
@@ -177,16 +219,31 @@ class BooleanFieldTest extends BrowserTestBase {
       'Use field label instead of the "On" label as the label.',
       t('Display setting checkbox is available')
     );
+=======
+    $this->assertSession()->pageTextContains('Use field label: Yes');
+
+    $this->submitForm([], $field_name . "_settings_edit");
+    $this->assertSession()->pageTextContains('Use field label instead of the "On" label as the label.');
+>>>>>>> dev
     $this->getSession()->getPage()->hasCheckedField('fields[' . $field_name . '][settings_edit_form][settings][display_label]');
 
     // Test the boolean field settings.
     $this->drupalGet('entity_test/structure/entity_test/fields/entity_test.entity_test.' . $field_name);
+<<<<<<< HEAD
     $this->assertFieldById('edit-settings-on-label', $on);
     $this->assertFieldById('edit-settings-off-label', $off);
   }
 
   /**
    * Test field access.
+=======
+    $this->assertSession()->fieldValueEquals('edit-settings-on-label', $on);
+    $this->assertSession()->fieldValueEquals('edit-settings-off-label', $off);
+  }
+
+  /**
+   * Tests field access.
+>>>>>>> dev
    */
   public function testFormAccess() {
     $on = 'boolean_on';
@@ -230,6 +287,7 @@ class BooleanFieldTest extends BrowserTestBase {
 
     // Display creation form.
     $this->drupalGet('entity_test/add');
+<<<<<<< HEAD
     $this->assertFieldByName("{$field_name}[value]");
 
     // Should be posted OK.
@@ -237,17 +295,35 @@ class BooleanFieldTest extends BrowserTestBase {
     preg_match('|entity_test/manage/(\d+)|', $this->getUrl(), $match);
     $id = $match[1];
     $this->assertText(t('entity_test @id has been created.', ['@id' => $id]));
+=======
+    $this->assertSession()->fieldExists("{$field_name}[value]");
+
+    // Should be posted OK.
+    $this->submitForm([], 'Save');
+    preg_match('|entity_test/manage/(\d+)|', $this->getUrl(), $match);
+    $id = $match[1];
+    $this->assertSession()->pageTextContains('entity_test ' . $id . ' has been created.');
+>>>>>>> dev
 
     // Tell the test module to disable access to the field.
     \Drupal::state()->set('field.test_boolean_field_access_field', $field_name);
     $this->drupalGet('entity_test/add');
     // Field should not be there anymore.
+<<<<<<< HEAD
     $this->assertNoFieldByName("{$field_name}[value]");
     // Should still be able to post the form.
     $this->drupalPostForm(NULL, [], t('Save'));
     preg_match('|entity_test/manage/(\d+)|', $this->getUrl(), $match);
     $id = $match[1];
     $this->assertText(t('entity_test @id has been created.', ['@id' => $id]));
+=======
+    $this->assertSession()->fieldNotExists("{$field_name}[value]");
+    // Should still be able to post the form.
+    $this->submitForm([], 'Save');
+    preg_match('|entity_test/manage/(\d+)|', $this->getUrl(), $match);
+    $id = $match[1];
+    $this->assertSession()->pageTextContains('entity_test ' . $id . ' has been created.');
+>>>>>>> dev
   }
 
 }

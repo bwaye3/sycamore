@@ -21,7 +21,11 @@ use Drupal\Tests\SessionTestTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Yaml\Yaml as SymfonyYaml;
+<<<<<<< HEAD
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
+=======
+use Drupal\Core\Routing\RouteObjectInterface;
+>>>>>>> dev
 use Symfony\Component\Routing\Route;
 
 /**
@@ -47,6 +51,7 @@ trait FunctionalTestSetupTrait {
   protected $classLoader;
 
   /**
+<<<<<<< HEAD
    * The config directories used in this test.
    *
    * @deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Use
@@ -57,6 +62,8 @@ trait FunctionalTestSetupTrait {
   protected $configDirectories = [];
 
   /**
+=======
+>>>>>>> dev
    * The flag to set 'apcu_ensure_unique_prefix' setting.
    *
    * Wide use of a unique prefix can lead to problems with memory, if tests are
@@ -112,6 +119,19 @@ trait FunctionalTestSetupTrait {
       'value' => $this->apcuEnsureUniquePrefix,
       'required' => TRUE,
     ];
+<<<<<<< HEAD
+=======
+    // Disable fetching of advisories during tests to avoid outbound calls. This
+    // cannot be set in ::initConfig() because it would not stop these calls
+    // during install. Tests that need to have the security advisories
+    // functionality enabled should override this method and unset this
+    // variable.
+    // @see \Drupal\Tests\system\Functional\SecurityAdvisories\SecurityAdvisoryTest::writeSettings()
+    $settings['config']['system.advisories']['enabled'] = (object) [
+      'value' => FALSE,
+      'required' => TRUE,
+    ];
+>>>>>>> dev
     $this->writeSettings($settings);
     // Allow for test-specific overrides.
     $settings_testing_file = DRUPAL_ROOT . '/' . $this->originalSite . '/settings.testing.php';
@@ -120,7 +140,11 @@ trait FunctionalTestSetupTrait {
       copy($settings_testing_file, $directory . '/settings.testing.php');
       // Add the name of the testing class to settings.php and include the
       // testing specific overrides.
+<<<<<<< HEAD
       file_put_contents($directory . '/settings.php', "\n\$test_class = '" . get_class($this) . "';\n" . 'include DRUPAL_ROOT . \'/\' . $site_path . \'/settings.testing.php\';' . "\n", FILE_APPEND);
+=======
+      file_put_contents($directory . '/settings.php', "\n\$test_class = '" . static::class . "';\n" . 'include DRUPAL_ROOT . \'/\' . $site_path . \'/settings.testing.php\';' . "\n", FILE_APPEND);
+>>>>>>> dev
     }
     $settings_services_file = DRUPAL_ROOT . '/' . $this->originalSite . '/testing.services.yml';
     if (!file_exists($settings_services_file)) {
@@ -198,7 +222,11 @@ trait FunctionalTestSetupTrait {
    * @see TestBase::prepareEnvironment()
    * @see TestBase::restoreEnvironment()
    *
+<<<<<<< HEAD
    * @todo Fix https://www.drupal.org/node/2021959 so that module enable/disable
+=======
+   * @todo Fix https://www.drupal.org/node/2941757 so that module enable/disable
+>>>>>>> dev
    *   changes are immediately reflected in \Drupal::getContainer(). Until then,
    *   tests can invoke this workaround when requiring services from newly
    *   enabled modules to be immediately available in the same request.
@@ -221,7 +249,10 @@ trait FunctionalTestSetupTrait {
    *
    * @see \Drupal\Core\Test\FunctionalTestSetupTrait::rebuildAll()
    * @see \Drupal\Tests\BrowserTestBase::installDrupal()
+<<<<<<< HEAD
    * @see \Drupal\simpletest\WebTestBase::setUp()
+=======
+>>>>>>> dev
    */
   protected function resetAll() {
     // Clear all database and static caches and rebuild data structures.
@@ -301,7 +332,10 @@ trait FunctionalTestSetupTrait {
    */
   protected function initSettings() {
     Settings::initialize(DRUPAL_ROOT, $this->siteDirectory, $this->classLoader);
+<<<<<<< HEAD
     $this->configDirectories['sync'] = Settings::get('config_sync_directory');
+=======
+>>>>>>> dev
 
     // After writing settings.php, the installer removes write permissions
     // from the site directory. To allow drupal_generate_test_ua() to write
@@ -389,9 +423,12 @@ trait FunctionalTestSetupTrait {
    */
   protected function initKernel(Request $request) {
     $this->kernel = DrupalKernel::createFromRequest($request, $this->classLoader, 'prod', TRUE);
+<<<<<<< HEAD
     // Force the container to be built from scratch instead of loaded from the
     // disk. This forces us to not accidentally load the parent site.
     $this->kernel->invalidateContainer();
+=======
+>>>>>>> dev
     $this->kernel->boot();
     // Add our request to the stack and route context.
     $request->attributes->set(RouteObjectInterface::ROUTE_OBJECT, new Route('<none>'));
@@ -411,6 +448,12 @@ trait FunctionalTestSetupTrait {
    *
    * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
    *   The container.
+<<<<<<< HEAD
+=======
+   *
+   * @throws \Exception
+   *   If the test case does not initialize default theme.
+>>>>>>> dev
    */
   protected function installDefaultThemeFromClassProperty(ContainerInterface $container) {
     // Use the install profile to determine the default theme if configured and
@@ -431,11 +474,15 @@ trait FunctionalTestSetupTrait {
 
     // Require a default theme to be specified at this point.
     if (!isset($this->defaultTheme)) {
+<<<<<<< HEAD
       // For backwards compatibility, tests using the 'testing' install profile
       // on Drupal 8 automatically get 'classy' set, and other profiles use
       // 'stark'.
       @trigger_error('Drupal\Tests\BrowserTestBase::$defaultTheme is required in drupal:9.0.0 when using an install profile that does not set a default theme. See https://www.drupal.org/node/3083055, which includes recommendations on which theme to use.', E_USER_DEPRECATED);
       $this->defaultTheme = $profile === 'testing' ? 'classy' : 'stark';
+=======
+      throw new \Exception('Drupal\Tests\BrowserTestBase::$defaultTheme is required. See https://www.drupal.org/node/3083055, which includes recommendations on which theme to use.');
+>>>>>>> dev
     }
 
     // Ensure the default theme is installed.
@@ -462,7 +509,11 @@ trait FunctionalTestSetupTrait {
    *   The container.
    */
   protected function installModulesFromClassProperty(ContainerInterface $container) {
+<<<<<<< HEAD
     $class = get_class($this);
+=======
+    $class = static::class;
+>>>>>>> dev
     $modules = [];
     while ($class) {
       if (property_exists($class, 'modules')) {
@@ -660,7 +711,10 @@ trait FunctionalTestSetupTrait {
     $this->container = NULL;
 
     // Unset globals.
+<<<<<<< HEAD
     unset($GLOBALS['config_directories']);
+=======
+>>>>>>> dev
     unset($GLOBALS['config']);
     unset($GLOBALS['conf']);
 

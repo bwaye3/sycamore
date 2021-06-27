@@ -5,4 +5,8 @@ sitemap.page: # The first plugin ID
 sitemap.settings: # The second plugin ID
   title: 'Settings'
   route_name: sitemap.settings
+<<<<<<< HEAD
   base_route: sitemap.page
+=======
+  base_route: sitemap.page
+>>>>>>> dev

@@ -1,5 +1,9 @@
 sitemap.settings:
   title: 'Sitemap'
+<<<<<<< HEAD
   base_route_name: sitemap.page
+=======
+  base_route_name: sitemap.settings
+>>>>>>> dev
   names:
     - sitemap.settings

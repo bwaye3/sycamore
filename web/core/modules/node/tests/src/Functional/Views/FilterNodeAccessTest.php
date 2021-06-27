@@ -22,7 +22,11 @@ class FilterNodeAccessTest extends NodeTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['node_access_test'];
+=======
+  protected static $modules = ['node_access_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -39,7 +43,11 @@ class FilterNodeAccessTest extends NodeTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->drupalCreateContentType(['type' => 'article', 'name' => 'Article']);
@@ -75,7 +83,11 @@ class FilterNodeAccessTest extends NodeTestBase {
         ];
 
         $node = $this->drupalCreateNode($settings);
+<<<<<<< HEAD
         $this->assertEqual($is_private, (int) $node->private->value, 'The private status of the node was properly set in the node_access_test table.');
+=======
+        $this->assertEquals($is_private, (int) $node->private->value, 'The private status of the node was properly set in the node_access_test table.');
+>>>>>>> dev
       }
     }
   }
@@ -87,18 +99,31 @@ class FilterNodeAccessTest extends NodeTestBase {
     $this->drupalLogin($this->users[0]);
     $this->drupalGet('test_filter_node_access');
     // Test that the private node of the current user is shown.
+<<<<<<< HEAD
     $this->assertText('Private Article created by ' . $this->users[0]->getAccountName());
     // Test that the private node of the other use isn't shown.
     $this->assertNoText('Private Article created by ' . $this->users[1]->getAccountName());
     // Test that both public nodes are shown.
     $this->assertText('Public Article created by ' . $this->users[0]->getAccountName());
     $this->assertText('Public Article created by ' . $this->users[1]->getAccountName());
+=======
+    $this->assertSession()->pageTextContains('Private Article created by ' . $this->users[0]->getAccountName());
+    // Test that the private node of the other use isn't shown.
+    $this->assertNoText('Private Article created by ' . $this->users[1]->getAccountName());
+    // Test that both public nodes are shown.
+    $this->assertSession()->pageTextContains('Public Article created by ' . $this->users[0]->getAccountName());
+    $this->assertSession()->pageTextContains('Public Article created by ' . $this->users[1]->getAccountName());
+>>>>>>> dev
 
     // Switch users and test the other private node is shown.
     $this->drupalLogin($this->users[1]);
     $this->drupalGet('test_filter_node_access');
     // Test that the private node of the current user is shown.
+<<<<<<< HEAD
     $this->assertText('Private Article created by ' . $this->users[1]->getAccountName());
+=======
+    $this->assertSession()->pageTextContains('Private Article created by ' . $this->users[1]->getAccountName());
+>>>>>>> dev
     // Test that the private node of the other use isn't shown.
     $this->assertNoText('Private Article created by ' . $this->users[0]->getAccountName());
 
@@ -111,8 +136,13 @@ class FilterNodeAccessTest extends NodeTestBase {
     $this->drupalGet('test_filter_node_access');
     $this->assertNoText('Private Article created by ' . $this->users[0]->getAccountName());
     $this->assertNoText('Private Article created by ' . $this->users[1]->getAccountName());
+<<<<<<< HEAD
     $this->assertText('Public Article created by ' . $this->users[0]->getAccountName());
     $this->assertText('Public Article created by ' . $this->users[1]->getAccountName());
+=======
+    $this->assertSession()->pageTextContains('Public Article created by ' . $this->users[0]->getAccountName());
+    $this->assertSession()->pageTextContains('Public Article created by ' . $this->users[1]->getAccountName());
+>>>>>>> dev
 
     // Test that a user with bypass node access can see all nodes.
     $bypass_access_user = $this->drupalCreateUser([
@@ -121,10 +151,17 @@ class FilterNodeAccessTest extends NodeTestBase {
     ]);
     $this->drupalLogin($bypass_access_user);
     $this->drupalGet('test_filter_node_access');
+<<<<<<< HEAD
     $this->assertText('Private Article created by ' . $this->users[0]->getAccountName());
     $this->assertText('Private Article created by ' . $this->users[1]->getAccountName());
     $this->assertText('Public Article created by ' . $this->users[0]->getAccountName());
     $this->assertText('Public Article created by ' . $this->users[1]->getAccountName());
+=======
+    $this->assertSession()->pageTextContains('Private Article created by ' . $this->users[0]->getAccountName());
+    $this->assertSession()->pageTextContains('Private Article created by ' . $this->users[1]->getAccountName());
+    $this->assertSession()->pageTextContains('Public Article created by ' . $this->users[0]->getAccountName());
+    $this->assertSession()->pageTextContains('Public Article created by ' . $this->users[1]->getAccountName());
+>>>>>>> dev
   }
 
 }

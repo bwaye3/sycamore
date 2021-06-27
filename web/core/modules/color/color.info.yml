@@ -3,4 +3,7 @@ type: module
 description: 'Allows users to change the color scheme of compatible themes.'
 package: Core
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

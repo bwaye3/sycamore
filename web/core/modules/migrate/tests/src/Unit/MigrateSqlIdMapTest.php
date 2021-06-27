@@ -56,7 +56,11 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->database = $this->getDatabase([]);
   }
 
@@ -110,7 +114,11 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
     $migration
       ->method('getDestinationPlugin')
       ->willReturn($plugin);
+<<<<<<< HEAD
     $event_dispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+=======
+    $event_dispatcher = $this->createMock('Symfony\Contracts\EventDispatcher\EventDispatcherInterface');
+>>>>>>> dev
 
     $id_map = new TestSqlIdMap($this->database, [], 'sql', [], $migration, $event_dispatcher);
     $migration
@@ -194,7 +202,11 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
     $message = $this->createMock('Drupal\migrate\MigrateMessageInterface');
     $id_map = $this->getIdMap();
     $id_map->setMessage($message);
+<<<<<<< HEAD
     $this->assertAttributeEquals($message, 'message', $id_map);
+=======
+    $this->assertEquals($message, $id_map->message);
+>>>>>>> dev
   }
 
   /**
@@ -341,6 +353,7 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests the SQL ID map get message iterator method.
    *
    * @group legacy
@@ -352,6 +365,8 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests the getRowBySource method.
    */
   public function testGetRowBySource() {
@@ -561,6 +576,7 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests lookupDestinationId().
    *
    * @group legacy
@@ -586,6 +602,8 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests the getRowByDestination method.
    */
   public function testGetRowByDestination() {

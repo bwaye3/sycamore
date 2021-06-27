@@ -4,6 +4,7 @@
  * Styling for Media Library.
  */
 
+<<<<<<< HEAD
 .media-library-wrapper {
   display: flex;
   margin: -1em;
@@ -22,11 +23,43 @@
   border-bottom: 1px solid #ccc;
   background-color: #e6e5e1;
   line-height: 1;
+=======
+@import "../base/variables.pcss.css";
+
+/**
+ * Negative margins compensate for modal dialog padding and compensate for
+ * positioning that would otherwise hide the active tab indicator on the left.
+ */
+.media-library-wrapper {
+  display: flex;
+  margin: -1rem -1.5rem -1rem -1rem; /* LTR */
+}
+[dir="rtl"] .media-library-wrapper {
+  margin-right: -1em;
+  margin-left: -1.5em;
+}
+
+.media-library-wrapper .messages-list,
+.media-library-wrapper .messages {
+  margin-top: 0;
+  margin-bottom: var(--space-l);
+}
+
+.media-library-menu {
+  position: relative;
+  display: block;
+  width: var(--vertical-tabs-menu-width);
+  margin: 0;
+  padding-top: var(--vertical-tabs-menu-item-shadow-extraspace);
+  list-style: none;
+  color: var(--color-text);
+>>>>>>> dev
 }
 [dir="rtl"] .media-library-menu {
   margin: 0;
 }
 
+<<<<<<< HEAD
 /**
  * @todo Use a class instead of the li element.
  *   https://www.drupal.org/project/drupal/issues/3029227
@@ -35,11 +68,32 @@
   display: block;
   padding: 0;
   list-style: none;
+=======
+.media-library-menu__item {
+  overflow: hidden;
+  margin: var(--vertical-tabs-menu-item--top-margin) var(--vertical-tabs-menu-item--right-margin) var(--vertical-tabs-menu-item--bottom-margin) var(--vertical-tabs-menu-item--left-margin); /* LTR */
+  padding: var(--vertical-tabs-menu-item-shadow-extraspace) 0;
+}
+
+[dir="rtl"] .media-library-menu__item {
+  margin-right: var(--vertical-tabs-menu-item--left-margin);
+  margin-left: var(--vertical-tabs-menu-item--right-margin);
+}
+
+.media-library-menu__item::before {
+  z-index: var(--vertical-tabs-menu--z-index); /* The line should be kept above the vertical tabs menu link to keep it visible even if the link is hovered and gets the 'hover' background color. */
+  display: block;
+  width: 100%;
+  margin-top: calc(var(--vertical-tabs-menu-separator-size) * -1);
+  content: "";
+  border-top: var(--vertical-tabs-menu-separator-size) solid var(--vertical-tabs-menu-separator-color);
+>>>>>>> dev
 }
 
 .media-library-menu__link {
   position: relative;
   display: block;
+<<<<<<< HEAD
   box-sizing: border-box;
   padding: 15px;
   text-decoration: none;
@@ -74,22 +128,138 @@
   margin-left: -1px;
   border-right: 0;
   border-left: 1px solid #fcfcfa;
+=======
+  margin-top: calc(var(--vertical-tabs-border-size) * -1);
+  padding: var(--space-s) var(--space-s) var(--space-s) calc(var(--space-l) - var(--vertical-tabs-menu-link--active-border-size)); /* LTR */
+  text-decoration: none;
+  word-wrap: break-word;
+  hyphens: auto;
+  color: var(--color-text);
+  border: var(--vertical-tabs-border-size) solid transparent;
+  border-width: var(--vertical-tabs-border-size) 0 var(--vertical-tabs-border-size) var(--vertical-tabs-menu-link--active-border-size); /* LTR */
+  border-radius: var(--vertical-tabs-border-radius) 0 0 var(--vertical-tabs-border-radius); /* LTR */
+}
+
+[dir="rtl"] .media-library-menu__link {
+  padding-right: calc(var(--space-l) - var(--vertical-tabs-menu-link--active-border-size));
+  padding-left: var(--space-s);
+  border-width: var(--vertical-tabs-border-size) var(--vertical-tabs-menu-link--active-border-size) var(--vertical-tabs-border-size) 0;
+  border-radius: 0 var(--vertical-tabs-border-radius) var(--vertical-tabs-border-radius) 0;
+}
+
+@media screen and (-ms-high-contrast: active) {
+  .media-library-menu__link {
+    border-color: transparent;
+  }
+}
+
+/* Menu link states. */
+.media-library-menu__link:focus {
+  z-index: calc(var(--vertical-tabs-menu--z-index) + 3); /* Focus state should be on the highest level to make the focus effect be fully visible. This also means that it should have bigger z-index than the selected link. */
+  text-decoration: none;
+  box-shadow: none;
+}
+
+.media-library-menu__link:hover {
+  text-decoration: none;
+  color: var(--color-absolutezero);
+  /* These borders are necessary to replace the dividing lines while in the hover state. */
+  border-top: var(--vertical-tabs-menu-separator-size) solid var(--vertical-tabs-menu-separator-color);
+  border-bottom: var(--vertical-tabs-menu-separator-size) solid var(--vertical-tabs-menu-separator-color);
+  background: var(--color-bgblue-hover);
+}
+
+/* This pseudo element provides the background for the hover state. */
+.media-library-menu__link::before {
+  position: absolute;
+  z-index: calc(var(--vertical-tabs-menu--z-index) - 1); /* This should be on a lower level than the menu-item separator lines. */
+  top: calc(var(--vertical-tabs-border-size) * -1);
+  right: 0; /* LTR */
+  bottom: calc(var(--vertical-tabs-border-size) * -1);
+  left: calc(var(--vertical-tabs-menu-link--active-border-size) * -1); /* LTR */
+  content: "";
+  pointer-events: none;
+  background-clip: padding-box;
+}
+[dir="rtl"] .media-library-menu__link::before {
+  right: calc(var(--vertical-tabs-menu-link--active-border-size) * -1);
+  left: 0;
+}
+
+.media-library-menu__link:focus::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: calc(var(--vertical-tabs-border-size) * -1) calc(var(--vertical-tabs-menu-link--active-border-size) * -1);
+  content: "";
+  pointer-events: none;
+  border: var(--vertical-tabs-menu-link-focus-border-size) solid var(--color-focus);
+  border-radius: var(--vertical-tabs-border-radius);
+}
+
+.media-library-menu__link.active {
+  z-index: calc(var(--vertical-tabs-menu--z-index) + 2); /* The selected menu link should be on a higher level than the white masking line that hides the gray separator. */
+  color: var(--color-absolutezero);
+  border-color: var(--vertical-tabs-border-color) transparent;
+  background-color: var(--color-white);
+  box-shadow: var(--vertical-tabs-shadow);
+}
+
+.media-library-menu__link.active:hover {
+  color: var(--color-absolutezero-hover);
+  background-color: var(--color-bgblue-hover);
+}
+
+.media-library-menu__link.active::before {
+  z-index: 1; /* The blue active-tab indication should be on a higher level than the green focus border. */
+  border-left: var(--vertical-tabs-menu-link--active-border-size) solid var(--vertical-tabs-menu-link--active-border-color); /* LTR */
+  border-radius: var(--base-border-radius) 0 0 var(--base-border-radius); /* LTR */
+}
+[dir=rtl] .media-library-menu__link.active::before {
+  border-right: var(--vertical-tabs-menu-link--active-border-size) solid var(--vertical-tabs-menu-link--active-border-color);
+  border-left: 0;
+  border-radius: 0 var(--base-border-radius) var(--base-border-radius) 0;
+}
+
+.media-library-menu__link.active:hover::before {
+  background: none;
+>>>>>>> dev
 }
 
 .media-library-content {
   width: 100%;
   padding: 1em;
+<<<<<<< HEAD
   border-left: 1px solid #b3b2ad; /* LTR */
   outline: none;
 }
 [dir="rtl"] .media-library-content {
   border-right: 1px solid #b3b2ad;
+=======
+  outline: none;
+}
+
+.media-library-menu + .media-library-content {
+  z-index: var(--vertical-tabs-menu--z-index);
+  border-left: var(--vertical-tabs-border); /* LTR */
+  box-shadow: var(--vertical-tabs-shadow);
+}
+
+[dir="rtl"] .media-library-menu + .media-library-content {
+  border-right: var(--vertical-tabs-border);
+>>>>>>> dev
   border-left: 0;
 }
 
 /* Generic media add form styles. */
 .media-library-add-form--without-input .form-item {
+<<<<<<< HEAD
   margin: 0 0 1em;
+=======
+  margin-right: 1rem;
+>>>>>>> dev
 }
 
 /**
@@ -104,25 +274,79 @@
   outline: none;
 }
 
+<<<<<<< HEAD
 .media-library-add-form__input-wrapper {
   padding: 16px;
   border: 1px solid #bfbfbf;
   border-radius: 2px;
   background: #fcfcfa;
+=======
+/**
+ * This Media Library form is an exception to the extrasmall button pattern.
+ * Additional padding is needed to accommodate the remove button icon. The
+ * margin is adjusted for alignment within the media library dialog.
+ */
+.media-library-add-form__added-media .media-library-add-form__remove-button.button--extrasmall {
+  margin: var(--space-xs) 0; /* LTR */
+  /* Left padding is double the background size of the button icon. */
+  padding: calc(calc(var(--space-xs) / 2) - 1px) calc(var(--space-s) - 1px) calc(calc(var(--space-xs) / 2) - 1px) calc(var(--space-s) * 2);
+}
+
+/* This is needed to override the default extrasmall button left margin. */
+[dir="rtl"] .media-library-add-form__added-media .media-library-add-form__remove-button.button--extrasmall {
+  margin-left: 0;
+}
+
+.media-library-add-form__input-wrapper {
+  padding: var(--space-xs) var(--space-l) var(--space-l) var(--space-l);
+  border: var(--details-border-size) solid var(--details-border-color);
+  border-radius: var(--base-border-radius);
+  background-color: var(--color-white);
+  box-shadow: var(--details-box-shadow);
+>>>>>>> dev
 }
 
 /* Style the media add upload form. */
 .media-library-add-form--upload.media-library-add-form--without-input .form-item-upload {
   margin-bottom: 0;
 }
+<<<<<<< HEAD
+=======
+.media-library-add-form--upload.media-library-add-form--with-input .form-managed-file__main,
+.media-library-add-form--upload.media-library-add-form--with-input .form-managed-file.no-upload {
+  display: block;
+}
+
+/* Adjust the focus border on this element so it is not too close to buttons. */
+.media-library-add-form__added-media:focus {
+  box-shadow: 0 0 0 calc(var(--focus-border-offset-size) + 2px) var(--color-white), 0 0 0 calc(var(--focus-border-size) + var(--focus-border-offset-size) + 2px) var(--color-focus);
+}
+>>>>>>> dev
 
 .media-library-add-form .file-upload-help {
   margin: 8px 0 0;
 }
 
+<<<<<<< HEAD
 /* Style the media add oEmbed form. */
 .media-library-add-form--oembed .media-library-add-form__input-wrapper {
   display: flex;
+=======
+/* Align remove buttons with with Save button and compensate for IE scrollbar and focus padding. */
+@media all and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .ui-dialog > .ui-dialog-content {
+    padding-right: calc(var(--space-s) - calc(var(--focus-border-size) + var(--focus-border-offset-size) + 2px));
+  }
+  [dir="rtl"] .ui-dialog > .ui-dialog-content {
+    padding-left: calc(var(--space-s) - calc(var(--focus-border-size) + var(--focus-border-offset-size) + 2px));
+  }
+}
+
+/* Style the media add oEmbed form. */
+.media-library-add-form--oembed .media-library-add-form__input-wrapper {
+  display: flex;
+  align-items: center;
+>>>>>>> dev
 }
 
 @media screen and (max-width: 37.5em) {
@@ -139,6 +363,7 @@
   width: 100%;
 }
 
+<<<<<<< HEAD
 /**
  * @todo Remove .button when styles are moved to the seven theme in
  *   https://www.drupal.org/project/drupal/issues/2980769
@@ -147,6 +372,8 @@
   align-self: center;
 }
 
+=======
+>>>>>>> dev
 /* Media add form selection styles. */
 .media-library-add-form__selected-media {
   margin-top: 1em;
@@ -177,7 +404,10 @@
 .media-library-views-form,
 .media-library-selection,
 .media-library-add-form__selected-media .details-wrapper,
+<<<<<<< HEAD
 .media-library-views-form__bulk_form,
+=======
+>>>>>>> dev
 .media-library-view .form--inline {
   display: flex;
   flex-wrap: wrap;
@@ -274,10 +504,43 @@
 }
 
 /**
+<<<<<<< HEAD
 * The media library item container receives screen reader focus when items are
 * removed. Since it is not an interactive element, it does not need an
 * outline.
 */
+=======
+ * Ajax throbbers inside a media library item.
+ */
+.media-library-item .ajax-progress.ajax-progress.ajax-progress {
+  position: absolute;
+  z-index: calc(var(--vertical-tabs-menu--z-index) + 1);
+  top: 50%;
+  left: 50%;
+  box-sizing: border-box;
+  width: 3rem; /* 56px */
+  height: 3rem;
+  margin: -1.5rem;
+  border: var(--input-border-size) solid var(--jui-dropdown-border-color);
+  border-radius: 3.5rem;
+  background: var(--color-white);
+  box-shadow: 0 0.25rem 0.625rem var(--jui-dropdown-shadow-color);
+}
+.media-library-item .ajax-progress__throbber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin: -0.875rem;
+  border: 3px solid var(--color-absolutezero);
+  border-right: 3px dotted transparent;
+}
+.media-library-item .ajax-progress__message {
+  display: none;
+}
+
+>>>>>>> dev
 .media-library-item--grid {
   justify-content: center;
   box-sizing: border-box;
@@ -298,6 +561,25 @@
   transition: border-color 0.2s, color 0.2s, background 0.2s;
   pointer-events: none;
   border: 1px solid #dbdbdb;
+<<<<<<< HEAD
+=======
+  border-radius: 2px;
+  box-shadow: var(--details-box-shadow);
+}
+
+/**
+* The media library grid item focus border is moved to a child element to
+* improve padding.
+*/
+.media-library-item--grid:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.media-library-item--grid:focus .media-library-item__preview-wrapper {
+  outline: var(--focus-outline);
+  box-shadow: var(--focus-box-shadow);
+>>>>>>> dev
 }
 
 /* Media library widget weight field styles. */
@@ -396,12 +678,33 @@
   top: 5px;
   left: 5px;
   border-width: 3px;
+<<<<<<< HEAD
   border-color: #40b6ff;
   border-radius: 3px;
 }
 
 .media-library-item--grid.checked:before {
   border-color: #0076c0;
+=======
+  border-radius: 3px;
+}
+.media-library-item--grid.is-hover:before,
+.media-library-item--grid.checked.is-hover:before {
+  border-color: var(--color-absolutezero-hover);
+}
+
+.media-library-item--grid.is-focus:before {
+  border-color: var(--color-focus);
+}
+
+.media-library-item--grid.checked:before {
+  border-color: var(--button--focus-border-color);
+}
+
+.media-library-item--grid .form-boolean--type-checkbox:checked {
+  border-color: var(--button--focus-border-color);
+  background-color: var(--button--focus-border-color);
+>>>>>>> dev
 }
 
 .media-library-item__click-to-select-checkbox {
@@ -440,9 +743,27 @@
 /* Media library entity view display styles. */
 .media-library-item__preview {
   padding-bottom: 34px;
+<<<<<<< HEAD
   cursor: move;
 }
 
+=======
+}
+
+.field--widget-media-library-widget .media-library-item__preview {
+  cursor: move;
+}
+
+.field--widget-media-library-widget .media-library-item__preview img {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.field--widget-media-library-widget .js-media-library-item:only-child .media-library-item__preview {
+  cursor: inherit;
+}
+
+>>>>>>> dev
 .media-library-item__status {
   position: absolute;
   top: 40px;
@@ -471,6 +792,7 @@
 }
 
 .media-library-item__name {
+<<<<<<< HEAD
   font-size: 14px;
 }
 
@@ -480,6 +802,14 @@
   margin: 2px;
   white-space: nowrap;
   text-overflow: ellipsis;
+=======
+  display: block;
+  overflow: hidden;
+  margin: calc(var(--space-xs) / 2) var(--space-xs);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 14px;
+>>>>>>> dev
 }
 
 .media-library-item__attributes:hover .media-library-item__name,
@@ -503,6 +833,7 @@
   position: relative;
 }
 
+<<<<<<< HEAD
 /**
  * @todo Change to .media-library-open-button when styles are moved to the
  *   seven theme in https://www.drupal.org/project/drupal/issues/2980769
@@ -524,6 +855,17 @@
 [dir="rtl"] .media-library-widget__toggle-weight {
   right: auto;
   left: 5px;
+=======
+.media-library-widget__toggle-weight.media-library-widget__toggle-weight {
+  position: absolute;
+  top: var(--space-s);
+  right: var(--space-m); /* LTR */
+  text-decoration: none;
+}
+[dir="rtl"] .media-library-widget__toggle-weight.media-library-widget__toggle-weight {
+  right: auto;
+  left: var(--space-m);
+>>>>>>> dev
 }
 
 /* Add negative margin for flex grid. */
@@ -553,15 +895,24 @@
   z-index: 1;
   top: 10px;
   overflow: hidden;
+<<<<<<< HEAD
   width: 21px;
   height: 21px;
+=======
+  width: 24px;
+  height: 24px;
+>>>>>>> dev
   margin: 5px;
   padding: 0;
   transition: 0.2s border-color;
   color: transparent;
+<<<<<<< HEAD
   border: 2px solid #ccc;
   border-radius: 20px;
   background-size: 13px;
+=======
+  background-size: 12px;
+>>>>>>> dev
   text-shadow: none;
   font-size: 0;
 }
@@ -583,8 +934,20 @@
 }
 
 .media-library-item__edit {
+<<<<<<< HEAD
   background: url("../../../../misc/icons/787878/pencil.svg") #fff center no-repeat;
   background-size: 13px;
+=======
+  /* !important to override button class border. */
+  border: 1px solid var(--color-lightgray) !important;
+  background-image: url("../../images/icons/545560/pencil.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px;
+}
+.media-library-item__edit:active {
+  background-image: url("../../../../misc/icons/ffffff/pencil.svg");
+>>>>>>> dev
 }
 .media-library-item__remove,
 .media-library-item__remove.button,
@@ -593,6 +956,7 @@
 .media-library-item__remove.button:disabled:active,
 .media-library-item__remove.button:hover,
 .media-library-item__remove.button:focus {
+<<<<<<< HEAD
   background: url("../../../../misc/icons/787878/ex.svg") #fff center no-repeat;
   background-size: 13px;
 }
@@ -634,6 +998,29 @@
  */
 .media-library-add-form__media:first-child .media-library-add-form__remove-button[type="submit"] {
   top: 5px;
+=======
+  /* !important to override button class border. */
+  border: 1px solid var(--color-lightgray) !important;
+  background-image: url("../../../../misc/icons/545560/ex.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px;
+}
+
+.media-library-item__remove:active,
+.media-library-item__remove.button:active,
+.media-library-item__remove.button:disabled:active {
+  /* !important to override button class border. */
+  border-color: var(--color-absolutezero) !important;
+  background-image: url("../../../../misc/icons/ffffff/ex.svg");
+}
+
+/* Style the added media item container. */
+.media-library-add-form__media {
+  position: relative;
+  display: flex;
+  border-bottom: 1px solid #c0c0c0;
+>>>>>>> dev
 }
 
 /* Do not show the bottom border and padding for the last item. */
@@ -648,7 +1035,11 @@
   justify-content: center;
   width: 220px;
   margin-right: 20px; /* LTR */
+<<<<<<< HEAD
   background: #ebebeb;
+=======
+  background: var(--color-whitesmoke-o-40);
+>>>>>>> dev
 }
 [dir="rtl"] .media-library-add-form__preview {
   margin-right: 0;
@@ -659,6 +1050,7 @@
   flex-grow: 1;
 }
 
+<<<<<<< HEAD
 /**
  * @todo Remove [type="submit"] when styles are moved to the seven theme in
  *   https://www.drupal.org/project/drupal/issues/2980769
@@ -673,6 +1065,22 @@
   right: auto;
   left: 13px;
   margin-left: 0;
+=======
+.media-library-add-form__remove-button {
+  position: absolute;
+  right: 0; /* LTR */
+  background-image: url("../../../../misc/icons/000000/ex.svg");
+  background-repeat: no-repeat;
+  background-position: var(--space-xs) center;
+  background-size: var(--space-s);
+}
+[dir="rtl"] .media-library-add-form__remove-button {
+  right: auto;
+  left: 0;
+}
+.media-library-add-form__remove-button.button:disabled {
+  background-image: url("../../../../misc/icons/8e929c/ex.svg");
+>>>>>>> dev
 }
 
 /* @todo Remove in https://www.drupal.org/project/drupal/issues/3064914 */

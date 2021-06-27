@@ -15,12 +15,20 @@ class UserAdminSettingsFormTest extends ConfigFormTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['user', 'system'];
+=======
+  protected static $modules = ['user', 'system'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->form = AccountSettingsForm::create($this->container);

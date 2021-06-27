@@ -77,6 +77,7 @@ function jsonapi_requirements($phase) {
 }
 
 /**
+<<<<<<< HEAD
  * Enable BC: default the new read-only mode to "off" on existing sites.
  */
 function jsonapi_update_8701() {
@@ -84,4 +85,10 @@ function jsonapi_update_8701() {
   $jsonapi_settings = $config_factory->getEditable('jsonapi.settings');
   $jsonapi_settings->set('read_only', FALSE)
     ->save(TRUE);
+=======
+ * Implements hook_update_last_removed().
+ */
+function jsonapi_update_last_removed() {
+  return 8701;
+>>>>>>> dev
 }

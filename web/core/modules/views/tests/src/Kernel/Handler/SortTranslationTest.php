@@ -19,7 +19,11 @@ class SortTranslationTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'field',
     'language',
@@ -35,7 +39,11 @@ class SortTranslationTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
     ConfigurableLanguage::createFromLangcode('de')->save();
     $this->installSchema('node', 'node_access');
@@ -89,12 +97,19 @@ class SortTranslationTest extends ViewsKernelTestBase {
       $translation->title->value = 'Title DE ' . $i;
       $translation->text->value = 'moo DE ' . $i;
       $translation->save();
+<<<<<<< HEAD
       $nodes[] = $node;
+=======
+>>>>>>> dev
     }
   }
 
   /**
+<<<<<<< HEAD
    * Test sorting on an untranslated field.
+=======
+   * Tests sorting on an untranslated field.
+>>>>>>> dev
    */
   public function testSortbyUntranslatedIntegerField() {
     $map = [

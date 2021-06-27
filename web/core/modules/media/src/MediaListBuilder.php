@@ -149,6 +149,10 @@ class MediaListBuilder extends EntityListBuilder {
    */
   protected function getEntityIds() {
     $query = $this->getStorage()->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(TRUE)
+>>>>>>> dev
       ->sort('changed', 'DESC');
 
     // Only add the pager if a limit is specified.

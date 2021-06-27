@@ -2,10 +2,17 @@
 
 namespace Drupal\tour\Plugin\tour\tip;
 
+<<<<<<< HEAD
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Utility\Token;
 use Drupal\tour\TipPluginBase;
+=======
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Utility\Token;
+use Drupal\tour\TipPluginBase;
+use Drupal\tour\TourTipPluginInterface;
+>>>>>>> dev
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -16,7 +23,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   title = @Translation("Text")
  * )
  */
+<<<<<<< HEAD
 class TipPluginText extends TipPluginBase implements ContainerFactoryPluginInterface {
+=======
+class TipPluginText extends TipPluginBase implements ContainerFactoryPluginInterface, TourTipPluginInterface {
+>>>>>>> dev
 
   /**
    * The body text which is used for render of this Text Tip.
@@ -33,6 +44,7 @@ class TipPluginText extends TipPluginBase implements ContainerFactoryPluginInter
   protected $token;
 
   /**
+<<<<<<< HEAD
    * The forced position of where the tip will be located.
    *
    * @var string
@@ -47,6 +59,8 @@ class TipPluginText extends TipPluginBase implements ContainerFactoryPluginInter
   protected $ariaId;
 
   /**
+=======
+>>>>>>> dev
    * Constructs a \Drupal\tour\Plugin\tour\tip\TipPluginText object.
    *
    * @param array $configuration
@@ -71,6 +85,7 @@ class TipPluginText extends TipPluginBase implements ContainerFactoryPluginInter
   }
 
   /**
+<<<<<<< HEAD
    * Returns a ID that is guaranteed uniqueness.
    *
    * @return string
@@ -114,14 +129,33 @@ class TipPluginText extends TipPluginBase implements ContainerFactoryPluginInter
       $attributes['data-options'] = 'tipLocation:' . $location;
     }
     return $attributes;
+=======
+   * {@inheritdoc}
+   */
+  public function getBody(): array {
+    return [
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#value' => $this->token->replace($this->get('body')),
+      '#attributes' => [
+        'class' => ['tour-tip-body'],
+      ],
+    ];
+>>>>>>> dev
   }
 
   /**
    * {@inheritdoc}
    */
   public function getOutput() {
+<<<<<<< HEAD
     $output = '<h2 class="tour-tip-label" id="tour-tip-' . $this->getAriaId() . '-label">' . Html::escape($this->getLabel()) . '</h2>';
     $output .= '<p class="tour-tip-body" id="tour-tip-' . $this->getAriaId() . '-contents">' . $this->token->replace($this->getBody()) . '</p>';
+=======
+    // Call parent to trigger error when calling this function.
+    parent::getOutput();
+    $output = '<p class="tour-tip-body">' . $this->token->replace($this->get('body')) . '</p>';
+>>>>>>> dev
     return ['#markup' => $output];
   }
 

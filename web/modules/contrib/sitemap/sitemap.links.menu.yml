@@ -6,4 +6,8 @@ sitemap.settings:
 sitemap.page:
   title: Sitemap
   route_name: sitemap.page
+<<<<<<< HEAD
   menu_name: tools
+=======
+  menu_name: tools
+>>>>>>> dev

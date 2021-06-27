@@ -4,7 +4,12 @@
 * https://www.drupal.org/node/2815083
 * @preserve
 **/
+<<<<<<< HEAD
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+=======
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+>>>>>>> dev
 
 (function (Drupal, Backbone) {
   Drupal.quickedit.BaseModel = Backbone.Model.extend({
@@ -14,15 +19,27 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     },
     set: function set(key, val, options) {
       if (this.__initialized) {
+<<<<<<< HEAD
         if ((typeof key === 'undefined' ? 'undefined' : _typeof(key)) === 'object') {
+=======
+        if (_typeof(key) === 'object') {
+>>>>>>> dev
           key.validate = true;
         } else {
           if (!options) {
             options = {};
           }
+<<<<<<< HEAD
           options.validate = true;
         }
       }
+=======
+
+          options.validate = true;
+        }
+      }
+
+>>>>>>> dev
       return Backbone.Model.prototype.set.call(this, key, val, options);
     }
   });

@@ -14,7 +14,12 @@ interface SqlEntityStorageInterface extends EntityStorageInterface {
    *
    * @param \Drupal\Core\Field\FieldStorageDefinitionInterface[] $storage_definitions
    *   (optional) An array of field storage definitions to be used to compute
+<<<<<<< HEAD
    *   the table mapping. Defaults to the ones provided by the entity manager.
+=======
+   *   the table mapping. Defaults to the ones provided by the entity field
+   *   manager.
+>>>>>>> dev
    *
    * @return \Drupal\Core\Entity\Sql\TableMappingInterface
    *   A table mapping object for the entity's tables.

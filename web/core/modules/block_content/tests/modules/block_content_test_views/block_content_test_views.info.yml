@@ -3,7 +3,10 @@ type: module
 description: 'Provides default views for views block_content tests.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:block_content
   - drupal:views

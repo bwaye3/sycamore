@@ -18,13 +18,21 @@ trait AssertBreadcrumbTrait {
    *
    * @param \Drupal\Core\Url|string $goto
    *   (optional) A path or URL to pass to
+<<<<<<< HEAD
    *   Drupal\simpletest\WebTestBase::drupalGet().
+=======
+   *   \Drupal\Tests\UiHelperTrait::drupalGet().
+>>>>>>> dev
    * @param array $trail
    *   An associative array whose keys are expected breadcrumb link paths and
    *   whose values are expected breadcrumb link texts (not sanitized).
    * @param string $page_title
    *   (optional) A page title to additionally assert via
+<<<<<<< HEAD
    *   Drupal\simpletest\WebTestBase::assertTitle(). Without site name suffix.
+=======
+   *   \Drupal\Tests\WebAssert::titleEquals(). Without site name suffix.
+>>>>>>> dev
    * @param array $tree
    *   (optional) An associative array whose keys are link paths and whose
    *   values are link titles (not sanitized) of an expected active trail in a
@@ -41,7 +49,11 @@ trait AssertBreadcrumbTrait {
 
     // Additionally assert page title, if given.
     if (isset($page_title)) {
+<<<<<<< HEAD
       $this->assertTitle("$page_title | Drupal");
+=======
+      $this->assertSession()->titleEquals("$page_title | Drupal");
+>>>>>>> dev
     }
 
     // Additionally assert active trail in a menu tree output, if given.

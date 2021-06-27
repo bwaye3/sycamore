@@ -12,7 +12,10 @@ use Drupal\Core\Config\Importer\ConfigImporterBatch;
 use Drupal\Core\Config\StorageComparer;
 use Drupal\Core\Config\StorageInterface;
 use Drupal\Core\Config\TypedConfigManagerInterface;
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Extension\ModuleHandlerInterface;
@@ -25,7 +28,11 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Serialization\Yaml;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+=======
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 
 /**
  * Provides a form for importing a single configuration file.
@@ -34,6 +41,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  */
 class ConfigSingleImportForm extends ConfirmFormBase {
 
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
 
   /**
@@ -43,6 +51,8 @@ class ConfigSingleImportForm extends ConfirmFormBase {
     'entityManager' => 'entity.manager',
   ];
 
+=======
+>>>>>>> dev
   /**
    * The entity type manager.
    *
@@ -67,7 +77,11 @@ class ConfigSingleImportForm extends ConfirmFormBase {
   /**
    * The event dispatcher.
    *
+<<<<<<< HEAD
    * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+=======
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+>>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -143,7 +157,11 @@ class ConfigSingleImportForm extends ConfirmFormBase {
    *   The config storage.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer service.
+<<<<<<< HEAD
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+=======
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
+>>>>>>> dev
    *   The event dispatcher used to notify subscribers of config import events.
    * @param \Drupal\Core\Config\ConfigManagerInterface $config_manager
    *   The configuration manager.
@@ -364,7 +382,12 @@ class ConfigSingleImportForm extends ConfirmFormBase {
       $source_storage->replaceData($config_name, $data);
       $storage_comparer = new StorageComparer($source_storage, $this->configStorage);
 
+<<<<<<< HEAD
       if (!$storage_comparer->createChangelist()->hasChanges()) {
+=======
+      $storage_comparer->createChangelist();
+      if (!$storage_comparer->hasChanges()) {
+>>>>>>> dev
         $form_state->setErrorByName('import', $this->t('There are no changes to import.'));
       }
       else {

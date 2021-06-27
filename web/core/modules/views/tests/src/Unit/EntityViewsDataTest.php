@@ -90,7 +90,11 @@ class EntityViewsDataTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->entityStorage = $this->getMockBuilder('Drupal\Core\Entity\Sql\SqlContentEntityStorage')
       ->disableOriginalConstructor()
       ->getMock();
@@ -1129,7 +1133,11 @@ class EntityViewsDataTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests views data for a entity reference field.
+=======
+   * Tests views data for an entity reference field.
+>>>>>>> dev
    */
   protected function assertEntityReferenceField($data) {
     $this->assertEquals('field', $data['field']['id']);
@@ -1195,6 +1203,7 @@ class TestEntityType extends ContentEntityType {
   }
 
 }
+<<<<<<< HEAD
 
 namespace Drupal\entity_test\Entity;
 
@@ -1216,3 +1225,5 @@ if (!function_exists('t')) {
   }
 
 }
+=======
+>>>>>>> dev

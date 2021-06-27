@@ -19,7 +19,11 @@ abstract class BlockContentTestBase extends BrowserTestBase {
   protected $profile = 'testing';
 
   /**
+<<<<<<< HEAD
    * Admin user
+=======
+   * Admin user.
+>>>>>>> dev
    *
    * @var \Drupal\user\UserInterface
    */
@@ -39,7 +43,11 @@ abstract class BlockContentTestBase extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['block', 'block_content'];
+=======
+  protected static $modules = ['block', 'block_content'];
+>>>>>>> dev
 
   /**
    * Whether or not to auto-create the basic block type during setup.
@@ -91,20 +99,54 @@ abstract class BlockContentTestBase extends BrowserTestBase {
   /**
    * Creates a custom block type (bundle).
    *
+<<<<<<< HEAD
    * @param string $label
    *   The block type label.
+=======
+   * @param array|string $values
+   *   The value to create the block content type. If $values is an array
+   *   it should be like: ['id' => 'foo', 'label' => 'Foo']. If $values
+   *   is a string, it will be considered that it represents the label.
+>>>>>>> dev
    * @param bool $create_body
    *   Whether or not to create the body field
    *
    * @return \Drupal\block_content\Entity\BlockContentType
    *   Created custom block type.
    */
+<<<<<<< HEAD
   protected function createBlockContentType($label, $create_body = FALSE) {
     $bundle = BlockContentType::create([
       'id' => $label,
       'label' => $label,
       'revision' => FALSE,
     ]);
+=======
+  protected function createBlockContentType($values, $create_body = FALSE) {
+    if (is_array($values)) {
+      if (!isset($values['id'])) {
+        do {
+          $id = strtolower($this->randomMachineName(8));
+        } while (BlockContentType::load($id));
+      }
+      else {
+        $id = $values['id'];
+      }
+      $values += [
+        'id' => $id,
+        'label' => $id,
+        'revision' => FALSE,
+      ];
+      $bundle = BlockContentType::create($values);
+    }
+    else {
+      $bundle = BlockContentType::create([
+        'id' => $values,
+        'label' => $values,
+        'revision' => FALSE,
+      ]);
+    }
+>>>>>>> dev
     $bundle->save();
     if ($create_body) {
       block_content_add_body_field($bundle->id());

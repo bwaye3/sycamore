@@ -5,7 +5,10 @@ namespace Drupal\search;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Database\Connection;
+<<<<<<< HEAD
 use Drupal\Core\Database\Query\Condition;
+=======
+>>>>>>> dev
 use Drupal\search\Exception\SearchIndexException;
 
 /**
@@ -42,6 +45,16 @@ class SearchIndex implements SearchIndexInterface {
   protected $cacheTagsInvalidator;
 
   /**
+<<<<<<< HEAD
+=======
+   * The text processor.
+   *
+   * @var \Drupal\search\SearchTextProcessorInterface
+   */
+  protected $textProcessor;
+
+  /**
+>>>>>>> dev
    * SearchIndex constructor.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
@@ -52,12 +65,27 @@ class SearchIndex implements SearchIndexInterface {
    *   The database replica connection.
    * @param \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cache_tags_invalidator
    *   The cache tags invalidator.
+<<<<<<< HEAD
    */
   public function __construct(ConfigFactoryInterface $config_factory, Connection $connection, Connection $replica, CacheTagsInvalidatorInterface $cache_tags_invalidator) {
+=======
+   * @param \Drupal\search\SearchTextProcessorInterface $text_processor
+   *   The text processor.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory, Connection $connection, Connection $replica, CacheTagsInvalidatorInterface $cache_tags_invalidator, SearchTextProcessorInterface $text_processor = NULL) {
+>>>>>>> dev
     $this->configFactory = $config_factory;
     $this->connection = $connection;
     $this->replica = $replica;
     $this->cacheTagsInvalidator = $cache_tags_invalidator;
+<<<<<<< HEAD
+=======
+    if ($text_processor === NULL) {
+      @trigger_error('Calling ' . __METHOD__ . ' without $text_processor argument is deprecated in drupal:9.1.0 and will be required in drupal:10.0.0. See https://www.drupal.org/node/3078162', E_USER_DEPRECATED);
+      $text_processor = \Drupal::service('search.text_processor');
+    }
+    $this->textProcessor = $text_processor;
+>>>>>>> dev
   }
 
   /**
@@ -140,7 +168,11 @@ class SearchIndex implements SearchIndexInterface {
         // Note: use of PREG_SPLIT_DELIM_CAPTURE above will introduce empty
         // values.
         if ($value != '') {
+<<<<<<< HEAD
           $words = search_index_split($value, $langcode);
+=======
+          $words = $this->textProcessor->process($value, $langcode);
+>>>>>>> dev
           foreach ($words as $word) {
             // Add word to accumulator.
             $accum .= $word . ' ';
@@ -197,7 +229,11 @@ class SearchIndex implements SearchIndexInterface {
             'type' => $type,
           ])
           ->fields(['score' => $score])
+<<<<<<< HEAD
           ->expression('score', 'score + :score', [':score' => $score])
+=======
+          ->expression('score', '[score] + :score', [':score' => $score])
+>>>>>>> dev
           ->execute();
         $current_words[$word] = TRUE;
       }
@@ -286,7 +322,11 @@ class SearchIndex implements SearchIndexInterface {
       $words = array_keys($words);
       foreach ($words as $word) {
         // Get total count.
+<<<<<<< HEAD
         $total = $this->replica->query("SELECT SUM(score) FROM {search_index} WHERE word = :word", [':word' => $word])
+=======
+        $total = $this->replica->query("SELECT SUM([score]) FROM {search_index} WHERE [word] = :word", [':word' => $word])
+>>>>>>> dev
           ->fetchField();
         // Apply Zipf's law to equalize the probability distribution.
         $total = log10(1 + 1 / (max(1, $total)));
@@ -298,8 +338,13 @@ class SearchIndex implements SearchIndexInterface {
       // Find words that were deleted from search_index, but are still in
       // search_total. We use a LEFT JOIN between the two tables and keep only
       // the rows which fail to join.
+<<<<<<< HEAD
       $result = $this->replica->query("SELECT t.word AS realword, i.word FROM {search_total} t LEFT JOIN {search_index} i ON t.word = i.word WHERE i.word IS NULL");
       $or = new Condition('OR');
+=======
+      $result = $this->replica->query("SELECT [t].[word] AS [realword], [i].[word] FROM {search_total} [t] LEFT JOIN {search_index} [i] ON [t].[word] = [i].[word] WHERE [i].[word] IS NULL");
+      $or = $this->replica->condition('OR');
+>>>>>>> dev
       foreach ($result as $word) {
         $or->condition('word', $word->realword);
       }

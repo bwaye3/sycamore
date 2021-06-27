@@ -16,7 +16,11 @@ class TableTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'form_test'];
+=======
+  protected static $modules = ['system', 'form_test'];
+>>>>>>> dev
 
   /**
    * Tableheader.js provides 'sticky' table headers, and is included by default.
@@ -111,7 +115,11 @@ class TableTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that the 'footer' option works correctly.
+=======
+   * Tests that the 'footer' option works correctly.
+>>>>>>> dev
    */
   public function testThemeTableFooter() {
     $footer = [

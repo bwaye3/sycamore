@@ -3,5 +3,8 @@ type: theme
 description: 'Test theme with empty libraries in theme.info.yml'
 version: VERSION
 base theme: classy
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 libraries:

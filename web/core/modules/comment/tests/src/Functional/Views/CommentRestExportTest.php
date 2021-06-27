@@ -27,7 +27,11 @@ class CommentRestExportTest extends CommentTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'comment',
     'comment_test_views',
@@ -35,7 +39,11 @@ class CommentRestExportTest extends CommentTestBase {
     'hal',
   ];
 
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
     // Add another anonymous comment.
     $comment = [
@@ -58,14 +66,23 @@ class CommentRestExportTest extends CommentTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test comment row.
+=======
+   * Tests comment row.
+>>>>>>> dev
    */
   public function testCommentRestExport() {
     $this->drupalGet(sprintf('node/%d/comments', $this->nodeUserCommented->id()), ['query' => ['_format' => 'hal_json']]);
     $this->assertSession()->statusCodeEquals(200);
     $contents = Json::decode($this->getSession()->getPage()->getContent());
+<<<<<<< HEAD
     $this->assertEqual($contents[0]['subject'], 'How much wood would a woodchuck chuck');
     $this->assertEqual($contents[1]['subject'], 'A lot, apparently');
+=======
+    $this->assertEquals('How much wood would a woodchuck chuck', $contents[0]['subject']);
+    $this->assertEquals('A lot, apparently', $contents[1]['subject']);
+>>>>>>> dev
     $this->assertCount(2, $contents);
 
     // Ensure field-level access is respected - user shouldn't be able to see

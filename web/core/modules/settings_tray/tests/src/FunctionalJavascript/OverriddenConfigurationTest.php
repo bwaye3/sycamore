@@ -16,7 +16,11 @@ class OverriddenConfigurationTest extends SettingsTrayTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'settings_tray_override_test',
     'menu_ui',
     'menu_link_content',
@@ -30,7 +34,11 @@ class OverriddenConfigurationTest extends SettingsTrayTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $user = $this->createUser([
@@ -42,7 +50,11 @@ class OverriddenConfigurationTest extends SettingsTrayTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test  blocks with overridden related configuration removed when overridden.
+=======
+   * Tests blocks with overridden related configuration removed when overridden.
+>>>>>>> dev
    */
   public function testOverriddenConfigurationRemoved() {
     $web_assert = $this->assertSession();

@@ -279,6 +279,7 @@ class Term extends EditorialContentEntityBase implements TermInterface {
     return $this;
   }
 
+<<<<<<< HEAD
   /**
    * {@inheritdoc}
    */
@@ -287,4 +288,6 @@ class Term extends EditorialContentEntityBase implements TermInterface {
     return $this->bundle();
   }
 
+=======
+>>>>>>> dev
 }

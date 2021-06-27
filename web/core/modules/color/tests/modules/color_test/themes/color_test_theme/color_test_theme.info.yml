@@ -3,6 +3,9 @@ type: theme
 base theme: stable
 description: 'Theme for testing the color module'
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 libraries:
   - color_test_theme/base

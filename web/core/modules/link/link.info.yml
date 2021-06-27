@@ -1,7 +1,10 @@
 name: Link
 type: module
 description: 'Provides a simple link field type.'
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 package: Field types
 version: VERSION
 dependencies:

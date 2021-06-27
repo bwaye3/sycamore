@@ -37,7 +37,11 @@ class TermEntityQueryTest extends KernelTestBase {
       $term = $this->createTerm($vocabulary);
       $terms[$term->id()] = $term;
     }
+<<<<<<< HEAD
     $result = \Drupal::entityQuery('taxonomy_term')->execute();
+=======
+    $result = \Drupal::entityQuery('taxonomy_term')->accessCheck(FALSE)->execute();
+>>>>>>> dev
     sort($result);
     $this->assertEquals(array_keys($terms), $result);
     $tid = reset($result);
@@ -58,10 +62,18 @@ class TermEntityQueryTest extends KernelTestBase {
     }
 
     $result = \Drupal::entityQuery('taxonomy_term')
+<<<<<<< HEAD
       ->condition('vid', $vocabulary2->id())
       ->execute();
     sort($result);
     $this->assertEqual(array_keys($terms2), $result);
+=======
+      ->accessCheck(FALSE)
+      ->condition('vid', $vocabulary2->id())
+      ->execute();
+    sort($result);
+    $this->assertEquals(array_keys($terms2), $result);
+>>>>>>> dev
     $tid = reset($result);
     $ids = (object) [
       'entity_type' => 'taxonomy_term',

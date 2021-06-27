@@ -15,7 +15,11 @@ class NoJavaScriptAnonymousTest extends BrowserTestBase {
 
   protected $profile = 'standard';
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Grant the anonymous user the permission to look at user profiles.
@@ -34,6 +38,7 @@ class NoJavaScriptAnonymousTest extends BrowserTestBase {
 
     // Test frontpage.
     $this->drupalGet('');
+<<<<<<< HEAD
     $this->assertNoJavaScriptExceptHtml5Shiv();
 
     // Test node page.
@@ -62,6 +67,27 @@ class NoJavaScriptAnonymousTest extends BrowserTestBase {
     // Ensure no other JavaScript file exists on the page, while ignoring the
     // HTML5 shiv.
     $this->assertSession()->responseNotMatches('/(?<!html5shiv\.min)\.js/');
+=======
+    $this->assertNoJavaScript();
+
+    // Test node page.
+    $this->drupalGet('node/1');
+    $this->assertNoJavaScript();
+
+    // Test user profile page.
+    $this->drupalGet('user/' . $user->id());
+    $this->assertNoJavaScript();
+  }
+
+  /**
+   * Passes if no JavaScript is found on the page.
+   */
+  protected function assertNoJavaScript() {
+    // Ensure drupalSettings is not set.
+    $settings = $this->getDrupalSettings();
+    $this->assertTrue(empty($settings), 'drupalSettings is not set.');
+    $this->assertSession()->responseNotMatches('/\.js/');
+>>>>>>> dev
   }
 
 }

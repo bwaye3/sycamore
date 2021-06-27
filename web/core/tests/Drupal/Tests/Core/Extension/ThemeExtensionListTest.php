@@ -259,7 +259,10 @@ class TestThemeEngineExtensionList extends ThemeEngineExtensionList {
   use SettableDiscoveryExtensionListTrait;
 
 }
+<<<<<<< HEAD
 
 if (!defined('DRUPAL_MINIMUM_PHP')) {
   define('DRUPAL_MINIMUM_PHP', '5.5.9');
 }
+=======
+>>>>>>> dev

@@ -26,7 +26,11 @@ class QueryBatchTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'migrate',
     'migrate_query_batch_test',
   ];
@@ -34,7 +38,11 @@ class QueryBatchTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create a mock migration. This will be injected into the source plugin

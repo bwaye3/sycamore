@@ -48,7 +48,11 @@ class ThemeExtensionList extends ExtensionList {
     ],
     'screenshot' => 'screenshot.png',
     'version' => NULL,
+<<<<<<< HEAD
     'php' => DRUPAL_MINIMUM_PHP,
+=======
+    'php' => \Drupal::MINIMUM_PHP,
+>>>>>>> dev
     'libraries' => [],
     'libraries_extend' => [],
     'libraries_override' => [],
@@ -265,6 +269,7 @@ class ThemeExtensionList extends ExtensionList {
   protected function createExtensionInfo(Extension $extension) {
     $info = parent::createExtensionInfo($extension);
 
+<<<<<<< HEAD
     // In the past, Drupal used to default to the `stable` theme as the base
     // theme. Explicitly opting out by specifying `base theme: false` was (and
     // still is) possible. However, defaulting to `base theme: stable` prevents
@@ -283,6 +288,14 @@ class ThemeExtensionList extends ExtensionList {
 
     // Remove the default Stable base theme when 'base theme: false' is set in
     // a theme .info.yml file.
+=======
+    if (!isset($info['base theme'])) {
+      throw new InfoParserException(sprintf('Missing required key ("base theme") in %s/%s, see https://www.drupal.org/node/3066038', $extension->getExtensionPathname(), $extension->getExtensionFilename()));
+    }
+
+    // Remove the base theme when 'base theme: false' is set in a theme
+    // .info.yml file.
+>>>>>>> dev
     if ($info['base theme'] === FALSE) {
       unset($info['base theme']);
     }

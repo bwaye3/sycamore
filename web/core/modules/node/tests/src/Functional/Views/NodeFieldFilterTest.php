@@ -14,7 +14,11 @@ class NodeFieldFilterTest extends NodeTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['language'];
+=======
+  protected static $modules = ['language'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -38,7 +42,11 @@ class NodeFieldFilterTest extends NodeTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     // Create Page content type.
@@ -113,7 +121,11 @@ class NodeFieldFilterTest extends NodeTestBase {
     // page, and they are the same. So the title/body string should appear on
     // the page twice as many times as the input count.
     foreach ($counts as $langcode => $count) {
+<<<<<<< HEAD
       $this->assertEqual(substr_count($text, $this->nodeTitles[$langcode]), 2 * $count, 'Translation ' . $langcode . ' has count ' . $count . ' with ' . $message);
+=======
+      $this->assertEquals(2 * $count, substr_count($text, $this->nodeTitles[$langcode]), 'Translation ' . $langcode . ' has count ' . $count . ' with ' . $message);
+>>>>>>> dev
     }
   }
 

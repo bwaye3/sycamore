@@ -198,6 +198,7 @@ class Image implements ImageInterface {
     return $this->apply('scale', ['width' => $width, 'height' => $height, 'upscale' => $upscale]);
   }
 
+<<<<<<< HEAD
   /**
    * Provides a wrapper for drupal_chmod() to allow unit testing.
    *
@@ -221,4 +222,6 @@ class Image implements ImageInterface {
     return \Drupal::service('file_system')->chmod($uri, $mode);
   }
 
+=======
+>>>>>>> dev
 }

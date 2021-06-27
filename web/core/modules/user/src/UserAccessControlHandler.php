@@ -113,10 +113,22 @@ class UserAccessControlHandler extends EntityAccessControlHandler {
           return AccessResult::neutral();
         }
 
+<<<<<<< HEAD
       case 'preferred_langcode':
       case 'preferred_admin_langcode':
       case 'timezone':
       case 'mail':
+=======
+      case 'mail':
+        // Only check for the 'view user email addresses' permission and a view
+        // operation. Use case fall-through for all other cases.
+        if ($operation == 'view' && $account->hasPermission('view user email addresses')) {
+          return AccessResult::allowed()->cachePerPermissions();
+        }
+      case 'preferred_langcode':
+      case 'preferred_admin_langcode':
+      case 'timezone':
+>>>>>>> dev
         // Allow view access to own mail address and other personalization
         // settings.
         if ($operation == 'view') {

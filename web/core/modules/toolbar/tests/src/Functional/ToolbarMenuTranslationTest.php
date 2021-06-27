@@ -23,7 +23,11 @@ class ToolbarMenuTranslationTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'toolbar',
     'toolbar_test',
     'locale',
@@ -35,7 +39,11 @@ class ToolbarMenuTranslationTest extends BrowserTestBase {
    */
   protected $defaultTheme = 'stark';
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create an administrative user and log it in.
@@ -56,7 +64,12 @@ class ToolbarMenuTranslationTest extends BrowserTestBase {
 
     // Add Spanish.
     $edit['predefined_langcode'] = $langcode;
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/language/add', $edit, t('Add language'));
+=======
+    $this->drupalGet('admin/config/regional/language/add');
+    $this->submitForm($edit, 'Add language');
+>>>>>>> dev
 
     // The menu item 'Structure' in the toolbar will be translated.
     $menu_item = 'Structure';
@@ -70,9 +83,16 @@ class ToolbarMenuTranslationTest extends BrowserTestBase {
       'langcode' => $langcode,
       'translation' => 'untranslated',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/translate', $search, t('Filter'));
     // Make sure will be able to translate the menu item.
     $this->assertNoText('No strings available.', 'Search found the menu item as untranslated.');
+=======
+    $this->drupalGet('admin/config/regional/translate');
+    $this->submitForm($search, 'Filter');
+    // Make sure will be able to translate the menu item.
+    $this->assertNoText('No strings available.');
+>>>>>>> dev
 
     // Check that the class is on the item before we translate it.
     $xpath = $this->xpath('//a[contains(@class, "icon-system-admin-structure")]');
@@ -80,12 +100,21 @@ class ToolbarMenuTranslationTest extends BrowserTestBase {
 
     // Translate the menu item.
     $menu_item_translated = $this->randomMachineName();
+<<<<<<< HEAD
     $textarea = current($this->xpath('//textarea'));
+=======
+    $textarea = $this->assertSession()->elementExists('xpath', '//textarea');
+>>>>>>> dev
     $lid = (string) $textarea->getAttribute('name');
     $edit = [
       $lid => $menu_item_translated,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/translate', $edit, t('Save translations'));
+=======
+    $this->drupalGet('admin/config/regional/translate');
+    $this->submitForm($edit, 'Save translations');
+>>>>>>> dev
 
     // Search for the translated menu item.
     $search = [
@@ -93,14 +122,25 @@ class ToolbarMenuTranslationTest extends BrowserTestBase {
       'langcode' => $langcode,
       'translation' => 'translated',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/translate', $search, t('Filter'));
     // Make sure the menu item string was translated.
     $this->assertText($menu_item_translated, 'Search found the menu item as translated: ' . $menu_item_translated . '.');
+=======
+    $this->drupalGet('admin/config/regional/translate');
+    $this->submitForm($search, 'Filter');
+    // Make sure the menu item string was translated.
+    $this->assertSession()->pageTextContains($menu_item_translated);
+>>>>>>> dev
 
     // Go to another page in the custom language and make sure the menu item
     // was translated.
     $this->drupalGet($langcode . '/admin/structure');
+<<<<<<< HEAD
     $this->assertText($menu_item_translated, 'Found the menu translated.');
+=======
+    $this->assertSession()->pageTextContains($menu_item_translated);
+>>>>>>> dev
 
     // Toolbar icons are included based on the presence of a specific class on
     // the menu item. Ensure that class also exists for a translated menu item.

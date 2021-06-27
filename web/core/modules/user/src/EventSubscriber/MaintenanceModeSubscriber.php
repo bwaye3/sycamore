@@ -8,7 +8,11 @@ use Drupal\Core\Site\MaintenanceModeInterface;
 use Drupal\Core\Url;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+=======
+use Symfony\Component\HttpKernel\Event\RequestEvent;
+>>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -46,10 +50,17 @@ class MaintenanceModeSubscriber implements EventSubscriberInterface {
   /**
    * Logout users if site is in maintenance mode.
    *
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
    *   The event to process.
    */
   public function onKernelRequestMaintenance(GetResponseEvent $event) {
+=======
+   * @param \Symfony\Component\HttpKernel\Event\RequestEvent $event
+   *   The event to process.
+   */
+  public function onKernelRequestMaintenance(RequestEvent $event) {
+>>>>>>> dev
     $request = $event->getRequest();
     $route_match = RouteMatch::createFromRequest($request);
     if ($this->maintenanceMode->applies($route_match)) {

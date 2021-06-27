@@ -29,7 +29,11 @@ class NodeAccessTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'content_moderation',
     'filter',
     'node',
@@ -42,7 +46,11 @@ class NodeAccessTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('content_moderation_state');
@@ -84,6 +92,7 @@ class NodeAccessTest extends KernelTestBase {
     $this->assertEquals($node->getRevisionId(), $this->moderationInformation->getDefaultRevisionId('node', $node->id()));
   }
 
+<<<<<<< HEAD
   /**
    * @covers \Drupal\content_moderation\ModerationInformation::getLatestRevisionId
    * @group legacy
@@ -104,4 +113,6 @@ class NodeAccessTest extends KernelTestBase {
     $this->assertEquals($node->getRevisionId(), $this->moderationInformation->getLatestRevisionId('node', $node->id()));
   }
 
+=======
+>>>>>>> dev
 }

@@ -258,7 +258,11 @@ class ConfigHandler extends ViewsFormBase {
   }
 
   /**
+<<<<<<< HEAD
    * Submit handler for removing an item from a view
+=======
+   * Submit handler for removing an item from a view.
+>>>>>>> dev
    */
   public function remove(&$form, FormStateInterface $form_state) {
     $view = $form_state->get('view');

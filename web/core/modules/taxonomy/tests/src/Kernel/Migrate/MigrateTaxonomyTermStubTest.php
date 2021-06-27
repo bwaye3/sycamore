@@ -20,12 +20,20 @@ class MigrateTaxonomyTermStubTest extends MigrateDrupalTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['taxonomy', 'text', 'taxonomy_term_stub_test'];
+=======
+  protected static $modules = ['taxonomy', 'text', 'taxonomy_term_stub_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('taxonomy_term');
   }

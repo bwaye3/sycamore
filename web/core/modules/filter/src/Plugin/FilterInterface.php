@@ -2,7 +2,10 @@
 
 namespace Drupal\filter\Plugin;
 
+<<<<<<< HEAD
 use Drupal\Component\Plugin\ConfigurablePluginInterface;
+=======
+>>>>>>> dev
 use Drupal\Component\Plugin\PluginInspectionInterface;
 use Drupal\Component\Plugin\ConfigurableInterface;
 use Drupal\Component\Plugin\DependentPluginInterface;
@@ -77,7 +80,11 @@ use Drupal\Core\Form\FormStateInterface;
  * @see \Drupal\filter\Plugin\FilterBase
  * @see plugin_api
  */
+<<<<<<< HEAD
 interface FilterInterface extends ConfigurableInterface, DependentPluginInterface, ConfigurablePluginInterface, PluginInspectionInterface {
+=======
+interface FilterInterface extends ConfigurableInterface, DependentPluginInterface, PluginInspectionInterface {
+>>>>>>> dev
 
   /**
    * Non-HTML markup language filters that generate HTML.

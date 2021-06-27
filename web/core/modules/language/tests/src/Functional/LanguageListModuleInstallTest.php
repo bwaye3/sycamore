@@ -17,7 +17,11 @@ class LanguageListModuleInstallTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['language_test'];
+=======
+  protected static $modules = ['language_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -37,9 +41,16 @@ class LanguageListModuleInstallTest extends BrowserTestBase {
     $this->drupalLogin($admin_user);
     $edit = [];
     $edit['modules[language][enable]'] = 'language';
+<<<<<<< HEAD
     $this->drupalPostForm('admin/modules', $edit, t('Install'));
 
     $this->assertEqual(\Drupal::state()->get('language_test.language_count_preinstall', 0), 1, 'Using LanguageManager::getLanguages() returns 1 language during Language installation.');
+=======
+    $this->drupalGet('admin/modules');
+    $this->submitForm($edit, 'Install');
+
+    $this->assertEquals(1, \Drupal::state()->get('language_test.language_count_preinstall', 0), 'Using LanguageManager::getLanguages() returns 1 language during Language installation.');
+>>>>>>> dev
 
     // Get updated module list by rebuilding container.
     $this->rebuildContainer();

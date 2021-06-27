@@ -5,6 +5,10 @@ namespace Drupal\Core\KeyValueStore;
 use Drupal\Component\Serialization\SerializationInterface;
 use Drupal\Core\Database\Query\Merge;
 use Drupal\Core\Database\Connection;
+<<<<<<< HEAD
+=======
+use Drupal\Core\Database\SchemaObjectExistsException;
+>>>>>>> dev
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 
 /**
@@ -61,10 +65,23 @@ class DatabaseStorage extends StorageBase {
    * {@inheritdoc}
    */
   public function has($key) {
+<<<<<<< HEAD
     return (bool) $this->connection->query('SELECT 1 FROM {' . $this->connection->escapeTable($this->table) . '} WHERE collection = :collection AND name = :key', [
       ':collection' => $this->collection,
       ':key' => $key,
     ])->fetchField();
+=======
+    try {
+      return (bool) $this->connection->query('SELECT 1 FROM {' . $this->connection->escapeTable($this->table) . '} WHERE [collection] = :collection AND [name] = :key', [
+        ':collection' => $this->collection,
+        ':key' => $key,
+      ])->fetchField();
+    }
+    catch (\Exception $e) {
+      $this->catchException($e);
+      return FALSE;
+    }
+>>>>>>> dev
   }
 
   /**
@@ -73,7 +90,11 @@ class DatabaseStorage extends StorageBase {
   public function getMultiple(array $keys) {
     $values = [];
     try {
+<<<<<<< HEAD
       $result = $this->connection->query('SELECT name, value FROM {' . $this->connection->escapeTable($this->table) . '} WHERE name IN ( :keys[] ) AND collection = :collection', [':keys[]' => $keys, ':collection' => $this->collection])->fetchAllAssoc('name');
+=======
+      $result = $this->connection->query('SELECT [name], [value] FROM {' . $this->connection->escapeTable($this->table) . '} WHERE [name] IN ( :keys[] ) AND [collection] = :collection', [':keys[]' => $keys, ':collection' => $this->collection])->fetchAllAssoc('name');
+>>>>>>> dev
       foreach ($keys as $key) {
         if (isset($result[$key])) {
           $values[$key] = $this->serializer->decode($result[$key]->value);
@@ -92,9 +113,21 @@ class DatabaseStorage extends StorageBase {
    * {@inheritdoc}
    */
   public function getAll() {
+<<<<<<< HEAD
     $result = $this->connection->query('SELECT name, value FROM {' . $this->connection->escapeTable($this->table) . '} WHERE collection = :collection', [':collection' => $this->collection]);
     $values = [];
 
+=======
+    try {
+      $result = $this->connection->query('SELECT [name], [value] FROM {' . $this->connection->escapeTable($this->table) . '} WHERE [collection] = :collection', [':collection' => $this->collection]);
+    }
+    catch (\Exception $e) {
+      $this->catchException($e);
+      $result = [];
+    }
+
+    $values = [];
+>>>>>>> dev
     foreach ($result as $item) {
       if ($item) {
         $values[$item->name] = $this->serializer->decode($item->value);
@@ -104,9 +137,22 @@ class DatabaseStorage extends StorageBase {
   }
 
   /**
+<<<<<<< HEAD
    * {@inheritdoc}
    */
   public function set($key, $value) {
+=======
+   * Saves a value for a given key.
+   *
+   * This will be called by set() within a try block.
+   *
+   * @param string $key
+   *   The key of the data to store.
+   * @param mixed $value
+   *   The data to store.
+   */
+  protected function doSet($key, $value) {
+>>>>>>> dev
     $this->connection->merge($this->table)
       ->keys([
         'name' => $key,
@@ -119,7 +165,39 @@ class DatabaseStorage extends StorageBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setIfNotExists($key, $value) {
+=======
+  public function set($key, $value) {
+    try {
+      $this->doSet($key, $value);
+    }
+    catch (\Exception $e) {
+      // If there was an exception, try to create the table.
+      if ($this->ensureTableExists()) {
+        $this->doSet($key, $value);
+      }
+      else {
+        throw $e;
+      }
+    }
+  }
+
+  /**
+   * Saves a value for a given key if it does not exist yet.
+   *
+   * This will be called by setIfNotExists() within a try block.
+   *
+   * @param string $key
+   *   The key of the data to store.
+   * @param mixed $value
+   *   The data to store.
+   *
+   * @return bool
+   *   TRUE if the data was set, FALSE if it already existed.
+   */
+  public function doSetIfNotExists($key, $value) {
+>>>>>>> dev
     $result = $this->connection->merge($this->table)
       ->insertFields([
         'collection' => $this->collection,
@@ -135,12 +213,44 @@ class DatabaseStorage extends StorageBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function rename($key, $new_key) {
     $this->connection->update($this->table)
       ->fields(['name' => $new_key])
       ->condition('collection', $this->collection)
       ->condition('name', $key)
       ->execute();
+=======
+  public function setIfNotExists($key, $value) {
+    try {
+      return $this->doSetIfNotExists($key, $value);
+    }
+    catch (\Exception $e) {
+      // If there was an exception, try to create the table.
+      if ($this->ensureTableExists()) {
+        return $this->doSetIfNotExists($key, $value);
+      }
+      else {
+        throw $e;
+      }
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function rename($key, $new_key) {
+    try {
+      $this->connection->update($this->table)
+        ->fields(['name' => $new_key])
+        ->condition('collection', $this->collection)
+        ->condition('name', $key)
+        ->execute();
+    }
+    catch (\Exception $e) {
+      $this->catchException($e);
+    }
+>>>>>>> dev
   }
 
   /**
@@ -149,6 +259,7 @@ class DatabaseStorage extends StorageBase {
   public function deleteMultiple(array $keys) {
     // Delete in chunks when a large array is passed.
     while ($keys) {
+<<<<<<< HEAD
       $this->connection->delete($this->table)
         ->condition('name', array_splice($keys, 0, 1000), 'IN')
         ->condition('collection', $this->collection)
@@ -163,6 +274,103 @@ class DatabaseStorage extends StorageBase {
     $this->connection->delete($this->table)
       ->condition('collection', $this->collection)
       ->execute();
+=======
+      try {
+        $this->connection->delete($this->table)
+          ->condition('name', array_splice($keys, 0, 1000), 'IN')
+          ->condition('collection', $this->collection)
+          ->execute();
+      }
+      catch (\Exception $e) {
+        $this->catchException($e);
+      }
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function deleteAll() {
+    try {
+      $this->connection->delete($this->table)
+        ->condition('collection', $this->collection)
+        ->execute();
+    }
+    catch (\Exception $e) {
+      $this->catchException($e);
+    }
+  }
+
+  /**
+   * Check if the table exists and create it if not.
+   *
+   * @return bool
+   *   TRUE if the table exists, FALSE if it does not exists.
+   */
+  protected function ensureTableExists() {
+    try {
+      $database_schema = $this->connection->schema();
+      if (!$database_schema->tableExists($this->table)) {
+        $database_schema->createTable($this->table, $this->schemaDefinition());
+        return TRUE;
+      }
+    }
+    // If the table already exists, then attempting to recreate it will throw an
+    // exception. In this case just catch the exception and do nothing.
+    catch (SchemaObjectExistsException $e) {
+      return TRUE;
+    }
+    return FALSE;
+  }
+
+  /**
+   * Act on an exception when the table might not have been created.
+   *
+   * If the table does not yet exist, that's fine, but if the table exists and
+   * yet the query failed, then the exception needs to propagate.
+   *
+   * @param \Exception $e
+   *   The exception.
+   *
+   * @throws \Exception
+   */
+  protected function catchException(\Exception $e) {
+    if ($this->connection->schema()->tableExists($this->table)) {
+      throw $e;
+    }
+  }
+
+  /**
+   * Defines the schema for the key_value table.
+   */
+  public static function schemaDefinition() {
+    return [
+      'description' => 'Generic key-value storage table. See the state system for an example.',
+      'fields' => [
+        'collection' => [
+          'description' => 'A named collection of key and value pairs.',
+          'type' => 'varchar_ascii',
+          'length' => 128,
+          'not null' => TRUE,
+          'default' => '',
+        ],
+        'name' => [
+          'description' => 'The key of the key-value pair. As KEY is a SQL reserved keyword, name was chosen instead.',
+          'type' => 'varchar_ascii',
+          'length' => 128,
+          'not null' => TRUE,
+          'default' => '',
+        ],
+        'value' => [
+          'description' => 'The value.',
+          'type' => 'blob',
+          'not null' => TRUE,
+          'size' => 'big',
+        ],
+      ],
+      'primary key' => ['collection', 'name'],
+    ];
+>>>>>>> dev
   }
 
 }

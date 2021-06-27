@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 name: Update test after
 type: module
 package: Testing

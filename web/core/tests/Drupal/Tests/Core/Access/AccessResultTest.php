@@ -13,9 +13,13 @@ use Drupal\Core\Access\AccessResultNeutral;
 use Drupal\Core\Access\AccessResultReasonInterface;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableDependencyInterface;
+<<<<<<< HEAD
 use Drupal\Core\Config\Config;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Entity\EntityInterface;
+=======
+use Drupal\Core\DependencyInjection\ContainerBuilder;
+>>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -34,7 +38,11 @@ class AccessResultTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->cacheContextsManager = $this->getMockBuilder('Drupal\Core\Cache\Context\CacheContextsManager')
@@ -892,10 +900,17 @@ class AccessResultTest extends UnitTestCase {
       $b->setCacheMaxAge(86400)->cachePerPermissions();
 
       $r1 = $a->orIf($b);
+<<<<<<< HEAD
       $this->assertTrue($r1->getCacheMaxAge() === 3600);
       $this->assertSame(['user.permissions'], $r1->getCacheContexts());
       $r2 = $b->orIf($a);
       $this->assertTrue($r2->getCacheMaxAge() === 3600);
+=======
+      $this->assertSame(3600, $r1->getCacheMaxAge());
+      $this->assertSame(['user.permissions'], $r1->getCacheContexts());
+      $r2 = $b->orIf($a);
+      $this->assertSame(3600, $r2->getCacheMaxAge());
+>>>>>>> dev
       $this->assertSame(['user.permissions'], $r2->getCacheContexts());
     };
 
@@ -970,6 +985,7 @@ class AccessResultTest extends UnitTestCase {
     return $data;
   }
 
+<<<<<<< HEAD
   /**
    * @expectedDeprecation Drupal\Core\Access\AccessResult::cacheUntilEntityChanges is deprecated in drupal:8.0.0 and is removed in drupal:9.0.0. Use \Drupal\Core\Access\AccessResult::addCacheableDependency() instead.
    * @group legacy
@@ -1000,6 +1016,8 @@ class AccessResultTest extends UnitTestCase {
     $this->assertSame(10, $access_result->getCacheMaxAge());
   }
 
+=======
+>>>>>>> dev
 }
 
 class UncacheableTestAccessResult implements AccessResultInterface {

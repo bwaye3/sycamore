@@ -3,7 +3,10 @@
 namespace Drupal\Core\Extension;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+<<<<<<< HEAD
 use Drupal\Core\Extension\Exception\UninstalledExtensionException;
+=======
+>>>>>>> dev
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
 
 /**
@@ -47,7 +50,11 @@ class ThemeHandler implements ThemeHandlerInterface {
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory to get the installed themes.
    * @param \Drupal\Core\Extension\ThemeExtensionList $theme_list
+<<<<<<< HEAD
    *   A extension discovery instance.
+=======
+   *   An extension discovery instance.
+>>>>>>> dev
    */
   public function __construct($root, ConfigFactoryInterface $config_factory, ThemeExtensionList $theme_list) {
     $this->root = $root;
@@ -65,6 +72,7 @@ class ThemeHandler implements ThemeHandlerInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setDefault($name) {
     @trigger_error(__METHOD__ . ' is deprecated in drupal:8.2.0 and is removed from drupal:9.0.0. Use the configuration system to edit the system.theme config directly. See https://www.drupal.org/node/3082630', E_USER_DEPRECATED);
     $list = $this->listInfo();
@@ -100,6 +108,8 @@ class ThemeHandler implements ThemeHandlerInterface {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function listInfo() {
     if (!isset($this->list)) {
       $this->list = [];

@@ -22,7 +22,10 @@ use Drupal\rest\RestResourceConfigInterface;
  *   ),
  *   config_prefix = "resource",
  *   admin_permission = "administer rest resources",
+<<<<<<< HEAD
  *   label_callback = "getLabelFromPlugin",
+=======
+>>>>>>> dev
  *   entity_keys = {
  *     "id" = "id"
  *   },
@@ -89,6 +92,7 @@ class RestResourceConfig extends ConfigEntityBase implements RestResourceConfigI
   }
 
   /**
+<<<<<<< HEAD
    * The label callback for this configuration entity.
    *
    * @return string The label.
@@ -100,6 +104,8 @@ class RestResourceConfig extends ConfigEntityBase implements RestResourceConfigI
   }
 
   /**
+=======
+>>>>>>> dev
    * Returns the resource plugin manager.
    *
    * @return \Drupal\Component\Plugin\PluginManagerInterface

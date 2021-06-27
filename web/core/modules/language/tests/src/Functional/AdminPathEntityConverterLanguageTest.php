@@ -12,14 +12,22 @@ use Drupal\Tests\BrowserTestBase;
  */
 class AdminPathEntityConverterLanguageTest extends BrowserTestBase {
 
+<<<<<<< HEAD
   public static $modules = ['language', 'language_test'];
+=======
+  protected static $modules = ['language', 'language_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $permissions = [
       'access administration pages',

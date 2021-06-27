@@ -7,7 +7,10 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\Context\CacheContextsManager;
+<<<<<<< HEAD
 use Drupal\Core\Controller\ControllerResolver;
+=======
+>>>>>>> dev
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Menu\LocalTaskInterface;
@@ -97,7 +100,11 @@ class LocalTaskManagerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->argumentResolver = $this->createMock('Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface');
@@ -247,6 +254,7 @@ class LocalTaskManagerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * @expectedDeprecation Using the 'controller_resolver' service as the first argument is deprecated, use the 'http_kernel.controller.argument_resolver' instead. If your subclass requires the 'controller_resolver' service add it as an additional argument. See https://www.drupal.org/node/2959408.
    * @group legacy
    */
@@ -271,6 +279,8 @@ class LocalTaskManagerTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Setups the local task manager for the test.
    */
   protected function setupLocalTaskManager() {
@@ -461,7 +471,11 @@ class LocalTaskManagerTest extends UnitTestCase {
       ->willReturn(new ParameterBag());
 
     $cacheability = new CacheableMetadata();
+<<<<<<< HEAD
     $local_tasks = $this->manager->getTasksBuild('menu_local_task_test_tasks_view', $cacheability);
+=======
+    $this->manager->getTasksBuild('menu_local_task_test_tasks_view', $cacheability);
+>>>>>>> dev
 
     // Ensure that all cacheability metadata is merged together.
     $this->assertEquals(['tag.example1', 'tag.example2'], $cacheability->getCacheTags());

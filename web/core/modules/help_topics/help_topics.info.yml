@@ -1,7 +1,10 @@
 name: Help Topics
 type: module
 description: 'Displays help topics provided by themes and modules.'
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 package: Core (Experimental)
 version: VERSION
 dependencies:

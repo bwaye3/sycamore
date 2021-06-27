@@ -18,5 +18,9 @@
 }
 
 .file__size {
+<<<<<<< HEAD
   color: var(--color-davysgrey);
+=======
+  color: var(--color-davysgray);
+>>>>>>> dev
 }

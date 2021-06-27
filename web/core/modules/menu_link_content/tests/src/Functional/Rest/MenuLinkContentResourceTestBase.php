@@ -3,7 +3,10 @@
 namespace Drupal\Tests\menu_link_content\Functional\Rest;
 
 use Drupal\menu_link_content\Entity\MenuLinkContent;
+<<<<<<< HEAD
 use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
+=======
+>>>>>>> dev
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 
 /**
@@ -11,12 +14,19 @@ use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
  */
 abstract class MenuLinkContentResourceTestBase extends EntityResourceTestBase {
 
+<<<<<<< HEAD
   use BcTimestampNormalizerUnixTestTrait;
 
   /**
    * {@inheritdoc}
    */
   public static $modules = ['menu_link_content'];
+=======
+  /**
+   * {@inheritdoc}
+   */
+  protected static $modules = ['menu_link_content'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -188,7 +198,16 @@ abstract class MenuLinkContentResourceTestBase extends EntityResourceTestBase {
         ],
       ],
       'changed' => [
+<<<<<<< HEAD
         $this->formatExpectedTimestampItemValues($this->entity->getChangedTime()),
+=======
+        [
+          'value' => (new \DateTime())->setTimestamp($this->entity->getChangedTime())
+            ->setTimezone(new \DateTimeZone('UTC'))
+            ->format(\DateTime::RFC3339),
+          'format' => \DateTime::RFC3339,
+        ],
+>>>>>>> dev
       ],
       'default_langcode' => [
         [
@@ -197,7 +216,16 @@ abstract class MenuLinkContentResourceTestBase extends EntityResourceTestBase {
       ],
       'parent' => [],
       'revision_created' => [
+<<<<<<< HEAD
         $this->formatExpectedTimestampItemValues((int) $this->entity->getRevisionCreationTime()),
+=======
+        [
+          'value' => (new \DateTime())->setTimestamp((int) $this->entity->getRevisionCreationTime())
+            ->setTimezone(new \DateTimeZone('UTC'))
+            ->format(\DateTime::RFC3339),
+          'format' => \DateTime::RFC3339,
+        ],
+>>>>>>> dev
       ],
       'revision_user' => [],
       'revision_log_message' => [],
@@ -213,10 +241,13 @@ abstract class MenuLinkContentResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
+<<<<<<< HEAD
     if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
       return parent::getExpectedUnauthorizedAccessMessage($method);
     }
 
+=======
+>>>>>>> dev
     switch ($method) {
       case 'DELETE':
         return "The 'administer menu' permission is required.";

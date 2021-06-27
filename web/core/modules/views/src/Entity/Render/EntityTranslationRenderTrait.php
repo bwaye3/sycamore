@@ -88,6 +88,7 @@ trait EntityTranslationRenderTrait {
   abstract public function getEntityTypeId();
 
   /**
+<<<<<<< HEAD
    * Returns the entity type manager.
    *
    * @return \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -110,6 +111,8 @@ trait EntityTranslationRenderTrait {
   }
 
   /**
+=======
+>>>>>>> dev
    * Returns the language manager.
    *
    * @return \Drupal\Core\Language\LanguageManagerInterface

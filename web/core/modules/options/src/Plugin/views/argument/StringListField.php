@@ -2,7 +2,10 @@
 
 namespace Drupal\options\Plugin\views\argument;
 
+<<<<<<< HEAD
 use Drupal\Core\Field\AllowedTagsXssTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Field\FieldFilteredMarkup;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\FieldAPIHandlerTrait;
@@ -19,7 +22,10 @@ use Drupal\views\Plugin\views\argument\StringArgument;
  */
 class StringListField extends StringArgument {
 
+<<<<<<< HEAD
   use AllowedTagsXssTrait;
+=======
+>>>>>>> dev
   use FieldAPIHandlerTrait;
 
   /**

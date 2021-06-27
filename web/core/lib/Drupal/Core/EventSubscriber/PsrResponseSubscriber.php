@@ -6,7 +6,11 @@ use Psr\Http\Message\ResponseInterface;
 
 use Symfony\Bridge\PsrHttpMessage\HttpFoundationFactoryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
+=======
+use Symfony\Component\HttpKernel\Event\ViewEvent;
+>>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -34,10 +38,17 @@ class PsrResponseSubscriber implements EventSubscriberInterface {
   /**
    * Converts a PSR-7 response to a Symfony response.
    *
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent $event
    *   The Event to process.
    */
   public function onKernelView(GetResponseForControllerResultEvent $event) {
+=======
+   * @param \Symfony\Component\HttpKernel\Event\ViewEvent $event
+   *   The Event to process.
+   */
+  public function onKernelView(ViewEvent $event) {
+>>>>>>> dev
     $controller_result = $event->getControllerResult();
 
     if ($controller_result instanceof ResponseInterface) {

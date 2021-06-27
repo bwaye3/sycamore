@@ -27,14 +27,22 @@ class TranslationLinkTest extends ContentTranslationTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['content_translation_test_views'];
+=======
+  protected static $modules = ['content_translation_test_views'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     // @todo Use entity_type once it has multilingual Views integration.
     $this->entityTypeId = 'user';
 
@@ -50,7 +58,11 @@ class TranslationLinkTest extends ContentTranslationTestBase {
     $user->langcode = Language::LANGCODE_NOT_SPECIFIED;
     $user->save();
 
+<<<<<<< HEAD
     ViewTestData::createTestViews(get_class($this), ['content_translation_test_views']);
+=======
+    ViewTestData::createTestViews(static::class, ['content_translation_test_views']);
+>>>>>>> dev
   }
 
   /**
@@ -67,8 +79,13 @@ class TranslationLinkTest extends ContentTranslationTestBase {
    */
   public function testTranslationLink() {
     $this->drupalGet('test-entity-translations-link');
+<<<<<<< HEAD
     $this->assertLinkByHref('user/1/translations');
     $this->assertNoLinkByHref('user/2/translations', 'The translations link is not present when content_translation_translate_access() is FALSE.');
+=======
+    $this->assertSession()->linkByHrefExists('user/1/translations');
+    $this->assertSession()->linkByHrefNotExists('user/2/translations', 'The translations link is not present when content_translation_translate_access() is FALSE.');
+>>>>>>> dev
   }
 
 }

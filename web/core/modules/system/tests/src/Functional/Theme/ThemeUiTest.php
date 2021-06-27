@@ -2,6 +2,10 @@
 
 namespace Drupal\Tests\system\Functional\Theme;
 
+<<<<<<< HEAD
+=======
+use Drupal\Core\Serialization\Yaml;
+>>>>>>> dev
 use Drupal\Tests\BrowserTestBase;
 
 /**
@@ -30,7 +34,11 @@ class ThemeUiTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalLogin($this->drupalCreateUser([
@@ -104,7 +112,12 @@ class ThemeUiTest extends BrowserTestBase {
     foreach ($first_modules as $module) {
       $first_module_form_post["modules[$module][enable]"] = 1;
     }
+<<<<<<< HEAD
     $this->drupalPostForm('admin/modules', $first_module_form_post, 'Install');
+=======
+    $this->drupalGet('admin/modules');
+    $this->submitForm($first_module_form_post, 'Install');
+>>>>>>> dev
     $assert_module_enabled_message($first_modules);
 
     $this->drupalGet('admin/appearance');
@@ -123,7 +136,12 @@ class ThemeUiTest extends BrowserTestBase {
     foreach ($second_modules as $module) {
       $second_module_form_post["modules[$module][enable]"] = 1;
     }
+<<<<<<< HEAD
     $this->drupalPostForm('admin/modules', $second_module_form_post, 'Install');
+=======
+    $this->drupalGet('admin/modules');
+    $this->submitForm($second_module_form_post, 'Install');
+>>>>>>> dev
     $assert_module_enabled_message($second_modules);
 
     // The theme should now be installable, so install it.
@@ -175,7 +193,12 @@ class ThemeUiTest extends BrowserTestBase {
       $to_uninstall["uninstall[$attribute]"] = 1;
     }
     if (!empty($to_uninstall)) {
+<<<<<<< HEAD
       $this->drupalPostForm('admin/modules/uninstall', $to_uninstall, 'Uninstall');
+=======
+      $this->drupalGet('admin/modules/uninstall');
+      $this->submitForm($to_uninstall, 'Uninstall');
+>>>>>>> dev
       $assert_session->pageTextContains('The following modules will be completely uninstalled from your site, and all data from these modules will be lost!');
       $assert_session->pageTextContains('Would you like to continue with uninstalling the above?');
       foreach ($module_names as $module_name) {
@@ -318,4 +341,62 @@ class ThemeUiTest extends BrowserTestBase {
     $this->assertStringContainsString('This theme requires the listed modules to operate correctly.', $theme_container->getText());
   }
 
+<<<<<<< HEAD
+=======
+  /**
+   * Tests that incompatible themes message is shown.
+   */
+  public function testInstalledIncompatibleTheme() {
+    $page = $this->getSession()->getPage();
+    $assert_session = $this->assertSession();
+    $incompatible_themes_message = 'There are errors with some installed themes. Visit the status report page for more information.';
+    $path = \Drupal::getContainer()->getParameter('site.path') . "/themes/changing_theme";
+    mkdir($path, 0777, TRUE);
+    $file_path = "$path/changing_theme.info.yml";
+    $theme_name = 'Theme that changes';
+    $info = [
+      'name' => $theme_name,
+      'type' => 'theme',
+      'base theme' => FALSE,
+    ];
+
+    $compatible_info = $info + ['core_version_requirement' => '*'];
+
+    file_put_contents($file_path, Yaml::encode($compatible_info));
+    $this->drupalGet('admin/appearance');
+    $this->assertNoText($incompatible_themes_message);
+    $page->clickLink("Install $theme_name theme");
+    $assert_session->addressEquals('admin/appearance');
+    $assert_session->pageTextContains("The $theme_name theme has been installed");
+
+    $incompatible_updates = [
+      [
+        'core_version_requirement' => '^1',
+      ],
+      [
+        'core' => '8.x',
+      ],
+    ];
+    foreach ($incompatible_updates as $incompatible_update) {
+      $incompatible_info = $info + $incompatible_update;
+      file_put_contents($file_path, Yaml::encode($incompatible_info));
+      $this->drupalGet('admin/appearance');
+      $this->assertSession()->pageTextContains($incompatible_themes_message);
+
+      file_put_contents($file_path, Yaml::encode($compatible_info));
+      $this->drupalGet('admin/appearance');
+      $this->assertNoText($incompatible_themes_message);
+    }
+    // Uninstall the theme and ensure that incompatible themes message is not
+    // displayed for themes that are not installed.
+    $this->uninstallTheme($theme_name);
+    foreach ($incompatible_updates as $incompatible_update) {
+      $incompatible_info = $info + $incompatible_update;
+      file_put_contents($file_path, Yaml::encode($incompatible_info));
+      $this->drupalGet('admin/appearance');
+      $this->assertNoText($incompatible_themes_message);
+    }
+  }
+
+>>>>>>> dev
 }

@@ -7,7 +7,11 @@ use Drupal\Core\TypedData\Type\DurationInterface;
 /**
  * The duration ISO8601 data type.
  *
+<<<<<<< HEAD
  * The plain value of this data type is a ISO8601 duration string.
+=======
+ * The plain value of this data type is an ISO8601 duration string.
+>>>>>>> dev
  *
  * @DataType(
  *   id = "duration_iso8601",

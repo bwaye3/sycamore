@@ -8,7 +8,11 @@ namespace Drupal\Core\FileTransfer;
 interface ChmodInterface {
 
   /**
+<<<<<<< HEAD
    * Changes the permissions of the file / directory specified in $path
+=======
+   * Changes the permissions of the file / directory specified in $path.
+>>>>>>> dev
    *
    * @param string $path
    *   Path to change permissions of.

@@ -17,7 +17,11 @@ abstract class PathTestBase extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'path'];
+=======
+  protected static $modules = ['node', 'path'];
+>>>>>>> dev
 
   protected function setUp() {
     parent::setUp();

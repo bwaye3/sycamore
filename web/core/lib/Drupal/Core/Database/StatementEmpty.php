@@ -2,6 +2,11 @@
 
 namespace Drupal\Core\Database;
 
+<<<<<<< HEAD
+=======
+@trigger_error('\Drupal\Core\Database\StatementEmpty is deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. There is no replacement. Use mocked StatementInterface classes in tests if needed. See https://www.drupal.org/node/3201283', E_USER_DEPRECATED);
+
+>>>>>>> dev
 /**
  * Empty implementation of a database statement.
  *
@@ -12,6 +17,14 @@ namespace Drupal\Core\Database;
  * result set that happens to contain no records.
  *
  * @see \Drupal\search\SearchQuery
+<<<<<<< HEAD
+=======
+ *
+ * @deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. There is no
+ *   replacement. Use mocked StatementInterface classes in tests if needed.
+ *
+ * @see https://www.drupal.org/node/1234567
+>>>>>>> dev
  */
 class StatementEmpty implements \Iterator, StatementInterface {
 
@@ -68,7 +81,11 @@ class StatementEmpty implements \Iterator, StatementInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function fetchObject() {
+=======
+  public function fetchObject(string $class_name = NULL, array $constructor_arguments = NULL) {
+>>>>>>> dev
     return NULL;
   }
 

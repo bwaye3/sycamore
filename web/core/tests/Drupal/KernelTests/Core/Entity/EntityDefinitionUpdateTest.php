@@ -4,7 +4,10 @@ namespace Drupal\KernelTests\Core\Entity;
 
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Database\Database;
+<<<<<<< HEAD
 use Drupal\Core\Database\DatabaseExceptionWrapper;
+=======
+>>>>>>> dev
 use Drupal\Core\Database\IntegrityConstraintViolationException;
 use Drupal\Core\Entity\ContentEntityType;
 use Drupal\Core\Entity\EntityStorageException;
@@ -57,12 +60,20 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['entity_test_update', 'language'];
+=======
+  protected static $modules = ['entity_test_update', 'language'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->entityDefinitionUpdateManager = $this->container->get('entity.definition_update_manager');
     $this->entityFieldManager = $this->container->get('entity_field.manager');
@@ -101,8 +112,13 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
   public function testNoUpdates() {
     // Ensure that the definition update manager reports no updates.
     $this->assertFalse($this->entityDefinitionUpdateManager->needsUpdates(), 'EntityDefinitionUpdateManager reports that no updates are needed.');
+<<<<<<< HEAD
     $this->assertIdentical($this->entityDefinitionUpdateManager->getChangeSummary(), [], 'EntityDefinitionUpdateManager reports an empty change summary.');
     $this->assertIdentical($this->entityDefinitionUpdateManager->getChangeList(), [], 'EntityDefinitionUpdateManager reports an empty change list.');
+=======
+    $this->assertSame([], $this->entityDefinitionUpdateManager->getChangeSummary(), 'EntityDefinitionUpdateManager reports an empty change summary.');
+    $this->assertSame([], $this->entityDefinitionUpdateManager->getChangeList(), 'EntityDefinitionUpdateManager reports an empty change list.');
+>>>>>>> dev
   }
 
   /**
@@ -126,7 +142,11 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
         t('The %field_name field needs to be installed.', ['%field_name' => 'Default revision']),
       ],
     ];
+<<<<<<< HEAD
     $this->assertEqual($this->entityDefinitionUpdateManager->getChangeSummary(), $expected, 'EntityDefinitionUpdateManager reports the expected change summary.');
+=======
+    $this->assertEquals($expected, $this->entityDefinitionUpdateManager->getChangeSummary(), 'EntityDefinitionUpdateManager reports the expected change summary.');
+>>>>>>> dev
 
     // Run the update and ensure the revision table is created.
     $this->updateEntityTypeToRevisionable(TRUE);
@@ -308,7 +328,11 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests creating, updating, and deleting a base field with no label set
+=======
+   * Tests creating, updating, and deleting a base field with no label set.
+>>>>>>> dev
    *
    * See testBaseFieldCreateUpdateDeleteWithoutData() for more details
    */
@@ -376,7 +400,11 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
   /**
    * Tests creating and deleting a base field if entities exist.
    *
+<<<<<<< HEAD
    * This tests deletion when there are existing entities, but not existing data
+=======
+   * This tests deletion when there are existing entities, but non-existent data
+>>>>>>> dev
    * for the field being deleted.
    *
    * @see testBaseFieldDeleteWithExistingData()
@@ -395,7 +423,11 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
     $schema_handler = $this->database->schema();
     $this->assertTrue($schema_handler->fieldExists('entity_test_update', 'new_base_field'), 'Column created in shared table for new_base_field.');
     $entity = $this->entityTypeManager->getStorage('entity_test_update')->load($entity->id());
+<<<<<<< HEAD
     $this->assertIdentical($entity->name->value, $name, 'Entity data preserved during field creation.');
+=======
+    $this->assertSame($name, $entity->name->value, 'Entity data preserved during field creation.');
+>>>>>>> dev
 
     // Remove the base field and run the update. Ensure the base field's column
     // is deleted and the prior saved entity data is still there.
@@ -403,7 +435,11 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
     $this->applyEntityUpdates();
     $this->assertFalse($schema_handler->fieldExists('entity_test_update', 'new_base_field'), 'Column deleted from shared table for new_base_field.');
     $entity = $this->entityTypeManager->getStorage('entity_test_update')->load($entity->id());
+<<<<<<< HEAD
     $this->assertIdentical($entity->name->value, $name, 'Entity data preserved during field deletion.');
+=======
+    $this->assertSame($name, $entity->name->value, 'Entity data preserved during field deletion.');
+>>>>>>> dev
 
     // Add a base field with a required property and run the update. Ensure
     // 'not null' is not applied and thus no exception is thrown.
@@ -419,8 +455,13 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
     $entity->delete();
     $this->removeBaseField();
     $this->applyEntityUpdates();
+<<<<<<< HEAD
     $assert = !$schema_handler->fieldExists('entity_test_update', 'new_base_field__shape') && !$schema_handler->fieldExists('entity_test_update', 'new_base_field__color');
     $this->assert($assert, 'Columns removed from the shared table for new_base_field.');
+=======
+    $this->assertFalse($schema_handler->fieldExists('entity_test_update', 'new_base_field__shape'), 'Shape column should be removed from the shared table for new_base_field.');
+    $this->assertFalse($schema_handler->fieldExists('entity_test_update', 'new_base_field__color'), 'Color column should be removed from the shared table for new_base_field.');
+>>>>>>> dev
     $this->addBaseField('shape_required');
     $this->applyEntityUpdates();
     $assert = $schema_handler->fieldExists('entity_test_update', 'new_base_field__shape') && $schema_handler->fieldExists('entity_test_update', 'new_base_field__color');
@@ -432,7 +473,11 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
   /**
    * Tests creating and deleting a bundle field if entities exist.
    *
+<<<<<<< HEAD
    * This tests deletion when there are existing entities, but not existing data
+=======
+   * This tests deletion when there are existing entities, but non-existent data
+>>>>>>> dev
    * for the field being deleted.
    *
    * @see testBundleFieldDeleteWithExistingData()
@@ -451,7 +496,11 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
     $schema_handler = $this->database->schema();
     $this->assertTrue($schema_handler->tableExists('entity_test_update__new_bundle_field'), 'Dedicated table created for new_bundle_field.');
     $entity = $this->entityTypeManager->getStorage('entity_test_update')->load($entity->id());
+<<<<<<< HEAD
     $this->assertIdentical($entity->name->value, $name, 'Entity data preserved during field creation.');
+=======
+    $this->assertSame($name, $entity->name->value, 'Entity data preserved during field creation.');
+>>>>>>> dev
 
     // Remove the base field and run the update. Ensure the bundle field's
     // table is deleted and the prior saved entity data is still there.
@@ -459,7 +508,11 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
     $this->applyEntityUpdates();
     $this->assertFalse($schema_handler->tableExists('entity_test_update__new_bundle_field'), 'Dedicated table deleted for new_bundle_field.');
     $entity = $this->entityTypeManager->getStorage('entity_test_update')->load($entity->id());
+<<<<<<< HEAD
     $this->assertIdentical($entity->name->value, $name, 'Entity data preserved during field deletion.');
+=======
+    $this->assertSame($name, $entity->name->value, 'Entity data preserved during field deletion.');
+>>>>>>> dev
 
     // Test that required columns are created as 'not null'.
     $this->addBundleField('shape_required');
@@ -482,6 +535,7 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
         ->execute();
       $this->fail($message);
     }
+<<<<<<< HEAD
     catch (\RuntimeException $e) {
       if ($e instanceof DatabaseExceptionWrapper || $e instanceof IntegrityConstraintViolationException) {
         // Now provide a value for the 'not null' column. This is expected to
@@ -495,6 +549,15 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
         // Keep throwing it.
         throw $e;
       }
+=======
+    catch (IntegrityConstraintViolationException $e) {
+      // Now provide a value for the 'not null' column. This is expected to
+      // succeed.
+      $values['new_bundle_field_shape'] = $this->randomString();
+      $this->database->insert('entity_test_update__new_bundle_field')
+        ->fields($values)
+        ->execute();
+>>>>>>> dev
     }
   }
 
@@ -874,7 +937,11 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
         t('The %entity_type entity type needs to be updated.', ['%entity_type' => $this->entityTypeManager->getDefinition('entity_test_update')->getLabel()]),
       ],
     ];
+<<<<<<< HEAD
     $this->assertEqual($this->entityDefinitionUpdateManager->getChangeSummary(), $expected, 'EntityDefinitionUpdateManager reports the expected change summary.');
+=======
+    $this->assertEquals($expected, $this->entityDefinitionUpdateManager->getChangeSummary(), 'EntityDefinitionUpdateManager reports the expected change summary.');
+>>>>>>> dev
 
     // Run the update and ensure the new index is created.
     $entity_type = \Drupal::entityTypeManager()->getDefinition('entity_test_update');
@@ -891,7 +958,11 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
         t('The %entity_type entity type needs to be updated.', ['%entity_type' => $this->entityTypeManager->getDefinition('entity_test_update')->getLabel()]),
       ],
     ];
+<<<<<<< HEAD
     $this->assertEqual($this->entityDefinitionUpdateManager->getChangeSummary(), $expected, 'EntityDefinitionUpdateManager reports the expected change summary.');
+=======
+    $this->assertEquals($expected, $this->entityDefinitionUpdateManager->getChangeSummary(), 'EntityDefinitionUpdateManager reports the expected change summary.');
+>>>>>>> dev
 
     // Run the update and ensure the index is deleted.
     $entity_type = \Drupal::entityTypeManager()->getDefinition('entity_test_update');
@@ -1100,7 +1171,11 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
     // Check index size in for MySQL.
     if (Database::getConnection()->driver() == 'mysql') {
       $result = Database::getConnection()->query('SHOW INDEX FROM {entity_test_update} WHERE key_name = \'entity_test_update_field__new_base_field\' and column_name = \'new_base_field\'')->fetchObject();
+<<<<<<< HEAD
       $this->assertEqual(191, $result->Sub_part, 'The index length has been restricted to 191 characters for UTF8MB4 compatibility.');
+=======
+      $this->assertEquals(191, $result->Sub_part, 'The index length has been restricted to 191 characters for UTF8MB4 compatibility.');
+>>>>>>> dev
     }
   }
 
@@ -1129,7 +1204,11 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
     // Check index size in for MySQL.
     if (Database::getConnection()->driver() == 'mysql') {
       $result = Database::getConnection()->query('SHOW INDEX FROM {entity_test_update} WHERE key_name = \'entity_test_update__type_index\' and column_name = \'type\'')->fetchObject();
+<<<<<<< HEAD
       $this->assertEqual(191, $result->Sub_part, 'The index length has been restricted to 191 characters for UTF8MB4 compatibility.');
+=======
+      $this->assertEquals(191, $result->Sub_part, 'The index length has been restricted to 191 characters for UTF8MB4 compatibility.');
+>>>>>>> dev
     }
   }
 

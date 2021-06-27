@@ -3,7 +3,11 @@
  * A Backbone view for the aural feedback of the toolbar.
  */
 
+<<<<<<< HEAD
 (function(Backbone, Drupal) {
+=======
+(function (Backbone, Drupal) {
+>>>>>>> dev
   Drupal.toolbar.ToolbarAuralView = Backbone.View.extend(
     /** @lends Drupal.toolbar.ToolbarAuralView# */ {
       /**
@@ -62,9 +66,14 @@
           return;
         }
         const action = tray === null ? Drupal.t('closed') : Drupal.t('opened');
+<<<<<<< HEAD
         const trayNameElement = relevantTray.querySelector(
           '.toolbar-tray-name',
         );
+=======
+        const trayNameElement =
+          relevantTray.querySelector('.toolbar-tray-name');
+>>>>>>> dev
         let text;
         if (trayNameElement !== null) {
           text = Drupal.t('Tray "@tray" @action.', {

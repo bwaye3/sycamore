@@ -2,12 +2,18 @@
 
 namespace Drupal\KernelTests\Core\File;
 
+<<<<<<< HEAD
 use Drupal\Component\FileSystem\FileSystem;
+=======
+>>>>>>> dev
 use Drupal\KernelTests\KernelTestBase;
 
 /**
  * @group File
+<<<<<<< HEAD
  * @group legacy
+=======
+>>>>>>> dev
  */
 class FileSystemRequirementsTest extends KernelTestBase {
 
@@ -16,7 +22,11 @@ class FileSystemRequirementsTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['system'];
+=======
+  protected static $modules = ['system'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -26,12 +36,17 @@ class FileSystemRequirementsTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->setInstallProfile('standard');
   }
 
   /**
+<<<<<<< HEAD
    * Tests requirements warnings.
    *
    * @expectedDeprecation The 'system.file' config 'path.temporary' is deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Set 'file_temp_path' in settings.php instead. See https://www.drupal.org/node/3039255
@@ -57,6 +72,8 @@ class FileSystemRequirementsTest extends KernelTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests if settings are set, there are not warnings.
    */
   public function testSettingsExist() {

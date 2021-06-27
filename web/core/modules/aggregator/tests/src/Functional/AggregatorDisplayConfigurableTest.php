@@ -21,7 +21,11 @@ class AggregatorDisplayConfigurableTest extends AggregatorTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalPlaceBlock('page_title_block');

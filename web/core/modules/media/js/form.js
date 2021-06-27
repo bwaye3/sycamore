@@ -9,7 +9,10 @@
   Drupal.behaviors.mediaFormSummaries = {
     attach: function attach(context) {
       var $context = $(context);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       $context.find('.media-form-author').drupalSetSummary(function (context) {
         var $authorContext = $(context);
         var name = $authorContext.find('.field--name-uid input').val();
@@ -21,11 +24,25 @@
             '@date': date
           });
         }
+<<<<<<< HEAD
         if (name) {
           return Drupal.t('By @name', { '@name': name });
         }
         if (date) {
           return Drupal.t('Authored on @date', { '@date': date });
+=======
+
+        if (name) {
+          return Drupal.t('By @name', {
+            '@name': name
+          });
+        }
+
+        if (date) {
+          return Drupal.t('Authored on @date', {
+            '@date': date
+          });
+>>>>>>> dev
         }
       });
     }

@@ -15,6 +15,7 @@ abstract class NoMultilingualReviewPageTestBase extends MultilingualReviewPageTe
   public function testMigrateUpgradeReviewPage() {
     $this->prepare();
     // Start the upgrade process.
+<<<<<<< HEAD
     $this->drupalGet('/upgrade');
     $this->drupalPostForm(NULL, [], t('Continue'));
     $this->drupalPostForm(NULL, $this->edits, t('Review upgrade'));
@@ -40,6 +41,16 @@ abstract class NoMultilingualReviewPageTestBase extends MultilingualReviewPageTe
     $available_paths = $this->getAvailablePaths();
     $missing_paths = $this->getMissingPaths();
     $this->assertUpgradePaths($session, $available_paths, $missing_paths);
+=======
+    $this->submitCredentialForm();
+
+    $session = $this->assertSession();
+    $this->submitForm([], 'I acknowledge I may lose data. Continue anyway.');
+    $session->statusCodeEquals(200);
+
+    // Test the upgrade paths.
+    $this->assertReviewForm();
+>>>>>>> dev
   }
 
 }

@@ -24,7 +24,11 @@ class CommentTokenReplaceTest extends CommentTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['taxonomy'];
+=======
+  protected static $modules = ['taxonomy'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -139,8 +143,13 @@ class CommentTokenReplaceTest extends CommentTestBase {
     foreach ($tests as $input => $expected) {
       $bubbleable_metadata = new BubbleableMetadata();
       $output = $token_service->replace($input, ['comment' => $comment], ['langcode' => $language_interface->getId()], $bubbleable_metadata);
+<<<<<<< HEAD
       $this->assertEqual($output, $expected, new FormattableMarkup('Comment token %token replaced.', ['%token' => $input]));
       $this->assertEqual($bubbleable_metadata, $metadata_tests[$input]);
+=======
+      $this->assertEquals($expected, $output, new FormattableMarkup('Comment token %token replaced.', ['%token' => $input]));
+      $this->assertEquals($metadata_tests[$input], $bubbleable_metadata);
+>>>>>>> dev
     }
 
     // Test anonymous comment author.
@@ -148,7 +157,11 @@ class CommentTokenReplaceTest extends CommentTestBase {
     $comment->setOwnerId(0)->setAuthorName($author_name);
     $input = '[comment:author]';
     $output = $token_service->replace($input, ['comment' => $comment], ['langcode' => $language_interface->getId()]);
+<<<<<<< HEAD
     $this->assertEqual($output, Html::escape($author_name), new FormattableMarkup('Comment author token %token replaced.', ['%token' => $input]));
+=======
+    $this->assertEquals(Html::escape($author_name), $output, new FormattableMarkup('Comment author token %token replaced.', ['%token' => $input]));
+>>>>>>> dev
     // Add comment field to user and term entities.
     $this->addDefaultCommentField('user', 'user', 'comment', CommentItemInterface::OPEN, 'comment_user');
     $this->addDefaultCommentField('taxonomy_term', 'tags', 'comment', CommentItemInterface::OPEN, 'comment_term');
@@ -186,7 +199,11 @@ class CommentTokenReplaceTest extends CommentTestBase {
 
     foreach ($tests as $input => $expected) {
       $output = $token_service->replace($input, ['entity' => $node, 'node' => $node, 'user' => $user, 'term' => $term], ['langcode' => $language_interface->getId()]);
+<<<<<<< HEAD
       $this->assertEqual($output, $expected, new FormattableMarkup('Comment token %token replaced.', ['%token' => $input]));
+=======
+      $this->assertEquals($expected, $output, new FormattableMarkup('Comment token %token replaced.', ['%token' => $input]));
+>>>>>>> dev
     }
   }
 

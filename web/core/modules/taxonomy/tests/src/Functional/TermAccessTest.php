@@ -21,7 +21,11 @@ class TermAccessTest extends TaxonomyTestBase {
   protected $defaultTheme = 'stark';
 
   /**
+<<<<<<< HEAD
    * Test access control functionality for taxonomy terms.
+=======
+   * Tests access control functionality for taxonomy terms.
+>>>>>>> dev
    */
   public function testTermAccess() {
     $assert_session = $this->assertSession();

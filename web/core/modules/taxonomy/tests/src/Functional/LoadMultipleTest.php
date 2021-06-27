@@ -17,7 +17,11 @@ class LoadMultipleTest extends TaxonomyTestBase {
    */
   protected $defaultTheme = 'stark';
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->drupalLogin($this->drupalCreateUser(['administer taxonomy']));
   }
@@ -40,12 +44,20 @@ class LoadMultipleTest extends TaxonomyTestBase {
     $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
     $terms = $term_storage->loadByProperties(['vid' => $vocabulary->id()]);
     $count = count($terms);
+<<<<<<< HEAD
     $this->assertEqual($count, 5, new FormattableMarkup('Correct number of terms were loaded. @count terms.', ['@count' => $count]));
 
     // Load the same terms again by tid.
     $terms2 = Term::loadMultiple(array_keys($terms));
     $this->assertEqual($count, count($terms2), 'Five terms were loaded by tid.');
     $this->assertEqual($terms, $terms2, 'Both arrays contain the same terms.');
+=======
+    $this->assertEquals(5, $count, new FormattableMarkup('Correct number of terms were loaded. @count terms.', ['@count' => $count]));
+
+    // Load the same terms again by tid.
+    $terms2 = Term::loadMultiple(array_keys($terms));
+    $this->assertEquals($terms, $terms2, 'Both arrays contain the same terms.');
+>>>>>>> dev
 
     // Remove one term from the array, then delete it.
     $deleted = array_shift($terms2);
@@ -63,7 +75,11 @@ class LoadMultipleTest extends TaxonomyTestBase {
     $loaded_terms = $term_storage->loadByProperties(['name' => $term->getName()]);
     $this->assertCount(1, $loaded_terms, 'One term was loaded.');
     $loaded_term = reset($loaded_terms);
+<<<<<<< HEAD
     $this->assertEqual($term->id(), $loaded_term->id(), 'Term loaded by name successfully.');
+=======
+    $this->assertEquals($term->id(), $loaded_term->id(), 'Term loaded by name successfully.');
+>>>>>>> dev
   }
 
 }

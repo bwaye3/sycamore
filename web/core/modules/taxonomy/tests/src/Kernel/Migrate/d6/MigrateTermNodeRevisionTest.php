@@ -14,12 +14,20 @@ class MigrateTermNodeRevisionTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['taxonomy', 'menu_ui'];
+=======
+  protected static $modules = ['taxonomy', 'menu_ui'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installSchema('node', ['node_access']);
     $this->migrateContent(['revisions']);

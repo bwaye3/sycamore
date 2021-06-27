@@ -16,7 +16,11 @@ class FunctionalJavascriptTestSuite extends TestSuiteBase {
    *   The test suite.
    */
   public static function suite() {
+<<<<<<< HEAD
     $root = dirname(dirname(dirname(__DIR__)));
+=======
+    $root = dirname(__DIR__, 3);
+>>>>>>> dev
 
     $suite = new static('functional-javascript');
     $suite->addTestsBySuiteNamespace($root, 'FunctionalJavascript');

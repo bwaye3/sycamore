@@ -17,7 +17,11 @@ class WorkspaceViewTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['workspaces'];
+=======
+  protected static $modules = ['workspaces'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

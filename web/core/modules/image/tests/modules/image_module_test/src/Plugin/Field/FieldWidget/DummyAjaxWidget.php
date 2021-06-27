@@ -31,7 +31,11 @@ class DummyAjaxWidget extends WidgetBase {
       '#options' => ['pow' => 'Pow!', 'bam' => 'Bam!'],
       '#required' => TRUE,
       '#ajax' => [
+<<<<<<< HEAD
         'callback' => get_called_class() . '::dummyAjaxCallback',
+=======
+        'callback' => static::class . '::dummyAjaxCallback',
+>>>>>>> dev
         'effect' => 'fade',
       ],
     ];

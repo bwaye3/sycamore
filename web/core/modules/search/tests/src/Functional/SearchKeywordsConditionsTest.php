@@ -38,7 +38,11 @@ class SearchKeywordsConditionsTest extends BrowserTestBase {
    */
   protected $searchingUser;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create searching user.
@@ -62,6 +66,7 @@ class SearchKeywordsConditionsTest extends BrowserTestBase {
     // With keys - get results.
     $keys = 'bike shed ' . $this->randomMachineName();
     $this->drupalGet("search/dummy_path", ['query' => ['keys' => $keys]]);
+<<<<<<< HEAD
     $this->assertText("Dummy search snippet to display. Keywords: {$keys}");
     $keys = 'blue drop ' . $this->randomMachineName();
     $this->drupalGet("search/dummy_path", ['query' => ['keys' => $keys]]);
@@ -70,6 +75,16 @@ class SearchKeywordsConditionsTest extends BrowserTestBase {
     $keys = 'moving drop ' . $this->randomMachineName();
     $this->drupalGet("search/dummy_path", ['query' => ['keys' => 'bike', 'search_conditions' => $keys]]);
     $this->assertText("Dummy search snippet to display.");
+=======
+    $this->assertSession()->pageTextContains("Dummy search snippet to display. Keywords: {$keys}");
+    $keys = 'blue drop ' . $this->randomMachineName();
+    $this->drupalGet("search/dummy_path", ['query' => ['keys' => $keys]]);
+    $this->assertSession()->pageTextContains("Dummy search snippet to display. Keywords: {$keys}");
+    // Add some conditions and keys.
+    $keys = 'moving drop ' . $this->randomMachineName();
+    $this->drupalGet("search/dummy_path", ['query' => ['keys' => 'bike', 'search_conditions' => $keys]]);
+    $this->assertSession()->pageTextContains("Dummy search snippet to display.");
+>>>>>>> dev
     $this->assertRaw(Html::escape(print_r(['keys' => 'bike', 'search_conditions' => $keys], TRUE)));
   }
 

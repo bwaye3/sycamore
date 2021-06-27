@@ -3,6 +3,9 @@ type: module
 description: 'Provides CSS fixes for tests.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
 - drupal:settings_tray

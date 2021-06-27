@@ -45,12 +45,20 @@ class UserPasswordResetTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['block'];
+=======
+  protected static $modules = ['block'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create a user.
@@ -86,13 +94,21 @@ class UserPasswordResetTest extends WebDriverTestBase {
 
     // Reset the password by username via the password reset page.
     $edit['name'] = $this->account->getAccountName();
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, t('Submit'));
+=======
+    $this->submitForm($edit, 'Submit');
+>>>>>>> dev
 
     $resetURL = $this->getResetURL();
     $this->drupalGet($resetURL);
 
     // Login
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, NULL, t('Log in'));
+=======
+    $this->submitForm([], 'Log in');
+>>>>>>> dev
 
     // Generate file.
     $image_file = current($this->drupalGetTestFiles('image'));
@@ -103,12 +119,21 @@ class UserPasswordResetTest extends WebDriverTestBase {
     $this->assertSession()->waitForButton('Remove');
 
     // Change the forgotten password.
+<<<<<<< HEAD
     $password = user_password();
     $edit = ['pass[pass1]' => $password, 'pass[pass2]' => $password];
     $this->drupalPostForm(NULL, $edit, t('Save'));
 
     // Verify that the password reset session has been destroyed.
     $this->drupalPostForm(NULL, $edit, t('Save'));
+=======
+    $password = \Drupal::service('password_generator')->generate();
+    $edit = ['pass[pass1]' => $password, 'pass[pass2]' => $password];
+    $this->submitForm($edit, 'Save');
+
+    // Verify that the password reset session has been destroyed.
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
     // Password needed to make profile changes.
     $this->assertSession()->pageTextContains("Your current password is missing or incorrect; it's required to change the Password.");
   }

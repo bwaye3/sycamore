@@ -20,7 +20,11 @@ class EndOfTransactionQueriesTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'delay_cache_tags_invalidation',
     'entity_test',
     'system',
@@ -30,7 +34,11 @@ class EndOfTransactionQueriesTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // This can only be checked after installing Drupal as it requires functions

@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\layout_builder\Unit;
 
+<<<<<<< HEAD
 use Drupal\Component\Plugin\ConfigurablePluginInterface;
 use Drupal\Component\Plugin\DerivativeInspectionInterface;
 use Drupal\Component\Plugin\PluginInspectionInterface;
@@ -9,6 +10,12 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\layout_builder\LayoutEntityHelperTrait;
 use Drupal\layout_builder\Plugin\SectionStorage\OverridesSectionStorage;
+=======
+use Drupal\Component\Plugin\ConfigurableInterface;
+use Drupal\Component\Plugin\DerivativeInspectionInterface;
+use Drupal\Component\Plugin\PluginInspectionInterface;
+use Drupal\layout_builder\LayoutEntityHelperTrait;
+>>>>>>> dev
 use Drupal\layout_builder\Section;
 use Drupal\layout_builder\SectionComponent;
 use Drupal\Tests\UnitTestCase;
@@ -21,6 +28,7 @@ use Drupal\Tests\UnitTestCase;
 class LayoutEntityHelperTraitTest extends UnitTestCase {
 
   /**
+<<<<<<< HEAD
    * @covers ::isEntityUsingFieldOverride
    *
    * @dataProvider providerTestIsEntityUsingFieldOverride
@@ -59,6 +67,9 @@ class LayoutEntityHelperTraitTest extends UnitTestCase {
 
   /**
    * Dataprovider method for tests that need sections with inline blocks.
+=======
+   * Data provider method for tests that need sections with inline blocks.
+>>>>>>> dev
    */
   public function providerSectionsWithInlineComponents() {
     $components = [];
@@ -77,7 +88,11 @@ class LayoutEntityHelperTraitTest extends UnitTestCase {
 
     // Ensure that inline block component is returned.
     $inline_component = $this->prophesize(SectionComponent::class);
+<<<<<<< HEAD
     $inline_plugin = $this->prophesize(DerivativeInspectionInterface::class)->willImplement(ConfigurablePluginInterface::class);
+=======
+    $inline_plugin = $this->prophesize(DerivativeInspectionInterface::class)->willImplement(ConfigurableInterface::class);
+>>>>>>> dev
     $inline_plugin->getBaseId()->willReturn('inline_block');
     $inline_plugin->getConfiguration()->willReturn(['block_revision_id' => 'the_revision_id']);
     $inline_component->getPlugin()->willReturn($inline_plugin->reveal());
@@ -86,7 +101,11 @@ class LayoutEntityHelperTraitTest extends UnitTestCase {
 
     // Ensure that inline block component without revision is returned.
     $inline_component_without_revision_id = $this->prophesize(SectionComponent::class);
+<<<<<<< HEAD
     $inline_plugin_without_revision_id = $this->prophesize(DerivativeInspectionInterface::class)->willImplement(ConfigurablePluginInterface::class);
+=======
+    $inline_plugin_without_revision_id = $this->prophesize(DerivativeInspectionInterface::class)->willImplement(ConfigurableInterface::class);
+>>>>>>> dev
     $inline_plugin_without_revision_id->getBaseId()->willReturn('inline_block');
     $inline_plugin_without_revision_id->getConfiguration()->willReturn(['other_key' => 'other_value']);
     $inline_component_without_revision_id->getPlugin()->willReturn($inline_plugin_without_revision_id->reveal());
@@ -99,7 +118,11 @@ class LayoutEntityHelperTraitTest extends UnitTestCase {
     $components = [];
     // Ensure that inline block components in all sections are returned.
     $inline_component2 = $this->prophesize(SectionComponent::class);
+<<<<<<< HEAD
     $inline_plugin2 = $this->prophesize(DerivativeInspectionInterface::class)->willImplement(ConfigurablePluginInterface::class);
+=======
+    $inline_plugin2 = $this->prophesize(DerivativeInspectionInterface::class)->willImplement(ConfigurableInterface::class);
+>>>>>>> dev
     $inline_plugin2->getBaseId()->willReturn('inline_block');
     $inline_plugin2->getConfiguration()->willReturn(['block_revision_id' => 'the_other_revision_id']);
     $inline_component2->getPlugin()->willReturn($inline_plugin2->reveal());
@@ -152,7 +175,10 @@ class LayoutEntityHelperTraitTest extends UnitTestCase {
  */
 class TestClass {
   use LayoutEntityHelperTrait {
+<<<<<<< HEAD
     isEntityUsingFieldOverride as public;
+=======
+>>>>>>> dev
     getInlineBlockComponents as public;
     getInlineBlockRevisionIdsInSections as public;
   }

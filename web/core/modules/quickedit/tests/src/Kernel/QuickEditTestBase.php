@@ -16,7 +16,11 @@ abstract class QuickEditTestBase extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'system',
     'entity_test',
     'field',

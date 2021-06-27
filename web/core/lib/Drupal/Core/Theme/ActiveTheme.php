@@ -47,6 +47,7 @@ class ActiveTheme {
    */
   protected $owner;
 
+<<<<<<< HEAD
   /**
    * An array of base theme active theme objects keyed by name.
    *
@@ -58,6 +59,8 @@ class ActiveTheme {
    * @see https://www.drupal.org/node/3019948
    */
   protected $baseThemes;
+=======
+>>>>>>> dev
 
   /**
    * An array of base theme extension objects keyed by name.
@@ -138,6 +141,7 @@ class ActiveTheme {
     $this->libraries = $values['libraries'];
     $this->extension = $values['extension'];
     $this->baseThemeExtensions = $values['base_theme_extensions'];
+<<<<<<< HEAD
     if (!empty($values['base_themes']) && empty($this->baseThemeExtensions)) {
       @trigger_error("The 'base_themes' key is deprecated in Drupal 8.7.0  and support for it will be removed in Drupal 9.0.0. Use 'base_theme_extensions' instead. See https://www.drupal.org/node/3019948", E_USER_DEPRECATED);
       foreach ($values['base_themes'] as $base_theme) {
@@ -145,6 +149,8 @@ class ActiveTheme {
       }
     }
 
+=======
+>>>>>>> dev
     $this->regions = $values['regions'];
     $this->librariesOverride = $values['libraries_override'];
     $this->librariesExtend = $values['libraries_extend'];
@@ -227,6 +233,7 @@ class ActiveTheme {
   }
 
   /**
+<<<<<<< HEAD
    * Returns an array of base theme active theme objects keyed by name.
    *
    * The order starts with the base theme of $this and ends with the root of
@@ -248,6 +255,8 @@ class ActiveTheme {
   }
 
   /**
+=======
+>>>>>>> dev
    * Returns an array of base theme extension objects keyed by name.
    *
    * The order starts with the base theme of $this and ends with the root of

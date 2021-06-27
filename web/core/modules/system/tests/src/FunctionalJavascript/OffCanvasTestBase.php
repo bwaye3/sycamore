@@ -96,6 +96,7 @@ abstract class OffCanvasTestBase extends WebDriverTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Waits for an element to be removed from the page.
    *
    * @param string $selector
@@ -112,6 +113,8 @@ abstract class OffCanvasTestBase extends WebDriverTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Get themes to test.
    *
    * @return string[]
@@ -138,7 +141,11 @@ abstract class OffCanvasTestBase extends WebDriverTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Dataprovider that returns theme name as the sole argument.
+=======
+   * Data provider that returns theme name as the sole argument.
+>>>>>>> dev
    */
   public function themeDataProvider() {
     $themes = $this->getTestThemes();

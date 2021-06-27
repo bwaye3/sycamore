@@ -17,7 +17,11 @@ class MediaBulkFormTest extends MediaFunctionalTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['media_test_views'];
+=======
+  protected static $modules = ['media_test_views'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -41,7 +45,11 @@ class MediaBulkFormTest extends MediaFunctionalTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->testMediaType = $this->createMediaType('test');

@@ -3,7 +3,11 @@
  * Module page behaviors.
  */
 
+<<<<<<< HEAD
 (function($, Drupal, debounce) {
+=======
+(function ($, Drupal, debounce) {
+>>>>>>> dev
   /**
    * Filters the module list table by a text input search string.
    *

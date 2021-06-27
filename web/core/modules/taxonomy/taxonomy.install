@@ -5,6 +5,7 @@
  * Install, update and uninstall functions for the taxonomy module.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Entity\Sql\SqlEntityStorageInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Site\Settings;
@@ -281,4 +282,11 @@ function taxonomy_update_8702(&$sandbox) {
     }
   }
   $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['current'] / $sandbox['max']);
+=======
+/**
+ * Implements hook_update_last_removed().
+ */
+function taxonomy_update_last_removed() {
+  return 8702;
+>>>>>>> dev
 }

@@ -14,7 +14,11 @@ abstract class WizardTestBase extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'views_ui', 'block', 'rest'];
+=======
+  protected static $modules = ['node', 'views_ui', 'block', 'rest'];
+>>>>>>> dev
 
   protected function setUp($import_test_views = TRUE) {
     parent::setUp($import_test_views);

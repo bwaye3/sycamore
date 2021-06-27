@@ -31,7 +31,11 @@ class FieldEntityTest extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'comment'];
+=======
+  protected static $modules = ['node', 'comment'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -41,13 +45,21 @@ class FieldEntityTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp(FALSE);
 
     $this->drupalCreateContentType(['type' => 'page']);
     $this->addDefaultCommentField('node', 'page');
 
+<<<<<<< HEAD
     ViewTestData::createTestViews(get_class($this), ['views_test_config']);
+=======
+    ViewTestData::createTestViews(static::class, ['views_test_config']);
+>>>>>>> dev
   }
 
   /**
@@ -83,6 +95,7 @@ class FieldEntityTest extends ViewTestBase {
 
     // Tests entities on the base level.
     $entity = $view->field['cid']->getEntity($row);
+<<<<<<< HEAD
     $this->assertEqual($entity->id(), $comment->id(), 'Make sure the right comment entity got loaded.');
     // Tests entities as relationship on first level.
     $entity = $view->field['nid']->getEntity($row);
@@ -90,6 +103,15 @@ class FieldEntityTest extends ViewTestBase {
     // Tests entities as relationships on second level.
     $entity = $view->field['uid']->getEntity($row);
     $this->assertEqual($entity->id(), $account->id(), 'Make sure the right user entity got loaded.');
+=======
+    $this->assertEquals($comment->id(), $entity->id(), 'Make sure the right comment entity got loaded.');
+    // Tests entities as relationship on first level.
+    $entity = $view->field['nid']->getEntity($row);
+    $this->assertEquals($node->id(), $entity->id(), 'Make sure the right node entity got loaded.');
+    // Tests entities as relationships on second level.
+    $entity = $view->field['uid']->getEntity($row);
+    $this->assertEquals($account->id(), $entity->id(), 'Make sure the right user entity got loaded.');
+>>>>>>> dev
   }
 
 }

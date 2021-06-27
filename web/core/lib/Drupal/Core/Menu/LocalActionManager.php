@@ -5,7 +5,10 @@ namespace Drupal\Core\Menu;
 use Drupal\Core\Access\AccessManagerInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\CacheBackendInterface;
+<<<<<<< HEAD
 use Drupal\Core\Controller\ControllerResolverInterface;
+=======
+>>>>>>> dev
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
@@ -56,6 +59,7 @@ class LocalActionManager extends DefaultPluginManager implements LocalActionMana
   protected $argumentResolver;
 
   /**
+<<<<<<< HEAD
    * A controller resolver object.
    *
    * @var \Symfony\Component\HttpKernel\Controller\ControllerResolverInterface
@@ -71,6 +75,8 @@ class LocalActionManager extends DefaultPluginManager implements LocalActionMana
   protected $controllerResolver;
 
   /**
+=======
+>>>>>>> dev
    * The request stack.
    *
    * @var \Symfony\Component\HttpFoundation\RequestStack
@@ -139,10 +145,13 @@ class LocalActionManager extends DefaultPluginManager implements LocalActionMana
     // discovery.
     $this->factory = new ContainerFactory($this, 'Drupal\Core\Menu\LocalActionInterface');
     $this->argumentResolver = $argument_resolver;
+<<<<<<< HEAD
     if ($argument_resolver instanceof ControllerResolverInterface) {
       @trigger_error("Using the 'controller_resolver' service as the first argument is deprecated, use the 'http_kernel.controller.argument_resolver' instead. If your subclass requires the 'controller_resolver' service add it as an additional argument. See https://www.drupal.org/node/2959408.", E_USER_DEPRECATED);
       $this->controllerResolver = $argument_resolver;
     }
+=======
+>>>>>>> dev
     $this->requestStack = $request_stack;
     $this->routeMatch = $route_match;
     $this->routeProvider = $route_provider;
@@ -198,7 +207,11 @@ class LocalActionManager extends DefaultPluginManager implements LocalActionMana
     $links = [];
     $cacheability = new CacheableMetadata();
     $cacheability->addCacheContexts(['route']);
+<<<<<<< HEAD
     /** @var $plugin \Drupal\Core\Menu\LocalActionInterface */
+=======
+    /** @var \Drupal\Core\Menu\LocalActionInterface $plugin */
+>>>>>>> dev
     foreach ($this->instances[$route_appears] as $plugin_id => $plugin) {
       $route_name = $plugin->getRouteName();
       $route_parameters = $plugin->getRouteParameters($this->routeMatch);

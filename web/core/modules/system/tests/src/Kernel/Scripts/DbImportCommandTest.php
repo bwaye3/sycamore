@@ -17,7 +17,11 @@ class DbImportCommandTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'system',
     'config',
     'dblog',
@@ -46,8 +50,13 @@ class DbImportCommandTest extends KernelTestBase {
     'key_value_expire',
     'menu_link_content',
     'menu_link_content_data',
+<<<<<<< HEAD
     'sessions',
     'url_alias',
+=======
+    'path_alias',
+    'sessions',
+>>>>>>> dev
     'user__roles',
     'users',
     'users_field_data',
@@ -55,7 +64,11 @@ class DbImportCommandTest extends KernelTestBase {
   ];
 
   /**
+<<<<<<< HEAD
    * Test the command directly.
+=======
+   * Tests the command directly.
+>>>>>>> dev
    *
    * @requires extension pdo_sqlite
    */
@@ -69,7 +82,11 @@ class DbImportCommandTest extends KernelTestBase {
     $command = new DbImportCommand();
     $command_tester = new CommandTester($command);
     $command_tester->execute([
+<<<<<<< HEAD
       'script' => __DIR__ . '/../../../fixtures/update/drupal-8.bare.standard.php.gz',
+=======
+      'script' => __DIR__ . '/../../../fixtures/update/drupal-8.8.0.bare.standard.php.gz',
+>>>>>>> dev
       '--database' => $this->databasePrefix,
     ]);
 

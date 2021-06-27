@@ -6,6 +6,7 @@
  */
 
 /**
+<<<<<<< HEAD
  * Change the path field to computed for node and taxonomy_term.
  */
 function path_update_8200() {
@@ -20,4 +21,10 @@ function path_update_8200() {
       }
     }
   }
+=======
+ * Implements hook_update_last_removed().
+ */
+function path_update_last_removed() {
+  return 8200;
+>>>>>>> dev
 }

@@ -3,7 +3,10 @@
 namespace Drupal\media;
 
 use Drupal\Component\Plugin\ConfigurableInterface;
+<<<<<<< HEAD
 use Drupal\Component\Plugin\ConfigurablePluginInterface;
+=======
+>>>>>>> dev
 use Drupal\Component\Plugin\DependentPluginInterface;
 use Drupal\Component\Plugin\PluginInspectionInterface;
 use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
@@ -68,7 +71,11 @@ use Drupal\Core\Plugin\PluginFormInterface;
  * @see \Drupal\media\MediaSourceFieldConstraintsInterface
  * @see plugin_api
  */
+<<<<<<< HEAD
 interface MediaSourceInterface extends PluginInspectionInterface, ConfigurableInterface, DependentPluginInterface, ConfigurablePluginInterface, PluginFormInterface {
+=======
+interface MediaSourceInterface extends PluginInspectionInterface, ConfigurableInterface, DependentPluginInterface, PluginFormInterface {
+>>>>>>> dev
 
   /**
    * Default empty value for metadata fields.

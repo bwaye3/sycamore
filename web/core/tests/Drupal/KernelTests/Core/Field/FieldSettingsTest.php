@@ -19,7 +19,11 @@ class FieldSettingsTest extends EntityKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['field', 'field_test'];
+=======
+  protected static $modules = ['field', 'field_test'];
+>>>>>>> dev
 
   /**
    * @covers \Drupal\Core\Field\BaseFieldDefinition::getSettings
@@ -37,13 +41,21 @@ class FieldSettingsTest extends EntityKernelTestBase {
       'test_field_setting' => 'dummy test string',
       'translatable_field_setting' => 'a translatable field setting',
     ];
+<<<<<<< HEAD
     $this->assertEqual($base_field->getSettings(), $expected_settings);
+=======
+    $this->assertEquals($expected_settings, $base_field->getSettings());
+>>>>>>> dev
 
     // Change one single setting using setSettings(), and check that the other
     // expected settings are still present.
     $expected_settings['test_field_setting'] = 'another test string';
     $base_field->setSettings(['test_field_setting' => $expected_settings['test_field_setting']]);
+<<<<<<< HEAD
     $this->assertEqual($base_field->getSettings(), $expected_settings);
+=======
+    $this->assertEquals($expected_settings, $base_field->getSettings());
+>>>>>>> dev
   }
 
   /**
@@ -92,13 +104,21 @@ class FieldSettingsTest extends EntityKernelTestBase {
       'unchangeable' => 'an unchangeable field storage setting',
       'translatable_storage_setting' => 'a translatable field storage setting',
     ];
+<<<<<<< HEAD
     $this->assertEqual($field_storage->getSettings(), $expected_settings);
+=======
+    $this->assertEquals($expected_settings, $field_storage->getSettings());
+>>>>>>> dev
 
     // Change one single setting using setSettings(), and check that the other
     // expected settings are still present.
     $expected_settings['test_field_storage_setting'] = 'another test string';
     $field_storage->setSettings(['test_field_storage_setting' => $expected_settings['test_field_storage_setting']]);
+<<<<<<< HEAD
     $this->assertEqual($field_storage->getSettings(), $expected_settings);
+=======
+    $this->assertEquals($expected_settings, $field_storage->getSettings());
+>>>>>>> dev
   }
 
   /**
@@ -131,13 +151,21 @@ class FieldSettingsTest extends EntityKernelTestBase {
       'translatable_field_setting' => 'a translatable field setting',
       'field_setting_from_config_data' => 'TRUE',
     ];
+<<<<<<< HEAD
     $this->assertEqual($field->getSettings(), $expected_settings);
+=======
+    $this->assertEquals($expected_settings, $field->getSettings());
+>>>>>>> dev
 
     // Change one single setting using setSettings(), and check that the other
     // expected settings are still present.
     $expected_settings['test_field_setting'] = 'another test string';
     $field->setSettings(['test_field_setting' => $expected_settings['test_field_setting']]);
+<<<<<<< HEAD
     $this->assertEqual($field->getSettings(), $expected_settings);
+=======
+    $this->assertEquals($expected_settings, $field->getSettings());
+>>>>>>> dev
   }
 
 }

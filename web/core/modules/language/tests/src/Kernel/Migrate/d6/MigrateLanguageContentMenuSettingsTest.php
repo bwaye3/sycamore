@@ -17,7 +17,11 @@ class MigrateLanguageContentMenuSettingsTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'language',
     'content_translation',
     'menu_link_content',
@@ -26,12 +30,23 @@ class MigrateLanguageContentMenuSettingsTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     // Create some languages.
     ConfigurableLanguage::createFromLangcode('en')->save();
     ConfigurableLanguage::createFromLangcode('fr')->save();
+<<<<<<< HEAD
     $this->executeMigrations(['d6_language_content_menu_settings']);
+=======
+    $this->executeMigrations([
+      'language',
+      'd6_language_content_menu_settings',
+    ]);
+>>>>>>> dev
   }
 
   /**

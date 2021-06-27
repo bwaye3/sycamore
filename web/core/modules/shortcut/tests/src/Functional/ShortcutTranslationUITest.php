@@ -15,7 +15,11 @@ use Drupal\Core\Language\Language;
 class ShortcutTranslationUITest extends ContentTranslationUITestBase {
 
   /**
+<<<<<<< HEAD
    * {inheritdoc}
+=======
+   * {@inheritdoc}
+>>>>>>> dev
    */
   protected $defaultCacheContexts = ['languages:language_interface', 'session', 'theme', 'user', 'url.path', 'url.query_args', 'url.site'];
 
@@ -24,7 +28,11 @@ class ShortcutTranslationUITest extends ContentTranslationUITestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'language',
     'content_translation',
     'link',
@@ -40,7 +48,11 @@ class ShortcutTranslationUITest extends ContentTranslationUITestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->entityTypeId = 'shortcut';
     $this->bundle = 'default';
     parent::setUp();

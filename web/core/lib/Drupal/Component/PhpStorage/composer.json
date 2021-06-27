@@ -5,7 +5,11 @@
   "homepage": "https://www.drupal.org/project/drupal",
   "license": "GPL-2.0-or-later",
   "require": {
+<<<<<<< HEAD
     "php": ">=7.0.8",
+=======
+    "php": ">=7.3.0",
+>>>>>>> dev
     "drupal/core-file-security": "^8.8"
   },
   "autoload": {

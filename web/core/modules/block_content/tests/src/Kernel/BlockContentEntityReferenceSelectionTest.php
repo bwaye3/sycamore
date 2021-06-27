@@ -19,7 +19,11 @@ class BlockContentEntityReferenceSelectionTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'block',
     'block_content',
     'block_content_test',
@@ -65,7 +69,11 @@ class BlockContentEntityReferenceSelectionTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
+=======
+  public function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installSchema('system', ['sequences']);
     $this->installEntitySchema('user');
@@ -121,6 +129,7 @@ class BlockContentEntityReferenceSelectionTest extends KernelTestBase {
    */
   public function testQueriesNotAltered() {
     // Ensure that queries without all the tags are not altered.
+<<<<<<< HEAD
     $query = $this->entityTypeManager->getStorage('block_content')->getQuery();
     $this->assertCount(2, $query->execute());
 
@@ -129,12 +138,32 @@ class BlockContentEntityReferenceSelectionTest extends KernelTestBase {
     $this->assertCount(2, $query->execute());
 
     $query = $this->entityTypeManager->getStorage('block_content')->getQuery();
+=======
+    $query = $this->entityTypeManager->getStorage('block_content')
+      ->getQuery()
+      ->accessCheck(FALSE);
+    $this->assertCount(2, $query->execute());
+
+    $query = $this->entityTypeManager->getStorage('block_content')
+      ->getQuery()
+      ->accessCheck(FALSE);
+    $query->addTag('block_content_access');
+    $this->assertCount(2, $query->execute());
+
+    $query = $this->entityTypeManager->getStorage('block_content')
+      ->getQuery()
+      ->accessCheck(FALSE);
+>>>>>>> dev
     $query->addTag('entity_query_block_content');
     $this->assertCount(2, $query->execute());
   }
 
   /**
+<<<<<<< HEAD
    * Test with no conditions set.
+=======
+   * Tests with no conditions set.
+>>>>>>> dev
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */

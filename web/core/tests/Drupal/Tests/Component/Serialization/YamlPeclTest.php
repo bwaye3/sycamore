@@ -52,11 +52,19 @@ class YamlPeclTest extends YamlTestBase {
    * @covers ::encode
    */
   public function testEncode() {
+<<<<<<< HEAD
+=======
+    // cSpell:disable
+>>>>>>> dev
     $this->assertEquals('---
 foo:
   bar: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sapien ex, venenatis vitae nisi eu, posuere luctus dolor. Nullam convallis
 ...
 ', YamlPecl::encode(['foo' => ['bar' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sapien ex, venenatis vitae nisi eu, posuere luctus dolor. Nullam convallis']]));
+<<<<<<< HEAD
+=======
+    // cSpell:enable
+>>>>>>> dev
   }
 
   /**

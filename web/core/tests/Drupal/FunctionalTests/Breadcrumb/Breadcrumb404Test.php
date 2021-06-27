@@ -17,7 +17,11 @@ class Breadcrumb404Test extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'block'];
+=======
+  protected static $modules = ['system', 'block'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

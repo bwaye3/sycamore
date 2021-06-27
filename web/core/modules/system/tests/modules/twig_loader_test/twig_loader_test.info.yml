@@ -3,4 +3,7 @@ type: module
 description: 'Support module for testing adding Twig loaders.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

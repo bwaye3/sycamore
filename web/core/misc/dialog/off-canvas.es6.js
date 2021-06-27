@@ -8,7 +8,11 @@
    * Off-canvas dialog implementation using jQuery Dialog.
    *
    * Transforms the regular dialogs created using Drupal.dialog when the dialog
+<<<<<<< HEAD
    * element equals '#drupal-off-canvas' into an side-loading dialog.
+=======
+   * element equals '#drupal-off-canvas' into a side-loading dialog.
+>>>>>>> dev
    *
    * @namespace
    */

@@ -12,7 +12,11 @@ use Drupal\layout_builder\LayoutBuilderEvents;
 use Drupal\layout_builder\SectionComponent;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+=======
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\layout_builder\SectionComponent
@@ -33,6 +37,7 @@ class SectionComponentTest extends UnitTestCase {
     // Imitate an event subscriber by setting a resulting build on the event.
     $event_dispatcher = $this->prophesize(EventDispatcherInterface::class);
     $event_dispatcher
+<<<<<<< HEAD
       ->dispatch(LayoutBuilderEvents::SECTION_COMPONENT_BUILD_RENDER_ARRAY, Argument::type(SectionComponentBuildRenderArrayEvent::class))
       ->shouldBeCalled()
       ->will(function ($args) {
@@ -40,6 +45,15 @@ class SectionComponentTest extends UnitTestCase {
         $event = $args[1];
         $event->setBuild(['#markup' => $event->getPlugin()->getPluginId()]);
         return;
+=======
+      ->dispatch(Argument::type(SectionComponentBuildRenderArrayEvent::class), LayoutBuilderEvents::SECTION_COMPONENT_BUILD_RENDER_ARRAY)
+      ->shouldBeCalled()
+      ->will(function ($args) {
+        /** @var \Drupal\layout_builder\Event\SectionComponentBuildRenderArrayEvent $event */
+        $event = $args[0];
+        $event->setBuild(['#markup' => $event->getPlugin()->getPluginId()]);
+        return $event;
+>>>>>>> dev
       });
 
     $layout_plugin = $this->prophesize(LayoutInterface::class);

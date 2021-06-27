@@ -3,7 +3,10 @@ type: module
 description: 'Provides a means to associate text formats with text editor libraries such as WYSIWYGs or toolbars.'
 package: Core
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:filter
   - drupal:file

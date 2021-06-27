@@ -19,7 +19,16 @@ class FormErrorHandlerFileUploadTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'file', 'field_ui', 'inline_form_errors'];
+=======
+  protected static $modules = [
+    'node',
+    'file',
+    'field_ui',
+    'inline_form_errors',
+  ];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -29,7 +38,11 @@ class FormErrorHandlerFileUploadTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create a node type for testing.
@@ -89,7 +102,11 @@ class FormErrorHandlerFileUploadTest extends BrowserTestBase {
     $edit = [
       'edit-title-0-value' => $this->randomString(),
     ];
+<<<<<<< HEAD
     $this->submitForm($edit, t('Save'));
+=======
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
 
     $error_text = $this->getSession()->getPage()->find('css', '.field--name-field-ief-file .form-item--error-message')->getText();
 

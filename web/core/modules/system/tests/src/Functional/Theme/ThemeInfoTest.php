@@ -16,7 +16,11 @@ class ThemeInfoTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['theme_test'];
+=======
+  protected static $modules = ['theme_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -47,7 +51,11 @@ class ThemeInfoTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->themeInstaller = $this->container->get('theme_installer');
@@ -94,14 +102,23 @@ class ThemeInfoTest extends BrowserTestBase {
 
     $active_theme = $this->themeManager->getActiveTheme();
     // Make sure we are not testing the wrong theme.
+<<<<<<< HEAD
     $this->assertEqual('test_theme', $active_theme->getName());
     $this->assertEqual(['classy/base', 'classy/messages', 'core/normalize', 'test_theme/global-styling'], $active_theme->getLibraries());
+=======
+    $this->assertEquals('test_theme', $active_theme->getName());
+    $this->assertEquals(['classy/base', 'classy/messages', 'core/normalize', 'test_theme/global-styling'], $active_theme->getLibraries());
+>>>>>>> dev
 
     // @see theme_test_system_info_alter()
     $this->state->set('theme_test.modify_info_files', TRUE);
     drupal_flush_all_caches();
     $active_theme = $this->themeManager->getActiveTheme();
+<<<<<<< HEAD
     $this->assertEqual(['classy/base', 'classy/messages', 'core/normalize', 'test_theme/global-styling', 'core/backbone'], $active_theme->getLibraries());
+=======
+    $this->assertEquals(['classy/base', 'classy/messages', 'core/normalize', 'test_theme/global-styling', 'core/backbone'], $active_theme->getLibraries());
+>>>>>>> dev
   }
 
 }

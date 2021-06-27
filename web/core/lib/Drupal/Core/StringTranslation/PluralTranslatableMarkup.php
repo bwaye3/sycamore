@@ -10,6 +10,7 @@ use Drupal\Component\Gettext\PoItem;
 class PluralTranslatableMarkup extends TranslatableMarkup {
 
   /**
+<<<<<<< HEAD
    * The delimiter used to split plural strings.
    *
    * This is the ETX (End of text) character and is used as a minimal means to
@@ -22,6 +23,8 @@ class PluralTranslatableMarkup extends TranslatableMarkup {
   const DELIMITER = PoItem::DELIMITER;
 
   /**
+=======
+>>>>>>> dev
    * The item count to display.
    *
    * @var int

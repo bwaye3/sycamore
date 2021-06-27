@@ -14,7 +14,11 @@ use Drupal\views\Tests\ViewTestData;
 abstract class BlockContentTestBase extends ViewTestBase {
 
   /**
+<<<<<<< HEAD
    * Admin user
+=======
+   * Admin user.
+>>>>>>> dev
    *
    * @var object
    */
@@ -34,7 +38,11 @@ abstract class BlockContentTestBase extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'block',
     'block_content',
     'block_content_test_views',
@@ -48,7 +56,11 @@ abstract class BlockContentTestBase extends ViewTestBase {
     $this->adminUser = $this->drupalCreateUser($this->permissions);
 
     if ($import_test_views) {
+<<<<<<< HEAD
       ViewTestData::createTestViews(get_class($this), ['block_content_test_views']);
+=======
+      ViewTestData::createTestViews(static::class, ['block_content_test_views']);
+>>>>>>> dev
     }
   }
 
@@ -71,7 +83,11 @@ abstract class BlockContentTestBase extends ViewTestBase {
     if ($block_content = BlockContent::create($values)) {
       $status = $block_content->save();
     }
+<<<<<<< HEAD
     $this->assertEqual($status, SAVED_NEW, new FormattableMarkup('Created block content %info.', ['%info' => $block_content->label()]));
+=======
+    $this->assertEquals(SAVED_NEW, $status, new FormattableMarkup('Created block content %info.', ['%info' => $block_content->label()]));
+>>>>>>> dev
     return $block_content;
   }
 
@@ -103,7 +119,11 @@ abstract class BlockContentTestBase extends ViewTestBase {
     $status = $bundle->save();
     block_content_add_body_field($bundle->id());
 
+<<<<<<< HEAD
     $this->assertEqual($status, SAVED_NEW, new FormattableMarkup('Created block content type %bundle.', ['%bundle' => $bundle->id()]));
+=======
+    $this->assertEquals(SAVED_NEW, $status, new FormattableMarkup('Created block content type %bundle.', ['%bundle' => $bundle->id()]));
+>>>>>>> dev
     return $bundle;
   }
 

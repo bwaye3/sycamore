@@ -14,7 +14,11 @@ class BatchKernelTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     require_once $this->root . '/core/includes/batch.inc';

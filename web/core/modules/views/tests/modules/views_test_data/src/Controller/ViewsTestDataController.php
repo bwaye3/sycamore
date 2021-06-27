@@ -35,7 +35,11 @@ class ViewsTestDataController implements TrustedCallbackInterface {
   }
 
   /**
+<<<<<<< HEAD
    * Test pre_render function.
+=======
+   * Tests pre_render function.
+>>>>>>> dev
    *
    * @param array $element
    *   A render array.

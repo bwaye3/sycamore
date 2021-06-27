@@ -15,12 +15,20 @@ class SaveActionTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'entity_test', 'user'];
+=======
+  protected static $modules = ['system', 'entity_test', 'user'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('entity_test_mul_changed');
   }
@@ -30,6 +38,7 @@ class SaveActionTest extends KernelTestBase {
    */
   public function testGetDerivativeDefinitions() {
     $deriver = new EntityChangedActionDeriver(\Drupal::entityTypeManager(), \Drupal::translation());
+<<<<<<< HEAD
     $this->assertArraySubset([
       'entity_test_mul_changed' => [
         'type' => 'entity_test_mul_changed',
@@ -39,6 +48,16 @@ class SaveActionTest extends KernelTestBase {
     ], $deriver->getDerivativeDefinitions([
       'action_label' => 'Save',
     ]));
+=======
+    $definitions = $deriver->getDerivativeDefinitions([
+      'action_label' => 'Save',
+    ]);
+    $this->assertEquals([
+      'type' => 'entity_test_mul_changed',
+      'label' => 'Save test entity - data table',
+      'action_label' => 'Save',
+    ], $definitions['entity_test_mul_changed']);
+>>>>>>> dev
   }
 
   /**
@@ -56,7 +75,11 @@ class SaveActionTest extends KernelTestBase {
     $action->save();
     $action->execute([$entity]);
     $this->assertNotSame($saved_time, $entity->getChangedTime());
+<<<<<<< HEAD
     $this->assertArraySubset(['module' => ['entity_test']], $action->getDependencies());
+=======
+    $this->assertSame(['module' => ['entity_test']], $action->getDependencies());
+>>>>>>> dev
   }
 
 }

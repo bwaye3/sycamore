@@ -19,7 +19,11 @@ class DisplayTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'block',
     'contextual',
     'node',
@@ -38,7 +42,11 @@ class DisplayTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
+=======
+  public function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     ViewTestData::createTestViews(self::class, ['views_test_config']);

@@ -15,12 +15,20 @@ class PublishActionTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'entity_test', 'user'];
+=======
+  protected static $modules = ['system', 'entity_test', 'user'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('entity_test_mulrevpub');
   }
@@ -30,6 +38,7 @@ class PublishActionTest extends KernelTestBase {
    */
   public function testGetDerivativeDefinitions() {
     $deriver = new EntityPublishedActionDeriver(\Drupal::entityTypeManager(), \Drupal::translation());
+<<<<<<< HEAD
     $this->assertArraySubset([
       'entity_test_mulrevpub' => [
         'type' => 'entity_test_mulrevpub',
@@ -39,6 +48,16 @@ class PublishActionTest extends KernelTestBase {
     ], $deriver->getDerivativeDefinitions([
       'action_label' => 'Save',
     ]));
+=======
+    $definitions = $deriver->getDerivativeDefinitions([
+      'action_label' => 'Save',
+    ]);
+    $this->assertEquals([
+      'type' => 'entity_test_mulrevpub',
+      'label' => 'Save test entity - revisions, data table, and published interface',
+      'action_label' => 'Save',
+    ], $definitions['entity_test_mulrevpub']);
+>>>>>>> dev
   }
 
   /**
@@ -56,7 +75,11 @@ class PublishActionTest extends KernelTestBase {
     $this->assertFalse($entity->isPublished());
     $action->execute([$entity]);
     $this->assertTrue($entity->isPublished());
+<<<<<<< HEAD
     $this->assertArraySubset(['module' => ['entity_test']], $action->getDependencies());
+=======
+    $this->assertSame(['module' => ['entity_test']], $action->getDependencies());
+>>>>>>> dev
   }
 
   /**
@@ -74,7 +97,11 @@ class PublishActionTest extends KernelTestBase {
     $this->assertTrue($entity->isPublished());
     $action->execute([$entity]);
     $this->assertFalse($entity->isPublished());
+<<<<<<< HEAD
     $this->assertArraySubset(['module' => ['entity_test']], $action->getDependencies());
+=======
+    $this->assertSame(['module' => ['entity_test']], $action->getDependencies());
+>>>>>>> dev
   }
 
 }

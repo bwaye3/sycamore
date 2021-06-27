@@ -3,7 +3,11 @@
  * Locale admin behavior.
  */
 
+<<<<<<< HEAD
 (function($, Drupal) {
+=======
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * Marks changes of translations.
    *
@@ -21,6 +25,7 @@
       );
       if ($form.length) {
         // Display a notice if any row changed.
+<<<<<<< HEAD
         $form.one('formUpdated.localeTranslateDirty', 'table', function() {
           const $marker = $(
             Drupal.theme('localeTranslateChangedWarning'),
@@ -32,6 +37,17 @@
         });
         // Highlight changed row.
         $form.on('formUpdated.localeTranslateDirty', 'tr', function() {
+=======
+        $form.one('formUpdated.localeTranslateDirty', 'table', function () {
+          const $marker = $(
+            Drupal.theme('localeTranslateChangedWarning'),
+          ).hide();
+          $(this).addClass('changed').before($marker);
+          $marker.fadeIn('slow');
+        });
+        // Highlight changed row.
+        $form.on('formUpdated.localeTranslateDirty', 'tr', function () {
+>>>>>>> dev
           const $row = $(this);
           const $rowToMark = $row.once('localemark');
           const marker = Drupal.theme('localeTranslateChangedMarker');
@@ -73,7 +89,11 @@
         const $tbodies = $table.find('tbody');
 
         // Open/close the description details by toggling a tr class.
+<<<<<<< HEAD
         $tbodies.on('click keydown', '.description', function(e) {
+=======
+        $tbodies.on('click keydown', '.description', function (e) {
+>>>>>>> dev
           if (e.keyCode && e.keyCode !== 13 && e.keyCode !== 32) {
             return;
           }

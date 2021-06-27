@@ -7,7 +7,11 @@
  * prevents separate file fields from accidentally uploading files).
  */
 
+<<<<<<< HEAD
 (function($, Drupal) {
+=======
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * Attach behaviors to the file fields passed in the settings.
    *

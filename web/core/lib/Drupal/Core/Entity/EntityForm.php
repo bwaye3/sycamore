@@ -33,6 +33,7 @@ class EntityForm extends FormBase implements EntityFormInterface {
   protected $moduleHandler;
 
   /**
+<<<<<<< HEAD
    * The entity manager.
    *
    * This member exists for BC reasons and should be removed when the
@@ -45,6 +46,8 @@ class EntityForm extends FormBase implements EntityFormInterface {
   private $privateEntityManager;
 
   /**
+=======
+>>>>>>> dev
    * The entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -61,6 +64,7 @@ class EntityForm extends FormBase implements EntityFormInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function __get($name) {
     // Removing core's usage of ::setEntityManager means that this deprecated
     // service wont be set. We provide it here for backwards compatibility.
@@ -92,6 +96,8 @@ class EntityForm extends FormBase implements EntityFormInterface {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function setOperation($operation) {
     // If NULL is passed, do not overwrite the operation.
     if ($operation) {
@@ -347,7 +353,11 @@ class EntityForm extends FormBase implements EntityFormInterface {
   }
 
   /**
+<<<<<<< HEAD
    * Copies top-level form values to entity properties
+=======
+   * Copies top-level form values to entity properties.
+>>>>>>> dev
    *
    * This should not change existing entity properties that are not being edited
    * by this form.
@@ -460,6 +470,7 @@ class EntityForm extends FormBase implements EntityFormInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setEntityManager(EntityManagerInterface $entity_manager) {
     @trigger_error('EntityForm::setEntityTypeManager() is deprecated in drupal:8.0.0 and is removed from drupal:9.0.0. Use EntityFormInterface::setEntityTypeManager() instead. See https://www.drupal.org/node/2549139', E_USER_DEPRECATED);
     $this->privateEntityManager = $entity_manager;
@@ -469,6 +480,8 @@ class EntityForm extends FormBase implements EntityFormInterface {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function setEntityTypeManager(EntityTypeManagerInterface $entity_type_manager) {
     $this->entityTypeManager = $entity_type_manager;
     return $this;

@@ -5,6 +5,7 @@
  * API for handling file uploads and server file management.
  */
 
+<<<<<<< HEAD
 use Drupal\Component\FileSecurity\FileSecurity;
 use Drupal\Component\FileSystem\FileSystem as ComponentFileSystem;
 use Drupal\Component\Utility\Environment;
@@ -12,10 +13,14 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\File\Exception\FileWriteException;
 use Drupal\Core\File\FileSystem;
+=======
+use Drupal\Component\Utility\UrlHelper;
+>>>>>>> dev
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\StreamWrapper\StreamWrapperManager;
 
 /**
+<<<<<<< HEAD
  * Default mode for new directories.
  *
  * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0.
@@ -38,12 +43,15 @@ const FILE_CHMOD_DIRECTORY = FileSystem::CHMOD_DIRECTORY;
 const FILE_CHMOD_FILE = FileSystem::CHMOD_FILE;
 
 /**
+=======
+>>>>>>> dev
  * @defgroup file File interface
  * @{
  * Common file handling functions.
  */
 
 /**
+<<<<<<< HEAD
  * Flag used to create a directory if not present.
  *
  * @deprecated in drupal:8.7.0 and is removed from drupal:9.0.0.
@@ -84,6 +92,8 @@ const FILE_EXISTS_REPLACE = FileSystemInterface::EXISTS_REPLACE;
 const FILE_EXISTS_ERROR = FileSystemInterface::EXISTS_ERROR;
 
 /**
+=======
+>>>>>>> dev
  * Indicates that the file is permanent and should not be deleted.
  *
  * Temporary files older than the system.file.temporary_maximum_age
@@ -94,6 +104,7 @@ const FILE_EXISTS_ERROR = FileSystemInterface::EXISTS_ERROR;
 const FILE_STATUS_PERMANENT = 1;
 
 /**
+<<<<<<< HEAD
  * Returns the scheme of a URI (e.g. a stream).
  *
  * @deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Use
@@ -186,6 +197,8 @@ function file_stream_wrapper_uri_normalize($uri) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Creates a web-accessible URL for a stream to an external or local file.
  *
  * Compatibility: normal paths and stream wrappers.
@@ -286,6 +299,16 @@ function file_url_transform_relative($file_url) {
   $host = $request->getHost();
   $scheme = $request->getScheme();
   $port = $request->getPort() ?: 80;
+<<<<<<< HEAD
+=======
+
+  // Files may be accessible on a different port than the web request.
+  $file_url_port = parse_url($file_url, PHP_URL_PORT) ?? $port;
+  if ($file_url_port != $port) {
+    return $file_url;
+  }
+
+>>>>>>> dev
   if (('http' == $scheme && $port == 80) || ('https' == $scheme && $port == 443)) {
     $http_host = $host;
   }
@@ -297,6 +320,7 @@ function file_url_transform_relative($file_url) {
 }
 
 /**
+<<<<<<< HEAD
  * Checks that the directory exists and is writable.
  *
  * Directories need to have execute permissions to be considered a directory by
@@ -555,6 +579,8 @@ function file_unmanaged_prepare($source, &$destination = NULL, $replace = FILE_E
 }
 
 /**
+=======
+>>>>>>> dev
  * Constructs a URI to Drupal's default files location given a relative path.
  */
 function file_build_uri($path) {
@@ -565,6 +591,7 @@ function file_build_uri($path) {
 }
 
 /**
+<<<<<<< HEAD
  * Determines the destination path for a file.
  *
  * @param $destination
@@ -644,6 +671,8 @@ function file_unmanaged_move($source, $destination = NULL, $replace = FILE_EXIST
 }
 
 /**
+=======
+>>>>>>> dev
  * Modifies a filename as needed for security purposes.
  *
  * Munging a file name prevents unknown file extensions from masking exploit
@@ -674,8 +703,19 @@ function file_unmanaged_move($source, $destination = NULL, $replace = FILE_EXIST
  *
  * @return string
  *   The potentially modified $filename.
+<<<<<<< HEAD
  */
 function file_munge_filename($filename, $extensions, $alerts = TRUE) {
+=======
+ *
+ * @deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Dispatch a
+ *   \Drupal\Core\File\Event\FileUploadSanitizeNameEvent event instead.
+ *
+ * @see https://www.drupal.org/node/3032541
+ */
+function file_munge_filename($filename, $extensions, $alerts = TRUE) {
+  @trigger_error('file_munge_filename() is deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Dispatch a \Drupal\Core\File\Event\FileUploadSanitizeNameEvent event instead. See https://www.drupal.org/node/3032541', E_USER_DEPRECATED);
+>>>>>>> dev
   $original = $filename;
 
   // Allow potentially insecure uploads for very savvy users and admin
@@ -687,10 +727,14 @@ function file_munge_filename($filename, $extensions, $alerts = TRUE) {
     $allowed_extensions = array_unique(explode(' ', strtolower(trim($extensions))));
 
     // Remove unsafe extensions from the allowed list of extensions.
+<<<<<<< HEAD
     // @todo https://www.drupal.org/project/drupal/issues/3032390 Make the list
     //   of unsafe extensions a constant. The list is copied from
     //   FILE_INSECURE_EXTENSION_REGEX.
     $allowed_extensions = array_diff($allowed_extensions, explode('|', 'phar|php|pl|py|cgi|asp|js'));
+=======
+    $allowed_extensions = array_diff($allowed_extensions, FileSystemInterface::INSECURE_EXTENSIONS);
+>>>>>>> dev
 
     // Split the filename up by periods. The first part becomes the basename
     // the last part the final extension.
@@ -727,6 +771,7 @@ function file_munge_filename($filename, $extensions, $alerts = TRUE) {
  *
  * @return
  *   An unmunged filename string.
+<<<<<<< HEAD
  */
 function file_unmunge_filename($filename) {
   return str_replace('_.', '.', $filename);
@@ -1144,6 +1189,17 @@ function file_directory_temp() {
 function file_directory_os_temp() {
   @trigger_error('file_directory_os_temp() is deprecated in drupal:8.3.0 and is removed from drupal:9.0.0. Use \Drupal\Component\FileSystem\FileSystem::getOsTemporaryDirectory() instead. See https://www.drupal.org/node/2418133', E_USER_DEPRECATED);
   return ComponentFileSystem::getOsTemporaryDirectory();
+=======
+ *
+ * @deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use
+ *   str_replace() instead.
+ *
+ * @see https://www.drupal.org/node/3032541
+ */
+function file_unmunge_filename($filename) {
+  @trigger_error('file_unmunge_filename() is deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use str_replace() instead. See https://www.drupal.org/node/3032541', E_USER_DEPRECATED);
+  return str_replace('_.', '.', $filename);
+>>>>>>> dev
 }
 
 /**

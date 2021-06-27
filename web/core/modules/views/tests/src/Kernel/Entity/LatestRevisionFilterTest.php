@@ -23,7 +23,11 @@ class LatestRevisionFilterTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['node'];
+=======
+  protected static $modules = ['node'];
+>>>>>>> dev
 
   /**
    * Tests the 'Latest revision' filter.

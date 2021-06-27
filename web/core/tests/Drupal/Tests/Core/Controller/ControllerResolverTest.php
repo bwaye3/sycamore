@@ -7,6 +7,7 @@
 
 namespace Drupal\Tests\Core\Controller;
 
+<<<<<<< HEAD
 use Drupal\Core\Controller\ArgumentResolver\RawParameterValueResolver;
 use Drupal\Core\Controller\ControllerResolver;
 use Drupal\Core\DependencyInjection\ClassResolver;
@@ -15,15 +16,32 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Routing\RouteMatch;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Tests\UnitTestCase;
+=======
+use Drupal\Core\Controller\ControllerResolver;
+use Drupal\Core\DependencyInjection\ClassResolver;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Tests\UnitTestCase;
+use Laminas\Diactoros\ResponseFactory;
+use Laminas\Diactoros\ServerRequestFactory;
+use Laminas\Diactoros\StreamFactory;
+use Laminas\Diactoros\UploadedFileFactory;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
+>>>>>>> dev
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+<<<<<<< HEAD
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
 use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
+=======
+use Symfony\Component\HttpFoundation\Request;
+use Psr\Http\Message\ServerRequestInterface;
+>>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\Core\Controller\ControllerResolver
@@ -55,17 +73,26 @@ class ControllerResolverTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->container = new ContainerBuilder();
     $class_resolver = new ClassResolver();
     $class_resolver->setContainer($this->container);
+<<<<<<< HEAD
     $this->httpMessageFactory = new DiactorosFactory();
+=======
+    $this->httpMessageFactory = new PsrHttpFactory(new ServerRequestFactory(), new StreamFactory(), new UploadedFileFactory(), new ResponseFactory());
+>>>>>>> dev
     $this->controllerResolver = new ControllerResolver($this->httpMessageFactory, $class_resolver);
   }
 
   /**
+<<<<<<< HEAD
    * Tests getArguments().
    *
    * Ensure that doGetArguments uses converted arguments if available.
@@ -100,6 +127,8 @@ class ControllerResolverTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests createController().
    *
    * @dataProvider providerTestCreateController
@@ -154,7 +183,11 @@ class ControllerResolverTest extends UnitTestCase {
       $this->assertCallableController($result, $class, $output);
     }
     else {
+<<<<<<< HEAD
       $this->assertSame(FALSE, $result);
+=======
+      $this->assertFalse($result);
+>>>>>>> dev
     }
   }
 
@@ -227,6 +260,7 @@ class ControllerResolverTest extends UnitTestCase {
     $this->assertSame($output, call_user_func($controller));
   }
 
+<<<<<<< HEAD
   /**
    * Tests getArguments with a route match and a request.
    *
@@ -272,6 +306,8 @@ class ControllerResolverTest extends UnitTestCase {
     $this->assertFalse($resolver->supports(Request::create('/test'), $metadata->reveal()));
   }
 
+=======
+>>>>>>> dev
 }
 
 class MockController {

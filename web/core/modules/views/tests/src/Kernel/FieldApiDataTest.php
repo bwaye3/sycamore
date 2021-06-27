@@ -21,7 +21,11 @@ class FieldApiDataTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'field',
     'filter',
     'language',
@@ -37,7 +41,11 @@ class FieldApiDataTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
     $this->installEntitySchema('user');
     $this->installEntitySchema('node');

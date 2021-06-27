@@ -5,6 +5,7 @@
  * Post update functions for the Database Logging module.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Config\InstallStorage;
 use Drupal\views\Entity\View;
@@ -32,4 +33,13 @@ function dblog_post_update_convert_recent_messages_to_view() {
 
     return t("The watchdog view already exists and was not replaced. To replace the 'Recent log messages' with a view, rename the watchdog view and uninstall and install the 'Database Log' module");
   }
+=======
+/**
+ * Implements hook_removed_post_updates().
+ */
+function dblog_removed_post_updates() {
+  return [
+    'dblog_post_update_convert_recent_messages_to_view' => '9.0.0',
+  ];
+>>>>>>> dev
 }

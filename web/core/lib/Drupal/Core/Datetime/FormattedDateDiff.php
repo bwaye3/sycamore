@@ -58,6 +58,7 @@ class FormattedDateDiff implements RenderableInterface, CacheableDependencyInter
   }
 
   /**
+<<<<<<< HEAD
    * The maximum age for which this object may be cached.
    *
    * @return int
@@ -74,6 +75,8 @@ class FormattedDateDiff implements RenderableInterface, CacheableDependencyInter
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function toRenderable() {

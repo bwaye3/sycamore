@@ -12,7 +12,11 @@ class HighWaterTest extends MigrateTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'system',
     'user',
     'node',
@@ -24,7 +28,11 @@ class HighWaterTest extends MigrateTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     // Create source test table.
     $this->sourceDatabase->schema()->createTable('high_water_node', [
@@ -289,7 +297,11 @@ class HighWaterTest extends MigrateTestBase {
    * @return bool
    */
   protected function nodeExists($title) {
+<<<<<<< HEAD
     $query = \Drupal::entityQuery('node');
+=======
+    $query = \Drupal::entityQuery('node')->accessCheck(FALSE);
+>>>>>>> dev
     $result = $query
       ->condition('title', $title)
       ->range(0, 1)

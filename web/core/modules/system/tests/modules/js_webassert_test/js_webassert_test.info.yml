@@ -3,4 +3,7 @@ type: module
 description: 'Module for the JSWebAssert test.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

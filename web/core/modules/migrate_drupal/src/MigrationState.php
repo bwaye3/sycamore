@@ -156,6 +156,7 @@ class MigrationState {
   protected $fieldPluginManager;
 
   /**
+<<<<<<< HEAD
    * Source modules that will not be migrated determined using legacy method.
    *
    * @var array
@@ -171,6 +172,8 @@ class MigrationState {
   protected $migratedSourceModules = [];
 
   /**
+=======
+>>>>>>> dev
    * An array of migration states declared for each source migration.
    *
    * States are keyed by version. Each value is an array keyed by name of the
@@ -228,7 +231,11 @@ class MigrationState {
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
    *   Module handler.
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+<<<<<<< HEAD
    *   Messenger sevice.
+=======
+   *   Messenger service.
+>>>>>>> dev
    * @param \Drupal\Core\StringTranslation\TranslationInterface $stringTranslation
    *   String translation service.
    */
@@ -269,7 +276,11 @@ class MigrationState {
   protected function getMigrationStates() {
     // Always instantiate a new YamlDiscovery object so that we always search on
     // the up-to-date list of modules.
+<<<<<<< HEAD
     $discovery = new YamlDiscovery('migrate_drupal', array_map(function (&$value) {
+=======
+    $discovery = new YamlDiscovery('migrate_drupal', array_map(function ($value) {
+>>>>>>> dev
       return $value . '/migrations/state';
     }, $this->moduleHandler->getModuleDirectories()));
     return $discovery->findAll();
@@ -323,6 +334,7 @@ class MigrationState {
       // source_modules are enabled so do the same here.
       if ($module['status']) {
         $source_module = $module['name'];
+<<<<<<< HEAD
         // If there is not a declared state for this source module then use the
         // legacy method for determining the migration state.
         if (!isset($this->stateBySource[$version][$source_module])) {
@@ -342,6 +354,8 @@ class MigrationState {
           continue;
         }
 
+=======
+>>>>>>> dev
         $upgrade_state[$this->getSourceState($version, $source_module)][$source_module] = implode(', ', $this->getDestinationsForSource($version, $source_module));
       }
 
@@ -401,6 +415,7 @@ class MigrationState {
     foreach ($table_data as $source_module => $destination_module_info) {
       ksort($table_data[$source_module]);
     }
+<<<<<<< HEAD
     $tmp = array_diff_key($source_system_data['module'], $table_data);
     foreach ($tmp as $source_module => $module_data) {
       if ($module_data['status']) {
@@ -408,6 +423,8 @@ class MigrationState {
       }
     }
     $this->migratedSourceModules[$version] = $table_data;
+=======
+>>>>>>> dev
     $this->discoveredBySource[$version] = array_map('array_unique', $discovered_upgrade_paths);
   }
 
@@ -458,6 +475,13 @@ class MigrationState {
       // No discovered or declared state.
       return MigrationState::NOT_FINISHED;
     }
+<<<<<<< HEAD
+=======
+    if (!isset($this->stateBySource[$version][$source_module])) {
+      // No declared state.
+      return MigrationState::NOT_FINISHED;
+    }
+>>>>>>> dev
     if (in_array(MigrationState::NOT_FINISHED, $this->stateBySource[$version][$source_module], TRUE) || !in_array(MigrationState::FINISHED, $this->stateBySource[$version][$source_module], TRUE)) {
       return MigrationState::NOT_FINISHED;
     }

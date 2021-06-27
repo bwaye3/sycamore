@@ -21,7 +21,11 @@ class TestItemTest extends FieldKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['field_test'];
+=======
+  protected static $modules = ['field_test'];
+>>>>>>> dev
 
   /**
    * The name of the field to use in this test.
@@ -30,7 +34,11 @@ class TestItemTest extends FieldKernelTestBase {
    */
   protected $fieldName = 'field_test';
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create a 'test_field' field and storage for validation.
@@ -62,18 +70,31 @@ class TestItemTest extends FieldKernelTestBase {
     $entity = EntityTest::load($id);
     $this->assertInstanceOf(FieldItemListInterface::class, $entity->{$this->fieldName});
     $this->assertInstanceOf(FieldItemInterface::class, $entity->{$this->fieldName}[0]);
+<<<<<<< HEAD
     $this->assertEqual($entity->{$this->fieldName}->value, $value);
     $this->assertEqual($entity->{$this->fieldName}[0]->value, $value);
+=======
+    $this->assertEquals($value, $entity->{$this->fieldName}->value);
+    $this->assertEquals($value, $entity->{$this->fieldName}[0]->value);
+>>>>>>> dev
 
     // Verify changing the field value.
     $new_value = rand(1, 10);
     $entity->field_test->value = $new_value;
+<<<<<<< HEAD
     $this->assertEqual($entity->{$this->fieldName}->value, $new_value);
+=======
+    $this->assertEquals($new_value, $entity->{$this->fieldName}->value);
+>>>>>>> dev
 
     // Read changed entity and assert changed values.
     $entity->save();
     $entity = EntityTest::load($id);
+<<<<<<< HEAD
     $this->assertEqual($entity->{$this->fieldName}->value, $new_value);
+=======
+    $this->assertEquals($new_value, $entity->{$this->fieldName}->value);
+>>>>>>> dev
 
     // Test the schema for this field type.
     $expected_schema = [
@@ -90,7 +111,11 @@ class TestItemTest extends FieldKernelTestBase {
       'foreign keys' => [],
     ];
     $field_schema = BaseFieldDefinition::create('test_field')->getSchema();
+<<<<<<< HEAD
     $this->assertEqual($field_schema, $expected_schema);
+=======
+    $this->assertEquals($expected_schema, $field_schema);
+>>>>>>> dev
   }
 
 }

@@ -8,7 +8,11 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+<<<<<<< HEAD
 use GuzzleHttp\Exception\RequestException;
+=======
+use GuzzleHttp\Exception\TransferException;
+>>>>>>> dev
 use GuzzleHttp\ClientInterface;
 
 /**
@@ -122,7 +126,11 @@ class OpmlFeedAdd extends FormBase {
         $response = $this->httpClient->get($form_state->getValue('remote'));
         $data = (string) $response->getBody();
       }
+<<<<<<< HEAD
       catch (RequestException $e) {
+=======
+      catch (TransferException $e) {
+>>>>>>> dev
         $this->logger('aggregator')->warning('Failed to download OPML file due to "%error".', ['%error' => $e->getMessage()]);
         $this->messenger()->addStatus($this->t('Failed to download OPML file due to "%error".', ['%error' => $e->getMessage()]));
         return;
@@ -144,7 +152,11 @@ class OpmlFeedAdd extends FormBase {
       }
 
       // Check for duplicate titles or URLs.
+<<<<<<< HEAD
       $query = $this->feedStorage->getQuery();
+=======
+      $query = $this->feedStorage->getQuery()->accessCheck(FALSE);
+>>>>>>> dev
       $condition = $query->orConditionGroup()
         ->condition('title', $feed['title'])
         ->condition('url', $feed['url']);

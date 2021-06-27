@@ -5,7 +5,11 @@ ui:
   show:
     additional_queries: false
     advanced_column: false
+<<<<<<< HEAD
     master_display: false
+=======
+    default_display: false
+>>>>>>> dev
     performance_statistics: false
     preview_information: true
     sql_query:

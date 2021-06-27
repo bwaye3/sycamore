@@ -10,15 +10,22 @@
     attach: function attach(context) {
       var path = drupalSettings.path;
       var queryString = JSON.stringify(path.currentQuery);
+<<<<<<< HEAD
       var querySelector = path.currentQuery ? '[data-drupal-link-query=\'' + queryString + '\']' : ':not([data-drupal-link-query])';
       var originalSelectors = ['[data-drupal-link-system-path="' + path.currentPath + '"]'];
       var selectors = void 0;
+=======
+      var querySelector = path.currentQuery ? "[data-drupal-link-query='".concat(queryString, "']") : ':not([data-drupal-link-query])';
+      var originalSelectors = ["[data-drupal-link-system-path=\"".concat(path.currentPath, "\"]")];
+      var selectors;
+>>>>>>> dev
 
       if (path.isFront) {
         originalSelectors.push('[data-drupal-link-system-path="<front>"]');
       }
 
       selectors = [].concat(originalSelectors.map(function (selector) {
+<<<<<<< HEAD
         return selector + ':not([hreflang])';
       }), originalSelectors.map(function (selector) {
         return selector + '[hreflang="' + path.currentLanguage + '"]';
@@ -30,6 +37,18 @@
 
       var activeLinks = context.querySelectorAll(selectors.join(','));
       var il = activeLinks.length;
+=======
+        return "".concat(selector, ":not([hreflang])");
+      }), originalSelectors.map(function (selector) {
+        return "".concat(selector, "[hreflang=\"").concat(path.currentLanguage, "\"]");
+      }));
+      selectors = selectors.map(function (current) {
+        return current + querySelector;
+      });
+      var activeLinks = context.querySelectorAll(selectors.join(','));
+      var il = activeLinks.length;
+
+>>>>>>> dev
       for (var i = 0; i < il; i++) {
         activeLinks[i].classList.add('is-active');
       }
@@ -38,6 +57,10 @@
       if (trigger === 'unload') {
         var activeLinks = context.querySelectorAll('[data-drupal-link-system-path].is-active');
         var il = activeLinks.length;
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         for (var i = 0; i < il; i++) {
           activeLinks[i].classList.remove('is-active');
         }

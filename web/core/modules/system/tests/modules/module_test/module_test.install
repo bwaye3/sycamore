@@ -30,7 +30,11 @@ function module_test_schema() {
  * Implements hook_install().
  */
 function module_test_install() {
+<<<<<<< HEAD
   $schema = drupal_get_module_schema('module_test', 'module_test');
+=======
+  $schema = module_test_schema()['module_test'];
+>>>>>>> dev
   Database::getConnection()->insert('module_test')
     ->fields([
       'data' => $schema['fields']['data']['type'],

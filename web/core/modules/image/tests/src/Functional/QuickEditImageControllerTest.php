@@ -22,7 +22,11 @@ class QuickEditImageControllerTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'image', 'quickedit'];
+=======
+  protected static $modules = ['node', 'image', 'quickedit'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -46,7 +50,11 @@ class QuickEditImageControllerTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create the Article node type.
@@ -91,7 +99,11 @@ class QuickEditImageControllerTest extends BrowserTestBase {
     /** @var \Symfony\Component\BrowserKit\Client $client */
     $client = $this->getSession()->getDriver()->getClient();
     $client->request('POST', '/quickedit/image/upload/node/' . $node->id() . '/' . $this->fieldName . '/' . $node->language()->getId() . '/default');
+<<<<<<< HEAD
     $this->assertEquals('403', $client->getResponse()->getStatus());
+=======
+    $this->assertEquals('403', $client->getResponse()->getStatusCode());
+>>>>>>> dev
   }
 
   /**
@@ -139,7 +151,11 @@ class QuickEditImageControllerTest extends BrowserTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests that uploading a invalid image does not work.
+=======
+   * Tests that uploading an invalid image does not work.
+>>>>>>> dev
    */
   public function testInvalidUpload() {
     // Create a test Node.

@@ -3,7 +3,11 @@
  * Progress bar.
  */
 
+<<<<<<< HEAD
 (function($, Drupal) {
+=======
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * Theme function for the progress bar.
    *
@@ -13,7 +17,11 @@
    * @return {string}
    *   The HTML for the progress bar.
    */
+<<<<<<< HEAD
   Drupal.theme.progressBar = function(id) {
+=======
+  Drupal.theme.progressBar = function (id) {
+>>>>>>> dev
     return (
       `<div id="${id}" class="progress" aria-live="polite">` +
       '<div class="progress__label">&nbsp;</div>' +
@@ -46,7 +54,11 @@
    * @param {function} errorCallback
    *   Callback to call on error.
    */
+<<<<<<< HEAD
   Drupal.ProgressBar = function(id, updateCallback, method, errorCallback) {
+=======
+  Drupal.ProgressBar = function (id, updateCallback, method, errorCallback) {
+>>>>>>> dev
     this.id = id;
     this.method = method || 'GET';
     this.updateCallback = updateCallback;
@@ -169,9 +181,13 @@
         const error = $('<div class="messages messages--error"></div>').html(
           string,
         );
+<<<<<<< HEAD
         $(this.element)
           .before(error)
           .hide();
+=======
+        $(this.element).before(error).hide();
+>>>>>>> dev
 
         if (this.errorCallback) {
           this.errorCallback(this);

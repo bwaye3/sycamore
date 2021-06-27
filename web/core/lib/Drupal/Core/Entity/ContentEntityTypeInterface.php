@@ -10,12 +10,15 @@ interface ContentEntityTypeInterface extends EntityTypeInterface {
   /**
    * Gets an array of entity revision metadata keys.
    *
+<<<<<<< HEAD
    * @param bool $include_backwards_compatibility_field_names
    *   (optional and deprecated) Whether to provide the revision keys on a
    *   best-effort basis by looking at the base fields defined by the entity
    *   type. Note that this parameter will be removed in Drupal 9.0.0. Defaults
    *   to TRUE.
    *
+=======
+>>>>>>> dev
    * @return array
    *   An array describing how the Field API can extract revision metadata
    *   information of this entity type:
@@ -26,7 +29,11 @@ interface ContentEntityTypeInterface extends EntityTypeInterface {
    *   - revision_created: The name of the property that contains the timestamp
    *     of the current revision.
    */
+<<<<<<< HEAD
   public function getRevisionMetadataKeys($include_backwards_compatibility_field_names = TRUE);
+=======
+  public function getRevisionMetadataKeys();
+>>>>>>> dev
 
   /**
    * Gets a specific entity revision metadata key.

@@ -18,7 +18,11 @@ class ConfigOverridesPriorityTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'system',
     'config',
     'config_override_test',
@@ -49,10 +53,17 @@ class ConfigOverridesPriorityTest extends KernelTestBase {
       ->save();
 
     // Ensure that no overrides are applying.
+<<<<<<< HEAD
     $this->assertEqual($non_overridden_name, $config_factory->get('system.site')->get('name'));
     $this->assertEqual($non_overridden_slogan, $config_factory->get('system.site')->get('slogan'));
     $this->assertEqual($non_overridden_mail, $config_factory->get('system.site')->get('mail'));
     $this->assertEqual(50, $config_factory->get('system.site')->get('weight_select_max'));
+=======
+    $this->assertEquals($non_overridden_name, $config_factory->get('system.site')->get('name'));
+    $this->assertEquals($non_overridden_slogan, $config_factory->get('system.site')->get('slogan'));
+    $this->assertEquals($non_overridden_mail, $config_factory->get('system.site')->get('mail'));
+    $this->assertEquals(50, $config_factory->get('system.site')->get('weight_select_max'));
+>>>>>>> dev
 
     // Override using language.
     $language = new Language([
@@ -66,25 +77,40 @@ class ConfigOverridesPriorityTest extends KernelTestBase {
       ->set('mail', $language_overridden_mail)
       ->save();
 
+<<<<<<< HEAD
     $this->assertEqual($language_overridden_name, $config_factory->get('system.site')->get('name'));
     $this->assertEqual($non_overridden_slogan, $config_factory->get('system.site')->get('slogan'));
     $this->assertEqual($language_overridden_mail, $config_factory->get('system.site')->get('mail'));
     $this->assertEqual(50, $config_factory->get('system.site')->get('weight_select_max'));
+=======
+    $this->assertEquals($language_overridden_name, $config_factory->get('system.site')->get('name'));
+    $this->assertEquals($non_overridden_slogan, $config_factory->get('system.site')->get('slogan'));
+    $this->assertEquals($language_overridden_mail, $config_factory->get('system.site')->get('mail'));
+    $this->assertEquals(50, $config_factory->get('system.site')->get('weight_select_max'));
+>>>>>>> dev
 
     // Enable module overrides. Do not override system.site:mail to prove that
     // the language override still applies.
     $GLOBALS['config_test_run_module_overrides'] = TRUE;
     $config_factory->reset('system.site');
+<<<<<<< HEAD
     $this->assertEqual($module_overridden_name, $config_factory->get('system.site')->get('name'));
     $this->assertEqual($module_overridden_slogan, $config_factory->get('system.site')->get('slogan'));
     $this->assertEqual($language_overridden_mail, $config_factory->get('system.site')->get('mail'));
     $this->assertEqual(50, $config_factory->get('system.site')->get('weight_select_max'));
+=======
+    $this->assertEquals($module_overridden_name, $config_factory->get('system.site')->get('name'));
+    $this->assertEquals($module_overridden_slogan, $config_factory->get('system.site')->get('slogan'));
+    $this->assertEquals($language_overridden_mail, $config_factory->get('system.site')->get('mail'));
+    $this->assertEquals(50, $config_factory->get('system.site')->get('weight_select_max'));
+>>>>>>> dev
 
     // Configure a global override to simulate overriding using settings.php. Do
     // not override system.site:mail or system.site:slogan to prove that the
     // language and module overrides still apply.
     $GLOBALS['config']['system.site']['name'] = 'Site name global conf override';
     $config_factory->reset('system.site');
+<<<<<<< HEAD
     $this->assertEqual('Site name global conf override', $config_factory->get('system.site')->get('name'));
     $this->assertEqual($module_overridden_slogan, $config_factory->get('system.site')->get('slogan'));
     $this->assertEqual($language_overridden_mail, $config_factory->get('system.site')->get('mail'));
@@ -94,6 +120,17 @@ class ConfigOverridesPriorityTest extends KernelTestBase {
     $this->assertEqual($non_overridden_slogan, $config_factory->get('system.site')->getOriginal('slogan', FALSE));
     $this->assertEqual($non_overridden_mail, $config_factory->get('system.site')->getOriginal('mail', FALSE));
     $this->assertEqual(50, $config_factory->get('system.site')->getOriginal('weight_select_max', FALSE));
+=======
+    $this->assertEquals('Site name global conf override', $config_factory->get('system.site')->get('name'));
+    $this->assertEquals($module_overridden_slogan, $config_factory->get('system.site')->get('slogan'));
+    $this->assertEquals($language_overridden_mail, $config_factory->get('system.site')->get('mail'));
+    $this->assertEquals(50, $config_factory->get('system.site')->get('weight_select_max'));
+
+    $this->assertEquals($non_overridden_name, $config_factory->get('system.site')->getOriginal('name', FALSE));
+    $this->assertEquals($non_overridden_slogan, $config_factory->get('system.site')->getOriginal('slogan', FALSE));
+    $this->assertEquals($non_overridden_mail, $config_factory->get('system.site')->getOriginal('mail', FALSE));
+    $this->assertEquals(50, $config_factory->get('system.site')->getOriginal('weight_select_max', FALSE));
+>>>>>>> dev
 
     unset($GLOBALS['config_test_run_module_overrides']);
   }

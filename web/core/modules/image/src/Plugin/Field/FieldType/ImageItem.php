@@ -13,6 +13,10 @@ use Drupal\Core\StreamWrapper\StreamWrapperInterface;
 use Drupal\Core\TypedData\DataDefinition;
 use Drupal\file\Entity\File;
 use Drupal\file\Plugin\Field\FieldType\FileItem;
+<<<<<<< HEAD
+=======
+use Symfony\Component\Mime\MimeTypeGuesserInterface;
+>>>>>>> dev
 
 /**
  * Plugin implementation of the 'image' field type.
@@ -48,6 +52,7 @@ use Drupal\file\Plugin\Field\FieldType\FileItem;
 class ImageItem extends FileItem {
 
   /**
+<<<<<<< HEAD
    * The entity manager.
    *
    * @var \Drupal\Core\Entity\EntityManagerInterface
@@ -55,6 +60,8 @@ class ImageItem extends FileItem {
   protected $entityManager;
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public static function defaultStorageSettings() {
@@ -207,7 +214,11 @@ class ImageItem extends FileItem {
     $element['max_resolution'] = [
       '#type' => 'item',
       '#title' => t('Maximum image resolution'),
+<<<<<<< HEAD
       '#element_validate' => [[get_class($this), 'validateResolution']],
+=======
+      '#element_validate' => [[static::class, 'validateResolution']],
+>>>>>>> dev
       '#weight' => 4.1,
       '#description' => t('The maximum allowed image size expressed as WIDTH×HEIGHT (e.g. 640×480). Leave blank for no restriction. If a larger image is uploaded, it will be resized to reflect the given width and height. Resizing images on upload will cause the loss of <a href="http://wikipedia.org/wiki/Exchangeable_image_file_format">EXIF data</a> in the image.'),
     ];
@@ -234,7 +245,11 @@ class ImageItem extends FileItem {
     $element['min_resolution'] = [
       '#type' => 'item',
       '#title' => t('Minimum image resolution'),
+<<<<<<< HEAD
       '#element_validate' => [[get_class($this), 'validateResolution']],
+=======
+      '#element_validate' => [[static::class, 'validateResolution']],
+>>>>>>> dev
       '#weight' => 4.2,
       '#description' => t('The minimum allowed image size expressed as WIDTH×HEIGHT (e.g. 640×480). Leave blank for no restriction. If a smaller image is uploaded, it will be rejected.'),
     ];
@@ -358,7 +373,18 @@ class ImageItem extends FileItem {
         $image = File::create();
         $image->setFileUri($path);
         $image->setOwnerId(\Drupal::currentUser()->id());
+<<<<<<< HEAD
         $image->setMimeType(\Drupal::service('file.mime_type.guesser')->guess($path));
+=======
+        $guesser = \Drupal::service('file.mime_type.guesser');
+        if ($guesser instanceof MimeTypeGuesserInterface) {
+          $image->setMimeType($guesser->guessMimeType($path));
+        }
+        else {
+          $image->setMimeType($guesser->guess($path));
+          @trigger_error('\Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Implement \Symfony\Component\Mime\MimeTypeGuesserInterface instead. See https://www.drupal.org/node/3133341', E_USER_DEPRECATED);
+        }
+>>>>>>> dev
         $image->setFileName($file_system->basename($path));
         $destination_dir = static::doGetUploadLocation($settings);
         $file_system->prepareDirectory($destination_dir, FileSystemInterface::CREATE_DIRECTORY);
@@ -435,7 +461,11 @@ class ImageItem extends FileItem {
       '#upload_location' => $settings['uri_scheme'] . '://default_images/',
       '#element_validate' => [
         '\Drupal\file\Element\ManagedFile::validateManagedFile',
+<<<<<<< HEAD
         [get_class($this), 'validateDefaultImageForm'],
+=======
+        [static::class, 'validateDefaultImageForm'],
+>>>>>>> dev
       ],
       '#upload_validators' => $this->getUploadValidators(),
     ];
@@ -467,7 +497,11 @@ class ImageItem extends FileItem {
    * Validates the managed_file element for the default Image form.
    *
    * This function ensures the fid is a scalar value and not an array. It is
+<<<<<<< HEAD
    * assigned as a #element_validate callback in
+=======
+   * assigned as an #element_validate callback in
+>>>>>>> dev
    * \Drupal\image\Plugin\Field\FieldType\ImageItem::defaultImageForm().
    *
    * @param array $element
@@ -499,6 +533,7 @@ class ImageItem extends FileItem {
     return TRUE;
   }
 
+<<<<<<< HEAD
   /**
    * Gets the entity manager.
    *
@@ -520,4 +555,6 @@ class ImageItem extends FileItem {
     return $this->entityManager;
   }
 
+=======
+>>>>>>> dev
 }

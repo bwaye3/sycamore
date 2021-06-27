@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 class PagerManagerTest extends KernelTestBase {
 
   /**
+<<<<<<< HEAD
    * @covers ::createPager
    */
   public function testDefaultInitializeGlobals() {
@@ -36,6 +37,8 @@ class PagerManagerTest extends KernelTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * @covers ::getUpdatedParameters
    */
   public function testGetUpdatedParameters() {
@@ -46,11 +49,19 @@ class PagerManagerTest extends KernelTestBase {
     ];
     $request = Request::create('http://example.com', 'GET', $test_parameters);
 
+<<<<<<< HEAD
     /* @var $request_stack \Symfony\Component\HttpFoundation\RequestStack */
     $request_stack = $this->container->get('request_stack');
     $request_stack->push($request);
 
     /* @var $pager_manager \Drupal\Core\Pager\PagerManagerInterface */
+=======
+    /** @var \Symfony\Component\HttpFoundation\RequestStack $request_stack */
+    $request_stack = $this->container->get('request_stack');
+    $request_stack->push($request);
+
+    /** @var \Drupal\Core\Pager\PagerManagerInterface $pager_manager */
+>>>>>>> dev
     $pager_manager = $this->container->get('pager.manager');
 
     $pager_manager->createPager(30, 10, $element);
@@ -62,6 +73,7 @@ class PagerManagerTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * @group legacy
    * @expectedDeprecation Global variable $pager_page_array is deprecated in drupal:8.8.0 and is removed in drupal:9.0.0. Use \Drupal\Core\Pager\PagerManagerInterface instead. See https://www.drupal.org/node/2779457
    * @expectedDeprecation Global variable $pager_total_items is deprecated in drupal:8.8.0 and is removed in drupal:9.0.0. Use \Drupal\Core\Pager\PagerManagerInterface instead. See https://www.drupal.org/node/2779457
@@ -97,6 +109,52 @@ class PagerManagerTest extends KernelTestBase {
       $this->assertEquals(0, $pager_id);
       $this->assertEquals(30, $total_items);
     }
+=======
+   * @covers ::findPage
+   */
+  public function testFindPage() {
+    $request = Request::create('http://example.com', 'GET', ['page' => '0,10']);
+
+    /** @var \Symfony\Component\HttpFoundation\RequestStack $request_stack */
+    $request_stack = $this->container->get('request_stack');
+    $request_stack->push($request);
+
+    $pager_manager = $this->container->get('pager.manager');
+
+    $this->assertEquals(10, $pager_manager->findPage(1));
+  }
+
+  /**
+   * @covers ::getMaxPagerElementId
+   *
+   * @dataProvider providerTestGetMaxPagerElementId
+   */
+  public function testGetMaxPagerElementId(array $elements, int $expected_max_element_id): void {
+    /** @var \Drupal\Core\Pager\PagerManagerInterface $pager_manager */
+    $pager_manager = $this->container->get('pager.manager');
+
+    foreach ($elements as $element) {
+      $pager_manager->createPager(30, 10, $element);
+    }
+
+    $this->assertEquals($expected_max_element_id, $pager_manager->getMaxPagerElementId());
+  }
+
+  /**
+   * Provides test cases for PagerManagerTest::testGetMaxPagerElementId().
+   *
+   * @return array
+   *   An array of test cases, each which the following values:
+   *   - Array of elements to pass to PagerManager::createPager().
+   *   - The expected value returned by PagerManager::getMaxPagerElementId().
+   */
+  public function providerTestGetMaxPagerElementId(): array {
+    return [
+      'no_pager' => [[], -1],
+      'single_pager' => [[0], 0],
+      'multiple_pagers' => [[30, 10, 20], 30],
+    ];
+>>>>>>> dev
   }
 
 }

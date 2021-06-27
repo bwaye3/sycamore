@@ -3,7 +3,11 @@
 namespace Drupal\Core\Routing\Enhancer;
 
 use Drupal\Core\Routing\EnhancerInterface;
+<<<<<<< HEAD
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
+=======
+use Drupal\Core\Routing\RouteObjectInterface;
+>>>>>>> dev
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route;
 

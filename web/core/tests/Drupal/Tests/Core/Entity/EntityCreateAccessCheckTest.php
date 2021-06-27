@@ -18,7 +18,11 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 class EntityCreateAccessCheckTest extends UnitTestCase {
 
   /**
+<<<<<<< HEAD
    * The mocked entity manager.
+=======
+   * The mocked entity type manager.
+>>>>>>> dev
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface|\PHPUnit\Framework\MockObject\MockObject
    */
@@ -27,7 +31,11 @@ class EntityCreateAccessCheckTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $cache_contexts_manager = $this->prophesize(CacheContextsManager::class);

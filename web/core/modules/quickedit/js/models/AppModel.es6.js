@@ -5,7 +5,11 @@
  * @see Drupal.quickedit.AppView
  */
 
+<<<<<<< HEAD
 (function(Backbone, Drupal) {
+=======
+(function (Backbone, Drupal) {
+>>>>>>> dev
   /**
    * @constructor
    *

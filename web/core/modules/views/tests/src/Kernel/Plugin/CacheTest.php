@@ -29,12 +29,20 @@ class CacheTest extends ViewsKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['taxonomy', 'text', 'user', 'node'];
+=======
+  protected static $modules = ['taxonomy', 'text', 'user', 'node'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->installEntitySchema('node');
@@ -166,7 +174,11 @@ class CacheTest extends ViewsKernelTestBase {
 
     // Get the cache item.
     $cid2 = $view->display_handler->getPlugin('cache')->generateResultsKey();
+<<<<<<< HEAD
     $this->assertNotEqual($cid1, $cid2, "Results keys are different.");
+=======
+    $this->assertNotEquals($cid1, $cid2, "Results keys are different.");
+>>>>>>> dev
 
     // Build the expected result.
     $dataset = [['name' => 'Ringo']];
@@ -292,10 +304,17 @@ class CacheTest extends ViewsKernelTestBase {
     });
 
     $this->assertContains('views_test_data/test', $output['#attached']['library'], 'Make sure libraries are added for cached views.');
+<<<<<<< HEAD
     $this->assertEqual(['foo' => 'bar'], $output['#attached']['drupalSettings'], 'Make sure drupalSettings are added for cached views.');
     // Note: views_test_data_views_pre_render() adds some cache tags.
     $this->assertEqual(['config:views.view.test_cache_header_storage', 'views_test_data:1'], $output['#cache']['tags']);
     $this->assertEqual(['non-existing-placeholder-just-for-testing-purposes' => ['#lazy_builder' => ['Drupal\views_test_data\Controller\ViewsTestDataController::placeholderLazyBuilder', ['bar']]]], $output['#attached']['placeholders']);
+=======
+    $this->assertEquals(['foo' => 'bar'], $output['#attached']['drupalSettings'], 'Make sure drupalSettings are added for cached views.');
+    // Note: views_test_data_views_pre_render() adds some cache tags.
+    $this->assertEquals(['config:views.view.test_cache_header_storage', 'views_test_data:1'], $output['#cache']['tags']);
+    $this->assertEquals(['non-existing-placeholder-just-for-testing-purposes' => ['#lazy_builder' => ['Drupal\views_test_data\Controller\ViewsTestDataController::placeholderLazyBuilder', ['bar']]]], $output['#attached']['placeholders']);
+>>>>>>> dev
     $this->assertFalse(!empty($view->build_info['pre_render_called']), 'Make sure hook_views_pre_render is not called for the cached view.');
   }
 
@@ -310,7 +329,11 @@ class CacheTest extends ViewsKernelTestBase {
     // Request for the cache.
     $cid = 'views_relationship_groupwise_max:test_groupwise_term_ui:default:tid_representative';
     $cache = \Drupal::cache('data')->get($cid);
+<<<<<<< HEAD
     $this->assertEqual($cid, $cache->cid, 'Subquery String cached as expected.');
+=======
+    $this->assertEquals($cid, $cache->cid, 'Subquery String cached as expected.');
+>>>>>>> dev
   }
 
   /**
@@ -346,8 +369,13 @@ class CacheTest extends ViewsKernelTestBase {
     // Assert each row doesn't contain '_entity' or '_relationship_entities'
     // items.
     foreach ($cache->data['result'] as $row) {
+<<<<<<< HEAD
       $this->assertIdentical($row->_entity, NULL, 'Cached row "_entity" property is NULL');
       $this->assertIdentical($row->_relationship_entities, [], 'Cached row "_relationship_entities" property is empty');
+=======
+      $this->assertNull($row->_entity, 'Cached row "_entity" property is NULL');
+      $this->assertSame([], $row->_relationship_entities, 'Cached row "_relationship_entities" property is empty');
+>>>>>>> dev
     }
   }
 

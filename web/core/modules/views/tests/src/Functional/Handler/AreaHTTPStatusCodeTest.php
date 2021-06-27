@@ -25,7 +25,11 @@ class AreaHTTPStatusCodeTest extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node'];
+=======
+  protected static $modules = ['node'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

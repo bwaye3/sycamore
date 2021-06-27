@@ -9,7 +9,10 @@ use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
+<<<<<<< HEAD
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+=======
+>>>>>>> dev
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -27,7 +30,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
+<<<<<<< HEAD
 class StringFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
+=======
+class StringFormatter extends FormatterBase {
+>>>>>>> dev
 
   /**
    * The entity type manager.
@@ -93,6 +100,7 @@ class StringFormatter extends FormatterBase implements ContainerFactoryPluginInt
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
     $form = parent::settingsForm($form, $form_state);
+<<<<<<< HEAD
 
     $entity_type = $this->entityTypeManager->getDefinition($this->fieldDefinition->getTargetEntityTypeId());
 
@@ -101,6 +109,17 @@ class StringFormatter extends FormatterBase implements ContainerFactoryPluginInt
       '#title' => $this->t('Link to the @entity_label', ['@entity_label' => $entity_type->getLabel()]),
       '#default_value' => $this->getSetting('link_to_entity'),
     ];
+=======
+    $entity_type = $this->entityTypeManager->getDefinition($this->fieldDefinition->getTargetEntityTypeId());
+
+    if ($entity_type->hasLinkTemplate('canonical')) {
+      $form['link_to_entity'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Link to the @entity_label', ['@entity_label' => $entity_type->getLabel()]),
+        '#default_value' => $this->getSetting('link_to_entity'),
+      ];
+    }
+>>>>>>> dev
 
     return $form;
   }
@@ -112,7 +131,13 @@ class StringFormatter extends FormatterBase implements ContainerFactoryPluginInt
     $summary = [];
     if ($this->getSetting('link_to_entity')) {
       $entity_type = $this->entityTypeManager->getDefinition($this->fieldDefinition->getTargetEntityTypeId());
+<<<<<<< HEAD
       $summary[] = $this->t('Linked to the @entity_label', ['@entity_label' => $entity_type->getLabel()]);
+=======
+      if ($entity_type->hasLinkTemplate('canonical')) {
+        $summary[] = $this->t('Linked to the @entity_label', ['@entity_label' => $entity_type->getLabel()]);
+      }
+>>>>>>> dev
     }
     return $summary;
   }
@@ -123,8 +148,16 @@ class StringFormatter extends FormatterBase implements ContainerFactoryPluginInt
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
     $url = NULL;
+<<<<<<< HEAD
     if ($this->getSetting('link_to_entity')) {
       $url = $this->getEntityUrl($items->getEntity());
+=======
+    $entity = $items->getEntity();
+    $entity_type = $entity->getEntityType();
+
+    if ($this->getSetting('link_to_entity') && !$entity->isNew() && $entity_type->hasLinkTemplate('canonical')) {
+      $url = $this->getEntityUrl($entity);
+>>>>>>> dev
     }
 
     foreach ($items as $delta => $item) {

@@ -30,7 +30,11 @@ class InfoParserUnitTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     // Use a fake DRUPAL_ROOT.
     $this->infoParser = new InfoParser('vfs:/');
@@ -48,7 +52,11 @@ class InfoParserUnitTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test if correct exception is thrown for a broken info file.
+=======
+   * Tests if correct exception is thrown for a broken info file.
+>>>>>>> dev
    *
    * @covers ::parse
    */
@@ -125,7 +133,11 @@ MISSING_CORE_AND_CORE_VERSION_REQUIREMENT;
         'missing_core_and_core_version_requirement-duplicate.info.txt' => $missing_core_and_core_version_requirement,
       ],
     ]);
+<<<<<<< HEAD
     $exception_message = "The 'core' or the 'core_version_requirement' key must be present in vfs://modules/fixtures/missing_core_and_core_version_requirement";
+=======
+    $exception_message = "The 'core_version_requirement' key must be present in vfs://modules/fixtures/missing_core_and_core_version_requirement";
+>>>>>>> dev
     // Set the expected exception for the 2nd call to parse().
     $this->expectException('\Drupal\Core\Extension\InfoParserException');
     $this->expectExceptionMessage("$exception_message-duplicate.info.txt");
@@ -237,12 +249,24 @@ BOTH_CORE_CORE_VERSION_REQUIREMENT_88;
    * Tests a invalid 'core' key.
    *
    * @covers ::parse
+<<<<<<< HEAD
    */
   public function testInvalidCore() {
     $invalid_core = <<<INVALID_CORE
 # info.yml for testing invalid core key.
 package: Core
 core: ^8
+=======
+   *
+   * @dataProvider providerInvalidCore
+   */
+  public function testInvalidCore($core, $filename) {
+    $invalid_core = <<<INVALID_CORE
+# info.yml for testing invalid core key.
+package: Core
+core: $core
+core_version_requirement: ^8 || ^9
+>>>>>>> dev
 version: VERSION
 type: module
 name: Llama or Alpaca
@@ -255,26 +279,170 @@ INVALID_CORE;
     vfsStream::setup('modules');
     vfsStream::create([
       'fixtures' => [
+<<<<<<< HEAD
         'invalid_core.info.txt' => $invalid_core,
         'invalid_core-duplicate.info.txt' => $invalid_core,
       ],
     ]);
     $exception_message = "Invalid 'core' value \"^8\" in vfs://modules/fixtures/invalid_core";
+=======
+        "invalid_core-$filename.info.txt" => $invalid_core,
+        "invalid_core-$filename-duplicate.info.txt" => $invalid_core,
+      ],
+    ]);
+    $exception_message = "'core: {$core}' is not supported. Use 'core_version_requirement' to specify core compatibility. Only 'core: 8.x' is supported to provide backwards compatibility for Drupal 8 when needed in vfs://modules/fixtures/invalid_core-$filename";
+>>>>>>> dev
     // Set the expected exception for the 2nd call to parse().
     $this->expectException('\Drupal\Core\Extension\InfoParserException');
     $this->expectExceptionMessage("$exception_message-duplicate.info.txt");
 
     try {
+<<<<<<< HEAD
       $this->infoParser->parse(vfsStream::url('modules/fixtures/invalid_core.info.txt'));
+=======
+      $this->infoParser->parse(vfsStream::url("modules/fixtures/invalid_core-$filename.info.txt"));
+>>>>>>> dev
     }
     catch (InfoParserException $exception) {
       $this->assertSame("$exception_message.info.txt", $exception->getMessage());
 
+<<<<<<< HEAD
       $this->infoParser->parse(vfsStream::url('modules/fixtures/invalid_core-duplicate.info.txt'));
+=======
+      $this->infoParser->parse(vfsStream::url("modules/fixtures/invalid_core-$filename-duplicate.info.txt"));
+    }
+  }
+
+  public function providerInvalidCore() {
+    return [
+      '^8' => [
+        '^8',
+        'caret8',
+      ],
+      '^9' => [
+        '^9',
+        'caret9',
+      ],
+      '7.x' => [
+        '7.x',
+        '7.x',
+      ],
+      '9.x' => [
+        '9.x',
+        '9.x',
+      ],
+      '10.x' => [
+        '10.x',
+        '10.x',
+      ],
+    ];
+  }
+
+  /**
+   * Tests a 'core: 8.x' with different values for 'core_version_requirement'.
+   *
+   * @covers ::parse
+   *
+   * @dataProvider providerCore8x
+   */
+  public function testCore8x($core_version_requirement, $filename) {
+    $core_8x = <<<CORE_8X
+package: Tests
+core: 8.x
+core_version_requirement: '$core_version_requirement'
+version: VERSION
+type: module
+name: Yet another test module
+description: Sorry, I am running out of witty descriptions
+CORE_8X;
+
+    vfsStream::setup('modules');
+    vfsStream::create([
+      'fixtures' => [
+        "core_8x-$filename.info.txt" => $core_8x,
+        "core_8x-$filename-duplicate.info.txt" => $core_8x,
+      ],
+    ]);
+    $parsed = $this->infoParser->parse(vfsStream::url("modules/fixtures/core_8x-$filename.info.txt"));
+    $this->assertSame($core_version_requirement, $parsed['core_version_requirement']);
+    $this->infoParser->parse(vfsStream::url("modules/fixtures/core_8x-$filename-duplicate.info.txt"));
+    $this->assertSame($core_version_requirement, $parsed['core_version_requirement']);
+  }
+
+  /**
+   * Data provider for testCore8x().
+   */
+  public function providerCore8x() {
+    return [
+      '^8 || ^9' => [
+        '^8 || ^9',
+        'all-8-9',
+      ],
+      '*' => [
+        '*',
+        'asterisk',
+      ],
+      '>=8' => [
+        ">=8",
+        'gte8',
+      ],
+    ];
+  }
+
+  /**
+   * Tests setting the 'core' key without the 'core_version_requirement' key.
+   *
+   * @covers ::parse
+   *
+   * @dataProvider providerCoreWithoutCoreVersionRequirement
+   */
+  public function testCoreWithoutCoreVersionRequirement($core) {
+    $core_without_core_version_requirement = <<<CORE_WITHOUT_CORE_VERSION_REQUIREMENT
+package: Dogs
+core: $core
+version: VERSION
+type: module
+name: Gracie Daily Picture
+description: Shows a random picture of Gracie the Dog everyday.
+CORE_WITHOUT_CORE_VERSION_REQUIREMENT;
+
+    vfsStream::setup('modules');
+    vfsStream::create([
+      'fixtures' => [
+        "core_without_core_version_requirement-$core.info.txt" => $core_without_core_version_requirement,
+        "core_without_core_version_requirement-$core-duplicate.info.txt" => $core_without_core_version_requirement,
+      ],
+    ]);
+    $exception_message = "'core: $core' is not supported. Use 'core_version_requirement' to specify core compatibility. Only 'core: 8.x' is supported to provide backwards compatibility for Drupal 8 when needed in vfs://modules/fixtures/core_without_core_version_requirement-$core";
+    // Set the expected exception for the 2nd call to parse().
+    $this->expectException('\Drupal\Core\Extension\InfoParserException');
+    $this->expectExceptionMessage("$exception_message-duplicate.info.txt");
+
+    try {
+      $this->infoParser->parse(vfsStream::url("modules/fixtures/core_without_core_version_requirement-$core.info.txt"));
+    }
+    catch (InfoParserException $exception) {
+      $this->assertSame("$exception_message.info.txt", $exception->getMessage());
+      $this->infoParser->parse(vfsStream::url("modules/fixtures/core_without_core_version_requirement-$core-duplicate.info.txt"));
+>>>>>>> dev
     }
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * DataProvider for testCoreWithoutCoreVersionRequirement().
+   */
+  public function providerCoreWithoutCoreVersionRequirement() {
+    return [
+      '7.x' => ['7.x'],
+      '9.x' => ['9.x'],
+      '10.x' => ['10.x'],
+    ];
+  }
+
+  /**
+>>>>>>> dev
    * Tests a invalid 'core_version_requirement'.
    *
    * @covers ::parse
@@ -316,7 +484,11 @@ INVALID_CORE_VERSION_REQUIREMENT;
   }
 
   /**
+<<<<<<< HEAD
    * Dataprovider for testCoreVersionRequirementInvalid().
+=======
+   * Data provider for testCoreVersionRequirementInvalid().
+>>>>>>> dev
    */
   public function providerCoreVersionRequirementInvalid() {
     return [
@@ -455,7 +627,11 @@ CORE_INCOMPATIBILITY;
   }
 
   /**
+<<<<<<< HEAD
    * Dataprovider for testCoreIncompatibility().
+=======
+   * Data provider for testCoreIncompatibility().
+>>>>>>> dev
    */
   public function providerCoreIncompatibility() {
     list($major, $minor) = explode('.', \Drupal::VERSION);
@@ -487,7 +663,11 @@ CORE_INCOMPATIBILITY;
   }
 
   /**
+<<<<<<< HEAD
    * Test a profile info file.
+=======
+   * Tests a profile info file.
+>>>>>>> dev
    */
   public function testProfile() {
     $profile = <<<PROFILE_TEST
@@ -534,4 +714,36 @@ UNPARSABLE_CORE_VERSION_REQUIREMENT;
     $this->infoParser->parse(vfsStream::url('modules/fixtures/unparsable_core_version_requirement.info.txt'));
   }
 
+<<<<<<< HEAD
+=======
+  /**
+   * Tests an info file with 'core: 8.x' but without 'core_version_requirement'.
+   *
+   * @covers ::parse
+   */
+  public function testCore8xNoCoreVersionRequirement() {
+    $info = <<<INFO
+package: Core
+core: 8.x
+version: VERSION
+type: module
+name: Module for That
+dependencies:
+  - field
+INFO;
+
+    vfsStream::setup('modules');
+    foreach (['1', '2'] as $file_delta) {
+      $filename = "core_version_requirement-$file_delta.info.txt";
+      vfsStream::create([
+        'fixtures' => [
+          $filename => $info,
+        ],
+      ]);
+      $info_values = $this->infoParser->parse(vfsStream::url("modules/fixtures/$filename"));
+      $this->assertSame(TRUE, $info_values['core_incompatible'], "Expected 'core_incompatible's for file: $filename");
+    }
+  }
+
+>>>>>>> dev
 }

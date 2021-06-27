@@ -5,7 +5,11 @@ namespace Drupal\Tests\Core\Enhancer;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Routing\Enhancer\EntityRevisionRouteEnhancer;
 use Drupal\Tests\UnitTestCase;
+<<<<<<< HEAD
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
+=======
+use Drupal\Core\Routing\RouteObjectInterface;
+>>>>>>> dev
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route;
 
@@ -23,7 +27,11 @@ class EntityRevisionRouteEnhancerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->routeEnhancer = new EntityRevisionRouteEnhancer();

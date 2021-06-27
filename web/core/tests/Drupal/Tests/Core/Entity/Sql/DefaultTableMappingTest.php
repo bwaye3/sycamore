@@ -4,7 +4,10 @@ namespace Drupal\Tests\Core\Entity\Sql;
 
 use Drupal\Core\Entity\Sql\DefaultTableMapping;
 use Drupal\Core\Entity\Sql\SqlContentEntityStorageException;
+<<<<<<< HEAD
 use Drupal\Core\Entity\Sql\TemporaryTableMapping;
+=======
+>>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -23,7 +26,11 @@ class DefaultTableMappingTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->entityType = $this->createMock('\Drupal\Core\Entity\ContentEntityTypeInterface');
@@ -318,7 +325,11 @@ class DefaultTableMappingTest extends UnitTestCase {
    * Provides test data for testGetFieldColumnName().
    *
    * @return array[]
+<<<<<<< HEAD
    *   An nested array where each inner array has the following values: test
+=======
+   *   A nested array where each inner array has the following values: test
+>>>>>>> dev
    *   field name, base field status, list of field columns, name of the column
    *   to be retrieved, expected result, whether an exception is expected.
    */
@@ -573,6 +584,7 @@ class DefaultTableMappingTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * @coversDefaultClass \Drupal\Core\Entity\Sql\TemporaryTableMapping
    *
    * @expectedDeprecation Drupal\Core\Entity\Sql\TemporaryTableMapping is deprecated in Drupal 8.7.x and will be removed before Drupal 9.0.0. Use the default table mapping with a prefix instead.
@@ -584,12 +596,20 @@ class DefaultTableMappingTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Sets up a field storage definition for the test.
    *
    * @param string $name
    *   The field name.
    * @param array $column_names
    *   An array of column names for the storage definition.
+<<<<<<< HEAD
+=======
+   * @param bool $base_field
+   *   Flag indicating whether the field should be treated as a base or bundle
+   *   field.
+>>>>>>> dev
    *
    * @return \Drupal\Core\Field\FieldStorageDefinitionInterface|\PHPUnit\Framework\MockObject\MockObject
    */

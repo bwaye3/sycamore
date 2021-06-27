@@ -2,6 +2,9 @@ name: 'Test theme for Nyan Cat engine'
 type: theme
 description: 'Theme for testing the theme system with the Nyan Cat theme engine'
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 engine: nyan_cat
 base theme: false

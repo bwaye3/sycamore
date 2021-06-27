@@ -83,7 +83,11 @@ class SqliteDateSql implements DateSqlInterface {
   public function getDateFormat($field, $format) {
     $format = strtr($format, static::$replace);
 
+<<<<<<< HEAD
     // SQLite does not have a ISO week substitution string, so it needs special
+=======
+    // SQLite does not have an ISO week substitution string, so it needs special
+>>>>>>> dev
     // handling.
     // @see http://wikipedia.org/wiki/ISO_week_date#Calculation
     // @see http://stackoverflow.com/a/15511864/1499564

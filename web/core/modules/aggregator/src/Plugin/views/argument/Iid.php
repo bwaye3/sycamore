@@ -2,7 +2,10 @@
 
 namespace Drupal\aggregator\Plugin\views\argument;
 
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\views\Plugin\views\argument\NumericArgument;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -15,12 +18,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @ViewsArgument("aggregator_iid")
  */
 class Iid extends NumericArgument {
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
 
   /**
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
+=======
+>>>>>>> dev
 
   /**
    * The entity type manager.

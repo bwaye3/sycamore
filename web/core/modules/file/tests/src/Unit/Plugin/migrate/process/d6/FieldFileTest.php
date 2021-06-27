@@ -2,12 +2,18 @@
 
 namespace Drupal\Tests\file\Unit\Plugin\migrate\process\d6;
 
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\ContainerBuilder;
+=======
+>>>>>>> dev
 use Drupal\file\Plugin\migrate\process\d6\FieldFile;
 use Drupal\migrate\MigrateLookupInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\MigrateExecutableInterface;
+<<<<<<< HEAD
 use Drupal\migrate\Plugin\MigrateProcessInterface;
+=======
+>>>>>>> dev
 use Drupal\migrate\Row;
 use Drupal\Tests\UnitTestCase;
 
@@ -50,6 +56,7 @@ class FieldFileTest extends UnitTestCase {
     $this->assertSame($expected, $transformed);
   }
 
+<<<<<<< HEAD
   /**
    * Tests that alt and title attributes are included in transformed values.
    *
@@ -93,4 +100,6 @@ class FieldFileTest extends UnitTestCase {
     $this->assertSame($expected, $transformed);
   }
 
+=======
+>>>>>>> dev
 }

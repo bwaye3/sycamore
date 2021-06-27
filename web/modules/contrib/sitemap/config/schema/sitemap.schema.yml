@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 # Schema for the configuration files of the Sitemap module.
 sitemap.settings:
+=======
+# Schema for the configuration file of the Sitemap module.
+sitemap.settings:
+  langcode: 'en'
+>>>>>>> dev
   type: config_object
   label: 'Sitemap settings'
   mapping:
@@ -8,6 +14,7 @@ sitemap.settings:
       label: 'Page title'
     message:
       type: text_format
+<<<<<<< HEAD
       label: 'Sitemap message'
     show_front:
       type: boolean
@@ -86,3 +93,92 @@ system.menu.*.third_party.sitemap:
     sitemap_display_name:
       type: text
       label: 'Sitemap display name'
+=======
+      label: 'Message'
+    plugins:
+      type: sequence
+      label: 'Plugins'
+      nullable: true
+      sequence:
+        type: sitemap.settings.plugins.[%key]
+    include_css:
+      type: boolean
+      label: 'Include css file flag'
+
+# Schema for sitemap plugins.
+sitemap.settings.plugins.*:
+  type: mapping
+  label: 'Sitemap plugin'
+  mapping:
+    enabled:
+      type: boolean
+      label: 'Enabled'
+    weight:
+      type: integer
+      label: 'Weight'
+    settings:
+      type: mapping
+      label: 'Settings'
+      mapping:
+        # Global plugin settings
+        title:
+          type: label
+          label: 'Title'
+        # Book plugin settings
+        show_expanded:
+          type: boolean
+          label: 'Show expanded'
+          nullable: true
+        # Menu plugin settings
+        show_disabled:
+          type: boolean
+          label: 'Show disabled'
+          nullable: true
+        # Frontpage plugin settings
+        rss:
+          type: string
+          label: "RSS"
+          nullable: true
+        # Vocabulary plugin settings
+        show_description:
+          type: boolean
+          label: "Show description"
+          nullable: true
+        show_count:
+          type: boolean
+          label: 'Show count'
+          nullable: true
+        term_depth:
+          type: integer
+          label: 'Term depth'
+          nullable: true
+        term_count_threshold:
+          type: integer
+          label: 'Term count threshold'
+          nullable: true
+        customize_link:
+          type: boolean
+          label: 'Customize link'
+          nullable: true
+        term_link:
+          type: string
+          label: 'Term link'
+          nullable: true
+        always_link:
+          type: boolean
+          label: 'Always link'
+          nullable: true
+        enable_rss:
+          type: boolean
+          label: 'Enable RSS'
+          nullable: true
+        rss_link:
+          type: string
+          label: 'RSS link'
+          nullable: true
+        rss_depth:
+          type: integer
+          label: 'RSS depth'
+          nullable: true
+
+>>>>>>> dev

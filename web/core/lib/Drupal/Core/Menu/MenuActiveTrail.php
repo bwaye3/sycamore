@@ -56,7 +56,11 @@ class MenuActiveTrail extends CacheCollector implements MenuActiveTrailInterface
     if (!isset($this->cid)) {
       $route_parameters = $this->routeMatch->getRawParameters()->all();
       ksort($route_parameters);
+<<<<<<< HEAD
       return 'active-trail:route:' . $this->routeMatch->getRouteName() . ':route_parameters:' . serialize($route_parameters);
+=======
+      $this->cid = 'active-trail:route:' . $this->routeMatch->getRouteName() . ':route_parameters:' . serialize($route_parameters);
+>>>>>>> dev
     }
 
     return $this->cid;

@@ -3,9 +3,12 @@
  * Visual styles for tabs.
  */
 
+<<<<<<< HEAD
 .layout-tabs {
   background-color: #79bd8f;
 }
+=======
+>>>>>>> dev
 .tabs.primary {
   display: flex;
   flex-wrap: wrap;

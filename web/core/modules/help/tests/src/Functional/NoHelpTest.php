@@ -18,7 +18,11 @@ class NoHelpTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['help', 'menu_test'];
+=======
+  protected static $modules = ['help', 'menu_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -30,7 +34,11 @@ class NoHelpTest extends BrowserTestBase {
    */
   protected $adminUser;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->adminUser = $this->drupalCreateUser(['access administration pages']);
   }
@@ -43,9 +51,17 @@ class NoHelpTest extends BrowserTestBase {
 
     $this->drupalGet('admin/help');
     $this->assertSession()->statusCodeEquals(200);
+<<<<<<< HEAD
     $this->assertText('Module overviews are provided by modules');
     $this->assertFalse(\Drupal::moduleHandler()->implementsHook('menu_test', 'help'), 'The menu_test module does not implement hook_help');
     $this->assertNoText(\Drupal::moduleHandler()->getName('menu_test'), 'Making sure the test module menu_test does not display a help link on admin/help.');
+=======
+    $this->assertSession()->pageTextContains('Module overviews are provided by modules');
+    $this->assertFalse(\Drupal::moduleHandler()->implementsHook('menu_test', 'help'), 'The menu_test module does not implement hook_help');
+    // Make sure the test module menu_test does not display a help link on
+    // admin/help.
+    $this->assertNoText(\Drupal::moduleHandler()->getName('menu_test'));
+>>>>>>> dev
 
     // Ensure that the module overview help page for a module that does not
     // implement hook_help() results in a 404.

@@ -5,9 +5,13 @@
  * Installation functions for Content Translation module.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Entity\Sql\SqlEntityStorageInterface;
 use Drupal\Core\Installer\InstallerKernel;
 use Drupal\Core\Language\LanguageInterface;
+=======
+use Drupal\Core\Installer\InstallerKernel;
+>>>>>>> dev
 use Drupal\Core\Url;
 
 /**
@@ -41,6 +45,7 @@ function content_translation_install() {
 }
 
 /**
+<<<<<<< HEAD
  * Rebuild the routes as the content translation routes have now new names.
  */
 function content_translation_update_8001() {
@@ -107,4 +112,10 @@ function content_translation_update_8400() {
       }
     }
   }
+=======
+ * Implements hook_update_last_removed().
+ */
+function content_translation_update_last_removed() {
+  return 8400;
+>>>>>>> dev
 }

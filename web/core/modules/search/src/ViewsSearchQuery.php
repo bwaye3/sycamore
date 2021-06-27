@@ -2,7 +2,11 @@
 
 namespace Drupal\search;
 
+<<<<<<< HEAD
 use Drupal\Core\Database\Query\Condition;
+=======
+use Drupal\Core\Database\Query\ConditionInterface;
+>>>>>>> dev
 
 /**
  * Extends the core SearchQuery to be able to gets its protected values.
@@ -70,7 +74,11 @@ class ViewsSearchQuery extends SearchQuery {
    *   which must have a 'field' element.
    */
   public function conditionReplaceString($search, $replace, &$condition) {
+<<<<<<< HEAD
     if ($condition['field'] instanceof Condition) {
+=======
+    if ($condition['field'] instanceof ConditionInterface) {
+>>>>>>> dev
       $conditions =& $condition['field']->conditions();
       foreach ($conditions as $key => &$subcondition) {
         if (is_numeric($key)) {

@@ -12,6 +12,7 @@ use Drupal\user\EntityOwnerInterface;
 interface WorkspaceInterface extends ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface {
 
   /**
+<<<<<<< HEAD
    * The ID of the default workspace.
    *
    * @deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Use
@@ -22,11 +23,14 @@ interface WorkspaceInterface extends ContentEntityInterface, EntityChangedInterf
   const DEFAULT_WORKSPACE = 'live';
 
   /**
+=======
+>>>>>>> dev
    * Publishes the contents of this workspace to the default (Live) workspace.
    */
   public function publish();
 
   /**
+<<<<<<< HEAD
    * Determines whether the workspace is the default one or not.
    *
    * @return bool
@@ -40,6 +44,8 @@ interface WorkspaceInterface extends ContentEntityInterface, EntityChangedInterf
   public function isDefaultWorkspace();
 
   /**
+=======
+>>>>>>> dev
    * Gets the workspace creation timestamp.
    *
    * @return int

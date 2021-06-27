@@ -15,7 +15,11 @@ class NodePreviewLinkTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'filter'];
+=======
+  protected static $modules = ['node', 'filter'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -25,7 +29,11 @@ class NodePreviewLinkTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
+=======
+  public function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $filtered_html_format = FilterFormat::create([
@@ -46,6 +54,7 @@ class NodePreviewLinkTest extends WebDriverTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the behavior of clicking preview links.
    */
   public function testPreviewLinks() {
@@ -54,6 +63,17 @@ class NodePreviewLinkTest extends WebDriverTestBase {
       'title[0][value]' => 'Test node',
       'body[0][value]' => '<a href="#foo">Anchor link</a><a href="/foo">Normal link</a>',
     ], t('Preview'));
+=======
+   * Tests the behavior of clicking preview links.
+   */
+  public function testPreviewLinks() {
+    $assertSession = $this->assertSession();
+    $this->drupalGet('node/add/test');
+    $this->submitForm([
+      'title[0][value]' => 'Test node',
+      'body[0][value]' => '<a href="#foo">Anchor link</a><a href="/foo">Normal link</a>',
+    ], 'Preview');
+>>>>>>> dev
     $this->clickLink('Anchor link');
     $assertSession->pageTextNotContains('Leave preview?');
     $this->clickLink('Normal link');

@@ -30,7 +30,11 @@ class Shortcut extends DrupalSqlBase {
    */
   public function fields() {
     return [
+<<<<<<< HEAD
       'mlid' => $this->t("The menu.mlid primary key for this menu item (= shortcut link)."),
+=======
+      'mlid' => $this->t("The menu.mlid primary key for this menu link (= shortcut link)."),
+>>>>>>> dev
       'menu_name' => $this->t("The menu name (= set name) for this shortcut link."),
       'link_path' => $this->t("The link for this shortcut."),
       'link_title' => $this->t("The title for this shortcut."),

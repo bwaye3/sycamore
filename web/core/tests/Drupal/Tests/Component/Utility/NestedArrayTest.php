@@ -28,7 +28,11 @@ class NestedArrayTest extends TestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create a form structure with a nested element.

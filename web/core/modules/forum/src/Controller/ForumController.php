@@ -235,8 +235,14 @@ class ForumController extends ControllerBase {
     }
     $this->renderer->addCacheableDependency($build, $term);
 
+<<<<<<< HEAD
     return [
       'action' => $this->buildActionLinks($config->get('vocabulary'), $term),
+=======
+    $is_forum = empty($term->forum_container->value);
+    return [
+      'action' => ($is_forum) ? $this->buildActionLinks($config->get('vocabulary'), $term) : [],
+>>>>>>> dev
       'forum' => $build,
       '#cache' => [
         'tags' => Cache::mergeTags($this->nodeEntityTypeDefinition->getListCacheTags(), $this->commentEntityTypeDefinition->getListCacheTags()),
@@ -294,7 +300,10 @@ class ForumController extends ControllerBase {
       if ($this->nodeAccess->createAccess($type)) {
         $node_type = $this->nodeTypeStorage->load($type);
         $links[$type] = [
+<<<<<<< HEAD
           '#attributes' => ['class' => ['action-links']],
+=======
+>>>>>>> dev
           '#theme' => 'menu_local_action',
           '#link' => [
             'title' => $this->t('Add new @node_type', [
@@ -323,15 +332,36 @@ class ForumController extends ControllerBase {
       // Anonymous user does not have access to create new topics.
       else {
         $links['login'] = [
+<<<<<<< HEAD
           '#attributes' => ['class' => ['action-links']],
+=======
+>>>>>>> dev
           '#theme' => 'menu_local_action',
           '#link' => [
             'title' => $this->t('Log in to post new content in the forum.'),
             'url' => Url::fromRoute('user.login', [], ['query' => $this->getDestinationArray()]),
           ],
+<<<<<<< HEAD
         ];
       }
     }
+=======
+          // Without this workaround, the action links will be rendered as <li>
+          // with no wrapping <ul> element.
+          // @todo Find a better way for this in https://www.drupal.org/node/3181052.
+          '#prefix' => '<ul class="action-links">',
+          '#suffix' => '</ul>',
+        ];
+      }
+    }
+    else {
+      // Without this workaround, the action links will be rendered as <li> with
+      // no wrapping <ul> element.
+      // @todo Find a better way for this in https://www.drupal.org/node/3181052.
+      $links['#prefix'] = '<ul class="action-links">';
+      $links['#suffix'] = '</ul>';
+    }
+>>>>>>> dev
     return $links;
   }
 

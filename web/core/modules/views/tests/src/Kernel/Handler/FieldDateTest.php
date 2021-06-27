@@ -75,7 +75,11 @@ class FieldDateTest extends ViewsKernelTestBase {
         'table' => 'views_test_data',
         'field' => 'created',
         'relationship' => 'none',
+<<<<<<< HEAD
         // ISO 8601 format, see http://php.net/manual/function.date.php
+=======
+        // ISO 8601 format, see https://www.php.net/manual/datetime.format.php
+>>>>>>> dev
         'custom_date_format' => 'c',
       ],
       'destroyed' => [
@@ -167,7 +171,11 @@ class FieldDateTest extends ViewsKernelTestBase {
         $message = t('Value %value in %format format matches.', $t_args);
       }
       $actual_result = $view->field['created']->advancedRender($view->result[0]);
+<<<<<<< HEAD
       $this->assertEqual($expected_result, $actual_result, $message);
+=======
+      $this->assertEquals($expected_result, $actual_result, $message);
+>>>>>>> dev
     }
   }
 
@@ -189,7 +197,11 @@ class FieldDateTest extends ViewsKernelTestBase {
         '%actual' => $view_result,
       ];
       $message = t('Value %value in %format matches %actual', $t_args);
+<<<<<<< HEAD
       $this->assertEqual($view_result, $result, $message);
+=======
+      $this->assertEquals($result, $view_result, $message);
+>>>>>>> dev
     }
   }
 

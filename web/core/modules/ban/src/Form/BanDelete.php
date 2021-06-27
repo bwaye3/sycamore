@@ -80,6 +80,13 @@ class BanDelete extends ConfirmFormBase {
   /**
    * {@inheritdoc}
    *
+<<<<<<< HEAD
+=======
+   * @param array $form
+   *   A nested array form elements comprising the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+>>>>>>> dev
    * @param string $ban_id
    *   The IP address record ID to unban.
    */

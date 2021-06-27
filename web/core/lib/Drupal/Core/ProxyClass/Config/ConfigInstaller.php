@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 // @codingStandardsIgnoreFile
+=======
+// phpcs:ignoreFile
+>>>>>>> dev
 
 /**
  * This file was generated via php core/scripts/generate-proxy-class.php 'Drupal\Core\Config\ConfigInstaller' "core/lib/Drupal/Core".
@@ -78,7 +82,11 @@ namespace Drupal\Core\ProxyClass\Config {
         /**
          * {@inheritdoc}
          */
+<<<<<<< HEAD
         public function installOptionalConfig(\Drupal\Core\Config\StorageInterface $storage = NULL, $dependency = array (
+=======
+        public function installOptionalConfig(?\Drupal\Core\Config\StorageInterface $storage = NULL, $dependency = array (
+>>>>>>> dev
         ))
         {
             return $this->lazyLoadItself()->installOptionalConfig($storage, $dependency);

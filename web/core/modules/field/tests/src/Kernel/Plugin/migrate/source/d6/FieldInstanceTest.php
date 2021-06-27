@@ -15,7 +15,11 @@ class FieldInstanceTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['field', 'migrate_drupal'];
+=======
+  protected static $modules = ['field', 'migrate_drupal'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

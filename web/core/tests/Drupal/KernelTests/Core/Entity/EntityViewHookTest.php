@@ -20,7 +20,11 @@ use Drupal\entity_test\Entity\EntityTest;
 class EntityViewHookTest extends EntityKernelTestBase {
 
   /**
+<<<<<<< HEAD
    * Test hook_entity_display_build_alter().
+=======
+   * Tests hook_entity_display_build_alter().
+>>>>>>> dev
    */
   public function testHookEntityDisplayBuildAlter() {
     entity_test_create_bundle('display_build_alter_bundle');

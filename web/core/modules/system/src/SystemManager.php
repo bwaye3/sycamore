@@ -69,8 +69,11 @@ class SystemManager {
    *
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.
+<<<<<<< HEAD
    * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
    *   The entity manager.
+=======
+>>>>>>> dev
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The request stack.
    * @param \Drupal\Core\Menu\MenuLinkTreeInterface $menu_tree
@@ -78,7 +81,11 @@ class SystemManager {
    * @param \Drupal\Core\Menu\MenuActiveTrailInterface $menu_active_trail
    *   The active menu trail service.
    */
+<<<<<<< HEAD
   public function __construct(ModuleHandlerInterface $module_handler, $entity_manager, RequestStack $request_stack, MenuLinkTreeInterface $menu_tree, MenuActiveTrailInterface $menu_active_trail) {
+=======
+  public function __construct(ModuleHandlerInterface $module_handler, RequestStack $request_stack, MenuLinkTreeInterface $menu_tree, MenuActiveTrailInterface $menu_active_trail) {
+>>>>>>> dev
     $this->moduleHandler = $module_handler;
     $this->requestStack = $request_stack;
     $this->menuTree = $menu_tree;
@@ -202,7 +209,11 @@ class SystemManager {
         continue;
       }
 
+<<<<<<< HEAD
       /** @var $link \Drupal\Core\Menu\MenuLinkInterface */
+=======
+      /** @var \Drupal\Core\Menu\MenuLinkInterface $link */
+>>>>>>> dev
       $link = $element->link;
       $content[$key]['title'] = $link->getTitle();
       $content[$key]['options'] = $link->getOptions();

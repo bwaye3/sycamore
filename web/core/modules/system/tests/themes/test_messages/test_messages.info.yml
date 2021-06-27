@@ -2,5 +2,8 @@ name: 'Theme test messages'
 type: theme
 description: 'Test theme which provides another div for messages.'
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 base theme: classy

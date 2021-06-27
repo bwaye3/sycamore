@@ -17,7 +17,11 @@ use Drupal\Component\Render\MarkupTrait;
  *   rendering.
  *
  * @see \Drupal\Core\Template\TwigExtension::escapeFilter
+<<<<<<< HEAD
  * @see \Twig_Markup
+=======
+ * @see \Twig\Markup
+>>>>>>> dev
  */
 final class Markup implements MarkupInterface, \Countable {
   use MarkupTrait;

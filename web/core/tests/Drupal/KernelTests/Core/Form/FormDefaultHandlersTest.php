@@ -15,6 +15,7 @@ use Drupal\KernelTests\KernelTestBase;
 class FormDefaultHandlersTest extends KernelTestBase implements FormInterface {
 
   /**
+<<<<<<< HEAD
    * Modules to enable.
    *
    * @var array
@@ -30,6 +31,8 @@ class FormDefaultHandlersTest extends KernelTestBase implements FormInterface {
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function getFormId() {
@@ -93,12 +96,21 @@ class FormDefaultHandlersTest extends KernelTestBase implements FormInterface {
     $handlers = $form_state->get('test_handlers');
 
     $this->assertCount(2, $handlers['validate']);
+<<<<<<< HEAD
     $this->assertIdentical($handlers['validate'][0], 'customValidateForm');
     $this->assertIdentical($handlers['validate'][1], 'validateForm');
 
     $this->assertCount(2, $handlers['submit']);
     $this->assertIdentical($handlers['submit'][0], 'customSubmitForm');
     $this->assertIdentical($handlers['submit'][1], 'submitForm');
+=======
+    $this->assertSame('customValidateForm', $handlers['validate'][0]);
+    $this->assertSame('validateForm', $handlers['validate'][1]);
+
+    $this->assertCount(2, $handlers['submit']);
+    $this->assertSame('customSubmitForm', $handlers['submit'][0]);
+    $this->assertSame('submitForm', $handlers['submit'][1]);
+>>>>>>> dev
   }
 
 }

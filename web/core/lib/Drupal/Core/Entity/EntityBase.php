@@ -65,6 +65,7 @@ abstract class EntityBase implements EntityInterface {
   }
 
   /**
+<<<<<<< HEAD
    * Gets the entity manager.
    *
    * @return \Drupal\Core\Entity\EntityManagerInterface
@@ -81,6 +82,8 @@ abstract class EntityBase implements EntityInterface {
   }
 
   /**
+=======
+>>>>>>> dev
    * Gets the entity type manager.
    *
    * @return \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -164,6 +167,7 @@ abstract class EntityBase implements EntityInterface {
    * {@inheritdoc}
    */
   public function label() {
+<<<<<<< HEAD
     $label = NULL;
     $entity_type = $this->getEntityType();
     if (($label_callback = $entity_type->get('label_callback')) && is_callable($label_callback)) {
@@ -182,6 +186,11 @@ abstract class EntityBase implements EntityInterface {
   public function urlInfo($rel = 'canonical', array $options = []) {
     @trigger_error('EntityInterface::urlInfo() is deprecated in Drupal 8.0.0 and will be removed in Drupal 9.0.0. EntityInterface::toUrl() instead. See https://www.drupal.org/node/2614344', E_USER_DEPRECATED);
     return $this->toUrl($rel, $options);
+=======
+    if (($label_key = $this->getEntityType()->getKey('label')) && isset($this->{$label_key})) {
+      return $this->{$label_key};
+    }
+>>>>>>> dev
   }
 
   /**
@@ -268,6 +277,7 @@ abstract class EntityBase implements EntityInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function link($text = NULL, $rel = 'canonical', array $options = []) {
     @trigger_error("EntityInterface::link() is deprecated in Drupal 8.0.0 and will be removed in Drupal 9.0.0. Use EntityInterface::toLink()->toString() instead. Note, the default relationship for configuration entities changes from 'edit-form' to 'canonical'. See https://www.drupal.org/node/2614344", E_USER_DEPRECATED);
     return $this->toLink($text, $rel, $options)->toString();
@@ -276,6 +286,8 @@ abstract class EntityBase implements EntityInterface {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function toLink($text = NULL, $rel = 'canonical', array $options = []) {
     if (!isset($text)) {
       $text = $this->label();
@@ -287,6 +299,7 @@ abstract class EntityBase implements EntityInterface {
   }
 
   /**
+<<<<<<< HEAD
    * {@inheritdoc}
    */
   public function url($rel = 'canonical', $options = []) {
@@ -304,6 +317,8 @@ abstract class EntityBase implements EntityInterface {
   }
 
   /**
+=======
+>>>>>>> dev
    * Gets an array of placeholders for this entity.
    *
    * Individual entity classes may override this method to add additional
@@ -327,7 +342,11 @@ abstract class EntityBase implements EntityInterface {
       $parameter_name = $this->getEntityType()->getBundleEntityType() ?: $this->getEntityType()->getKey('bundle');
       $uri_route_parameters[$parameter_name] = $this->bundle();
     }
+<<<<<<< HEAD
     if ($rel === 'revision' && $this instanceof RevisionableInterface) {
+=======
+    if ($this instanceof RevisionableInterface && strpos($rel, 'revision') === 0) {
+>>>>>>> dev
       $uri_route_parameters[$this->getEntityTypeId() . '_revision'] = $this->getRevisionId();
     }
 
@@ -540,7 +559,11 @@ abstract class EntityBase implements EntityInterface {
   public static function load($id) {
     $entity_type_repository = \Drupal::service('entity_type.repository');
     $entity_type_manager = \Drupal::entityTypeManager();
+<<<<<<< HEAD
     $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(get_called_class()));
+=======
+    $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(static::class));
+>>>>>>> dev
     return $storage->load($id);
   }
 
@@ -550,7 +573,11 @@ abstract class EntityBase implements EntityInterface {
   public static function loadMultiple(array $ids = NULL) {
     $entity_type_repository = \Drupal::service('entity_type.repository');
     $entity_type_manager = \Drupal::entityTypeManager();
+<<<<<<< HEAD
     $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(get_called_class()));
+=======
+    $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(static::class));
+>>>>>>> dev
     return $storage->loadMultiple($ids);
   }
 
@@ -560,7 +587,11 @@ abstract class EntityBase implements EntityInterface {
   public static function create(array $values = []) {
     $entity_type_repository = \Drupal::service('entity_type.repository');
     $entity_type_manager = \Drupal::entityTypeManager();
+<<<<<<< HEAD
     $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(get_called_class()));
+=======
+    $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(static::class));
+>>>>>>> dev
     return $storage->create($values);
   }
 

@@ -3,7 +3,10 @@
 namespace Drupal\comment\Plugin\views\argument;
 
 use Drupal\Core\Database\Connection;
+<<<<<<< HEAD
 use Drupal\Core\Database\Query\Condition;
+=======
+>>>>>>> dev
 use Drupal\views\Plugin\views\argument\ArgumentPluginBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -54,7 +57,11 @@ class UserUid extends ArgumentPluginBase {
       $title = \Drupal::config('user.settings')->get('anonymous');
     }
     else {
+<<<<<<< HEAD
       $title = $this->database->query('SELECT name FROM {users_field_data} WHERE uid = :uid AND default_langcode = 1', [':uid' => $this->argument])->fetchField();
+=======
+      $title = $this->database->query('SELECT [name] FROM {users_field_data} WHERE [uid] = :uid AND [default_langcode] = 1', [':uid' => $this->argument])->fetchField();
+>>>>>>> dev
     }
     if (empty($title)) {
       return $this->t('No user');
@@ -88,10 +95,17 @@ class UserUid extends ArgumentPluginBase {
 
       $entity_id = $this->definition['entity_id'];
       $entity_type = $this->definition['entity_type'];
+<<<<<<< HEAD
       $subselect->where("c.entity_id = $this->tableAlias.$entity_id");
       $subselect->condition('c.entity_type', $entity_type);
 
       $condition = (new Condition('OR'))
+=======
+      $subselect->where("[c].[entity_id] = [$this->tableAlias].[$entity_id]");
+      $subselect->condition('c.entity_type', $entity_type);
+
+      $condition = ($this->view->query->getConnection()->condition('OR'))
+>>>>>>> dev
         ->condition("$this->tableAlias.uid", $this->argument, '=')
         ->exists($subselect);
 

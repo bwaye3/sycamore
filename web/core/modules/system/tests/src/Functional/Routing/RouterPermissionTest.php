@@ -16,7 +16,11 @@ class RouterPermissionTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['router_test'];
+=======
+  protected static $modules = ['router_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -40,7 +44,11 @@ class RouterPermissionTest extends BrowserTestBase {
     $this->drupalGet('router_test/test7');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertNoRaw('Access denied');
+<<<<<<< HEAD
     $this->assertRaw('test7text', 'The correct string was returned because the route was successful.');
+=======
+    $this->assertRaw('test7text');
+>>>>>>> dev
   }
 
 }

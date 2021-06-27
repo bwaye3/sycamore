@@ -27,14 +27,22 @@ class AreaTest extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'views_ui'];
+=======
+  protected static $modules = ['node', 'views_ui'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();
@@ -54,7 +62,11 @@ class AreaTest extends ViewTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests the generic UI of a area handler.
+=======
+   * Tests the generic UI of an area handler.
+>>>>>>> dev
    */
   public function testUI() {
     $admin_user = $this->drupalCreateUser([
@@ -69,6 +81,7 @@ class AreaTest extends ViewTestBase {
       $edit_path = 'admin/structure/views/nojs/handler/test_example_area/default/' . $type . '/test_example';
 
       // First setup an empty label.
+<<<<<<< HEAD
       $this->drupalPostForm($edit_path, [], t('Apply'));
       $this->assertText('Test Example area');
 
@@ -83,6 +96,24 @@ class AreaTest extends ViewTestBase {
       $this->assertField('options[admin_label]');
       if ($type !== 'empty') {
         $this->assertField('options[empty]');
+=======
+      $this->drupalGet($edit_path);
+      $this->submitForm([], 'Apply');
+      $this->assertSession()->pageTextContains('Test Example area');
+
+      // Then setup a no empty label.
+      $labels[$type] = $this->randomMachineName();
+      $this->drupalGet($edit_path);
+      $this->submitForm(['options[admin_label]' => $labels[$type]], 'Apply');
+      // Make sure that the new label appears on the site.
+      $this->assertSession()->pageTextContains($labels[$type]);
+
+      // Test that the settings (empty/admin_label) are accessible.
+      $this->drupalGet($edit_path);
+      $this->assertSession()->fieldExists('options[admin_label]');
+      if ($type !== 'empty') {
+        $this->assertSession()->fieldExists('options[empty]');
+>>>>>>> dev
       }
     }
   }
@@ -186,7 +217,11 @@ class AreaTest extends ViewTestBase {
 
       // Test that each item exists in the list.
       foreach ($available[$type] as $token => $info) {
+<<<<<<< HEAD
         $this->assertText("[$type:$token]");
+=======
+        $this->assertSession()->pageTextContains("[$type:$token]");
+>>>>>>> dev
       }
     }
 
@@ -223,7 +258,11 @@ class AreaTest extends ViewTestBase {
     $view->storage->enable()->save();
 
     $this->drupalGet('node');
+<<<<<<< HEAD
     $this->assertText('Overridden title', 'Overridden title found.');
+=======
+    $this->assertSession()->pageTextContains('Overridden title');
+>>>>>>> dev
   }
 
 }

@@ -61,7 +61,11 @@ function callback_batch_operation($multiple_params, &$context) {
   if (!isset($context['sandbox']['progress'])) {
     $context['sandbox']['progress'] = 0;
     $context['sandbox']['current_node'] = 0;
+<<<<<<< HEAD
     $context['sandbox']['max'] = $database->query('SELECT COUNT(DISTINCT nid) FROM {node}')->fetchField();
+=======
+    $context['sandbox']['max'] = $database->query('SELECT COUNT(DISTINCT [nid]) FROM {node}')->fetchField();
+>>>>>>> dev
   }
 
   // For this example, we decide that we can safely process
@@ -69,7 +73,11 @@ function callback_batch_operation($multiple_params, &$context) {
   $limit = 5;
 
   // With each pass through the callback, retrieve the next group of nids.
+<<<<<<< HEAD
   $result = $database->queryRange("SELECT nid FROM {node} WHERE nid > :nid ORDER BY nid ASC", 0, $limit, [':nid' => $context['sandbox']['current_node']]);
+=======
+  $result = $database->queryRange("SELECT [nid] FROM {node} WHERE [nid] > :nid ORDER BY [nid] ASC", 0, $limit, [':nid' => $context['sandbox']['current_node']]);
+>>>>>>> dev
   foreach ($result as $row) {
 
     // Here we actually perform our processing on the current node.
@@ -109,6 +117,7 @@ function callback_batch_operation($multiple_params, &$context) {
  *   The value set in $context['results'] by callback_batch_operation().
  * @param $operations
  *   If $success is FALSE, contains the operations that remained unprocessed.
+<<<<<<< HEAD
  */
 function callback_batch_finished($success, $results, $operations) {
   if ($success) {
@@ -116,6 +125,19 @@ function callback_batch_finished($success, $results, $operations) {
     $message = t("@count items were processed.", [
       '@count' => count($results),
       ]);
+=======
+ * @param string $elapsed
+ *   A string representing the elapsed time for the batch process, e.g.,
+ *   '1 min 30 secs'.
+ */
+function callback_batch_finished($success, $results, $operations, $elapsed) {
+  if ($success) {
+    // Here we do something meaningful with the results.
+    $message = t("@count items were processed (@elapsed).", [
+      '@count' => count($results),
+      '@elapsed' => $elapsed,
+    ]);
+>>>>>>> dev
     $list = [
       '#theme' => 'item_list',
       '#items' => $results,

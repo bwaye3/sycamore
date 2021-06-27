@@ -60,13 +60,25 @@ ENDPO;
   }
 
   public function testConfigTranslation() {
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/language/add', ['predefined_langcode' => 'en'], t('Add custom language'));
     $this->drupalPostForm('admin/config/regional/language/add', ['predefined_langcode' => 'fr'], t('Add custom language'));
+=======
+    $this->drupalGet('admin/config/regional/language/add');
+    $this->submitForm(['predefined_langcode' => 'en'], 'Add custom language');
+    $this->drupalGet('admin/config/regional/language/add');
+    $this->submitForm(['predefined_langcode' => 'fr'], 'Add custom language');
+>>>>>>> dev
 
     $edit = [
       'modules[config_translation][enable]' => TRUE,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/modules', $edit, t('Install'));
+=======
+    $this->drupalGet('admin/modules');
+    $this->submitForm($edit, 'Install');
+>>>>>>> dev
 
     $this->drupalGet('/admin/structure/types/manage/article/fields');
     $this->assertSession()->statusCodeEquals(200);

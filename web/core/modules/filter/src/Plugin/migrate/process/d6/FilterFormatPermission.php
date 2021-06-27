@@ -3,10 +3,16 @@
 namespace Drupal\filter\Plugin\migrate\process\d6;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+<<<<<<< HEAD
 use Drupal\migrate\MigrateLookupInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Plugin\MigrateProcessInterface;
+=======
+use Drupal\migrate\MigrateExecutableInterface;
+use Drupal\migrate\MigrateLookupInterface;
+use Drupal\migrate\Plugin\MigrationInterface;
+>>>>>>> dev
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -22,6 +28,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class FilterFormatPermission extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 
   /**
+<<<<<<< HEAD
    * The Migration process plugin.
    *
    * @var \Drupal\migrate\Plugin\MigrateProcessInterface
@@ -34,6 +41,8 @@ class FilterFormatPermission extends ProcessPluginBase implements ContainerFacto
   protected $migrationPlugin;
 
   /**
+=======
+>>>>>>> dev
    * The migrate lookup service.
    *
    * @var \Drupal\migrate\MigrateLookupInterface
@@ -54,6 +63,7 @@ class FilterFormatPermission extends ProcessPluginBase implements ContainerFacto
    * @param \Drupal\migrate\MigrateLookupInterface $migrate_lookup
    *   The migrate lookup service.
    */
+<<<<<<< HEAD
   // @codingStandardsIgnoreLine
   public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, $migrate_lookup) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -68,6 +78,12 @@ class FilterFormatPermission extends ProcessPluginBase implements ContainerFacto
     $this->migration = $migration;
     $this->migrateLookup = $migrate_lookup;
 
+=======
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, MigrateLookupInterface $migrate_lookup) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->migration = $migration;
+    $this->migrateLookup = $migrate_lookup;
+>>>>>>> dev
   }
 
   /**
@@ -93,6 +109,7 @@ class FilterFormatPermission extends ProcessPluginBase implements ContainerFacto
     $migration = isset($this->configuration['migration']) ? $this->configuration['migration'] : 'd6_filter_format';
     if ($formats = $row->getSourceProperty("filter_permissions:$rid")) {
       foreach ($formats as $format) {
+<<<<<<< HEAD
 
         // This BC layer is included because if the plugin constructor was
         // called in the legacy way with a migration_lookup process plugin, it
@@ -111,6 +128,11 @@ class FilterFormatPermission extends ProcessPluginBase implements ContainerFacto
         }
         if (!empty($new_id)) {
           $value[] = 'use text format ' . $new_id;
+=======
+        $lookup_result = $this->migrateLookup->lookup($migration, [$format]);
+        if ($lookup_result) {
+          $value[] = 'use text format ' . $lookup_result[0]['format'];
+>>>>>>> dev
         }
       }
     }

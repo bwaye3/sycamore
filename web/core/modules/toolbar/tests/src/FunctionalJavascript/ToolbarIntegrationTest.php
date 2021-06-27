@@ -14,7 +14,11 @@ class ToolbarIntegrationTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['toolbar', 'node'];
+=======
+  protected static $modules = ['toolbar', 'node'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

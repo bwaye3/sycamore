@@ -2,7 +2,10 @@
 
 namespace Drupal\Tests\migrate\Kernel;
 
+<<<<<<< HEAD
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
+=======
+>>>>>>> dev
 use Drupal\migrate\MigrateException;
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 
@@ -18,7 +21,11 @@ class MigrateLookupTest extends MigrateTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'system',
     'node',
     'field',
@@ -37,7 +44,11 @@ class MigrateLookupTest extends MigrateTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
+=======
+  public function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->setTestLogger();
     $this->migrateLookup = $this->container->get('migrate.lookup');
@@ -79,6 +90,7 @@ class MigrateLookupTest extends MigrateTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests an invalid lookup.
    */
   public function testInvalidMigrationLookup() {
@@ -89,6 +101,8 @@ class MigrateLookupTest extends MigrateTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests lookups with multiple source ids.
    */
   public function testMultipleSourceIds() {

@@ -20,7 +20,11 @@ class FileTransferAuthorizeForm extends FormBase {
    *
    * @var string
    */
+<<<<<<< HEAD
   protected  $root;
+=======
+  protected $root;
+>>>>>>> dev
 
   /**
    * Constructs a new FileTransferAuthorizeForm object.
@@ -36,7 +40,11 @@ class FileTransferAuthorizeForm extends FormBase {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
+<<<<<<< HEAD
     return new static($container->get('app.root'));
+=======
+    return new static($container->getParameter('app.root'));
+>>>>>>> dev
   }
 
   /**
@@ -175,9 +183,15 @@ class FileTransferAuthorizeForm extends FormBase {
       catch (\Exception $e) {
         // The format of this error message is similar to that used on the
         // database connection form in the installer.
+<<<<<<< HEAD
         $form_state->setErrorByName('connection_settings', $this->t('Failed to connect to the server. The server reports the following message: <p class="error">@message</p> For more help installing or updating code on your server, see the <a href=":handbook_url">handbook</a>.', [
           '@message' => $e->getMessage(),
           ':handbook_url' => 'https://www.drupal.org/docs/8/extending-drupal-8/overview',
+=======
+        $form_state->setErrorByName('connection_settings', $this->t('Failed to connect to the server. The server reports the following message: <p class="error">@message</p> For more help adding or updating code on your server, see the <a href=":handbook_url">handbook</a>.', [
+          '@message' => $e->getMessage(),
+          ':handbook_url' => 'https://www.drupal.org/docs/extending-drupal/overview',
+>>>>>>> dev
         ]));
       }
     }

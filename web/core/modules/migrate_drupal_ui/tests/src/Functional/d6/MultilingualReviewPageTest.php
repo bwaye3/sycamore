@@ -11,15 +11,22 @@ use Drupal\Tests\migrate_drupal_ui\Functional\MultilingualReviewPageTestBase;
  *
  * @group migrate_drupal_6
  * @group migrate_drupal_ui
+<<<<<<< HEAD
  *
  * @group legacy
+=======
+>>>>>>> dev
  */
 class MultilingualReviewPageTest extends MultilingualReviewPageTestBase {
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'language',
     'content_translation',
     'config_translation',
@@ -35,15 +42,22 @@ class MultilingualReviewPageTest extends MultilingualReviewPageTestBase {
     'migrate_state_finished_test',
     'migrate_state_not_finished_test',
     // Test missing migrate_drupal.yml.
+<<<<<<< HEAD
     'migrate_state_no_file_test',
     // Test missing migrate_drupal.yml.
+=======
+>>>>>>> dev
     'migrate_state_no_upgrade_path',
   ];
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->loadFixture(drupal_get_path('module', 'migrate_drupal') . '/tests/fixtures/drupal6.php');
   }
@@ -60,6 +74,7 @@ class MultilingualReviewPageTest extends MultilingualReviewPageTestBase {
    */
   protected function getAvailablePaths() {
     return [
+<<<<<<< HEAD
       // Aggregator is set not_finished in migrate_sate_not_finished_test.
       'aggregator',
       'blog',
@@ -137,6 +152,89 @@ class MultilingualReviewPageTest extends MultilingualReviewPageTestBase {
       'variable_admin',
       'views_export',
       'views_ui',
+=======
+      'Aggregator',
+      'Block translation',
+      'Blog',
+      'Blog API',
+      'Book',
+      'CCK translation',
+      'Calendar Signup',
+      'Color',
+      'Comment',
+      'Contact',
+      'Content',
+      'Content Copy',
+      'Content Multigroup',
+      'Content Permissions',
+      'Content translation',
+      'Content type translation',
+      'Database logging',
+      'Date',
+      'Date API',
+      'Date Locale',
+      'Date PHP4',
+      'Date Picker',
+      'Date Popup',
+      'Date Repeat API',
+      'Date Timezone',
+      'Date Tools',
+      'Dynamic display block',
+      'Email',
+      'Event',
+      'Fieldgroup',
+      'FileField',
+      'FileField Meta',
+      'Filter',
+      'Forum',
+      'Help',
+      'ImageAPI',
+      'ImageAPI GD2',
+      'ImageAPI ImageMagick',
+      'ImageCache',
+      'ImageCache UI',
+      'ImageField',
+      'Internationalization',
+      'Link',
+      'Locale',
+      'Menu',
+      'Menu translation',
+      'Node',
+      'Node Reference',
+      'Nodeaccess',
+      'Number',
+      'OpenID',
+      'Option Widgets',
+      'PHP filter',
+      'Path',
+      'Phone - CCK',
+      'Ping',
+      'Poll',
+      'Poll aggregate',
+      'Profile',
+      'Profile translation',
+      'Search',
+      'Statistics',
+      'String translation',
+      'Synchronize translations',
+      'Syslog',
+      'System',
+      'Taxonomy translation',
+      'Taxonomy',
+      'Text',
+      'Throttle',
+      'Tracker',
+      'Trigger',
+      'Update status',
+      'Upload',
+      'User',
+      'User Reference',
+      'Variable API',
+      'Variable admin',
+      'Views UI',
+      'Views exporter',
+      'jQuery UI',
+>>>>>>> dev
     ];
   }
 
@@ -145,6 +243,7 @@ class MultilingualReviewPageTest extends MultilingualReviewPageTestBase {
    */
   protected function getMissingPaths() {
     return [
+<<<<<<< HEAD
       // Block is set not_finished in migrate_sate_not_finished_test.
       'block',
       'devel',
@@ -158,6 +257,16 @@ class MultilingualReviewPageTest extends MultilingualReviewPageTestBase {
       'locale',
       'migrate_status_active_test',
       'views',
+=======
+      // Block is set not_finished in migrate_state_not_finished_test.
+      'Block',
+      'Devel',
+      'Devel generate',
+      'Devel node access',
+      'Views',
+      'Views translation',
+      'migrate_status_active_test',
+>>>>>>> dev
     ];
   }
 

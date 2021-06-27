@@ -19,7 +19,11 @@ class NodeViewBuilderTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['node'];
+=======
+  protected static $modules = ['node'];
+>>>>>>> dev
 
   /**
    * The node storage.
@@ -45,7 +49,11 @@ class NodeViewBuilderTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->storage = $this->entityTypeManager->getStorage('node');

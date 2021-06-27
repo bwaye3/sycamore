@@ -19,6 +19,7 @@ interface NodeTypeInterface extends ConfigEntityInterface, RevisionableEntityBun
   public function isLocked();
 
   /**
+<<<<<<< HEAD
    * Gets whether a new revision should be created by default.
    *
    * @return bool
@@ -33,6 +34,8 @@ interface NodeTypeInterface extends ConfigEntityInterface, RevisionableEntityBun
   public function isNewRevision();
 
   /**
+=======
+>>>>>>> dev
    * Sets whether a new revision should be created by default.
    *
    * @param bool $new_revision

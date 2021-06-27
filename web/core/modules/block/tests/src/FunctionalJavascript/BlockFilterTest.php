@@ -15,7 +15,11 @@ class BlockFilterTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['user', 'block'];
+=======
+  protected static $modules = ['user', 'block'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -25,7 +29,11 @@ class BlockFilterTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $admin_user = $this->drupalCreateUser([

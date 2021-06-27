@@ -44,7 +44,11 @@ class MediaLibraryWidgetTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->baseField = BaseFieldDefinition::create('entity_reference')
@@ -61,7 +65,11 @@ class MediaLibraryWidgetTest extends KernelTestBase {
     $this->installEntitySchema('entity_test');
     $this->installEntitySchema('entity_test_rev');
     $this->installEntitySchema('user');
+<<<<<<< HEAD
     $this->installSchema('system', ['sequences', 'key_value_expire']);
+=======
+    $this->installSchema('system', ['sequences']);
+>>>>>>> dev
     $this->installConfig([
       'system',
       'image',

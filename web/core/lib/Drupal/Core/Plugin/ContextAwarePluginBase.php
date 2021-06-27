@@ -3,21 +3,34 @@
 namespace Drupal\Core\Plugin;
 
 use Drupal\Component\Plugin\ContextAwarePluginBase as ComponentContextAwarePluginBase;
+<<<<<<< HEAD
 use Drupal\Component\Plugin\Exception\ContextException;
 use Drupal\Component\Plugin\PluginHelper;
 use Drupal\Core\Cache\Cache;
+=======
+>>>>>>> dev
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Plugin\Context\Context;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\TypedData\TypedDataTrait;
+<<<<<<< HEAD
 use Drupal\Component\Plugin\Context\ContextInterface as ComponentContextInterface;
 use Drupal\Core\Plugin\Context\ContextInterface;
+=======
+
+@trigger_error(__NAMESPACE__ . '\ContextAwarePluginBase is deprecated in drupal:9.1.0 and will be removed before drupal:10.0.0. Instead, use \Drupal\Core\Plugin\ContextAwarePluginTrait. See https://www.drupal.org/node/3120980', E_USER_DEPRECATED);
+>>>>>>> dev
 
 /**
  * Base class for plugins that are context aware.
  */
 abstract class ContextAwarePluginBase extends ComponentContextAwarePluginBase implements ContextAwarePluginInterface, CacheableDependencyInterface {
+<<<<<<< HEAD
+=======
+
+  use ContextAwarePluginTrait;
+>>>>>>> dev
   use TypedDataTrait;
   use StringTranslationTrait;
   use DependencySerializationTrait;
@@ -38,6 +51,7 @@ abstract class ContextAwarePluginBase extends ComponentContextAwarePluginBase im
     return $contexts;
   }
 
+<<<<<<< HEAD
   /**
    * {@inheritdoc}
    *
@@ -173,4 +187,6 @@ abstract class ContextAwarePluginBase extends ComponentContextAwarePluginBase im
     return $max_age;
   }
 
+=======
+>>>>>>> dev
 }

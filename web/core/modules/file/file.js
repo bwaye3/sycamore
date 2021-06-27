@@ -9,10 +9,19 @@
   Drupal.behaviors.fileValidateAutoAttach = {
     attach: function attach(context, settings) {
       var $context = $(context);
+<<<<<<< HEAD
       var elements = void 0;
 
       function initFileValidation(selector) {
         $context.find(selector).once('fileValidate').on('change.fileValidate', { extensions: elements[selector] }, Drupal.file.validateExtension);
+=======
+      var elements;
+
+      function initFileValidation(selector) {
+        $context.find(selector).once('fileValidate').on('change.fileValidate', {
+          extensions: elements[selector]
+        }, Drupal.file.validateExtension);
+>>>>>>> dev
       }
 
       if (settings.file && settings.file.elements) {
@@ -22,7 +31,11 @@
     },
     detach: function detach(context, settings, trigger) {
       var $context = $(context);
+<<<<<<< HEAD
       var elements = void 0;
+=======
+      var elements;
+>>>>>>> dev
 
       function removeFileValidation(selector) {
         $context.find(selector).removeOnce('fileValidate').off('change.fileValidate', Drupal.file.validateExtension);
@@ -34,7 +47,10 @@
       }
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.fileAutoUpload = {
     attach: function attach(context) {
       $(context).find('input[type="file"]').once('auto-file-upload').on('change.autoFileUpload', Drupal.file.triggerUploadButton);
@@ -45,7 +61,10 @@
       }
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.fileButtons = {
     attach: function attach(context) {
       var $context = $(context);
@@ -60,7 +79,10 @@
       }
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.filePreviewLinks = {
     attach: function attach(context) {
       $(context).find('div.js-form-managed-file .file a').on('click', Drupal.file.openInNewWindow);
@@ -69,6 +91,7 @@
       $(context).find('div.js-form-managed-file .file a').off('click', Drupal.file.openInNewWindow);
     }
   };
+<<<<<<< HEAD
 
   Drupal.file = Drupal.file || {
     validateExtension: function validateExtension(event) {
@@ -79,14 +102,30 @@
       var extensionPattern = event.data.extensions.replace(/,\s*/g, '|');
       if (extensionPattern.length > 1 && this.value.length > 0) {
         var acceptableMatch = new RegExp('\\.(' + extensionPattern + ')$', 'gi');
+=======
+  Drupal.file = Drupal.file || {
+    validateExtension: function validateExtension(event) {
+      event.preventDefault();
+      $('.file-upload-js-error').remove();
+      var extensionPattern = event.data.extensions.replace(/,\s*/g, '|');
+
+      if (extensionPattern.length > 1 && this.value.length > 0) {
+        var acceptableMatch = new RegExp("\\.(".concat(extensionPattern, ")$"), 'gi');
+
+>>>>>>> dev
         if (!acceptableMatch.test(this.value)) {
           var error = Drupal.t('The selected file %filename cannot be uploaded. Only files with the following extensions are allowed: %extensions.', {
             '%filename': this.value.replace('C:\\fakepath\\', ''),
             '%extensions': extensionPattern.replace(/\|/g, ', ')
           });
+<<<<<<< HEAD
           $(this).closest('div.js-form-managed-file').prepend('<div class="messages messages--error file-upload-js-error" aria-live="polite">' + error + '</div>');
           this.value = '';
 
+=======
+          $(this).closest('div.js-form-managed-file').prepend("<div class=\"messages messages--error file-upload-js-error\" aria-live=\"polite\">".concat(error, "</div>"));
+          this.value = '';
+>>>>>>> dev
           event.stopImmediatePropagation();
         }
       }
@@ -97,8 +136,13 @@
     disableFields: function disableFields(event) {
       var $clickedButton = $(this);
       $clickedButton.trigger('formUpdated');
+<<<<<<< HEAD
 
       var $enabledFields = [];
+=======
+      var $enabledFields = [];
+
+>>>>>>> dev
       if ($clickedButton.closest('div.js-form-managed-file').length > 0) {
         $enabledFields = $clickedButton.closest('div.js-form-managed-file').find('input.js-form-file');
       }
@@ -112,11 +156,18 @@
     progressBar: function progressBar(event) {
       var $clickedButton = $(this);
       var $progressId = $clickedButton.closest('div.js-form-managed-file').find('input.file-progress');
+<<<<<<< HEAD
       if ($progressId.length) {
         var originalName = $progressId.attr('name');
 
         $progressId.attr('name', originalName.match(/APC_UPLOAD_PROGRESS|UPLOAD_IDENTIFIER/)[0]);
 
+=======
+
+      if ($progressId.length) {
+        var originalName = $progressId.attr('name');
+        $progressId.attr('name', originalName.match(/APC_UPLOAD_PROGRESS|UPLOAD_IDENTIFIER/)[0]);
+>>>>>>> dev
         setTimeout(function () {
           $progressId.attr('name', originalName);
         }, 1000);

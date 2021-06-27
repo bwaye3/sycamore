@@ -63,7 +63,11 @@ class NewDefaultThemeBlocksTest extends KernelTestBase {
     $new_blocks = $block_storage->getQuery()
       ->condition('theme', $new_theme)
       ->execute();
+<<<<<<< HEAD
     $this->assertEquals(count($default_block_names), count($new_blocks));
+=======
+    $this->assertSame(count($default_block_names), count($new_blocks));
+>>>>>>> dev
 
     foreach ($default_block_names as $default_block_name) {
       // Remove the matching block from the list of blocks in the new theme.

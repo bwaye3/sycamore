@@ -33,6 +33,7 @@ use Drupal\node\NodeTypeInterface;
 use Drupal\user\UserInterface;
 
 /**
+<<<<<<< HEAD
  * Denotes that the node is not published.
  *
  * @deprecated in drupal:8.?.? and is removed from drupal:9.0.0.
@@ -93,6 +94,8 @@ const NODE_NOT_STICKY = 0;
 const NODE_STICKY = 1;
 
 /**
+=======
+>>>>>>> dev
  * Implements hook_help().
  */
 function node_help($route_name, RouteMatchInterface $route_match) {
@@ -265,6 +268,7 @@ function node_mark($nid, $timestamp) {
 }
 
 /**
+<<<<<<< HEAD
  * Returns a list of all the available node types.
  *
  * This list can include types that are queued for addition or deletion.
@@ -282,6 +286,8 @@ function node_type_get_types() {
 }
 
 /**
+=======
+>>>>>>> dev
  * Returns a list of available node type names.
  *
  * This list can include types that are queued for addition or deletion.
@@ -326,6 +332,7 @@ function node_type_get_description(NodeTypeInterface $node_type) {
 }
 
 /**
+<<<<<<< HEAD
  * Menu argument loader: Loads a node type by string.
  *
  * @param $name
@@ -345,6 +352,8 @@ function node_type_load($name) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Adds the default body field to a node type.
  *
  * @param \Drupal\node\NodeTypeInterface $type
@@ -436,6 +445,7 @@ function node_type_update_nodes($old_id, $new_id) {
 }
 
 /**
+<<<<<<< HEAD
  * Loads node entities from the database.
  *
  * This function should be used whenever you need to load more than one node
@@ -490,6 +500,8 @@ function node_load($nid = NULL, $reset = FALSE) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Loads a node revision from the database.
  *
  * @param int $vid
@@ -765,6 +777,10 @@ function node_user_cancel($edit, UserInterface $account, $method) {
     case 'user_cancel_block_unpublish':
       // Unpublish nodes (current revisions).
       $nids = \Drupal::entityQuery('node')
+<<<<<<< HEAD
+=======
+        ->accessCheck(FALSE)
+>>>>>>> dev
         ->condition('uid', $account->id())
         ->execute();
       module_load_include('inc', 'node', 'node.admin');
@@ -846,6 +862,7 @@ function node_get_recent($number = 10) {
 }
 
 /**
+<<<<<<< HEAD
  * Generates an array for rendering the given node.
  *
  * @param \Drupal\node\NodeInterface $node
@@ -900,6 +917,8 @@ function node_view_multiple($nodes, $view_mode = 'teaser', $langcode = NULL) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Implements hook_page_top().
  */
 function node_page_top(array &$page) {
@@ -1209,7 +1228,11 @@ function node_query_node_access_alter(AlterableInterface $query) {
  */
 function node_access_needs_rebuild($rebuild = NULL) {
   if (!isset($rebuild)) {
+<<<<<<< HEAD
     return \Drupal::state()->get('node.node_access_needs_rebuild') ?: FALSE;
+=======
+    return \Drupal::state()->get('node.node_access_needs_rebuild', FALSE);
+>>>>>>> dev
   }
   elseif ($rebuild) {
     \Drupal::state()->set('node.node_access_needs_rebuild', TRUE);

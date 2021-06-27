@@ -9,5 +9,8 @@ dependencies:
   - drupal:options
 package: Core
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 configure: forum.overview

@@ -56,6 +56,7 @@ class FileStorage implements PhpStorageInterface {
   }
 
   /**
+<<<<<<< HEAD
    * Returns the standard .htaccess lines that Drupal writes to file directories.
    *
    * @param bool $private
@@ -78,6 +79,8 @@ class FileStorage implements PhpStorageInterface {
   }
 
   /**
+=======
+>>>>>>> dev
    * Ensures the directory exists, has the right permissions, and a .htaccess.
    *
    * For compatibility with open_basedir, the requested directory is created

@@ -31,10 +31,22 @@ abstract class ImageFieldTestBase extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'image', 'field_ui', 'image_module_test'];
 
   /**
    * An user with permissions to administer content types and image styles.
+=======
+  protected static $modules = [
+    'node',
+    'image',
+    'field_ui',
+    'image_module_test',
+  ];
+
+  /**
+   * A user with permissions to administer content types and image styles.
+>>>>>>> dev
    *
    * @var \Drupal\user\UserInterface
    */
@@ -80,7 +92,12 @@ abstract class ImageFieldTestBase extends BrowserTestBase {
       'title[0][value]' => $this->randomMachineName(),
     ];
     $edit['files[' . $field_name . '_0]'] = \Drupal::service('file_system')->realpath($image->uri);
+<<<<<<< HEAD
     $this->drupalPostForm('node/add/' . $type, $edit, t('Preview'));
+=======
+    $this->drupalGet('node/add/' . $type);
+    $this->submitForm($edit, 'Preview');
+>>>>>>> dev
   }
 
   /**
@@ -100,10 +117,18 @@ abstract class ImageFieldTestBase extends BrowserTestBase {
       'title[0][value]' => $this->randomMachineName(),
     ];
     $edit['files[' . $field_name . '_0]'] = \Drupal::service('file_system')->realpath($image->uri);
+<<<<<<< HEAD
     $this->drupalPostForm('node/add/' . $type, $edit, t('Save'));
     if ($alt) {
       // Add alt text.
       $this->drupalPostForm(NULL, [$field_name . '[0][alt]' => $alt], t('Save'));
+=======
+    $this->drupalGet('node/add/' . $type);
+    $this->submitForm($edit, 'Save');
+    if ($alt) {
+      // Add alt text.
+      $this->submitForm([$field_name . '[0][alt]' => $alt], 'Save');
+>>>>>>> dev
     }
 
     // Retrieve ID of the newly created node from the current URL.
@@ -116,7 +141,14 @@ abstract class ImageFieldTestBase extends BrowserTestBase {
    * Retrieves the fid of the last inserted file.
    */
   protected function getLastFileId() {
+<<<<<<< HEAD
     return (int) \Drupal::entityQueryAggregate('file')->aggregate('fid', 'max')->execute()[0]['fid_max'];
+=======
+    return (int) \Drupal::entityQueryAggregate('file')
+      ->accessCheck(FALSE)
+      ->aggregate('fid', 'max')
+      ->execute()[0]['fid_max'];
+>>>>>>> dev
   }
 
 }

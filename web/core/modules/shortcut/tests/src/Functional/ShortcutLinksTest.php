@@ -26,7 +26,11 @@ class ShortcutLinksTest extends ShortcutTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['router_test', 'views', 'block'];
+=======
+  protected static $modules = ['router_test', 'views', 'block'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -36,7 +40,11 @@ class ShortcutLinksTest extends ShortcutTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalPlaceBlock('page_title_block');
@@ -79,9 +87,16 @@ class ShortcutLinksTest extends ShortcutTestBase {
         'title[0][value]' => $title,
         'link[0][uri]' => $test_path,
       ];
+<<<<<<< HEAD
       $this->drupalPostForm('admin/config/user-interface/shortcut/manage/' . $set->id() . '/add-link', $form_data, t('Save'));
       $this->assertSession()->statusCodeEquals(200);
       $this->assertText(t('Added a shortcut for @title.', ['@title' => $title]));
+=======
+      $this->drupalGet('admin/config/user-interface/shortcut/manage/' . $set->id() . '/add-link');
+      $this->submitForm($form_data, 'Save');
+      $this->assertSession()->statusCodeEquals(200);
+      $this->assertSession()->pageTextContains('Added a shortcut for ' . $title . '.');
+>>>>>>> dev
       $saved_set = ShortcutSet::load($set->id());
       $paths = $this->getShortcutInformation($saved_set, 'link');
       $this->assertContains('internal:' . $test_path, $paths, 'Shortcut created: ' . $test_path);
@@ -100,8 +115,13 @@ class ShortcutLinksTest extends ShortcutTestBase {
       // Test the node routes with parameters.
       $entity->save();
       $loaded = Shortcut::load($entity->id());
+<<<<<<< HEAD
       $this->assertEqual($entity->link->uri, $loaded->link->uri);
       $this->assertEqual($entity->link->options, $loaded->link->options);
+=======
+      $this->assertEquals($entity->link->uri, $loaded->link->uri);
+      $this->assertEquals($entity->link->options, $loaded->link->options);
+>>>>>>> dev
     }
 
     // Log in as non admin user, to check that access is checked when creating
@@ -112,7 +132,12 @@ class ShortcutLinksTest extends ShortcutTestBase {
       'title[0][value]' => $title,
       'link[0][uri]' => '/admin',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/user-interface/shortcut/manage/' . $set->id() . '/add-link', $form_data, t('Save'));
+=======
+    $this->drupalGet('admin/config/user-interface/shortcut/manage/' . $set->id() . '/add-link');
+    $this->submitForm($form_data, 'Save');
+>>>>>>> dev
     $this->assertSession()->statusCodeEquals(200);
     $this->assertRaw(t("The path '@link_path' is inaccessible.", ['@link_path' => '/admin']));
 
@@ -120,7 +145,12 @@ class ShortcutLinksTest extends ShortcutTestBase {
       'title[0][value]' => $title,
       'link[0][uri]' => '/node',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/user-interface/shortcut/manage/' . $set->id() . '/add-link', $form_data, t('Save'));
+=======
+    $this->drupalGet('admin/config/user-interface/shortcut/manage/' . $set->id() . '/add-link');
+    $this->submitForm($form_data, 'Save');
+>>>>>>> dev
     $this->assertSession()->linkExists($title, 0, 'Shortcut link found on the page.');
 
     // Create a new shortcut set and add a link to it.
@@ -129,13 +159,23 @@ class ShortcutLinksTest extends ShortcutTestBase {
       'label' => $this->randomMachineName(),
       'id' => strtolower($this->randomMachineName()),
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/user-interface/shortcut/add-set', $edit, t('Save'));
+=======
+    $this->drupalGet('admin/config/user-interface/shortcut/add-set');
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
     $title = $this->randomMachineName();
     $form_data = [
       'title[0][value]' => $title,
       'link[0][uri]' => '/admin',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/user-interface/shortcut/manage/' . $edit['id'] . '/add-link', $form_data, t('Save'));
+=======
+    $this->drupalGet('admin/config/user-interface/shortcut/manage/' . $edit['id'] . '/add-link');
+    $this->submitForm($form_data, 'Save');
+>>>>>>> dev
     $this->assertSession()->statusCodeEquals(200);
   }
 
@@ -153,7 +193,11 @@ class ShortcutLinksTest extends ShortcutTestBase {
 
     // Test the "Add to shortcuts" link.
     $this->clickLink('Add to Default shortcuts');
+<<<<<<< HEAD
     $this->assertText('Added a shortcut for Cron.');
+=======
+    $this->assertSession()->pageTextContains('Added a shortcut for Cron.');
+>>>>>>> dev
     $this->assertSession()->linkExists('Cron', 0, 'Shortcut link found on page');
 
     $this->drupalGet('admin/structure');
@@ -162,7 +206,11 @@ class ShortcutLinksTest extends ShortcutTestBase {
     // Test the "Remove from shortcuts" link.
     $this->clickLink('Cron');
     $this->clickLink('Remove from Default shortcuts');
+<<<<<<< HEAD
     $this->assertText('The shortcut Cron has been deleted.');
+=======
+    $this->assertSession()->pageTextContains('The shortcut Cron has been deleted.');
+>>>>>>> dev
     $this->assertSession()->linkNotExists('Cron', 'Shortcut link removed from page');
 
     $this->drupalGet('admin/structure');
@@ -172,26 +220,42 @@ class ShortcutLinksTest extends ShortcutTestBase {
 
     // Test the "Add to shortcuts" link for a page generated by views.
     $this->clickLink('Add to Default shortcuts');
+<<<<<<< HEAD
     $this->assertText('Added a shortcut for People.');
+=======
+    $this->assertSession()->pageTextContains('Added a shortcut for People.');
+>>>>>>> dev
     $this->assertShortcutQuickLink('Remove from Default shortcuts');
 
     // Test the "Remove from  shortcuts" link for a page generated by views.
     $this->clickLink('Remove from Default shortcuts');
+<<<<<<< HEAD
     $this->assertText('The shortcut People has been deleted.');
+=======
+    $this->assertSession()->pageTextContains('The shortcut People has been deleted.');
+>>>>>>> dev
     $this->assertShortcutQuickLink('Add to Default shortcuts');
 
     // Test two pages which use same route name but different route parameters.
     $this->drupalGet('node/add/page');
     // Add Shortcut for Basic Page.
     $this->clickLink('Add to Default shortcuts');
+<<<<<<< HEAD
     $this->assertText('Added a shortcut for Create Basic page.');
+=======
+    $this->assertSession()->pageTextContains('Added a shortcut for Create Basic page.');
+>>>>>>> dev
     // Assure that Article does not have its shortcut indicated as set.
     $this->drupalGet('node/add/article');
     $link = $this->xpath('//a[normalize-space()=:label]', [':label' => 'Remove from Default shortcuts']);
     $this->assertTrue(empty($link), 'Link Remove to Default shortcuts not found for Create Article page.');
     // Add Shortcut for Article.
     $this->clickLink('Add to Default shortcuts');
+<<<<<<< HEAD
     $this->assertText('Added a shortcut for Create Article.');
+=======
+    $this->assertSession()->pageTextContains('Added a shortcut for Create Article.');
+>>>>>>> dev
 
     $this->config('system.theme')->set('default', 'seven')->save();
     $this->drupalGet('node/' . $this->node->id());
@@ -199,12 +263,20 @@ class ShortcutLinksTest extends ShortcutTestBase {
 
     // Test the "Add to shortcuts" link for node view route.
     $this->clickLink('Add to Default shortcuts');
+<<<<<<< HEAD
     $this->assertText(new FormattableMarkup('Added a shortcut for @title.', ['@title' => $title]));
+=======
+    $this->assertSession()->pageTextContains("Added a shortcut for $title.");
+>>>>>>> dev
     $this->assertShortcutQuickLink('Remove from Default shortcuts');
 
     // Test the "Remove from shortcuts" link for node view route.
     $this->clickLink('Remove from Default shortcuts');
+<<<<<<< HEAD
     $this->assertText(new FormattableMarkup('The shortcut @title has been deleted.', ['@title' => $title]));
+=======
+    $this->assertSession()->pageTextContains("The shortcut $title has been deleted.");
+>>>>>>> dev
     $this->assertShortcutQuickLink('Add to Default shortcuts');
 
     \Drupal::service('module_installer')->install(['block_content']);
@@ -236,12 +308,21 @@ class ShortcutLinksTest extends ShortcutTestBase {
 
     $shortcuts = $set->getShortcuts();
     $shortcut = reset($shortcuts);
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/user-interface/shortcut/link/' . $shortcut->id(), ['title[0][value]' => $new_link_name], t('Save'));
+=======
+    $this->drupalGet('admin/config/user-interface/shortcut/link/' . $shortcut->id());
+    $this->submitForm(['title[0][value]' => $new_link_name], 'Save');
+>>>>>>> dev
     $saved_set = ShortcutSet::load($set->id());
     $titles = $this->getShortcutInformation($saved_set, 'title');
     $this->assertContains($new_link_name, $titles, 'Shortcut renamed: ' . $new_link_name);
     $this->assertSession()->linkExists($new_link_name, 0, 'Renamed shortcut link appears on the page.');
+<<<<<<< HEAD
     $this->assertText(t('The shortcut @link has been updated.', ['@link' => $new_link_name]));
+=======
+    $this->assertSession()->pageTextContains('The shortcut ' . $new_link_name . ' has been updated.');
+>>>>>>> dev
   }
 
   /**
@@ -255,12 +336,25 @@ class ShortcutLinksTest extends ShortcutTestBase {
 
     $shortcuts = $set->getShortcuts();
     $shortcut = reset($shortcuts);
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/user-interface/shortcut/link/' . $shortcut->id(), ['title[0][value]' => $shortcut->getTitle(), 'link[0][uri]' => $new_link_path], t('Save'));
     $saved_set = ShortcutSet::load($set->id());
     $paths = $this->getShortcutInformation($saved_set, 'link');
     $this->assertContains('internal:' . $new_link_path, $paths, 'Shortcut path changed: ' . $new_link_path);
     $this->assertLinkByHref($new_link_path, 0, 'Shortcut with new path appears on the page.');
     $this->assertText(t('The shortcut @link has been updated.', ['@link' => $shortcut->getTitle()]));
+=======
+    $this->drupalGet('admin/config/user-interface/shortcut/link/' . $shortcut->id());
+    $this->submitForm([
+      'title[0][value]' => $shortcut->getTitle(),
+      'link[0][uri]' => $new_link_path,
+    ], 'Save');
+    $saved_set = ShortcutSet::load($set->id());
+    $paths = $this->getShortcutInformation($saved_set, 'link');
+    $this->assertContains('internal:' . $new_link_path, $paths, 'Shortcut path changed: ' . $new_link_path);
+    $this->assertSession()->linkByHrefExists($new_link_path, 0, 'Shortcut with new path appears on the page.');
+    $this->assertSession()->pageTextContains('The shortcut ' . $shortcut->getTitle() . ' has been updated.');
+>>>>>>> dev
   }
 
   /**
@@ -287,7 +381,12 @@ class ShortcutLinksTest extends ShortcutTestBase {
 
     $shortcuts = $set->getShortcuts();
     $shortcut = reset($shortcuts);
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/user-interface/shortcut/link/' . $shortcut->id() . '/delete', [], 'Delete');
+=======
+    $this->drupalGet('admin/config/user-interface/shortcut/link/' . $shortcut->id() . '/delete');
+    $this->submitForm([], 'Delete');
+>>>>>>> dev
     $saved_set = ShortcutSet::load($set->id());
     $ids = $this->getShortcutInformation($saved_set, 'id');
     $this->assertNotContains($shortcut->id(), $ids, 'Successfully deleted a shortcut.');
@@ -387,15 +486,25 @@ class ShortcutLinksTest extends ShortcutTestBase {
     ]));
     $this->drupalGet(Url::fromRoute('<front>'));
     $shortcuts = $this->cssSelect('#toolbar-item-shortcuts-tray .toolbar-menu a');
+<<<<<<< HEAD
     $this->assertEqual($shortcuts[0]->getText(), 'Add content');
     $this->assertEqual($shortcuts[1]->getText(), 'All content');
+=======
+    $this->assertEquals('Add content', $shortcuts[0]->getText());
+    $this->assertEquals('All content', $shortcuts[1]->getText());
+>>>>>>> dev
     foreach ($this->set->getShortcuts() as $shortcut) {
       $shortcut->setWeight($shortcut->getWeight() * -1)->save();
     }
     $this->drupalGet(Url::fromRoute('<front>'));
     $shortcuts = $this->cssSelect('#toolbar-item-shortcuts-tray .toolbar-menu a');
+<<<<<<< HEAD
     $this->assertEqual($shortcuts[0]->getText(), 'All content');
     $this->assertEqual($shortcuts[1]->getText(), 'Add content');
+=======
+    $this->assertEquals('All content', $shortcuts[0]->getText());
+    $this->assertEquals('Add content', $shortcuts[1]->getText());
+>>>>>>> dev
   }
 
   /**
@@ -465,12 +574,21 @@ class ShortcutLinksTest extends ShortcutTestBase {
    *   this default.
    *
    * @return bool
+<<<<<<< HEAD
    *   TRUE if the assertion succeeded, FALSE otherwise.
+=======
+   *   TRUE if the assertion succeeded.
+>>>>>>> dev
    */
   protected function assertShortcutQuickLink($label, $index = 0, $message = '', $group = 'Other') {
     $links = $this->xpath('//a[normalize-space()=:label]', [':label' => $label]);
     $message = ($message ? $message : new FormattableMarkup('Shortcut quick link with label %label found.', ['%label' => $label]));
+<<<<<<< HEAD
     return $this->assert(isset($links[$index]), $message, $group);
+=======
+    $this->assertArrayHasKey($index, $links, $message);
+    return TRUE;
+>>>>>>> dev
   }
 
 }

@@ -16,7 +16,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+=======
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
+>>>>>>> dev
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -48,6 +52,10 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
       // https://www.drupal.org/comment/7938201#comment-7938201.
       1 => ['prefix' => '<div><p>', 'suffix' => '</p>' . $edge_case_html5 . '</div>'],
       // Multi-byte content *before* the HTML that needs the "is-active" class.
+<<<<<<< HEAD
+=======
+      // cSpell:disable-next-line
+>>>>>>> dev
       2 => ['prefix' => '<div><p>αβγδεζηθικλμνξοσὠ</p><p>', 'suffix' => '</p></div>'],
     ];
     $tags = [
@@ -64,6 +72,10 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
       // Mix of UTF-8 and HTML entities, both must be retained.
       '☆ 3 × 4 = €12 and 4 &times; 3 = &euro;12 &#9734',
       // Multi-byte content.
+<<<<<<< HEAD
+=======
+      // cSpell:disable-next-line
+>>>>>>> dev
       'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΣὨ',
       // Text that closely approximates an important attribute, but should be
       // ignored.
@@ -76,17 +88,28 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
 
     // Situations with context: front page, English, no query.
     $context = [
+<<<<<<< HEAD
       'path' => 'myfrontpage',
+=======
+      'path' => 'my-front-page',
+>>>>>>> dev
       'front' => TRUE,
       'language' => 'en',
       'query' => [],
     ];
     // Nothing to do.
+<<<<<<< HEAD
     $markup = '<foo>bar</foo>';
     $situations[] = ['context' => $context, 'is active' => FALSE, 'attributes' => []];
     // Matching path, plus all matching variations.
     $attributes = [
       'data-drupal-link-system-path' => 'myfrontpage',
+=======
+    $situations[] = ['context' => $context, 'is active' => FALSE, 'attributes' => []];
+    // Matching path, plus all matching variations.
+    $attributes = [
+      'data-drupal-link-system-path' => 'my-front-page',
+>>>>>>> dev
     ];
     $situations[] = ['context' => $context, 'is active' => TRUE, 'attributes' => $attributes];
     $situations[] = ['context' => $context, 'is active' => TRUE, 'attributes' => $attributes + ['hreflang' => 'en']];
@@ -216,7 +239,11 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
 
     // Situations with context: front page, English, query.
     $context = [
+<<<<<<< HEAD
       'path' => 'myfrontpage',
+=======
+      'path' => 'my-front-page',
+>>>>>>> dev
       'front' => TRUE,
       'language' => 'en',
       'query' => ['foo' => 'bar'],
@@ -224,7 +251,11 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
     $situations[] = ['context' => $context, 'is active' => FALSE, 'attributes' => []];
     // Matching path, plus all matching variations.
     $attributes = [
+<<<<<<< HEAD
       'data-drupal-link-system-path' => 'myfrontpage',
+=======
+      'data-drupal-link-system-path' => 'my-front-page',
+>>>>>>> dev
       'data-drupal-link-query' => Json::encode(['foo' => 'bar']),
     ];
     $situations[] = ['context' => $context, 'is active' => TRUE, 'attributes' => $attributes];
@@ -253,13 +284,21 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
 
     // Query with unsorted keys must match when the attribute is in sorted form.
     $context = [
+<<<<<<< HEAD
       'path' => 'myfrontpage',
+=======
+      'path' => 'my-front-page',
+>>>>>>> dev
       'front' => TRUE,
       'language' => 'en',
       'query' => ['foo' => 'bar', 'baz' => 'qux'],
     ];
     $attributes = [
+<<<<<<< HEAD
       'data-drupal-link-system-path' => 'myfrontpage',
+=======
+      'data-drupal-link-system-path' => 'my-front-page',
+>>>>>>> dev
       'data-drupal-link-query' => Json::encode(['baz' => 'qux', 'foo' => 'bar']),
     ];
     $situations[] = ['context' => $context, 'is active' => TRUE, 'attributes' => $attributes];
@@ -328,11 +367,19 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
     // - the special matching path ('<front>')
     $front_special_link = '<a data-drupal-link-system-path="&lt;front&gt;">Front</a>';
     $front_special_link_active = '<a data-drupal-link-system-path="&lt;front&gt;" class="is-active">Front</a>';
+<<<<<<< HEAD
     $front_path_link = '<a data-drupal-link-system-path="myfrontpage">Front Path</a>';
     $front_path_link_active = '<a data-drupal-link-system-path="myfrontpage" class="is-active">Front Path</a>';
     $data[] = [
       0 => $front_path_link . ' ' . $front_special_link,
       1 => 'myfrontpage',
+=======
+    $front_path_link = '<a data-drupal-link-system-path="my-front-page">Front Path</a>';
+    $front_path_link_active = '<a data-drupal-link-system-path="my-front-page" class="is-active">Front Path</a>';
+    $data[] = [
+      0 => $front_path_link . ' ' . $front_special_link,
+      1 => 'my-front-page',
+>>>>>>> dev
       2 => TRUE,
       3 => 'en',
       4 => [],
@@ -340,7 +387,11 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
     ];
     $data[] = [
       0 => $front_special_link . ' ' . $front_path_link,
+<<<<<<< HEAD
       1 => 'myfrontpage',
+=======
+      1 => 'my-front-page',
+>>>>>>> dev
       2 => TRUE,
       3 => 'en',
       4 => [],
@@ -349,11 +400,19 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
 
     // Test cases to verify that links to the front page do not get the
     // 'is-active' class when not on the front page.
+<<<<<<< HEAD
     $other_link = '<a data-drupal-link-system-path="otherpage">Other page</a>';
     $other_link_active = '<a data-drupal-link-system-path="otherpage" class="is-active">Other page</a>';
     $data['<front>-and-other-link-on-other-path'] = [
       0 => $front_special_link . ' ' . $other_link,
       1 => 'otherpage',
+=======
+    $other_link = '<a data-drupal-link-system-path="other-page">Other page</a>';
+    $other_link_active = '<a data-drupal-link-system-path="other-page" class="is-active">Other page</a>';
+    $data['<front>-and-other-link-on-other-path'] = [
+      0 => $front_special_link . ' ' . $other_link,
+      1 => 'other-page',
+>>>>>>> dev
       2 => FALSE,
       3 => 'en',
       4 => [],
@@ -361,7 +420,11 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
     ];
     $data['front-and-other-link-on-other-path'] = [
       0 => $front_path_link . ' ' . $other_link,
+<<<<<<< HEAD
       1 => 'otherpage',
+=======
+      1 => 'other-page',
+>>>>>>> dev
       2 => FALSE,
       3 => 'en',
       4 => [],
@@ -369,7 +432,11 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
     ];
     $data['other-and-<front>-link-on-other-path'] = [
       0 => $other_link . ' ' . $front_special_link,
+<<<<<<< HEAD
       1 => 'otherpage',
+=======
+      1 => 'other-page',
+>>>>>>> dev
       2 => FALSE,
       3 => 'en',
       4 => [],
@@ -377,7 +444,11 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
     ];
     $data['other-and-front-link-on-other-path'] = [
       0 => $other_link . ' ' . $front_path_link,
+<<<<<<< HEAD
       1 => 'otherpage',
+=======
+      1 => 'other-page',
+>>>>>>> dev
       2 => FALSE,
       3 => 'en',
       4 => [],
@@ -434,13 +505,21 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
     );
 
     // A link that might otherwise be set 'active'.
+<<<<<<< HEAD
     $content = '<a data-drupal-link-system-path="otherpage">Other page</a>';
+=======
+    $content = '<a data-drupal-link-system-path="other-page">Other page</a>';
+>>>>>>> dev
 
     // Assert response with non-html content type gets ignored.
     $response = new Response();
     $response->setContent($content);
     $response->headers->get('Content-Type', 'application/json');
+<<<<<<< HEAD
     $subscriber->onResponse(new FilterResponseEvent(
+=======
+    $subscriber->onResponse(new ResponseEvent(
+>>>>>>> dev
       $this->prophesize(KernelInterface::class)->reveal(),
       $request_stack->getCurrentRequest(),
       HttpKernelInterface::MASTER_REQUEST,
@@ -476,7 +555,11 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
     // Test BinaryFileResponse is ignored. Calling setContent() would throw a
     // logic exception.
     $response = new BinaryFileResponse(__FILE__, 200, ['Content-Type' => 'text/html']);
+<<<<<<< HEAD
     $subscriber->onResponse(new FilterResponseEvent(
+=======
+    $subscriber->onResponse(new ResponseEvent(
+>>>>>>> dev
       $this->prophesize(KernelInterface::class)->reveal(),
       $request_stack->getCurrentRequest(),
       HttpKernelInterface::MASTER_REQUEST,
@@ -488,7 +571,11 @@ class ActiveLinkResponseFilterTest extends UnitTestCase {
     $response = new StreamedResponse(function () {
       echo 'Success!';
     }, 200, ['Content-Type' => 'text/html']);
+<<<<<<< HEAD
     $subscriber->onResponse(new FilterResponseEvent(
+=======
+    $subscriber->onResponse(new ResponseEvent(
+>>>>>>> dev
       $this->prophesize(KernelInterface::class)->reveal(),
       $request_stack->getCurrentRequest(),
       HttpKernelInterface::MASTER_REQUEST,

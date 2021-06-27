@@ -13,7 +13,11 @@ use Drupal\KernelTests\KernelTestBase;
  */
 abstract class DatabaseTestBase extends KernelTestBase {
 
+<<<<<<< HEAD
   public static $modules = ['database_test'];
+=======
+  protected static $modules = ['database_test'];
+>>>>>>> dev
 
   /**
    * The database connection for testing.
@@ -35,8 +39,13 @@ abstract class DatabaseTestBase extends KernelTestBase {
       'test_task',
       'test_null',
       'test_serialized',
+<<<<<<< HEAD
       'test_special_columns',
       'TEST_UPPERCASE',
+=======
+      'TEST_UPPERCASE',
+      'select',
+>>>>>>> dev
       'virtual',
     ]);
     self::addSampleData();
@@ -158,11 +167,18 @@ abstract class DatabaseTestBase extends KernelTestBase {
       ])
       ->execute();
 
+<<<<<<< HEAD
     $connection->insert('test_special_columns')
       ->fields([
         'id' => 1,
         'offset' => 'Offset value 1',
         'function' => 'Function value 1',
+=======
+    $connection->insert('select')
+      ->fields([
+        'id' => 1,
+        'update' => 'Update value 1',
+>>>>>>> dev
       ])
       ->execute();
 

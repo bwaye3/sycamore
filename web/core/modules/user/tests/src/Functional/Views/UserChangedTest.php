@@ -17,7 +17,11 @@ class UserChangedTest extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['views_ui', 'user_test_views'];
+=======
+  protected static $modules = ['views_ui', 'user_test_views'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -31,10 +35,17 @@ class UserChangedTest extends ViewTestBase {
    */
   public static $testViews = ['test_user_changed'];
 
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
     parent::setUp($import_test_views);
 
     ViewTestData::createTestViews(get_class($this), ['user_test_views']);
+=======
+  protected function setUp($import_test_views = TRUE): void {
+    parent::setUp($import_test_views);
+
+    ViewTestData::createTestViews(static::class, ['user_test_views']);
+>>>>>>> dev
 
     $this->enableViewsTestModule();
   }
@@ -49,7 +60,11 @@ class UserChangedTest extends ViewTestBase {
 
     $this->drupalGet($path, $options);
 
+<<<<<<< HEAD
     $this->assertText('Updated date: ' . date('Y-m-d', REQUEST_TIME));
+=======
+    $this->assertSession()->pageTextContains('Updated date: ' . date('Y-m-d', REQUEST_TIME));
+>>>>>>> dev
   }
 
 }

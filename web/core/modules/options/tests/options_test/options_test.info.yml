@@ -1,6 +1,9 @@
 name: 'Options test'
 type: module
 description: 'Support module for the Options module tests.'
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 package: Testing
 version: VERSION

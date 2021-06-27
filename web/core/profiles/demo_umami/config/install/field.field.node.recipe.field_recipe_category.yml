@@ -12,7 +12,11 @@ bundle: recipe
 label: 'Recipe category'
 description: ''
 required: false
+<<<<<<< HEAD
 translatable: true
+=======
+translatable: false
+>>>>>>> dev
 default_value: {  }
 default_value_callback: ''
 settings:

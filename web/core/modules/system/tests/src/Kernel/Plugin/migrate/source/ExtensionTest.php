@@ -15,7 +15,11 @@ class ExtensionTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'migrate_drupal'];
+=======
+  protected static $modules = ['system', 'migrate_drupal'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

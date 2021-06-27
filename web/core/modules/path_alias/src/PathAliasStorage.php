@@ -2,7 +2,10 @@
 
 namespace Drupal\path_alias;
 
+<<<<<<< HEAD
 use Drupal\Core\Entity\EntityInterface;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
 
 /**
@@ -13,6 +16,7 @@ class PathAliasStorage extends SqlContentEntityStorage {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function invokeHook($hook, EntityInterface $entity) {
     parent::invokeHook($hook, $entity);
 
@@ -41,6 +45,8 @@ class PathAliasStorage extends SqlContentEntityStorage {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function createWithSampleValues($bundle = FALSE, array $values = []) {
     $entity = parent::createWithSampleValues($bundle, ['path' => '/<front>'] + $values);
     // Ensure the alias is only 255 characters long.

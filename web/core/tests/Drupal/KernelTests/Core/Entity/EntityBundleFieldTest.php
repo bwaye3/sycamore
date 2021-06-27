@@ -14,7 +14,11 @@ class EntityBundleFieldTest extends EntityKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['entity_schema_test', 'entity_test_update'];
+=======
+  protected static $modules = ['entity_schema_test', 'entity_test_update'];
+>>>>>>> dev
 
   /**
    * The module handler.
@@ -33,7 +37,11 @@ class EntityBundleFieldTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installSchema('user', ['users_data']);
     $this->installEntitySchema('entity_test_update');
@@ -64,19 +72,31 @@ class EntityBundleFieldTest extends EntityKernelTestBase {
 
     // Ensure that the field exists in the field map.
     $field_map = \Drupal::service('entity_field.manager')->getFieldMap();
+<<<<<<< HEAD
     $this->assertEqual($field_map['entity_test_update']['custom_bundle_field'], ['type' => 'string', 'bundles' => ['custom' => 'custom']]);
+=======
+    $this->assertEquals(['type' => 'string', 'bundles' => ['custom' => 'custom']], $field_map['entity_test_update']['custom_bundle_field']);
+>>>>>>> dev
 
     $entity->custom_bundle_field->value = 'swanky';
     $entity->save();
     $storage->resetCache();
     $entity = $storage->load($entity->id());
+<<<<<<< HEAD
     $this->assertEqual($entity->custom_bundle_field->value, 'swanky', 'Entity was saved correctly');
+=======
+    $this->assertEquals('swanky', $entity->custom_bundle_field->value, 'Entity was saved correctly');
+>>>>>>> dev
 
     $entity->custom_bundle_field->value = 'cozy';
     $entity->save();
     $storage->resetCache();
     $entity = $storage->load($entity->id());
+<<<<<<< HEAD
     $this->assertEqual($entity->custom_bundle_field->value, 'cozy', 'Entity was updated correctly.');
+=======
+    $this->assertEquals('cozy', $entity->custom_bundle_field->value, 'Entity was updated correctly.');
+>>>>>>> dev
 
     $entity->delete();
     /** @var \Drupal\Core\Entity\Sql\DefaultTableMapping $table_mapping */
@@ -100,7 +120,11 @@ class EntityBundleFieldTest extends EntityKernelTestBase {
       ->condition('deleted', 1)
       ->countQuery()
       ->execute();
+<<<<<<< HEAD
     $this->assertEqual(1, $result->fetchField(), 'Field data has been deleted');
+=======
+    $this->assertEquals(1, $result->fetchField(), 'Field data has been deleted');
+>>>>>>> dev
 
     // Ensure that the field no longer exists in the field map.
     $field_map = \Drupal::service('entity_field.manager')->getFieldMap();

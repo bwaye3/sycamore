@@ -103,7 +103,11 @@ class ExtensionDiscovery {
    * @param string $site_path
    *   The path to the site.
    */
+<<<<<<< HEAD
   public function __construct($root, $use_file_cache = TRUE, $profile_directories = NULL, $site_path = NULL) {
+=======
+  public function __construct(string $root, $use_file_cache = TRUE, array $profile_directories = NULL, string $site_path = NULL) {
+>>>>>>> dev
     $this->root = $root;
     $this->fileCache = $use_file_cache ? FileCacheFactory::get('extension_discovery') : NULL;
     $this->profileDirectories = $profile_directories;
@@ -164,8 +168,13 @@ class ExtensionDiscovery {
     $searchdirs[static::ORIGIN_SITES_ALL] = 'sites/all';
 
     // Search for contributed and custom extensions in top-level directories.
+<<<<<<< HEAD
     // The scan uses a whitelist to limit recursion to the expected extension
     // type specific directory names only.
+=======
+    // The scan uses a list of extension types to limit recursion to the
+    // expected extension type specific directory names only.
+>>>>>>> dev
     $searchdirs[static::ORIGIN_ROOT] = '';
 
     // Simpletest uses the regular built-in multi-site functionality of Drupal
@@ -174,7 +183,11 @@ class ExtensionDiscovery {
     // test site environment, because the site directories are not the same.
     // Therefore, add the site directory of the parent site to the search paths,
     // so that contained extensions are still discovered.
+<<<<<<< HEAD
     // @see \Drupal\simpletest\WebTestBase::setUp()
+=======
+    // @see \Drupal\Core\Test\FunctionalTestSetupTrait::prepareSettings().
+>>>>>>> dev
     if ($parent_site = Settings::get('test_parent_site')) {
       $searchdirs[static::ORIGIN_PARENT_SITE] = $parent_site;
     }
@@ -184,7 +197,11 @@ class ExtensionDiscovery {
     // at install time. Therefore Kernel service is not always available, but is
     // preferred.
     if (\Drupal::hasService('kernel')) {
+<<<<<<< HEAD
       $searchdirs[static::ORIGIN_SITE] = \Drupal::service('site.path');
+=======
+      $searchdirs[static::ORIGIN_SITE] = \Drupal::getContainer()->getParameter('site.path');
+>>>>>>> dev
     }
     else {
       $searchdirs[static::ORIGIN_SITE] = $this->sitePath ?: DrupalKernel::findSitePath(Request::createFromGlobals());
@@ -436,6 +453,7 @@ class ExtensionDiscovery {
         continue;
       }
 
+<<<<<<< HEAD
       if ($this->fileCache && $cached_extension = $this->fileCache->get($fileinfo->getPathName())) {
         $files[$cached_extension->getType()][$key] = $cached_extension;
         continue;
@@ -480,6 +498,58 @@ class ExtensionDiscovery {
       if ($this->fileCache) {
         $this->fileCache->set($fileinfo->getPathName(), $extension);
       }
+=======
+      $extension_arguments = $this->fileCache ? $this->fileCache->get($fileinfo->getPathName()) : FALSE;
+      // Ensure $extension_arguments is an array. Previously, the Extension
+      // object was cached and now needs to be replaced with the array.
+      if (empty($extension_arguments) || !is_array($extension_arguments)) {
+        // Determine extension type from info file.
+        $type = FALSE;
+        $file = $fileinfo->openFile('r');
+        while (!$type && !$file->eof()) {
+          preg_match('@^type:\s*(\'|")?(\w+)\1?\s*$@', $file->fgets(), $matches);
+          if (isset($matches[2])) {
+            $type = $matches[2];
+          }
+        }
+        if (empty($type)) {
+          continue;
+        }
+        $name = $fileinfo->getBasename('.info.yml');
+        $pathname = $dir_prefix . $fileinfo->getSubPathname();
+
+        // Determine whether the extension has a main extension file.
+        // For theme engines, the file extension is .engine.
+        if ($type == 'theme_engine') {
+          $filename = $name . '.engine';
+        }
+        // For profiles/modules/themes, it is the extension type.
+        else {
+          $filename = $name . '.' . $type;
+        }
+        if (!file_exists($this->root . '/' . dirname($pathname) . '/' . $filename)) {
+          $filename = NULL;
+        }
+        $extension_arguments = [
+          'type' => $type,
+          'pathname' => $pathname,
+          'filename' => $filename,
+          'subpath' => $fileinfo->getSubPath(),
+        ];
+
+        if ($this->fileCache) {
+          $this->fileCache->set($fileinfo->getPathName(), $extension_arguments);
+        }
+      }
+
+      $extension = new Extension($this->root, $extension_arguments['type'], $extension_arguments['pathname'], $extension_arguments['filename']);
+
+      // Track the originating directory for sorting purposes.
+      $extension->subpath = $extension_arguments['subpath'];
+      $extension->origin = $dir;
+
+      $files[$extension_arguments['type']][$key] = $extension;
+>>>>>>> dev
     }
     return $files;
   }

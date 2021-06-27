@@ -11,8 +11,14 @@ use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Render\ElementInfoManagerInterface;
+<<<<<<< HEAD
 use Drupal\Core\Url;
 use Drupal\Core\TempStore\SharedTempStoreFactory;
+=======
+use Drupal\Core\TempStore\SharedTempStoreFactory;
+use Drupal\Core\Theme\ThemeManagerInterface;
+use Drupal\Core\Url;
+>>>>>>> dev
 use Drupal\views\Views;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -54,6 +60,16 @@ class ViewEditForm extends ViewFormBase {
   protected $elementInfo;
 
   /**
+<<<<<<< HEAD
+=======
+   * The theme manager.
+   *
+   * @var \Drupal\Core\Theme\ThemeManagerInterface
+   */
+  protected $themeManager;
+
+  /**
+>>>>>>> dev
    * Constructs a new ViewEditForm object.
    *
    * @param \Drupal\Core\TempStore\SharedTempStoreFactory $temp_store_factory
@@ -64,12 +80,27 @@ class ViewEditForm extends ViewFormBase {
    *   The date Formatter service.
    * @param \Drupal\Core\Render\ElementInfoManagerInterface $element_info
    *   The element info manager.
+<<<<<<< HEAD
    */
   public function __construct(SharedTempStoreFactory $temp_store_factory, RequestStack $requestStack, DateFormatterInterface $date_formatter, ElementInfoManagerInterface $element_info) {
+=======
+   * @param \Drupal\Core\Theme\ThemeManagerInterface $theme_manager
+   *   The theme manager.
+   */
+  public function __construct(SharedTempStoreFactory $temp_store_factory, RequestStack $requestStack, DateFormatterInterface $date_formatter, ElementInfoManagerInterface $element_info, ThemeManagerInterface $theme_manager = NULL) {
+>>>>>>> dev
     $this->tempStore = $temp_store_factory->get('views');
     $this->requestStack = $requestStack;
     $this->dateFormatter = $date_formatter;
     $this->elementInfo = $element_info;
+<<<<<<< HEAD
+=======
+    if ($theme_manager === NULL) {
+      @trigger_error('Calling ' . __METHOD__ . ' without the $theme_manager argument is deprecated in drupal:9.1.0 and will be required in drupal:10.0.0. See https://www.drupal.org/node/3159506', E_USER_DEPRECATED);
+      $theme_manager = \Drupal::service('theme.manager');
+    }
+    $this->themeManager = $theme_manager;
+>>>>>>> dev
   }
 
   /**
@@ -80,7 +111,12 @@ class ViewEditForm extends ViewFormBase {
       $container->get('tempstore.shared'),
       $container->get('request_stack'),
       $container->get('date.formatter'),
+<<<<<<< HEAD
       $container->get('element_info')
+=======
+      $container->get('element_info'),
+      $container->get('theme.manager')
+>>>>>>> dev
     );
   }
 
@@ -368,14 +404,24 @@ class ViewEditForm extends ViewFormBase {
     // also invoke this on themes.
     // @todo remove this after
     //   https://www.drupal.org/project/drupal/issues/3087455 has been resolved.
+<<<<<<< HEAD
     \Drupal::theme()->alter('views_ui_display_tab', $build, $view, $display_id);
+=======
+    $this->themeManager->alter('views_ui_display_tab', $build, $view, $display_id);
+>>>>>>> dev
     return $build;
   }
 
   /**
    * Helper function to get the display details section of the edit UI.
    *
+<<<<<<< HEAD
    * @param $display
+=======
+   * @param \Drupal\views_ui\ViewUI $view
+   *   The ViewUI entity.
+   * @param array $display
+>>>>>>> dev
    *
    * @return array
    *   A renderable page build array.
@@ -388,7 +434,11 @@ class ViewEditForm extends ViewFormBase {
     ];
 
     $is_display_deleted = !empty($display['deleted']);
+<<<<<<< HEAD
     // The master display cannot be duplicated.
+=======
+    // The default display cannot be duplicated.
+>>>>>>> dev
     $is_default = $display['id'] == 'default';
     // @todo: Figure out why getOption doesn't work here.
     $is_enabled = $view->getExecutable()->displayHandlers->get($display['id'])->isEnabled();
@@ -776,7 +826,11 @@ class ViewEditForm extends ViewFormBase {
         '#submit' => ['::submitDisplayAdd', '::submitDelayDestination'],
         '#attributes' => ['class' => ['add-display']],
         // Allow JavaScript to remove the 'Add ' prefix from the button label when
+<<<<<<< HEAD
         // placing the button in a "Add" dropdown menu.
+=======
+        // placing the button in an "Add" dropdown menu.
+>>>>>>> dev
         '#process' => array_merge(['views_ui_form_button_was_clicked'], $this->elementInfo->getInfoProperty('submit', '#process', [])),
         '#values' => [$this->t('Add @display', ['@display' => $label]), $label],
       ];
@@ -792,7 +846,11 @@ class ViewEditForm extends ViewFormBase {
     // also invoke this on themes.
     // @todo remove this after
     //   https://www.drupal.org/project/drupal/issues/3087455 has been resolved.
+<<<<<<< HEAD
     \Drupal::theme()->alter('views_ui_display_top', $element, $view, $display_id);
+=======
+    $this->themeManager->alter('views_ui_display_top', $element, $view, $display_id);
+>>>>>>> dev
 
     return $element;
   }

@@ -174,7 +174,11 @@ class StreamWrapperManager implements ContainerAwareInterface, StreamWrapperMana
    */
   public function unregister() {
     // Normally, there are definitely wrappers set for the ALL filter. However,
+<<<<<<< HEAD
     // in some cases involving many container rebuilds (e.g. WebTestBase),
+=======
+    // in some cases involving many container rebuilds (e.g. BrowserTestBase),
+>>>>>>> dev
     // $this->wrappers may be empty although wrappers are still registered
     // globally. Thus an isset() check is needed before iterating.
     if (isset($this->wrappers[StreamWrapperInterface::ALL])) {

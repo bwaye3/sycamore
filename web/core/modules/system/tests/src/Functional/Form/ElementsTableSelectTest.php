@@ -17,7 +17,11 @@ class ElementsTableSelectTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['form_test'];
+=======
+  protected static $modules = ['form_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -25,13 +29,21 @@ class ElementsTableSelectTest extends BrowserTestBase {
   protected $defaultTheme = 'stark';
 
   /**
+<<<<<<< HEAD
    * Test the display of checkboxes when #multiple is TRUE.
+=======
+   * Tests the display of checkboxes when #multiple is TRUE.
+>>>>>>> dev
    */
   public function testMultipleTrue() {
 
     $this->drupalGet('form_test/tableselect/multiple-true');
 
+<<<<<<< HEAD
     $this->assertSession()->responseNotContains('Empty text.', 'Empty text should not be displayed.');
+=======
+    $this->assertSession()->responseNotContains('Empty text.');
+>>>>>>> dev
 
     // Test for the presence of the Select all rows tableheader.
     $this->assertNotEmpty($this->xpath('//th[@class="select-all"]'), 'Presence of the "Select all" checkbox.');
@@ -43,7 +55,11 @@ class ElementsTableSelectTest extends BrowserTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the display of radios when #multiple is FALSE.
+=======
+   * Tests the display of radios when #multiple is FALSE.
+>>>>>>> dev
    */
   public function testMultipleFalse() {
     $this->drupalGet('form_test/tableselect/multiple-false');
@@ -65,8 +81,14 @@ class ElementsTableSelectTest extends BrowserTestBase {
   public function testTableSelectColSpan() {
     $this->drupalGet('form_test/tableselect/colspan');
 
+<<<<<<< HEAD
     $this->assertSession()->pageTextContains('Three', 'Presence of the third column');
     $this->assertSession()->pageTextNotContains('Four', 'Absence of a fourth column');
+=======
+    // Verify presence of column three and absence of column four.
+    $this->assertSession()->pageTextContains('Three');
+    $this->assertSession()->pageTextNotContains('Four');
+>>>>>>> dev
 
     // There should be three labeled column headers and 1 for the input.
     $table_head = $this->xpath('//thead/tr/th');
@@ -84,6 +106,7 @@ class ElementsTableSelectTest extends BrowserTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the display of the #empty text when #options is an empty array.
    */
   public function testEmptyText() {
@@ -93,31 +116,62 @@ class ElementsTableSelectTest extends BrowserTestBase {
 
   /**
    * Test the submission of single and multiple values when #multiple is TRUE.
+=======
+   * Tests the display of the #empty text when #options is an empty array.
+   */
+  public function testEmptyText() {
+    $this->drupalGet('form_test/tableselect/empty-text');
+    $this->assertSession()->pageTextContains('Empty text.');
+  }
+
+  /**
+   * Tests the submission of single and multiple values when #multiple is TRUE.
+>>>>>>> dev
    */
   public function testMultipleTrueSubmit() {
 
     // Test a submission with one checkbox checked.
     $edit = [];
     $edit['tableselect[row1]'] = TRUE;
+<<<<<<< HEAD
     $this->drupalPostForm('form_test/tableselect/multiple-true', $edit, 'Submit');
 
     $assert_session = $this->assertSession();
     $assert_session->pageTextContains('Submitted: row1 = row1', 'Checked checkbox row1');
     $assert_session->pageTextContains('Submitted: row2 = 0', 'Unchecked checkbox row2.');
     $assert_session->pageTextContains('Submitted: row3 = 0', 'Unchecked checkbox row3.');
+=======
+    $this->drupalGet('form_test/tableselect/multiple-true');
+    $this->submitForm($edit, 'Submit');
+
+    $assert_session = $this->assertSession();
+    $assert_session->pageTextContains('Submitted: row1 = row1');
+    $assert_session->pageTextContains('Submitted: row2 = 0');
+    $assert_session->pageTextContains('Submitted: row3 = 0');
+>>>>>>> dev
 
     // Test a submission with multiple checkboxes checked.
     $edit['tableselect[row1]'] = TRUE;
     $edit['tableselect[row3]'] = TRUE;
+<<<<<<< HEAD
     $this->drupalPostForm('form_test/tableselect/multiple-true', $edit, 'Submit');
 
     $assert_session->pageTextContains('Submitted: row1 = row1', 'Checked checkbox row1.');
     $assert_session->pageTextContains('Submitted: row2 = 0', 'Unchecked checkbox row2.');
     $assert_session->pageTextContains('Submitted: row3 = row3', 'Checked checkbox row3.');
+=======
+    $this->drupalGet('form_test/tableselect/multiple-true');
+    $this->submitForm($edit, 'Submit');
+
+    $assert_session->pageTextContains('Submitted: row1 = row1');
+    $assert_session->pageTextContains('Submitted: row2 = 0');
+    $assert_session->pageTextContains('Submitted: row3 = row3');
+>>>>>>> dev
 
   }
 
   /**
+<<<<<<< HEAD
    * Test submission of values when #multiple is FALSE.
    */
   public function testMultipleFalseSubmit() {
@@ -128,6 +182,19 @@ class ElementsTableSelectTest extends BrowserTestBase {
 
   /**
    * Test the #js_select property.
+=======
+   * Tests submission of values when #multiple is FALSE.
+   */
+  public function testMultipleFalseSubmit() {
+    $edit['tableselect'] = 'row1';
+    $this->drupalGet('form_test/tableselect/multiple-false');
+    $this->submitForm($edit, 'Submit');
+    $this->assertSession()->pageTextContains('Submitted: row1');
+  }
+
+  /**
+   * Tests the #js_select property.
+>>>>>>> dev
    */
   public function testAdvancedSelect() {
     // When #multiple = TRUE a Select all checkbox should be displayed by default.
@@ -147,7 +214,12 @@ class ElementsTableSelectTest extends BrowserTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the whether the option checker gives an error on invalid tableselect values for checkboxes.
+=======
+   * Tests the whether the option checker gives an error on invalid
+   * tableselect values for checkboxes.
+>>>>>>> dev
    */
   public function testMultipleTrueOptionchecker() {
 
@@ -170,7 +242,12 @@ class ElementsTableSelectTest extends BrowserTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the whether the option checker gives an error on invalid tableselect values for radios.
+=======
+   * Tests the whether the option checker gives an error on invalid
+   * tableselect values for radios.
+>>>>>>> dev
    */
   public function testMultipleFalseOptionchecker() {
 
@@ -195,6 +272,7 @@ class ElementsTableSelectTest extends BrowserTestBase {
   /**
    * Helper function for the option check test to submit a form while collecting errors.
    *
+<<<<<<< HEAD
    * @param $form_element
    *   A form element to test.
    * @param $edit
@@ -202,6 +280,18 @@ class ElementsTableSelectTest extends BrowserTestBase {
    *
    * @return
    *   An array containing the processed form, the form_state and any errors.
+=======
+   * @param array $form
+   *   Nested array of form elements that comprise the form.
+   * @param array $edit
+   *   An array containing post data.
+   *
+   * @return array
+   *   An array containing the processed form, the form_state and any errors.
+   *
+   * @internal param $form_element A form element to test.
+   *   A form element to test.
+>>>>>>> dev
    */
   private function formSubmitHelper($form, $edit) {
     $form_id = $this->randomMachineName();

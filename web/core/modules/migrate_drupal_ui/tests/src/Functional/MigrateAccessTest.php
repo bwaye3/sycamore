@@ -16,7 +16,11 @@ class MigrateAccessTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['migrate_drupal_ui'];
+=======
+  protected static $modules = ['migrate_drupal_ui'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -30,13 +34,21 @@ class MigrateAccessTest extends BrowserTestBase {
     $this->drupalLogin($this->rootUser);
     $this->drupalGet('upgrade');
     $this->assertSession()->statusCodeEquals(200);
+<<<<<<< HEAD
     $this->assertText(t('Upgrade'));
+=======
+    $this->assertSession()->pageTextContains('Upgrade');
+>>>>>>> dev
 
     $user = $this->createUser(['administer software updates']);
     $this->drupalLogin($user);
     $this->drupalGet('upgrade');
     $this->assertSession()->statusCodeEquals(403);
+<<<<<<< HEAD
     $this->assertNoText(t('Upgrade'));
+=======
+    $this->assertNoText('Upgrade');
+>>>>>>> dev
   }
 
 }

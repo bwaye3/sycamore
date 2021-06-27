@@ -6,21 +6,29 @@ use Drupal\Component\Diff\Diff;
 use Drupal\Core\Config\Entity\ConfigDependencyManager;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Config\Entity\ConfigEntityTypeInterface;
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
 use Drupal\Core\Entity\EntityManagerInterface;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Serialization\Yaml;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+=======
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 
 /**
  * The ConfigManager provides helper functions for the configuration system.
  */
 class ConfigManager implements ConfigManagerInterface {
   use StringTranslationTrait;
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
   use StorageCopyTrait;
 
@@ -30,6 +38,11 @@ class ConfigManager implements ConfigManagerInterface {
   protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
 
   /**
+=======
+  use StorageCopyTrait;
+
+  /**
+>>>>>>> dev
    * The entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -67,7 +80,11 @@ class ConfigManager implements ConfigManagerInterface {
   /**
    * The event dispatcher.
    *
+<<<<<<< HEAD
    * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+=======
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+>>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -98,11 +115,16 @@ class ConfigManager implements ConfigManagerInterface {
    *   The string translation service.
    * @param \Drupal\Core\Config\StorageInterface $active_storage
    *   The active configuration storage.
+<<<<<<< HEAD
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+=======
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
+>>>>>>> dev
    *   The event dispatcher.
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
    */
+<<<<<<< HEAD
   public function __construct(EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory, TypedConfigManagerInterface $typed_config_manager, TranslationInterface $string_translation, StorageInterface $active_storage, EventDispatcherInterface $event_dispatcher, EntityRepositoryInterface $entity_repository = NULL) {
     if ($entity_type_manager instanceof EntityManagerInterface) {
       @trigger_error('Passing the entity.manager service to ConfigManager::__construct() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. Pass the new dependencies instead. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
@@ -111,11 +133,16 @@ class ConfigManager implements ConfigManagerInterface {
     else {
       $this->entityTypeManager = $entity_type_manager;
     }
+=======
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory, TypedConfigManagerInterface $typed_config_manager, TranslationInterface $string_translation, StorageInterface $active_storage, EventDispatcherInterface $event_dispatcher, EntityRepositoryInterface $entity_repository) {
+    $this->entityTypeManager = $entity_type_manager;
+>>>>>>> dev
     $this->configFactory = $config_factory;
     $this->typedConfigManager = $typed_config_manager;
     $this->stringTranslation = $string_translation;
     $this->activeStorage = $active_storage;
     $this->eventDispatcher = $event_dispatcher;
+<<<<<<< HEAD
     if ($entity_repository) {
       $this->entityRepository = $entity_repository;
     }
@@ -123,6 +150,9 @@ class ConfigManager implements ConfigManagerInterface {
       @trigger_error('The entity.repository service must be passed to ConfigManager::__construct(), it is required before Drupal 9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
       $this->entityRepository = \Drupal::service('entity.repository');
     }
+=======
+    $this->entityRepository = $entity_repository;
+>>>>>>> dev
   }
 
   /**
@@ -151,6 +181,7 @@ class ConfigManager implements ConfigManagerInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function getEntityManager() {
     @trigger_error('ConfigManagerInterface::getEntityManager() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. Use ::getEntityTypeManager() instead. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
     return \Drupal::service('entity.manager');
@@ -159,6 +190,8 @@ class ConfigManager implements ConfigManagerInterface {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function getEntityTypeManager() {
     return $this->entityTypeManager;
   }
@@ -406,7 +439,11 @@ class ConfigManager implements ConfigManagerInterface {
   public function getConfigCollectionInfo() {
     if (!isset($this->configCollectionInfo)) {
       $this->configCollectionInfo = new ConfigCollectionInfo();
+<<<<<<< HEAD
       $this->eventDispatcher->dispatch(ConfigEvents::COLLECTION_INFO, $this->configCollectionInfo);
+=======
+      $this->eventDispatcher->dispatch($this->configCollectionInfo, ConfigEvents::COLLECTION_INFO);
+>>>>>>> dev
     }
     return $this->configCollectionInfo;
   }

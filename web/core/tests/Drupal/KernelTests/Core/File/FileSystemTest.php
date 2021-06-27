@@ -25,12 +25,20 @@ class FileSystemTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['system'];
+=======
+  protected static $modules = ['system'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->fileSystem = $this->container->get('file_system');
   }
@@ -52,7 +60,11 @@ class FileSystemTest extends KernelTestBase {
    */
   public function testDestinationDirectoryFailureOnCopy() {
     $this->expectException(DirectoryNotReadyException::class);
+<<<<<<< HEAD
     $this->expectExceptionMessage("The specified file 'public://test.txt' could not be copied because the destination directory is not properly configured. This may be caused by a problem with file or directory permissions");
+=======
+    $this->expectExceptionMessage("The specified file 'public://test.txt' could not be copied because the destination directory 'public://subdirectory' is not properly configured. This may be caused by a problem with file or directory permissions.");
+>>>>>>> dev
     touch('public://test.txt');
     // public://subdirectory has not been created, so \Drupal::service('file_system')->prepareDirectory()
     // will fail, causing copy() to throw DirectoryNotReadyException.

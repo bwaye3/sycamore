@@ -14,7 +14,11 @@ use Drupal\views\Views;
  */
 class FieldUrlTest extends ViewsKernelTestBase {
 
+<<<<<<< HEAD
   public static $modules = ['system'];
+=======
+  protected static $modules = ['system'];
+>>>>>>> dev
 
   /**
    * Views used by this test.
@@ -45,7 +49,11 @@ class FieldUrlTest extends ViewsKernelTestBase {
 
     $this->executeView($view);
 
+<<<<<<< HEAD
     $this->assertEqual('John', $view->field['name']->advancedRender($view->result[0]));
+=======
+    $this->assertEquals('John', $view->field['name']->advancedRender($view->result[0]));
+>>>>>>> dev
 
     // Make the url a link.
     $view->destroy();
@@ -62,7 +70,11 @@ class FieldUrlTest extends ViewsKernelTestBase {
 
     $this->executeView($view);
 
+<<<<<<< HEAD
     $this->assertEqual(Link::fromTextAndUrl('John', Url::fromUri('base:John'))->toString(), $view->field['name']->advancedRender($view->result[0]));
+=======
+    $this->assertEquals(Link::fromTextAndUrl('John', Url::fromUri('base:John'))->toString(), $view->field['name']->advancedRender($view->result[0]));
+>>>>>>> dev
   }
 
 }

@@ -4,7 +4,11 @@ namespace Drupal\Tests\Core\Entity\Enhancer;
 
 use Drupal\Core\Entity\Enhancer\EntityRouteEnhancer;
 use Drupal\Tests\UnitTestCase;
+<<<<<<< HEAD
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
+=======
+use Drupal\Core\Routing\RouteObjectInterface;
+>>>>>>> dev
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route;
 
@@ -29,7 +33,10 @@ class EntityRouteEnhancerTest extends UnitTestCase {
     $defaults['_entity_form'] = 'entity_test.default';
     $defaults['_route_object'] = (new Route('/test', $defaults));
     $new_defaults = $route_enhancer->enhance($defaults, $request);
+<<<<<<< HEAD
     $this->assertIsCallable($new_defaults['_controller']);
+=======
+>>>>>>> dev
     $this->assertEquals($defaults['_controller'], $new_defaults['_controller'], '_controller did not get overridden.');
 
     // Set _entity_form and ensure that the form is set.

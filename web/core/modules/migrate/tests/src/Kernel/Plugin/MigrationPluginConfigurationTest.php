@@ -15,7 +15,11 @@ class MigrationPluginConfigurationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'migrate',
     'migrate_drupal',
     // Test with a simple migration.
@@ -24,7 +28,11 @@ class MigrationPluginConfigurationTest extends KernelTestBase {
   ];
 
   /**
+<<<<<<< HEAD
    * Test merging configuration into a plugin through the plugin manager.
+=======
+   * Tests merging configuration into a plugin through the plugin manager.
+>>>>>>> dev
    *
    * @dataProvider mergeProvider
    */

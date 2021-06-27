@@ -18,7 +18,11 @@ class ConfigurableLanguageTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['language'];
+=======
+  protected static $modules = ['language'];
+>>>>>>> dev
 
   /**
    * Tests configurable language name methods.
@@ -27,8 +31,13 @@ class ConfigurableLanguageTest extends KernelTestBase {
     $name = $this->randomMachineName();
     $language_code = $this->randomMachineName(2);
     $configurableLanguage = new ConfigurableLanguage(['label' => $name, 'id' => $language_code], 'configurable_language');
+<<<<<<< HEAD
     $this->assertEqual($configurableLanguage->getName(), $name);
     $this->assertEqual($configurableLanguage->setName('Test language')->getName(), 'Test language');
+=======
+    $this->assertEquals($name, $configurableLanguage->getName());
+    $this->assertEquals('Test language', $configurableLanguage->setName('Test language')->getName());
+>>>>>>> dev
   }
 
 }

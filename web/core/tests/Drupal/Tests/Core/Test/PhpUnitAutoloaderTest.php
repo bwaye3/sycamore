@@ -12,7 +12,11 @@ use Drupal\Tests\UnitTestCase;
 class PhpUnitAutoloaderTest extends UnitTestCase {
 
   /**
+<<<<<<< HEAD
    * Test loading of classes provided by test sub modules.
+=======
+   * Tests loading of classes provided by test sub modules.
+>>>>>>> dev
    */
   public function testPhpUnitTestClassesLoading() {
     $this->assertTrue(class_exists('\Drupal\phpunit_test\PhpUnitTestDummyClass'), 'Class provided by test module was not autoloaded.');

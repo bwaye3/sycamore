@@ -14,14 +14,22 @@ class PathNodeFormTest extends PathTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'path'];
+=======
+  protected static $modules = ['node', 'path'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'classy';
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create test user and log in.

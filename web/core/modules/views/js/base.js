@@ -11,11 +11,22 @@
   Drupal.Views.parseQueryString = function (query) {
     var args = {};
     var pos = query.indexOf('?');
+<<<<<<< HEAD
     if (pos !== -1) {
       query = query.substring(pos + 1);
     }
     var pair = void 0;
     var pairs = query.split('&');
+=======
+
+    if (pos !== -1) {
+      query = query.substring(pos + 1);
+    }
+
+    var pair;
+    var pairs = query.split('&');
+
+>>>>>>> dev
     for (var i = 0; i < pairs.length; i++) {
       pair = pairs[i].split('=');
 
@@ -23,12 +34,17 @@
         args[decodeURIComponent(pair[0].replace(/\+/g, ' '))] = decodeURIComponent(pair[1].replace(/\+/g, ' '));
       }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     return args;
   };
 
   Drupal.Views.parseViewArgs = function (href, viewPath) {
     var returnObj = {};
     var path = Drupal.Views.getPath(href);
+<<<<<<< HEAD
 
     var viewHref = Drupal.url(viewPath).substring(drupalSettings.path.baseUrl.length);
 
@@ -36,14 +52,31 @@
       returnObj.view_args = decodeURIComponent(path.substring(viewHref.length + 1, path.length));
       returnObj.view_path = path;
     }
+=======
+    var viewHref = Drupal.url(viewPath).substring(drupalSettings.path.baseUrl.length);
+
+    if (viewHref && path.substring(0, viewHref.length + 1) === "".concat(viewHref, "/")) {
+      returnObj.view_args = decodeURIComponent(path.substring(viewHref.length + 1, path.length));
+      returnObj.view_path = path;
+    }
+
+>>>>>>> dev
     return returnObj;
   };
 
   Drupal.Views.pathPortion = function (href) {
     var protocol = window.location.protocol;
+<<<<<<< HEAD
     if (href.substring(0, protocol.length) === protocol) {
       href = href.substring(href.indexOf('/', protocol.length + 2));
     }
+=======
+
+    if (href.substring(0, protocol.length) === protocol) {
+      href = href.substring(href.indexOf('/', protocol.length + 2));
+    }
+
+>>>>>>> dev
     return href;
   };
 
@@ -54,12 +87,22 @@
     if (href.substring(0, 3) === '?q=') {
       href = href.substring(3, href.length);
     }
+<<<<<<< HEAD
     var chars = ['#', '?', '&'];
+=======
+
+    var chars = ['#', '?', '&'];
+
+>>>>>>> dev
     for (var i = 0; i < chars.length; i++) {
       if (href.indexOf(chars[i]) > -1) {
         href = href.substr(0, href.indexOf(chars[i]));
       }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     return href;
   };
 })(jQuery, Drupal, drupalSettings);

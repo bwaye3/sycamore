@@ -9,7 +9,11 @@ use Symfony\Component\HttpFoundation\Response;
  * Defines the interface for response policy implementations.
  *
  * The response policy is evaluated in order to determine whether a page should
+<<<<<<< HEAD
  * be stored a in the cache. Calling code should do so unless static::DENY is
+=======
+ * be stored in the cache. Calling code should do so unless static::DENY is
+>>>>>>> dev
  * returned from the check() method.
  */
 interface ResponsePolicyInterface {

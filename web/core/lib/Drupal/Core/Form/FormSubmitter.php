@@ -2,7 +2,10 @@
 
 namespace Drupal\Core\Form;
 
+<<<<<<< HEAD
 use Drupal\Core\Installer\InstallerKernel;
+=======
+>>>>>>> dev
 use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -147,6 +150,7 @@ class FormSubmitter implements FormSubmitterInterface {
   }
 
   /**
+<<<<<<< HEAD
    * Wraps drupal_installation_attempted().
    *
    * @return bool
@@ -164,6 +168,8 @@ class FormSubmitter implements FormSubmitterInterface {
   }
 
   /**
+=======
+>>>>>>> dev
    * Wraps batch_get().
    */
   protected function &batchGet() {

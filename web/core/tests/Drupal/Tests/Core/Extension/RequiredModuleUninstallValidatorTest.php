@@ -2,7 +2,10 @@
 
 namespace Drupal\Tests\Core\Extension;
 
+<<<<<<< HEAD
 use Drupal\Tests\AssertHelperTrait;
+=======
+>>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -11,8 +14,11 @@ use Drupal\Tests\UnitTestCase;
  */
 class RequiredModuleUninstallValidatorTest extends UnitTestCase {
 
+<<<<<<< HEAD
   use AssertHelperTrait;
 
+=======
+>>>>>>> dev
   /**
    * @var \Drupal\Core\Extension\RequiredModuleUninstallValidator|\PHPUnit\Framework\MockObject\MockObject
    */
@@ -21,7 +27,11 @@ class RequiredModuleUninstallValidatorTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->uninstallValidator = $this->getMockBuilder('Drupal\Core\Extension\RequiredModuleUninstallValidator')
       ->disableOriginalConstructor()
@@ -71,7 +81,11 @@ class RequiredModuleUninstallValidatorTest extends UnitTestCase {
 
     $expected = ["The $module module is required"];
     $reasons = $this->uninstallValidator->validate($module);
+<<<<<<< HEAD
     $this->assertSame($expected, $this->castSafeStrings($reasons));
+=======
+    $this->assertEquals($expected, $reasons);
+>>>>>>> dev
   }
 
 }

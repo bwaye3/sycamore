@@ -21,7 +21,16 @@ class ContextualFiltersBlockContextTest extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['block', 'block_test_views', 'views_ui', 'node'];
+=======
+  protected static $modules = [
+    'block',
+    'block_test_views',
+    'views_ui',
+    'node',
+  ];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -52,10 +61,17 @@ class ContextualFiltersBlockContextTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
     parent::setUp($import_test_views);
 
     ViewTestData::createTestViews(get_class($this), ['block_test_views']);
+=======
+  protected function setUp($import_test_views = TRUE): void {
+    parent::setUp($import_test_views);
+
+    ViewTestData::createTestViews(static::class, ['block_test_views']);
+>>>>>>> dev
     $this->enableViewsTestModule();
 
     $this->nodeType = $this->container->get('entity_type.manager')
@@ -92,8 +108,13 @@ class ContextualFiltersBlockContextTest extends ViewTestBase {
     $this->assertInstanceOf(ContextDefinitionInterface::class, $definition['context_definitions']['nid']);
     /** @var \Drupal\Core\Plugin\Context\ContextDefinitionInterface $context */
     $context = $definition['context_definitions']['nid'];
+<<<<<<< HEAD
     $this->assertEqual($context->getDataType(), 'entity:node', 'Context definition data type is correct.');
     $this->assertEqual($context->getLabel(), 'Content: ID', 'Context definition label is correct.');
+=======
+    $this->assertEquals('entity:node', $context->getDataType(), 'Context definition data type is correct.');
+    $this->assertEquals('Content: ID', $context->getLabel(), 'Context definition label is correct.');
+>>>>>>> dev
     $this->assertFalse($context->isRequired(), 'Context is not required.');
 
     // Place test block via block UI to check if contexts are correctly exposed.
@@ -104,7 +125,11 @@ class ContextualFiltersBlockContextTest extends ViewTestBase {
     $edit = [
       'settings[context_mapping][nid]' => '@node.node_route_context:node',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, 'Save block');
+=======
+    $this->submitForm($edit, 'Save block');
+>>>>>>> dev
 
     // Check if mapping saved correctly.
     /** @var \Drupal\block\BlockInterface $block */
@@ -120,6 +145,7 @@ class ContextualFiltersBlockContextTest extends ViewTestBase {
       'items_per_page' => 'none',
       'context_mapping' => ['nid' => '@node.node_route_context:node'],
     ];
+<<<<<<< HEAD
     $this->assertEqual($block->getPlugin()->getConfiguration(), $expected_settings, 'Block settings are correct.');
 
     // Make sure view behaves as expected.
@@ -131,6 +157,19 @@ class ContextualFiltersBlockContextTest extends ViewTestBase {
 
     $this->drupalGet($this->nodes[1]->toUrl());
     $this->assertText('Test view row: Second test node');
+=======
+    $this->assertEquals($expected_settings, $block->getPlugin()->getConfiguration(), 'Block settings are correct.');
+
+    // Make sure view behaves as expected.
+    $this->drupalGet('<front>');
+    $this->assertSession()->pageTextContains('Test view: No results found.');
+
+    $this->drupalGet($this->nodes[0]->toUrl());
+    $this->assertSession()->pageTextContains('Test view row: First test node');
+
+    $this->drupalGet($this->nodes[1]->toUrl());
+    $this->assertSession()->pageTextContains('Test view row: Second test node');
+>>>>>>> dev
 
     // Check the second block which should expose two integer contexts, one
     // based on the numeric plugin and the other based on numeric validation.
@@ -139,22 +178,37 @@ class ContextualFiltersBlockContextTest extends ViewTestBase {
     $this->assertInstanceOf(ContextDefinitionInterface::class, $definition['context_definitions']['created']);
     /** @var \Drupal\Core\Plugin\Context\ContextDefinitionInterface $context */
     $context = $definition['context_definitions']['created'];
+<<<<<<< HEAD
     $this->assertEqual($context->getDataType(), 'integer', 'Context definition data type is correct.');
     $this->assertEqual($context->getLabel(), 'Content: Authored on', 'Context definition label is correct.');
+=======
+    $this->assertEquals('integer', $context->getDataType(), 'Context definition data type is correct.');
+    $this->assertEquals('Content: Authored on', $context->getLabel(), 'Context definition label is correct.');
+>>>>>>> dev
     $this->assertFalse($context->isRequired(), 'Context is not required.');
 
     $this->assertInstanceOf(ContextDefinitionInterface::class, $definition['context_definitions']['vid']);
     /** @var \Drupal\Core\Plugin\Context\ContextDefinitionInterface $context */
     $context = $definition['context_definitions']['vid'];
+<<<<<<< HEAD
     $this->assertEqual($context->getDataType(), 'integer', 'Context definition data type is correct.');
     $this->assertEqual($context->getLabel(), 'Content: Revision ID', 'Context definition label is correct.');
+=======
+    $this->assertEquals('integer', $context->getDataType(), 'Context definition data type is correct.');
+    $this->assertEquals('Content: Revision ID', $context->getLabel(), 'Context definition label is correct.');
+>>>>>>> dev
     $this->assertFalse($context->isRequired(), 'Context is not required.');
 
     $this->assertInstanceOf(ContextDefinitionInterface::class, $definition['context_definitions']['title']);
     /** @var \Drupal\Core\Plugin\Context\ContextDefinitionInterface $context */
     $context = $definition['context_definitions']['title'];
+<<<<<<< HEAD
     $this->assertEqual($context->getDataType(), 'string', 'Context definition data type is correct.');
     $this->assertEqual($context->getLabel(), 'Content: Title', 'Context definition label is correct.');
+=======
+    $this->assertEquals('string', $context->getDataType(), 'Context definition data type is correct.');
+    $this->assertEquals('Content: Title', $context->getLabel(), 'Context definition label is correct.');
+>>>>>>> dev
     $this->assertFalse($context->isRequired(), 'Context is not required.');
   }
 

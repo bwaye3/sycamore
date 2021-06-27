@@ -20,7 +20,11 @@ class MigrateCommentTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'comment',
     'content_translation',
     'language',
@@ -30,7 +34,11 @@ class MigrateCommentTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('node');
@@ -39,9 +47,12 @@ class MigrateCommentTest extends MigrateDrupal6TestBase {
     $this->installSchema('node', ['node_access']);
     $this->installConfig(['comment']);
 
+<<<<<<< HEAD
     // The entity.node.canonical route must exist when the RDF hook is called.
     $this->container->get('router.builder')->rebuild();
 
+=======
+>>>>>>> dev
     $this->migrateContent();
     $this->executeMigrations([
       'language',

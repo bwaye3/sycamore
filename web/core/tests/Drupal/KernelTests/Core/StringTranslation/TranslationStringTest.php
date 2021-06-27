@@ -18,14 +18,22 @@ class TranslationStringTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'language',
   ];
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     ConfigurableLanguage::createFromLangcode('de')->save();
   }
@@ -46,7 +54,11 @@ class TranslationStringTest extends KernelTestBase {
     $this->assertEquals($a, $b);
     // The two objects are not the same object.
     $this->assertNotSame($a, $b);
+<<<<<<< HEAD
     // TranslationWrappers which have different settings are not equal.
+=======
+    // TranslatableMarkup which have different settings are not equal.
+>>>>>>> dev
     $this->assertNotEquals($a, $c);
     $this->assertNotEquals($a, $d);
   }

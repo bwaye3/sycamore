@@ -176,8 +176,13 @@ class BigPipeStrategy implements PlaceholderStrategyInterface {
    *   A placeholder.
    *
    * @return bool
+<<<<<<< HEAD
    *   Whether the placeholder is safe for use in a HTML attribute (in case it's
    *   a placeholder for a HTML attribute value or a subset of it).
+=======
+   *   Whether the placeholder is safe for use in an HTML attribute (in case
+   *   it's a placeholder for an HTML attribute value or a subset of it).
+>>>>>>> dev
    */
   protected static function placeholderIsAttributeSafe($placeholder) {
     assert(is_string($placeholder));
@@ -229,8 +234,13 @@ class BigPipeStrategy implements PlaceholderStrategyInterface {
    * @param array $placeholder_render_array
    *   The render array for a placeholder.
    * @param bool $placeholder_must_be_attribute_safe
+<<<<<<< HEAD
    *   Whether the placeholder must be safe for use in a HTML attribute (in case
    *   it's a placeholder for a HTML attribute value or a subset of it).
+=======
+   *   Whether the placeholder must be safe for use in an HTML attribute (in
+   *   case it's a placeholder for an HTML attribute value or a subset of it).
+>>>>>>> dev
    *
    * @return array
    *   The resulting BigPipe no-JS placeholder render array.

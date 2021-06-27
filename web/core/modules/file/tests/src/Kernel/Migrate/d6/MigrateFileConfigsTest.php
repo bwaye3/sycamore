@@ -17,7 +17,11 @@ class MigrateFileConfigsTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->executeMigration('file_settings');
   }
@@ -27,9 +31,15 @@ class MigrateFileConfigsTest extends MigrateDrupal6TestBase {
    */
   public function testFileSettings() {
     $config = $this->config('file.settings');
+<<<<<<< HEAD
     $this->assertIdentical('textfield', $config->get('description.type'));
     $this->assertIdentical(128, $config->get('description.length'));
     $this->assertIdentical('sites/default/files/icons', $config->get('icon.directory'));
+=======
+    $this->assertSame('textfield', $config->get('description.type'));
+    $this->assertSame(128, $config->get('description.length'));
+    $this->assertSame('sites/default/files/icons', $config->get('icon.directory'));
+>>>>>>> dev
     $this->assertConfigSchema(\Drupal::service('config.typed'), 'file.settings', $config->get());
   }
 

@@ -17,7 +17,11 @@ class ResponseGeneratorTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['hal', 'rest', 'node', 'basic_auth'];
+=======
+  protected static $modules = ['hal', 'rest', 'node', 'basic_auth'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -27,7 +31,11 @@ class ResponseGeneratorTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->drupalCreateContentType(['type' => 'page', 'name' => 'Basic page']);
 
@@ -36,7 +44,11 @@ class ResponseGeneratorTest extends BrowserTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test to see if generator header is added.
+=======
+   * Tests to see if generator header is added.
+>>>>>>> dev
    */
   public function testGeneratorHeaderAdded() {
 
@@ -48,14 +60,24 @@ class ResponseGeneratorTest extends BrowserTestBase {
     // Check to see if the header is added when viewing a normal content page
     $this->drupalGet($node->toUrl());
     $this->assertSession()->statusCodeEquals(200);
+<<<<<<< HEAD
     $this->assertEqual('text/html; charset=UTF-8', $this->drupalGetHeader('Content-Type'));
     $this->assertEqual($expectedGeneratorHeader, $this->drupalGetHeader('X-Generator'));
+=======
+    $this->assertSession()->responseHeaderEquals('Content-Type', 'text/html; charset=UTF-8');
+    $this->assertSession()->responseHeaderEquals('X-Generator', $expectedGeneratorHeader);
+>>>>>>> dev
 
     // Check to see if the header is also added for a non-successful response
     $this->drupalGet('llama');
     $this->assertSession()->statusCodeEquals(404);
+<<<<<<< HEAD
     $this->assertEqual('text/html; charset=UTF-8', $this->drupalGetHeader('Content-Type'));
     $this->assertEqual($expectedGeneratorHeader, $this->drupalGetHeader('X-Generator'));
+=======
+    $this->assertSession()->responseHeaderEquals('Content-Type', 'text/html; charset=UTF-8');
+    $this->assertSession()->responseHeaderEquals('X-Generator', $expectedGeneratorHeader);
+>>>>>>> dev
 
     // Enable cookie-based authentication for the entity:node REST resource.
     /** @var \Drupal\rest\RestResourceConfigInterface $resource_config */
@@ -68,8 +90,13 @@ class ResponseGeneratorTest extends BrowserTestBase {
     // Tests to see if this also works for a non-html request
     $this->drupalGet($node->toUrl()->setOption('query', ['_format' => 'hal_json']));
     $this->assertSession()->statusCodeEquals(200);
+<<<<<<< HEAD
     $this->assertEqual('application/hal+json', $this->drupalGetHeader('Content-Type'));
     $this->assertEqual($expectedGeneratorHeader, $this->drupalGetHeader('X-Generator'));
+=======
+    $this->assertSession()->responseHeaderEquals('Content-Type', 'application/hal+json');
+    $this->assertSession()->responseHeaderEquals('X-Generator', $expectedGeneratorHeader);
+>>>>>>> dev
 
   }
 

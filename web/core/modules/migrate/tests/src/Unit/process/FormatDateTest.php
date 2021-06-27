@@ -75,6 +75,7 @@ class FormatDateTest extends MigrateProcessTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests that "timezone" configuration key triggers deprecation error.
    *
    * @covers ::transform
@@ -109,6 +110,8 @@ class FormatDateTest extends MigrateProcessTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests transformation.
    *
    * @covers ::transform

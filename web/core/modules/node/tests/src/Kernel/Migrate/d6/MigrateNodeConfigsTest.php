@@ -17,7 +17,11 @@ class MigrateNodeConfigsTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->executeMigration('d6_node_settings');
   }
@@ -27,7 +31,11 @@ class MigrateNodeConfigsTest extends MigrateDrupal6TestBase {
    */
   public function testNodeSettings() {
     $config = $this->config('node.settings');
+<<<<<<< HEAD
     $this->assertIdentical(FALSE, $config->get('use_admin_theme'));
+=======
+    $this->assertFalse($config->get('use_admin_theme'));
+>>>>>>> dev
     $this->assertConfigSchema(\Drupal::service('config.typed'), 'node.settings', $config->get());
   }
 

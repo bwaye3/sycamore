@@ -18,7 +18,11 @@ class UserEditTest extends BrowserTestBase {
   protected $defaultTheme = 'stark';
 
   /**
+<<<<<<< HEAD
    * Test user edit page.
+=======
+   * Tests user edit page.
+>>>>>>> dev
    */
   public function testUserEdit() {
     // Test user edit functionality.
@@ -28,7 +32,12 @@ class UserEditTest extends BrowserTestBase {
 
     // Test that error message appears when attempting to use a non-unique user name.
     $edit['name'] = $user2->getAccountName();
+<<<<<<< HEAD
     $this->drupalPostForm("user/" . $user1->id() . "/edit", $edit, t('Save'));
+=======
+    $this->drupalGet("user/" . $user1->id() . "/edit");
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
     $this->assertRaw(t('The username %name is already taken.', ['%name' => $edit['name']]));
 
     // Check that the default value in user name field
@@ -37,7 +46,11 @@ class UserEditTest extends BrowserTestBase {
     \Drupal::service('module_installer')->install(['user_hooks_test']);
     Cache::invalidateTags(['rendered']);
     $this->drupalGet('user/' . $user1->id() . '/edit');
+<<<<<<< HEAD
     $this->assertFieldByName('name', $user1->getAccountName());
+=======
+    $this->assertSession()->fieldValueEquals('name', $user1->getAccountName());
+>>>>>>> dev
 
     // Ensure the formatted name is displayed when expected.
     $this->drupalGet('user/' . $user1->id());
@@ -48,6 +61,7 @@ class UserEditTest extends BrowserTestBase {
     $edit = [];
     $edit['pass[pass1]'] = '';
     $edit['pass[pass2]'] = $this->randomMachineName();
+<<<<<<< HEAD
     $this->drupalPostForm("user/" . $user1->id() . "/edit", $edit, t('Save'));
     $this->assertText(t("The specified passwords do not match."), 'Typing mismatched passwords displays an error message.');
 
@@ -55,32 +69,72 @@ class UserEditTest extends BrowserTestBase {
     $edit['pass[pass2]'] = '';
     $this->drupalPostForm("user/" . $user1->id() . "/edit", $edit, t('Save'));
     $this->assertText(t("The specified passwords do not match."), 'Typing mismatched passwords displays an error message.');
+=======
+    $this->drupalGet("user/" . $user1->id() . "/edit");
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->pageTextContains("The specified passwords do not match.");
+
+    $edit['pass[pass1]'] = $this->randomMachineName();
+    $edit['pass[pass2]'] = '';
+    $this->drupalGet("user/" . $user1->id() . "/edit");
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->pageTextContains("The specified passwords do not match.");
+>>>>>>> dev
 
     // Test that the error message appears when attempting to change the mail or
     // pass without the current password.
     $edit = [];
     $edit['mail'] = $this->randomMachineName() . '@new.example.com';
+<<<<<<< HEAD
     $this->drupalPostForm("user/" . $user1->id() . "/edit", $edit, t('Save'));
     $this->assertRaw(t("Your current password is missing or incorrect; it's required to change the %name.", ['%name' => t('Email')]));
 
     $edit['current_pass'] = $user1->passRaw;
     $this->drupalPostForm("user/" . $user1->id() . "/edit", $edit, t('Save'));
+=======
+    $this->drupalGet("user/" . $user1->id() . "/edit");
+    $this->submitForm($edit, 'Save');
+    $this->assertRaw(t("Your current password is missing or incorrect; it's required to change the %name.", ['%name' => t('Email')]));
+
+    $edit['current_pass'] = $user1->passRaw;
+    $this->drupalGet("user/" . $user1->id() . "/edit");
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
     $this->assertRaw(t("The changes have been saved."));
 
     // Test that the user must enter current password before changing passwords.
     $edit = [];
     $edit['pass[pass1]'] = $new_pass = $this->randomMachineName();
     $edit['pass[pass2]'] = $new_pass;
+<<<<<<< HEAD
     $this->drupalPostForm("user/" . $user1->id() . "/edit", $edit, t('Save'));
+=======
+    $this->drupalGet("user/" . $user1->id() . "/edit");
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
     $this->assertRaw(t("Your current password is missing or incorrect; it's required to change the %name.", ['%name' => t('Password')]));
 
     // Try again with the current password.
     $edit['current_pass'] = $user1->passRaw;
+<<<<<<< HEAD
     $this->drupalPostForm("user/" . $user1->id() . "/edit", $edit, t('Save'));
     $this->assertRaw(t("The changes have been saved."));
 
     // Make sure the changed timestamp is updated.
     $this->assertEqual($user1->getChangedTime(), REQUEST_TIME, 'Changing a user sets "changed" timestamp.');
+=======
+    $this->drupalGet("user/" . $user1->id() . "/edit");
+    $this->submitForm($edit, 'Save');
+    $this->assertRaw(t("The changes have been saved."));
+
+    // Confirm there's only one session in the database as the existing session
+    // has been migrated when the password is changed.
+    // @see \Drupal\user\Entity\User::postSave()
+    $this->assertSame(1, (int) \Drupal::database()->select('sessions', 's')->countQuery()->execute()->fetchField());
+
+    // Make sure the changed timestamp is updated.
+    $this->assertEquals(REQUEST_TIME, $user1->getChangedTime(), 'Changing a user sets "changed" timestamp.');
+>>>>>>> dev
 
     // Make sure the user can log in with their new password.
     $this->drupalLogout();
@@ -93,12 +147,23 @@ class UserEditTest extends BrowserTestBase {
     $this->drupalLogin($user1);
 
     $config->set('password_strength', TRUE)->save();
+<<<<<<< HEAD
     $this->drupalPostForm("user/" . $user1->id() . "/edit", $edit, t('Save'));
     $this->assertRaw(t('Password strength:'), 'The password strength indicator is displayed.');
 
     $config->set('password_strength', FALSE)->save();
     $this->drupalPostForm("user/" . $user1->id() . "/edit", $edit, t('Save'));
     $this->assertNoRaw(t('Password strength:'), 'The password strength indicator is not displayed.');
+=======
+    $this->drupalGet("user/" . $user1->id() . "/edit");
+    $this->submitForm($edit, 'Save');
+    $this->assertRaw(t('Password strength:'));
+
+    $config->set('password_strength', FALSE)->save();
+    $this->drupalGet("user/" . $user1->id() . "/edit");
+    $this->submitForm($edit, 'Save');
+    $this->assertNoRaw(t('Password strength:'));
+>>>>>>> dev
 
     // Check that the user status field has the correct value and that it is
     // properly displayed.
@@ -106,6 +171,7 @@ class UserEditTest extends BrowserTestBase {
     $this->drupalLogin($admin_user);
 
     $this->drupalGet('user/' . $user1->id() . '/edit');
+<<<<<<< HEAD
     $this->assertNoFieldChecked('edit-status-0');
     $this->assertFieldChecked('edit-status-1');
 
@@ -120,6 +186,24 @@ class UserEditTest extends BrowserTestBase {
     $this->assertText(t('The changes have been saved.'));
     $this->assertNoFieldChecked('edit-status-0');
     $this->assertFieldChecked('edit-status-1');
+=======
+    $this->assertSession()->checkboxNotChecked('edit-status-0');
+    $this->assertSession()->checkboxChecked('edit-status-1');
+
+    $edit = ['status' => 0];
+    $this->drupalGet('user/' . $user1->id() . '/edit');
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->pageTextContains('The changes have been saved.');
+    $this->assertSession()->checkboxChecked('edit-status-0');
+    $this->assertSession()->checkboxNotChecked('edit-status-1');
+
+    $edit = ['status' => 1];
+    $this->drupalGet('user/' . $user1->id() . '/edit');
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->pageTextContains('The changes have been saved.');
+    $this->assertSession()->checkboxNotChecked('edit-status-0');
+    $this->assertSession()->checkboxChecked('edit-status-1');
+>>>>>>> dev
   }
 
   /**
@@ -136,7 +220,12 @@ class UserEditTest extends BrowserTestBase {
     $user1 = $this->drupalCreateUser([]);
 
     $edit = ['pass[pass1]' => '0', 'pass[pass2]' => '0'];
+<<<<<<< HEAD
     $this->drupalPostForm("user/" . $user1->id() . "/edit", $edit, t('Save'));
+=======
+    $this->drupalGet("user/" . $user1->id() . "/edit");
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
     $this->assertRaw(t("The changes have been saved."));
   }
 
@@ -152,7 +241,12 @@ class UserEditTest extends BrowserTestBase {
     // This user has no email address.
     $user1->mail = '';
     $user1->save();
+<<<<<<< HEAD
     $this->drupalPostForm("user/" . $user1->id() . "/edit", ['mail' => ''], t('Save'));
+=======
+    $this->drupalGet("user/" . $user1->id() . "/edit");
+    $this->submitForm(['mail' => ''], 'Save');
+>>>>>>> dev
     $this->assertRaw(t("The changes have been saved."));
   }
 
@@ -198,28 +292,48 @@ class UserEditTest extends BrowserTestBase {
     $edit = [
       'predefined_langcode' => 'fr',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/language/add', $edit, 'Add language');
+=======
+    $this->drupalGet('admin/config/regional/language/add');
+    $this->submitForm($edit, 'Add language');
+>>>>>>> dev
     $this->assertSession()->pageTextContains('French');
 
     // Enable translation for user accounts.
     $edit = [
       'language[content_translation]' => 1,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/people/accounts', $edit, 'Save configuration');
+=======
+    $this->drupalGet('admin/config/people/accounts');
+    $this->submitForm($edit, 'Save configuration');
+>>>>>>> dev
     $this->assertSession()->pageTextContains('The configuration options have been saved.');
 
     // Create a regular user for whom translation will be enabled.
     $webUser = $this->drupalCreateUser();
 
     // Create a translation for a regular user account.
+<<<<<<< HEAD
     $this->drupalPostForm('user/' . $webUser->id() . '/translations/add/en/fr', [], 'Save');
+=======
+    $this->drupalGet('user/' . $webUser->id() . '/translations/add/en/fr');
+    $this->submitForm([], 'Save');
+>>>>>>> dev
     $this->assertSession()->pageTextContains('The changes have been saved.');
 
     // Update the site language of the user account.
     $edit = [
       'preferred_langcode' => 'fr',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('user/' . $webUser->id() . '/edit', $edit, 'Save');
+=======
+    $this->drupalGet('user/' . $webUser->id() . '/edit');
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
     $this->assertSession()->statusCodeEquals(200);
   }
 

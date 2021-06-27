@@ -16,7 +16,10 @@ if (PHP_SAPI !== 'cli') {
 }
 
 $autoloader = require __DIR__ . '/../../autoload.php';
+<<<<<<< HEAD
 require_once __DIR__ . '/../includes/bootstrap.inc';
+=======
+>>>>>>> dev
 
 $request = Request::createFromGlobals();
 Settings::initialize(DRUPAL_ROOT, DrupalKernel::findSitePath($request), $autoloader);

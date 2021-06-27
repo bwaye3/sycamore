@@ -74,6 +74,10 @@ class BlockContentController extends ControllerBase {
    */
   public function add(Request $request) {
     $types = $this->blockContentTypeStorage->loadMultiple();
+<<<<<<< HEAD
+=======
+    uasort($types, [$this->blockContentTypeStorage->getEntityType()->getClass(), 'sort']);
+>>>>>>> dev
     if ($types && count($types) == 1) {
       $type = reset($types);
       return $this->addForm($type, $request);

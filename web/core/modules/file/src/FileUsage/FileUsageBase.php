@@ -21,6 +21,7 @@ abstract class FileUsageBase implements FileUsageInterface {
    * Creates a FileUsageBase object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+<<<<<<< HEAD
    *   The config factory. This parameter is required as of drupal:8.4.0 and
    *   trigger a fatal error if not passed in drupal:9.0.0.
    *
@@ -36,6 +37,11 @@ abstract class FileUsageBase implements FileUsageInterface {
       $config_factory = \Drupal::configFactory();
     }
 
+=======
+   *   The config factory.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory) {
+>>>>>>> dev
     $this->configFactory = $config_factory;
   }
 

@@ -69,6 +69,7 @@ abstract class LinkBase extends FieldPluginBase {
    *   The plugin implementation definition.
    * @param \Drupal\Core\Access\AccessManagerInterface $access_manager
    *   The access manager.
+<<<<<<< HEAD
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface|null $entity_type_manager
    *   The entity type manager.
    * @param \Drupal\Core\Entity\EntityRepositoryInterface|null $entity_repository
@@ -94,6 +95,20 @@ abstract class LinkBase extends FieldPluginBase {
       @trigger_error('Passing the language manager service to \Drupal\views\Plugin\views\field\LinkBase::__construct is required since 8.7.0, see https://www.drupal.org/node/3023427.', E_USER_DEPRECATED);
       $language_manager = \Drupal::service('language_manager');
     }
+=======
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+   *   The entity repository.
+   * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
+   *   The language manager.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, AccessManagerInterface $access_manager, EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository, LanguageManagerInterface $language_manager) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->accessManager = $access_manager;
+    $this->entityTypeManager = $entity_type_manager;
+    $this->entityRepository = $entity_repository;
+>>>>>>> dev
     $this->languageManager = $language_manager;
   }
 
@@ -208,7 +223,11 @@ abstract class LinkBase extends FieldPluginBase {
   abstract protected function getUrlInfo(ResultRow $row);
 
   /**
+<<<<<<< HEAD
    * Prepares the link to view a entity.
+=======
+   * Prepares the link to view an entity.
+>>>>>>> dev
    *
    * @param \Drupal\views\ResultRow $row
    *   A view result row.

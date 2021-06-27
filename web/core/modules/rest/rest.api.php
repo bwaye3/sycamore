@@ -29,6 +29,7 @@ function hook_rest_resource_alter(&$definitions) {
 }
 
 /**
+<<<<<<< HEAD
  * Alter the REST type URI.
  *
  * @deprecated in drupal:8.3.0 and is removed from drupal:9.0.0. Use
@@ -85,5 +86,7 @@ function hook_rest_relation_uri_alter(&$uri, $context = []) {
 }
 
 /**
+=======
+>>>>>>> dev
  * @} End of "addtogroup hooks".
  */

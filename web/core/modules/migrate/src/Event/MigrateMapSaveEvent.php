@@ -3,7 +3,11 @@
 namespace Drupal\migrate\Event;
 
 use Drupal\migrate\Plugin\MigrateIdMapInterface;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\Event;
+=======
+use Drupal\Component\EventDispatcher\Event;
+>>>>>>> dev
 
 /**
  * Wraps a migrate map save event for event listeners.

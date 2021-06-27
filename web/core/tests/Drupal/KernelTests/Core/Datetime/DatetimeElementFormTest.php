@@ -26,12 +26,20 @@ class DatetimeElementFormTest extends KernelTestBase implements FormInterface {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['datetime', 'system'];
+=======
+  protected static $modules = ['datetime', 'system'];
+>>>>>>> dev
 
   /**
    * Sets up the test.
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
   }
 
@@ -105,7 +113,11 @@ class DatetimeElementFormTest extends KernelTestBase implements FormInterface {
     $form = \Drupal::formBuilder()->getForm($this);
     $this->render($form);
 
+<<<<<<< HEAD
     $this->assertEqual(t('Date time callback called.'), $this->flag);
+=======
+    $this->assertEquals(t('Date time callback called.'), $this->flag);
+>>>>>>> dev
   }
 
   /**

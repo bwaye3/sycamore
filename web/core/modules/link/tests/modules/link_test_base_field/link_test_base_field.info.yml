@@ -1,7 +1,10 @@
 name: Link test base field
 description: Tests link field as an optional base field
 type: module
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 hidden: true
 dependencies:
   - drupal:link

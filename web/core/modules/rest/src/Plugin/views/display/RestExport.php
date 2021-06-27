@@ -94,6 +94,7 @@ class RestExport extends PathPluginBase implements ResponseDisplayPluginInterfac
   protected $authenticationProviderIds;
 
   /**
+<<<<<<< HEAD
    * The authentication providers' modules, keyed by provider ID.
    *
    * Authentication providers like 'cookie' and 'basic_auth' are the array
@@ -110,6 +111,8 @@ class RestExport extends PathPluginBase implements ResponseDisplayPluginInterfac
   protected $authenticationProviders;
 
   /**
+=======
+>>>>>>> dev
    * The serialization format providers, keyed by format.
    *
    * @var string[]
@@ -146,8 +149,11 @@ class RestExport extends PathPluginBase implements ResponseDisplayPluginInterfac
     // basic_auth) as keys and modules providing those as values (user,
     // basic_auth).
     $this->authenticationProviderIds = array_keys($authentication_providers);
+<<<<<<< HEAD
     // For BC reasons we keep around authenticationProviders as before.
     $this->authenticationProviders = $authentication_providers;
+=======
+>>>>>>> dev
     $this->formatProviders = $serializer_format_providers;
   }
 
@@ -490,6 +496,7 @@ class RestExport extends PathPluginBase implements ResponseDisplayPluginInterfac
   }
 
   /**
+<<<<<<< HEAD
    * {@inheritdoc}
    */
   public function calculateDependencies() {
@@ -509,6 +516,8 @@ class RestExport extends PathPluginBase implements ResponseDisplayPluginInterfac
   }
 
   /**
+=======
+>>>>>>> dev
    * Returns an array of format options.
    *
    * @return string[]

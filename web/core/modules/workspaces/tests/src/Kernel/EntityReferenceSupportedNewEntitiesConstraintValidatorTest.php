@@ -31,7 +31,11 @@ class EntityReferenceSupportedNewEntitiesConstraintValidatorTest extends KernelT
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('user');

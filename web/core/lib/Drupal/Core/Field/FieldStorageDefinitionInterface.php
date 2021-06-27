@@ -56,7 +56,11 @@ interface FieldStorageDefinitionInterface extends CacheableDependencyInterface {
    *
    * Each field type defines the settings that are meaningful for that type.
    * For example, a text field can define a 'max_length' setting, and an image
+<<<<<<< HEAD
    * field can define a 'alt_field_required' setting.
+=======
+   * field can define an 'alt_field_required' setting.
+>>>>>>> dev
    *
    * The method always returns an array of all available settings for this field
    * type, possibly with the default values merged in if values have not been
@@ -109,6 +113,7 @@ interface FieldStorageDefinitionInterface extends CacheableDependencyInterface {
   public function isRevisionable();
 
   /**
+<<<<<<< HEAD
    * Determines whether the field is queryable via QueryInterface.
    *
    * @return bool
@@ -123,6 +128,8 @@ interface FieldStorageDefinitionInterface extends CacheableDependencyInterface {
   public function isQueryable();
 
   /**
+=======
+>>>>>>> dev
    * Returns the human-readable label for the field.
    *
    * @return string

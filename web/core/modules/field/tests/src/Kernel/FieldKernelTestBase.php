@@ -19,7 +19,11 @@ abstract class FieldKernelTestBase extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'user',
     'system',
     'field',
@@ -54,7 +58,11 @@ abstract class FieldKernelTestBase extends KernelTestBase {
 
     $this->installEntitySchema('entity_test');
     $this->installEntitySchema('user');
+<<<<<<< HEAD
     $this->installSchema('system', ['sequences', 'key_value']);
+=======
+    $this->installSchema('system', ['sequences']);
+>>>>>>> dev
 
     // Set default storage backend and configure the theme system.
     $this->installConfig(['field', 'system']);
@@ -194,6 +202,11 @@ abstract class FieldKernelTestBase extends KernelTestBase {
    *   (Optional) The name of the column to check. Defaults to 'value'.
    */
   protected function assertFieldValues(EntityInterface $entity, $field_name, $expected_values, $langcode = LanguageInterface::LANGCODE_NOT_SPECIFIED, $column = 'value') {
+<<<<<<< HEAD
+=======
+    $expected_values_count = count($expected_values);
+
+>>>>>>> dev
     // Re-load the entity to make sure we have the latest changes.
     $storage = $this->container->get('entity_type.manager')
       ->getStorage($entity->getEntityTypeId());
@@ -204,9 +217,15 @@ abstract class FieldKernelTestBase extends KernelTestBase {
     // Filter out empty values so that they don't mess with the assertions.
     $field->filterEmptyItems();
     $values = $field->getValue();
+<<<<<<< HEAD
     $this->assertEqual(count($values), count($expected_values), 'Expected number of values were saved.');
     foreach ($expected_values as $key => $value) {
       $this->assertEqual($values[$key][$column], $value, new FormattableMarkup('Value @value was saved correctly.', ['@value' => $value]));
+=======
+    $this->assertCount($expected_values_count, $values, 'Expected number of values were saved.');
+    foreach ($expected_values as $key => $value) {
+      $this->assertEquals($value, $values[$key][$column], new FormattableMarkup('Value @value was saved correctly.', ['@value' => $value]));
+>>>>>>> dev
     }
   }
 

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 /* stylelint-disable plugin/no-browser-hacks */
+=======
+>>>>>>> dev
 .layout-example-2col .region-left {
   float: left;
   width: 50%;
@@ -14,4 +17,7 @@
 * html .layout-example-2col .region-right {
   width: 49.9%;
 }
+<<<<<<< HEAD
 /* stylelint-disable */
+=======
+>>>>>>> dev

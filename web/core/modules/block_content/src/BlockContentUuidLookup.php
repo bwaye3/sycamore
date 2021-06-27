@@ -47,6 +47,10 @@ class BlockContentUuidLookup extends CacheCollector {
    */
   protected function resolveCacheMiss($key) {
     $ids = $this->entityTypeManager->getStorage('block_content')->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->condition('uuid', $key)
       ->execute();
 

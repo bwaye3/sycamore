@@ -2,7 +2,10 @@
 
 namespace Drupal\migrate\Plugin\migrate\destination;
 
+<<<<<<< HEAD
 use Drupal\migrate\Plugin\MigrationInterface;
+=======
+>>>>>>> dev
 use Drupal\migrate\Row;
 
 /**
@@ -25,7 +28,11 @@ class NullDestination extends DestinationBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function fields(MigrationInterface $migration = NULL) {
+=======
+  public function fields() {
+>>>>>>> dev
     return [];
   }
 

@@ -43,7 +43,11 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
    */
   protected $thirdBackend;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Set up three memory backends to be used in the chain.
@@ -81,6 +85,7 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the get feature.
    */
   public function testGet() {
@@ -94,11 +99,30 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
 
     $cached = $this->chain->get('t3');
     $this->assertNotSame(FALSE, $cached, 'Got key that is on the backend 3');
+=======
+   * Tests the get feature.
+   */
+  public function testGet() {
+    $cached = $this->chain->get('t123');
+    $this->assertNotFalse($cached, 'Got key that is on all backends');
+    $this->assertSame(1231, $cached->data, 'Got the key from the backend 1');
+
+    $cached = $this->chain->get('t23');
+    $this->assertNotFalse($cached, 'Got key that is on backends 2 and 3');
+    $this->assertSame(232, $cached->data, 'Got the key from the backend 2');
+
+    $cached = $this->chain->get('t3');
+    $this->assertNotFalse($cached, 'Got key that is on the backend 3');
+>>>>>>> dev
     $this->assertSame(33, $cached->data, 'Got the key from the backend 3');
   }
 
   /**
+<<<<<<< HEAD
    * Test the get multiple feature.
+=======
+   * Tests the get multiple feature.
+>>>>>>> dev
    */
   public function testGetMultiple() {
     $cids = ['t123', 't23', 't3', 't4'];
@@ -116,12 +140,17 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that set will propagate.
+=======
+   * Tests that set will propagate.
+>>>>>>> dev
    */
   public function testSet() {
     $this->chain->set('test', 123);
 
     $cached = $this->firstBackend->get('test');
+<<<<<<< HEAD
     $this->assertNotSame(FALSE, $cached, 'Test key is in the first backend');
     $this->assertSame(123, $cached->data, 'Test key has the right value');
 
@@ -131,30 +160,61 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
 
     $cached = $this->thirdBackend->get('test');
     $this->assertNotSame(FALSE, $cached, 'Test key is in the third backend');
+=======
+    $this->assertNotFalse($cached, 'Test key is in the first backend');
+    $this->assertSame(123, $cached->data, 'Test key has the right value');
+
+    $cached = $this->secondBackend->get('test');
+    $this->assertNotFalse($cached, 'Test key is in the second backend');
+    $this->assertSame(123, $cached->data, 'Test key has the right value');
+
+    $cached = $this->thirdBackend->get('test');
+    $this->assertNotFalse($cached, 'Test key is in the third backend');
+>>>>>>> dev
     $this->assertSame(123, $cached->data, 'Test key has the right value');
   }
 
   /**
+<<<<<<< HEAD
    * Test that delete will propagate.
+=======
+   * Tests that delete will propagate.
+>>>>>>> dev
    */
   public function testDelete() {
     $this->chain->set('test', 5);
 
     $cached = $this->firstBackend->get('test');
+<<<<<<< HEAD
     $this->assertNotSame(FALSE, $cached, 'Test key has been added to the first backend');
     $cached = $this->secondBackend->get('test');
     $this->assertNotSame(FALSE, $cached, 'Test key has been added to the first backend');
     $cached = $this->thirdBackend->get('test');
     $this->assertNotSame(FALSE, $cached, 'Test key has been added to the first backend');
+=======
+    $this->assertNotFalse($cached, 'Test key has been added to the first backend');
+    $cached = $this->secondBackend->get('test');
+    $this->assertNotFalse($cached, 'Test key has been added to the first backend');
+    $cached = $this->thirdBackend->get('test');
+    $this->assertNotFalse($cached, 'Test key has been added to the first backend');
+>>>>>>> dev
 
     $this->chain->delete('test');
 
     $cached = $this->firstBackend->get('test');
+<<<<<<< HEAD
     $this->assertSame(FALSE, $cached, 'Test key is removed from the first backend');
     $cached = $this->secondBackend->get('test');
     $this->assertSame(FALSE, $cached, 'Test key is removed from the second backend');
     $cached = $this->thirdBackend->get('test');
     $this->assertSame(FALSE, $cached, 'Test key is removed from the third backend');
+=======
+    $this->assertFalse($cached, 'Test key is removed from the first backend');
+    $cached = $this->secondBackend->get('test');
+    $this->assertFalse($cached, 'Test key is removed from the second backend');
+    $cached = $this->thirdBackend->get('test');
+    $this->assertFalse($cached, 'Test key is removed from the third backend');
+>>>>>>> dev
   }
 
   /**
@@ -163,6 +223,7 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
   public function testGetHasPropagated() {
     $this->chain->get('t23');
     $cached = $this->firstBackend->get('t23');
+<<<<<<< HEAD
     $this->assertNotSame(FALSE, $cached, 'Test 2 has been propagated to the first backend');
 
     $this->chain->get('t3');
@@ -170,6 +231,15 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
     $this->assertNotSame(FALSE, $cached, 'Test 3 has been propagated to the first backend');
     $cached = $this->secondBackend->get('t3');
     $this->assertNotSame(FALSE, $cached, 'Test 3 has been propagated to the second backend');
+=======
+    $this->assertNotFalse($cached, 'Test 2 has been propagated to the first backend');
+
+    $this->chain->get('t3');
+    $cached = $this->firstBackend->get('t3');
+    $this->assertNotFalse($cached, 'Test 3 has been propagated to the first backend');
+    $cached = $this->secondBackend->get('t3');
+    $this->assertNotFalse($cached, 'Test 3 has been propagated to the second backend');
+>>>>>>> dev
   }
 
   /**
@@ -180,6 +250,7 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
     $this->chain->getMultiple($cids);
 
     $cached = $this->firstBackend->get('t3');
+<<<<<<< HEAD
     $this->assertNotSame(FALSE, $cached, 'Test 3 has been propagated to the first backend');
     $this->assertSame(33, $cached->data, 'And value has been kept');
     $cached = $this->secondBackend->get('t3');
@@ -188,11 +259,26 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
 
     $cached = $this->firstBackend->get('t23');
     $this->assertNotSame(FALSE, $cached, 'Test 2 has been propagated to the first backend');
+=======
+    $this->assertNotFalse($cached, 'Test 3 has been propagated to the first backend');
+    $this->assertSame(33, $cached->data, 'And value has been kept');
+    $cached = $this->secondBackend->get('t3');
+    $this->assertNotFalse($cached, 'Test 3 has been propagated to the second backend');
+    $this->assertSame(33, $cached->data, 'And value has been kept');
+
+    $cached = $this->firstBackend->get('t23');
+    $this->assertNotFalse($cached, 'Test 2 has been propagated to the first backend');
+>>>>>>> dev
     $this->assertSame(232, $cached->data, 'And value has been kept');
   }
 
   /**
+<<<<<<< HEAD
    * Test that the delete all operation is propagated to all backends in the chain.
+=======
+   * Tests that the delete all operation is propagated to all backends in the
+   * chain.
+>>>>>>> dev
    */
   public function testDeleteAllPropagation() {
     // Set both expiring and permanent keys.
@@ -209,14 +295,22 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that the delete tags operation is propagated to all backends
+=======
+   * Tests that the delete tags operation is propagated to all backends
+>>>>>>> dev
    * in the chain.
    */
   public function testDeleteTagsPropagation() {
     // Create two cache entries with the same tag and tag value.
     $this->chain->set('test_cid_clear1', 'foo', Cache::PERMANENT, ['test_tag:2']);
     $this->chain->set('test_cid_clear2', 'foo', Cache::PERMANENT, ['test_tag:2']);
+<<<<<<< HEAD
     $this->assertNotSame(FALSE, $this->firstBackend->get('test_cid_clear1')
+=======
+    $this->assertNotFalse($this->firstBackend->get('test_cid_clear1')
+>>>>>>> dev
       && $this->firstBackend->get('test_cid_clear2')
       && $this->secondBackend->get('test_cid_clear1')
       && $this->secondBackend->get('test_cid_clear2')
@@ -226,7 +320,11 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
 
     // Invalidate test_tag of value 1. This should invalidate both entries.
     $this->chain->invalidateTags(['test_tag:2']);
+<<<<<<< HEAD
     $this->assertSame(FALSE, $this->firstBackend->get('test_cid_clear1')
+=======
+    $this->assertFalse($this->firstBackend->get('test_cid_clear1')
+>>>>>>> dev
       && $this->firstBackend->get('test_cid_clear2')
       && $this->secondBackend->get('test_cid_clear1')
       && $this->secondBackend->get('test_cid_clear2')
@@ -237,7 +335,11 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
     // Create two cache entries with the same tag and an array tag value.
     $this->chain->set('test_cid_clear1', 'foo', Cache::PERMANENT, ['test_tag:1']);
     $this->chain->set('test_cid_clear2', 'foo', Cache::PERMANENT, ['test_tag:1']);
+<<<<<<< HEAD
     $this->assertNotSame(FALSE, $this->firstBackend->get('test_cid_clear1')
+=======
+    $this->assertNotFalse($this->firstBackend->get('test_cid_clear1')
+>>>>>>> dev
       && $this->firstBackend->get('test_cid_clear2')
       && $this->secondBackend->get('test_cid_clear1')
       && $this->secondBackend->get('test_cid_clear2')
@@ -247,7 +349,11 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
 
     // Invalidate test_tag of value 1. This should invalidate both entries.
     $this->chain->invalidateTags(['test_tag:1']);
+<<<<<<< HEAD
     $this->assertSame(FALSE, $this->firstBackend->get('test_cid_clear1')
+=======
+    $this->assertFalse($this->firstBackend->get('test_cid_clear1')
+>>>>>>> dev
       && $this->firstBackend->get('test_cid_clear2')
       && $this->secondBackend->get('test_cid_clear1')
       && $this->secondBackend->get('test_cid_clear2')
@@ -259,7 +365,11 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
     $this->chain->set('test_cid_clear1', 'foo', Cache::PERMANENT, ['test_tag:1']);
     $this->chain->set('test_cid_clear2', 'foo', Cache::PERMANENT, ['test_tag:2']);
     $this->chain->set('test_cid_clear3', 'foo', Cache::PERMANENT, ['test_tag_foo:3']);
+<<<<<<< HEAD
     $this->assertNotSame(FALSE, $this->firstBackend->get('test_cid_clear1')
+=======
+    $this->assertNotFalse($this->firstBackend->get('test_cid_clear1')
+>>>>>>> dev
       && $this->firstBackend->get('test_cid_clear2')
       && $this->firstBackend->get('test_cid_clear3')
       && $this->secondBackend->get('test_cid_clear1')
@@ -271,7 +381,11 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
       'Three cached items were created in all backends.');
 
     $this->chain->invalidateTags(['test_tag_foo:3']);
+<<<<<<< HEAD
     $this->assertNotSame(FALSE, $this->firstBackend->get('test_cid_clear1')
+=======
+    $this->assertNotFalse($this->firstBackend->get('test_cid_clear1')
+>>>>>>> dev
       && $this->firstBackend->get('test_cid_clear2')
       && $this->secondBackend->get('test_cid_clear1')
       && $this->secondBackend->get('test_cid_clear2')
@@ -279,14 +393,22 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
       && $this->thirdBackend->get('test_cid_clear2'),
       'Cached items not matching the tag were not cleared from any of the backends.');
 
+<<<<<<< HEAD
     $this->assertSame(FALSE, $this->firstBackend->get('test_cid_clear3')
+=======
+    $this->assertFalse($this->firstBackend->get('test_cid_clear3')
+>>>>>>> dev
       && $this->secondBackend->get('test_cid_clear3')
       && $this->thirdBackend->get('test_cid_clear3'),
       'Cached item matching the tag was removed from all backends.');
   }
 
   /**
+<<<<<<< HEAD
    * Test that removing bin propagates to all backends.
+=======
+   * Tests that removing bin propagates to all backends.
+>>>>>>> dev
    */
   public function testRemoveBin() {
     $chain = new BackendChain();
@@ -299,6 +421,7 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
     $chain->removeBin();
   }
 
+<<<<<<< HEAD
   /**
    * Tests deprecation of the constructor parameter.
    *
@@ -310,4 +433,6 @@ class BackendChainImplementationUnitTest extends UnitTestCase {
     new BackendChain('arbitrary');
   }
 
+=======
+>>>>>>> dev
 }

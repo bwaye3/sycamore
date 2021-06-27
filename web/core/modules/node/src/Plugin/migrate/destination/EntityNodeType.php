@@ -13,8 +13,13 @@ use Drupal\migrate\Row;
 class EntityNodeType extends EntityConfigBase {
 
   /**
+<<<<<<< HEAD
      * {@inheritdoc}
      */
+=======
+   * {@inheritdoc}
+   */
+>>>>>>> dev
   public function import(Row $row, array $old_destination_id_values = []) {
     $entity_ids = parent::import($row, $old_destination_id_values);
     if ($row->getDestinationProperty('create_body')) {

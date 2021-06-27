@@ -3,7 +3,10 @@
 namespace Drupal\field_ui;
 
 use Drupal\Core\Config\Entity\ConfigEntityListBuilder;
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
@@ -19,6 +22,7 @@ use Drupal\Core\Link;
  * @see field_ui_entity_type_build()
  */
 class FieldStorageConfigListBuilder extends ConfigEntityListBuilder {
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
 
   /**
@@ -27,6 +31,8 @@ class FieldStorageConfigListBuilder extends ConfigEntityListBuilder {
   protected $deprecatedProperties = [
     'entityManager' => 'entity.manager',
   ];
+=======
+>>>>>>> dev
 
   /**
    * An array of information about field types.
@@ -62,9 +68,17 @@ class FieldStorageConfigListBuilder extends ConfigEntityListBuilder {
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
    *   The entity type definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+<<<<<<< HEAD
    *   The entity manager.
    * @param \Drupal\Core\Field\FieldTypePluginManagerInterface $field_type_manager
    *   The 'field type' plugin manager.
+=======
+   *   The entity type manager.
+   * @param \Drupal\Core\Field\FieldTypePluginManagerInterface $field_type_manager
+   *   The 'field type' plugin manager.
+   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $bundle_info_service
+   *   The bundle info service.
+>>>>>>> dev
    */
   public function __construct(EntityTypeInterface $entity_type, EntityTypeManagerInterface $entity_type_manager, FieldTypePluginManagerInterface $field_type_manager, EntityTypeBundleInfoInterface $bundle_info_service) {
     parent::__construct($entity_type, $entity_type_manager->getStorage($entity_type->id()));

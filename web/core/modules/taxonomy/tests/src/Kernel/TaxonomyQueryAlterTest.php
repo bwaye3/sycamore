@@ -96,7 +96,11 @@ class TaxonomyQueryAlterTest extends KernelTestBase {
     $this->assertQueryTagTestResult(1, 1);
 
     $this->setupQueryTagTestHooks();
+<<<<<<< HEAD
     $query = \Drupal::entityQuery('taxonomy_term');
+=======
+    $query = \Drupal::entityQuery('taxonomy_term')->accessCheck(FALSE);
+>>>>>>> dev
     $query->addTag('taxonomy_term_access');
     $result = $query->execute();
     // All term IDs were retrieved.
@@ -105,7 +109,11 @@ class TaxonomyQueryAlterTest extends KernelTestBase {
     $this->assertQueryTagTestResult(1, 1);
 
     $this->setupQueryTagTestHooks();
+<<<<<<< HEAD
     $query = \Drupal::entityQuery('taxonomy_term');
+=======
+    $query = \Drupal::entityQuery('taxonomy_term')->accessCheck(FALSE);
+>>>>>>> dev
     $query->addTag('term_access');
     $result = $query->execute();
     // All term IDs were retrieved.

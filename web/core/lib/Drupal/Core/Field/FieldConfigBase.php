@@ -132,7 +132,11 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
    *
    * This property is overlooked if the $default_value_callback is non-empty.
    *
+<<<<<<< HEAD
    * Example for a integer field:
+=======
+   * Example for an integer field:
+>>>>>>> dev
    * @code
    * array(
    *   array('value' => 1),
@@ -234,7 +238,11 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
     // Add dependencies from the field type plugin. We can not use
     // self::calculatePluginDependencies() because instantiation of a field item
     // plugin requires a parent entity.
+<<<<<<< HEAD
     /** @var $field_type_manager \Drupal\Core\Field\FieldTypePluginManagerInterface */
+=======
+    /** @var \Drupal\Core\Field\FieldTypePluginManagerInterface $field_type_manager */
+>>>>>>> dev
     $field_type_manager = \Drupal::service('plugin.manager.field.field_type');
     $definition = $field_type_manager->getDefinition($this->getType());
     $this->addDependency('module', $definition['provider']);

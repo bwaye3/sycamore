@@ -13,7 +13,11 @@ use Drupal\Tests\UnitTestCase;
 class AttributeHelperTest extends UnitTestCase {
 
   /**
+<<<<<<< HEAD
    * Provides tests data for testAttributeExists
+=======
+   * Provides tests data for testAttributeExists.
+>>>>>>> dev
    *
    * @return array
    *   An array of test data each containing an array of attributes, the name
@@ -40,7 +44,11 @@ class AttributeHelperTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Provides tests data for testMergeCollections
+=======
+   * Provides tests data for testMergeCollections.
+>>>>>>> dev
    *
    * @return array
    *   An array of test data each containing an initial attribute collection, an

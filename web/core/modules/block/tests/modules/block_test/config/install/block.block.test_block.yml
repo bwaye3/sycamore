@@ -13,5 +13,9 @@ dependencies:
   module:
     - block_test
   theme:
+<<<<<<< HEAD
     - classy
+=======
+    - stark
+>>>>>>> dev
 visibility: {  }

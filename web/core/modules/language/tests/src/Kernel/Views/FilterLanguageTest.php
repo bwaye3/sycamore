@@ -31,7 +31,11 @@ class FilterLanguageTest extends LanguageTestBase {
           'id' => 'langcode',
           'table' => 'views_test_data',
           'field' => 'langcode',
+<<<<<<< HEAD
           'value' => [$langcode],
+=======
+          'value' => [$langcode => $langcode],
+>>>>>>> dev
         ],
       ]);
       $this->executeView($view);
@@ -44,13 +48,20 @@ class FilterLanguageTest extends LanguageTestBase {
       $expected = [
         '***LANGUAGE_site_default***',
         '***LANGUAGE_language_interface***',
+<<<<<<< HEAD
         '***LANGUAGE_language_content***',
+=======
+>>>>>>> dev
         'en',
         'xx-lolspeak',
         'und',
         'zxx',
       ];
+<<<<<<< HEAD
       $this->assertIdentical(array_keys($view->filter['langcode']->getValueOptions()), $expected);
+=======
+      $this->assertSame($expected, array_keys($view->filter['langcode']->getValueOptions()));
+>>>>>>> dev
 
       $view->destroy();
     }

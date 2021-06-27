@@ -3,7 +3,10 @@
 namespace Drupal\Tests\entity_test\Functional\Rest;
 
 use Drupal\Tests\rest\Functional\AnonResourceTestTrait;
+<<<<<<< HEAD
 use Drupal\Tests\rest\Functional\EntityResource\FormatSpecificGetBcRouteTestTrait;
+=======
+>>>>>>> dev
 
 /**
  * @group rest
@@ -11,7 +14,10 @@ use Drupal\Tests\rest\Functional\EntityResource\FormatSpecificGetBcRouteTestTrai
 class EntityTestJsonAnonTest extends EntityTestResourceTestBase {
 
   use AnonResourceTestTrait;
+<<<<<<< HEAD
   use FormatSpecificGetBcRouteTestTrait;
+=======
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

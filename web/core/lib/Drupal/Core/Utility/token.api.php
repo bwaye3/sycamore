@@ -149,6 +149,7 @@ function hook_tokens($type, $tokens, array $data, array $options, \Drupal\Core\R
  * @see hook_tokens()
  */
 function hook_tokens_alter(array &$replacements, array $context, \Drupal\Core\Render\BubbleableMetadata $bubbleable_metadata) {
+<<<<<<< HEAD
   $options = $context['options'];
 
   if (isset($options['langcode'])) {
@@ -159,6 +160,8 @@ function hook_tokens_alter(array &$replacements, array $context, \Drupal\Core\Re
     $langcode = NULL;
   }
 
+=======
+>>>>>>> dev
   if ($context['type'] == 'node' && !empty($context['data']['node'])) {
     $node = $context['data']['node'];
 

@@ -3,7 +3,11 @@
  * CKEditor implementation of {@link Drupal.editors} API.
  */
 
+<<<<<<< HEAD
 (function(Drupal, debounce, CKEDITOR, $, displace, AjaxCommands) {
+=======
+(function (Drupal, debounce, CKEDITOR, $, displace, AjaxCommands) {
+>>>>>>> dev
   /**
    * @namespace
    */
@@ -94,7 +98,11 @@
           if (!editable.isInline()) {
             editor.on(
               'autoGrow',
+<<<<<<< HEAD
               evt => {
+=======
+              (evt) => {
+>>>>>>> dev
                 const doc = evt.editor.document;
                 const scrollable = CKEDITOR.env.quirks
                   ? doc.getBody()
@@ -200,7 +208,11 @@
       const externalPlugins = format.editorSettings.drupalExternalPlugins;
       // Register and load additional CKEditor plugins as necessary.
       if (externalPlugins) {
+<<<<<<< HEAD
         Object.keys(externalPlugins || {}).forEach(pluginName => {
+=======
+        Object.keys(externalPlugins || {}).forEach((pluginName) => {
+>>>>>>> dev
           CKEDITOR.plugins.addExternal(
             pluginName,
             externalPlugins[pluginName],
@@ -257,9 +269,14 @@
         : [];
       classes.push('ui-dialog--narrow');
       dialogSettings.dialogClass = classes.join(' ');
+<<<<<<< HEAD
       dialogSettings.autoResize = window.matchMedia(
         '(min-width: 600px)',
       ).matches;
+=======
+      dialogSettings.autoResize =
+        window.matchMedia('(min-width: 600px)').matches;
+>>>>>>> dev
       dialogSettings.width = 'auto';
 
       // Add a "Loading…" message, hide it underneath the CKEditor toolbar,
@@ -300,7 +317,11 @@
 
   // Respond to new dialogs that are opened by CKEditor, closing the AJAX loader.
   $(window).on('dialog:beforecreate', (e, dialog, $element, settings) => {
+<<<<<<< HEAD
     $('.ckeditor-dialog-loading').animate({ top: '-40px' }, function() {
+=======
+    $('.ckeditor-dialog-loading').animate({ top: '-40px' }, function () {
+>>>>>>> dev
       $(this).remove();
     });
   });
@@ -369,7 +390,11 @@
      *
      * @see http://docs.ckeditor.com/#!/api/CKEDITOR.dom.document
      */
+<<<<<<< HEAD
     AjaxCommands.prototype.ckeditor_add_stylesheet = function(
+=======
+    AjaxCommands.prototype.ckeditor_add_stylesheet = function (
+>>>>>>> dev
       ajax,
       response,
       status,
@@ -377,7 +402,11 @@
       const editor = CKEDITOR.instances[response.editor_id];
 
       if (editor) {
+<<<<<<< HEAD
         response.stylesheets.forEach(url => {
+=======
+        response.stylesheets.forEach((url) => {
+>>>>>>> dev
           editor.document.appendStyleSheet(url);
         });
       }

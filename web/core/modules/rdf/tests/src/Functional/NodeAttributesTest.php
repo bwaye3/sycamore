@@ -20,7 +20,11 @@ class NodeAttributesTest extends NodeTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['rdf'];
+=======
+  protected static $modules = ['rdf'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -34,7 +38,11 @@ class NodeAttributesTest extends NodeTestBase {
    */
   protected $baseUri;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     rdf_get_mapping('node', 'article')

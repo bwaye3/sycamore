@@ -11,7 +11,11 @@ abstract class EntityFormDisplayResourceTestBase extends EntityResourceTestBase 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['node'];
+=======
+  protected static $modules = ['node'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -152,10 +156,13 @@ abstract class EntityFormDisplayResourceTestBase extends EntityResourceTestBase 
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
+<<<<<<< HEAD
     if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
       return parent::getExpectedUnauthorizedAccessMessage($method);
     }
 
+=======
+>>>>>>> dev
     return "The 'administer node form display' permission is required.";
   }
 

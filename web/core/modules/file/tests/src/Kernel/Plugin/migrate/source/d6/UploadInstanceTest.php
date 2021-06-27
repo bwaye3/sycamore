@@ -16,7 +16,11 @@ class UploadInstanceTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['file', 'migrate_drupal'];
+=======
+  protected static $modules = ['file', 'migrate_drupal'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

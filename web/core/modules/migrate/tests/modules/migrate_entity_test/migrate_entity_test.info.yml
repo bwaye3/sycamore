@@ -3,4 +3,7 @@ type: module
 description: 'Support module for entity destination test.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

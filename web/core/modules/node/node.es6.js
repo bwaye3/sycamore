@@ -1,9 +1,16 @@
 /**
  * @file
+<<<<<<< HEAD
  * Defines Javascript behaviors for the node module.
  */
 
 (function($, Drupal, drupalSettings) {
+=======
+ * Defines JavaScript behaviors for the node module.
+ */
+
+(function ($, Drupal, drupalSettings) {
+>>>>>>> dev
   /**
    * Behaviors for tabs in the node edit form.
    *
@@ -16,7 +23,11 @@
     attach(context) {
       const $context = $(context);
 
+<<<<<<< HEAD
       $context.find('.node-form-author').drupalSetSummary(context => {
+=======
+      $context.find('.node-form-author').drupalSetSummary((context) => {
+>>>>>>> dev
         const $authorContext = $(context);
         const name = $authorContext.find('.field--name-uid input').val();
         const date = $authorContext.find('.field--name-created input').val();
@@ -35,7 +46,11 @@
         }
       });
 
+<<<<<<< HEAD
       $context.find('.node-form-options').drupalSetSummary(context => {
+=======
+      $context.find('.node-form-options').drupalSetSummary((context) => {
+>>>>>>> dev
         const $optionsContext = $(context);
         const vals = [];
 
@@ -43,7 +58,11 @@
           $optionsContext
             .find('input:checked')
             .next('label')
+<<<<<<< HEAD
             .each(function() {
+=======
+            .each(function () {
+>>>>>>> dev
               vals.push(Drupal.checkPlain($.trim($(this).text())));
             });
           return vals.join(', ');

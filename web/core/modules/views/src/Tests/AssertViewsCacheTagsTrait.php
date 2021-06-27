@@ -44,12 +44,17 @@ trait AssertViewsCacheTagsTrait {
     // active for direct rendering of views, just like for actual requests.
     /** @var \Symfony\Component\HttpFoundation\RequestStack $request_stack */
     $request_stack = \Drupal::service('request_stack');
+<<<<<<< HEAD
     $request = new Request();
+=======
+    $request = Request::createFromGlobals();
+>>>>>>> dev
     $request->server->set('REQUEST_TIME', REQUEST_TIME);
     $view->setRequest($request);
     $request_stack->push($request);
     $renderer->renderRoot($build);
 
+<<<<<<< HEAD
     // Render array cache tags.
     $this->pass('Checking render array cache tags.');
     sort($expected_render_array_cache_tags);
@@ -57,6 +62,14 @@ trait AssertViewsCacheTagsTrait {
 
     if ($views_caching_is_enabled) {
       $this->pass('Checking Views results cache item cache tags.');
+=======
+    // Check render array cache tags.
+    sort($expected_render_array_cache_tags);
+    $this->assertEquals($expected_render_array_cache_tags, $build['#cache']['tags']);
+
+    if ($views_caching_is_enabled) {
+      // Check Views render cache item cache tags.
+>>>>>>> dev
       /** @var \Drupal\views\Plugin\views\cache\CachePluginBase $cache_plugin */
       $cache_plugin = $view->display_handler->getPlugin('cache');
 
@@ -69,15 +82,23 @@ trait AssertViewsCacheTagsTrait {
         $this->assertNotEmpty($results_cache_item, 'Results cache item found.');
         if ($results_cache_item) {
           sort($expected_results_cache);
+<<<<<<< HEAD
           $this->assertEqual($results_cache_item->tags, $expected_results_cache);
+=======
+          $this->assertEquals($expected_results_cache, $results_cache_item->tags);
+>>>>>>> dev
         }
       }
       else {
         $this->assertNull($results_cache_item, 'Results cache item not found.');
       }
 
+<<<<<<< HEAD
       $this->pass('Checking Views render cache item cache tags.');
 
+=======
+      // Check Views render cache item cache tags.
+>>>>>>> dev
       $original['#cache'] += ['contexts' => []];
       $original['#cache']['contexts'] = Cache::mergeContexts($original['#cache']['contexts'], $this->container->getParameter('renderer.config')['required_cache_contexts']);
 
@@ -85,7 +106,11 @@ trait AssertViewsCacheTagsTrait {
       if ($views_caching_is_enabled === TRUE) {
         $this->assertNotEmpty($render_cache_item, 'Render cache item found.');
         if ($render_cache_item) {
+<<<<<<< HEAD
           $this->assertEqual($render_cache_item['#cache']['tags'], $expected_render_array_cache_tags);
+=======
+          $this->assertEquals($expected_render_array_cache_tags, $render_cache_item['#cache']['tags']);
+>>>>>>> dev
         }
       }
       else {
@@ -132,12 +157,20 @@ trait AssertViewsCacheTagsTrait {
     $request_stack->push($request);
     $renderer->renderRoot($build);
 
+<<<<<<< HEAD
     // Render array cache tags.
     $this->pass('Checking render array cache tags.');
     sort($expected_render_array_cache_tags);
     $this->assertEqual($build['#cache']['tags'], $expected_render_array_cache_tags);
 
     $this->pass('Checking Views render cache item cache tags.');
+=======
+    // Check render array cache tags.
+    sort($expected_render_array_cache_tags);
+    $this->assertEquals($expected_render_array_cache_tags, $build['#cache']['tags']);
+
+    // Check Views render cache item cache tags.
+>>>>>>> dev
     $original['#cache'] += ['contexts' => []];
     $original['#cache']['contexts'] = Cache::mergeContexts($original['#cache']['contexts'], $this->container->getParameter('renderer.config')['required_cache_contexts']);
 
@@ -145,7 +178,11 @@ trait AssertViewsCacheTagsTrait {
     if ($views_caching_is_enabled) {
       $this->assertTrue(!empty($render_cache_item), 'Render cache item found.');
       if ($render_cache_item) {
+<<<<<<< HEAD
         $this->assertEqual($render_cache_item['#cache']['tags'], $expected_render_array_cache_tags);
+=======
+        $this->assertEquals($expected_render_array_cache_tags, $render_cache_item['#cache']['tags']);
+>>>>>>> dev
       }
     }
     else {

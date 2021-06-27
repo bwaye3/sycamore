@@ -3,7 +3,11 @@
  * A Backbone Model for the state of an in-place editable field in the DOM.
  */
 
+<<<<<<< HEAD
 (function(_, Backbone, Drupal) {
+=======
+(function (_, Backbone, Drupal) {
+>>>>>>> dev
   Drupal.quickedit.FieldModel = Drupal.quickedit.BaseModel.extend(
     /** @lends Drupal.quickedit.FieldModel# */ {
       /**
@@ -117,17 +121,25 @@
         this.set('html', options.el.outerHTML);
 
         // Enlist field automatically in the associated entity's field collection.
+<<<<<<< HEAD
         this.get('entity')
           .get('fields')
           .add(this);
+=======
+        this.get('entity').get('fields').add(this);
+>>>>>>> dev
 
         // Automatically generate the logical field ID.
         this.set(
           'logicalFieldID',
+<<<<<<< HEAD
           this.get('fieldID')
             .split('/')
             .slice(0, 4)
             .join('/'),
+=======
+          this.get('fieldID').split('/').slice(0, 4).join('/'),
+>>>>>>> dev
         );
 
         // Call Drupal.quickedit.BaseModel's initialize() method.
@@ -198,10 +210,14 @@
        *   An entity ID: a string of the format `<entity type>/<id>`.
        */
       getEntityID() {
+<<<<<<< HEAD
         return this.get('fieldID')
           .split('/')
           .slice(0, 2)
           .join('/');
+=======
+        return this.get('fieldID').split('/').slice(0, 2).join('/');
+>>>>>>> dev
       },
 
       /**
@@ -211,9 +227,13 @@
        *   A view mode ID.
        */
       getViewMode() {
+<<<<<<< HEAD
         return this.get('fieldID')
           .split('/')
           .pop();
+=======
+        return this.get('fieldID').split('/').pop();
+>>>>>>> dev
       },
 
       /**
@@ -230,7 +250,11 @@
           // (same entity, same field, just a different instance and maybe a
           // different view mode).
           .where({ logicalFieldID: currentField.get('logicalFieldID') })
+<<<<<<< HEAD
           .forEach(field => {
+=======
+          .forEach((field) => {
+>>>>>>> dev
             // Ignore the current field and other fields with the same view mode.
             if (
               field !== currentField &&

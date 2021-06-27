@@ -29,7 +29,11 @@ class TaxonomyIndexTidFilterTest extends TaxonomyTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp(FALSE);
 
     // Setup vocabulary and terms so the initial import is valid.
@@ -53,7 +57,11 @@ class TaxonomyIndexTidFilterTest extends TaxonomyTestBase {
     $term->save();
     $this->terms[$term->id()] = $term;
 
+<<<<<<< HEAD
     ViewTestData::createTestViews(get_class($this), ['taxonomy_test_views']);
+=======
+    ViewTestData::createTestViews(static::class, ['taxonomy_test_views']);
+>>>>>>> dev
   }
 
   /**
@@ -99,6 +107,7 @@ class TaxonomyIndexTidFilterTest extends TaxonomyTestBase {
     ], $view->calculateDependencies()->getDependencies());
   }
 
+<<<<<<< HEAD
   /**
    * Tests post update function fixes dependencies.
    *
@@ -148,4 +157,6 @@ class TaxonomyIndexTidFilterTest extends TaxonomyTestBase {
     ], $view->getDependencies());
   }
 
+=======
+>>>>>>> dev
 }

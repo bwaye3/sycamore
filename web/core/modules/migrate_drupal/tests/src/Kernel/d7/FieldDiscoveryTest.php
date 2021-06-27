@@ -3,16 +3,26 @@
 namespace Drupal\Tests\migrate_drupal\Kernel\d7;
 
 use Drupal\comment\Entity\CommentType;
+<<<<<<< HEAD
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\field\Plugin\migrate\source\d7\FieldInstance;
 use Drupal\migrate_drupal\FieldDiscovery;
 use Drupal\migrate_drupal\FieldDiscoveryInterface;
 use Drupal\migrate_drupal\Plugin\MigrateFieldPluginManagerInterface;
+=======
+use Drupal\field\Plugin\migrate\source\d7\FieldInstance;
+use Drupal\migrate_drupal\FieldDiscoveryInterface;
+>>>>>>> dev
 use Drupal\node\Entity\NodeType;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\Tests\migrate_drupal\Traits\FieldDiscoveryTestTrait;
 use Drupal\field_discovery_test\FieldDiscoveryTestClass;
 
+<<<<<<< HEAD
+=======
+// cspell:ignore imagelink
+
+>>>>>>> dev
 /**
  * Test FieldDiscovery Service against Drupal 7.
  *
@@ -26,7 +36,11 @@ class FieldDiscoveryTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'comment',
     'datetime',
     'file',
@@ -70,7 +84,11 @@ class FieldDiscoveryTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
+=======
+  public function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installConfig(static::$modules);
     $node_types = [
@@ -81,6 +99,10 @@ class FieldDiscoveryTest extends MigrateDrupal7TestBase {
       'et' => 'comment_node_et',
       'forum' => 'comment_forum',
       'test_content_type' => 'comment_node_test_content_type',
+<<<<<<< HEAD
+=======
+      'a_thirty_two_character_type_name' => 'a_thirty_two_character_type_name',
+>>>>>>> dev
     ];
     foreach ($node_types as $node_type => $comment_type) {
       NodeType::create([
@@ -98,6 +120,10 @@ class FieldDiscoveryTest extends MigrateDrupal7TestBase {
     Vocabulary::create(['vid' => 'test_vocabulary'])->save();
     $this->executeMigrations([
       'd7_field',
+<<<<<<< HEAD
+=======
+      'd7_comment_type',
+>>>>>>> dev
       'd7_taxonomy_vocabulary',
       'd7_field_instance',
     ]);
@@ -149,6 +175,11 @@ class FieldDiscoveryTest extends MigrateDrupal7TestBase {
       'field_node_entityreference',
       'field_user_entityreference',
       'field_term_entityreference',
+<<<<<<< HEAD
+=======
+      'field_node_reference',
+      'field_user_reference',
+>>>>>>> dev
       'field_private_file',
       'field_datetime_without_time',
       'field_date_without_time',
@@ -210,12 +241,50 @@ class FieldDiscoveryTest extends MigrateDrupal7TestBase {
                 ],
                 'link_field' => [
                   'link_default' => 'link',
+<<<<<<< HEAD
+=======
+                  'link_title_plain' => 'link',
+                  'link_host' => 'link',
+                  'link_url' => 'link',
+                  'link_plain' => 'link',
+                  'link_absolute' => 'link',
+                  'link_domain' => 'link',
+                  'link_no_protocol' => 'link',
+                  'link_short' => 'link',
+                  'link_label' => 'link',
+                  'link_separate' => 'link_separate',
+>>>>>>> dev
                 ],
                 'entityreference' => [
                   'entityreference_label' => 'entity_reference_label',
                   'entityreference_entity_id' => 'entity_reference_entity_id',
                   'entityreference_entity_view' => 'entity_reference_entity_view',
                 ],
+<<<<<<< HEAD
+=======
+                'node_reference' => [
+                  'node_reference_default' => 'entity_reference_label',
+                  'node_reference_plain' => 'entity_reference_label',
+                  'node_reference_nid' => 'entity_reference_entity_id',
+                  'node_reference_node' => 'entity_reference_entity_view',
+                  'node_reference_path' => 'entity_reference_label',
+                ],
+                'user_reference' => [
+                  'user_reference_default' => 'entity_reference_label',
+                  'user_reference_plain' => 'entity_reference_label',
+                  'user_reference_uid' => 'entity_reference_entity_id',
+                  'user_reference_user' => 'entity_reference_entity_view',
+                  'user_reference_path' => 'entity_reference_label',
+                ],
+                'file' => [
+                  'default' => 'file_default',
+                  'url_plain' => 'file_url_plain',
+                  'path_plain' => 'file_url_plain',
+                  'image_plain' => 'image',
+                  'image_nodelink' => 'image',
+                  'image_imagelink' => 'image',
+                ],
+>>>>>>> dev
                 'email' => [
                   'email_formatter_default' => 'email_mailto',
                   'email_formatter_contact' => 'basic_string',
@@ -231,6 +300,7 @@ class FieldDiscoveryTest extends MigrateDrupal7TestBase {
                 ],
                 'datetime' => [
                   'date_default' => 'datetime_default',
+<<<<<<< HEAD
                 ],
                 'file' => [
                   'default' => 'file_default',
@@ -239,6 +309,14 @@ class FieldDiscoveryTest extends MigrateDrupal7TestBase {
                   'image_plain' => 'image',
                   'image_nodelink' => 'image',
                   'image_imagelink' => 'image',
+=======
+                  'format_interval' => 'datetime_time_ago',
+                  'date_plain' => 'datetime_plain',
+                ],
+                'telephone' => [
+                  'text_plain' => 'string',
+                  'telephone_link' => 'telephone_link',
+>>>>>>> dev
                 ],
               ],
             ],
@@ -255,15 +333,33 @@ class FieldDiscoveryTest extends MigrateDrupal7TestBase {
                 'number_default' => 'number_default_default',
                 'taxonomy_term_reference' => 'taxonomy_term_reference_default',
                 'image' => 'image_default',
+<<<<<<< HEAD
                 'link_field' => 'link_default',
                 'entityreference' => 'entityreference_default',
                 'list' => 'list_default',
+=======
+                'image_miw' => 'image_image',
+                'link_field' => 'link_default',
+                'entityreference' => 'entityreference_default',
+                'node_reference_select' => 'options_select',
+                'node_reference_buttons' => 'options_buttons',
+                'node_reference_autocomplete' => 'entity_reference_autocomplete_tags',
+                'user_reference_select' => 'options_select',
+                'user_reference_buttons' => 'options_buttons',
+                'user_reference_autocomplete' => 'entity_reference_autocomplete_tags',
+                'list' => 'list_default',
+                'file_mfw' => 'file_generic',
+                'filefield_widget' => 'file_generic',
+>>>>>>> dev
                 'email_textfield' => 'email_default',
                 'phone' => 'phone_default',
                 'date' => 'datetime_default',
                 'datetime' => 'datetime_default',
                 'datestamp' => 'datetime_timestamp',
+<<<<<<< HEAD
                 'filefield_widget' => 'file_generic',
+=======
+>>>>>>> dev
               ],
             ],
           ],
@@ -284,9 +380,15 @@ class FieldDiscoveryTest extends MigrateDrupal7TestBase {
     $this->assertArrayHasKey('test_vocabulary', $actual_fields['taxonomy_term']);
     $this->assertArrayHasKey('user', $actual_fields['user']);
     $this->assertArrayHasKey('test_content_type', $actual_fields['node']);
+<<<<<<< HEAD
     $this->assertCount(7, $actual_fields['node']);
     $this->assertCount(7, $actual_fields['comment']);
     $this->assertCount(22, $actual_fields['node']['test_content_type']);
+=======
+    $this->assertCount(8, $actual_fields['node']);
+    $this->assertCount(8, $actual_fields['comment']);
+    $this->assertCount(23, $actual_fields['node']['test_content_type']);
+>>>>>>> dev
     foreach ($actual_fields as $entity_type_id => $bundles) {
       foreach ($bundles as $bundle => $fields) {
         foreach ($fields as $field_name => $field_info) {
@@ -318,6 +420,7 @@ class FieldDiscoveryTest extends MigrateDrupal7TestBase {
     ]);
   }
 
+<<<<<<< HEAD
   /**
    * Tests the fallback to deprecated CCK Plugin Manager.
    *
@@ -373,4 +476,6 @@ class FieldDiscoveryTest extends MigrateDrupal7TestBase {
     $this->assertEquals($expected_process, $actual_process);
   }
 
+=======
+>>>>>>> dev
 }

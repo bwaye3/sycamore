@@ -2,8 +2,11 @@
 
 namespace Drupal\Tests\aggregator\Functional;
 
+<<<<<<< HEAD
 use Drupal\Component\Render\FormattableMarkup;
 
+=======
+>>>>>>> dev
 /**
  * Update feed test.
  *
@@ -31,6 +34,7 @@ class UpdateFeedTest extends AggregatorTestBase {
       if (isset($feed->{$same_field}->value)) {
         $edit[$same_field] = $feed->{$same_field}->value;
       }
+<<<<<<< HEAD
       $this->drupalPostForm('aggregator/sources/' . $feed->id() . '/configure', $edit, t('Save'));
       $this->assertText(t('The feed @name has been updated.', ['@name' => $edit['title[0][value]']]), new FormattableMarkup('The feed %name has been updated.', ['%name' => $edit['title[0][value]']]));
 
@@ -46,6 +50,23 @@ class UpdateFeedTest extends AggregatorTestBase {
       $this->drupalGet('aggregator/sources/' . $feed->id());
       $this->assertSession()->statusCodeEquals(200);
       $this->assertText($edit['title[0][value]'], 'Page title');
+=======
+      $this->drupalGet('aggregator/sources/' . $feed->id() . '/configure');
+      $this->submitForm($edit, 'Save');
+      $this->assertSession()->pageTextContains('The feed ' . $edit['title[0][value]'] . ' has been updated.');
+
+      // Verify that the creation message contains a link to a feed.
+      $this->assertSession()->elementExists('xpath', '//div[@data-drupal-messages]//a[contains(@href, "aggregator/sources/")]');
+
+      // Check feed data.
+      $this->assertSession()->addressEquals($feed->toUrl('canonical'));
+      $this->assertTrue($this->uniqueFeed($edit['title[0][value]'], $edit['url[0][value]']), 'The feed is unique.');
+
+      // Check feed source, the title should be on the page.
+      $this->drupalGet('aggregator/sources/' . $feed->id());
+      $this->assertSession()->statusCodeEquals(200);
+      $this->assertSession()->pageTextContains($edit['title[0][value]']);
+>>>>>>> dev
 
       // Set correct title so deleteFeed() will work.
       $feed->title = $edit['title[0][value]'];

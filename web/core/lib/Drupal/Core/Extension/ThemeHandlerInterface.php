@@ -8,6 +8,7 @@ namespace Drupal\Core\Extension;
 interface ThemeHandlerInterface {
 
   /**
+<<<<<<< HEAD
    * Installs a given list of themes.
    *
    * @param array $theme_list
@@ -53,6 +54,8 @@ interface ThemeHandlerInterface {
   public function uninstall(array $theme_list);
 
   /**
+=======
+>>>>>>> dev
    * Returns a list of currently installed themes.
    *
    * @return \Drupal\Core\Extension\Extension[]
@@ -162,6 +165,7 @@ interface ThemeHandlerInterface {
   public function getDefault();
 
   /**
+<<<<<<< HEAD
    * Sets a new default theme.
    *
    * @param string $theme
@@ -177,6 +181,8 @@ interface ThemeHandlerInterface {
   public function setDefault($theme);
 
   /**
+=======
+>>>>>>> dev
    * Returns an array of directories for all installed themes.
    *
    * Useful for tasks such as finding a file that exists in all theme

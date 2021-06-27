@@ -10,18 +10,28 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 use Drupal\Core\Language\Language;
 use Drupal\entity_test\Entity\EntityTestMul;
+<<<<<<< HEAD
 use Drupal\Tests\Traits\ExpectDeprecationTrait;
 use Drupal\Tests\UnitTestCase;
 
 /**
  * @coversDefaultClass \Drupal\Core\Entity\Entity
+=======
+use Drupal\Tests\UnitTestCase;
+
+/**
+ * @coversDefaultClass \Drupal\Core\Entity\EntityBase
+>>>>>>> dev
  * @group Entity
  * @group Access
  */
 class EntityUnitTest extends UnitTestCase {
 
+<<<<<<< HEAD
   use ExpectDeprecationTrait;
 
+=======
+>>>>>>> dev
   /**
    * The entity under test.
    *
@@ -88,7 +98,11 @@ class EntityUnitTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->values = [
       'id' => 1,
       'langcode' => 'en',
@@ -118,8 +132,11 @@ class EntityUnitTest extends UnitTestCase {
     $this->cacheTagsInvalidator = $this->createMock('Drupal\Core\Cache\CacheTagsInvalidator');
 
     $container = new ContainerBuilder();
+<<<<<<< HEAD
     // Ensure that Entity doesn't use the deprecated entity.manager service.
     $container->set('entity.manager', NULL);
+=======
+>>>>>>> dev
     $container->set('entity_type.manager', $this->entityTypeManager);
     $container->set('uuid', $this->uuid);
     $container->set('language_manager', $this->languageManager);
@@ -171,6 +188,7 @@ class EntityUnitTest extends UnitTestCase {
 
   /**
    * @covers ::label
+<<<<<<< HEAD
    * @group legacy
    */
   public function testLabel() {
@@ -191,13 +209,23 @@ class EntityUnitTest extends UnitTestCase {
       ->with('label_callback')
       ->will($this->returnValue([$callback_container, __FUNCTION__]));
     $this->entityType->expects($this->at(2))
+=======
+   */
+  public function testLabel() {
+    $property_label = $this->randomMachineName();
+    $this->entityType->expects($this->atLeastOnce())
+>>>>>>> dev
       ->method('getKey')
       ->with('label')
       ->will($this->returnValue('label'));
 
     // Set a dummy property on the entity under test to test that the label can
     // be returned form a property if there is no callback.
+<<<<<<< HEAD
     $this->entityTypeManager->expects($this->at(1))
+=======
+    $this->entityTypeManager->expects($this->atLeastOnce())
+>>>>>>> dev
       ->method('getDefinition')
       ->with($this->entityTypeId)
       ->will($this->returnValue([
@@ -207,7 +235,10 @@ class EntityUnitTest extends UnitTestCase {
       ]));
     $this->entity->label = $property_label;
 
+<<<<<<< HEAD
     $this->assertSame($callback_label, $this->entity->label());
+=======
+>>>>>>> dev
     $this->assertSame($property_label, $this->entity->label());
   }
 

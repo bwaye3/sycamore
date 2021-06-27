@@ -19,7 +19,11 @@ class MigrateSkipRowTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['migrate', 'migrate_prepare_row_test'];
+=======
+  protected static $modules = ['migrate', 'migrate_prepare_row_test'];
+>>>>>>> dev
 
   /**
    * Tests migration interruptions.
@@ -51,13 +55,21 @@ class MigrateSkipRowTest extends KernelTestBase {
 
     $executable = new MigrateExecutable($migration);
     $result = $executable->import();
+<<<<<<< HEAD
     $this->assertEqual($result, MigrationInterface::RESULT_COMPLETED);
+=======
+    $this->assertEquals(MigrationInterface::RESULT_COMPLETED, $result);
+>>>>>>> dev
 
     /** @var \Drupal\migrate\Plugin\MigrateIdMapInterface $id_map_plugin */
     $id_map_plugin = $migration->getIdMap();
     // The first row is recorded in the map as ignored.
     $map_row = $id_map_plugin->getRowBySource(['id' => 1]);
+<<<<<<< HEAD
     $this->assertEqual(MigrateIdMapInterface::STATUS_IGNORED, $map_row['source_row_status']);
+=======
+    $this->assertEquals(MigrateIdMapInterface::STATUS_IGNORED, $map_row['source_row_status']);
+>>>>>>> dev
     // Check that no message has been logged for the first exception.
     $messages = $id_map_plugin->getMessages(['id' => 1])->fetchAll();
     $this->assertEmpty($messages);

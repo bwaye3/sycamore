@@ -24,14 +24,22 @@ class DisabledDisplayTest extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['block', 'node', 'views'];
+=======
+  protected static $modules = ['block', 'node', 'views'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'classy';
 
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();
@@ -65,7 +73,11 @@ class DisabledDisplayTest extends ViewTestBase {
     // Enabled page display should return content.
     $this->drupalGet('test-disabled-display');
     $result = $this->xpath('//h1[@class="page-title"]');
+<<<<<<< HEAD
     $this->assertEqual($result[0]->getText(), 'test_disabled_display', 'The enabled page_1 display is accessible.');
+=======
+    $this->assertEquals('test_disabled_display', $result[0]->getText(), 'The enabled page_1 display is accessible.');
+>>>>>>> dev
 
     // Disabled page view should 404.
     $this->drupalGet('test-disabled-display-2');
@@ -84,7 +96,11 @@ class DisabledDisplayTest extends ViewTestBase {
     // Check that the originally disabled page_2 display is now enabled.
     $this->drupalGet('test-disabled-display-2');
     $result = $this->xpath('//h1[@class="page-title"]');
+<<<<<<< HEAD
     $this->assertEqual($result[0]->getText(), 'test_disabled_display', 'The enabled page_2 display is accessible.');
+=======
+    $this->assertEquals('test_disabled_display', $result[0]->getText(), 'The enabled page_2 display is accessible.');
+>>>>>>> dev
 
     // Disable each disabled display and save the view.
     foreach ($display_ids as $display_id) {

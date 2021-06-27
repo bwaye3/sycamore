@@ -15,7 +15,11 @@ class LanguageTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['language', 'migrate_drupal'];
+=======
+  protected static $modules = ['language', 'migrate_drupal'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

@@ -9,7 +9,10 @@
   var states = {
     postponed: []
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.states = states;
 
   function invert(a, invertState) {
@@ -28,6 +31,10 @@
     if (typeof a === 'undefined') {
       return b;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     if (typeof b === 'undefined') {
       return a;
     }
@@ -64,8 +71,15 @@
   states.Dependent = function (args) {
     var _this = this;
 
+<<<<<<< HEAD
     $.extend(this, { values: {}, oldValue: null }, args);
 
+=======
+    $.extend(this, {
+      values: {},
+      oldValue: null
+    }, args);
+>>>>>>> dev
     this.dependees = this.getDependees();
     Object.keys(this.dependees || {}).forEach(function (selector) {
       _this.initializeDependee(selector, _this.dependees[selector]);
@@ -83,13 +97,19 @@
       return typeof value === 'string' ? _compare2(reference.toString(), value) : _compare2(reference, value);
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   states.Dependent.prototype = {
     initializeDependee: function initializeDependee(selector, dependeeStates) {
       var _this2 = this;
 
       this.values[selector] = {};
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       Object.keys(dependeeStates).forEach(function (i) {
         var state = dependeeStates[i];
 
@@ -98,6 +118,7 @@
         }
 
         state = states.State.sanitize(state);
+<<<<<<< HEAD
 
         _this2.values[selector][state.name] = null;
 
@@ -106,10 +127,27 @@
         });
 
         new states.Trigger({ selector: selector, state: state });
+=======
+        _this2.values[selector][state.name] = null;
+        $(selector).on("state:".concat(state), {
+          selector: selector,
+          state: state
+        }, function (e) {
+          _this2.update(e.data.selector, e.data.state, e.value);
+        });
+        new states.Trigger({
+          selector: selector,
+          state: state
+        });
+>>>>>>> dev
       });
     },
     compare: function compare(reference, selector, state) {
       var value = this.values[selector][state.name];
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       if (reference.constructor.name in states.Dependent.comparisons) {
         return states.Dependent.comparisons[reference.constructor.name](reference, value);
       }
@@ -127,21 +165,36 @@
 
       if (value !== this.oldValue) {
         this.oldValue = value;
+<<<<<<< HEAD
 
         value = invert(value, this.state.invert);
 
         this.element.trigger({
           type: 'state:' + this.state,
+=======
+        value = invert(value, this.state.invert);
+        this.element.trigger({
+          type: "state:".concat(this.state),
+>>>>>>> dev
           value: value,
           trigger: true
         });
       }
     },
     verifyConstraints: function verifyConstraints(constraints, selector) {
+<<<<<<< HEAD
       var result = void 0;
       if ($.isArray(constraints)) {
         var hasXor = $.inArray('xor', constraints) === -1;
         var len = constraints.length;
+=======
+      var result;
+
+      if ($.isArray(constraints)) {
+        var hasXor = $.inArray('xor', constraints) === -1;
+        var len = constraints.length;
+
+>>>>>>> dev
         for (var i = 0; i < len; i++) {
           if (constraints[i] !== 'xor') {
             var constraint = this.checkConstraints(constraints[i], selector, i);
@@ -149,6 +202,10 @@
             if (constraint && (hasXor || result)) {
               return hasXor;
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
             result = result || constraint;
           }
         }
@@ -163,6 +220,10 @@
             }
           }
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       return result;
     },
     checkConstraints: function checkConstraints(value, selector, state) {
@@ -182,16 +243,25 @@
     },
     getDependees: function getDependees() {
       var cache = {};
+<<<<<<< HEAD
 
       var _compare = this.compare;
+=======
+      var _compare = this.compare;
+
+>>>>>>> dev
       this.compare = function (reference, selector, state) {
         (cache[selector] || (cache[selector] = [])).push(state.name);
       };
 
       this.verifyConstraints(this.constraints);
+<<<<<<< HEAD
 
       this.compare = _compare;
 
+=======
+      this.compare = _compare;
+>>>>>>> dev
       return cache;
     }
   };
@@ -202,7 +272,11 @@
     if (this.state in states.Trigger.states) {
       this.element = $(this.selector);
 
+<<<<<<< HEAD
       if (!this.element.data('trigger:' + this.state)) {
+=======
+      if (!this.element.data("trigger:".concat(this.state))) {
+>>>>>>> dev
         this.initialize();
       }
     }
@@ -222,68 +296,108 @@
         });
       }
 
+<<<<<<< HEAD
       this.element.data('trigger:' + this.state, true);
     },
     defaultTrigger: function defaultTrigger(event, valueFn) {
       var oldValue = valueFn.call(this.element);
 
+=======
+      this.element.data("trigger:".concat(this.state), true);
+    },
+    defaultTrigger: function defaultTrigger(event, valueFn) {
+      var oldValue = valueFn.call(this.element);
+>>>>>>> dev
       this.element.on(event, $.proxy(function (e) {
         var value = valueFn.call(this.element, e);
 
         if (oldValue !== value) {
           this.element.trigger({
+<<<<<<< HEAD
             type: 'state:' + this.state,
+=======
+            type: "state:".concat(this.state),
+>>>>>>> dev
             value: value,
             oldValue: oldValue
           });
           oldValue = value;
         }
       }, this));
+<<<<<<< HEAD
 
       states.postponed.push($.proxy(function () {
         this.element.trigger({
           type: 'state:' + this.state,
+=======
+      states.postponed.push($.proxy(function () {
+        this.element.trigger({
+          type: "state:".concat(this.state),
+>>>>>>> dev
           value: oldValue,
           oldValue: null
         });
       }, this));
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   states.Trigger.states = {
     empty: {
       keyup: function keyup() {
         return this.val() === '';
       }
     },
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     checked: {
       change: function change() {
         var checked = false;
         this.each(function () {
           checked = $(this).prop('checked');
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
           return !checked;
         });
         return checked;
       }
     },
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     value: {
       keyup: function keyup() {
         if (this.length > 1) {
           return this.filter(':checked').val() || false;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         return this.val();
       },
       change: function change() {
         if (this.length > 1) {
           return this.filter(':checked').val() || false;
         }
+<<<<<<< HEAD
         return this.val();
       }
     },
 
+=======
+
+        return this.val();
+      }
+    },
+>>>>>>> dev
     collapsed: {
       collapsed: function collapsed(e) {
         return typeof e !== 'undefined' && 'value' in e ? e.value : !this.is('[open]');
@@ -294,8 +408,13 @@
   states.State = function (state) {
     this.pristine = state;
     this.name = state;
+<<<<<<< HEAD
 
     var process = true;
+=======
+    var process = true;
+
+>>>>>>> dev
     do {
       while (this.name.charAt(0) === '!') {
         this.name = this.name.substring(1);
@@ -332,27 +451,46 @@
     closed: 'collapsed',
     readwrite: '!readonly'
   };
+<<<<<<< HEAD
 
   states.State.prototype = {
     invert: false,
 
+=======
+  states.State.prototype = {
+    invert: false,
+>>>>>>> dev
     toString: function toString() {
       return this.name;
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   var $document = $(document);
   $document.on('state:disabled', function (e) {
     if (e.trigger) {
       $(e.target).prop('disabled', e.value).closest('.js-form-item, .js-form-submit, .js-form-wrapper').toggleClass('form-disabled', e.value).find('select, input, textarea').prop('disabled', e.value);
     }
   });
+<<<<<<< HEAD
 
   $document.on('state:required', function (e) {
     if (e.trigger) {
       if (e.value) {
         var label = 'label' + (e.target.id ? '[for=' + e.target.id + ']' : '');
         var $label = $(e.target).attr({ required: 'required', 'aria-required': 'true' }).closest('.js-form-item, .js-form-wrapper').find(label);
+=======
+  $document.on('state:required', function (e) {
+    if (e.trigger) {
+      if (e.value) {
+        var label = "label".concat(e.target.id ? "[for=".concat(e.target.id, "]") : '');
+        var $label = $(e.target).attr({
+          required: 'required',
+          'aria-required': 'true'
+        }).closest('.js-form-item, .js-form-wrapper').find(label);
+>>>>>>> dev
 
         if (!$label.hasClass('js-form-required').length) {
           $label.addClass('js-form-required form-required');
@@ -362,19 +500,28 @@
       }
     }
   });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   $document.on('state:visible', function (e) {
     if (e.trigger) {
       $(e.target).closest('.js-form-item, .js-form-submit, .js-form-wrapper').toggle(e.value);
     }
   });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   $document.on('state:checked', function (e) {
     if (e.trigger) {
       $(e.target).prop('checked', e.value);
     }
   });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   $document.on('state:collapsed', function (e) {
     if (e.trigger) {
       if ($(e.target).is('[open]') === e.value) {

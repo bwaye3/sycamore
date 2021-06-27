@@ -11,7 +11,11 @@ use Drupal\Tests\Core\Menu\LocalTaskIntegrationTestBase;
  */
 class UserLocalTasksTest extends LocalTaskIntegrationTestBase {
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->directoryList = ['user' => 'core/modules/user'];
     parent::setUp();
   }

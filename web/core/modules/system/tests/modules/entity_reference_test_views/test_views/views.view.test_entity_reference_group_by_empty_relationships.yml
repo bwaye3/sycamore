@@ -122,6 +122,10 @@ display:
           required: false
       group_by: true
     display_plugin: block
+<<<<<<< HEAD
     display_title: Master
+=======
+    display_title: Default
+>>>>>>> dev
     id: default
     position: 0

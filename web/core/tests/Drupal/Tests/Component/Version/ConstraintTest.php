@@ -150,6 +150,7 @@ class ConstraintTest extends TestCase {
   }
 
   /**
+<<<<<<< HEAD
    * @covers ::toArray
    * @group legacy
    * @expectedDeprecation Drupal\Component\Version\Constraint::toArray() only exists to provide a backwards compatibility layer. See https://www.drupal.org/node/2756875
@@ -163,6 +164,8 @@ class ConstraintTest extends TestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Create testIsCompatible() test cases for constraints and versions.
    *
    * @param string $constraint_string

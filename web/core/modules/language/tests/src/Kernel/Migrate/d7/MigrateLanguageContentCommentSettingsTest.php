@@ -15,7 +15,11 @@ class MigrateLanguageContentCommentSettingsTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'comment',
     'content_translation',
     'language',
@@ -26,10 +30,20 @@ class MigrateLanguageContentCommentSettingsTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     parent::setUp();
     $this->migrateCommentTypes();
     $this->executeMigration('d7_language_content_comment_settings');
+=======
+  protected function setUp(): void {
+    parent::setUp();
+    $this->migrateCommentTypes();
+    $this->executeMigrations([
+      'language',
+      'd7_language_content_comment_settings',
+    ]);
+>>>>>>> dev
   }
 
   /**

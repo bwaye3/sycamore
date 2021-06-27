@@ -17,12 +17,20 @@ class ConfigSnapshotTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['config_test', 'system'];
+=======
+  protected static $modules = ['config_test', 'system'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installConfig(['system']);
     // Update the config snapshot. This allows the parent::setUp() to write
@@ -76,7 +84,11 @@ class ConfigSnapshotTest extends KernelTestBase {
 
     // Verify changed config was properly imported.
     \Drupal::configFactory()->reset($config_name);
+<<<<<<< HEAD
     $this->assertIdentical($this->config($config_name)->get($config_key), $new_data);
+=======
+    $this->assertSame($new_data, $this->config($config_name)->get($config_key));
+>>>>>>> dev
 
     // Verify that a new snapshot was created which and that it matches
     // the active config.

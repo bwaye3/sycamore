@@ -4,7 +4,10 @@ namespace Drupal\Tests\views\Functional;
 
 use Behat\Mink\Exception\ElementNotFoundException;
 use Drupal\Core\Database\Database;
+<<<<<<< HEAD
 use Drupal\Core\Database\Query\SelectInterface;
+=======
+>>>>>>> dev
 use Drupal\Tests\BrowserTestBase;
 use Drupal\views\Tests\ViewResultAssertionTrait;
 use Drupal\views\Tests\ViewTestData;
@@ -18,7 +21,10 @@ use Drupal\views\ViewExecutable;
  * include the same methods.
  *
  * @see \Drupal\Tests\views\Kernel\ViewsKernelTestBase
+<<<<<<< HEAD
  * @see \Drupal\simpletest\WebTestBase
+=======
+>>>>>>> dev
  */
 abstract class ViewTestBase extends BrowserTestBase {
 
@@ -29,12 +35,20 @@ abstract class ViewTestBase extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['views', 'views_test_config'];
+=======
+  protected static $modules = ['views', 'views_test_config'];
+>>>>>>> dev
 
   protected function setUp($import_test_views = TRUE) {
     parent::setUp();
     if ($import_test_views) {
+<<<<<<< HEAD
       ViewTestData::createTestViews(get_class($this), ['views_test_config']);
+=======
+      ViewTestData::createTestViews(static::class, ['views_test_config']);
+>>>>>>> dev
     }
   }
 
@@ -115,7 +129,11 @@ abstract class ViewTestBase extends BrowserTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Executes a view with debugging.
+=======
+   * Executes a view.
+>>>>>>> dev
    *
    * @param \Drupal\views\ViewExecutable $view
    *   The view object.
@@ -128,11 +146,14 @@ abstract class ViewTestBase extends BrowserTestBase {
     $view->setDisplay();
     $view->preExecute($args);
     $view->execute();
+<<<<<<< HEAD
     $verbose_message = '<pre>Executed view: ' . ((string) $view->build_info['query']) . '</pre>';
     if ($view->build_info['query'] instanceof SelectInterface) {
       $verbose_message .= '<pre>Arguments: ' . print_r($view->build_info['query']->getArguments(), TRUE) . '</pre>';
     }
     $this->verbose($verbose_message);
+=======
+>>>>>>> dev
   }
 
   /**

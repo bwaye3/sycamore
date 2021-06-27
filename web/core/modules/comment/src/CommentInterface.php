@@ -209,6 +209,7 @@ interface CommentInterface extends ContentEntityInterface, EntityChangedInterfac
   public function setCreatedTime($created);
 
   /**
+<<<<<<< HEAD
    * Returns the comment's status.
    *
    * @return int|string|bool
@@ -223,6 +224,8 @@ interface CommentInterface extends ContentEntityInterface, EntityChangedInterfac
   public function getStatus();
 
   /**
+=======
+>>>>>>> dev
    * Returns the alphadecimal representation of the comment's place in a thread.
    *
    * @return string

@@ -2213,6 +2213,7 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
   }
 
   /**
+<<<<<<< HEAD
    * Applies the cacheability of the current display to the given render array.
    *
    * @param array $element
@@ -2229,6 +2230,8 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function elementPreRender(array $element) {
@@ -2426,6 +2429,15 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
       // Places like \Drupal\views\ViewExecutable::setCurrentPage() set up an
       // additional cache context.
       $this->view->element['#cache']['keys'] = array_merge(['views', 'display', $this->view->element['#name'], $this->view->element['#display_id']], $this->view->element['#cache']['keys']);
+<<<<<<< HEAD
+=======
+
+      // Add arguments to the cache key.
+      if ($args) {
+        $this->view->element['#cache']['keys'][] = 'args';
+        $this->view->element['#cache']['keys'][] = implode(',', $args);
+      }
+>>>>>>> dev
     }
     else {
       // Remove the cache keys, to ensure render caching is not triggered. We

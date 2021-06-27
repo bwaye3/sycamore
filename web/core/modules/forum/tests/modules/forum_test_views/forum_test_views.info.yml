@@ -3,7 +3,10 @@ type: module
 description: 'Provides default views for views forum tests.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:forum
   - drupal:views

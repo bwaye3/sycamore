@@ -19,7 +19,11 @@ class EntityDisplayModeTest extends BrowserTestBase {
    *
    * @var string[]
    */
+<<<<<<< HEAD
   public static $modules = ['block', 'entity_test', 'field_ui', 'node'];
+=======
+  protected static $modules = ['block', 'entity_test', 'field_ui', 'node'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -29,7 +33,11 @@ class EntityDisplayModeTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create a node type.
@@ -52,15 +60,25 @@ class EntityDisplayModeTest extends BrowserTestBase {
     $this->drupalLogin($this->drupalCreateUser(['administer display modes']));
     $this->drupalGet('admin/structure/display-modes/view');
     $this->assertSession()->statusCodeEquals(200);
+<<<<<<< HEAD
     $this->assertText(t('Add view mode'));
     $this->assertLinkByHref('admin/structure/display-modes/view/add');
     $this->assertLinkByHref('admin/structure/display-modes/view/add/entity_test');
+=======
+    $this->assertSession()->pageTextContains('Add view mode');
+    $this->assertSession()->linkByHrefExists('admin/structure/display-modes/view/add');
+    $this->assertSession()->linkByHrefExists('admin/structure/display-modes/view/add/entity_test');
+>>>>>>> dev
 
     $this->drupalGet('admin/structure/display-modes/view/add/entity_test_mulrev');
     $this->assertSession()->statusCodeEquals(404);
 
     $this->drupalGet('admin/structure/display-modes/view/add');
+<<<<<<< HEAD
     $this->assertSession()->linkNotExists(t('Test entity - revisions and data table'), 'An entity type with no view builder cannot have view modes.');
+=======
+    $this->assertSession()->linkNotExists('Test entity - revisions and data table', 'An entity type with no view builder cannot have view modes.');
+>>>>>>> dev
 
     // Test adding a view mode including dots in machine_name.
     $this->clickLink(t('Test entity'));
@@ -68,7 +86,11 @@ class EntityDisplayModeTest extends BrowserTestBase {
       'id' => strtolower($this->randomMachineName()) . '.' . strtolower($this->randomMachineName()),
       'label' => $this->randomString(),
     ];
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, t('Save'));
+=======
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
     $this->assertRaw('The machine-readable name must contain only lowercase letters, numbers, and underscores.');
 
     // Test adding a view mode.
@@ -76,7 +98,11 @@ class EntityDisplayModeTest extends BrowserTestBase {
       'id' => strtolower($this->randomMachineName()),
       'label' => $this->randomString(),
     ];
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, t('Save'));
+=======
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
     $this->assertRaw(t('Saved the %label view mode.', ['%label' => $edit['label']]));
 
     // Test editing the view mode.
@@ -93,7 +119,11 @@ class EntityDisplayModeTest extends BrowserTestBase {
     // Test deleting the view mode.
     $this->clickLink(t('Delete'));
     $this->assertRaw(t('Are you sure you want to delete the view mode %label?', ['%label' => $edit['label']]));
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, NULL, t('Delete'));
+=======
+    $this->submitForm([], 'Delete');
+>>>>>>> dev
     $this->assertRaw(t('The view mode %label has been deleted.', ['%label' => $edit['label']]));
   }
 
@@ -107,14 +137,23 @@ class EntityDisplayModeTest extends BrowserTestBase {
     $this->drupalLogin($this->drupalCreateUser(['administer display modes']));
     $this->drupalGet('admin/structure/display-modes/form');
     $this->assertSession()->statusCodeEquals(200);
+<<<<<<< HEAD
     $this->assertText(t('Add form mode'));
     $this->assertLinkByHref('admin/structure/display-modes/form/add');
+=======
+    $this->assertSession()->pageTextContains('Add form mode');
+    $this->assertSession()->linkByHrefExists('admin/structure/display-modes/form/add');
+>>>>>>> dev
 
     $this->drupalGet('admin/structure/display-modes/form/add/entity_test_no_label');
     $this->assertSession()->statusCodeEquals(404);
 
     $this->drupalGet('admin/structure/display-modes/form/add');
+<<<<<<< HEAD
     $this->assertSession()->linkNotExists(t('Entity Test without label'), 'An entity type with no form cannot have form modes.');
+=======
+    $this->assertSession()->linkNotExists('Entity Test without label', 'An entity type with no form cannot have form modes.');
+>>>>>>> dev
 
     // Test adding a view mode including dots in machine_name.
     $this->clickLink(t('Test entity'));
@@ -122,7 +161,11 @@ class EntityDisplayModeTest extends BrowserTestBase {
       'id' => strtolower($this->randomMachineName()) . '.' . strtolower($this->randomMachineName()),
       'label' => $this->randomString(),
     ];
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, t('Save'));
+=======
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
     $this->assertRaw('The machine-readable name must contain only lowercase letters, numbers, and underscores.');
 
     // Test adding a form mode.
@@ -130,7 +173,11 @@ class EntityDisplayModeTest extends BrowserTestBase {
       'id' => strtolower($this->randomMachineName()),
       'label' => $this->randomString(),
     ];
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, t('Save'));
+=======
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
     $this->assertRaw(t('Saved the %label form mode.', ['%label' => $edit['label']]));
 
     // Test editing the form mode.
@@ -147,7 +194,11 @@ class EntityDisplayModeTest extends BrowserTestBase {
     // Test deleting the form mode.
     $this->clickLink(t('Delete'));
     $this->assertRaw(t('Are you sure you want to delete the form mode %label?', ['%label' => $edit['label']]));
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, NULL, t('Delete'));
+=======
+    $this->submitForm([], 'Delete');
+>>>>>>> dev
     $this->assertRaw(t('The form mode %label has been deleted.', ['%label' => $edit['label']]));
   }
 
@@ -179,9 +230,16 @@ class EntityDisplayModeTest extends BrowserTestBase {
     $start = strpos($page_text, 'view modes');
     $pos = $start;
     $list = ['Full content', 'RSS', 'Search index', 'Search result', 'Teaser'];
+<<<<<<< HEAD
     foreach ($list as $name) {
       $new_pos = strpos($page_text, $name, $start);
       $this->assertTrue($new_pos > $pos, 'Order of ' . $name . ' is correct on page');
+=======
+    // Verify that the order of the view modes is correct on the page.
+    foreach ($list as $name) {
+      $new_pos = strpos($page_text, $name, $start);
+      $this->assertGreaterThan($pos, $new_pos);
+>>>>>>> dev
       $pos = $new_pos;
     }
     // Now that we have verified the original display order, we can change the
@@ -191,7 +249,12 @@ class EntityDisplayModeTest extends BrowserTestBase {
     $edit = [
       'label' => 'Breezer',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/structure/display-modes/view/manage/node.teaser', $edit, 'Save');
+=======
+    $this->drupalGet('admin/structure/display-modes/view/manage/node.teaser');
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
     $this->assertSession()->pageTextContains('Saved the Breezer view mode.');
 
     // Re-open the display settings for the article content type and verify
@@ -202,9 +265,16 @@ class EntityDisplayModeTest extends BrowserTestBase {
     $start = strpos($page_text, 'view modes');
     $pos = $start;
     $list = ['Breezer', 'Full content'];
+<<<<<<< HEAD
     foreach ($list as $name) {
       $new_pos = strpos($page_text, $name, $start);
       $this->assertTrue($new_pos > $pos, 'Order of ' . $name . ' is correct on page');
+=======
+    // Verify that the order of the view modes is correct on the page.
+    foreach ($list as $name) {
+      $new_pos = strpos($page_text, $name, $start);
+      $this->assertGreaterThan($pos, $new_pos);
+>>>>>>> dev
       $pos = $new_pos;
     }
   }

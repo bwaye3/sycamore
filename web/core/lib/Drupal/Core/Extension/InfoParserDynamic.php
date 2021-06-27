@@ -33,7 +33,11 @@ class InfoParserDynamic implements InfoParserInterface {
     if ($app_root === NULL) {
       // @todo https://www.drupal.org/project/drupal/issues/3087975 Require
       //   $app_root argument.
+<<<<<<< HEAD
       $app_root = \Drupal::hasService('app.root') ? (string) \Drupal::service('app.root') : DRUPAL_ROOT;
+=======
+      $app_root = \Drupal::hasService('kernel') ? \Drupal::root() : DRUPAL_ROOT;
+>>>>>>> dev
     }
     $this->root = $app_root;
   }
@@ -56,7 +60,11 @@ class InfoParserDynamic implements InfoParserInterface {
       if (!empty($missing_keys)) {
         throw new InfoParserException('Missing required keys (' . implode(', ', $missing_keys) . ') in ' . $filename);
       }
+<<<<<<< HEAD
       if (!isset($parsed_info['core']) && !isset($parsed_info['core_version_requirement'])) {
+=======
+      if (!isset($parsed_info['core_version_requirement'])) {
+>>>>>>> dev
         if (strpos($filename, 'core/') === 0 || strpos($filename, $this->root . '/core/') === 0) {
           // Core extensions do not need to specify core compatibility: they are
           // by definition compatible so a sensible default is used. Core
@@ -68,6 +76,7 @@ class InfoParserDynamic implements InfoParserInterface {
           // easier for contrib to use test modules.
           $parsed_info['core_version_requirement'] = \Drupal::VERSION;
         }
+<<<<<<< HEAD
         else {
           // Non-core extensions must specify core compatibility.
           throw new InfoParserException("The 'core' or the 'core_version_requirement' key must be present in " . $filename);
@@ -76,6 +85,13 @@ class InfoParserDynamic implements InfoParserInterface {
       if (isset($parsed_info['core']) && !preg_match("/^\d\.x$/", $parsed_info['core'])) {
         throw new InfoParserException("Invalid 'core' value \"{$parsed_info['core']}\" in " . $filename);
       }
+=======
+        elseif (!isset($parsed_info['core'])) {
+          // Non-core extensions must specify core compatibility.
+          throw new InfoParserException("The 'core_version_requirement' key must be present in " . $filename);
+        }
+      }
+>>>>>>> dev
       if (isset($parsed_info['core_version_requirement'])) {
         try {
           $supports_pre_core_version_requirement_version = static::isConstraintSatisfiedByPreviousVersion($parsed_info['core_version_requirement'], static::FIRST_CORE_VERSION_REQUIREMENT_SUPPORTED_VERSION);
@@ -99,6 +115,12 @@ class InfoParserDynamic implements InfoParserInterface {
           throw new InfoParserException("The 'core_version_requirement' can not be used to specify compatibility for a specific version before " . static::FIRST_CORE_VERSION_REQUIREMENT_SUPPORTED_VERSION . " in $filename");
         }
       }
+<<<<<<< HEAD
+=======
+      if (isset($parsed_info['core']) && $parsed_info['core'] !== '8.x') {
+        throw new InfoParserException("'core: {$parsed_info['core']}' is not supported. Use 'core_version_requirement' to specify core compatibility. Only 'core: 8.x' is supported to provide backwards compatibility for Drupal 8 when needed in $filename");
+      }
+>>>>>>> dev
 
       // Determine if the extension is compatible with the current version of
       // Drupal core.
@@ -107,6 +129,7 @@ class InfoParserDynamic implements InfoParserInterface {
       if (isset($parsed_info['version']) && $parsed_info['version'] === 'VERSION') {
         $parsed_info['version'] = \Drupal::VERSION;
       }
+<<<<<<< HEAD
       // Special backwards compatible handling profiles and their 'dependencies'
       // key.
       if ($parsed_info['type'] === 'profile' && isset($parsed_info['dependencies']) && !array_key_exists('install', $parsed_info)) {
@@ -125,6 +148,8 @@ class InfoParserDynamic implements InfoParserInterface {
         $parsed_info['install'] = $parsed_info['dependencies'];
         $parsed_info['dependencies'] = [];
       }
+=======
+>>>>>>> dev
     }
     return $parsed_info;
   }

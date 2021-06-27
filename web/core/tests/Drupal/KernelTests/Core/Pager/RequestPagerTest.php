@@ -18,7 +18,11 @@ class RequestPagerTest extends KernelTestBase {
   public function testFindPage() {
     $request = Request::create('http://example.com', 'GET', ['page' => '0,10']);
 
+<<<<<<< HEAD
     /* @var $request_stack \Symfony\Component\HttpFoundation\RequestStack */
+=======
+    /** @var \Symfony\Component\HttpFoundation\RequestStack $request_stack */
+>>>>>>> dev
     $request_stack = $this->container->get('request_stack');
     $request_stack->push($request);
 
@@ -36,7 +40,11 @@ class RequestPagerTest extends KernelTestBase {
     ];
     $request = Request::create('http://example.com', 'GET', array_merge(['page' => '0,10'], $test_parameters));
 
+<<<<<<< HEAD
     /* @var $request_stack \Symfony\Component\HttpFoundation\RequestStack */
+=======
+    /** @var \Symfony\Component\HttpFoundation\RequestStack $request_stack */
+>>>>>>> dev
     $request_stack = $this->container->get('request_stack');
     $request_stack->push($request);
 

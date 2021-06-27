@@ -24,7 +24,11 @@ class MigrateEntityContentBaseTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['migrate', 'user', 'language', 'entity_test'];
+=======
+  protected static $modules = ['migrate', 'user', 'language', 'entity_test'];
+>>>>>>> dev
 
   /**
    * The storage for entity_test_mul.
@@ -43,7 +47,11 @@ class MigrateEntityContentBaseTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Enable two required fields with default values: a single-value field and
@@ -98,7 +106,11 @@ class MigrateEntityContentBaseTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test importing and rolling back translated entities.
+=======
+   * Tests importing and rolling back translated entities.
+>>>>>>> dev
    */
   public function testTranslated() {
     // Create a destination.

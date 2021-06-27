@@ -8,6 +8,7 @@
 (function ($, Drupal, Backbone, _) {
   Drupal.contextualToolbar.AuralView = Backbone.View.extend({
     announcedOnce: false,
+<<<<<<< HEAD
 
     initialize: function initialize(options) {
       this.options = options;
@@ -15,12 +16,21 @@
       this.listenTo(this.model, 'change', this.render);
       this.listenTo(this.model, 'change:isViewing', this.manageTabbing);
 
+=======
+    initialize: function initialize(options) {
+      this.options = options;
+      this.listenTo(this.model, 'change', this.render);
+      this.listenTo(this.model, 'change:isViewing', this.manageTabbing);
+>>>>>>> dev
       $(document).on('keyup', _.bind(this.onKeypress, this));
       this.manageTabbing();
     },
     render: function render() {
       this.$el.find('button').attr('aria-pressed', !this.model.get('isViewing'));
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       return this;
     },
     manageTabbing: function manageTabbing() {
@@ -30,6 +40,10 @@
         if (tabbingContext.active) {
           Drupal.announce(this.options.strings.tabbingReleased);
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         tabbingContext.release();
       }
 
@@ -50,7 +64,10 @@
     onKeypress: function onKeypress(event) {
       if (!this.announcedOnce && event.keyCode === 9 && !this.model.get('isViewing')) {
         this.announceTabbingConstraint();
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         this.announcedOnce = true;
       }
 

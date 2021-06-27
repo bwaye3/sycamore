@@ -695,6 +695,7 @@ class ModuleHandler implements ModuleHandlerInterface {
   }
 
   /**
+<<<<<<< HEAD
    * Parses a dependency for comparison by drupal_check_incompatibility().
    *
    * @param string $dependency
@@ -733,6 +734,8 @@ class ModuleHandler implements ModuleHandlerInterface {
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function getModuleDirectories() {
@@ -747,6 +750,7 @@ class ModuleHandler implements ModuleHandlerInterface {
    * {@inheritdoc}
    */
   public function getName($module) {
+<<<<<<< HEAD
     try {
       return \Drupal::service('extension.list.module')->getName($module);
     }
@@ -754,6 +758,9 @@ class ModuleHandler implements ModuleHandlerInterface {
       @trigger_error('Calling ModuleHandler::getName() with an unknown module is deprecated in Drupal 8.7.0 and support for this will be removed in Drupal 9.0.0, check that the module exists before calling this method. See https://www.drupal.org/node/3024541.', E_USER_DEPRECATED);
       return $module;
     }
+=======
+    return \Drupal::service('extension.list.module')->getName($module);
+>>>>>>> dev
   }
 
 }

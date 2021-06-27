@@ -9,9 +9,13 @@
   Drupal.quickedit.AppModel = Backbone.Model.extend({
     defaults: {
       highlightedField: null,
+<<<<<<< HEAD
 
       activeField: null,
 
+=======
+      activeField: null,
+>>>>>>> dev
       activeModal: null
     }
   });

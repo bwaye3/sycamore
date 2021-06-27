@@ -11,7 +11,10 @@ use Drupal\Core\Plugin\Context\Context;
 use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\Core\Plugin\Context\EntityContext;
 use Drupal\layout_builder\Entity\LayoutEntityDisplayInterface;
+<<<<<<< HEAD
 use Drupal\layout_builder\Plugin\SectionStorage\OverridesSectionStorage;
+=======
+>>>>>>> dev
 
 /**
  * Methods to help with entities using the layout builder.
@@ -125,6 +128,7 @@ trait LayoutEntityHelperTrait {
   }
 
   /**
+<<<<<<< HEAD
    * Determines if an entity is using a field for the layout override.
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
@@ -147,6 +151,8 @@ trait LayoutEntityHelperTrait {
   }
 
   /**
+=======
+>>>>>>> dev
    * Determines if the original entity used the default section storage.
    *
    * This method can be used during the entity save process to determine whether

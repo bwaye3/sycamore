@@ -68,7 +68,11 @@ class CommentLinkBuilderTest extends UnitTestCase {
   /**
    * Prepares mocks for the test.
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->commentManager = $this->createMock('\Drupal\comment\CommentManagerInterface');
     $this->stringTranslation = $this->getStringTranslationStub();
     $this->entityTypeManager = $this->createMock(EntityTypeManagerInterface::class);
@@ -90,7 +94,11 @@ class CommentLinkBuilderTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the buildCommentedEntityLinks method.
+=======
+   * Tests the buildCommentedEntityLinks method.
+>>>>>>> dev
    *
    * @param \Drupal\node\NodeInterface|\PHPUnit\Framework\MockObject\MockObject $node
    *   Mock node.
@@ -227,7 +235,11 @@ class CommentLinkBuilderTest extends UnitTestCase {
             // If the view mode is teaser, or the user can access comments and
             // comments exist or the form is on a separate page.
             if ($combination['view_mode'] == 'teaser' || ($combination['has_access_comments'] && $combination['comment_count']) || $combination['form_location'] == CommentItemInterface::FORM_SEPARATE_PAGE) {
+<<<<<<< HEAD
               // There should be a add comment link.
+=======
+              // There should be an add comment link.
+>>>>>>> dev
               $expected['comment-add'] = ['title' => 'Add new comment'];
               if ($combination['form_location'] == CommentItemInterface::FORM_BELOW) {
                 // On the same page.
@@ -313,9 +325,12 @@ class CommentLinkBuilderTest extends UnitTestCase {
     $node->expects($this->any())
       ->method('toUrl')
       ->willReturn($url);
+<<<<<<< HEAD
     $node->expects($this->any())
       ->method('url')
       ->willReturn(['route_name' => 'node.view']);
+=======
+>>>>>>> dev
 
     return $node;
   }

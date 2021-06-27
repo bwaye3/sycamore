@@ -7,6 +7,7 @@
 
 use Drupal\Core\Link;
 use Drupal\Core\Url;
+<<<<<<< HEAD
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
@@ -37,6 +38,8 @@ function locale_translation_manual_status() {
   }
   return new RedirectResponse(Url::fromRoute('locale.translate_status', [], ['absolute' => TRUE])->toString());
 }
+=======
+>>>>>>> dev
 
 /**
  * Prepares variables for translation status information templates.

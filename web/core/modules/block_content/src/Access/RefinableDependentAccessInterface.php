@@ -35,7 +35,11 @@ interface RefinableDependentAccessInterface extends DependentAccessInterface {
    * instance with the existing and new dependencies as the members of the
    * group.
    *
+<<<<<<< HEAD
    * If there is an existing dependency and it is a instance of AccessGroupAnd
+=======
+   * If there is an existing dependency and it is an instance of AccessGroupAnd
+>>>>>>> dev
    * the dependency will be added to the existing access group.
    *
    * @param \Drupal\Core\Access\AccessibleInterface $access_dependency

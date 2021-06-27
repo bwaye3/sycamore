@@ -4,7 +4,10 @@ namespace Drupal\hal\Normalizer;
 
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Entity\ContentEntityInterface;
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -21,12 +24,15 @@ use Symfony\Component\Serializer\Exception\UnexpectedValueException;
  */
 class ContentEntityNormalizer extends NormalizerBase {
   use FieldableEntityNormalizerTrait;
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
 
   /**
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
+=======
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -48,7 +54,11 @@ class ContentEntityNormalizer extends NormalizerBase {
   protected $moduleHandler;
 
   /**
+<<<<<<< HEAD
    * Constructs an ContentEntityNormalizer object.
+=======
+   * Constructs a ContentEntityNormalizer object.
+>>>>>>> dev
    *
    * @param \Drupal\hal\LinkManager\LinkManagerInterface $link_manager
    *   The hypermedia link manager.
@@ -61,11 +71,16 @@ class ContentEntityNormalizer extends NormalizerBase {
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
    *   The entity field manager.
    */
+<<<<<<< HEAD
   public function __construct(LinkManagerInterface $link_manager, EntityTypeManagerInterface $entity_type_manager, ModuleHandlerInterface $module_handler, EntityTypeRepositoryInterface $entity_type_repository = NULL, EntityFieldManagerInterface $entity_field_manager = NULL) {
+=======
+  public function __construct(LinkManagerInterface $link_manager, EntityTypeManagerInterface $entity_type_manager, ModuleHandlerInterface $module_handler, EntityTypeRepositoryInterface $entity_type_repository, EntityFieldManagerInterface $entity_field_manager) {
+>>>>>>> dev
     $this->linkManager = $link_manager;
     $this->entityTypeManager = $entity_type_manager;
     $this->moduleHandler = $module_handler;
     $this->entityTypeRepository = $entity_type_repository;
+<<<<<<< HEAD
     if (!$entity_type_repository) {
       @trigger_error('The entity_type.repository service must be passed to ContentEntityNormalizer::__construct(), it is required before Drupal 9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
       $entity_type_repository = \Drupal::service('entity_type.repository');
@@ -75,6 +90,9 @@ class ContentEntityNormalizer extends NormalizerBase {
       @trigger_error('The entity_field.manager service must be passed to ContentEntityNormalizer::__construct(), it is required before Drupal 9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
       $entity_field_manager = \Drupal::service('entity_field.manager');
     }
+=======
+    $this->entityTypeRepository = $entity_type_repository;
+>>>>>>> dev
     $this->entityFieldManager = $entity_field_manager;
   }
 
@@ -88,7 +106,11 @@ class ContentEntityNormalizer extends NormalizerBase {
     ];
 
     // Create the array of normalized fields, starting with the URI.
+<<<<<<< HEAD
     /** @var $entity \Drupal\Core\Entity\ContentEntityInterface */
+=======
+    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+>>>>>>> dev
     $normalized = [
       '_links' => [
         'self' => [

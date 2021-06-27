@@ -19,7 +19,11 @@ class UserMailRequiredValidator extends ConstraintValidator {
    */
   public function validate($items, Constraint $constraint) {
     /** @var \Drupal\Core\Field\FieldItemListInterface $items */
+<<<<<<< HEAD
     /* @var \Drupal\user\UserInterface $account */
+=======
+    /** @var \Drupal\user\UserInterface $account */
+>>>>>>> dev
     $account = $items->getEntity();
     if (!isset($account)) {
       return;

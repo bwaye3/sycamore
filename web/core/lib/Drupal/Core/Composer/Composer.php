@@ -17,6 +17,7 @@ class Composer {
 
   protected static $packageToCleanup = [
     'behat/mink' => ['tests', 'driver-testsuite'],
+<<<<<<< HEAD
     'behat/mink-browserkit-driver' => ['tests'],
     'behat/mink-goutte-driver' => ['tests'],
     'behat/mink-selenium2-driver' => ['tests'],
@@ -27,15 +28,28 @@ class Composer {
     'doctrine/collections' => ['tests'],
     'doctrine/common' => ['tests'],
     'doctrine/inflector' => ['tests'],
+=======
+    'behat/mink-goutte-driver' => ['tests'],
+    'behat/mink-selenium2-driver' => ['tests'],
+    'composer/composer' => ['bin'],
+    'drupal/coder' => ['coder_sniffer/Drupal/Test', 'coder_sniffer/DrupalPractice/Test'],
+>>>>>>> dev
     'doctrine/instantiator' => ['tests'],
     'easyrdf/easyrdf' => ['scripts'],
     'egulias/email-validator' => ['documentation', 'tests'],
     'fabpot/goutte' => ['Goutte/Tests'],
+<<<<<<< HEAD
     'guzzlehttp/promises' => ['tests'],
     'guzzlehttp/psr7' => ['tests'],
     'instaclick/php-webdriver' => ['doc', 'test'],
     'jcalderonzumba/gastonjs' => ['docs', 'examples', 'tests'],
     'jcalderonzumba/mink-phantomjs-driver' => ['tests'],
+=======
+    'friends-of-behat/mink-browserkit-driver' => ['tests'],
+    'guzzlehttp/promises' => ['tests'],
+    'guzzlehttp/psr7' => ['tests'],
+    'instaclick/php-webdriver' => ['doc', 'test'],
+>>>>>>> dev
     'justinrainbow/json-schema' => ['demo'],
     'laminas/laminas-escaper' => ['doc'],
     'laminas/laminas-feed' => ['doc'],
@@ -43,7 +57,10 @@ class Composer {
     'masterminds/html5' => ['bin', 'test'],
     'mikey179/vfsStream' => ['src/test'],
     'myclabs/deep-copy' => ['doc'],
+<<<<<<< HEAD
     'paragonie/random_compat' => ['tests'],
+=======
+>>>>>>> dev
     'pear/archive_tar' => ['docs', 'tests'],
     'pear/console_getopt' => ['tests'],
     'pear/pear-core-minimal' => ['tests'],
@@ -56,7 +73,10 @@ class Composer {
     'phpunit/php-timer' => ['tests'],
     'phpunit/php-token-stream' => ['tests'],
     'phpunit/phpunit' => ['tests'],
+<<<<<<< HEAD
     'phpunit/phpunit-mock-objects' => ['tests'],
+=======
+>>>>>>> dev
     'sebastian/code-unit-reverse-lookup' => ['tests'],
     'sebastian/comparator' => ['tests'],
     'sebastian/diff' => ['tests'],
@@ -70,7 +90,10 @@ class Composer {
     'squizlabs/php_codesniffer' => ['tests'],
     'stack/builder' => ['tests'],
     'symfony/browser-kit' => ['Tests'],
+<<<<<<< HEAD
     'symfony/class-loader' => ['Tests'],
+=======
+>>>>>>> dev
     'symfony/console' => ['Tests'],
     'symfony/css-selector' => ['Tests'],
     'symfony/debug' => ['Tests'],
@@ -78,6 +101,10 @@ class Composer {
     'symfony/dom-crawler' => ['Tests'],
     'symfony/filesystem' => ['Tests'],
     'symfony/finder' => ['Tests'],
+<<<<<<< HEAD
+=======
+    'symfony/error-handler' => ['Tests'],
+>>>>>>> dev
     'symfony/event-dispatcher' => ['Tests'],
     'symfony/http-foundation' => ['Tests'],
     'symfony/http-kernel' => ['Tests'],
@@ -118,14 +145,28 @@ class Composer {
     if (!isset($autoload['classmap'])) {
       $autoload['classmap'] = [];
     }
+<<<<<<< HEAD
     // Check for our packages, and then optimize them if they're present.
     if ($repository->findPackage('symfony/http-foundation', $constraint)) {
       $autoload['classmap'] = array_merge($autoload['classmap'], [
         $vendor_dir . '/symfony/http-foundation/Request.php',
+=======
+    // Check for packages used prior to the default classloader being able to
+    // use APCu and optimize them if they're present.
+    // @see \Drupal\Core\DrupalKernel::boot()
+    if ($repository->findPackage('symfony/http-foundation', $constraint)) {
+      $autoload['classmap'] = array_merge($autoload['classmap'], [
+        $vendor_dir . '/symfony/http-foundation/Request.php',
+        $vendor_dir . '/symfony/http-foundation/RequestStack.php',
+>>>>>>> dev
         $vendor_dir . '/symfony/http-foundation/ParameterBag.php',
         $vendor_dir . '/symfony/http-foundation/FileBag.php',
         $vendor_dir . '/symfony/http-foundation/ServerBag.php',
         $vendor_dir . '/symfony/http-foundation/HeaderBag.php',
+<<<<<<< HEAD
+=======
+        $vendor_dir . '/symfony/http-foundation/HeaderUtils.php',
+>>>>>>> dev
       ]);
     }
     if ($repository->findPackage('symfony/http-kernel', $constraint)) {
@@ -135,6 +176,33 @@ class Composer {
         $vendor_dir . '/symfony/http-kernel/TerminableInterface.php',
       ]);
     }
+<<<<<<< HEAD
+=======
+    if ($repository->findPackage('symfony/http-kernel', $constraint)) {
+      $autoload['classmap'] = array_merge($autoload['classmap'], [
+        $vendor_dir . '/symfony/http-kernel/HttpKernel.php',
+        $vendor_dir . '/symfony/http-kernel/HttpKernelInterface.php',
+        $vendor_dir . '/symfony/http-kernel/TerminableInterface.php',
+      ]);
+    }
+    if ($repository->findPackage('symfony/dependency-injection', $constraint)) {
+      $autoload['classmap'] = array_merge($autoload['classmap'], [
+        $vendor_dir . '/symfony/dependency-injection/ContainerAwareInterface.php',
+        $vendor_dir . '/symfony/dependency-injection/ContainerInterface.php',
+      ]);
+    }
+    if ($repository->findPackage('psr/container', $constraint)) {
+      $autoload['classmap'] = array_merge($autoload['classmap'], [
+        $vendor_dir . '/psr/container/src/ContainerInterface.php',
+      ]);
+    }
+    if ($repository->findPackage('laminas/laminas-zendframework-bridge', $constraint)) {
+      $autoload['classmap'] = array_merge($autoload['classmap'], [
+        $vendor_dir . '/laminas/laminas-zendframework-bridge/src/Autoloader.php',
+        $vendor_dir . '/laminas/laminas-zendframework-bridge/src/RewriteRules.php',
+      ]);
+    }
+>>>>>>> dev
     $package->setAutoload($autoload);
   }
 
@@ -291,7 +359,11 @@ class Composer {
       return;
     }
 
+<<<<<<< HEAD
     // If the PHP version is 7.3 or above and PHPUnit is less than version 7
+=======
+    // If the PHP version is 7.4 or above and PHPUnit is less than version 9
+>>>>>>> dev
     // call the drupal-phpunit-upgrade script to upgrade PHPUnit.
     if (!static::upgradePHPUnitCheck($phpunit_package->getVersion())) {
       $event->getComposer()
@@ -313,7 +385,11 @@ class Composer {
    *   TRUE if the PHPUnit needs to be upgraded, FALSE if not.
    */
   public static function upgradePHPUnitCheck($phpunit_version) {
+<<<<<<< HEAD
     return !(version_compare(PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION, '7.3') >= 0 && version_compare($phpunit_version, '7.0') < 0);
+=======
+    return !(version_compare(PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION, '7.4') >= 0 && version_compare($phpunit_version, '9.0') < 0);
+>>>>>>> dev
   }
 
 }

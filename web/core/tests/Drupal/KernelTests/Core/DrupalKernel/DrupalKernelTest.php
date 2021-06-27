@@ -2,27 +2,49 @@
 
 namespace Drupal\KernelTests\Core\DrupalKernel;
 
+<<<<<<< HEAD
 use Drupal\Core\DrupalKernel;
 use Drupal\Core\DrupalKernelInterface;
 use Drupal\KernelTests\KernelTestBase;
 use Symfony\Component\HttpFoundation\Request;
+=======
+use Composer\Autoload\ClassLoader;
+use Drupal\Core\DrupalKernel;
+use Drupal\Core\DrupalKernelInterface;
+use Drupal\KernelTests\KernelTestBase;
+use org\bovigo\vfs\vfsStream;
+use Prophecy\Argument;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Event\KernelEvent;
+>>>>>>> dev
 
 /**
  * Tests DIC compilation to disk.
  *
  * @group DrupalKernel
+<<<<<<< HEAD
+=======
+ * @coversDefaultClass \Drupal\Core\DrupalKernel
+>>>>>>> dev
  */
 class DrupalKernelTest extends KernelTestBase {
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     // DrupalKernel relies on global $config_directories and requires those
     // directories to exist. Therefore, create the directories, but do not
     // invoke KernelTestBase::setUp(), since that would set up further
     // environment aspects, which would distort this test, because it tests
     // the DrupalKernel (re-)building itself.
+=======
+  protected function setUp(): void {
+    // Do not invoke KernelTestBase::setUp(), since that would set up further
+    // environment aspects, which would distort this test, because it tests the
+    // DrupalKernel (re-)building itself.
+>>>>>>> dev
     $this->root = static::getDrupalRoot();
     $this->bootEnvironment();
   }
@@ -57,6 +79,22 @@ class DrupalKernelTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * Tests KernelEvent class_alias() override.
+   *
+   * @todo https://www.drupal.org/project/drupal/issues/3197482 Remove this test
+   *   once Drupal is using Symfony 5.3 or higher.
+   */
+  public function testKernelEvent() {
+    $request = Request::createFromGlobals();
+    $kernel = $this->getTestKernel($request);
+    $event = new KernelEvent($kernel, $request, $kernel::MASTER_REQUEST);
+    $this->assertTrue($event->isMainRequest());
+  }
+
+  /**
+>>>>>>> dev
    * Tests DIC compilation.
    */
   public function testCompileDIC() {
@@ -79,7 +117,11 @@ class DrupalKernelTest extends KernelTestBase {
     // Verify that the list of modules is the same for the initial and the
     // compiled container.
     $module_list = array_keys($container->get('module_handler')->getModuleList());
+<<<<<<< HEAD
     $this->assertEqual(array_values($modules_enabled), $module_list);
+=======
+    $this->assertEquals(array_values($modules_enabled), $module_list);
+>>>>>>> dev
 
     // Get the container another time, simulating a "production" environment.
     $container = $this->getTestKernel($request, NULL)
@@ -92,7 +134,11 @@ class DrupalKernelTest extends KernelTestBase {
     // Verify that the list of modules is the same for the initial and the
     // compiled container.
     $module_list = array_keys($container->get('module_handler')->getModuleList());
+<<<<<<< HEAD
     $this->assertEqual(array_values($modules_enabled), $module_list);
+=======
+    $this->assertEquals(array_values($modules_enabled), $module_list);
+>>>>>>> dev
 
     // Test that our synthetic services are there.
     $class_loader = $container->get('class_loader');
@@ -129,11 +175,15 @@ class DrupalKernelTest extends KernelTestBase {
 
     // Check that the location of the new module is registered.
     $modules = $container->getParameter('container.modules');
+<<<<<<< HEAD
     $this->assertEqual($modules['service_provider_test'], [
       'type' => 'module',
       'pathname' => drupal_get_filename('module', 'service_provider_test'),
       'filename' => NULL,
     ]);
+=======
+    $this->assertEquals(['type' => 'module', 'pathname' => drupal_get_filename('module', 'service_provider_test'), 'filename' => NULL], $modules['service_provider_test']);
+>>>>>>> dev
 
     // Check that the container itself is not among the persist IDs because it
     // does not make sense to persist the container itself.
@@ -191,6 +241,7 @@ class DrupalKernelTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * @group legacy
    * @expectedDeprecation Drupal\Core\DrupalKernel::prepareLegacyRequest is deprecated drupal:8.0.0 and is removed from drupal:9.0.0. Use DrupalKernel::boot() and DrupalKernel::preHandle() instead. See https://www.drupal.org/node/3070678
    */
@@ -208,6 +259,65 @@ class DrupalKernelTest extends KernelTestBase {
     $kernel->prepareLegacyRequest($request);
 
     $this->assertSame($request, $kernel->getContainer()->get('request_stack')->getMasterRequest());
+=======
+   * Data provider for self::testClassLoaderAutoDetect.
+   * @return array
+   */
+  public function providerClassLoaderAutoDetect() {
+    return [
+      'TRUE' => [TRUE],
+      'FALSE' => [FALSE],
+    ];
+  }
+
+  /**
+   * Tests class_loader_auto_detect setting.
+   *
+   * This test runs in a separate process since it registers class loaders and
+   * results in statics being set.
+   *
+   * @runInSeparateProcess
+   * @preserveGlobalState disabled
+   * @covers ::boot
+   * @dataProvider providerClassLoaderAutoDetect
+   *
+   * @param bool $value
+   *   The value to set class_loader_auto_detect to.
+   */
+  public function testClassLoaderAutoDetect($value) {
+    // Create a virtual file system containing items that should be
+    // excluded. Exception being modules directory.
+    vfsStream::setup('root', NULL, [
+      'sites' => [
+        'default' => [],
+      ],
+      'core' => [
+        'lib' => [
+          'Drupal' => [
+            'Core' => [],
+            'Component' => [],
+          ],
+        ],
+      ],
+    ]);
+
+    $this->setSetting('class_loader_auto_detect', $value);
+    $classloader = $this->prophesize(ClassLoader::class);
+
+    // Assert that we call the setApcuPrefix on the classloader if
+    // class_loader_auto_detect is set to TRUE;
+    if ($value) {
+      $classloader->setApcuPrefix(Argument::type('string'))->shouldBeCalled();
+    }
+    else {
+      $classloader->setApcuPrefix(Argument::type('string'))->shouldNotBeCalled();
+    }
+
+    // Create a kernel suitable for testing.
+    $kernel = new DrupalKernel('test', $classloader->reveal(), FALSE, vfsStream::url('root'));
+    $kernel->setSitePath(vfsStream::url('root/sites/default'));
+    $kernel->boot();
+>>>>>>> dev
   }
 
 }

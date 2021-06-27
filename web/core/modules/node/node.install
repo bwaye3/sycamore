@@ -7,7 +7,10 @@
 
 use Drupal\Core\Url;
 use Drupal\Core\Database\Database;
+<<<<<<< HEAD
 use Drupal\Core\Field\BaseFieldDefinition;
+=======
+>>>>>>> dev
 use Drupal\user\RoleInterface;
 
 /**
@@ -156,6 +159,7 @@ function node_uninstall() {
 }
 
 /**
+<<<<<<< HEAD
  * Add 'revision_translation_affected' field to 'node' entities.
  */
 function node_update_8001() {
@@ -280,4 +284,10 @@ function node_update_8700() {
   $entity_type->set('entity_keys', $keys);
   $definition_update_manager->updateEntityType($entity_type);
   $definition_update_manager->updateFieldStorageDefinition($definition_update_manager->getFieldStorageDefinition('uid', 'node'));
+=======
+ * Implements hook_update_last_removed().
+ */
+function node_update_last_removed() {
+  return 8700;
+>>>>>>> dev
 }

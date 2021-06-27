@@ -20,6 +20,7 @@ function media_library_install($is_syncing) {
 }
 
 /**
+<<<<<<< HEAD
  * Create the 'media_library' image style.
  */
 function media_library_update_8701() {
@@ -201,4 +202,10 @@ function media_library_update_8704() {
     // Enable the advanced UI by default, to preserve existing behavior.
     ->set('advanced_ui', TRUE)
     ->save();
+=======
+ * Implements hook_update_last_removed().
+ */
+function media_library_update_last_removed() {
+  return 8704;
+>>>>>>> dev
 }

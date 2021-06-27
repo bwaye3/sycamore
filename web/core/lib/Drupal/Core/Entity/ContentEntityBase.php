@@ -1244,6 +1244,7 @@ abstract class ContentEntityBase extends EntityBase implements \IteratorAggregat
    * {@inheritdoc}
    */
   public function label() {
+<<<<<<< HEAD
     $label = NULL;
     $entity_type = $this->getEntityType();
     if (($label_callback = $entity_type->get('label_callback')) && is_callable($label_callback)) {
@@ -1254,6 +1255,11 @@ abstract class ContentEntityBase extends EntityBase implements \IteratorAggregat
       $label = $this->getEntityKey('label');
     }
     return $label;
+=======
+    if ($this->getEntityType()->getKey('label')) {
+      return $this->getEntityKey('label');
+    }
+>>>>>>> dev
   }
 
   /**
@@ -1431,7 +1437,11 @@ abstract class ContentEntityBase extends EntityBase implements \IteratorAggregat
     $translation = $original->getTranslation($this->activeLangcode);
     $langcode = $this->language()->getId();
 
+<<<<<<< HEAD
     // The list of fields to skip from the comparision.
+=======
+    // The list of fields to skip from the comparison.
+>>>>>>> dev
     $skip_fields = $this->getFieldsToSkipFromTranslationChangesCheck();
 
     // We also check untranslatable fields, so that a change to those will mark

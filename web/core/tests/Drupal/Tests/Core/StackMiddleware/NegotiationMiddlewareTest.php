@@ -32,7 +32,11 @@ class NegotiationMiddlewareTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->app = $this->prophesize(HttpKernelInterface::class);
@@ -68,7 +72,11 @@ class NegotiationMiddlewareTest extends UnitTestCase {
    *
    * @covers ::getContentType
    */
+<<<<<<< HEAD
   public function testUnknowContentTypeReturnsNull() {
+=======
+  public function testUnknownContentTypeReturnsNull() {
+>>>>>>> dev
     $request = new Request();
 
     $this->assertNull($this->contentNegotiation->getContentType($request));
@@ -79,7 +87,11 @@ class NegotiationMiddlewareTest extends UnitTestCase {
    *
    * @covers ::getContentType
    */
+<<<<<<< HEAD
   public function testUnknowContentTypeButAjaxRequest() {
+=======
+  public function testUnknownContentTypeButAjaxRequest() {
+>>>>>>> dev
     $request = new Request();
     $request->headers->set('X-Requested-With', 'XMLHttpRequest');
 
@@ -87,7 +99,11 @@ class NegotiationMiddlewareTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that handle() correctly hands off to sub application.
+=======
+   * Tests that handle() correctly hands off to sub application.
+>>>>>>> dev
    *
    * @covers ::handle
    */

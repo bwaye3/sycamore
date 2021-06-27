@@ -8,9 +8,12 @@ use Symfony\Component\Routing\RequestContext as SymfonyRequestContext;
 
 /**
  * Holds information about the current request.
+<<<<<<< HEAD
  *
  * @todo: Remove once the upstream RequestContext provides fromRequestStack():
  * https://github.com/symfony/symfony/issues/12057
+=======
+>>>>>>> dev
  */
 class RequestContext extends SymfonyRequestContext {
 

@@ -20,7 +20,11 @@ class UrlBubbleableMetadataBubblingTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['cache_test'];
+=======
+  protected static $modules = ['cache_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -30,7 +34,11 @@ class UrlBubbleableMetadataBubblingTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
   }
 

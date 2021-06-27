@@ -11,12 +11,20 @@ use Drupal\Tests\migrate_drupal\Kernel\d7\MigrateDrupal7TestBase;
  */
 class MigrateFilterSettingsTest extends MigrateDrupal7TestBase {
 
+<<<<<<< HEAD
   public static $modules = ['filter'];
+=======
+  protected static $modules = ['filter'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installConfig(static::$modules);
     $this->executeMigration('d7_filter_settings');

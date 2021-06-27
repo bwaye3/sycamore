@@ -2,8 +2,11 @@
 
 namespace Drupal\node\Plugin\views\row;
 
+<<<<<<< HEAD
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+=======
+>>>>>>> dev
 use Drupal\views\Plugin\views\row\RssPluginBase;
 
 /**
@@ -22,6 +25,7 @@ use Drupal\views\Plugin\views\row\RssPluginBase;
  */
 class Rss extends RssPluginBase {
 
+<<<<<<< HEAD
   // Basic properties that let the row style follow relationships.
   public $base_table = 'node_field_data';
 
@@ -60,6 +64,33 @@ class Rss extends RssPluginBase {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager, $entity_display_repository);
     $this->nodeStorage = $entity_type_manager->getStorage('node');
   }
+=======
+  /**
+   * The base table for this row plugin.
+   *
+   * @var string
+   */
+  public $base_table = 'node_field_data';
+
+  /**
+   * The base field for this row plugin.
+   *
+   * @var string
+   */
+  public $base_field = 'nid';
+
+  /**
+   * Stores the nodes loaded with preRender.
+   *
+   * @var array
+   */
+  public $nodes = [];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected $entityTypeId = 'node';
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -82,7 +113,11 @@ class Rss extends RssPluginBase {
       $nids[] = $row->{$this->field_alias};
     }
     if (!empty($nids)) {
+<<<<<<< HEAD
       $this->nodes = $this->nodeStorage->loadMultiple($nids);
+=======
+      $this->nodes = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
+>>>>>>> dev
     }
   }
 
@@ -106,7 +141,10 @@ class Rss extends RssPluginBase {
       return;
     }
 
+<<<<<<< HEAD
     $node->link = $node->toUrl('canonical', ['absolute' => TRUE])->toString();
+=======
+>>>>>>> dev
     $node->rss_namespaces = [];
     $node->rss_elements = [
       [
@@ -153,7 +191,11 @@ class Rss extends RssPluginBase {
       $item->description = $build;
     }
     $item->title = $node->label();
+<<<<<<< HEAD
     $item->link = $node->link;
+=======
+    $item->link = $node->toUrl('canonical', ['absolute' => TRUE])->toString();
+>>>>>>> dev
     // Provide a reference so that the render call in
     // template_preprocess_views_view_row_rss() can still access it.
     $item->elements = &$node->rss_elements;

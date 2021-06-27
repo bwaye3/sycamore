@@ -2,7 +2,10 @@
 
 namespace Drupal\Tests\aggregator\Functional;
 
+<<<<<<< HEAD
 use Drupal\Component\Render\FormattableMarkup;
+=======
+>>>>>>> dev
 use Drupal\views\Entity\View;
 
 /**
@@ -17,14 +20,22 @@ class AggregatorRenderingTest extends AggregatorTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['block', 'test_page_test'];
+=======
+  protected static $modules = ['block', 'test_page_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalPlaceBlock('page_title_block');
@@ -57,6 +68,7 @@ class AggregatorRenderingTest extends AggregatorTestBase {
 
     // Confirm that the block is now being displayed on pages.
     $this->drupalGet('test-page');
+<<<<<<< HEAD
     $this->assertText($block->label(), 'Feed block is displayed on the page.');
 
     // Confirm items appear as links.
@@ -80,6 +92,25 @@ class AggregatorRenderingTest extends AggregatorTestBase {
     $this->assertContains('aggregator_feed:' . $feed->id(), $cache_tags);
     $this->assertContains('aggregator_feed_view', $cache_tags);
     $this->assertContains('aggregator_item_view', $cache_tags);
+=======
+    $this->assertSession()->pageTextContains($block->label());
+
+    // Confirm items appear as links.
+    $items = $this->container->get('entity_type.manager')->getStorage('aggregator_item')->loadByFeed($feed->id(), 1);
+    $this->assertSession()->linkByHrefExists(reset($items)->getLink());
+
+    // Find the expected read_more link.
+    $this->assertSession()->linkByHrefExists($feed->toUrl()->toString());
+    $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'aggregator_feed:' . $feed->id());
+
+    // Visit that page.
+    $this->drupalGet($feed->toUrl()->getInternalPath());
+    // Verify that aggregator feed page is available and has the correct title.
+    $this->assertSession()->elementTextContains('xpath', '//h1', $feed->label());
+    $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'aggregator_feed:' . $feed->id());
+    $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'aggregator_feed_view');
+    $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'aggregator_item_view');
+>>>>>>> dev
 
     // Set the number of news items to 0 to test that the block does not show
     // up.
@@ -87,7 +118,11 @@ class AggregatorRenderingTest extends AggregatorTestBase {
     $block->save();
     // Check that the block is no longer displayed.
     $this->drupalGet('test-page');
+<<<<<<< HEAD
     $this->assertNoText($block->label(), 'Feed block is not displayed on the page when number of items is set to 0.');
+=======
+    $this->assertNoText($block->label());
+>>>>>>> dev
   }
 
   /**
@@ -108,6 +143,7 @@ class AggregatorRenderingTest extends AggregatorTestBase {
 
     // Check for presence of an aggregator pager.
     $this->drupalGet('aggregator');
+<<<<<<< HEAD
     $elements = $this->xpath("//ul[contains(@class, :class)]", [':class' => 'pager__items']);
     $this->assertTrue(!empty($elements), 'Individual source page contains a pager.');
 
@@ -123,6 +159,18 @@ class AggregatorRenderingTest extends AggregatorTestBase {
     $cache_tags_header = $this->drupalGetHeader('X-Drupal-Cache-Tags');
     $cache_tags = explode(' ', $cache_tags_header);
     $this->assertContains('aggregator_feed:' . $feed->id(), $cache_tags);
+=======
+    $this->assertSession()->elementExists('xpath', '//ul[contains(@class, "pager__items")]');
+
+    // Check for sources page title.
+    $this->drupalGet('aggregator/sources');
+    $this->assertSession()->elementTextContains('xpath', '//h1', 'Sources');
+
+    // Find the expected read_more link on the sources page.
+    $href = $feed->toUrl()->toString();
+    $this->assertSession()->linkByHrefExists($href);
+    $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'aggregator_feed:' . $feed->id());
+>>>>>>> dev
 
     // Check the rss aggregator page as anonymous user.
     $this->drupalLogout();
@@ -133,7 +181,11 @@ class AggregatorRenderingTest extends AggregatorTestBase {
     $this->drupalLogin($this->adminUser);
     $this->drupalGet('aggregator/rss');
     $this->assertSession()->statusCodeEquals(200);
+<<<<<<< HEAD
     $this->assertEqual($this->drupalGetHeader('Content-type'), 'application/rss+xml; charset=utf-8');
+=======
+    $this->assertSession()->responseHeaderEquals('Content-Type', 'application/rss+xml; charset=utf-8');
+>>>>>>> dev
 
     // Check the opml aggregator page.
     $this->drupalGet('aggregator/opml');
@@ -148,12 +200,19 @@ class AggregatorRenderingTest extends AggregatorTestBase {
 
     // Check for the presence of a pager.
     $this->drupalGet('aggregator/sources/' . $feed->id());
+<<<<<<< HEAD
     $elements = $this->xpath("//ul[contains(@class, :class)]", [':class' => 'pager__items']);
     $this->assertTrue(!empty($elements), 'Individual source page contains a pager.');
     $cache_tags = explode(' ', $this->drupalGetHeader('X-Drupal-Cache-Tags'));
     $this->assertContains('aggregator_feed:' . $feed->id(), $cache_tags);
     $this->assertContains('aggregator_feed_view', $cache_tags);
     $this->assertContains('aggregator_item_view', $cache_tags);
+=======
+    $this->assertSession()->elementExists('xpath', '//ul[contains(@class, "pager__items")]');
+    $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'aggregator_feed:' . $feed->id());
+    $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'aggregator_feed_view');
+    $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'aggregator_item_view');
+>>>>>>> dev
   }
 
 }

@@ -197,7 +197,11 @@ class InstallHelper implements ContainerInjectionInterface {
       }
       else {
         // Language directory exists, but the file in this language was not found,
+<<<<<<< HEAD
         // remove that language from list list of languages to be translated.
+=======
+        // remove that language from list of languages to be translated.
+>>>>>>> dev
         $key = array_search($language, $translated_languages);
         unset($translated_languages[$key]);
       }
@@ -427,6 +431,11 @@ class InstallHelper implements ContainerInjectionInterface {
    *
    * @param array $data
    *   Data of line that was read from the file.
+<<<<<<< HEAD
+=======
+   * @param string $langcode
+   *   Current language code.
+>>>>>>> dev
    *
    * @return array
    *   Data structured as a recipe node.

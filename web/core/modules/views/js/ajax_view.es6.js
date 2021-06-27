@@ -3,7 +3,11 @@
  * Handles AJAX fetching of views, including filter submission and response.
  */
 
+<<<<<<< HEAD
 (function($, Drupal, drupalSettings) {
+=======
+(function ($, Drupal, drupalSettings) {
+>>>>>>> dev
   /**
    * Attaches the AJAX behavior to exposed filters forms and key View links.
    *
@@ -13,12 +17,20 @@
    *   Attaches ajaxView functionality to relevant elements.
    */
   Drupal.behaviors.ViewsAjaxView = {};
+<<<<<<< HEAD
   Drupal.behaviors.ViewsAjaxView.attach = function(context, settings) {
+=======
+  Drupal.behaviors.ViewsAjaxView.attach = function (context, settings) {
+>>>>>>> dev
     if (settings && settings.views && settings.views.ajaxViews) {
       const {
         views: { ajaxViews },
       } = settings;
+<<<<<<< HEAD
       Object.keys(ajaxViews || {}).forEach(i => {
+=======
+      Object.keys(ajaxViews || {}).forEach((i) => {
+>>>>>>> dev
         Drupal.views.instances[i] = new Drupal.views.ajaxView(ajaxViews[i]);
       });
     }
@@ -29,7 +41,11 @@
         const {
           views: { ajaxViews },
         } = settings;
+<<<<<<< HEAD
         Object.keys(ajaxViews || {}).forEach(i => {
+=======
+        Object.keys(ajaxViews || {}).forEach((i) => {
+>>>>>>> dev
           const selector = `.js-view-dom-id-${ajaxViews[i].view_dom_id}`;
           if ($(selector, context).length) {
             delete Drupal.views.instances[i];
@@ -51,7 +67,11 @@
   Drupal.views.instances = {};
 
   /**
+<<<<<<< HEAD
    * Javascript object for a certain view.
+=======
+   * JavaScript object for a certain view.
+>>>>>>> dev
    *
    * @constructor
    *
@@ -60,7 +80,11 @@
    * @param {string} settings.view_dom_id
    *   The DOM id of the view.
    */
+<<<<<<< HEAD
   Drupal.views.ajaxView = function(settings) {
+=======
+  Drupal.views.ajaxView = function (settings) {
+>>>>>>> dev
     const selector = `.js-view-dom-id-${settings.view_dom_id}`;
     this.$view = $(selector);
 
@@ -134,14 +158,22 @@
   /**
    * @method
    */
+<<<<<<< HEAD
   Drupal.views.ajaxView.prototype.attachExposedFormAjax = function() {
+=======
+  Drupal.views.ajaxView.prototype.attachExposedFormAjax = function () {
+>>>>>>> dev
     const that = this;
     this.exposedFormAjax = [];
     // Exclude the reset buttons so no AJAX behaviors are bound. Many things
     // break during the form reset phase if using AJAX.
     $('input[type=submit], input[type=image]', this.$exposed_form)
       .not('[data-drupal-selector=edit-reset]')
+<<<<<<< HEAD
       .each(function(index) {
+=======
+      .each(function (index) {
+>>>>>>> dev
         const selfSettings = $.extend({}, that.element_settings, {
           base: $(this).attr('id'),
           element: this,
@@ -154,7 +186,11 @@
    * @return {bool}
    *   If there is at least one parent with a view class return false.
    */
+<<<<<<< HEAD
   Drupal.views.ajaxView.prototype.filterNestedViews = function() {
+=======
+  Drupal.views.ajaxView.prototype.filterNestedViews = function () {
+>>>>>>> dev
     // If there is at least one parent with a view class, this view
     // is nested (e.g., an attachment). Bail.
     return !this.$view.parents('.view').length;
@@ -163,7 +199,11 @@
   /**
    * Attach the ajax behavior to each link.
    */
+<<<<<<< HEAD
   Drupal.views.ajaxView.prototype.attachPagerAjax = function() {
+=======
+  Drupal.views.ajaxView.prototype.attachPagerAjax = function () {
+>>>>>>> dev
     this.$view
       .find(
         'ul.js-pager__items > li > a, th.views-field a, .attachment .views-summary a',
@@ -179,7 +219,11 @@
    * @param {HTMLElement} link
    *   The link element.
    */
+<<<<<<< HEAD
   Drupal.views.ajaxView.prototype.attachPagerLinkAjax = function(id, link) {
+=======
+  Drupal.views.ajaxView.prototype.attachPagerLinkAjax = function (id, link) {
+>>>>>>> dev
     const $link = $(link);
     const viewData = {};
     const href = $link.attr('href');
@@ -211,7 +255,11 @@
    * @param {string} response.selector
    *   Selector to use.
    */
+<<<<<<< HEAD
   Drupal.AjaxCommands.prototype.viewsScrollTop = function(ajax, response) {
+=======
+  Drupal.AjaxCommands.prototype.viewsScrollTop = function (ajax, response) {
+>>>>>>> dev
     // Scroll to the top of the view. This will allow users
     // to browse newly loaded content after e.g. clicking a pager
     // link.

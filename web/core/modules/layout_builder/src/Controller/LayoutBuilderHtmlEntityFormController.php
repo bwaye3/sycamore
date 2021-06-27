@@ -11,7 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Overrides the entity form controller service for layout builder operations.
  */
+<<<<<<< HEAD
 class LayoutBuilderHtmlEntityFormController {
+=======
+class LayoutBuilderHtmlEntityFormController extends FormController {
+>>>>>>> dev
 
   use DependencySerializationTrait;
 
@@ -56,4 +60,21 @@ class LayoutBuilderHtmlEntityFormController {
     return $form;
   }
 
+<<<<<<< HEAD
+=======
+  /**
+   * {@inheritdoc}
+   */
+  protected function getFormArgument(RouteMatchInterface $route_match) {
+    return $this->entityFormController->getFormArgument($route_match);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getFormObject(RouteMatchInterface $route_match, $form_arg) {
+    return $this->entityFormController->getFormObject($route_match, $form_arg);
+  }
+
+>>>>>>> dev
 }

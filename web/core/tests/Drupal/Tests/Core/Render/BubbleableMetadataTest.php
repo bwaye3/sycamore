@@ -372,9 +372,15 @@ class BubbleableMetadataTest extends UnitTestCase {
     // adds the exact same settings twice and hence tests idempotency, the
     // second adds *almost* the same settings twice: the second time, some
     // values are altered, and some key-value pairs are added.
+<<<<<<< HEAD
     $settings_two['moduleName']['thingiesOnPage']['id1'] = [];
     $this->assertSame($settings_one, $merged['drupalSettings']['commonTestRealWorldIdentical']);
     $expected_settings_two = $settings_two_a;
+=======
+    $this->assertSame($settings_one, $merged['drupalSettings']['commonTestRealWorldIdentical']);
+    $expected_settings_two = $settings_two_a;
+    $expected_settings_two['moduleName']['thingiesOnPage']['id1'] = [];
+>>>>>>> dev
     $expected_settings_two['moduleName']['ui'][0] = 'button D';
     $expected_settings_two['moduleName']['ui'][1] = 'button E';
     $expected_settings_two['moduleName']['ui'][2] = 'button C';
@@ -395,7 +401,11 @@ class BubbleableMetadataTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Data provider for testMergeAttachmentsFeedMerging
+=======
+   * Data provider for testMergeAttachmentsFeedMerging.
+>>>>>>> dev
    *
    * @return array
    */
@@ -454,7 +464,11 @@ class BubbleableMetadataTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Data provider for testMergeAttachmentsHtmlHeadMerging
+=======
+   * Data provider for testMergeAttachmentsHtmlHeadMerging.
+>>>>>>> dev
    *
    * @return array
    */
@@ -527,7 +541,11 @@ class BubbleableMetadataTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Data provider for testMergeAttachmentsHtmlHeadLinkMerging
+=======
+   * Data provider for testMergeAttachmentsHtmlHeadLinkMerging.
+>>>>>>> dev
    *
    * @return array
    */
@@ -593,7 +611,11 @@ class BubbleableMetadataTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Data provider for testMergeAttachmentsHttpHeaderMerging
+=======
+   * Data provider for testMergeAttachmentsHttpHeaderMerging.
+>>>>>>> dev
    *
    * @return array
    */
@@ -684,7 +706,11 @@ class BubbleableMetadataTest extends UnitTestCase {
       ],
       'merge-attachments-metadata' => [
         (new BubbleableMetadata())->setAttachments(['foo' => []]),
+<<<<<<< HEAD
         (new BubbleableMetadata())->setAttachments(['baro' => []]),
+=======
+        (new BubbleableMetadata())->setAttachments(['bar' => []]),
+>>>>>>> dev
         (new BubbleableMetadata())->setAttachments(['foo' => [], 'bar' => []]),
       ],
     ];

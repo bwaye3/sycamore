@@ -143,7 +143,10 @@ class FormElementsRenderTest extends KernelTestBase {
   protected function assertRenderedElement(array $element, $xpath, array $xpath_args = []) {
     $this->render($element);
 
+<<<<<<< HEAD
     // @see \Drupal\simpletest\WebTestBase::xpath()
+=======
+>>>>>>> dev
     $xpath = $this->buildXPathQuery($xpath, $xpath_args);
     $element += ['#value' => NULL];
     $this->assertFieldByXPath($xpath, $element['#value'], new FormattableMarkup('#type @type was properly rendered.', [

@@ -3,5 +3,8 @@ type: module
 description: 'Provides an automated way to run cron jobs, by executing them at the end of a server response.'
 package: Core
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 configure: system.cron_settings

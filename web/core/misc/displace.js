@@ -18,10 +18,15 @@
     var documentElement = document.documentElement;
     var displacement = 0;
     var horizontal = edge === 'left' || edge === 'right';
+<<<<<<< HEAD
 
     var placement = $el.offset()[horizontal ? 'left' : 'top'];
 
     placement -= window['scroll' + (horizontal ? 'X' : 'Y')] || document.documentElement['scroll' + (horizontal ? 'Left' : 'Top')] || 0;
+=======
+    var placement = $el.offset()[horizontal ? 'left' : 'top'];
+    placement -= window["scroll".concat(horizontal ? 'X' : 'Y')] || document.documentElement["scroll".concat(horizontal ? 'Left' : 'Top')] || 0;
+>>>>>>> dev
 
     switch (edge) {
       case 'top':
@@ -43,13 +48,23 @@
       default:
         displacement = 0;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     return displacement;
   }
 
   function calculateOffset(edge) {
     var edgeOffset = 0;
+<<<<<<< HEAD
     var displacingElements = document.querySelectorAll('[data-offset-' + edge + ']');
     var n = displacingElements.length;
+=======
+    var displacingElements = document.querySelectorAll("[data-offset-".concat(edge, "]"));
+    var n = displacingElements.length;
+
+>>>>>>> dev
     for (var i = 0; i < n; i++) {
       var el = displacingElements[i];
 
@@ -57,7 +72,11 @@
         continue;
       }
 
+<<<<<<< HEAD
       var displacement = parseInt(el.getAttribute('data-offset-' + edge), 10);
+=======
+      var displacement = parseInt(el.getAttribute("data-offset-".concat(edge)), 10);
+>>>>>>> dev
 
       if (isNaN(displacement)) {
         displacement = getRawOffset(el, edge);
@@ -81,9 +100,17 @@
   function displace(broadcast) {
     offsets = calculateOffsets();
     Drupal.displace.offsets = offsets;
+<<<<<<< HEAD
     if (typeof broadcast === 'undefined' || broadcast) {
       $(document).trigger('drupalViewportOffsetChange', offsets);
     }
+=======
+
+    if (typeof broadcast === 'undefined' || broadcast) {
+      $(document).trigger('drupalViewportOffsetChange', offsets);
+    }
+
+>>>>>>> dev
     return offsets;
   }
 
@@ -92,6 +119,7 @@
       if (this.displaceProcessed) {
         return;
       }
+<<<<<<< HEAD
       this.displaceProcessed = true;
 
       $(window).on('resize.drupalDisplace', debounce(displace, 200));
@@ -102,6 +130,16 @@
   $.extend(Drupal.displace, {
     offsets: offsets,
 
+=======
+
+      this.displaceProcessed = true;
+      $(window).on('resize.drupalDisplace', debounce(displace, 200));
+    }
+  };
+  Drupal.displace = displace;
+  $.extend(Drupal.displace, {
+    offsets: offsets,
+>>>>>>> dev
     calculateOffset: calculateOffset
   });
 })(jQuery, Drupal, Drupal.debounce);

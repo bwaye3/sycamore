@@ -18,7 +18,11 @@ class EditorDialogAccessTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['editor', 'filter', 'ckeditor'];
+=======
+  protected static $modules = ['editor', 'filter', 'ckeditor'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -26,7 +30,11 @@ class EditorDialogAccessTest extends BrowserTestBase {
   protected $defaultTheme = 'stark';
 
   /**
+<<<<<<< HEAD
    * Test access to the editor image dialog.
+=======
+   * Tests access to the editor image dialog.
+>>>>>>> dev
    */
   public function testEditorImageDialogAccess() {
     $url = Url::fromRoute('editor.image_dialog', ['editor' => 'plain_text']);

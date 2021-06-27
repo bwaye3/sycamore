@@ -12,7 +12,11 @@ class TaxonomyTermArgumentDepthTest extends TaxonomyTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'taxonomy',
     'taxonomy_test_views',
     'views',
@@ -42,7 +46,11 @@ class TaxonomyTermArgumentDepthTest extends TaxonomyTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     // Create a term with markup in the label.
@@ -63,7 +71,11 @@ class TaxonomyTermArgumentDepthTest extends TaxonomyTestBase {
    */
   public function testTermWithDepthArgumentTitleEscaping() {
     $this->drupalGet('test_argument_taxonomy_index_tid_depth/' . $this->terms[0]->id());
+<<<<<<< HEAD
     $this->assertEscaped($this->terms[0]->label());
+=======
+    $this->assertSession()->assertEscaped($this->terms[0]->label());
+>>>>>>> dev
   }
 
 }

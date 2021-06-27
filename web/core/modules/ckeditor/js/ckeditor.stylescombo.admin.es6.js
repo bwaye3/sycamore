@@ -3,7 +3,11 @@
  * CKEditor StylesCombo admin behavior.
  */
 
+<<<<<<< HEAD
 (function($, Drupal, drupalSettings, _) {
+=======
+(function ($, Drupal, drupalSettings, _) {
+>>>>>>> dev
   /**
    * Ensures that the "stylescombo" button's metadata remains up-to-date.
    *
@@ -35,7 +39,11 @@
       const that = this;
       $context
         .find('[name="editor[settings][plugins][stylescombo][styles]"]')
+<<<<<<< HEAD
         .on('blur.ckeditorStylesComboSettings', function() {
+=======
+        .on('blur.ckeditorStylesComboSettings', function () {
+>>>>>>> dev
           const styles = $.trim($(this).val());
           const stylesSet = that._generateStylesSetSetting(styles);
           if (!_.isEqual(previousStylesSet, stylesSet)) {
@@ -114,6 +122,7 @@
    */
   Drupal.behaviors.ckeditorStylesComboSettingsSummary = {
     attach() {
+<<<<<<< HEAD
       $('[data-ckeditor-plugin-id="stylescombo"]').drupalSetSummary(context => {
         const styles = $.trim(
           $(
@@ -127,6 +136,23 @@
         const count = $.trim(styles).split('\n').length;
         return Drupal.t('@count styles configured', { '@count': count });
       });
+=======
+      $('[data-ckeditor-plugin-id="stylescombo"]').drupalSetSummary(
+        (context) => {
+          const styles = $.trim(
+            $(
+              '[data-drupal-selector="edit-editor-settings-plugins-stylescombo-styles"]',
+            ).val(),
+          );
+          if (styles.length === 0) {
+            return Drupal.t('No styles configured');
+          }
+
+          const count = $.trim(styles).split('\n').length;
+          return Drupal.t('@count styles configured', { '@count': count });
+        },
+      );
+>>>>>>> dev
     },
   };
 })(jQuery, Drupal, drupalSettings, _);

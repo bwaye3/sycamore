@@ -98,6 +98,7 @@ interface EntityInterface extends AccessibleInterface, CacheableDependencyInterf
   /**
    * Gets the URL object for the entity.
    *
+<<<<<<< HEAD
    * @param string $rel
    *   The link relationship type, for example: canonical or edit-form.
    * @param array $options
@@ -118,6 +119,8 @@ interface EntityInterface extends AccessibleInterface, CacheableDependencyInterf
   /**
    * Gets the URL object for the entity.
    *
+=======
+>>>>>>> dev
    * The entity must have an id already. Content entities usually get their IDs
    * by saving them.
    *
@@ -154,6 +157,7 @@ interface EntityInterface extends AccessibleInterface, CacheableDependencyInterf
   public function toUrl($rel = 'canonical', array $options = []);
 
   /**
+<<<<<<< HEAD
    * Gets the public URL for this entity.
    *
    * @param string $rel
@@ -197,6 +201,8 @@ interface EntityInterface extends AccessibleInterface, CacheableDependencyInterf
   public function link($text = NULL, $rel = 'canonical', array $options = []);
 
   /**
+=======
+>>>>>>> dev
    * Generates the HTML for a link to this entity.
    *
    * @param string|null $text

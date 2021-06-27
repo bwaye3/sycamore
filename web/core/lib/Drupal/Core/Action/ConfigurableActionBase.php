@@ -3,7 +3,10 @@
 namespace Drupal\Core\Action;
 
 use Drupal\Component\Plugin\ConfigurableInterface;
+<<<<<<< HEAD
 use Drupal\Component\Plugin\ConfigurablePluginInterface;
+=======
+>>>>>>> dev
 use Drupal\Component\Plugin\DependentPluginInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginFormInterface;
@@ -11,7 +14,11 @@ use Drupal\Core\Plugin\PluginFormInterface;
 /**
  * Provides a base implementation for a configurable Action plugin.
  */
+<<<<<<< HEAD
 abstract class ConfigurableActionBase extends ActionBase implements ConfigurableInterface, DependentPluginInterface, ConfigurablePluginInterface, PluginFormInterface {
+=======
+abstract class ConfigurableActionBase extends ActionBase implements ConfigurableInterface, DependentPluginInterface, PluginFormInterface {
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

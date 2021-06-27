@@ -21,7 +21,11 @@ class ContentEntityNonRevisionableFieldTest extends EntityKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['language'];
+=======
+  protected static $modules = ['language'];
+>>>>>>> dev
 
   /**
    * The EntityTestMulRev entity type storage.
@@ -40,7 +44,11 @@ class ContentEntityNonRevisionableFieldTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Enable an additional language.
@@ -101,6 +109,10 @@ class ContentEntityNonRevisionableFieldTest extends EntityKernelTestBase {
       1 => 1,
     ];
     $revision_ids = $this->mulRev->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->allRevisions()
       ->sort('revision_id', 'DESC')
       ->execute();
@@ -111,6 +123,10 @@ class ContentEntityNonRevisionableFieldTest extends EntityKernelTestBase {
       1 => 1,
     ];
     $non_rev_field_revision_ids = $this->mulRev->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->allRevisions()
       ->condition('non_rev_field', 'Huron')
       ->sort('revision_id', 'DESC')
@@ -160,6 +176,10 @@ class ContentEntityNonRevisionableFieldTest extends EntityKernelTestBase {
       1 => 1,
     ];
     $revision_ids = $this->rev->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->allRevisions()
       ->sort('revision_id', 'DESC')
       ->execute();
@@ -170,6 +190,10 @@ class ContentEntityNonRevisionableFieldTest extends EntityKernelTestBase {
       1 => 1,
     ];
     $non_rev_field_revision_ids = $this->rev->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->allRevisions()
       ->condition('non_rev_field', 'Superior')
       ->sort('revision_id', 'DESC')

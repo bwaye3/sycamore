@@ -13,6 +13,7 @@
 
 .block-page-title-block {
   margin: 1rem 0 3rem;
+<<<<<<< HEAD
   padding: 0 1rem;
   text-align: center;
 }
@@ -23,3 +24,7 @@
     padding: 0;
   }
 }
+=======
+  text-align: center;
+}
+>>>>>>> dev

@@ -13,7 +13,10 @@
   <release>
    <name>aaa_update_test 8.x-2.2</name>
    <version>8.x-2.2</version>
+<<<<<<< HEAD
    <tag>8.x-2.2</tag>
+=======
+>>>>>>> dev
    <core_compatibility>^8.1.1</core_compatibility>
    <status>published</status>
    <release_link>http://example.com/aaa_update_test-8-x-2-2-release</release_link>
@@ -28,7 +31,10 @@
   <release>
    <name>aaa_update_test 8.x-1.2</name>
    <version>8.x-1.2</version>
+<<<<<<< HEAD
    <tag>8.x-2.2</tag>
+=======
+>>>>>>> dev
    <core_compatibility>^8.1.0</core_compatibility>
    <status>published</status>
    <release_link>http://example.com/aaa_update_test-8-x-1-2-release</release_link>
@@ -43,7 +49,10 @@
   <release>
    <name>aaa_update_test 8.x-1.0</name>
    <version>8.x-1.0</version>
+<<<<<<< HEAD
    <tag>8.x-2.2</tag>
+=======
+>>>>>>> dev
    <status>published</status>
    <release_link>http://example.com/aaa_update_test-8-x-1-0-release</release_link>
    <download_link>http://example.com/aaa_update_test-8-x-1-0.tar.gz</download_link>

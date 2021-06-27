@@ -14,12 +14,18 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultForbidden;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Cache\Context\CacheContextsManager;
+<<<<<<< HEAD
 use Drupal\Core\Controller\ControllerResolver;
 use Drupal\Core\DependencyInjection\Container;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Menu\LocalActionManager;
 use Drupal\Core\Menu\LocalTaskManager;
+=======
+use Drupal\Core\DependencyInjection\Container;
+use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Menu\LocalActionManager;
+>>>>>>> dev
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -100,7 +106,11 @@ class LocalActionManagerTest extends UnitTestCase {
   protected $discovery;
 
   /**
+<<<<<<< HEAD
    * The tested local action manager
+=======
+   * The tested local action manager.
+>>>>>>> dev
    *
    * @var \Drupal\Tests\Core\Menu\TestLocalActionManager
    */
@@ -109,7 +119,11 @@ class LocalActionManagerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->argumentResolver = $this->createMock('\Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface');
     $this->request = $this->createMock('Symfony\Component\HttpFoundation\Request');
     $this->routeProvider = $this->createMock('Drupal\Core\Routing\RouteProviderInterface');
@@ -381,6 +395,7 @@ class LocalActionManagerTest extends UnitTestCase {
     return $data;
   }
 
+<<<<<<< HEAD
   /**
    * @expectedDeprecation Using the 'controller_resolver' service as the first argument is deprecated, use the 'http_kernel.controller.argument_resolver' instead. If your subclass requires the 'controller_resolver' service add it as an additional argument. See https://www.drupal.org/node/2959408.
    * @group legacy
@@ -405,6 +420,8 @@ class LocalActionManagerTest extends UnitTestCase {
     new LocalTaskManager($controller_resolver, $request_stack, $route_match, $this->routeProvider, $this->moduleHandler, $this->cacheBackend, $language_manager, $this->accessManager, $this->account);
   }
 
+=======
+>>>>>>> dev
 }
 
 class TestLocalActionManager extends LocalActionManager {

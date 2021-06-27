@@ -13,7 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 class QueryParameterTest extends UnitTestCase {
 
   /**
+<<<<<<< HEAD
    * Test the getArgument() method.
+=======
+   * Tests the getArgument() method.
+>>>>>>> dev
    *
    * @covers ::getArgument
    * @dataProvider providerGetArgument

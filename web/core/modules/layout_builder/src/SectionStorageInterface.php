@@ -33,6 +33,7 @@ interface SectionStorageInterface extends SectionListInterface, PluginInspection
   public function getStorageType();
 
   /**
+<<<<<<< HEAD
    * Derives the section list from the storage ID.
    *
    * @param string $id
@@ -54,6 +55,8 @@ interface SectionStorageInterface extends SectionListInterface, PluginInspection
   public function getSectionListFromId($id);
 
   /**
+=======
+>>>>>>> dev
    * Provides the routes needed for Layout Builder UI.
    *
    * Allows the plugin to add or alter routes during the route building process.
@@ -88,6 +91,7 @@ interface SectionStorageInterface extends SectionListInterface, PluginInspection
   public function getLayoutBuilderUrl($rel = 'view');
 
   /**
+<<<<<<< HEAD
    * Configures the plugin based on route values.
    *
    * @param mixed $value
@@ -112,6 +116,8 @@ interface SectionStorageInterface extends SectionListInterface, PluginInspection
   public function extractIdFromRoute($value, $definition, $name, array $defaults);
 
   /**
+=======
+>>>>>>> dev
    * Derives the available plugin contexts from route values.
    *
    * This should only be called during section storage instantiation,

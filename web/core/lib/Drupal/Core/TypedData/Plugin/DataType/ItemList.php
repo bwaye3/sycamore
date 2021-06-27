@@ -48,6 +48,12 @@ class ItemList extends TypedData implements \IteratorAggregate, ListInterface {
    *
    * @param array|null $values
    *   An array of values of the field items, or NULL to unset the field.
+<<<<<<< HEAD
+=======
+   * @param bool $notify
+   *   (optional) Whether to notify the parent object of the change. Defaults to
+   *   TRUE.
+>>>>>>> dev
    */
   public function setValue($values, $notify = TRUE) {
     if (!isset($values) || $values === []) {
@@ -97,6 +103,7 @@ class ItemList extends TypedData implements \IteratorAggregate, ListInterface {
     if (!is_numeric($index)) {
       throw new \InvalidArgumentException('Unable to get a value with a non-numeric delta in a list.');
     }
+<<<<<<< HEAD
     // Automatically create the first item for computed fields.
     // @deprecated in Drupal 8.5.x, will be removed before Drupal 9.0.0.
     // Use \Drupal\Core\TypedData\ComputedItemListTrait instead.
@@ -104,6 +111,8 @@ class ItemList extends TypedData implements \IteratorAggregate, ListInterface {
       @trigger_error('Automatically creating the first item for computed fields is deprecated in Drupal 8.5.x and will be removed before Drupal 9.0.0. Use \Drupal\Core\TypedData\ComputedItemListTrait instead.', E_USER_DEPRECATED);
       $this->list[0] = $this->createItem(0);
     }
+=======
+>>>>>>> dev
     return isset($this->list[$index]) ? $this->list[$index] : NULL;
   }
 

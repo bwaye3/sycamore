@@ -27,7 +27,11 @@ class WriteSafeSessionHandlerTest extends UnitTestCase {
    */
   protected $sessionHandler;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->wrappedSessionHandler = $this->createMock('SessionHandlerInterface');
     $this->sessionHandler = new WriteSafeSessionHandler($this->wrappedSessionHandler);
   }
@@ -43,7 +47,11 @@ class WriteSafeSessionHandlerTest extends UnitTestCase {
     $session_id = 'some-id';
     $session_data = 'serialized-session-data';
 
+<<<<<<< HEAD
     $this->assertSame(TRUE, $this->sessionHandler->isSessionWritable());
+=======
+    $this->assertTrue($this->sessionHandler->isSessionWritable());
+>>>>>>> dev
 
     // Writing should be enabled, return value passed to the caller by default.
     $this->wrappedSessionHandler->expects($this->at(0))
@@ -57,10 +65,17 @@ class WriteSafeSessionHandlerTest extends UnitTestCase {
       ->will($this->returnValue(FALSE));
 
     $result = $this->sessionHandler->write($session_id, $session_data);
+<<<<<<< HEAD
     $this->assertSame(TRUE, $result);
 
     $result = $this->sessionHandler->write($session_id, $session_data);
     $this->assertSame(FALSE, $result);
+=======
+    $this->assertTrue($result);
+
+    $result = $this->sessionHandler->write($session_id, $session_data);
+    $this->assertFalse($result);
+>>>>>>> dev
   }
 
   /**
@@ -77,10 +92,17 @@ class WriteSafeSessionHandlerTest extends UnitTestCase {
     // Disable writing upon construction.
     $this->sessionHandler = new WriteSafeSessionHandler($this->wrappedSessionHandler, FALSE);
 
+<<<<<<< HEAD
     $this->assertSame(FALSE, $this->sessionHandler->isSessionWritable());
 
     $result = $this->sessionHandler->write($session_id, $session_data);
     $this->assertSame(TRUE, $result);
+=======
+    $this->assertFalse($this->sessionHandler->isSessionWritable());
+
+    $result = $this->sessionHandler->write($session_id, $session_data);
+    $this->assertTrue($result);
+>>>>>>> dev
   }
 
   /**
@@ -93,6 +115,7 @@ class WriteSafeSessionHandlerTest extends UnitTestCase {
     $session_id = 'some-id';
     $session_data = 'serialized-session-data';
 
+<<<<<<< HEAD
     $this->assertSame(TRUE, $this->sessionHandler->isSessionWritable());
 
     // Disable writing after construction.
@@ -109,6 +132,24 @@ class WriteSafeSessionHandlerTest extends UnitTestCase {
     // Enable writing again.
     $this->sessionHandler->setSessionWritable(TRUE);
     $this->assertSame(TRUE, $this->sessionHandler->isSessionWritable());
+=======
+    $this->assertTrue($this->sessionHandler->isSessionWritable());
+
+    // Disable writing after construction.
+    $this->sessionHandler->setSessionWritable(FALSE);
+    $this->assertFalse($this->sessionHandler->isSessionWritable());
+
+    $this->sessionHandler = new WriteSafeSessionHandler($this->wrappedSessionHandler, FALSE);
+
+    $this->assertFalse($this->sessionHandler->isSessionWritable());
+
+    $result = $this->sessionHandler->write($session_id, $session_data);
+    $this->assertTrue($result);
+
+    // Enable writing again.
+    $this->sessionHandler->setSessionWritable(TRUE);
+    $this->assertTrue($this->sessionHandler->isSessionWritable());
+>>>>>>> dev
 
     // Writing should be enabled, return value passed to the caller by default.
     $this->wrappedSessionHandler->expects($this->at(0))
@@ -122,10 +163,17 @@ class WriteSafeSessionHandlerTest extends UnitTestCase {
       ->will($this->returnValue(FALSE));
 
     $result = $this->sessionHandler->write($session_id, $session_data);
+<<<<<<< HEAD
     $this->assertSame(TRUE, $result);
 
     $result = $this->sessionHandler->write($session_id, $session_data);
     $this->assertSame(FALSE, $result);
+=======
+    $this->assertTrue($result);
+
+    $result = $this->sessionHandler->write($session_id, $session_data);
+    $this->assertFalse($result);
+>>>>>>> dev
   }
 
   /**
@@ -148,13 +196,21 @@ class WriteSafeSessionHandlerTest extends UnitTestCase {
     call_user_func_array([$invocation, 'with'], $args);
 
     // Test with writable session.
+<<<<<<< HEAD
     $this->assertSame(TRUE, $this->sessionHandler->isSessionWritable());
+=======
+    $this->assertTrue($this->sessionHandler->isSessionWritable());
+>>>>>>> dev
     $actual_result = call_user_func_array([$this->sessionHandler, $method], $args);
     $this->assertSame($expected_result, $actual_result);
 
     // Test with non-writable session.
     $this->sessionHandler->setSessionWritable(FALSE);
+<<<<<<< HEAD
     $this->assertSame(FALSE, $this->sessionHandler->isSessionWritable());
+=======
+    $this->assertFalse($this->sessionHandler->isSessionWritable());
+>>>>>>> dev
     $actual_result = call_user_func_array([$this->sessionHandler, $method], $args);
     $this->assertSame($expected_result, $actual_result);
   }

@@ -121,6 +121,7 @@ interface MigrateIdMapInterface extends \Iterator, PluginInspectionInterface {
   public function getMessages(array $source_id_values = [], $level = NULL);
 
   /**
+<<<<<<< HEAD
    * Retrieves an iterator over messages relate to source records.
    *
    * @param array $source_id_values
@@ -141,6 +142,8 @@ interface MigrateIdMapInterface extends \Iterator, PluginInspectionInterface {
   public function getMessageIterator(array $source_id_values = [], $level = NULL);
 
   /**
+=======
+>>>>>>> dev
    * Prepares to run a full update.
    *
    * Prepares this migration to run as an update - that is, in addition to
@@ -262,6 +265,7 @@ interface MigrateIdMapInterface extends \Iterator, PluginInspectionInterface {
   public function lookupSourceId(array $destination_id_values);
 
   /**
+<<<<<<< HEAD
    * Looks up the destination identifier corresponding to a source key.
    *
    * Given a (possibly multi-field) source identifier value, return the
@@ -281,6 +285,8 @@ interface MigrateIdMapInterface extends \Iterator, PluginInspectionInterface {
   public function lookupDestinationId(array $source_id_values);
 
   /**
+=======
+>>>>>>> dev
    * Looks up the destination identifiers corresponding to a source key.
    *
    * This can look up a subset of source keys if only some are provided, and

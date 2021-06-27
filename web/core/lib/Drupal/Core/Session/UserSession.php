@@ -154,6 +154,7 @@ class UserSession implements AccountInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function getUsername() {
     @trigger_error('\Drupal\Core\Session\AccountInterface::getUsername() is deprecated in Drupal 8.0.0, will be removed before Drupal 9.0.0. Use \Drupal\Core\Session\AccountInterface::getAccountName() or \Drupal\user\UserInterface::getDisplayName() instead. See https://www.drupal.org/node/2572493', E_USER_DEPRECATED);
     return $this->getAccountName();
@@ -162,6 +163,8 @@ class UserSession implements AccountInterface {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function getAccountName() {
     return $this->name;
   }

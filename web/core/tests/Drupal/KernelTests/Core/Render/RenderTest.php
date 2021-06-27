@@ -16,7 +16,11 @@ class RenderTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'common_test', 'theme_test'];
+=======
+  protected static $modules = ['system', 'common_test', 'theme_test'];
+>>>>>>> dev
 
   /**
    * Tests theme preprocess functions being able to attach assets.
@@ -38,7 +42,11 @@ class RenderTest extends KernelTestBase {
         'test/specific_preprocess',
       ],
     ];
+<<<<<<< HEAD
     $this->assertEqual($expected_attached, $test_element['#attached'], 'All expected assets from theme preprocess hooks attached.');
+=======
+    $this->assertEquals($expected_attached, $test_element['#attached'], 'All expected assets from theme preprocess hooks attached.');
+>>>>>>> dev
 
     \Drupal::state()->set('theme_preprocess_attached_test', FALSE);
   }
@@ -72,6 +80,7 @@ class RenderTest extends KernelTestBase {
     $renderer->renderBarePage($build, '', 'maintenance_page');
   }
 
+<<<<<<< HEAD
   /**
    * Tests the drupal_render_root() deprecation.
    *
@@ -98,4 +107,6 @@ class RenderTest extends KernelTestBase {
     $this->assertEqual($expected_attached, $test_element['#attached'], 'All expected assets from theme preprocess hooks attached.');
   }
 
+=======
+>>>>>>> dev
 }

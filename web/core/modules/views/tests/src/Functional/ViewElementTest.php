@@ -26,7 +26,11 @@ class ViewElementTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();
@@ -40,6 +44,7 @@ class ViewElementTest extends ViewTestBase {
     $view->setDisplay();
     // Test a form.
     $this->drupalGet('views_test_data_element_form');
+<<<<<<< HEAD
 
     $xpath = $this->xpath('//div[@class="views-element-container js-form-wrapper form-wrapper"]');
     $this->assertNotEmpty($xpath, 'The view container has been found on the form.');
@@ -49,6 +54,14 @@ class ViewElementTest extends ViewTestBase {
     // There should be 5 rows in the results.
     $xpath = $this->xpath('//div[@class="view-content"]/div');
     $this->assertCount(5, $xpath);
+=======
+    // Verify that the view container has been found on the form.
+    $this->assertSession()->elementExists('xpath', '//div[@class="views-element-container js-form-wrapper form-wrapper"]');
+    // Verify that the view content has been found on the form.
+    $this->assertSession()->elementExists('xpath', '//div[@class="view-content"]');
+    // There should be 5 rows in the results.
+    $this->assertSession()->elementsCount('xpath', '//div[@class="view-content"]/div', 5);
+>>>>>>> dev
 
     // Add an argument and save the view.
     $view->displayHandlers->get('default')->overrideOption('arguments', [
@@ -72,8 +85,12 @@ class ViewElementTest extends ViewTestBase {
 
     // Test that the form has the expected result.
     $this->drupalGet('views_test_data_element_form');
+<<<<<<< HEAD
     $xpath = $this->xpath('//div[@class="view-content"]/div');
     $this->assertCount(1, $xpath);
+=======
+    $this->assertSession()->elementsCount('xpath', '//div[@class="view-content"]/div', 1);
+>>>>>>> dev
   }
 
   /**
@@ -85,6 +102,7 @@ class ViewElementTest extends ViewTestBase {
     $view->setDisplay();
     // Test a form.
     $this->drupalGet('views_test_data_element_embed_form');
+<<<<<<< HEAD
 
     $xpath = $this->xpath('//div[@class="views-element-container js-form-wrapper form-wrapper"]');
     $this->assertNotEmpty($xpath, 'The view container has been found on the form.');
@@ -94,6 +112,14 @@ class ViewElementTest extends ViewTestBase {
     // There should be 5 rows in the results.
     $xpath = $this->xpath('//div[@class="view-content"]/div');
     $this->assertCount(5, $xpath);
+=======
+    // Verify that the view container has been found on the form.
+    $this->assertSession()->elementExists('xpath', '//div[@class="views-element-container js-form-wrapper form-wrapper"]');
+    // Verify that the view content has been found on the form.
+    $this->assertSession()->elementExists('xpath', '//div[@class="view-content"]');
+    // There should be 5 rows in the results.
+    $this->assertSession()->elementsCount('xpath', '//div[@class="view-content"]/div', 5);
+>>>>>>> dev
 
     // Add an argument and save the view.
     $view->displayHandlers->get('default')->overrideOption('arguments', [
@@ -117,8 +143,12 @@ class ViewElementTest extends ViewTestBase {
 
     // Test that the form has the same expected result.
     $this->drupalGet('views_test_data_element_embed_form');
+<<<<<<< HEAD
     $xpath = $this->xpath('//div[@class="view-content"]/div');
     $this->assertCount(1, $xpath);
+=======
+    $this->assertSession()->elementsCount('xpath', '//div[@class="view-content"]/div', 1);
+>>>>>>> dev
   }
 
 }

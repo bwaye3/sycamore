@@ -7,7 +7,10 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\migrate\MigrateLookupInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\MigrateExecutableInterface;
+<<<<<<< HEAD
 use Drupal\migrate\Plugin\MigrateProcessInterface;
+=======
+>>>>>>> dev
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -20,6 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class BlockPluginId extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 
   /**
+<<<<<<< HEAD
    * The migration process plugin.
    *
    * The plugin is configured for lookups in d6_custom_block and
@@ -35,6 +39,8 @@ class BlockPluginId extends ProcessPluginBase implements ContainerFactoryPluginI
   protected $migrationPlugin;
 
   /**
+=======
+>>>>>>> dev
    * The migrate lookup service.
    *
    * @var \Drupal\migrate\MigrateLookupInterface
@@ -55,13 +61,18 @@ class BlockPluginId extends ProcessPluginBase implements ContainerFactoryPluginI
    *   The plugin configuration.
    * @param string $plugin_id
    *   The plugin ID.
+<<<<<<< HEAD
    * @param mixed $plugin_definition
+=======
+   * @param array $plugin_definition
+>>>>>>> dev
    *   The plugin definition.
    * @param \Drupal\Core\Entity\EntityStorageInterface $storage
    *   The block content storage object.
    * @param \Drupal\migrate\MigrateLookupInterface $migrate_lookup
    *   The migrate lookup service.
    */
+<<<<<<< HEAD
   // @codingStandardsIgnoreLine
   public function __construct(array $configuration, $plugin_id, array $plugin_definition, EntityStorageInterface $storage, $migrate_lookup) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -73,6 +84,10 @@ class BlockPluginId extends ProcessPluginBase implements ContainerFactoryPluginI
     elseif (!$migrate_lookup instanceof MigrateLookupInterface) {
       throw new \InvalidArgumentException("The fifth argument to " . __METHOD__ . " must be an instance of MigrateLookupInterface.");
     }
+=======
+  public function __construct(array $configuration, $plugin_id, array $plugin_definition, EntityStorageInterface $storage, MigrateLookupInterface $migrate_lookup) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+>>>>>>> dev
     $this->blockContentStorage = $storage;
     $this->migrateLookup = $migrate_lookup;
   }
@@ -112,6 +127,7 @@ class BlockPluginId extends ProcessPluginBase implements ContainerFactoryPluginI
 
         case 'block':
           if ($this->blockContentStorage) {
+<<<<<<< HEAD
             // This BC layer is included because if the plugin constructor was
             // called in the legacy way with a migration_lookup process plugin,
             // it  may have been preconfigured with a different migration to
@@ -130,6 +146,11 @@ class BlockPluginId extends ProcessPluginBase implements ContainerFactoryPluginI
             }
 
             if (!empty($block_id)) {
+=======
+            $lookup_result = $this->migrateLookup->lookup(['d6_custom_block', 'd7_custom_block'], [$delta]);
+            if ($lookup_result) {
+              $block_id = $lookup_result[0]['id'];
+>>>>>>> dev
               return 'block_content:' . $this->blockContentStorage->load($block_id)->uuid();
             }
           }

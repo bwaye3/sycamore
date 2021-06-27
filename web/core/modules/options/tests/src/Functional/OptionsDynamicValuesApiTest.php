@@ -3,10 +3,17 @@
 namespace Drupal\Tests\options\Functional;
 
 /**
+<<<<<<< HEAD
 * Tests the options allowed values api.
  *
  * @group options
 */
+=======
+ * Tests the options allowed values api.
+ *
+ * @group options
+ */
+>>>>>>> dev
 class OptionsDynamicValuesApiTest extends OptionsDynamicValuesTestBase {
 
   /**
@@ -22,7 +29,11 @@ class OptionsDynamicValuesApiTest extends OptionsDynamicValuesTestBase {
   public function testOptionsAllowedValues() {
     // Test allowed values without passed $items.
     $values = options_allowed_values($this->fieldStorage);
+<<<<<<< HEAD
     $this->assertEqual([], $values);
+=======
+    $this->assertEquals([], $values);
+>>>>>>> dev
 
     $values = options_allowed_values($this->fieldStorage, $this->entity);
 
@@ -33,7 +44,11 @@ class OptionsDynamicValuesApiTest extends OptionsDynamicValuesTestBase {
       $this->entity->bundle(),
     ];
     $expected_values = array_combine($expected_values, $expected_values);
+<<<<<<< HEAD
     $this->assertEqual($expected_values, $values);
+=======
+    $this->assertEquals($expected_values, $values);
+>>>>>>> dev
   }
 
 }

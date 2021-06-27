@@ -3,6 +3,9 @@ type: module
 description: 'Allows third party settings on workflows to be tested.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:workflows

@@ -68,7 +68,11 @@ class TestFieldWidgetMultiple extends WidgetBase {
     $element += [
       '#type' => 'textfield',
       '#default_value' => implode(', ', $values),
+<<<<<<< HEAD
       '#element_validate' => [[get_class($this), 'multipleValidate']],
+=======
+      '#element_validate' => [[static::class, 'multipleValidate']],
+>>>>>>> dev
     ];
     return $element;
   }

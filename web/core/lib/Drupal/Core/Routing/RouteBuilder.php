@@ -8,8 +8,13 @@ use Drupal\Core\Discovery\YamlDiscovery;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\Core\DestructableInterface;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+=======
+use Drupal\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
 
@@ -35,7 +40,11 @@ class RouteBuilder implements RouteBuilderInterface, DestructableInterface {
   /**
    * The event dispatcher to notify of routes.
    *
+<<<<<<< HEAD
    * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+=======
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+>>>>>>> dev
    */
   protected $dispatcher;
 
@@ -88,7 +97,11 @@ class RouteBuilder implements RouteBuilderInterface, DestructableInterface {
    *   The matcher dumper used to store the route information.
    * @param \Drupal\Core\Lock\LockBackendInterface $lock
    *   The lock backend.
+<<<<<<< HEAD
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
+=======
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $dispatcher
+>>>>>>> dev
    *   The event dispatcher to notify of routes.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.
@@ -181,12 +194,20 @@ class RouteBuilder implements RouteBuilderInterface, DestructableInterface {
 
     // DYNAMIC is supposed to be used to add new routes based upon all the
     // static defined ones.
+<<<<<<< HEAD
     $this->dispatcher->dispatch(RoutingEvents::DYNAMIC, new RouteBuildEvent($collection));
+=======
+    $this->dispatcher->dispatch(new RouteBuildEvent($collection), RoutingEvents::DYNAMIC);
+>>>>>>> dev
 
     // ALTER is the final step to alter all the existing routes. We cannot stop
     // people from adding new routes here, but we define two separate steps to
     // make it clear.
+<<<<<<< HEAD
     $this->dispatcher->dispatch(RoutingEvents::ALTER, new RouteBuildEvent($collection));
+=======
+    $this->dispatcher->dispatch(new RouteBuildEvent($collection), RoutingEvents::ALTER);
+>>>>>>> dev
 
     $this->checkProvider->setChecks($collection);
 
@@ -194,7 +215,11 @@ class RouteBuilder implements RouteBuilderInterface, DestructableInterface {
     $this->dumper->dump();
 
     $this->lock->release('router_rebuild');
+<<<<<<< HEAD
     $this->dispatcher->dispatch(RoutingEvents::FINISHED, new Event());
+=======
+    $this->dispatcher->dispatch(new Event(), RoutingEvents::FINISHED);
+>>>>>>> dev
     $this->building = FALSE;
 
     $this->rebuildNeeded = FALSE;

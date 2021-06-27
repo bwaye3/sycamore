@@ -17,12 +17,20 @@ class MigrateDblogConfigsTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['dblog'];
+=======
+  protected static $modules = ['dblog'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->executeMigration('d6_dblog_settings');
   }
@@ -32,7 +40,11 @@ class MigrateDblogConfigsTest extends MigrateDrupal6TestBase {
    */
   public function testBookSettings() {
     $config = $this->config('dblog.settings');
+<<<<<<< HEAD
     $this->assertIdentical(10000, $config->get('row_limit'));
+=======
+    $this->assertSame(10000, $config->get('row_limit'));
+>>>>>>> dev
     $this->assertConfigSchema(\Drupal::service('config.typed'), 'dblog.settings', $config->get());
   }
 

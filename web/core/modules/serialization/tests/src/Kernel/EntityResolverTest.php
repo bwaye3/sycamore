@@ -19,7 +19,11 @@ class EntityResolverTest extends NormalizerTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['hal', 'rest'];
+=======
+  protected static $modules = ['hal', 'rest'];
+>>>>>>> dev
 
   /**
    * The format being tested.
@@ -28,11 +32,17 @@ class EntityResolverTest extends NormalizerTestBase {
    */
   protected $format = 'hal_json';
 
+<<<<<<< HEAD
   protected function setUp() {
     parent::setUp();
 
     \Drupal::service('router.builder')->rebuild();
 
+=======
+  protected function setUp(): void {
+    parent::setUp();
+
+>>>>>>> dev
     // Create the test field storage.
     FieldStorageConfig::create([
       'entity_type' => 'entity_test_mulrev',
@@ -52,7 +62,11 @@ class EntityResolverTest extends NormalizerTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that fields referencing UUIDs can be denormalized.
+=======
+   * Tests that fields referencing UUIDs can be denormalized.
+>>>>>>> dev
    */
   public function testUuidEntityResolver() {
     // Create an entity to get the UUID from.
@@ -92,7 +106,11 @@ class EntityResolverTest extends NormalizerTestBase {
 
     $denormalized = $this->container->get('serializer')->denormalize($data, 'Drupal\entity_test\Entity\EntityTestMulRev', $this->format);
     $field_value = $denormalized->get('field_test_entity_reference')->getValue();
+<<<<<<< HEAD
     $this->assertEqual($field_value[0]['target_id'], 1, 'Entity reference resolved using UUID.');
+=======
+    $this->assertEquals(1, $field_value[0]['target_id'], 'Entity reference resolved using UUID.');
+>>>>>>> dev
   }
 
 }

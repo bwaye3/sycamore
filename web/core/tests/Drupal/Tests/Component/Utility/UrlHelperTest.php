@@ -512,7 +512,11 @@ class UrlHelperTest extends TestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Enhances test urls with schemes
+=======
+   * Enhances test urls with schemes.
+>>>>>>> dev
    *
    * @param array $urls
    *   The list of urls.
@@ -552,7 +556,11 @@ class UrlHelperTest extends TestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test detecting external urls that point to local resources.
+=======
+   * Tests detecting external urls that point to local resources.
+>>>>>>> dev
    *
    * @param string $url
    *   The external url to test.
@@ -607,7 +615,11 @@ class UrlHelperTest extends TestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test invalid url arguments.
+=======
+   * Tests invalid url arguments.
+>>>>>>> dev
    *
    * @param string $url
    *   The url to test.

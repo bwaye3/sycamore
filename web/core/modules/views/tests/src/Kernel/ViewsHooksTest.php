@@ -52,7 +52,11 @@ class ViewsHooksTest extends ViewsKernelTestBase {
    */
   protected $moduleHandler;
 
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->moduleHandler = $this->container->get('module_handler');
@@ -116,6 +120,7 @@ class ViewsHooksTest extends ViewsKernelTestBase {
     $this->assertRaw('<em>unescaped</em>');
   }
 
+<<<<<<< HEAD
   /**
    * Tests views_pre_render_views_form_views_form() deprecation.
    *
@@ -138,4 +143,6 @@ class ViewsHooksTest extends ViewsKernelTestBase {
     $this->assertRaw('<em>unescaped</em>');
   }
 
+=======
+>>>>>>> dev
 }

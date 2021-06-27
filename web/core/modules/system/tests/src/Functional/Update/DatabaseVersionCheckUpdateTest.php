@@ -23,7 +23,11 @@ class DatabaseVersionCheckUpdateTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->ensureUpdatesToRun();
   }
@@ -62,7 +66,11 @@ class DatabaseVersionCheckUpdateTest extends BrowserTestBase {
 
     $this->drupalGet(Url::fromRoute('system.db_update'));
     $this->assertSession()->pageTextContains('Errors found');
+<<<<<<< HEAD
     $this->assertSession()->pageTextContains('The database server version 5.5.2 is less than the minimum required version');
+=======
+    $this->assertSession()->pageTextContains('The database server version 10.2.31-MariaDB-1:10.2.31+maria~bionic-log is less than the minimum required version');
+>>>>>>> dev
   }
 
 }

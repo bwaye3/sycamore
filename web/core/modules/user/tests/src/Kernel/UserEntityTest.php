@@ -19,12 +19,20 @@ class UserEntityTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'user', 'field'];
+=======
+  protected static $modules = ['system', 'user', 'field'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('user');
   }
@@ -50,27 +58,47 @@ class UserEntityTest extends KernelTestBase {
 
     $this->assertTrue($user->hasRole('test_role_one'));
     $this->assertFalse($user->hasRole('test_role_two'));
+<<<<<<< HEAD
     $this->assertEqual([RoleInterface::AUTHENTICATED_ID, 'test_role_one'], $user->getRoles());
+=======
+    $this->assertEquals([RoleInterface::AUTHENTICATED_ID, 'test_role_one'], $user->getRoles());
+>>>>>>> dev
 
     $user->addRole('test_role_one');
     $this->assertTrue($user->hasRole('test_role_one'));
     $this->assertFalse($user->hasRole('test_role_two'));
+<<<<<<< HEAD
     $this->assertEqual([RoleInterface::AUTHENTICATED_ID, 'test_role_one'], $user->getRoles());
+=======
+    $this->assertEquals([RoleInterface::AUTHENTICATED_ID, 'test_role_one'], $user->getRoles());
+>>>>>>> dev
 
     $user->addRole('test_role_two');
     $this->assertTrue($user->hasRole('test_role_one'));
     $this->assertTrue($user->hasRole('test_role_two'));
+<<<<<<< HEAD
     $this->assertEqual([RoleInterface::AUTHENTICATED_ID, 'test_role_one', 'test_role_two'], $user->getRoles());
+=======
+    $this->assertEquals([RoleInterface::AUTHENTICATED_ID, 'test_role_one', 'test_role_two'], $user->getRoles());
+>>>>>>> dev
 
     $user->removeRole('test_role_three');
     $this->assertTrue($user->hasRole('test_role_one'));
     $this->assertTrue($user->hasRole('test_role_two'));
+<<<<<<< HEAD
     $this->assertEqual([RoleInterface::AUTHENTICATED_ID, 'test_role_one', 'test_role_two'], $user->getRoles());
+=======
+    $this->assertEquals([RoleInterface::AUTHENTICATED_ID, 'test_role_one', 'test_role_two'], $user->getRoles());
+>>>>>>> dev
 
     $user->removeRole('test_role_one');
     $this->assertFalse($user->hasRole('test_role_one'));
     $this->assertTrue($user->hasRole('test_role_two'));
+<<<<<<< HEAD
     $this->assertEqual([RoleInterface::AUTHENTICATED_ID, 'test_role_two'], $user->getRoles());
+=======
+    $this->assertEquals([RoleInterface::AUTHENTICATED_ID, 'test_role_two'], $user->getRoles());
+>>>>>>> dev
   }
 
   /**

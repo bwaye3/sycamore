@@ -2,7 +2,10 @@
 
 namespace Drupal\views\Plugin\views\field;
 
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -23,12 +26,15 @@ class EntityOperations extends FieldPluginBase {
 
   use EntityTranslationRenderTrait;
   use RedirectDestinationTrait;
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
 
   /**
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
+=======
+>>>>>>> dev
 
   /**
    * The entity type manager.
@@ -68,22 +74,33 @@ class EntityOperations extends FieldPluginBase {
    * @param array $plugin_definition
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+<<<<<<< HEAD
    *   The entity manager.
+=======
+   *   The entity type manager.
+>>>>>>> dev
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
    */
+<<<<<<< HEAD
   public function __construct(array $configuration, $plugin_id, array $plugin_definition, EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager, EntityRepositoryInterface $entity_repository = NULL) {
+=======
+  public function __construct(array $configuration, $plugin_id, array $plugin_definition, EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager, EntityRepositoryInterface $entity_repository) {
+>>>>>>> dev
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->entityTypeManager = $entity_type_manager;
     $this->languageManager = $language_manager;
+<<<<<<< HEAD
 
     if (!$entity_repository) {
       @trigger_error('Calling EntityOperations::__construct() with the $entity_repository argument is supported in drupal:8.7.0 and will be required before drupal:9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
       $entity_repository = \Drupal::service('entity.repository');
     }
+=======
+>>>>>>> dev
     $this->entityRepository = $entity_repository;
   }
 
@@ -179,6 +196,7 @@ class EntityOperations extends FieldPluginBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function getEntityManager() {
     // This relies on DeprecatedServicePropertyTrait to trigger a deprecation
     // message in case it is accessed.
@@ -188,6 +206,8 @@ class EntityOperations extends FieldPluginBase {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   protected function getEntityTypeManager() {
     return $this->entityTypeManager;
   }

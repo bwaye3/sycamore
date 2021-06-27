@@ -22,7 +22,11 @@ class FieldInputValueNormalizerTraitTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test cases for ::testKeyValueByDelta.
+=======
+   * Provides test cases for ::testKeyValueByDelta.
+>>>>>>> dev
    */
   public function keyValueByDeltaTestCases() {
     return [

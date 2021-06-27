@@ -38,5 +38,9 @@ destination:
   translations: true
 migration_dependencies:
   required:
+<<<<<<< HEAD
     - user_profile_field
+=======
+    - language
+>>>>>>> dev
     - user_profile_field_instance

@@ -6,9 +6,13 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Logger\LoggerChannelTrait;
+<<<<<<< HEAD
 use Drupal\Core\Routing\LinkGeneratorTrait;
 use Drupal\Core\Routing\RedirectDestinationTrait;
 use Drupal\Core\Routing\UrlGeneratorTrait;
+=======
+use Drupal\Core\Routing\RedirectDestinationTrait;
+>>>>>>> dev
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -46,12 +50,18 @@ use Drupal\Core\Messenger\MessengerTrait;
 abstract class FormBase implements FormInterface, ContainerInjectionInterface {
 
   use DependencySerializationTrait;
+<<<<<<< HEAD
   use LinkGeneratorTrait;
+=======
+>>>>>>> dev
   use LoggerChannelTrait;
   use MessengerTrait;
   use RedirectDestinationTrait;
   use StringTranslationTrait;
+<<<<<<< HEAD
   use UrlGeneratorTrait;
+=======
+>>>>>>> dev
 
   /**
    * The request stack.

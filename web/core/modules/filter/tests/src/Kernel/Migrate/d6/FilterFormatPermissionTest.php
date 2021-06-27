@@ -3,9 +3,13 @@
 namespace Drupal\Tests\filter\Kernel\Migrate\d6;
 
 use Drupal\filter\Plugin\migrate\process\d6\FilterFormatPermission;
+<<<<<<< HEAD
 use Drupal\migrate\Plugin\MigrateProcessInterface;
 use Drupal\migrate\Plugin\Migration;
 use Drupal\migrate\Plugin\MigrationInterface;
+=======
+use Drupal\migrate\Plugin\Migration;
+>>>>>>> dev
 use Drupal\Tests\migrate_drupal\Kernel\MigrateDrupalTestBase;
 
 /**
@@ -25,6 +29,7 @@ class FilterFormatPermissionTest extends MigrateDrupalTestBase {
   public function testConfigurableFilterFormat() {
     $migration = Migration::create($this->container, [], 'custom_migration', []);
     $filterFormatPermissionMigration = FilterFormatPermission::create($this->container, ['migration' => 'custom_filter_format'], 'custom_filter_format', [], $migration);
+<<<<<<< HEAD
     $config = $this->readAttribute($filterFormatPermissionMigration, 'configuration');
     $this->assertEquals($config['migration'], 'custom_filter_format');
   }
@@ -42,4 +47,12 @@ class FilterFormatPermissionTest extends MigrateDrupalTestBase {
     $this->assertSame($process_plugin, $this->readAttribute($plugin, 'migrationPlugin'));
   }
 
+=======
+    $reflected_config = new \ReflectionProperty($filterFormatPermissionMigration, 'configuration');
+    $reflected_config->setAccessible(TRUE);
+    $config = $reflected_config->getValue($filterFormatPermissionMigration);
+    $this->assertEquals($config['migration'], 'custom_filter_format');
+  }
+
+>>>>>>> dev
 }

@@ -58,4 +58,8 @@ destination:
   plugin: entity:language_content_settings
 migration_dependencies:
   required:
+<<<<<<< HEAD
+=======
+    - language
+>>>>>>> dev
     - d6_comment_type

@@ -7,7 +7,10 @@ use Drupal\Core\Render\Markup;
 use Drupal\Tests\UnitTestCase;
 use Drupal\Core\Config\Config;
 use Drupal\Core\Config\ConfigValueException;
+<<<<<<< HEAD
 use PHPUnit\Framework\Error\Warning;
+=======
+>>>>>>> dev
 
 /**
  * Tests the Config.
@@ -37,7 +40,11 @@ class ConfigTest extends UnitTestCase {
   /**
    * Event Dispatcher.
    *
+<<<<<<< HEAD
    * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface|\PHPUnit\Framework\MockObject\MockObject
+=======
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface|\PHPUnit\Framework\MockObject\MockObject
+>>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -55,9 +62,15 @@ class ConfigTest extends UnitTestCase {
    */
   protected $cacheTagsInvalidator;
 
+<<<<<<< HEAD
   protected function setUp() {
     $this->storage = $this->createMock('Drupal\Core\Config\StorageInterface');
     $this->eventDispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+=======
+  protected function setUp(): void {
+    $this->storage = $this->createMock('Drupal\Core\Config\StorageInterface');
+    $this->eventDispatcher = $this->createMock('Symfony\Contracts\EventDispatcher\EventDispatcherInterface');
+>>>>>>> dev
     $this->typedConfig = $this->createMock('\Drupal\Core\Config\TypedConfigManagerInterface');
     $this->config = new Config('config.test', $this->storage, $this->eventDispatcher, $this->typedConfig);
     $this->cacheTagsInvalidator = $this->createMock('Drupal\Core\Cache\CacheTagsInvalidatorInterface');
@@ -270,7 +283,16 @@ class ConfigTest extends UnitTestCase {
     $this->config->set('testData', 1);
 
     // Attempt to treat the single value as a nested item.
+<<<<<<< HEAD
     $this->expectException(Warning::class);
+=======
+    if (PHP_VERSION_ID >= 80000) {
+      $this->expectError();
+    }
+    else {
+      $this->expectWarning();
+    }
+>>>>>>> dev
     $this->config->set('testData.illegalOffset', 1);
   }
 

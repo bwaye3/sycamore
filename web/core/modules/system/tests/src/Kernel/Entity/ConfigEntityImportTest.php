@@ -54,7 +54,11 @@ class ConfigEntityImportTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests updating a action during import.
+=======
+   * Tests updating an action during import.
+>>>>>>> dev
    */
   protected function doActionUpdate() {
     // Create a test action with a known label.
@@ -101,7 +105,11 @@ class ConfigEntityImportTest extends KernelTestBase {
     // Create a test filter format with a known label.
     $name = 'filter.format.plain_text';
 
+<<<<<<< HEAD
     /** @var $entity \Drupal\filter\Entity\FilterFormat */
+=======
+    /** @var \Drupal\filter\Entity\FilterFormat $entity */
+>>>>>>> dev
     $entity = FilterFormat::load('plain_text');
     $plugin_collection = $entity->getPluginCollections()['filters'];
 
@@ -133,7 +141,11 @@ class ConfigEntityImportTest extends KernelTestBase {
     // Create a test image style with a known label.
     $name = 'image.style.thumbnail';
 
+<<<<<<< HEAD
     /** @var $entity \Drupal\image\Entity\ImageStyle */
+=======
+    /** @var \Drupal\image\Entity\ImageStyle $entity */
+>>>>>>> dev
     $entity = ImageStyle::load('thumbnail');
     $plugin_collection = $entity->getPluginCollections()['effects'];
 

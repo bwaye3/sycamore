@@ -5,12 +5,21 @@ namespace Drupal\Core\File\MimeType;
 use Drupal\Core\StreamWrapper\StreamWrapperManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesser as SymfonyMimeTypeGuesser;
+<<<<<<< HEAD
 use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface;
+=======
+use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface as LegacyMimeTypeGuesserInterface;
+use Symfony\Component\Mime\MimeTypeGuesserInterface as MimeTypeGuesserInterface;
+>>>>>>> dev
 
 /**
  * Defines a MIME type guesser that also supports stream wrapper paths.
  */
+<<<<<<< HEAD
 class MimeTypeGuesser implements MimeTypeGuesserInterface {
+=======
+class MimeTypeGuesser implements LegacyMimeTypeGuesserInterface, MimeTypeGuesserInterface {
+>>>>>>> dev
 
   /**
    * An array of arrays of registered guessers keyed by priority.
@@ -51,7 +60,11 @@ class MimeTypeGuesser implements MimeTypeGuesserInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function guess($path) {
+=======
+  public function guessMimeType(string $path) : ?string {
+>>>>>>> dev
     if ($wrapper = $this->streamWrapperManager->getViaUri($path)) {
       // Get the real path from the stream wrapper, if available. Files stored
       // in remote file systems will not have one.
@@ -67,7 +80,11 @@ class MimeTypeGuesser implements MimeTypeGuesserInterface {
     }
 
     foreach ($this->sortedGuessers as $guesser) {
+<<<<<<< HEAD
       $mime_type = $guesser->guess($path);
+=======
+      $mime_type = $guesser->guessMimeType($path);
+>>>>>>> dev
       if ($mime_type !== NULL) {
         return $mime_type;
       }
@@ -75,6 +92,36 @@ class MimeTypeGuesser implements MimeTypeGuesserInterface {
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * {@inheritdoc}
+   */
+  public function guess($path) {
+    @trigger_error(__METHOD__ . '() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use ::guessMimeType() instead. See https://www.drupal.org/node/3133341', E_USER_DEPRECATED);
+    return $this->guessMimeType($path);
+  }
+
+  /**
+   * Appends a MIME type guesser to the guessers chain.
+   *
+   * @param \Symfony\Component\Mime\MimeTypeGuesserInterface $guesser
+   *   The guesser to be appended.
+   * @param int $priority
+   *   The priority of the guesser being added.
+   *
+   * @return $this
+   */
+  public function addMimeTypeGuesser(MimeTypeGuesserInterface $guesser, $priority = 0) {
+    if ($guesser->isGuesserSupported()) {
+      $this->guessers[$priority][] = $guesser;
+      // Mark sorted guessers for rebuild.
+      $this->sortedGuessers = NULL;
+    }
+    return $this;
+  }
+
+  /**
+>>>>>>> dev
    * Appends a MIME type guesser to the guessers chain.
    *
    * @param \Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface $guesser
@@ -83,8 +130,19 @@ class MimeTypeGuesser implements MimeTypeGuesserInterface {
    *   The priority of the guesser being added.
    *
    * @return $this
+<<<<<<< HEAD
    */
   public function addGuesser(MimeTypeGuesserInterface $guesser, $priority = 0) {
+=======
+   *
+   * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use
+   * ::addMimeTypeGuesser() instead.
+   *
+   * @see https://www.drupal.org/node/3133341
+   */
+  public function addGuesser(LegacyMimeTypeGuesserInterface $guesser, $priority = 0) {
+    @trigger_error(__METHOD__ . ' is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use ::addMimeTypeGuesser() instead. See https://www.drupal.org/node/3133341', E_USER_DEPRECATED);
+>>>>>>> dev
     $this->guessers[$priority][] = $guesser;
     // Mark sorted guessers for rebuild.
     $this->sortedGuessers = NULL;
@@ -92,6 +150,16 @@ class MimeTypeGuesser implements MimeTypeGuesserInterface {
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * {@inheritdoc}
+   */
+  public function isGuesserSupported(): bool {
+    return TRUE;
+  }
+
+  /**
+>>>>>>> dev
    * Sorts guessers according to priority.
    *
    * @return \Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface[]

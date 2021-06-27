@@ -5,12 +5,19 @@ sitemap.settings:
     _title: 'Sitemap'
   requirements:
     _permission: 'administer sitemap'
+<<<<<<< HEAD
 
 sitemap.page:
   path: '/sitemap'
   defaults:
     _controller: '\Drupal\sitemap\Controller\SitemapController::buildPage'
     # Dynamic title.
+=======
+sitemap.page:
+  path: '/sitemap'
+  defaults:
+    _controller: '\Drupal\sitemap\Controller\SitemapController::buildSitemap'
+>>>>>>> dev
     _title_callback: '\Drupal\sitemap\Controller\SitemapController::getTitle'
   requirements:
     _permission: 'access sitemap'

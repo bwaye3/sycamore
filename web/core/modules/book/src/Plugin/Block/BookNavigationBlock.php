@@ -9,7 +9,11 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+<<<<<<< HEAD
 use Symfony\Component\HttpFoundation\RequestStack;
+=======
+use Drupal\Core\Routing\RouteMatchInterface;
+>>>>>>> dev
 use Drupal\Core\Entity\EntityStorageInterface;
 
 /**
@@ -24,11 +28,19 @@ use Drupal\Core\Entity\EntityStorageInterface;
 class BookNavigationBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
+<<<<<<< HEAD
    * The request object.
    *
    * @var \Symfony\Component\HttpFoundation\RequestStack
    */
   protected $requestStack;
+=======
+   * The current route match.
+   *
+   * @var \Drupal\Core\Routing\RouteMatchInterface
+   */
+  protected $routeMatch;
+>>>>>>> dev
 
   /**
    * The book manager.
@@ -53,17 +65,29 @@ class BookNavigationBlock extends BlockBase implements ContainerFactoryPluginInt
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The request stack object.
+=======
+   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
+   *   The current route match.
+>>>>>>> dev
    * @param \Drupal\book\BookManagerInterface $book_manager
    *   The book manager.
    * @param \Drupal\Core\Entity\EntityStorageInterface $node_storage
    *   The node storage.
    */
+<<<<<<< HEAD
   public function __construct(array $configuration, $plugin_id, $plugin_definition, RequestStack $request_stack, BookManagerInterface $book_manager, EntityStorageInterface $node_storage) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->requestStack = $request_stack;
+=======
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, RouteMatchInterface $route_match, BookManagerInterface $book_manager, EntityStorageInterface $node_storage) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+
+    $this->routeMatch = $route_match;
+>>>>>>> dev
     $this->bookManager = $book_manager;
     $this->nodeStorage = $node_storage;
   }
@@ -76,7 +100,11 @@ class BookNavigationBlock extends BlockBase implements ContainerFactoryPluginInt
       $configuration,
       $plugin_id,
       $plugin_definition,
+<<<<<<< HEAD
       $container->get('request_stack'),
+=======
+      $container->get('current_route_match'),
+>>>>>>> dev
       $container->get('book.manager'),
       $container->get('entity_type.manager')->getStorage('node')
     );
@@ -123,8 +151,14 @@ class BookNavigationBlock extends BlockBase implements ContainerFactoryPluginInt
   public function build() {
     $current_bid = 0;
 
+<<<<<<< HEAD
     if ($node = $this->requestStack->getCurrentRequest()->get('node')) {
       $current_bid = empty($node->book['bid']) ? 0 : $node->book['bid'];
+=======
+    $node = $this->routeMatch->getParameter('node');
+    if ($node instanceof NodeInterface && !empty($node->book['bid'])) {
+      $current_bid = $node->book['bid'];
+>>>>>>> dev
     }
     if ($this->configuration['block_mode'] == 'all pages') {
       $book_menus = [];
@@ -160,6 +194,10 @@ class BookNavigationBlock extends BlockBase implements ContainerFactoryPluginInt
       // Only display this block when the user is browsing a book and do
       // not show unpublished books.
       $nid = \Drupal::entityQuery('node')
+<<<<<<< HEAD
+=======
+        ->accessCheck(TRUE)
+>>>>>>> dev
         ->condition('nid', $node->book['bid'], '=')
         ->condition('status', NodeInterface::PUBLISHED)
         ->execute();

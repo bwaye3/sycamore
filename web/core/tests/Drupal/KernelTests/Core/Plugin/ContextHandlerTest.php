@@ -5,7 +5,13 @@ namespace Drupal\KernelTests\Core\Plugin;
 use Drupal\Core\Plugin\Context\ContextHandler;
 use Drupal\Core\Plugin\Context\EntityContext;
 use Drupal\Core\Plugin\Context\EntityContextDefinition;
+<<<<<<< HEAD
 use Drupal\Core\Plugin\ContextAwarePluginBase;
+=======
+use Drupal\Core\Plugin\ContextAwarePluginInterface;
+use Drupal\Core\Plugin\ContextAwarePluginTrait;
+use Drupal\Core\Plugin\PluginBase;
+>>>>>>> dev
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\KernelTests\KernelTestBase;
 
@@ -66,6 +72,12 @@ class ContextHandlerTest extends KernelTestBase {
 /**
  * Provides a test implementation of a context-aware plugin.
  */
+<<<<<<< HEAD
 class TestContextAwarePlugin extends ContextAwarePluginBase {
+=======
+class TestContextAwarePlugin extends PluginBase implements ContextAwarePluginInterface {
+
+  use ContextAwarePluginTrait;
+>>>>>>> dev
 
 }

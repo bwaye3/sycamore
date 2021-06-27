@@ -21,7 +21,11 @@ class LanguageUrlRewritingTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['language', 'language_test'];
+=======
+  protected static $modules = ['language', 'language_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -29,13 +33,21 @@ class LanguageUrlRewritingTest extends BrowserTestBase {
   protected $defaultTheme = 'stark';
 
   /**
+<<<<<<< HEAD
    * An user with permissions to administer languages.
+=======
+   * A user with permissions to administer languages.
+>>>>>>> dev
    *
    * @var \Drupal\user\UserInterface
    */
   protected $webUser;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create and log in user.
@@ -48,6 +60,7 @@ class LanguageUrlRewritingTest extends BrowserTestBase {
     // Install French language.
     $edit = [];
     $edit['predefined_langcode'] = 'fr';
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/language/add', $edit, t('Add language'));
 
     // Enable URL language detection and selection.
@@ -57,6 +70,19 @@ class LanguageUrlRewritingTest extends BrowserTestBase {
     // Check that drupalSettings contains path prefix.
     $this->drupalGet('fr/admin/config/regional/language/detection');
     $this->assertRaw('"pathPrefix":"fr\/"', 'drupalSettings path prefix contains language code.');
+=======
+    $this->drupalGet('admin/config/regional/language/add');
+    $this->submitForm($edit, 'Add language');
+
+    // Enable URL language detection and selection.
+    $edit = ['language_interface[enabled][language-url]' => 1];
+    $this->drupalGet('admin/config/regional/language/detection');
+    $this->submitForm($edit, 'Save settings');
+
+    // Check that drupalSettings contains path prefix.
+    $this->drupalGet('fr/admin/config/regional/language/detection');
+    $this->assertRaw('"pathPrefix":"fr\/"');
+>>>>>>> dev
   }
 
   /**
@@ -69,7 +95,11 @@ class LanguageUrlRewritingTest extends BrowserTestBase {
 
     // Check that URL rewriting is not applied to subrequests.
     $this->drupalGet('language_test/subrequest');
+<<<<<<< HEAD
     $this->assertText($this->webUser->getAccountName(), 'Page correctly retrieved');
+=======
+    $this->assertSession()->pageTextContains($this->webUser->getAccountName());
+>>>>>>> dev
   }
 
   /**
@@ -96,7 +126,11 @@ class LanguageUrlRewritingTest extends BrowserTestBase {
     // we can always check the prefixed URL.
     $prefixes = $this->config('language.negotiation')->get('url.prefixes');
     $stored_prefix = isset($prefixes[$language->getId()]) ? $prefixes[$language->getId()] : $this->randomMachineName();
+<<<<<<< HEAD
     $this->assertNotEqual($stored_prefix, $prefix, $message);
+=======
+    $this->assertNotEquals($prefix, $stored_prefix, $message);
+>>>>>>> dev
     $prefix = $stored_prefix;
 
     $this->drupalGet("$prefix/$path");
@@ -116,7 +150,12 @@ class LanguageUrlRewritingTest extends BrowserTestBase {
       'domain[en]' => $base_url_host,
       'domain[fr]' => $language_domain,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/language/detection/url', $edit, t('Save configuration'));
+=======
+    $this->drupalGet('admin/config/regional/language/detection/url');
+    $this->submitForm($edit, 'Save configuration');
+>>>>>>> dev
     // Rebuild the container so that the new language gets picked up by services
     // that hold the list of languages.
     $this->rebuildContainer();
@@ -146,7 +185,11 @@ class LanguageUrlRewritingTest extends BrowserTestBase {
 
     $expected = ($index_php ? 'http://example.fr:88/index.php' : 'http://example.fr:88') . rtrim(base_path(), '/') . '/';
 
+<<<<<<< HEAD
     $this->assertEqual($url, $expected, 'The right port is used.');
+=======
+    $this->assertEquals($expected, $url, 'The right port is used.');
+>>>>>>> dev
 
     // If we set the port explicitly, it should not be overridden.
     $url = Url::fromRoute('<front>', [], [
@@ -157,7 +200,11 @@ class LanguageUrlRewritingTest extends BrowserTestBase {
 
     $expected = $index_php ? 'http://example.fr:90/index.php' : 'http://example.fr:90' . rtrim(base_path(), '/') . '/';
 
+<<<<<<< HEAD
     $this->assertEqual($url, $expected, 'A given port is not overridden.');
+=======
+    $this->assertEquals($expected, $url, 'A given port is not overridden.');
+>>>>>>> dev
 
   }
 

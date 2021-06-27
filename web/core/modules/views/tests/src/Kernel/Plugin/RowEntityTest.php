@@ -21,7 +21,11 @@ class RowEntityTest extends ViewsKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'taxonomy',
     'text',
     'filter',
@@ -41,12 +45,19 @@ class RowEntityTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('taxonomy_term');
     $this->installConfig(['taxonomy']);
+<<<<<<< HEAD
     \Drupal::service('router.builder')->rebuild();
+=======
+>>>>>>> dev
   }
 
   /**

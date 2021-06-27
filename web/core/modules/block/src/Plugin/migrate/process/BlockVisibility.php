@@ -8,7 +8,10 @@ use Drupal\migrate\MigrateLookupInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\MigrateSkipRowException;
+<<<<<<< HEAD
 use Drupal\migrate\Plugin\MigrateProcessInterface;
+=======
+>>>>>>> dev
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -28,6 +31,7 @@ class BlockVisibility extends ProcessPluginBase implements ContainerFactoryPlugi
   protected $moduleHandler;
 
   /**
+<<<<<<< HEAD
    * The migration process plugin.
    *
    * The plugin is configured for lookups in the d6_user_role and d7_user_role
@@ -43,6 +47,8 @@ class BlockVisibility extends ProcessPluginBase implements ContainerFactoryPlugi
   protected $migrationPlugin;
 
   /**
+=======
+>>>>>>> dev
    * The migrate lookup service.
    *
    * @var \Drupal\migrate\MigrateLookupInterface
@@ -71,6 +77,7 @@ class BlockVisibility extends ProcessPluginBase implements ContainerFactoryPlugi
    * @param \Drupal\migrate\MigrateLookupInterface $migrate_lookup
    *   The migrate lookup service.
    */
+<<<<<<< HEAD
   // @codingStandardsIgnoreLine
   public function __construct(array $configuration, $plugin_id, $plugin_definition, ModuleHandlerInterface $module_handler, $migrate_lookup) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -82,6 +89,10 @@ class BlockVisibility extends ProcessPluginBase implements ContainerFactoryPlugi
     elseif (!$migrate_lookup instanceof MigrateLookupInterface) {
       throw new \InvalidArgumentException("The fifth argument to " . __METHOD__ . " must be an instance of MigrateLookupInterface.");
     }
+=======
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ModuleHandlerInterface $module_handler, MigrateLookupInterface $migrate_lookup) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+>>>>>>> dev
     $this->moduleHandler = $module_handler;
     $this->migrateLookup = $migrate_lookup;
 
@@ -123,6 +134,7 @@ class BlockVisibility extends ProcessPluginBase implements ContainerFactoryPlugi
       ];
 
       foreach ($roles as $key => $role_id) {
+<<<<<<< HEAD
         // This BC layer is included because if the plugin constructor was
         // called in the legacy way with a migration_lookup process plugin, it
         // may have been preconfigured with a different migration to look up
@@ -139,6 +151,12 @@ class BlockVisibility extends ProcessPluginBase implements ContainerFactoryPlugi
           }
         }
 
+=======
+        $lookup_result = $this->migrateLookup->lookup(['d6_user_role', 'd7_user_role'], [$role_id]);
+        if ($lookup_result) {
+          $roles[$key] = $lookup_result[0]['id'];
+        }
+>>>>>>> dev
       }
       $visibility['user_role']['roles'] = array_combine($roles, $roles);
     }
@@ -159,7 +177,11 @@ class BlockVisibility extends ProcessPluginBase implements ContainerFactoryPlugi
         // anything else -- the block will simply have no PHP or request_path
         // visibility configuration.
         elseif ($this->skipPHP) {
+<<<<<<< HEAD
           throw new MigrateSkipRowException(sprintf("The block with bid '%d' from module '%s' will have no PHP or request_path visibility configuration.", $row->getSourceProperty('bid'), $row->getSourceProperty('module'), $destination_property));
+=======
+          throw new MigrateSkipRowException(sprintf("The block with bid '%d' from module '%s' will have no PHP or request_path visibility configuration.", $row->getSourceProperty('bid'), $row->getSourceProperty('module')));
+>>>>>>> dev
         }
       }
       else {

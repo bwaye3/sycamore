@@ -16,12 +16,20 @@ class UserInstallTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['user'];
+=======
+  protected static $modules = ['user'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->container->get('module_handler')->loadInclude('user', 'install');
     $this->installEntitySchema('user');
@@ -29,10 +37,17 @@ class UserInstallTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that the initial users have correct values.
    */
   public function testUserInstall() {
     $user_ids = \Drupal::entityQuery('user')->sort('uid')->execute();
+=======
+   * Tests that the initial users have correct values.
+   */
+  public function testUserInstall() {
+    $user_ids = \Drupal::entityQuery('user')->sort('uid')->accessCheck(FALSE)->execute();
+>>>>>>> dev
     $users = \Drupal::entityTypeManager()->getStorage('user')->loadMultiple($user_ids);
     $anon = $users[0];
     $admin = $users[1];

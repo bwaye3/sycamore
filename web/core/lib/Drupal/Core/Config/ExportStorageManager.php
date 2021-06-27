@@ -4,7 +4,11 @@ namespace Drupal\Core\Config;
 
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Lock\LockBackendInterface;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+=======
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 
 /**
  * The export storage manager dispatches an event for the export storage.
@@ -39,7 +43,11 @@ final class ExportStorageManager implements StorageManagerInterface {
   /**
    * The event dispatcher.
    *
+<<<<<<< HEAD
    * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+=======
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+>>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -57,7 +65,11 @@ final class ExportStorageManager implements StorageManagerInterface {
    *   The active config storage to prime the export storage.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
+<<<<<<< HEAD
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+=======
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
+>>>>>>> dev
    *   The event dispatcher.
    * @param \Drupal\Core\Lock\LockBackendInterface $lock
    *   The used lock backend instance.
@@ -85,7 +97,11 @@ final class ExportStorageManager implements StorageManagerInterface {
     }
 
     self::replaceStorageContents($this->active, $this->storage);
+<<<<<<< HEAD
     $this->eventDispatcher->dispatch(ConfigEvents::STORAGE_TRANSFORM_EXPORT, new StorageTransformEvent($this->storage));
+=======
+    $this->eventDispatcher->dispatch(new StorageTransformEvent($this->storage), ConfigEvents::STORAGE_TRANSFORM_EXPORT);
+>>>>>>> dev
 
     return new ReadOnlyStorage($this->storage);
   }

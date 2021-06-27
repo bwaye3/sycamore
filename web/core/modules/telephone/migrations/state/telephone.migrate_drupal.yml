@@ -1,3 +1,7 @@
 finished:
   7:
     phone: telephone
+<<<<<<< HEAD
+=======
+    telephone: telephone
+>>>>>>> dev

@@ -84,11 +84,16 @@ class InlineBlock extends BlockBase implements ContainerFactoryPluginInterface, 
    * @param \Drupal\Core\Session\AccountInterface $current_user
    *   The current user.
    */
+<<<<<<< HEAD
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, EntityDisplayRepositoryInterface $entity_display_repository, AccountInterface $current_user = NULL) {
+=======
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, EntityDisplayRepositoryInterface $entity_display_repository, AccountInterface $current_user) {
+>>>>>>> dev
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->entityTypeManager = $entity_type_manager;
     $this->entityDisplayRepository = $entity_display_repository;
+<<<<<<< HEAD
     if (!empty($this->configuration['block_revision_id']) || !empty($this->configuration['block_serialized'])) {
       $this->isNew = FALSE;
     }
@@ -98,6 +103,12 @@ class InlineBlock extends BlockBase implements ContainerFactoryPluginInterface, 
       $current_user = \Drupal::currentUser();
     }
     $this->currentUser = $current_user;
+=======
+    $this->currentUser = $current_user;
+    if (!empty($this->configuration['block_revision_id']) || !empty($this->configuration['block_serialized'])) {
+      $this->isNew = FALSE;
+    }
+>>>>>>> dev
   }
 
   /**
@@ -268,7 +279,11 @@ class InlineBlock extends BlockBase implements ContainerFactoryPluginInterface, 
    * Saves the block_content entity for this plugin.
    *
    * @param bool $new_revision
+<<<<<<< HEAD
    *   Whether to create new revision.
+=======
+   *   Whether to create new revision, if the block was modified.
+>>>>>>> dev
    * @param bool $duplicate_block
    *   Whether to duplicate the "block_content" entity.
    */
@@ -288,6 +303,11 @@ class InlineBlock extends BlockBase implements ContainerFactoryPluginInterface, 
     }
 
     if ($block) {
+<<<<<<< HEAD
+=======
+      // Since the custom block is only set if it was unserialized, the flag
+      // will only effect blocks which were modified or serialized originally.
+>>>>>>> dev
       if ($new_revision) {
         $block->setNewRevision();
       }

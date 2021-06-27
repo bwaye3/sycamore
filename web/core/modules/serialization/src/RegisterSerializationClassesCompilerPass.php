@@ -2,7 +2,10 @@
 
 namespace Drupal\serialization;
 
+<<<<<<< HEAD
 use Drupal\Core\Config\BootstrapConfigStorageFactory;
+=======
+>>>>>>> dev
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -26,12 +29,15 @@ class RegisterSerializationClassesCompilerPass implements CompilerPassInterface 
       // The 'serializer' service is the public API: mark normalizers private.
       $container->getDefinition($id)->setPublic(FALSE);
 
+<<<<<<< HEAD
       // If there is a BC key present, pass this to determine if the normalizer
       // should be skipped.
       if (isset($attributes[0]['bc']) && $this->normalizerBcSettingIsEnabled($attributes[0]['bc'], $attributes[0]['bc_config_name'])) {
         continue;
       }
 
+=======
+>>>>>>> dev
       $priority = isset($attributes[0]['priority']) ? $attributes[0]['priority'] : 0;
       $normalizers[$priority][] = new Reference($id);
     }
@@ -67,6 +73,7 @@ class RegisterSerializationClassesCompilerPass implements CompilerPassInterface 
   }
 
   /**
+<<<<<<< HEAD
    * Returns whether a normalizer BC setting is disabled or not.
    *
    * @param string $key
@@ -79,6 +86,8 @@ class RegisterSerializationClassesCompilerPass implements CompilerPassInterface 
   }
 
   /**
+=======
+>>>>>>> dev
    * Sorts by priority.
    *
    * Order services from highest priority number to lowest (reverse sorting).

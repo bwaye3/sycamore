@@ -23,7 +23,11 @@ class ImageFieldValidateTest extends ImageFieldTestBase {
   protected $defaultTheme = 'stark';
 
   /**
+<<<<<<< HEAD
    * Test image validity.
+=======
+   * Tests image validity.
+>>>>>>> dev
    */
   public function testValid() {
     $file_system = $this->container->get('file_system');
@@ -41,8 +45,14 @@ class ImageFieldValidateTest extends ImageFieldTestBase {
     $this->assertFileExists($expected_path . '/' . $image_files[0]->filename);
 
     // Remove the image.
+<<<<<<< HEAD
     $this->drupalPostForm('node/' . $node . '/edit', [], t('Remove'));
     $this->drupalPostForm(NULL, [], t('Save'));
+=======
+    $this->drupalGet('node/' . $node . '/edit');
+    $this->submitForm([], 'Remove');
+    $this->submitForm([], 'Save');
+>>>>>>> dev
 
     // Get invalid image test files from simpletest.
     $dir = 'core/tests/fixtures/files';
@@ -60,28 +70,49 @@ class ImageFieldValidateTest extends ImageFieldTestBase {
     $edit = [
       'files[' . $field_name . '_0]' => $file_system->realpath($zero_size_image->uri),
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('node/' . $node . '/edit', $edit, t('Upload'));
     $this->assertFileNotExists($expected_path . '/' . $zero_size_image->filename);
+=======
+    $this->drupalGet('node/' . $node . '/edit');
+    $this->submitForm($edit, 'Upload');
+    $this->assertFileDoesNotExist($expected_path . '/' . $zero_size_image->filename);
+>>>>>>> dev
 
     // Try uploading an invalid image.
     $invalid_image = $invalid_image_files['invalid-img-test.png'];
     $edit = [
       'files[' . $field_name . '_0]' => $file_system->realpath($invalid_image->uri),
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('node/' . $node . '/edit', $edit, t('Upload'));
     $this->assertFileNotExists($expected_path . '/' . $invalid_image->filename);
+=======
+    $this->drupalGet('node/' . $node . '/edit');
+    $this->submitForm($edit, 'Upload');
+    $this->assertFileDoesNotExist($expected_path . '/' . $invalid_image->filename);
+>>>>>>> dev
 
     // Upload a valid image again.
     $valid_image = $image_files[0];
     $edit = [
       'files[' . $field_name . '_0]' => $file_system->realpath($valid_image->uri),
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('node/' . $node . '/edit', $edit, t('Upload'));
+=======
+    $this->drupalGet('node/' . $node . '/edit');
+    $this->submitForm($edit, 'Upload');
+>>>>>>> dev
     $this->assertFileExists($expected_path . '/' . $valid_image->filename);
   }
 
   /**
+<<<<<<< HEAD
    * Test min/max resolution settings.
+=======
+   * Tests min/max resolution settings.
+>>>>>>> dev
    */
   public function testResolution() {
     $field_names = [
@@ -148,6 +179,7 @@ class ImageFieldValidateTest extends ImageFieldTestBase {
       '%height' => $image_that_is_too_small_file->getHeight(),
       ]));
     $this->uploadNodeImage($image_that_is_too_big, $field_names[0], 'article');
+<<<<<<< HEAD
     $this->assertText(t('The image was resized to fit within the maximum allowed dimensions of 100x100 pixels.'));
     $this->uploadNodeImage($image_that_is_too_small, $field_names[1], 'article');
     $this->assertRaw(t('The specified file %name could not be uploaded.', ['%name' => $image_that_is_too_small->filename]));
@@ -161,6 +193,21 @@ class ImageFieldValidateTest extends ImageFieldTestBase {
 
   /**
    * Test that required alt/title fields gets validated right.
+=======
+    $this->assertSession()->pageTextContains('The image was resized to fit within the maximum allowed dimensions of 100x100 pixels.');
+    $this->uploadNodeImage($image_that_is_too_small, $field_names[1], 'article');
+    $this->assertRaw(t('The specified file %name could not be uploaded.', ['%name' => $image_that_is_too_small->filename]));
+    $this->uploadNodeImage($image_that_is_too_big, $field_names[1], 'article');
+    $this->assertSession()->pageTextContains('The image was resized to fit within the maximum allowed width of 100 pixels.');
+    $this->uploadNodeImage($image_that_is_too_small, $field_names[2], 'article');
+    $this->assertRaw(t('The specified file %name could not be uploaded.', ['%name' => $image_that_is_too_small->filename]));
+    $this->uploadNodeImage($image_that_is_too_big, $field_names[2], 'article');
+    $this->assertSession()->pageTextContains('The image was resized to fit within the maximum allowed height of 100 pixels.');
+  }
+
+  /**
+   * Tests that required alt/title fields gets validated right.
+>>>>>>> dev
    */
   public function testRequiredAttributes() {
     $field_name = strtolower($this->randomMachineName());
@@ -186,8 +233,13 @@ class ImageFieldValidateTest extends ImageFieldTestBase {
 
     $this->assertTrue(isset($elements[0]), 'Required marker is shown for the required title text.');
 
+<<<<<<< HEAD
     $this->assertText(t('Alternative text field is required.'));
     $this->assertText(t('Title field is required.'));
+=======
+    $this->assertSession()->pageTextContains('Alternative text field is required.');
+    $this->assertSession()->pageTextContains('Title field is required.');
+>>>>>>> dev
 
     $instance->setSetting('alt_field_required', 0);
     $instance->setSetting('title_field_required', 0);
@@ -196,10 +248,18 @@ class ImageFieldValidateTest extends ImageFieldTestBase {
     $edit = [
       'title[0][value]' => $this->randomMachineName(),
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('node/add/article', $edit, t('Save'));
 
     $this->assertNoText(t('Alternative text field is required.'));
     $this->assertNoText(t('Title field is required.'));
+=======
+    $this->drupalGet('node/add/article');
+    $this->submitForm($edit, 'Save');
+
+    $this->assertNoText('Alternative text field is required.');
+    $this->assertNoText('Title field is required.');
+>>>>>>> dev
 
     $instance->setSetting('required', 0);
     $instance->setSetting('alt_field_required', 1);
@@ -209,10 +269,18 @@ class ImageFieldValidateTest extends ImageFieldTestBase {
     $edit = [
       'title[0][value]' => $this->randomMachineName(),
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('node/add/article', $edit, t('Save'));
 
     $this->assertNoText(t('Alternative text field is required.'));
     $this->assertNoText(t('Title field is required.'));
+=======
+    $this->drupalGet('node/add/article');
+    $this->submitForm($edit, 'Save');
+
+    $this->assertNoText('Alternative text field is required.');
+    $this->assertNoText('Title field is required.');
+>>>>>>> dev
   }
 
   /**
@@ -232,7 +300,11 @@ class ImageFieldValidateTest extends ImageFieldTestBase {
     $edit = [
       'title[0][value]' => 'Article with edit-access-allowed image field',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, t('Save'));
+=======
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
     $this->assertSession()->pageTextContains($expected_page_text_when_edit_access_allowed);
 
     // Test with field edit access forbidden.
@@ -242,7 +314,11 @@ class ImageFieldValidateTest extends ImageFieldTestBase {
     $edit = [
       'title[0][value]' => 'Article with edit-access-forbidden image field',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, t('Save'));
+=======
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
     $this->assertSession()->pageTextContains($expected_page_text_when_edit_access_forbidden);
   }
 

@@ -15,7 +15,10 @@
       });
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.claroDetailsToggleShim = {
     attach: function attach(context) {
       if (Modernizr.details || !Drupal.CollapsibleDetails.instances.length) {
@@ -24,6 +27,10 @@
 
       $(context).find('details .details-title').once('claroDetailsToggleShim').on('keypress', function (event) {
         var keyCode = event.keyCode || event.charCode;
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         if (keyCode === 32) {
           $(event.target).closest('summary').trigger('click');
           event.preventDefault();
@@ -31,4 +38,15 @@
       });
     }
   };
+<<<<<<< HEAD
+=======
+
+  Drupal.theme.detailsSummarizedContentWrapper = function () {
+    return "<span class=\"claro-details__summary-summary\"></span>";
+  };
+
+  Drupal.theme.detailsSummarizedContentText = function (text) {
+    return text || '';
+  };
+>>>>>>> dev
 })(jQuery, Modernizr, Drupal);

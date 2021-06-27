@@ -21,7 +21,16 @@ class ShortcutCacheTagsTest extends EntityCacheTagsTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['toolbar', 'shortcut', 'test_page_test', 'block'];
+=======
+  protected static $modules = [
+    'toolbar',
+    'shortcut',
+    'test_page_test',
+    'block',
+  ];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -31,7 +40,11 @@ class ShortcutCacheTagsTest extends EntityCacheTagsTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Give anonymous users permission to customize shortcut links, so that we
@@ -96,6 +109,10 @@ class ShortcutCacheTagsTest extends EntityCacheTagsTestBase {
       'config:block_list',
       'config:shortcut.set.default',
       'config:system.menu.admin',
+<<<<<<< HEAD
+=======
+      'config:system.theme',
+>>>>>>> dev
       'config:user.role.authenticated',
       'rendered',
       'user:' . $this->rootUser->id(),

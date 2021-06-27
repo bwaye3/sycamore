@@ -218,8 +218,21 @@ class SelectExtender implements SelectInterface {
    * {@inheritdoc}
    */
   public function extend($extender_name) {
+<<<<<<< HEAD
     $class = $this->connection->getDriverClass($extender_name);
     return new $class($this, $this->connection);
+=======
+    // We cannot call $this->query->extend(), because with multiple extenders
+    // you will replace all the earlier extenders with the last extender,
+    // instead of creating list of objects that extend each other.
+    $parts = explode('\\', $extender_name);
+    $class = end($parts);
+    $driver_class = $this->connection->getDriverClass($class);
+    if ($driver_class !== $class) {
+      return new $driver_class($this, $this->connection);
+    }
+    return new $extender_name($this, $this->connection);
+>>>>>>> dev
   }
 
   /* Alter accessors to expose the query data to alter hooks. */
@@ -375,6 +388,7 @@ class SelectExtender implements SelectInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function rightJoin($table, $alias = NULL, $condition = NULL, $arguments = []) {
     return $this->query->rightJoin($table, $alias, $condition, $arguments);
   }
@@ -382,6 +396,8 @@ class SelectExtender implements SelectInterface {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function addJoin($type, $table, $alias = NULL, $condition = NULL, $arguments = []) {
     return $this->query->addJoin($type, $table, $alias, $condition, $arguments);
   }

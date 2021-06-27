@@ -23,7 +23,11 @@ class ImageToolkitForm extends ConfigFormBase {
   protected $availableToolkits = [];
 
   /**
+<<<<<<< HEAD
    * Constructs a ImageToolkitForm object.
+=======
+   * Constructs an ImageToolkitForm object.
+>>>>>>> dev
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.

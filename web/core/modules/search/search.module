@@ -10,6 +10,7 @@ use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
+<<<<<<< HEAD
 
 /**
  * Matches all 'N' Unicode character classes (numbers)
@@ -44,6 +45,30 @@ define('PREG_CLASS_PUNCTUATION',
   '\x{fe6a}\x{fe6b}\x{ff01}-\x{ff03}\x{ff05}-\x{ff0a}\x{ff0c}-\x{ff0f}\x{ff1a}' .
   '\x{ff1b}\x{ff1f}\x{ff20}\x{ff3b}-\x{ff3d}\x{ff3f}\x{ff5b}\x{ff5d}\x{ff5f}-' .
   '\x{ff65}');
+=======
+use Drupal\search\SearchTextProcessorInterface;
+
+/**
+ * Matches all 'N' Unicode character classes (numbers)
+ *
+ * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use
+ *   \Drupal\search\SearchTextProcessorInterface::PREG_CLASS_NUMBERS instead.
+ *
+ * @see https://www.drupal.org/node/3078162
+ */
+define('PREG_CLASS_NUMBERS', SearchTextProcessorInterface::PREG_CLASS_NUMBERS);
+
+/**
+ * Matches all 'P' Unicode character classes (punctuation)
+ *
+ * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use
+ *   \Drupal\search\SearchTextProcessorInterface::PREG_CLASS_PUNCTUATION
+ *   instead.
+ *
+ * @see https://www.drupal.org/node/3078162
+ */
+define('PREG_CLASS_PUNCTUATION', SearchTextProcessorInterface::PREG_CLASS_PUNCTUATION);
+>>>>>>> dev
 
 /**
  * Matches CJK (Chinese, Japanese, Korean) letter-like characters.
@@ -58,6 +83,7 @@ define('PREG_CLASS_PUNCTUATION',
  * considered symbols. (See
  * http://www.unicode.org/Public/UNIDATA/extracted/DerivedGeneralCategory.txt)
  *
+<<<<<<< HEAD
  * @see search_expand_cjk()
  */
 define('PREG_CLASS_CJK', '\x{1100}-\x{11FF}\x{3040}-\x{309F}\x{30A1}-\x{318E}' .
@@ -65,6 +91,14 @@ define('PREG_CLASS_CJK', '\x{1100}-\x{11FF}\x{3040}-\x{309F}\x{30A1}-\x{318E}' .
   '\x{A000}-\x{A48F}\x{A4D0}-\x{A4FD}\x{A960}-\x{A97F}\x{AC00}-\x{D7FF}' .
   '\x{F900}-\x{FAFF}\x{FF21}-\x{FF3A}\x{FF41}-\x{FF5A}\x{FF66}-\x{FFDC}' .
   '\x{20000}-\x{2FFFD}\x{30000}-\x{3FFFD}');
+=======
+ * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use
+ *   \Drupal\search\SearchTextProcessorInterface::PREG_CLASS_CJK instead.
+ *
+ * @see https://www.drupal.org/node/3078162
+ */
+define('PREG_CLASS_CJK', SearchTextProcessorInterface::PREG_CLASS_CJK);
+>>>>>>> dev
 
 /**
  * Implements hook_help().
@@ -122,6 +156,7 @@ function search_preprocess_block(&$variables) {
 }
 
 /**
+<<<<<<< HEAD
  * Clears either a part of, or the entire search index.
  *
  * This function is meant for use by search page plugins, or for building a
@@ -169,13 +204,19 @@ function search_dirty($word = NULL) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Implements hook_cron().
  *
  * Fires updateIndex() in the plugins for all indexable active search pages,
  * and cleans up dirty words.
  */
 function search_cron() {
+<<<<<<< HEAD
   /** @var $search_page_repository \Drupal\search\SearchPageRepositoryInterface */
+=======
+  /** @var \Drupal\search\SearchPageRepositoryInterface $search_page_repository */
+>>>>>>> dev
   $search_page_repository = \Drupal::service('search.search_page_repository');
   foreach ($search_page_repository->getIndexableSearchPages() as $entity) {
     $entity->getPlugin()->updateIndex();
@@ -183,6 +224,7 @@ function search_cron() {
 }
 
 /**
+<<<<<<< HEAD
  * Updates the {search_total} database table.
  *
  * This function is called on shutdown to ensure that {search_total} is always
@@ -198,6 +240,8 @@ function search_update_totals() {
 }
 
 /**
+=======
+>>>>>>> dev
  * Simplifies and preprocesses text for searching.
  *
  * Processing steps:
@@ -218,6 +262,7 @@ function search_update_totals() {
  * @return string
  *   Simplified and processed text.
  *
+<<<<<<< HEAD
  * @see hook_search_preprocess()
  */
 function search_simplify($text, $langcode = NULL) {
@@ -265,6 +310,17 @@ function search_simplify($text, $langcode = NULL) {
   $text = implode(' ', $words);
 
   return $text;
+=======
+ * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use
+ *   \Drupal\search\SearchTextProcessorInterface::analyze() instead.
+ *
+ * @see https://www.drupal.org/node/3078162
+ * @see hook_search_preprocess()
+ */
+function search_simplify($text, $langcode = NULL) {
+  @trigger_error('search_simplify() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use \Drupal\search\SearchTextProcessorInterface::analyze() instead. See https://www.drupal.org/node/3078162', E_USER_DEPRECATED);
+  return \Drupal::service('search.text_processor')->analyze($text, $langcode);
+>>>>>>> dev
 }
 
 /**
@@ -286,8 +342,19 @@ function search_simplify($text, $langcode = NULL) {
  *
  * @return string
  *   Tokenized text, starting and ending with a space character.
+<<<<<<< HEAD
  */
 function search_expand_cjk($matches) {
+=======
+ *
+ * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use a
+ *   custom implementation of SearchTextProcessorInterface instead.
+ *
+ * @see https://www.drupal.org/node/3078162
+ */
+function search_expand_cjk($matches) {
+  @trigger_error('search_expand_cjk() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use a custom implementation of SearchTextProcessorInterface instead. instead. See https://www.drupal.org/node/3078162', E_USER_DEPRECATED);
+>>>>>>> dev
   $min = \Drupal::config('search.settings')->get('index.minimum_word_size');
   $str = $matches[0];
   $length = mb_strlen($str);
@@ -324,6 +391,7 @@ function search_expand_cjk($matches) {
  * @return array
  *   Array of words in the simplified, preprocessed text.
  *
+<<<<<<< HEAD
  * @see search_simplify()
  */
 function search_index_split($text, $langcode = NULL) {
@@ -364,6 +432,17 @@ function _search_index_truncate(&$text) {
   $text = Unicode::truncate($text, 50);
   // Save it for the next time.
   $truncated[$original] = $text;
+=======
+ * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use a
+ *   \Drupal\search\SearchTextProcessorInterface::process() instead.
+ *
+ * @see https://www.drupal.org/node/3078162
+ * @see search_simplify()
+ */
+function search_index_split($text, $langcode = NULL) {
+  @trigger_error('search_index_split() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use \Drupal\search\SearchTextProcessorInterface::process() instead. See https://www.drupal.org/node/3078162', E_USER_DEPRECATED);
+  return \Drupal::service('search.text_processor')->process($text, $langcode);
+>>>>>>> dev
 }
 
 /**
@@ -373,14 +452,26 @@ function _search_index_truncate(&$text) {
  *   Text to preprocess, passed by reference and altered in place.
  * @param string|null $langcode
  *   Language code for the language of $text, if known.
+<<<<<<< HEAD
  */
 function search_invoke_preprocess(&$text, $langcode = NULL) {
+=======
+ *
+ * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use a
+ *   custom implementation of SearchTextProcessor instead.
+ *
+ * @see https://www.drupal.org/node/3078162
+ */
+function search_invoke_preprocess(&$text, $langcode = NULL) {
+  @trigger_error('search_invoke_preprocess() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use a custom implementation of SearchTextProcessorInterface instead. See https://www.drupal.org/node/3078162', E_USER_DEPRECATED);
+>>>>>>> dev
   foreach (\Drupal::moduleHandler()->getImplementations('search_preprocess') as $module) {
     $text = \Drupal::moduleHandler()->invoke($module, 'search_preprocess', [$text, $langcode]);
   }
 }
 
 /**
+<<<<<<< HEAD
  * Updates the full-text search index for a particular item.
  *
  * @param string $type
@@ -434,6 +525,8 @@ function search_mark_for_reindex($type = NULL, $sid = NULL, $langcode = NULL) {
 }
 
 /**
+=======
+>>>>>>> dev
  * @defgroup search Search interface
  * @{
  * The Drupal search interface manages a global search mechanism.
@@ -500,7 +593,11 @@ function search_excerpt($keys, $text, $langcode = NULL) {
 
   // Make a list of unique keywords that are actually found in the text,
   // which could be items in $keys or replacements that are equivalent through
+<<<<<<< HEAD
   // search_simplify().
+=======
+  // \Drupal\search\SearchTextProcessorInterface::analyze().
+>>>>>>> dev
   $temp_keys = [];
   foreach ($keys as $key) {
     $key = _search_find_match_with_simplify($key, $text, $boundary_character, $langcode);
@@ -650,8 +747,14 @@ function search_excerpt($keys, $text, $langcode = NULL) {
  * @return string|null
  *   A segment of $text that is between word boundary characters that either
  *   matches $key directly, or matches $key when both this text segment and
+<<<<<<< HEAD
  *   $key are processed by search_simplify(). If a matching text segment is
  *   not located, NULL is returned.
+=======
+ *   $key are processed by
+ *   \Drupal\search\SearchTextProcessorInterface::analyze(). If a matching text
+ *   segment is not located, NULL is returned.
+>>>>>>> dev
  */
 function _search_find_match_with_simplify($key, $text, $boundary, $langcode = NULL) {
   $preceded_by_boundary = '(?<=' . $boundary . ')';
@@ -679,9 +782,17 @@ function _search_find_match_with_simplify($key, $text, $boundary, $langcode = NU
     return mb_substr($text, $position, mb_strlen($new_key));
   }
 
+<<<<<<< HEAD
   // Run both text and key through search_simplify.
   $simplified_key = trim(search_simplify($key, $langcode));
   $simplified_text = trim(search_simplify($text, $langcode));
+=======
+  // Run both text and key through text processor.
+  /** @var \Drupal\search\SearchTextProcessorInterface $text_processor */
+  $text_processor = \Drupal::service('search.text_processor');
+  $simplified_key = trim($text_processor->analyze($key, $langcode));
+  $simplified_text = trim($text_processor->analyze($text, $langcode));
+>>>>>>> dev
   if ($simplified_key == '' || $simplified_text == '' || strpos($simplified_text, $simplified_key) === FALSE) {
     // The simplified keyword and text do not match at all, or are empty.
     return NULL;
@@ -694,7 +805,11 @@ function _search_find_match_with_simplify($key, $text, $boundary, $langcode = NU
 
   // Using a binary search, find the earliest possible ending position in
   // $text where it will still match the keyword after applying
+<<<<<<< HEAD
   // search_simplify().
+=======
+  // \Drupal\search\SearchTextProcessorInterface::analyze().
+>>>>>>> dev
   $start_index = 0;
   $start_pos = $words[$start_index][1];
   $min_end_index = 1;
@@ -706,7 +821,11 @@ function _search_find_match_with_simplify($key, $text, $boundary, $langcode = NU
     $proposed_end_pos = $words[$proposed_end_index][1];
     // Since the split was done with preg_split(), the positions are byte counts
     // not character counts, so use substr() not mb_substr() here.
+<<<<<<< HEAD
     $trial_text = trim(search_simplify(substr($text, $start_pos, $proposed_end_pos - $start_pos), $langcode));
+=======
+    $trial_text = trim($text_processor->analyze(substr($text, $start_pos, $proposed_end_pos - $start_pos), $langcode));
+>>>>>>> dev
     if (strpos($trial_text, $simplified_key) !== FALSE) {
       // The proposed endpoint is fine, text still matches.
       $max_end_index = $proposed_end_index;
@@ -720,7 +839,12 @@ function _search_find_match_with_simplify($key, $text, $boundary, $langcode = NU
 
   // Now do the same for the starting position: using a binary search, find the
   // latest possible starting position in $text where it will still match the
+<<<<<<< HEAD
   // keyword after applying search_simplify().
+=======
+  // keyword after applying
+  // \Drupal\search\SearchTextProcessorInterface::analyze().
+>>>>>>> dev
   $end_index = $min_end_index;
   $end_pos = $words[$end_index][1];
   $min_start_index = 0;
@@ -732,7 +856,11 @@ function _search_find_match_with_simplify($key, $text, $boundary, $langcode = NU
     $proposed_start_pos = $words[$proposed_start_index][1];
     // Since the split was done with preg_split(), the positions are byte counts
     // not character counts, so use substr() not mb_substr() here.
+<<<<<<< HEAD
     $trial_text = trim(search_simplify(substr($text, $proposed_start_pos, $end_pos - $proposed_start_pos), $langcode));
+=======
+    $trial_text = trim($text_processor->analyze(substr($text, $proposed_start_pos, $end_pos - $proposed_start_pos), $langcode));
+>>>>>>> dev
     if (strpos($trial_text, $simplified_key) !== FALSE) {
       // The proposed start point is fine, text still matches.
       $min_start_index = $proposed_start_index;

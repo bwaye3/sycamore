@@ -48,7 +48,11 @@ class ContentTranslationModuleInstallTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('entity_test_with_bundle');
@@ -58,7 +62,11 @@ class ContentTranslationModuleInstallTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that content translation fields are created upon module installation.
+=======
+   * Tests that content translation fields are created upon module installation.
+>>>>>>> dev
    */
   public function testFieldUpdates() {
     // The module ships a translatable bundle of the 'entity_test_with_bundle'
@@ -82,7 +90,11 @@ class ContentTranslationModuleInstallTest extends KernelTestBase {
     $translation = $entity->getTranslation($this->translationLangcode);
     $translation_metadata = $this->contentTranslationManager->getTranslationMetadata($translation);
     $this->assertSame($this->sourceLangcode, $translation_metadata->getSource());
+<<<<<<< HEAD
     $this->assertSame(TRUE, $translation_metadata->isOutdated());
+=======
+    $this->assertTrue($translation_metadata->isOutdated());
+>>>>>>> dev
   }
 
 }

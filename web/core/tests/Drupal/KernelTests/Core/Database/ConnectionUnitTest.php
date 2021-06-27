@@ -35,7 +35,11 @@ class ConnectionUnitTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->connection = Database::getConnection();
@@ -48,6 +52,29 @@ class ConnectionUnitTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * Returns a set of queries specific for the database in testing.
+   */
+  protected function getQuery() {
+    if ($this->connection->databaseType() == 'pgsql') {
+      return [
+        'connection_id' => 'SELECT pg_backend_pid()',
+        'processlist' => 'SELECT pid FROM pg_stat_activity',
+        'show_tables' => 'SELECT * FROM pg_catalog.pg_tables',
+      ];
+    }
+    else {
+      return [
+        'connection_id' => 'SELECT CONNECTION_ID()',
+        'processlist' => 'SHOW PROCESSLIST',
+        'show_tables' => 'SHOW TABLES',
+      ];
+    }
+  }
+
+  /**
+>>>>>>> dev
    * Adds a new database connection info to Database.
    */
   protected function addConnection() {
@@ -67,7 +94,11 @@ class ConnectionUnitTest extends KernelTestBase {
    * @return int
    */
   protected function getConnectionId() {
+<<<<<<< HEAD
     return (int) Database::getConnection(static::TEST_TARGET_CONNECTION)->query('SELECT CONNECTION_ID()')->fetchField();
+=======
+    return (int) Database::getConnection(static::TEST_TARGET_CONNECTION)->query($this->getQuery()['connection_id'])->fetchField();
+>>>>>>> dev
   }
 
   /**
@@ -77,8 +108,13 @@ class ConnectionUnitTest extends KernelTestBase {
    *   The connection ID to verify.
    */
   protected function assertConnection($id) {
+<<<<<<< HEAD
     $list = $this->monitor->query('SHOW PROCESSLIST')->fetchAllKeyed(0, 0);
     return $this->assertTrue(isset($list[$id]), new FormattableMarkup('Connection ID @id found.', ['@id' => $id]));
+=======
+    $list = $this->monitor->query($this->getQuery()['processlist'])->fetchAllKeyed(0, 0);
+    $this->assertTrue(isset($list[$id]), new FormattableMarkup('Connection ID @id found.', ['@id' => $id]));
+>>>>>>> dev
   }
 
   /**
@@ -88,8 +124,13 @@ class ConnectionUnitTest extends KernelTestBase {
    *   The connection ID to verify.
    */
   protected function assertNoConnection($id) {
+<<<<<<< HEAD
     $list = $this->monitor->query('SHOW PROCESSLIST')->fetchAllKeyed(0, 0);
     return $this->assertFalse(isset($list[$id]), new FormattableMarkup('Connection ID @id not found.', ['@id' => $id]));
+=======
+    $list = $this->monitor->query($this->getQuery()['processlist'])->fetchAllKeyed(0, 0);
+    $this->assertFalse(isset($list[$id]), new FormattableMarkup('Connection ID @id not found.', ['@id' => $id]));
+>>>>>>> dev
   }
 
   /**
@@ -98,10 +139,16 @@ class ConnectionUnitTest extends KernelTestBase {
    * @todo getConnectionId() executes a query.
    */
   public function testOpenClose() {
+<<<<<<< HEAD
     // Only run this test for the 'mysql' driver.
     $driver = $this->connection->driver();
     if ($driver !== 'mysql') {
       $this->markTestSkipped("MySql tests can not run for driver '$driver'.");
+=======
+    // Do not run this test for an SQLite database.
+    if ($this->connection->databaseType() == 'sqlite') {
+      $this->markTestSkipped("This tests can not run with an SQLite database.");
+>>>>>>> dev
     }
 
     // Add and open a new connection.
@@ -125,10 +172,16 @@ class ConnectionUnitTest extends KernelTestBase {
    * Tests Database::closeConnection() with a query.
    */
   public function testOpenQueryClose() {
+<<<<<<< HEAD
     // Only run this test for the 'mysql' driver.
     $driver = $this->connection->driver();
     if ($driver !== 'mysql') {
       $this->markTestSkipped("MySql tests can not run for driver '$driver'.");
+=======
+    // Do not run this test for an SQLite database.
+    if ($this->connection->databaseType() == 'sqlite') {
+      $this->markTestSkipped("This tests can not run with an SQLite database.");
+>>>>>>> dev
     }
 
     // Add and open a new connection.
@@ -140,7 +193,11 @@ class ConnectionUnitTest extends KernelTestBase {
     $this->assertConnection($id);
 
     // Execute a query.
+<<<<<<< HEAD
     Database::getConnection(static::TEST_TARGET_CONNECTION)->query('SHOW TABLES');
+=======
+    Database::getConnection(static::TEST_TARGET_CONNECTION)->query($this->getQuery()['show_tables']);
+>>>>>>> dev
 
     // Close the connection.
     Database::closeConnection(static::TEST_TARGET_CONNECTION);
@@ -155,10 +212,16 @@ class ConnectionUnitTest extends KernelTestBase {
    * Tests Database::closeConnection() with a query and custom prefetch method.
    */
   public function testOpenQueryPrefetchClose() {
+<<<<<<< HEAD
     // Only run this test for the 'mysql' driver.
     $driver = $this->connection->driver();
     if ($driver !== 'mysql') {
       $this->markTestSkipped("MySql tests can not run for driver '$driver'.");
+=======
+    // Do not run this test for an SQLite database.
+    if ($this->connection->databaseType() == 'sqlite') {
+      $this->markTestSkipped("This tests can not run with an SQLite database.");
+>>>>>>> dev
     }
 
     // Add and open a new connection.
@@ -170,7 +233,11 @@ class ConnectionUnitTest extends KernelTestBase {
     $this->assertConnection($id);
 
     // Execute a query.
+<<<<<<< HEAD
     Database::getConnection(static::TEST_TARGET_CONNECTION)->query('SHOW TABLES')->fetchCol();
+=======
+    Database::getConnection(static::TEST_TARGET_CONNECTION)->query($this->getQuery()['show_tables'])->fetchCol();
+>>>>>>> dev
 
     // Close the connection.
     Database::closeConnection(static::TEST_TARGET_CONNECTION);
@@ -185,10 +252,16 @@ class ConnectionUnitTest extends KernelTestBase {
    * Tests Database::closeConnection() with a select query.
    */
   public function testOpenSelectQueryClose() {
+<<<<<<< HEAD
     // Only run this test for the 'mysql' driver.
     $driver = $this->connection->driver();
     if ($driver !== 'mysql') {
       $this->markTestSkipped("MySql tests can not run for driver '$driver'.");
+=======
+    // Do not run this test for an SQLite database.
+    if ($this->connection->databaseType() == 'sqlite') {
+      $this->markTestSkipped("This tests can not run with an SQLite database.");
+>>>>>>> dev
     }
 
     // Add and open a new connection.

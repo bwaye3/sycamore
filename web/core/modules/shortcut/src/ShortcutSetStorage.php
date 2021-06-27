@@ -119,7 +119,11 @@ class ShortcutSetStorage extends ConfigEntityStorage implements ShortcutSetStora
    * {@inheritdoc}
    */
   public function countAssignedUsers(ShortcutSetInterface $shortcut_set) {
+<<<<<<< HEAD
     return Database::getConnection()->query('SELECT COUNT(*) FROM {shortcut_set_users} WHERE set_name = :name', [':name' => $shortcut_set->id()])->fetchField();
+=======
+    return Database::getConnection()->query('SELECT COUNT(*) FROM {shortcut_set_users} WHERE [set_name] = :name', [':name' => $shortcut_set->id()])->fetchField();
+>>>>>>> dev
   }
 
   /**

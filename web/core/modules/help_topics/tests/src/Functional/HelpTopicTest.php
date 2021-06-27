@@ -18,7 +18,11 @@ class HelpTopicTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'help_topics_test',
     'help',
     'help_topics',
@@ -38,6 +42,16 @@ class HelpTopicTest extends BrowserTestBase {
   protected $adminUser;
 
   /**
+<<<<<<< HEAD
+=======
+   * The user who can see help but not the special route.
+   *
+   * @var \Drupal\user\UserInterface
+   */
+  protected $noTestUser;
+
+  /**
+>>>>>>> dev
    * The anonymous user that will be created.
    *
    * @var \Drupal\user\UserInterface
@@ -47,7 +61,11 @@ class HelpTopicTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // These tests rely on some markup from the 'Seven' theme and we test theme
@@ -72,7 +90,20 @@ class HelpTopicTest extends BrowserTestBase {
       'view the administration theme',
       'administer permissions',
       'administer site configuration',
+<<<<<<< HEAD
     ]);
+=======
+      'access test help',
+    ]);
+
+    $this->noTestUser = $this->createUser([
+      'access administration pages',
+      'view the administration theme',
+      'administer permissions',
+      'administer site configuration',
+    ]);
+
+>>>>>>> dev
     $this->anyUser = $this->createUser([]);
   }
 
@@ -89,7 +120,10 @@ class HelpTopicTest extends BrowserTestBase {
     // Log in the admin user.
     $this->drupalLogin($this->adminUser);
     $this->verifyHelp();
+<<<<<<< HEAD
     $this->verifyHelpLinks();
+=======
+>>>>>>> dev
     $this->verifyBreadCrumb();
 
     // Verify that help topics text appears on admin/help, and cache tags.
@@ -98,7 +132,11 @@ class HelpTopicTest extends BrowserTestBase {
     $session->pageTextContains('Topics can be provided by modules or themes');
     $session->responseHeaderContains('X-Drupal-Cache-Tags', 'core.extension');
 
+<<<<<<< HEAD
     // Verify links for for help topics and order.
+=======
+    // Verify links for help topics and order.
+>>>>>>> dev
     $page_text = $this->getTextContent();
     $start = strpos($page_text, 'Topics can be provided');
     $pos = $start;
@@ -106,7 +144,11 @@ class HelpTopicTest extends BrowserTestBase {
       $name = $info['name'];
       $session->linkExists($name);
       $new_pos = strpos($page_text, $name, $start);
+<<<<<<< HEAD
       $this->assertTrue($new_pos > $pos, 'Order of ' . $name . ' is correct on page');
+=======
+      $this->assertGreaterThan($pos, $new_pos, "Order of $name is not correct on page");
+>>>>>>> dev
       $pos = $new_pos;
     }
 
@@ -167,6 +209,7 @@ class HelpTopicTest extends BrowserTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Verifies links on the test help topic page and other pages.
    *
    * Assumes an admin user is logged in.
@@ -179,6 +222,21 @@ class HelpTopicTest extends BrowserTestBase {
       'link to the additional topic' => 'Additional topic',
       'Linked topic' => 'This topic is not supposed to be top-level',
       'Additional topic' => 'This topic should get listed automatically',
+=======
+   * Verifies links on various topic pages.
+   */
+  public function testHelpLinks() {
+    $session = $this->assertSession();
+    $this->drupalLogin($this->adminUser);
+
+    // Verify links on the test top-level page.
+    $page = 'admin/help/topic/help_topics_test.test';
+    // Array element is the page text if you click through.
+    $links = [
+      'Linked topic' => 'This topic is not supposed to be top-level',
+      'Additional topic' => 'This topic should get listed automatically',
+      'URL test topic' => 'It is used to test URLs',
+>>>>>>> dev
     ];
     foreach ($links as $link_text => $page_text) {
       $this->drupalGet($page);
@@ -197,6 +255,37 @@ class HelpTopicTest extends BrowserTestBase {
     $this->drupalGet('admin/help');
     $session->linkNotExists('Linked topic');
     $session->linkNotExists('Additional topic');
+<<<<<<< HEAD
+=======
+
+    // Verify links and non-links on the URL test page.
+    $this->drupalGet('admin/help/topic/help_topics_test.test_urls');
+    $links = [
+      'not a route' => FALSE,
+      'missing params' => FALSE,
+      'invalid params' => FALSE,
+      'valid link' => TRUE,
+      'Additional topic' => TRUE,
+      'Missing help topic not_a_topic' => FALSE,
+    ];
+    foreach ($links as $text => $should_be_link) {
+      if ($should_be_link) {
+        $session->linkExists($text);
+      }
+      else {
+        // Should be text that is not a link.
+        $session->pageTextContains($text);
+        $session->linkNotExists($text);
+      }
+    }
+
+    // Verify that the "no test" user, who should not be able to access
+    // the 'valid link' URL, sees it as not a link.
+    $this->drupalLogin($this->noTestUser);
+    $this->drupalGet('admin/help/topic/help_topics_test.test_urls');
+    $session->pageTextContains('valid link');
+    $session->linkNotExists('valid link');
+>>>>>>> dev
   }
 
   /**

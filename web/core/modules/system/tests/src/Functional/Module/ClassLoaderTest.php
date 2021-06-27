@@ -42,7 +42,11 @@ class ClassLoaderTest extends BrowserTestBase {
     for ($i = 0; $i < 2; $i++) {
       $this->drupalGet('module-test/class-loading');
       $this->assertSession()->statusCodeEquals(200);
+<<<<<<< HEAD
       $this->assertText($this->expected, 'Autoloader loads classes from an enabled module.');
+=======
+      $this->assertSession()->pageTextContains($this->expected);
+>>>>>>> dev
     }
   }
 
@@ -59,7 +63,11 @@ class ClassLoaderTest extends BrowserTestBase {
     for ($i = 0; $i < 2; $i++) {
       $this->drupalGet('module-test/class-loading');
       $this->assertSession()->statusCodeEquals(200);
+<<<<<<< HEAD
       $this->assertNoText($this->expected, 'Autoloader does not load classes from a disabled module.');
+=======
+      $this->assertNoText($this->expected);
+>>>>>>> dev
     }
   }
 
@@ -79,7 +87,11 @@ class ClassLoaderTest extends BrowserTestBase {
     for ($i = 0; $i < 2; $i++) {
       $this->drupalGet('module-test/class-loading');
       $this->assertSession()->statusCodeEquals(200);
+<<<<<<< HEAD
       $this->assertNoText($this->expected, 'Autoloader does not load classes from a disabled module.');
+=======
+      $this->assertNoText($this->expected);
+>>>>>>> dev
     }
   }
 
@@ -92,7 +104,12 @@ class ClassLoaderTest extends BrowserTestBase {
       "modules[module_install_class_loader_test1][enable]" => TRUE,
       "modules[module_install_class_loader_test2][enable]" => TRUE,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/modules', $edit, t('Install'));
+=======
+    $this->drupalGet('admin/modules');
+    $this->submitForm($edit, 'Install');
+>>>>>>> dev
     $this->rebuildContainer();
     $this->assertTrue(\Drupal::moduleHandler()->moduleExists('module_install_class_loader_test2'), 'The module_install_class_loader_test2 module has been installed.');
   }
@@ -106,7 +123,12 @@ class ClassLoaderTest extends BrowserTestBase {
     $edit = [
       "modules[module_autoload_test][enable]" => TRUE,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/modules', $edit, t('Install'));
+=======
+    $this->drupalGet('admin/modules');
+    $this->submitForm($edit, 'Install');
+>>>>>>> dev
     $this->assertSession()->statusCodeEquals(200);
     $this->resetAll();
     $this->assertSame(SomeClass::TEST, MODULE_AUTOLOAD_TEST_CONSTANT);

@@ -17,7 +17,11 @@ class MenuCacheTagsTest extends PageCacheTagsTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['menu_ui', 'block', 'test_page_test'];
+=======
+  protected static $modules = ['menu_ui', 'block', 'test_page_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

@@ -3,7 +3,11 @@
  * Block admin behaviors.
  */
 
+<<<<<<< HEAD
 (function($, Drupal, debounce) {
+=======
+(function ($, Drupal, debounce) {
+>>>>>>> dev
   /**
    * Filters the block list by a text input search string.
    *
@@ -33,9 +37,13 @@
        *   The jQuery event for the keyup event that triggered the filter.
        */
       function filterBlockList(e) {
+<<<<<<< HEAD
         const query = $(e.target)
           .val()
           .toLowerCase();
+=======
+        const query = $(e.target).val().toLowerCase();
+>>>>>>> dev
 
         /**
          * Shows or hides the block entry based on the query.
@@ -48,11 +56,15 @@
         function toggleBlockEntry(index, label) {
           const $label = $(label);
           const $row = $label.parent().parent();
+<<<<<<< HEAD
           const textMatch =
             $label
               .text()
               .toLowerCase()
               .indexOf(query) !== -1;
+=======
+          const textMatch = $label.text().toLowerCase().indexOf(query) !== -1;
+>>>>>>> dev
           $row.toggle(textMatch);
         }
 
@@ -67,11 +79,16 @@
             ),
           );
         } else {
+<<<<<<< HEAD
           $filterRows.each(function(index) {
             $(this)
               .parent()
               .parent()
               .show();
+=======
+          $filterRows.each(function (index) {
+            $(this).parent().parent().show();
+>>>>>>> dev
           });
         }
       }
@@ -98,7 +115,11 @@
         $(context)
           .find('[data-drupal-selector="edit-blocks"]')
           .once('block-highlight')
+<<<<<<< HEAD
           .each(function() {
+=======
+          .each(function () {
+>>>>>>> dev
             const $container = $(this);
             // Just scrolling the document.body will not work in Firefox. The html
             // element is needed as well.

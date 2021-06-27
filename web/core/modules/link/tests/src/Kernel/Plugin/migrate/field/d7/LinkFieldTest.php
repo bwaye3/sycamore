@@ -31,7 +31,11 @@ class LinkFieldTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->plugin = new LinkField([], 'link', []);

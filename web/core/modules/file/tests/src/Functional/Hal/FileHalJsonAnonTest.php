@@ -2,7 +2,10 @@
 
 namespace Drupal\Tests\file\Functional\Hal;
 
+<<<<<<< HEAD
 use Drupal\Core\Cache\Cache;
+=======
+>>>>>>> dev
 use Drupal\Tests\file\Functional\Rest\FileResourceTestBase;
 use Drupal\Tests\hal\Functional\EntityResource\HalEntityNormalizationTrait;
 use Drupal\Tests\rest\Functional\AnonResourceTestTrait;
@@ -18,7 +21,11 @@ class FileHalJsonAnonTest extends FileResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['hal'];
+=======
+  protected static $modules = ['hal'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -44,7 +51,10 @@ class FileHalJsonAnonTest extends FileResourceTestBase {
     $normalization = $this->applyHalFieldNormalization($default_normalization);
 
     $url = file_create_url($this->entity->getFileUri());
+<<<<<<< HEAD
     // @see \Drupal\Tests\hal\Functional\EntityResource\File\FileHalJsonAnonTest::testGetBcUriField()
+=======
+>>>>>>> dev
     if ($this->config('hal.settings')->get('bc_file_uri_as_url_normalizer')) {
       $normalization['uri'][0]['value'] = $url;
     }
@@ -103,6 +113,7 @@ class FileHalJsonAnonTest extends FileResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function getExpectedCacheTags() {
     return Cache::mergeTags(parent::getExpectedCacheTags(), ['config:hal.settings']);
   }
@@ -110,6 +121,8 @@ class FileHalJsonAnonTest extends FileResourceTestBase {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   protected function getExpectedCacheContexts() {
     return [
       'url.site',
@@ -117,6 +130,7 @@ class FileHalJsonAnonTest extends FileResourceTestBase {
     ];
   }
 
+<<<<<<< HEAD
   /**
    * @see hal_update_8501()
    *
@@ -144,4 +158,6 @@ class FileHalJsonAnonTest extends FileResourceTestBase {
     $this->assertSame($this->baseUrl . '/' . $this->siteDirectory . '/files/drupal.txt', $actual['uri'][0]['value']);
   }
 
+=======
+>>>>>>> dev
 }

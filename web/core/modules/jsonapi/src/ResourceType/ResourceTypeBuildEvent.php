@@ -4,7 +4,11 @@ namespace Drupal\jsonapi\ResourceType;
 
 use Drupal\Component\Assertion\Inspector;
 use Drupal\Core\Entity\EntityTypeInterface;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\Event;
+=======
+use Drupal\Component\EventDispatcher\Event;
+>>>>>>> dev
 
 /**
  * An event used to configure the construction of a JSON:API resource type.

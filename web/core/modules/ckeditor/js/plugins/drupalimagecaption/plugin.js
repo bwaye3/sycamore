@@ -15,7 +15,10 @@
     element.forEach(function (el) {
       if (el.name === name) {
         found = el;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         return false;
       }
     }, CKEDITOR.NODE_ELEMENT);
@@ -24,6 +27,7 @@
 
   CKEDITOR.plugins.add('drupalimagecaption', {
     requires: 'drupalimage',
+<<<<<<< HEAD
 
     beforeInit: function beforeInit(editor) {
       editor.lang.image2.captionPlaceholder = '';
@@ -32,13 +36,24 @@
 
       editor.on('widgetDefinition', function (event) {
         var widgetDefinition = event.data;
+=======
+    beforeInit: function beforeInit(editor) {
+      editor.lang.image2.captionPlaceholder = '';
+      var placeholderText = editor.config.drupalImageCaption_captionPlaceholderText;
+      editor.on('widgetDefinition', function (event) {
+        var widgetDefinition = event.data;
+
+>>>>>>> dev
         if (widgetDefinition.name !== 'image') {
           return;
         }
 
         var captionFilterEnabled = editor.config.drupalImageCaption_captionFilterEnabled;
         var alignFilterEnabled = editor.config.drupalImageCaption_alignFilterEnabled;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         CKEDITOR.tools.extend(widgetDefinition.features, {
           caption: {
             requiredContent: 'img[data-caption]'
@@ -47,13 +62,17 @@
             requiredContent: 'img[data-align]'
           }
         }, true);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         var requiredContent = widgetDefinition.requiredContent.getDefinition();
         requiredContent.attributes['data-align'] = '';
         requiredContent.attributes['data-caption'] = '';
         widgetDefinition.requiredContent = new CKEDITOR.style(requiredContent);
         widgetDefinition.allowedContent.img.attributes['!data-align'] = true;
         widgetDefinition.allowedContent.img.attributes['!data-caption'] = true;
+<<<<<<< HEAD
 
         widgetDefinition.editables.caption.allowedContent = 'a[!href]; em strong cite code br';
 
@@ -62,6 +81,14 @@
           var img = findElementByName(element, 'img');
           originalDowncast.call(this, img);
 
+=======
+        widgetDefinition.editables.caption.allowedContent = 'a[!href]; em strong cite code br';
+        var originalDowncast = widgetDefinition.downcast;
+
+        widgetDefinition.downcast = function (element) {
+          var img = findElementByName(element, 'img');
+          originalDowncast.call(this, img);
+>>>>>>> dev
           var caption = this.editables.caption;
           var captionHtml = caption && caption.getData();
           var attrs = img.attributes;
@@ -71,6 +98,10 @@
               attrs['data-caption'] = captionHtml;
             }
           }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
           if (alignFilterEnabled) {
             if (this.data.align !== 'none') {
               attrs['data-align'] = this.data.align;
@@ -85,6 +116,10 @@
         };
 
         var originalUpcast = widgetDefinition.upcast;
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         widgetDefinition.upcast = function (element, data) {
           if (element.name !== 'img' || !element.attributes['data-entity-type'] || !element.attributes['data-entity-uuid']) {
             return;
@@ -102,16 +137,28 @@
           }
 
           var retElement = element;
+<<<<<<< HEAD
           var caption = void 0;
+=======
+          var caption;
+>>>>>>> dev
 
           if (captionFilterEnabled) {
             caption = attrs['data-caption'];
             delete attrs['data-caption'];
           }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
           if (alignFilterEnabled) {
             data.align = attrs['data-align'];
             delete attrs['data-align'];
           }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
           data['data-entity-type'] = attrs['data-entity-type'];
           delete attrs['data-entity-type'];
           data['data-entity-uuid'] = attrs['data-entity-uuid'];
@@ -126,7 +173,13 @@
               if (splitBefore) {
                 element.parent.split(index);
               }
+<<<<<<< HEAD
               index = element.getIndex();
+=======
+
+              index = element.getIndex();
+
+>>>>>>> dev
               if (splitAfter) {
                 element.parent.split(index + 1);
               }
@@ -138,12 +191,18 @@
             if (caption) {
               var figure = new CKEDITOR.htmlParser.element('figure');
               caption = new CKEDITOR.htmlParser.fragment.fromHtml(caption, 'figcaption');
+<<<<<<< HEAD
 
               var captionFilter = new CKEDITOR.filter(widgetDefinition.editables.caption.allowedContent);
               captionFilter.applyTo(caption);
 
               caption.attributes['data-placeholder'] = placeholderText;
 
+=======
+              var captionFilter = new CKEDITOR.filter(widgetDefinition.editables.caption.allowedContent);
+              captionFilter.applyTo(caption);
+              caption.attributes['data-placeholder'] = placeholderText;
+>>>>>>> dev
               element.replaceWith(figure);
               figure.add(element);
               figure.add(caption);
@@ -157,7 +216,10 @@
               var p = new CKEDITOR.htmlParser.element('p');
               element.replaceWith(p);
               p.add(element);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
               p.addClass(editor.config.image2_alignClasses[1]);
               retElement = p;
             }
@@ -171,6 +233,7 @@
           'data-caption': 'data-caption',
           hasCaption: 'hasCaption'
         });
+<<<<<<< HEAD
 
         var originalCreateDialogSaveCallback = widgetDefinition._createDialogSaveCallback;
         widgetDefinition._createDialogSaveCallback = function (editor, widget) {
@@ -179,12 +242,25 @@
           return function (dialogReturnValues) {
             dialogReturnValues.attributes.hasCaption = !!dialogReturnValues.attributes.hasCaption;
 
+=======
+        var originalCreateDialogSaveCallback = widgetDefinition._createDialogSaveCallback;
+
+        widgetDefinition._createDialogSaveCallback = function (editor, widget) {
+          var saveCallback = originalCreateDialogSaveCallback.call(this, editor, widget);
+          return function (dialogReturnValues) {
+            dialogReturnValues.attributes.hasCaption = !!dialogReturnValues.attributes.hasCaption;
+>>>>>>> dev
             var actualWidget = saveCallback(dialogReturnValues);
 
             if (dialogReturnValues.attributes.hasCaption) {
               actualWidget.editables.caption.setAttribute('data-placeholder', placeholderText);
+<<<<<<< HEAD
 
               var captionElement = actualWidget.editables.caption.$;
+=======
+              var captionElement = actualWidget.editables.caption.$;
+
+>>>>>>> dev
               if (captionElement.childNodes.length === 1 && captionElement.childNodes.item(0).nodeName === 'BR') {
                 captionElement.removeChild(captionElement.childNodes.item(0));
               }
@@ -196,6 +272,10 @@
     afterInit: function afterInit(editor) {
       var disableButtonIfOnWidget = function disableButtonIfOnWidget(evt) {
         var widget = editor.widgets.focused;
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         if (widget && widget.name === 'image') {
           this.setState(CKEDITOR.TRISTATE_DISABLED);
           evt.cancel();
@@ -203,8 +283,14 @@
       };
 
       if (editor.plugins.justify && !editor.config.drupalImageCaption_alignFilterEnabled) {
+<<<<<<< HEAD
         var cmd = void 0;
         var commands = ['justifyleft', 'justifycenter', 'justifyright', 'justifyblock'];
+=======
+        var cmd;
+        var commands = ['justifyleft', 'justifycenter', 'justifyright', 'justifyblock'];
+
+>>>>>>> dev
         for (var n = 0; n < commands.length; n++) {
           cmd = editor.getCommand(commands[n]);
           cmd.contextSensitive = 1;

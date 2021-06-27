@@ -19,7 +19,11 @@ class IntegrationTest extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['statistics', 'statistics_test_views', 'node'];
+=======
+  protected static $modules = ['statistics', 'statistics_test_views', 'node'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -47,10 +51,17 @@ class IntegrationTest extends ViewTestBase {
    */
   public static $testViews = ['test_statistics_integration'];
 
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
     parent::setUp($import_test_views);
 
     ViewTestData::createTestViews(get_class($this), ['statistics_test_views']);
+=======
+  protected function setUp($import_test_views = TRUE): void {
+    parent::setUp($import_test_views);
+
+    ViewTestData::createTestViews(static::class, ['statistics_test_views']);
+>>>>>>> dev
 
     // Create a new user for viewing nodes and statistics.
     $this->webUser = $this->drupalCreateUser([

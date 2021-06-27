@@ -57,7 +57,11 @@ class DefaultMenuLinkTreeManipulatorsTest extends UnitTestCase {
   protected $originalTree = [];
 
   /**
+<<<<<<< HEAD
    * Array of menu link instances
+=======
+   * Array of menu link instances.
+>>>>>>> dev
    *
    * @var \Drupal\Core\Menu\MenuLinkInterface[]
    */
@@ -66,7 +70,11 @@ class DefaultMenuLinkTreeManipulatorsTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->accessManager = $this->createMock('\Drupal\Core\Access\AccessManagerInterface');
@@ -292,9 +300,18 @@ class DefaultMenuLinkTreeManipulatorsTest extends UnitTestCase {
 
     $query = $this->createMock('Drupal\Core\Entity\Query\QueryInterface');
     $query->expects($this->at(0))
+<<<<<<< HEAD
       ->method('condition')
       ->with('nid', [1, 2, 3, 4]);
     $query->expects($this->at(1))
+=======
+      ->method('accessCheck')
+      ->with(TRUE);
+    $query->expects($this->at(1))
+      ->method('condition')
+      ->with('nid', [1, 2, 3, 4]);
+    $query->expects($this->at(2))
+>>>>>>> dev
       ->method('condition')
       ->with('status', NodeInterface::PUBLISHED);
     $query->expects($this->once())

@@ -27,7 +27,11 @@ class NodeRevisionsUiTest extends NodeTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create users.
@@ -57,15 +61,25 @@ class NodeRevisionsUiTest extends NodeTestBase {
 
     // Verify the checkbox is checked on the node edit form.
     $this->drupalGet('node/' . $node->id() . '/edit');
+<<<<<<< HEAD
     $this->assertFieldChecked('edit-revision', "'Create new revision' checkbox is checked");
 
     // Uncheck the create new revision checkbox and save the node.
     $edit = ['revision' => FALSE];
     $this->drupalPostForm('node/' . $node->id() . '/edit', $edit, t('Save'));
+=======
+    $this->assertSession()->checkboxChecked('edit-revision');
+
+    // Uncheck the create new revision checkbox and save the node.
+    $edit = ['revision' => FALSE];
+    $this->drupalGet('node/' . $node->id() . '/edit');
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
 
     // Load the node again and check the revision is the same as before.
     $node_storage->resetCache([$node->id()]);
     $node_revision = $node_storage->load($node->id(), TRUE);
+<<<<<<< HEAD
     $this->assertEqual($node_revision->getRevisionId(), $node->getRevisionId(), "After an existing node is saved with 'Create new revision' unchecked, a new revision is not created.");
 
     // Verify the checkbox is checked on the node edit form.
@@ -75,11 +89,27 @@ class NodeRevisionsUiTest extends NodeTestBase {
     // Submit the form without changing the checkbox.
     $edit = [];
     $this->drupalPostForm('node/' . $node->id() . '/edit', $edit, t('Save'));
+=======
+    $this->assertEquals($node->getRevisionId(), $node_revision->getRevisionId(), "After an existing node is saved with 'Create new revision' unchecked, a new revision is not created.");
+
+    // Verify the checkbox is checked on the node edit form.
+    $this->drupalGet('node/' . $node->id() . '/edit');
+    $this->assertSession()->checkboxChecked('edit-revision');
+
+    // Submit the form without changing the checkbox.
+    $edit = [];
+    $this->drupalGet('node/' . $node->id() . '/edit');
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
 
     // Load the node again and check the revision is different from before.
     $node_storage->resetCache([$node->id()]);
     $node_revision = $node_storage->load($node->id());
+<<<<<<< HEAD
     $this->assertNotEqual($node_revision->getRevisionId(), $node->getRevisionId(), "After an existing node is saved with 'Create new revision' checked, a new revision is created.");
+=======
+    $this->assertNotEquals($node->getRevisionId(), $node_revision->getRevisionId(), "After an existing node is saved with 'Create new revision' checked, a new revision is created.");
+>>>>>>> dev
   }
 
   /**
@@ -168,7 +198,11 @@ class NodeRevisionsUiTest extends NodeTestBase {
 
     // Verify that the latest affected revision having been a default revision
     // is displayed as the current one.
+<<<<<<< HEAD
     $this->assertNoLinkByHref('/node/' . $node_id . '/revisions/1/revert');
+=======
+    $this->assertSession()->linkByHrefNotExists('/node/' . $node_id . '/revisions/1/revert');
+>>>>>>> dev
     $elements = $this->xpath('//tr[contains(@class, "revision-current")]/td/a[1]');
     // The site may be installed in a subdirectory, so check if the URL is
     // contained in the retrieved one.
@@ -177,6 +211,7 @@ class NodeRevisionsUiTest extends NodeTestBase {
     // Verify that the default revision can be an older revision than the latest
     // one.
     // Assert that the revisions with translations changes are shown.
+<<<<<<< HEAD
     $this->assertLinkByHref('/node/' . $node_id . '/revisions/4/revert');
 
     // Assert that the revisions without translations changes are filtered out:
@@ -184,6 +219,15 @@ class NodeRevisionsUiTest extends NodeTestBase {
     $this->assertNoLinkByHref('/node/' . $node_id . '/revisions/2/revert');
     $this->assertNoLinkByHref('/node/' . $node_id . '/revisions/3/revert');
     $this->assertNoLinkByHref('/node/' . $node_id . '/revisions/5/revert');
+=======
+    $this->assertSession()->linkByHrefExists('/node/' . $node_id . '/revisions/4/revert');
+
+    // Assert that the revisions without translations changes are filtered out:
+    // 2, 3 and 5.
+    $this->assertSession()->linkByHrefNotExists('/node/' . $node_id . '/revisions/2/revert');
+    $this->assertSession()->linkByHrefNotExists('/node/' . $node_id . '/revisions/3/revert');
+    $this->assertSession()->linkByHrefNotExists('/node/' . $node_id . '/revisions/5/revert');
+>>>>>>> dev
   }
 
 }

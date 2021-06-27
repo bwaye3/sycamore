@@ -18,7 +18,11 @@ class MigrateFieldInstanceWidgetSettingsTest extends MigrateDrupal7TestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'comment',
     'datetime',
     'image',
@@ -33,7 +37,11 @@ class MigrateFieldInstanceWidgetSettingsTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->migrateFields();
     $this->executeMigration('d7_field_instance_widget_settings');
@@ -53,8 +61,13 @@ class MigrateFieldInstanceWidgetSettingsTest extends MigrateDrupal7TestBase {
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $entity */
     $entity = EntityFormDisplay::load($id);
     $this->assertInstanceOf(EntityFormDisplayInterface::class, $entity);
+<<<<<<< HEAD
     $this->assertIdentical($expected_entity_type, $entity->getTargetEntityTypeId());
     $this->assertIdentical($expected_bundle, $entity->getTargetBundle());
+=======
+    $this->assertSame($expected_entity_type, $entity->getTargetEntityTypeId());
+    $this->assertSame($expected_bundle, $entity->getTargetBundle());
+>>>>>>> dev
   }
 
   /**
@@ -72,12 +85,21 @@ class MigrateFieldInstanceWidgetSettingsTest extends MigrateDrupal7TestBase {
   protected function assertComponent($display_id, $component_id, $widget_type, $weight) {
     $component = EntityFormDisplay::load($display_id)->getComponent($component_id);
     $this->assertIsArray($component);
+<<<<<<< HEAD
     $this->assertIdentical($widget_type, $component['type']);
     $this->assertIdentical($weight, $component['weight']);
   }
 
   /**
    * Test that migrated view modes can be loaded using D8 APIs.
+=======
+    $this->assertSame($widget_type, $component['type']);
+    $this->assertSame($weight, $component['weight']);
+  }
+
+  /**
+   * Tests that migrated view modes can be loaded using D8 APIs.
+>>>>>>> dev
    */
   public function testWidgetSettings() {
     $this->assertEntity('node.page.default', 'node', 'page');
@@ -128,6 +150,10 @@ class MigrateFieldInstanceWidgetSettingsTest extends MigrateDrupal7TestBase {
     $this->assertComponent('node.test_content_type.default', 'field_text', 'string_textfield', 15);
     $this->assertComponent('node.test_content_type.default', 'field_text_list', 'options_select', 11);
     $this->assertComponent('node.test_content_type.default', 'field_float_list', 'options_select', 20);
+<<<<<<< HEAD
+=======
+    $this->assertComponent('node.test_content_type.default', 'field_telephone', 'telephone_default', 21);
+>>>>>>> dev
 
     $this->assertEntity('user.user.default', 'user', 'user');
     $this->assertComponent('user.user.default', 'field_file', 'file_generic', 8);
@@ -136,8 +162,20 @@ class MigrateFieldInstanceWidgetSettingsTest extends MigrateDrupal7TestBase {
     $this->assertComponent('comment.comment_node_test_content_type.default', 'comment_body', 'text_textarea', 0);
     $this->assertComponent('comment.comment_node_test_content_type.default', 'field_integer', 'number', 2);
 
+<<<<<<< HEAD
     $this->assertEntity('taxonomy_term.test_vocabulary.default', 'taxonomy_term', 'test_vocabulary');
     $this->assertComponent('comment.comment_node_test_content_type.default', 'field_integer', 'number', 2);
+=======
+    $this->assertEntity('comment.comment_node_a_thirty_two_char.default', 'comment', 'comment_node_a_thirty_two_char');
+    $this->assertComponent('comment.comment_node_a_thirty_two_char.default', 'comment_body', 'text_textarea', 0);
+
+    $this->assertEntity('taxonomy_term.test_vocabulary.default', 'taxonomy_term', 'test_vocabulary');
+    $this->assertComponent('comment.comment_node_test_content_type.default', 'field_integer', 'number', 2);
+
+    $this->assertEntity('node.blog.default', 'node', 'blog');
+    $this->assertComponent('node.blog.default', 'field_file_mfw', 'file_generic', 17);
+    $this->assertComponent('node.blog.default', 'field_image_miw', 'image_image', 18);
+>>>>>>> dev
   }
 
 }

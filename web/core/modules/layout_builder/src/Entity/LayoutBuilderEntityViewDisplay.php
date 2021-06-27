@@ -342,6 +342,7 @@ class LayoutBuilderEntityViewDisplay extends BaseEntityViewDisplay implements La
   }
 
   /**
+<<<<<<< HEAD
    * Gets the runtime sections for a given entity.
    *
    * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
@@ -366,6 +367,8 @@ class LayoutBuilderEntityViewDisplay extends BaseEntityViewDisplay implements La
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    *
    * @todo Move this upstream in https://www.drupal.org/node/2939931.
@@ -559,7 +562,11 @@ class LayoutBuilderEntityViewDisplay extends BaseEntityViewDisplay implements La
     foreach ($this->getSections() as $section) {
       foreach ($section->getComponents() as $component) {
         $plugin = $component->getPlugin();
+<<<<<<< HEAD
         if ($plugin instanceof DerivativeInspectionInterface && $plugin->getBaseId() === 'field_block') {
+=======
+        if ($plugin instanceof DerivativeInspectionInterface && in_array($plugin->getBaseId(), ['field_block', 'extra_field_block'], TRUE)) {
+>>>>>>> dev
           // FieldBlock derivative IDs are in the format
           // [entity_type]:[bundle]:[field].
           list(, , $field_block_field_name) = explode(PluginBase::DERIVATIVE_SEPARATOR, $plugin->getDerivativeId());

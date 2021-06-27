@@ -8,9 +8,15 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\Url;
+<<<<<<< HEAD
 use Drupal\update\UpdateFetcherInterface;
 use Drupal\update\UpdateManagerInterface;
 use Drupal\update\ModuleVersion;
+=======
+use Drupal\Core\Extension\ExtensionVersion;
+use Drupal\update\UpdateFetcherInterface;
+use Drupal\update\UpdateManagerInterface;
+>>>>>>> dev
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -72,7 +78,11 @@ class UpdateManagerUpdate extends FormBase {
 
     $last_markup = [
       '#theme' => 'update_last_check',
+<<<<<<< HEAD
       '#last' => $this->state->get('update.last_check') ?: 0,
+=======
+      '#last' => $this->state->get('update.last_check', 0),
+>>>>>>> dev
     ];
     $form['last_check'] = [
       '#markup' => \Drupal::service('renderer')->render($last_markup),
@@ -104,7 +114,17 @@ class UpdateManagerUpdate extends FormBase {
     $form['project_downloads'] = ['#tree' => TRUE];
     $this->moduleHandler->loadInclude('update', 'inc', 'update.compare');
     $project_data = update_calculate_project_data($available);
+<<<<<<< HEAD
     foreach ($project_data as $name => $project) {
+=======
+
+    $fetch_failed = FALSE;
+    foreach ($project_data as $name => $project) {
+      if ($project['status'] === UpdateFetcherInterface::NOT_FETCHED) {
+        $fetch_failed = TRUE;
+      }
+
+>>>>>>> dev
       // Filter out projects which are up to date already.
       if ($project['status'] == UpdateManagerInterface::CURRENT) {
         continue;
@@ -136,7 +156,11 @@ class UpdateManagerUpdate extends FormBase {
 
       $recommended_release = $project['releases'][$project['recommended']];
       $recommended_version = '{{ release_version }} (<a href="{{ release_link }}" title="{{ project_title }}">{{ release_notes }}</a>)';
+<<<<<<< HEAD
       $recommended_version_parser = ModuleVersion::createFromVersionString($recommended_release['version']);
+=======
+      $recommended_version_parser = ExtensionVersion::createFromVersionString($recommended_release['version']);
+>>>>>>> dev
       if ($recommended_version_parser->getMajorVersion() != $project['existing_major']) {
         $recommended_version .= '<div title="{{ major_update_warning_title }}" class="update-major-version-warning">{{ major_update_warning_text }}</div>';
       }
@@ -245,6 +269,14 @@ class UpdateManagerUpdate extends FormBase {
       }
     }
 
+<<<<<<< HEAD
+=======
+    if ($fetch_failed) {
+      $message = ['#theme' => 'update_fetch_error_message'];
+      $this->messenger()->addError(\Drupal::service('renderer')->renderPlain($message));
+    }
+
+>>>>>>> dev
     if (empty($projects)) {
       $form['message'] = [
         '#markup' => $this->t('All of your projects are up to date.'),

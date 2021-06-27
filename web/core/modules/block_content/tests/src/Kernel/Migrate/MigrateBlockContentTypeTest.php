@@ -13,12 +13,20 @@ use Drupal\Tests\migrate_drupal\Kernel\d7\MigrateDrupal7TestBase;
  */
 class MigrateBlockContentTypeTest extends MigrateDrupal7TestBase {
 
+<<<<<<< HEAD
   public static $modules = ['block', 'block_content', 'filter', 'text'];
+=======
+  protected static $modules = ['block', 'block_content', 'filter', 'text'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('block_content');
     $this->installConfig(['block_content']);
@@ -32,7 +40,11 @@ class MigrateBlockContentTypeTest extends MigrateDrupal7TestBase {
     /** @var \Drupal\block_content\BlockContentTypeInterface $entity */
     $entity = BlockContentType::load('basic');
     $this->assertInstanceOf(BlockContentTypeInterface::class, $entity);
+<<<<<<< HEAD
     $this->assertIdentical('Basic', $entity->label());
+=======
+    $this->assertSame('Basic', $entity->label());
+>>>>>>> dev
   }
 
 }

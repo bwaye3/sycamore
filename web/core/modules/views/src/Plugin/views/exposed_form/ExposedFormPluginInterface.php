@@ -15,7 +15,11 @@ use Drupal\views\Plugin\views\ViewsPluginInterface;
  * validation, and submission of exposed forms, and may add additional form
  * elements.
  *
+<<<<<<< HEAD
  * To define a Exposed Form Plugin in a module you need to:
+=======
+ * To define an Exposed Form Plugin in a module you need to:
+>>>>>>> dev
  * - Implement
  *   \Drupal\views\Plugin\views\exposed_form\ExposedFormPluginInterface.
  * - Usually you will want to extend the

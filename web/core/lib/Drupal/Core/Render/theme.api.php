@@ -186,7 +186,11 @@
  *   @code
  *   function THEME_page_attachments_alter(array &$page) {
  *     if ($some_condition) {
+<<<<<<< HEAD
  *       $page['#attached']['library'][] = 'mytheme/something';
+=======
+ *       $page['#attached']['library'][] = 'my_theme/something';
+>>>>>>> dev
  *     }
  *   }
  *   @endcode
@@ -200,6 +204,18 @@
  *   }
  *   @endcode
  *
+<<<<<<< HEAD
+=======
+ * @section front_matter Front Matter
+ * Twig has been extended in Drupal to provide an easy way to parse front
+ * matter from template files. See \Drupal\Component\FrontMatter\FrontMatter
+ * for more information:
+ * @code
+ * $metadata = \Drupal::service('twig')->getTemplateMetadata('/path/to/template.html.twig');
+ * @endcode
+ * Note: all front matter is stripped from templates prior to rendering.
+ *
+>>>>>>> dev
  * @see hooks
  * @see callbacks
  * @see theme_render

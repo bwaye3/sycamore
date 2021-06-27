@@ -67,7 +67,11 @@ class BlockedIp extends DestinationBase implements ContainerFactoryPluginInterfa
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function fields(MigrationInterface $migration = NULL) {
+=======
+  public function fields() {
+>>>>>>> dev
     return [
       'ip' => $this->t('The blocked IP address.'),
     ];

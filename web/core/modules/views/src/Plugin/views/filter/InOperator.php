@@ -10,7 +10,11 @@ use Drupal\views\ViewExecutable;
 use Drupal\Core\Form\OptGroup;
 
 /**
+<<<<<<< HEAD
  * Simple filter to handle matching of multiple options selectable via checkboxes
+=======
+ * Simple filter to handle matching of multiple options selectable via checkboxes.
+>>>>>>> dev
  *
  * Definition items:
  * - options callback: The function to call in order to generate the value options. If omitted, the options 'Yes' and 'No' will be used.
@@ -148,7 +152,11 @@ class InOperator extends FilterPluginBase {
   }
 
   /**
+<<<<<<< HEAD
    * Build strings from the operators() for 'select' options
+=======
+   * Build strings from the operators() for 'select' options.
+>>>>>>> dev
    */
   public function operatorOptions($which = 'title') {
     $options = [];

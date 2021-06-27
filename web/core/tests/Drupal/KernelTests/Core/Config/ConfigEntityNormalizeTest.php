@@ -16,9 +16,15 @@ class ConfigEntityNormalizeTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['config_test'];
 
   protected function setUp() {
+=======
+  protected static $modules = ['config_test'];
+
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installConfig(static::$modules);
   }
@@ -34,12 +40,20 @@ class ConfigEntityNormalizeTest extends KernelTestBase {
       'additional_key' => TRUE,
     ] + $config->getRawData();
     $config->setData($data)->save();
+<<<<<<< HEAD
     $this->assertNotIdentical($config_entity->toArray(), $config->getRawData(), 'Stored config entity is not is equivalent to config schema.');
+=======
+    $this->assertNotSame($config_entity->toArray(), $config->getRawData(), 'Stored config entity is not is equivalent to config schema.');
+>>>>>>> dev
     $config_entity = \Drupal::entityTypeManager()->getStorage('config_test')->load('system');
     $config_entity->save();
 
     $config = $this->config('config_test.dynamic.system');
+<<<<<<< HEAD
     $this->assertIdentical($config_entity->toArray(), $config->getRawData(), 'Stored config entity is equivalent to config schema.');
+=======
+    $this->assertSame($config_entity->toArray(), $config->getRawData(), 'Stored config entity is equivalent to config schema.');
+>>>>>>> dev
   }
 
 }

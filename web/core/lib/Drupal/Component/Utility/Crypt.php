@@ -10,6 +10,7 @@ namespace Drupal\Component\Utility;
 class Crypt {
 
   /**
+<<<<<<< HEAD
    * Returns a string of highly randomized bytes (over the full 8-bit range).
    *
    * This function is better than simply calling mt_rand() or any other built-in
@@ -39,6 +40,8 @@ class Crypt {
   }
 
   /**
+=======
+>>>>>>> dev
    * Calculates a base-64 encoded, URL-safe sha-256 hmac.
    *
    * @param mixed $data
@@ -81,6 +84,7 @@ class Crypt {
   }
 
   /**
+<<<<<<< HEAD
    * Compares strings in constant time.
    *
    * @param string $known_string
@@ -102,6 +106,8 @@ class Crypt {
   }
 
   /**
+=======
+>>>>>>> dev
    * Returns a URL-safe, base64 encoded string of highly randomized bytes.
    *
    * @param $count
@@ -110,8 +116,11 @@ class Crypt {
    * @return string
    *   A base-64 encoded string, with + replaced with -, / with _ and any =
    *   padding characters removed.
+<<<<<<< HEAD
    *
    * @see \Drupal\Component\Utility\Crypt::randomBytes()
+=======
+>>>>>>> dev
    */
   public static function randomBytesBase64($count = 32) {
     return str_replace(['+', '/', '='], ['-', '_', ''], base64_encode(random_bytes($count)));

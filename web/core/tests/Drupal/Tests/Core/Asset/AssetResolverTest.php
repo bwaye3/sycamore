@@ -71,7 +71,11 @@ class AssetResolverTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->libraryDiscovery = $this->getMockBuilder('Drupal\Core\Asset\LibraryDiscovery')
@@ -114,12 +118,15 @@ class AssetResolverTest extends UnitTestCase {
   /**
    * @covers ::getCssAssets
    * @dataProvider providerAttachedAssets
+<<<<<<< HEAD
    * @group legacy
    *
    * Note the legacy group is used here because
    * ActiveTheme::getStyleSheetsRemove() is called and is deprecated. As this
    * code path will still be triggered until Drupal 9 we have to add the group.
    * We do not trigger a silenced deprecation.
+=======
+>>>>>>> dev
    */
   public function testGetCssAssets(AttachedAssetsInterface $assets_a, AttachedAssetsInterface $assets_b, $expected_cache_item_count) {
     $this->assetResolver->getCssAssets($assets_a, FALSE);

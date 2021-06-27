@@ -38,7 +38,11 @@ class DateTimeNormalizerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $system_date_config = $this->prophesize(ImmutableConfig::class);

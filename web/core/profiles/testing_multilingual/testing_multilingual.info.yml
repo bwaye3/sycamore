@@ -2,7 +2,10 @@ name: Testing multilingual
 type: profile
 description: 'Minimal profile for running tests with a multilingual installer.'
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 hidden: true
 install:
   - locale

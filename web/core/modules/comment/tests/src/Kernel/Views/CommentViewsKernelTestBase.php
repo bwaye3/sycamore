@@ -16,7 +16,11 @@ abstract class CommentViewsKernelTestBase extends ViewsKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['comment_test_views', 'user', 'comment'];
+=======
+  protected static $modules = ['comment_test_views', 'user', 'comment'];
+>>>>>>> dev
 
   /**
    * Admin user.
@@ -42,7 +46,11 @@ abstract class CommentViewsKernelTestBase extends ViewsKernelTestBase {
   protected function setUp($import_test_views = TRUE) {
     parent::setUp($import_test_views);
 
+<<<<<<< HEAD
     ViewTestData::createTestViews(get_class($this), ['comment_test_views']);
+=======
+    ViewTestData::createTestViews(static::class, ['comment_test_views']);
+>>>>>>> dev
 
     $this->installEntitySchema('user');
     $this->installEntitySchema('comment');
@@ -61,11 +69,27 @@ abstract class CommentViewsKernelTestBase extends ViewsKernelTestBase {
       ])
       ->save();
 
+<<<<<<< HEAD
     $admin_role = Role::create(['id' => 'admin']);
     $admin_role->grantPermission('administer comments');
     $admin_role->save();
 
     /* @var \Drupal\user\RoleInterface $anonymous_role */
+=======
+    // Create user 1 so that the user created later in the test has a different
+    // user ID.
+    // @todo Remove in https://www.drupal.org/node/540008.
+    $this->userStorage->create(['uid' => 1, 'name' => 'user1'])->save();
+
+    $admin_role = Role::create(['id' => 'admin']);
+    $admin_role->grantPermission('administer comments');
+    $admin_role->grantPermission('access comments');
+    $admin_role->grantPermission('post comments');
+    $admin_role->grantPermission('view test entity');
+    $admin_role->save();
+
+    /** @var \Drupal\user\RoleInterface $anonymous_role */
+>>>>>>> dev
     $anonymous_role = Role::load(Role::ANONYMOUS_ID);
     $anonymous_role->grantPermission('access comments');
     $anonymous_role->save();

@@ -112,7 +112,11 @@ class ConfigEntityBaseUnitTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->id = $this->randomMachineName();
     $values = [
       'id' => $this->id,
@@ -635,8 +639,16 @@ class ConfigEntityBaseUnitTest extends UnitTestCase {
     $this->entityType->expects($this->any())
       ->method('getPropertiesToExport')
       ->willReturn(NULL);
+<<<<<<< HEAD
     $this->expectException(SchemaIncompleteException::class);
     $this->expectExceptionMessageRegExp("/Entity type 'Mock_ConfigEntityTypeInterface_[^']*' is missing 'config_export' definition in its annotation/");
+=======
+    $this->entityType->expects($this->any())
+      ->method('getClass')
+      ->willReturn("FooConfigEntity");
+    $this->expectException(SchemaIncompleteException::class);
+    $this->expectExceptionMessage("Entity type 'FooConfigEntity' is missing 'config_export' definition in its annotation");
+>>>>>>> dev
     $this->entity->toArray();
   }
 

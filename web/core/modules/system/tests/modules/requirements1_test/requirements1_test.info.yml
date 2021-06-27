@@ -3,4 +3,7 @@ type: module
 description: 'Tests that a module is not installed when it fails hook_requirements(''install'').'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

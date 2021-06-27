@@ -8,9 +8,15 @@
 (function ($, CKEDITOR) {
   var convertToOffCanvasCss = function convertToOffCanvasCss(originalCss) {
     var selectorPrefix = '#drupal-off-canvas ';
+<<<<<<< HEAD
     var skinPath = '' + CKEDITOR.basePath + CKEDITOR.skinName + '/';
     var css = originalCss.substring(originalCss.indexOf('*/') + 2).trim().replace(/}/g, '}' + selectorPrefix).replace(/,/g, ',' + selectorPrefix).replace(/url\(/g, skinPath);
     return '' + selectorPrefix + css;
+=======
+    var skinPath = "".concat(CKEDITOR.basePath).concat(CKEDITOR.skinName, "/");
+    var css = originalCss.substring(originalCss.indexOf('*/') + 2).trim().replace(/}/g, "}".concat(selectorPrefix)).replace(/,/g, ",".concat(selectorPrefix)).replace(/url\(/g, skinPath);
+    return "".concat(selectorPrefix).concat(css);
+>>>>>>> dev
   };
 
   var insertCss = function insertCss(cssToInsert) {
@@ -26,11 +32,17 @@
     }
 
     CKEDITOR.skinName = CKEDITOR.skin.name;
+<<<<<<< HEAD
 
     var editorCssPath = CKEDITOR.skin.getPath('editor');
     var dialogCssPath = CKEDITOR.skin.getPath('dialog');
 
     var storedOffCanvasCss = window.localStorage.getItem('Drupal.off-canvas.css.' + editorCssPath + dialogCssPath);
+=======
+    var editorCssPath = CKEDITOR.skin.getPath('editor');
+    var dialogCssPath = CKEDITOR.skin.getPath('dialog');
+    var storedOffCanvasCss = window.localStorage.getItem("Drupal.off-canvas.css.".concat(editorCssPath).concat(dialogCssPath));
+>>>>>>> dev
 
     if (storedOffCanvasCss) {
       insertCss(storedOffCanvasCss);
@@ -40,7 +52,11 @@
     $.when($.get(editorCssPath), $.get(dialogCssPath)).done(function (editorCss, dialogCss) {
       var offCanvasEditorCss = convertToOffCanvasCss(editorCss[0]);
       var offCanvasDialogCss = convertToOffCanvasCss(dialogCss[0]);
+<<<<<<< HEAD
       var cssToInsert = '#drupal-off-canvas .cke_inner * {background: transparent;}\n          ' + offCanvasEditorCss + '\n          ' + offCanvasDialogCss;
+=======
+      var cssToInsert = "#drupal-off-canvas .cke_inner * {background: transparent;}\n          ".concat(offCanvasEditorCss, "\n          ").concat(offCanvasDialogCss);
+>>>>>>> dev
       insertCss(cssToInsert);
 
       if (CKEDITOR.timestamp && editorCssPath.indexOf(CKEDITOR.timestamp) !== -1 && dialogCssPath.indexOf(CKEDITOR.timestamp) !== -1) {
@@ -49,7 +65,11 @@
             window.localStorage.removeItem(key);
           }
         });
+<<<<<<< HEAD
         window.localStorage.setItem('Drupal.off-canvas.css.' + editorCssPath + dialogCssPath, cssToInsert);
+=======
+        window.localStorage.setItem("Drupal.off-canvas.css.".concat(editorCssPath).concat(dialogCssPath), cssToInsert);
+>>>>>>> dev
       }
     });
   };

@@ -11,7 +11,11 @@ use Drupal\Core\Entity\EntityAccessControlHandler;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+=======
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 
 /**
  * Defines the access control handler for the custom block entity type.
@@ -23,7 +27,11 @@ class BlockContentAccessControlHandler extends EntityAccessControlHandler implem
   /**
    * The event dispatcher.
    *
+<<<<<<< HEAD
    * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+=======
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+>>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -32,7 +40,11 @@ class BlockContentAccessControlHandler extends EntityAccessControlHandler implem
    *
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
    *   The entity type.
+<<<<<<< HEAD
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
+=======
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $dispatcher
+>>>>>>> dev
    *   The event dispatcher.
    */
   public function __construct(EntityTypeInterface $entity_type, EventDispatcherInterface $dispatcher) {
@@ -73,7 +85,11 @@ class BlockContentAccessControlHandler extends EntityAccessControlHandler implem
       if (empty($dependency)) {
         // If an access dependency has not been set let modules set one.
         $event = new BlockContentGetDependencyEvent($entity);
+<<<<<<< HEAD
         $this->eventDispatcher->dispatch(BlockContentEvents::BLOCK_CONTENT_GET_DEPENDENCY, $event);
+=======
+        $this->eventDispatcher->dispatch($event, BlockContentEvents::BLOCK_CONTENT_GET_DEPENDENCY);
+>>>>>>> dev
         $dependency = $event->getAccessDependency();
         if (empty($dependency)) {
           return AccessResult::forbidden("Non-reusable blocks must set an access dependency for access control.");

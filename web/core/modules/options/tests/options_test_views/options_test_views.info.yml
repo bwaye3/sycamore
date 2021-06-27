@@ -3,7 +3,10 @@ type: module
 description: 'Provides default views for views options tests.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:options
   - drupal:views

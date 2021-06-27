@@ -74,6 +74,11 @@ class MigrateSourceTest extends MigrateTestCase {
    * @param int $status
    *   (optional) The default status for the new rows to be imported. Defaults
    *   to MigrateIdMapInterface::STATUS_NEEDS_UPDATE.
+<<<<<<< HEAD
+=======
+   * @param int $high_water_value
+   *   (optional) The high water mark to start from, if set.
+>>>>>>> dev
    *
    * @return \Drupal\migrate\Plugin\MigrateSourceInterface
    *   A mocked source plugin.
@@ -161,7 +166,11 @@ class MigrateSourceTest extends MigrateTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that the source count is correct.
+=======
+   * Tests that the source count is correct.
+>>>>>>> dev
    *
    * @covers ::count
    */
@@ -199,7 +208,11 @@ class MigrateSourceTest extends MigrateTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that the key can be set for the count cache.
+=======
+   * Tests that the key can be set for the count cache.
+>>>>>>> dev
    *
    * @covers ::count
    */
@@ -218,7 +231,11 @@ class MigrateSourceTest extends MigrateTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that we don't get a row if prepareRow() is false.
+=======
+   * Tests that we don't get a row if prepareRow() is false.
+>>>>>>> dev
    */
   public function testPrepareRowFalse() {
     $source = $this->getSource([], ['prepare_row_false' => TRUE]);
@@ -228,7 +245,11 @@ class MigrateSourceTest extends MigrateTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that $row->needsUpdate() works as expected.
+=======
+   * Tests that $row->needsUpdate() works as expected.
+>>>>>>> dev
    */
   public function testNextNeedsUpdate() {
     $source = $this->getSource();
@@ -244,7 +265,11 @@ class MigrateSourceTest extends MigrateTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that an outdated highwater mark does not cause a row to be imported.
+=======
+   * Tests that an outdated highwater mark does not cause a row to be imported.
+>>>>>>> dev
    */
   public function testOutdatedHighwater() {
     $configuration = [
@@ -261,7 +286,11 @@ class MigrateSourceTest extends MigrateTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that a highwater mark newer than our saved one imports a row.
+=======
+   * Tests that a highwater mark newer than our saved one imports a row.
+>>>>>>> dev
    *
    * @throws \Exception
    */
@@ -280,7 +309,11 @@ class MigrateSourceTest extends MigrateTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test basic row preparation.
+=======
+   * Tests basic row preparation.
+>>>>>>> dev
    *
    * @covers ::prepareRow
    */
@@ -323,7 +356,11 @@ class MigrateSourceTest extends MigrateTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that global prepare hooks can skip rows.
+=======
+   * Tests that global prepare hooks can skip rows.
+>>>>>>> dev
    *
    * @covers ::prepareRow
    */
@@ -352,7 +389,11 @@ class MigrateSourceTest extends MigrateTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that migrate specific prepare hooks can skip rows.
+=======
+   * Tests that migrate specific prepare hooks can skip rows.
+>>>>>>> dev
    *
    * @covers ::prepareRow
    */
@@ -381,7 +422,11 @@ class MigrateSourceTest extends MigrateTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that a skip exception during prepare hooks correctly skips.
+=======
+   * Tests that a skip exception during prepare hooks correctly skips.
+>>>>>>> dev
    *
    * @covers ::prepareRow
    */
@@ -418,7 +463,11 @@ class MigrateSourceTest extends MigrateTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that cacheCounts, skipCount, trackChanges preserve their default
+=======
+   * Tests that cacheCounts, skipCount, trackChanges preserve their default
+>>>>>>> dev
    * values.
    */
   public function testDefaultPropertiesValues() {
@@ -444,8 +493,13 @@ class MigrateSourceTest extends MigrateTestCase {
   protected function getMigrateExecutable($migration) {
     /** @var \Drupal\migrate\MigrateMessageInterface $message */
     $message = $this->createMock('Drupal\migrate\MigrateMessageInterface');
+<<<<<<< HEAD
     /** @var \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher */
     $event_dispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+=======
+    /** @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher */
+    $event_dispatcher = $this->createMock('Symfony\Contracts\EventDispatcher\EventDispatcherInterface');
+>>>>>>> dev
     return new MigrateExecutable($migration, $message, $event_dispatcher);
   }
 

@@ -56,7 +56,11 @@ class RecursiveContextualValidatorTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $cache_backend = new NullBackend('cache');
@@ -188,6 +192,10 @@ class RecursiveContextualValidatorTest extends UnitTestCase {
    *
    * @param array $tree
    *   An array of value, constraints and properties.
+<<<<<<< HEAD
+=======
+   * @param string $name
+>>>>>>> dev
    *
    * @return \Drupal\Core\TypedData\TypedDataInterface|\PHPUnit\Framework\MockObject\MockObject
    */

@@ -200,6 +200,10 @@ interface MenuTreeStorageInterface {
    *   exists, the returned array will at least include it.  An empty array is
    *   returned if the ID does not exist in the storage. An example $id (8) with
    *   two parents (1, 6) looks like the following:
+<<<<<<< HEAD
+=======
+   *
+>>>>>>> dev
    * @code
    *   array(
    *     'p1' => 1,

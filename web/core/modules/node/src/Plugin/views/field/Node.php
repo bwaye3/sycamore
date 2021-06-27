@@ -42,7 +42,11 @@ class Node extends FieldPluginBase {
   }
 
   /**
+<<<<<<< HEAD
    * Provide link to node option
+=======
+   * Provide link to node option.
+>>>>>>> dev
    */
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     $form['link_to_node'] = [

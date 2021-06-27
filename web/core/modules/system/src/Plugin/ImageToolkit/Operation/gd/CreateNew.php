@@ -93,6 +93,10 @@ class CreateNew extends GDImageToolkitOperationBase {
     // Fill the resource with transparency as possible.
     switch ($type) {
       case IMAGETYPE_PNG:
+<<<<<<< HEAD
+=======
+      case IMAGETYPE_WEBP:
+>>>>>>> dev
         imagealphablending($res, FALSE);
         $transparency = imagecolorallocatealpha($res, 0, 0, 0, 127);
         imagefill($res, 0, 0, $transparency);

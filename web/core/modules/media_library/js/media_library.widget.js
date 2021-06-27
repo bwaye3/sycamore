@@ -22,7 +22,10 @@
       });
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.MediaLibraryWidgetToggleWeight = {
     attach: function attach(context) {
       var strings = {
@@ -36,14 +39,20 @@
       $('.js-media-library-item-weight', context).once('media-library-toggle').parent().hide();
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.MediaLibraryWidgetDisableButton = {
     attach: function attach(context) {
       $('.js-media-library-open-button[data-disabled-focus="true"]', context).once('media-library-disable').each(function () {
         var _this = this;
 
         $(this).focus();
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         setTimeout(function () {
           $(_this).attr('disabled', 'disabled');
         }, 50);

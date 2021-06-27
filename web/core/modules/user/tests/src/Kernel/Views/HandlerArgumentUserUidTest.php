@@ -20,7 +20,11 @@ class HandlerArgumentUserUidTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'system',
     'user',
     'user_test_views',
@@ -35,7 +39,11 @@ class HandlerArgumentUserUidTest extends KernelTestBase {
   public static $testViews = ['test_user_uid_argument'];
 
   /**
+<<<<<<< HEAD
    * Tests the generated title of an user: uid argument.
+=======
+   * Tests the generated title of a user: uid argument.
+>>>>>>> dev
    */
   public function testArgumentTitle() {
     $this->installSchema('system', ['sequences']);

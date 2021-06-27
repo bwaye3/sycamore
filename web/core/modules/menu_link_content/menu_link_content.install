@@ -6,6 +6,7 @@
  */
 
 /**
+<<<<<<< HEAD
  * Implements hook_requirements().
  */
 function menu_link_content_requirements($phase) {
@@ -63,4 +64,10 @@ function menu_link_content_update_8601() {
   $definition_update_manager->updateFieldStorageDefinition($definition_update_manager->getFieldStorageDefinition('enabled', 'menu_link_content'));
 
   return t('The publishing status entity key has been added to custom menu links.');
+=======
+ * Implements hook_update_last_removed().
+ */
+function menu_link_content_update_last_removed() {
+  return 8601;
+>>>>>>> dev
 }

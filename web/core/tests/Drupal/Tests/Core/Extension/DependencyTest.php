@@ -45,6 +45,7 @@ class DependencyTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * @covers ::offsetExists
    * @group legacy
    * @expectedDeprecation Array access to Drupal\Core\Extension\Dependency properties is deprecated. Use accessor methods instead. See https://www.drupal.org/node/2756875
@@ -105,6 +106,8 @@ class DependencyTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Ensures that constraint objects are not serialized.
    *
    * @covers ::__sleep
@@ -112,11 +115,27 @@ class DependencyTest extends UnitTestCase {
   public function testSerialization() {
     $dependency = new Dependency('paragraphs_demo', 'paragraphs', '>8.x-1.1');
     $this->assertTrue($dependency->isCompatible('1.2'));
+<<<<<<< HEAD
     $this->assertInstanceOf(Constraint::class, $this->getObjectAttribute($dependency, 'constraint'));
     $dependency = unserialize(serialize($dependency));
     $this->assertNull($this->getObjectAttribute($dependency, 'constraint'));
     $this->assertTrue($dependency->isCompatible('1.2'));
     $this->assertInstanceOf(Constraint::class, $this->getObjectAttribute($dependency, 'constraint'));
+=======
+    $reflected_constraint = (new \ReflectionObject($dependency))->getProperty('constraint');
+    $reflected_constraint->setAccessible(TRUE);
+    $constraint = $reflected_constraint->getValue($dependency);
+    $this->assertInstanceOf(Constraint::class, $constraint);
+
+    $dependency = unserialize(serialize($dependency));
+    $reflected_constraint = (new \ReflectionObject($dependency))->getProperty('constraint');
+    $reflected_constraint->setAccessible(TRUE);
+    $constraint = $reflected_constraint->getValue($dependency);
+    $this->assertNull($constraint);
+    $this->assertTrue($dependency->isCompatible('1.2'));
+    $constraint = $reflected_constraint->getValue($dependency);
+    $this->assertInstanceOf(Constraint::class, $constraint);
+>>>>>>> dev
   }
 
 }

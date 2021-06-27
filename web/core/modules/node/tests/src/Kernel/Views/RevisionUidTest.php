@@ -23,7 +23,11 @@ class RevisionUidTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'node_test_views',
     'system',
@@ -53,7 +57,11 @@ class RevisionUidTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->installSchema('node', 'node_access');
@@ -61,7 +69,11 @@ class RevisionUidTest extends ViewsKernelTestBase {
     $this->installEntitySchema('user');
 
     if ($import_test_views) {
+<<<<<<< HEAD
       ViewTestData::createTestViews(get_class($this), ['node_test_views']);
+=======
+      ViewTestData::createTestViews(static::class, ['node_test_views']);
+>>>>>>> dev
     }
   }
 

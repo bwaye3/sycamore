@@ -20,12 +20,20 @@ class CacheContextOptimizationTest extends KernelTestBase {
    *
    * @var string[]
    */
+<<<<<<< HEAD
   public static $modules = ['user', 'system'];
+=======
+  protected static $modules = ['user', 'system'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('user');
     $this->installConfig(['user']);
@@ -37,7 +45,11 @@ class CacheContextOptimizationTest extends KernelTestBase {
    */
   public function testUserPermissionCacheContextOptimization() {
     $user1 = $this->createUser();
+<<<<<<< HEAD
     $this->assertEqual($user1->id(), 1);
+=======
+    $this->assertEquals(1, $user1->id());
+>>>>>>> dev
 
     $authenticated_user = $this->createUser(['administer permissions']);
     $role = $authenticated_user->getRoles()[1];
@@ -52,14 +64,22 @@ class CacheContextOptimizationTest extends KernelTestBase {
     $element = $test_element;
     $element['#markup'] = 'content for authenticated users';
     $output = \Drupal::service('renderer')->renderRoot($element);
+<<<<<<< HEAD
     $this->assertEqual($output, 'content for authenticated users');
+=======
+    $this->assertEquals('content for authenticated users', $output);
+>>>>>>> dev
 
     // Verify that the render caching is working so that other tests can be
     // trusted.
     $element = $test_element;
     $element['#markup'] = 'this should not be visible';
     $output = \Drupal::service('renderer')->renderRoot($element);
+<<<<<<< HEAD
     $this->assertEqual($output, 'content for authenticated users');
+=======
+    $this->assertEquals('content for authenticated users', $output);
+>>>>>>> dev
 
     // Even though the cache contexts have been optimized to only include 'user'
     // cache context, the element should have been changed because
@@ -72,7 +92,11 @@ class CacheContextOptimizationTest extends KernelTestBase {
     $element = $test_element;
     $element['#markup'] = 'this should be visible';
     $output = \Drupal::service('renderer')->renderRoot($element);
+<<<<<<< HEAD
     $this->assertEqual($output, 'this should be visible');
+=======
+    $this->assertEquals('this should be visible', $output);
+>>>>>>> dev
   }
 
   /**
@@ -80,7 +104,11 @@ class CacheContextOptimizationTest extends KernelTestBase {
    */
   public function testUserRolesCacheContextOptimization() {
     $root_user = $this->createUser();
+<<<<<<< HEAD
     $this->assertEqual($root_user->id(), 1);
+=======
+    $this->assertEquals(1, $root_user->id());
+>>>>>>> dev
 
     $authenticated_user = $this->createUser(['administer permissions']);
     $role = $authenticated_user->getRoles()[1];
@@ -95,14 +123,22 @@ class CacheContextOptimizationTest extends KernelTestBase {
     $element = $test_element;
     $element['#markup'] = 'content for authenticated users';
     $output = \Drupal::service('renderer')->renderRoot($element);
+<<<<<<< HEAD
     $this->assertEqual($output, 'content for authenticated users');
+=======
+    $this->assertEquals('content for authenticated users', $output);
+>>>>>>> dev
 
     // Verify that the render caching is working so that other tests can be
     // trusted.
     $element = $test_element;
     $element['#markup'] = 'this should not be visible';
     $output = \Drupal::service('renderer')->renderRoot($element);
+<<<<<<< HEAD
     $this->assertEqual($output, 'content for authenticated users');
+=======
+    $this->assertEquals('content for authenticated users', $output);
+>>>>>>> dev
 
     // Even though the cache contexts have been optimized to only include 'user'
     // cache context, the element should have been changed because 'user.roles'
@@ -113,7 +149,11 @@ class CacheContextOptimizationTest extends KernelTestBase {
     $element = $test_element;
     $element['#markup'] = 'this should be visible';
     $output = \Drupal::service('renderer')->renderRoot($element);
+<<<<<<< HEAD
     $this->assertEqual($output, 'this should be visible');
+=======
+    $this->assertEquals('this should be visible', $output);
+>>>>>>> dev
   }
 
 }

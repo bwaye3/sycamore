@@ -29,7 +29,11 @@ class EarlyRenderingTestController extends ControllerBase {
   protected $renderer;
 
   /**
+<<<<<<< HEAD
    * Constructs a EarlyRenderingTestController.
+=======
+   * Constructs an EarlyRenderingTestController.
+>>>>>>> dev
    *
    * @param \Drupal\Core\Render\RendererInterface $renderer
    */

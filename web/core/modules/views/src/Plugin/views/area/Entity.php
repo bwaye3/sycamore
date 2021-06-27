@@ -2,7 +2,10 @@
 
 namespace Drupal\views\Plugin\views\area;
 
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -19,12 +22,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @ViewsArea("entity")
  */
 class Entity extends TokenizeAreaPluginBase {
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
 
   /**
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
+=======
+>>>>>>> dev
 
   /**
    * Stores the entity type of the result entities.
@@ -70,6 +76,7 @@ class Entity extends TokenizeAreaPluginBase {
    * @param \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entity_display_repository
    *   The entity display repository.
    */
+<<<<<<< HEAD
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository = NULL, EntityDisplayRepositoryInterface $entity_display_repository = NULL) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
@@ -85,6 +92,13 @@ class Entity extends TokenizeAreaPluginBase {
       @trigger_error('Calling EntityRow::__construct() with the $entity_display_repository argument is supported in drupal:8.7.0 and will be required before drupal:9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
       $entity_display_repository = \Drupal::service('entity_display.repository');
     }
+=======
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository, EntityDisplayRepositoryInterface $entity_display_repository) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+
+    $this->entityTypeManager = $entity_type_manager;
+    $this->entityRepository = $entity_repository;
+>>>>>>> dev
     $this->entityDisplayRepository = $entity_display_repository;
   }
 
@@ -149,8 +163,13 @@ class Entity extends TokenizeAreaPluginBase {
     // @todo Use a method to check for tokens in
     //   https://www.drupal.org/node/2396607.
     if (strpos($this->options['target'], '{{') === FALSE) {
+<<<<<<< HEAD
       // @todo If the entity does not exist, this will will show the config
       //   target identifier. Decide if this is the correct behavior in
+=======
+      // @todo If the entity does not exist, this will show the config target
+      //   identifier. Decide if this is the correct behavior in
+>>>>>>> dev
       //   https://www.drupal.org/node/2415391.
       if ($target_entity = $this->entityRepository->loadEntityByConfigTarget($this->entityType, $this->options['target'])) {
         $target = $target_entity->id();

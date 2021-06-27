@@ -17,7 +17,11 @@ class SettingsTrayBlockFormTest extends SettingsTrayTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'search',
     'settings_tray_test',
@@ -31,7 +35,11 @@ class SettingsTrayBlockFormTest extends SettingsTrayTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $user = $this->createUser([
@@ -49,7 +57,11 @@ class SettingsTrayBlockFormTest extends SettingsTrayTestBase {
    */
   public function testBlocks() {
     foreach ($this->getBlockTests() as $test) {
+<<<<<<< HEAD
       call_user_func_array([$this, 'doTestBlocks'], $test);
+=======
+      call_user_func_array([$this, 'doTestBlocks'], array_values($test));
+>>>>>>> dev
     }
   }
 
@@ -135,7 +147,11 @@ class SettingsTrayBlockFormTest extends SettingsTrayTestBase {
 
     $this->enableEditMode();
 
+<<<<<<< HEAD
     // Open block form by clicking a element inside the block.
+=======
+    // Open block form by clicking an element inside the block.
+>>>>>>> dev
     // This confirms that default action for links and form elements is
     // suppressed.
     $this->openBlockForm("$block_selector {$element_selector}", $block_selector);
@@ -262,7 +278,11 @@ class SettingsTrayBlockFormTest extends SettingsTrayTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that validation errors appear in the off-canvas dialog.
+=======
+   * Tests that validation errors appear in the off-canvas dialog.
+>>>>>>> dev
    */
   public function testValidationMessages() {
     $page = $this->getSession()->getPage();

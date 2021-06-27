@@ -20,9 +20,15 @@ class NodeOwnerTest extends EntityKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'language'];
 
   protected function setUp() {
+=======
+  protected static $modules = ['node', 'language'];
+
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create the node bundles required for testing.
@@ -56,7 +62,11 @@ class NodeOwnerTest extends EntityKernelTestBase {
     ]);
     $english->save();
 
+<<<<<<< HEAD
     $this->assertEqual($user->id(), $english->getOwnerId());
+=======
+    $this->assertEquals($user->id(), $english->getOwnerId());
+>>>>>>> dev
 
     $german = $english->addTranslation('de');
     $german->title = $this->randomString();
@@ -71,6 +81,7 @@ class NodeOwnerTest extends EntityKernelTestBase {
     // Entity::save() saves all translations!
     $italian->save();
 
+<<<<<<< HEAD
     $this->assertEqual(0, $english->getOwnerId());
     $this->assertEqual(0, $german->getOwnerId());
     $this->assertEqual(0, $italian->getOwnerId());
@@ -78,6 +89,15 @@ class NodeOwnerTest extends EntityKernelTestBase {
 
   /**
    * Test an unsaved node owner.
+=======
+    $this->assertEquals(0, $english->getOwnerId());
+    $this->assertEquals(0, $german->getOwnerId());
+    $this->assertEquals(0, $italian->getOwnerId());
+  }
+
+  /**
+   * Tests an unsaved node owner.
+>>>>>>> dev
    */
   public function testUnsavedNodeOwner() {
     $user = User::create([
@@ -98,6 +118,7 @@ class NodeOwnerTest extends EntityKernelTestBase {
     $this->assertEquals($user->id(), $node->getOwnerId());
   }
 
+<<<<<<< HEAD
   /**
    * Tests the legacy method used as the default entity owner.
    *
@@ -108,4 +129,6 @@ class NodeOwnerTest extends EntityKernelTestBase {
     $this->assertEquals(['0'], Node::getCurrentUserId());
   }
 
+=======
+>>>>>>> dev
 }

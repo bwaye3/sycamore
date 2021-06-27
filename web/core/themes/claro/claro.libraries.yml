@@ -6,6 +6,22 @@ global-styling:
       css/base/typography.css: {}
       css/base/print.css: {}
     component:
+<<<<<<< HEAD
+=======
+      css/classy/components/container-inline.css: {}
+      css/classy/components/exposed-filters.css: {}
+      css/classy/components/field.css: {}
+      css/classy/components/icons.css: {}
+      css/classy/components/inline-form.css: {}
+      css/classy/components/item-list.css: {}
+      css/classy/components/link.css: {}
+      css/classy/components/links.css: {}
+      css/classy/components/menu.css: {}
+      css/classy/components/more-link.css: {}
+      css/classy/components/tablesort.css: {}
+      css/classy/components/textarea.css: {}
+      css/classy/components/ui-dialog.css: {}
+>>>>>>> dev
       css/components/accordion.css: {}
       css/components/action-link.css: {}
       css/components/content-header.css: {}
@@ -41,6 +57,10 @@ global-styling:
       css/components/system-status-report.css: {}
       css/components/system-status-report-counters.css: {}
       css/components/system-status-counter.css: {}
+<<<<<<< HEAD
+=======
+      css/components/tableselect.css: {}
+>>>>>>> dev
       css/components/tabs.css: {}
       css/components/views-ui.css: {}
     theme:
@@ -64,6 +84,7 @@ global-styling:
     # it has to be always attached.
     - core/modernizr
 
+<<<<<<< HEAD
 # Drupal throws an IncompleteLibraryDefinitionException if a base theme defined
 # library is set to false in a subtheme's libraries-override. This empty
 # library is used as a workaround.
@@ -72,6 +93,8 @@ empty:
   version: VERSION
   css: {}
 
+=======
+>>>>>>> dev
 node-form:
   version: VERSION
   css:
@@ -106,7 +129,10 @@ drupal.nav-tabs:
   js:
     js/nav-tabs.js: {}
   dependencies:
+<<<<<<< HEAD
     - core/matchmedia
+=======
+>>>>>>> dev
     - core/jquery
     - core/drupal
     - core/jquery.once
@@ -118,8 +144,11 @@ drupal.responsive-detail:
   js:
     js/responsive-details.js: {}
   dependencies:
+<<<<<<< HEAD
     - core/matchmedia
     - core/matchmedia.addListener
+=======
+>>>>>>> dev
     - core/jquery
     - core/jquery.once
     - core/collapse
@@ -136,6 +165,20 @@ claro.drupal.dialog:
     theme:
       css/components/dialog.css: {}
 
+<<<<<<< HEAD
+=======
+claro.tabledrag:
+  version: VERSION
+  js:
+    js/tabledrag.js: {}
+
+ckeditor-admin:
+  version: VERSION
+  css:
+    theme:
+      css/theme/ckeditor.admin.css: {}
+
+>>>>>>> dev
 ckeditor-dialog:
   version: VERSION
   css:
@@ -152,7 +195,11 @@ tour-styling:
   version: VERSION
   css:
     theme:
+<<<<<<< HEAD
       css/components/tour.theme.css: {}
+=======
+      css/theme/tour.theme.css: {}
+>>>>>>> dev
 
 media-form:
   version: VERSION
@@ -162,12 +209,15 @@ media-form:
   dependencies:
     - media/form
 
+<<<<<<< HEAD
 image-widget:
   version: VERSION
   css:
     component:
       css/layout/image-widget.css: {}
 
+=======
+>>>>>>> dev
 system.admin:
   version: VERSION
   css:
@@ -189,6 +239,15 @@ checkbox:
   dependencies:
     - core/drupal
 
+<<<<<<< HEAD
+=======
+icon-link:
+  version: VERSION
+  css:
+    component:
+      css/components/icon-link.css: {}
+
+>>>>>>> dev
 dropbutton:
   version: VERSION
   js:
@@ -200,6 +259,11 @@ autocomplete:
   version: VERSION
   js:
     js/autocomplete.js: {}
+<<<<<<< HEAD
+=======
+  dependencies:
+    - core/once
+>>>>>>> dev
 
 drupal.shortcut:
   version: VERSION
@@ -222,11 +286,18 @@ form.password-confirm:
     component:
       css/components/form--password-confirm.css: {}
   js:
+<<<<<<< HEAD
     js/user.js: {}
   dependencies:
     - core/jquery
     - core/drupal
     - core/jquery.once
+=======
+    js/user.theme.js: {}
+  dependencies:
+    - core/drupal.object.assign
+    - core/drupal
+>>>>>>> dev
     - claro/global-styling
 
 views:
@@ -261,6 +332,19 @@ media_library.theme:
   css:
     theme:
       css/theme/media-library.css: {}
+<<<<<<< HEAD
+=======
+  dependencies:
+    - claro/icon-link
+
+media_library.ui:
+  version: VERSION
+  css:
+    component:
+      css/components/media-library.ui.css : {}
+  js:
+    js/media-library.ui.js: { weight: -1 }
+>>>>>>> dev
 
 progress:
   version: VERSION
@@ -268,6 +352,15 @@ progress:
     component:
       css/components/progress.css: {}
 
+<<<<<<< HEAD
+=======
+filter:
+  version: VERSION
+  css:
+    component:
+      css/theme/filter.theme.css: {}
+
+>>>>>>> dev
 classy.book-navigation:
   version: VERSION
   css:

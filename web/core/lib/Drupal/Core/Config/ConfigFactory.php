@@ -4,7 +4,11 @@ namespace Drupal\Core\Config;
 
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Cache\Cache;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+=======
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -34,7 +38,11 @@ class ConfigFactory implements ConfigFactoryInterface, EventSubscriberInterface 
   /**
    * An event dispatcher instance to use for configuration events.
    *
+<<<<<<< HEAD
    * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+=======
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+>>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -64,7 +72,11 @@ class ConfigFactory implements ConfigFactoryInterface, EventSubscriberInterface 
    *
    * @param \Drupal\Core\Config\StorageInterface $storage
    *   The configuration storage engine.
+<<<<<<< HEAD
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+=======
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
+>>>>>>> dev
    *   An event dispatcher instance to use for configuration events.
    * @param \Drupal\Core\Config\TypedConfigManagerInterface $typed_config
    *   The typed configuration manager.
@@ -260,7 +272,11 @@ class ConfigFactory implements ConfigFactoryInterface, EventSubscriberInterface 
 
     // Prime the cache and load the configuration with the correct overrides.
     $config = $this->get($new_name);
+<<<<<<< HEAD
     $this->eventDispatcher->dispatch(ConfigEvents::RENAME, new ConfigRenameEvent($config, $old_name));
+=======
+    $this->eventDispatcher->dispatch(new ConfigRenameEvent($config, $old_name), ConfigEvents::RENAME);
+>>>>>>> dev
     return $this;
   }
 

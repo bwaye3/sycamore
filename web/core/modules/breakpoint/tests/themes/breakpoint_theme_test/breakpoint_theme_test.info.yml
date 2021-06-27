@@ -2,5 +2,8 @@ name: 'Breakpoint test theme'
 type: theme
 description: 'Test theme for breakpoint.'
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 base theme: bartik

@@ -2,6 +2,7 @@
 
 /**
  * @file
+<<<<<<< HEAD
  * Install, update and uninstall functions for the simpletest module.
  */
 
@@ -15,12 +16,23 @@ use PHPUnit\Framework\TestCase;
  * Minimum value of PHP memory_limit for SimpleTest.
  */
 const SIMPLETEST_MINIMUM_PHP_MEMORY_LIMIT = '128M';
+=======
+ * Uninstall functions for the simpletest module.
+ */
+
+use Drupal\Core\Database\Database;
+use Drupal\Core\File\Exception\FileException;
+use Drupal\Core\Test\EnvironmentCleaner;
+use Drupal\Core\Test\TestDatabase;
+use Symfony\Component\Console\Output\NullOutput;
+>>>>>>> dev
 
 /**
  * Implements hook_requirements().
  */
 function simpletest_requirements($phase) {
   $requirements = [];
+<<<<<<< HEAD
 
   $requirements['deprecation'] = [
     'title' => t('Testing (SimpleTest)'),
@@ -75,6 +87,15 @@ function simpletest_requirements($phase) {
       'severity' => REQUIREMENT_ERROR,
       'description' => t('The file %file does not exist and could not be created automatically, which poses a security risk. Ensure that the directory is writable.', [
         '%file' => $site_directory . '/.htaccess',
+=======
+  // Notify about the module being deprecated.
+  if ($phase == 'install' || $phase == 'runtime') {
+    $requirements['simpletest'] = [
+      'title' => t('SimpleTest'),
+      'severity' => REQUIREMENT_ERROR,
+      'description' => t('SimpleTest has been removed from Drupal 9.0.0 and can no longer be installed. A contributed module is available for those who wish to continue using SimpleTest during the transition from Drupal 8 to 9. <a href=":change-record">See the change record for more information</a>.', [
+        ':change-record' => 'https://www.drupal.org/node/3091784',
+>>>>>>> dev
       ]),
     ];
   }
@@ -94,11 +115,33 @@ function simpletest_schema() {
  */
 function simpletest_uninstall() {
   // Do not clean the environment in case the Simpletest module is uninstalled
+<<<<<<< HEAD
   // in a (recursive) test for itself, since simpletest_clean_environment()
   // would also delete the test site of the parent test process.
   if (!drupal_valid_test_ua()) {
     \Drupal::service('environment_cleaner')->cleanEnvironment();
   }
+=======
+  // in a (recursive) test for itself, since EnvironmentCleaner would also
+  // delete the test site of the parent test process.
+  if (!drupal_valid_test_ua()) {
+    // Clean up left-over tables and directories.
+    $cleaner = new EnvironmentCleaner(
+      DRUPAL_ROOT,
+      Database::getConnection(),
+      TestDatabase::getConnection(),
+      new NullOutput(),
+      \Drupal::service('file_system')
+    );
+    try {
+      $cleaner->cleanEnvironment();
+    }
+    catch (Exception $e) {
+      // Ignore.
+    }
+  }
+
+>>>>>>> dev
   // Delete verbose test output and any other testing framework files.
   try {
     \Drupal::service('file_system')->deleteRecursive('public://simpletest');
@@ -106,5 +149,8 @@ function simpletest_uninstall() {
   catch (FileException $e) {
     // Ignore.
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
 }

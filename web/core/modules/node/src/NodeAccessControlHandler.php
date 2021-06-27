@@ -169,6 +169,7 @@ class NodeAccessControlHandler extends EntityAccessControlHandler implements Nod
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function writeGrants(NodeInterface $node, $delete = TRUE) {
     $grants = $this->acquireGrants($node);
     $this->grantStorage->write($node, $grants, NULL, $delete);
@@ -177,6 +178,8 @@ class NodeAccessControlHandler extends EntityAccessControlHandler implements Nod
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function writeDefaultGrant() {
     $this->grantStorage->writeDefault();
   }

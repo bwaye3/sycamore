@@ -15,7 +15,11 @@ class MigrateEntity implements ContainerDeriverInterface {
   protected $derivatives = [];
 
   /**
+<<<<<<< HEAD
    * The entity definitions
+=======
+   * The entity definitions.
+>>>>>>> dev
    *
    * @var \Drupal\Core\Entity\EntityTypeInterface[]
    */

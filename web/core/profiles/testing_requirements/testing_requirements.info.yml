@@ -2,5 +2,8 @@ name: 'Testing requirements'
 type: profile
 description: 'Profile for testing hook_requirements().'
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 hidden: true

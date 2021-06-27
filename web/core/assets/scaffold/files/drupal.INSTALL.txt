@@ -1,3 +1,7 @@
 
 Please read core/INSTALL.txt for detailed installation instructions for your
+<<<<<<< HEAD
 Drupal web site.
+=======
+Drupal website.
+>>>>>>> dev

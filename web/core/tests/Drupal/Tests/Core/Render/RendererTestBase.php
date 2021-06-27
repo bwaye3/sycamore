@@ -265,6 +265,12 @@ class PlaceholdersTest implements TrustedCallbackInterface {
    *
    * @param string $animal
    *   An animal.
+<<<<<<< HEAD
+=======
+   * @param bool $use_animal_as_array_key
+   *   TRUE if the $animal parameter should be used as an array key, FALSE
+   *   if it should be used as a plain string.
+>>>>>>> dev
    *
    * @return array
    *   A renderable array.
@@ -315,10 +321,27 @@ class PlaceholdersTest implements TrustedCallbackInterface {
   }
 
   /**
+<<<<<<< HEAD
    * {@inheritdoc}
    */
   public static function trustedCallbacks() {
     return ['callbackTagCurrentTemperature', 'callbackPerUser', 'callback'];
+=======
+   * A lazy builder callback that returns an invalid renderable.
+   *
+   * @return bool
+   *   TRUE, which is not a valid return value for a lazy builder.
+   */
+  public static function callbackNonArrayReturn() {
+    return TRUE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function trustedCallbacks() {
+    return ['callbackTagCurrentTemperature', 'callbackPerUser', 'callback', 'callbackNonArrayReturn'];
+>>>>>>> dev
   }
 
 }

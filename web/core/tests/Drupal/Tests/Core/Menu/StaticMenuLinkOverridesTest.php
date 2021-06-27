@@ -12,6 +12,7 @@ use Drupal\Tests\UnitTestCase;
 class StaticMenuLinkOverridesTest extends UnitTestCase {
 
   /**
+<<<<<<< HEAD
    * Tests the constructor.
    *
    * @covers ::__construct
@@ -24,6 +25,8 @@ class StaticMenuLinkOverridesTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests the reload method.
    *
    * @covers ::reload

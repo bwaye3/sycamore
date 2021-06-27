@@ -34,6 +34,7 @@
   border-bottom-left-radius: var(--details-accordion-border-size-radius);
 }
 
+<<<<<<< HEAD
 /**
  * Hide JS summary from the details polyfill to make it consistent with native
  * details elements.
@@ -43,4 +44,10 @@
  */
 .accordion__item .claro-details__summary .summary {
   display: none;
+=======
+.accordion__item .claro-details__summary .summary {
+  display: block;
+  color: var(--color-davysgray);
+  font-weight: normal;
+>>>>>>> dev
 }

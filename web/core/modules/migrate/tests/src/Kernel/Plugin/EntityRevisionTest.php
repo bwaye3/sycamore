@@ -19,7 +19,11 @@ class EntityRevisionTest extends MigrateTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'content_translation',
     'field',
     'filter',
@@ -33,7 +37,11 @@ class EntityRevisionTest extends MigrateTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('node');
     $this->installEntitySchema('user');

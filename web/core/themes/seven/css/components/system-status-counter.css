@@ -39,6 +39,7 @@
 }
 
 .system-status-counter__status-icon--error:before {
+<<<<<<< HEAD
   background-image: url(../../../stable/images/core/icons/e32700/error.svg);
 }
 .system-status-counter__status-icon--warning:before {
@@ -48,6 +49,16 @@
   background-image: url(../../../stable/images/core/icons/73b355/check.svg);
 }
 
+=======
+  background-image: url(../../../../misc/icons/e32700/error.svg);
+}
+.system-status-counter__status-icon--warning:before {
+  background-image: url(../../../../misc/icons/e29700/warning.svg);
+}
+.system-status-counter__status-icon--checked:before {
+  background-image: url(../../../../misc/icons/73b355/check.svg);
+}
+>>>>>>> dev
 .system-status-counter__status-title {
   display: inline-block;
   padding: 0 6px;

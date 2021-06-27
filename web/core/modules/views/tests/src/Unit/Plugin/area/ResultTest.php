@@ -32,7 +32,11 @@ class ResultTest extends UnitTestCase {
    */
   protected $resultHandler;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $storage = $this->prophesize(View::class);

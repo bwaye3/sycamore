@@ -25,7 +25,11 @@ class DbDumpTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'system',
     'config',
     'dblog',
@@ -81,7 +85,11 @@ class DbDumpTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     if (Database::getConnection()->databaseType() !== 'mysql') {
@@ -89,10 +97,14 @@ class DbDumpTest extends KernelTestBase {
     }
 
     // Create some schemas so our export contains tables.
+<<<<<<< HEAD
     $this->installSchema('system', [
       'key_value_expire',
       'sessions',
     ]);
+=======
+    $this->installSchema('system', ['sessions']);
+>>>>>>> dev
     $this->installSchema('dblog', ['watchdog']);
     $this->installEntitySchema('block_content');
     $this->installEntitySchema('user');
@@ -110,6 +122,10 @@ class DbDumpTest extends KernelTestBase {
     $storage->write('test_config', $this->data);
 
     // Create user account with some potential syntax issues.
+<<<<<<< HEAD
+=======
+    // cspell:disable-next-line
+>>>>>>> dev
     $account = User::create(['mail' => 'q\'uote$dollar@example.com', 'name' => '$dollar']);
     $account->save();
 
@@ -133,7 +149,10 @@ class DbDumpTest extends KernelTestBase {
       'cache_discovery',
       'cache_entity',
       'file_managed',
+<<<<<<< HEAD
       'key_value_expire',
+=======
+>>>>>>> dev
       'menu_link_content',
       'menu_link_content_data',
       'menu_link_content_revision',
@@ -150,10 +169,16 @@ class DbDumpTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the command directly.
    */
   public function testDbDumpCommand() {
 
+=======
+   * Tests the command directly.
+   */
+  public function testDbDumpCommand() {
+>>>>>>> dev
     $application = new DbDumpApplication();
     $command = $application->find('dump-database-d8-mysql');
     $command_tester = new CommandTester($command);
@@ -161,6 +186,7 @@ class DbDumpTest extends KernelTestBase {
 
     // Tables that are schema-only should not have data exported.
     $pattern = preg_quote("\$connection->insert('sessions')");
+<<<<<<< HEAD
     $this->assertNotRegExp('/' . $pattern . '/', $command_tester->getDisplay(), 'Tables defined as schema-only do not have data exported to the script.');
 
     // Table data is exported.
@@ -183,6 +209,30 @@ class DbDumpTest extends KernelTestBase {
    */
   public function testScriptLoad() {
 
+=======
+    $this->assertDoesNotMatchRegularExpression('/' . $pattern . '/', $command_tester->getDisplay(), 'Tables defined as schema-only do not have data exported to the script.');
+
+    // Table data is exported.
+    $pattern = preg_quote("\$connection->insert('config')");
+    $this->assertMatchesRegularExpression('/' . $pattern . '/', $command_tester->getDisplay(), 'Table data is properly exported to the script.');
+
+    // The test data are in the dump (serialized).
+    $pattern = preg_quote(serialize($this->data));
+    $this->assertMatchesRegularExpression('/' . $pattern . '/', $command_tester->getDisplay(), 'Generated data is found in the exported script.');
+
+    // Check that the user account name and email address was properly escaped.
+    // cspell:disable-next-line
+    $pattern = preg_quote('"q\'uote\$dollar@example.com"');
+    $this->assertMatchesRegularExpression('/' . $pattern . '/', $command_tester->getDisplay(), 'The user account email address was properly escaped in the exported script.');
+    $pattern = preg_quote('\'$dollar\'');
+    $this->assertMatchesRegularExpression('/' . $pattern . '/', $command_tester->getDisplay(), 'The user account name was properly escaped in the exported script.');
+  }
+
+  /**
+   * Tests loading the script back into the database.
+   */
+  public function testScriptLoad() {
+>>>>>>> dev
     // Generate the script.
     $application = new DbDumpApplication();
     $command = $application->find('dump-database-d8-mysql');
@@ -213,8 +263,13 @@ class DbDumpTest extends KernelTestBase {
     }
 
     // Ensure the test config has been replaced.
+<<<<<<< HEAD
     $config = unserialize($connection->query("SELECT data FROM {config} WHERE name = 'test_config'")->fetchField());
     $this->assertIdentical($config, $this->data, 'Script has properly restored the config table data.');
+=======
+    $config = unserialize($connection->select('config', 'c')->fields('c', ['data'])->condition('name', 'test_config')->execute()->fetchField());
+    $this->assertSame($this->data, $config, 'Script has properly restored the config table data.');
+>>>>>>> dev
 
     // Ensure the cache data was not exported.
     $this->assertFalse(\Drupal::cache('discovery')

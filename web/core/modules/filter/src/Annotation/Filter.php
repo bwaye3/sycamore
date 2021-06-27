@@ -5,7 +5,11 @@ namespace Drupal\filter\Annotation;
 use Drupal\Component\Annotation\Plugin;
 
 /**
+<<<<<<< HEAD
  * Defines an filter annotation object.
+=======
+ * Defines a filter annotation object.
+>>>>>>> dev
  *
  * Plugin Namespace: Plugin\Filter
  *

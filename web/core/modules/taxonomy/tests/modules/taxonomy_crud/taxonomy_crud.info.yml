@@ -3,6 +3,9 @@ type: module
 description: 'Provides 3rd party settings for vocabulary.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:taxonomy

@@ -3,4 +3,7 @@ type: theme
 base theme: stable
 description: 'Theme for testing BigPipe edge cases.'
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

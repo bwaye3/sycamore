@@ -16,7 +16,11 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\views\Plugin\views\query\Sql;
 use Drupal\views\Entity\View;
 use Drupal\views\ViewEntityInterface;
+<<<<<<< HEAD
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
+=======
+use Drupal\Core\Routing\RouteObjectInterface;
+>>>>>>> dev
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -52,9 +56,12 @@ class ViewUI implements ViewEntityInterface {
    * If this view is locked it will contain the result of
    * \Drupal\Core\TempStore\SharedTempStore::getMetadata().
    *
+<<<<<<< HEAD
    * For backwards compatibility, public access to this property is provided by
    * ::__set() and ::__get().
    *
+=======
+>>>>>>> dev
    * @var \Drupal\Core\TempStore\Lock|null
    */
   private $lock;
@@ -260,7 +267,11 @@ class ViewUI implements ViewEntityInterface {
   }
 
   /**
+<<<<<<< HEAD
    * Submit handler for cancel button
+=======
+   * Submit handler for cancel button.
+>>>>>>> dev
    */
   public function standardCancel($form, FormStateInterface $form_state) {
     if (!empty($this->changed) && isset($this->form_cache)) {
@@ -997,6 +1008,7 @@ class ViewUI implements ViewEntityInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function urlInfo($rel = 'edit-form', array $options = []) {
     return $this->storage->toUrl($rel, $options);
   }
@@ -1004,6 +1016,8 @@ class ViewUI implements ViewEntityInterface {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function toUrl($rel = 'edit-form', array $options = []) {
     return $this->storage->toUrl($rel, $options);
   }
@@ -1011,6 +1025,7 @@ class ViewUI implements ViewEntityInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function link($text = NULL, $rel = 'edit-form', array $options = []) {
     return $this->storage->link($text, $rel, $options);
   }
@@ -1018,6 +1033,8 @@ class ViewUI implements ViewEntityInterface {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function toLink($text = NULL, $rel = 'edit-form', array $options = []) {
     return $this->storage->toLink($text, $rel, $options);
   }
@@ -1175,6 +1192,7 @@ class ViewUI implements ViewEntityInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function url($rel = 'edit-form', $options = []) {
     return $this->storage->url($rel, $options);
   }
@@ -1182,6 +1200,8 @@ class ViewUI implements ViewEntityInterface {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function hasLinkTemplate($key) {
     return $this->storage->hasLinkTemplate($key);
   }
@@ -1389,6 +1409,7 @@ class ViewUI implements ViewEntityInterface {
     return $this;
   }
 
+<<<<<<< HEAD
   /**
    * {@inheritdoc}
    */
@@ -1415,4 +1436,6 @@ class ViewUI implements ViewEntityInterface {
     }
   }
 
+=======
+>>>>>>> dev
 }

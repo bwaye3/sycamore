@@ -22,6 +22,10 @@ class VocabularyStorage extends ConfigEntityStorage implements VocabularyStorage
    */
   public function getToplevelTids($vids) {
     $tids = \Drupal::entityQuery('taxonomy_term')
+<<<<<<< HEAD
+=======
+      ->accessCheck(TRUE)
+>>>>>>> dev
       ->condition('vid', $vids, 'IN')
       ->condition('parent.target_id', 0)
       ->execute();

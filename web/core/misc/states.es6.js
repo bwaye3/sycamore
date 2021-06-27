@@ -3,7 +3,11 @@
  * Drupal's states library.
  */
 
+<<<<<<< HEAD
 (function($, Drupal) {
+=======
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * The base States namespace.
    *
@@ -99,7 +103,11 @@
         const config = JSON.parse(
           $states[i].getAttribute('data-drupal-states'),
         );
+<<<<<<< HEAD
         Object.keys(config || {}).forEach(state => {
+=======
+        Object.keys(config || {}).forEach((state) => {
+>>>>>>> dev
           new states.Dependent({
             element: $($states[i]),
             state: states.State.sanitize(state),
@@ -131,11 +139,19 @@
    *   element depends on. It can be nested and can contain
    *   arbitrary AND and OR clauses.
    */
+<<<<<<< HEAD
   states.Dependent = function(args) {
     $.extend(this, { values: {}, oldValue: null }, args);
 
     this.dependees = this.getDependees();
     Object.keys(this.dependees || {}).forEach(selector => {
+=======
+  states.Dependent = function (args) {
+    $.extend(this, { values: {}, oldValue: null }, args);
+
+    this.dependees = this.getDependees();
+    Object.keys(this.dependees || {}).forEach((selector) => {
+>>>>>>> dev
       this.initializeDependee(selector, this.dependees[selector]);
     });
   };
@@ -187,7 +203,11 @@
       // Cache for the states of this dependee.
       this.values[selector] = {};
 
+<<<<<<< HEAD
       Object.keys(dependeeStates).forEach(i => {
+=======
+      Object.keys(dependeeStates).forEach((i) => {
+>>>>>>> dev
         let state = dependeeStates[i];
         // Make sure we're not initializing this selector/state combination
         // twice.
@@ -201,7 +221,11 @@
         this.values[selector][state.name] = null;
 
         // Monitor state changes of the specified state for this dependee.
+<<<<<<< HEAD
         $(selector).on(`state:${state}`, { selector, state }, e => {
+=======
+        $(selector).on(`state:${state}`, { selector, state }, (e) => {
+>>>>>>> dev
           this.update(e.data.selector, e.data.state, e.value);
         });
 
@@ -403,7 +427,11 @@
       // Swivel the lookup function so that we can record all available
       // selector- state combinations for initialization.
       const _compare = this.compare;
+<<<<<<< HEAD
       this.compare = function(reference, selector, state) {
+=======
+      this.compare = function (reference, selector, state) {
+>>>>>>> dev
         (cache[selector] || (cache[selector] = [])).push(state.name);
         // Return nothing (=== undefined) so that the constraint loops are not
         // broken.
@@ -429,7 +457,11 @@
    * @param {object} args
    *   Trigger arguments.
    */
+<<<<<<< HEAD
   states.Trigger = function(args) {
+=======
+  states.Trigger = function (args) {
+>>>>>>> dev
     $.extend(this, args);
 
     if (this.state in states.Trigger.states) {
@@ -454,7 +486,11 @@
         // We have a custom trigger initialization function.
         trigger.call(window, this.element);
       } else {
+<<<<<<< HEAD
         Object.keys(trigger || {}).forEach(event => {
+=======
+        Object.keys(trigger || {}).forEach((event) => {
+>>>>>>> dev
           this.defaultTrigger(event, trigger[event]);
         });
       }
@@ -477,7 +513,11 @@
       // Attach the event callback.
       this.element.on(
         event,
+<<<<<<< HEAD
         $.proxy(function(e) {
+=======
+        $.proxy(function (e) {
+>>>>>>> dev
           const value = valueFn.call(this.element, e);
           // Only trigger the event if the value has actually changed.
           if (oldValue !== value) {
@@ -492,7 +532,11 @@
       );
 
       states.postponed.push(
+<<<<<<< HEAD
         $.proxy(function() {
+=======
+        $.proxy(function () {
+>>>>>>> dev
           // Trigger the event once for initialization purposes.
           this.element.trigger({
             type: `state:${this.state}`,
@@ -534,7 +578,11 @@
         // support selectors matching multiple checkboxes, iterate over all and
         // return whether any is checked.
         let checked = false;
+<<<<<<< HEAD
         this.each(function() {
+=======
+        this.each(function () {
+>>>>>>> dev
           // Use prop() here as we want a boolean of the checkbox state.
           // @see http://api.jquery.com/prop/
           checked = $(this).prop('checked');
@@ -582,7 +630,11 @@
    * @param {string} state
    *   The name of the state.
    */
+<<<<<<< HEAD
   states.State = function(state) {
+=======
+  states.State = function (state) {
+>>>>>>> dev
     /**
      * Original unresolved name.
      */
@@ -618,7 +670,11 @@
    * @return {Drupal.states.state}
    *   A state object.
    */
+<<<<<<< HEAD
   states.State.sanitize = function(state) {
+=======
+  states.State.sanitize = function (state) {
+>>>>>>> dev
     if (state instanceof states.State) {
       return state;
     }
@@ -674,7 +730,11 @@
    */
 
   const $document = $(document);
+<<<<<<< HEAD
   $document.on('state:disabled', e => {
+=======
+  $document.on('state:disabled', (e) => {
+>>>>>>> dev
     // Only act when this change was triggered by a dependency and not by the
     // element monitoring itself.
     if (e.trigger) {
@@ -690,7 +750,11 @@
     }
   });
 
+<<<<<<< HEAD
   $document.on('state:required', e => {
+=======
+  $document.on('state:required', (e) => {
+>>>>>>> dev
     if (e.trigger) {
       if (e.value) {
         const label = `label${e.target.id ? `[for=${e.target.id}]` : ''}`;
@@ -712,7 +776,11 @@
     }
   });
 
+<<<<<<< HEAD
   $document.on('state:visible', e => {
+=======
+  $document.on('state:visible', (e) => {
+>>>>>>> dev
     if (e.trigger) {
       $(e.target)
         .closest('.js-form-item, .js-form-submit, .js-form-wrapper')
@@ -720,18 +788,29 @@
     }
   });
 
+<<<<<<< HEAD
   $document.on('state:checked', e => {
+=======
+  $document.on('state:checked', (e) => {
+>>>>>>> dev
     if (e.trigger) {
       $(e.target).prop('checked', e.value);
     }
   });
 
+<<<<<<< HEAD
   $document.on('state:collapsed', e => {
     if (e.trigger) {
       if ($(e.target).is('[open]') === e.value) {
         $(e.target)
           .find('> summary')
           .trigger('click');
+=======
+  $document.on('state:collapsed', (e) => {
+    if (e.trigger) {
+      if ($(e.target).is('[open]') === e.value) {
+        $(e.target).find('> summary').trigger('click');
+>>>>>>> dev
       }
     }
   });

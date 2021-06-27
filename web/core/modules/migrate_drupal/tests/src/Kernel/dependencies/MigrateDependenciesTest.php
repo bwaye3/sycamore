@@ -17,6 +17,7 @@ class MigrateDependenciesTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['aggregator', 'comment'];
 
   /**
@@ -67,6 +68,12 @@ class MigrateDependenciesTest extends MigrateDrupal6TestBase {
    *
    * Replacement test for testMigrateDependenciesOrder that doesn't use
    * the deprecated MigrationInterface::get().
+=======
+  protected static $modules = ['aggregator', 'comment'];
+
+  /**
+   * Tests that the order is correct when loading several migrations.
+>>>>>>> dev
    */
   public function testMigrationDependenciesOrder() {
     $migration_items = ['d6_comment', 'd6_filter_format', 'd6_node:page'];
@@ -100,7 +107,11 @@ class MigrateDependenciesTest extends MigrateDrupal6TestBase {
     $executable = new MigrateExecutable($migration, $this);
     $this->startCollectingMessages();
     $executable->import();
+<<<<<<< HEAD
     $this->assertEqual($this->migrateMessages['error'], [new FormattableMarkup('Migration @id did not meet the requirements. Missing migrations d6_aggregator_feed. requirements: d6_aggregator_feed.', ['@id' => $migration->id()])]);
+=======
+    $this->assertEquals([new FormattableMarkup('Migration @id did not meet the requirements. Missing migrations d6_aggregator_feed. requirements: d6_aggregator_feed.', ['@id' => $migration->id()])], $this->migrateMessages['error']);
+>>>>>>> dev
     $this->collectMessages = FALSE;
   }
 

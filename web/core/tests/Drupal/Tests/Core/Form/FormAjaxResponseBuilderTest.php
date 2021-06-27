@@ -35,7 +35,11 @@ class FormAjaxResponseBuilderTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->renderer = $this->createMock('Drupal\Core\Render\MainContent\MainContentRendererInterface');
     $this->routeMatch = $this->createMock('Drupal\Core\Routing\RouteMatchInterface');

@@ -25,6 +25,7 @@ class ThemeRenderAndAutoescapeTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['system'];
 
   /**
@@ -35,6 +36,9 @@ class ThemeRenderAndAutoescapeTest extends KernelTestBase {
 
     \Drupal::service('router.builder')->rebuild();
   }
+=======
+  protected static $modules = ['system'];
+>>>>>>> dev
 
   /**
    * @dataProvider providerTestThemeRenderAndAutoescape

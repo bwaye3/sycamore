@@ -11,6 +11,7 @@ use Drupal\Component\Utility\Crypt;
 use Drupal\Component\Utility\Environment;
 use Drupal\Component\Utility\OpCodeCache;
 use Drupal\Component\Utility\Unicode;
+<<<<<<< HEAD
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Database\Database;
 use Drupal\Core\DrupalKernel;
@@ -30,6 +31,21 @@ use Drupal\Core\StreamWrapper\PrivateStream;
 use Drupal\Core\StreamWrapper\PublicStream;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
+=======
+use Drupal\Core\Database\Database;
+use Drupal\Core\DrupalKernel;
+use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
+use Drupal\Core\Entity\Sql\SqlContentEntityStorageSchema;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Site\Settings;
+use Drupal\Core\StreamWrapper\PrivateStream;
+use Drupal\Core\StreamWrapper\PublicStream;
+use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Url;
+use GuzzleHttp\Exception\TransferException;
+>>>>>>> dev
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -99,6 +115,10 @@ function system_requirements($phase) {
         'severity' => REQUIREMENT_WARNING,
       ];
     }
+<<<<<<< HEAD
+=======
+    _system_advisories_requirements($requirements);
+>>>>>>> dev
   }
 
   // Web server information.
@@ -169,7 +189,11 @@ function system_requirements($phase) {
         'title' => t('Apache version'),
         'value' => $apache_version_string,
         'severity' => REQUIREMENT_ERROR,
+<<<<<<< HEAD
         'description' => t('The minimum version of Apache needed to run Drupal without mod_rewrite enabled is 2.2.16. See the <a href=":link">enabling clean URLs</a> page for more information on mod_rewrite.', [':link' => 'http://drupal.org/docs/8/clean-urls-in-drupal-8']),
+=======
+        'description' => t('The minimum version of Apache needed to run Drupal without mod_rewrite enabled is 2.2.16. See the <a href=":link">enabling clean URLs</a> page for more information on mod_rewrite.', [':link' => 'https://www.drupal.org/docs/8/clean-urls-in-drupal-8']),
+>>>>>>> dev
       ];
     }
 
@@ -178,7 +202,11 @@ function system_requirements($phase) {
         'title' => t('Clean URLs'),
         'value' => t('Disabled'),
         'severity' => REQUIREMENT_WARNING,
+<<<<<<< HEAD
         'description' => t('Your server is capable of using clean URLs, but it is not enabled. Using clean URLs gives an improved user experience and is recommended. <a href=":link">Enable clean URLs</a>', [':link' => 'http://drupal.org/docs/8/clean-urls-in-drupal-8']),
+=======
+        'description' => t('Your server is capable of using clean URLs, but it is not enabled. Using clean URLs gives an improved user experience and is recommended. <a href=":link">Enable clean URLs</a>', [':link' => 'https://www.drupal.org/docs/8/clean-urls-in-drupal-8']),
+>>>>>>> dev
       ];
     }
   }
@@ -210,19 +238,32 @@ function system_requirements($phase) {
   }
 
   // Check if the PHP version is below what Drupal supports.
+<<<<<<< HEAD
   if (version_compare($phpversion, DRUPAL_MINIMUM_SUPPORTED_PHP) < 0) {
     $requirements['php']['description'] = t('Your PHP installation is too old. Drupal requires at least PHP %version. It is recommended to upgrade to PHP version %recommended or higher for the best ongoing support. See <a href="http://php.net/supported-versions.php">PHP\'s version support documentation</a> and the <a href=":php_requirements">Drupal 8 PHP requirements handbook page</a> for more information.',
       [
         '%version' => DRUPAL_MINIMUM_SUPPORTED_PHP,
         '%recommended' => DRUPAL_RECOMMENDED_PHP,
         ':php_requirements' => 'https://www.drupal.org/docs/8/system-requirements/php',
+=======
+  if (version_compare($phpversion, \Drupal::MINIMUM_SUPPORTED_PHP) < 0) {
+    $requirements['php']['description'] = t('Your PHP installation is too old. Drupal requires at least PHP %version. It is recommended to upgrade to PHP version %recommended or higher for the best ongoing support. See <a href="http://php.net/supported-versions.php">PHP\'s version support documentation</a> and the <a href=":php_requirements">Environment requirements of Drupal 9</a> page for more information.',
+      [
+        '%version' => \Drupal::MINIMUM_SUPPORTED_PHP,
+        '%recommended' => \Drupal::RECOMMENDED_PHP,
+        ':php_requirements' => 'https://www.drupal.org/docs/9/how-drupal-9-is-made-and-what-is-included/environment-requirements-of-drupal-9#s-php-version-requirement',
+>>>>>>> dev
       ]
     );
     $requirements['php']['severity'] = REQUIREMENT_ERROR;
 
     // If the PHP version is also below the absolute minimum allowed, it's not
     // safe to continue with the requirements check.
+<<<<<<< HEAD
     if (version_compare($phpversion, DRUPAL_MINIMUM_PHP) < 0) {
+=======
+    if (version_compare($phpversion, \Drupal::MINIMUM_PHP) < 0) {
+>>>>>>> dev
       return $requirements;
     }
     // Otherwise downgrade the error to a warning during updates. Even if there
@@ -243,8 +284,13 @@ function system_requirements($phase) {
   // For PHP versions that are still supported but no longer recommended,
   // inform users of what's recommended, allowing them to take action before it
   // becomes urgent.
+<<<<<<< HEAD
   elseif ($phase === 'runtime' && version_compare($phpversion, DRUPAL_RECOMMENDED_PHP) < 0) {
     $requirements['php']['description'] = t('It is recommended to upgrade to PHP version %recommended or higher for the best ongoing support.  See <a href="http://php.net/supported-versions.php">PHP\'s version support documentation</a> and the <a href=":php_requirements">Drupal 8 PHP requirements handbook page</a> for more information.', ['%recommended' => DRUPAL_RECOMMENDED_PHP, ':php_requirements' => 'https://www.drupal.org/docs/8/system-requirements/php']);
+=======
+  elseif ($phase === 'runtime' && version_compare($phpversion, \Drupal::RECOMMENDED_PHP) < 0) {
+    $requirements['php']['description'] = t('It is recommended to upgrade to PHP version %recommended or higher for the best ongoing support.  See <a href="http://php.net/supported-versions.php">PHP\'s version support documentation</a> and the <a href=":php_requirements">Drupal 8 PHP requirements handbook page</a> for more information.', ['%recommended' => \Drupal::RECOMMENDED_PHP, ':php_requirements' => 'https://www.drupal.org/docs/8/system-requirements/php']);
+>>>>>>> dev
     $requirements['php']['severity'] = REQUIREMENT_INFO;
   }
 
@@ -277,7 +323,11 @@ function system_requirements($phase) {
 
   if (!empty($missing_extensions)) {
     $description = t('Drupal requires you to enable the PHP extensions in the following list (see the <a href=":system_requirements">system requirements page</a> for more information):', [
+<<<<<<< HEAD
       ':system_requirements' => 'https://www.drupal.org/requirements',
+=======
+      ':system_requirements' => 'https://www.drupal.org/docs/system-requirements',
+>>>>>>> dev
     ]);
 
     // We use twig inline_template to avoid twig's autoescape.
@@ -324,7 +374,11 @@ function system_requirements($phase) {
       $apcu_actual_size = format_size($memory_info['seg_size']);
       $apcu_recommended_size = '32 MB';
       $requirements['php_apcu']['value'] = t('Enabled (@size)', ['@size' => $apcu_actual_size]);
+<<<<<<< HEAD
       if (Bytes::toInt($apcu_actual_size) < Bytes::toInt($apcu_recommended_size)) {
+=======
+      if (Bytes::toNumber($apcu_actual_size) < Bytes::toNumber($apcu_recommended_size)) {
+>>>>>>> dev
         $requirements['php_apcu']['severity'] = REQUIREMENT_WARNING;
         $requirements['php_apcu']['description'] = t('Depending on your configuration, Drupal can run with a @apcu_size APCu limit. However, a @apcu_default_size APCu limit (the default) or above is recommended, especially if your site uses additional custom or contributed modules.', [
           '@apcu_size' => $apcu_actual_size,
@@ -404,7 +458,11 @@ function system_requirements($phase) {
     $database_ok = extension_loaded('pdo');
     if (!$database_ok) {
       $pdo_message = t('Your web server does not appear to support PDO (PHP Data Objects). Ask your hosting provider if they support the native PDO extension. See the <a href=":link">system requirements</a> page for more information.', [
+<<<<<<< HEAD
         ':link' => 'https://www.drupal.org/requirements/pdo',
+=======
+        ':link' => 'https://www.drupal.org/docs/system-requirements/php-requirements#database',
+>>>>>>> dev
       ]);
     }
     else {
@@ -413,7 +471,11 @@ function system_requirements($phase) {
       if (empty($drivers)) {
         $database_ok = FALSE;
         $pdo_message = t('Your web server does not appear to support any common PDO database extensions. Check with your hosting provider to see if they support PDO (PHP Data Objects) and offer any databases that <a href=":drupal-databases">Drupal supports</a>.', [
+<<<<<<< HEAD
           ':drupal-databases' => 'https://www.drupal.org/requirements/database',
+=======
+          ':drupal-databases' => 'https://www.drupal.org/docs/system-requirements/database-server-requirements',
+>>>>>>> dev
         ]);
       }
       // Make sure the native PDO extension is available, not the older PEAR
@@ -421,7 +483,11 @@ function system_requirements($phase) {
       if (!defined('PDO::ATTR_DEFAULT_FETCH_MODE')) {
         $database_ok = FALSE;
         $pdo_message = t('Your web server seems to have the wrong version of PDO installed. Drupal requires the PDO extension from PHP core. This system has the older PECL version. See the <a href=":link">system requirements</a> page for more information.', [
+<<<<<<< HEAD
           ':link' => 'https://www.drupal.org/requirements/pdo#pecl',
+=======
+          ':link' => 'https://www.drupal.org/docs/system-requirements/php-requirements#database',
+>>>>>>> dev
         ]);
       }
     }
@@ -471,6 +537,7 @@ function system_requirements($phase) {
     'value' => $memory_limit == -1 ? t('-1 (Unlimited)') : $memory_limit,
   ];
 
+<<<<<<< HEAD
   if (!Environment::checkMemoryLimit(DRUPAL_MINIMUM_PHP_MEMORY_LIMIT, $memory_limit)) {
     $description = [];
     if ($phase == 'install') {
@@ -481,6 +548,18 @@ function system_requirements($phase) {
     }
     elseif ($phase == 'runtime') {
       $description['phase'] = t('Depending on your configuration, Drupal can run with a %memory_limit PHP memory limit. However, a %memory_minimum_limit PHP memory limit or above is recommended, especially if your site uses additional custom or contributed modules.', ['%memory_limit' => $memory_limit, '%memory_minimum_limit' => DRUPAL_MINIMUM_PHP_MEMORY_LIMIT]);
+=======
+  if (!Environment::checkMemoryLimit(\Drupal::MINIMUM_PHP_MEMORY_LIMIT, $memory_limit)) {
+    $description = [];
+    if ($phase == 'install') {
+      $description['phase'] = t('Consider increasing your PHP memory limit to %memory_minimum_limit to help prevent errors in the installation process.', ['%memory_minimum_limit' => \Drupal::MINIMUM_PHP_MEMORY_LIMIT]);
+    }
+    elseif ($phase == 'update') {
+      $description['phase'] = t('Consider increasing your PHP memory limit to %memory_minimum_limit to help prevent errors in the update process.', ['%memory_minimum_limit' => \Drupal::MINIMUM_PHP_MEMORY_LIMIT]);
+    }
+    elseif ($phase == 'runtime') {
+      $description['phase'] = t('Depending on your configuration, Drupal can run with a %memory_limit PHP memory limit. However, a %memory_minimum_limit PHP memory limit or above is recommended, especially if your site uses additional custom or contributed modules.', ['%memory_limit' => $memory_limit, '%memory_minimum_limit' => \Drupal::MINIMUM_PHP_MEMORY_LIMIT]);
+>>>>>>> dev
     }
 
     if (!empty($description['phase'])) {
@@ -514,7 +593,11 @@ function system_requirements($phase) {
     // Find the site path. Kernel service is not always available at this point,
     // but is preferred, when available.
     if (\Drupal::hasService('kernel')) {
+<<<<<<< HEAD
       $site_path = \Drupal::service('site.path');
+=======
+      $site_path = \Drupal::getContainer()->getParameter('site.path');
+>>>>>>> dev
     }
     else {
       $site_path = DrupalKernel::findSitePath(Request::createFromGlobals());
@@ -596,6 +679,7 @@ function system_requirements($phase) {
     }
   }
 
+<<<<<<< HEAD
   // Test that path.temporary config is not set.
   if ($phase == 'runtime') {
     if (!Settings::get('file_temp_path')) {
@@ -628,6 +712,8 @@ function system_requirements($phase) {
     }
   }
 
+=======
+>>>>>>> dev
   // Report cron status.
   if ($phase == 'runtime') {
     $cron_config = \Drupal::config('system.cron');
@@ -689,7 +775,10 @@ function system_requirements($phase) {
     ];
   }
   if ($phase != 'install') {
+<<<<<<< HEAD
     $filesystem_config = \Drupal::config('system.file');
+=======
+>>>>>>> dev
     $directories = [
       PublicStream::basePath(),
       // By default no private files directory is configured. For private files
@@ -758,6 +847,7 @@ function system_requirements($phase) {
     ];
   }
 
+<<<<<<< HEAD
   // Handle other configuration directories. This will be removed in Drupal 9.
   // See https://www.drupal.org/node/3018145.
   $bc_config_directories = isset($GLOBALS['config_directories']) ? $GLOBALS['config_directories'] : [];
@@ -784,6 +874,8 @@ function system_requirements($phase) {
     }
   }
 
+=======
+>>>>>>> dev
   $requirements['file system'] = [
     'title' => t('File system'),
   ];
@@ -1141,6 +1233,7 @@ function system_requirements($phase) {
     case 'mbstring.encoding_translation':
       $requirements['unicode']['description'] = t('Multibyte string input conversion in PHP is active and must be disabled. Check the php.ini <em>mbstring.encoding_translation</em> setting. Please refer to the <a href="http://php.net/mbstring">PHP mbstring documentation</a> for more information.');
       break;
+<<<<<<< HEAD
 
     case 'mbstring.http_input':
       $requirements['unicode']['description'] = t('Multibyte string input conversion in PHP is active and must be disabled. Check the php.ini <em>mbstring.http_input</em> setting. Please refer to the <a href="http://php.net/mbstring">PHP mbstring documentation</a> for more information.');
@@ -1149,6 +1242,8 @@ function system_requirements($phase) {
     case 'mbstring.http_output':
       $requirements['unicode']['description'] = t('Multibyte string output conversion in PHP is active and must be disabled. Check the php.ini <em>mbstring.http_output</em> setting. Please refer to the <a href="http://php.net/mbstring">PHP mbstring documentation</a> for more information.');
       break;
+=======
+>>>>>>> dev
   }
 
   if ($phase == 'runtime') {
@@ -1201,6 +1296,27 @@ function system_requirements($phase) {
     }
   }
 
+<<<<<<< HEAD
+=======
+  // When the database driver is provided by a module, then check that the
+  // providing module is enabled.
+  if ($phase === 'runtime' || $phase === 'update') {
+    $connection = Database::getConnection();
+    $provider = $connection->getProvider();
+    if ($provider !== 'core' && !\Drupal::moduleHandler()->moduleExists($provider)) {
+      $autoload = $connection->getConnectionOptions()['autoload'] ?? '';
+      if (($pos = strpos($autoload, 'src/Driver/Database/')) !== FALSE) {
+        $requirements['database_driver_provided_by_module'] = [
+          'title' => t('Database driver provided by module'),
+          'value' => t('Not enabled'),
+          'description' => t('The current database driver is provided by the module: %module. The module is currently not enabled. You should immediately <a href=":enable">enable</a> the module.', ['%module' => $provider, ':enable' => Url::fromRoute('system.modules_list')->toString()]),
+          'severity' => REQUIREMENT_ERROR,
+        ];
+      }
+    }
+  }
+
+>>>>>>> dev
   // Check xdebug.max_nesting_level, as some pages will not work if it is too
   // low.
   if (extension_loaded('xdebug')) {
@@ -1219,6 +1335,7 @@ function system_requirements($phase) {
     }
   }
 
+<<<<<<< HEAD
   // Warning for httpoxy on IIS with affected PHP versions
   // @see https://www.drupal.org/node/2783079
   if (strpos($software, 'Microsoft-IIS') !== FALSE && version_compare(PHP_VERSION, '7.0.9', '<')) {
@@ -1247,6 +1364,8 @@ function system_requirements($phase) {
     }
   }
 
+=======
+>>>>>>> dev
   // Installations on Windows can run into limitations with MAX_PATH if the
   // Drupal root directory is too deep in the filesystem. Generally this shows
   // up in cached Twig templates and other public files with long directory or
@@ -1295,12 +1414,18 @@ function system_requirements($phase) {
       // hosting provider.
       $requirements['install_profile_in_settings'] = [
         'title' => t('Install profile in settings'),
+<<<<<<< HEAD
         'value' => t("Drupal 8 no longer uses the \$settings['install_profile'] value in settings.php and it can be removed."),
         'severity' => REQUIREMENT_INFO,
+=======
+        'value' => t("Drupal 9 no longer uses the \$settings['install_profile'] value in settings.php and it should be removed."),
+        'severity' => REQUIREMENT_WARNING,
+>>>>>>> dev
       ];
     }
   }
 
+<<<<<<< HEAD
   // Prevent installation or update if the Pathauto module is installed and its
   // version is less than 1.6.
   if ($phase === 'install' || $phase === 'update') {
@@ -1318,6 +1443,8 @@ function system_requirements($phase) {
     }
   }
 
+=======
+>>>>>>> dev
   // Ensure that no module has a current schema version that is lower than the
   // one that was last removed.
   if ($phase == 'update') {
@@ -1329,20 +1456,50 @@ function system_requirements($phase) {
 
         /** @var \Drupal\Core\Extension\Extension $module_info */
         $module_info = \Drupal::service('extension.list.module')->get($module);
+<<<<<<< HEAD
         $module_list[$module_info->info['package']][$module] = [
           'info' => $module_info,
+=======
+        $module_list[$module] = [
+          'name' => $module_info->info['name'],
+>>>>>>> dev
           'last_removed' => $last_removed,
           'installed_version' => drupal_get_installed_schema_version($module),
         ];
       }
     }
 
+<<<<<<< HEAD
     foreach ($module_list as $package => $package_modules) {
       foreach ($package_modules as $module => $data) {
         $requirements[$module . '_update_last_removed'] = [
           'title' => t('Unsupported schema version: @module', ['@module' => $data['info']->info['name']]),
           'description' => t('The installed version of the %module module is too old to update. Update to an intermediate version first (last removed version: @last_removed_version, installed version: @installed_version).', [
             '%module' => $data['info']->info['name'],
+=======
+    // If system or workspaces is in the list then only show a specific message
+    // for Drupal core.
+    if (isset($module_list['system']) || isset($module_list['workspaces'])) {
+      $requirements['system_update_last_removed'] = [
+        'title' => t('The version of Drupal you are trying to update from is too old'),
+        'description' => t('Updating to Drupal @current_major is only supported from Drupal version @required_min_version or higher. If you are trying to update from an older version, first update to the latest version of Drupal @previous_major. (<a href=":url">Drupal 9 upgrade guide</a>)', [
+          '@current_major' => 9,
+          // Workspaces is special cased due to updates being removed after
+          // 8.8.0.
+          '@required_min_version' => isset($module_list['workspaces']) ? '8.8.2' : '8.8.0',
+          '@previous_major' => 8,
+          ':url' => 'https://www.drupal.org/docs/9/how-to-prepare-your-drupal-7-or-8-site-for-drupal-9/upgrading-a-drupal-8-site-to-drupal-9',
+        ]),
+        'severity' => REQUIREMENT_ERROR,
+      ];
+    }
+    else {
+      foreach ($module_list as $module => $data) {
+        $requirements[$module . '_update_last_removed'] = [
+          'title' => t('Unsupported schema version: @module', ['@module' => $data['name']]),
+          'description' => t('The installed version of the %module module is too old to update. Update to an intermediate version first (last removed version: @last_removed_version, installed version: @installed_version).', [
+            '%module' => $data['name'],
+>>>>>>> dev
             '@last_removed_version' => $data['last_removed'],
             '@installed_version' => $data['installed_version'],
           ]),
@@ -1399,12 +1556,19 @@ function system_install() {
     $site->set('name', 'Drupal');
   }
   $site->save(TRUE);
+<<<<<<< HEAD
+=======
+
+  // Populate the dummy query string added to all CSS and JavaScript files.
+  _drupal_flush_css_js();
+>>>>>>> dev
 }
 
 /**
  * Implements hook_schema().
  */
 function system_schema() {
+<<<<<<< HEAD
   $schema['key_value'] = [
     'description' => 'Generic key-value storage table. See the state system for an example.',
     'fields' => [
@@ -1470,6 +1634,8 @@ function system_schema() {
     ],
   ];
 
+=======
+>>>>>>> dev
   $schema['sequences'] = [
     'description' => 'Stores IDs.',
     'fields' => [
@@ -1537,6 +1703,7 @@ function system_schema() {
 }
 
 /**
+<<<<<<< HEAD
  * Change two fields on the default menu link storage to be serialized data.
  */
 function system_update_8001(&$sandbox = NULL) {
@@ -2791,6 +2958,12 @@ function system_update_8805() {
       }
     }
   }
+=======
+ * Implements hook_update_last_removed().
+ */
+function system_update_last_removed() {
+  return 8805;
+>>>>>>> dev
 }
 
 /**
@@ -2848,3 +3021,57 @@ function system_update_8901() {
     }
   }
 }
+<<<<<<< HEAD
+=======
+
+/**
+ * Display requirements from security advisories.
+ *
+ * @param array[] $requirements
+ *   The requirements array as specified in hook_requirements().
+ */
+function _system_advisories_requirements(array &$requirements): void {
+  if (!\Drupal::config('system.advisories')->get('enabled')) {
+    return;
+  }
+
+  /** @var \Drupal\system\SecurityAdvisories\SecurityAdvisoriesFetcher $fetcher */
+  $fetcher = \Drupal::service('system.sa_fetcher');
+  try {
+    $advisories = $fetcher->getSecurityAdvisories(TRUE, 5);
+  }
+  catch (TransferException $exception) {
+    $requirements['system_advisories']['title'] = t('Critical security announcements');
+    $requirements['system_advisories']['severity'] = REQUIREMENT_WARNING;
+    $requirements['system_advisories']['description'] = ['#theme' => 'system_security_advisories_fetch_error_message'];
+    watchdog_exception('system', $exception, 'Failed to retrieve security advisory data.');
+    return;
+  }
+
+  if (!empty($advisories)) {
+    $advisory_links = [];
+    $severity = REQUIREMENT_WARNING;
+    foreach ($advisories as $advisory) {
+      if (!$advisory->isPsa()) {
+        $severity = REQUIREMENT_ERROR;
+      }
+      $advisory_links[] = new Link($advisory->getTitle(), Url::fromUri($advisory->getUrl()));
+    }
+    $requirements['system_advisories']['title'] = t('Critical security announcements');
+    $requirements['system_advisories']['severity'] = $severity;
+    $requirements['system_advisories']['description'] = [
+      'list' => [
+        '#theme' => 'item_list',
+        '#items' => $advisory_links,
+      ],
+    ];
+    if (\Drupal::moduleHandler()->moduleExists('help')) {
+      $requirements['system_advisories']['description']['help_link'] = Link::createFromRoute(
+        'What are critical security announcements?',
+        'help.page', ['name' => 'system'],
+        ['fragment' => 'security-advisories']
+      )->toRenderable();
+    }
+  }
+}
+>>>>>>> dev

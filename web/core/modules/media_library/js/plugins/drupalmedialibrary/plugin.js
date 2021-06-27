@@ -26,7 +26,10 @@
             classes: {}
           }
         },
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         requiredContent: new CKEDITOR.style({
           element: 'drupal-media',
           attributes: {
@@ -34,14 +37,23 @@
             'data-entity-uuid': ''
           }
         }),
+<<<<<<< HEAD
         modes: { wysiwyg: 1 },
 
+=======
+        modes: {
+          wysiwyg: 1
+        },
+>>>>>>> dev
         canUndo: true,
         exec: function exec(editor) {
           var saveCallback = function saveCallback(values) {
             editor.fire('saveSnapshot');
             var mediaElement = editor.document.createElement('drupal-media');
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
             var attributes = values.attributes;
             Object.keys(attributes).forEach(function (key) {
               mediaElement.setAttribute(key, attributes[key]);

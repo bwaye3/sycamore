@@ -2,12 +2,23 @@
 
 namespace Drupal\taxonomy\Plugin\migrate\source\d7;
 
+<<<<<<< HEAD
 use Drupal\content_translation\Plugin\migrate\source\I18nQueryTrait;
+=======
+>>>>>>> dev
 use Drupal\migrate\Row;
 
 /**
  * Gets i18n taxonomy terms from source database.
  *
+<<<<<<< HEAD
+=======
+ * For available configuration keys, refer to the parent classes:
+ * @see \Drupal\taxonomy\Plugin\migrate\source\d7\Term
+ * @see \Drupal\migrate\Plugin\migrate\source\SqlBase
+ * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
+ *
+>>>>>>> dev
  * @MigrateSource(
  *   id = "d7_taxonomy_term_translation",
  *   source_module = "i18n_taxonomy"
@@ -15,8 +26,11 @@ use Drupal\migrate\Row;
  */
 class TermTranslation extends Term {
 
+<<<<<<< HEAD
   use I18nQueryTrait;
 
+=======
+>>>>>>> dev
   /**
    * {@inheritdoc}
    */
@@ -35,7 +49,13 @@ class TermTranslation extends Term {
    * {@inheritdoc}
    */
   public function prepareRow(Row $row) {
+<<<<<<< HEAD
     parent::prepareRow($row);
+=======
+    if (!parent::prepareRow($row)) {
+      return FALSE;
+    }
+>>>>>>> dev
     $row->setSourceProperty('language', $row->getSourceProperty('td_language'));
   }
 

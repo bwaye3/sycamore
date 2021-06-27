@@ -111,6 +111,7 @@ EOD;
   }
 
   /**
+<<<<<<< HEAD
    * Sets the value for multibyte support status for the current environment.
    *
    * The following status keys are supported:
@@ -136,6 +137,8 @@ EOD;
   }
 
   /**
+=======
+>>>>>>> dev
    * Checks for Unicode support in PHP and sets the proper settings if possible.
    *
    * Because of the need to be able to handle text in various encodings, we do
@@ -251,6 +254,7 @@ EOD;
   }
 
   /**
+<<<<<<< HEAD
    * Counts the number of characters in a UTF-8 string.
    *
    * This is less than or equal to the byte count.
@@ -310,6 +314,8 @@ EOD;
   }
 
   /**
+=======
+>>>>>>> dev
    * Capitalizes the first character of a UTF-8 string.
    *
    * @param string $text
@@ -357,6 +363,7 @@ EOD;
   }
 
   /**
+<<<<<<< HEAD
    * Cuts off a piece of a string based on character indices and counts.
    *
    * Follows the same behavior as PHP's own substr() function. Note that for
@@ -384,6 +391,8 @@ EOD;
   }
 
   /**
+=======
+>>>>>>> dev
    * Truncates a UTF-8-encoded string safely to a number of characters.
    *
    * @param string $string
@@ -504,8 +513,19 @@ EOD;
    *
    * @return string
    *   The mime-encoded header.
+<<<<<<< HEAD
    */
   public static function mimeHeaderEncode($string, $shorten = FALSE) {
+=======
+   *
+   * @deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use
+   *   \Symfony\Component\Mime\Header\UnstructuredHeader instead.
+   *
+   * @see https://www.drupal.org/node/3207439
+   */
+  public static function mimeHeaderEncode($string, $shorten = FALSE) {
+    @trigger_error('\Drupal\Component\Utility\Unicode::mimeHeaderEncode() is deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use \Symfony\Component\Mime\Header\UnstructuredHeader instead. See https://www.drupal.org/node/3207439', E_USER_DEPRECATED);
+>>>>>>> dev
     if (preg_match('/[^\x20-\x7E]/', $string)) {
       // floor((75 - strlen("=?UTF-8?B??=")) * 0.75);
       $chunk_size = 47;
@@ -534,8 +554,19 @@ EOD;
    *
    * @return string
    *   The mime-decoded header.
+<<<<<<< HEAD
    */
   public static function mimeHeaderDecode($header) {
+=======
+   *
+   * @deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use
+   *   iconv_mime_decode() instead.
+   *
+   * @see https://www.drupal.org/node/3207439
+   */
+  public static function mimeHeaderDecode($header) {
+    @trigger_error('\Drupal\Component\Utility\Unicode::mimeHeaderDecode() is deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use iconv_mime_decode() instead. See https://www.drupal.org/node/3207439', E_USER_DEPRECATED);
+>>>>>>> dev
     $callback = function ($matches) {
       $data = (strtolower($matches[2]) == 'b') ? base64_decode($matches[3]) : str_replace('_', ' ', quoted_printable_decode($matches[3]));
       if (strtolower($matches[1]) != 'utf-8') {
@@ -550,6 +581,7 @@ EOD;
   }
 
   /**
+<<<<<<< HEAD
    * Flip U+C0-U+DE to U+E0-U+FD and back. Can be used as preg_replace callback.
    *
    * @param array $matches
@@ -569,6 +601,8 @@ EOD;
   }
 
   /**
+=======
+>>>>>>> dev
    * Checks whether a string is valid UTF-8.
    *
    * All functions designed to filter input should use drupal_validate_utf8
@@ -602,6 +636,7 @@ EOD;
     return (preg_match('/^./us', $text) == 1);
   }
 
+<<<<<<< HEAD
   /**
    * Finds the position of the first occurrence of a string in another string.
    *
@@ -628,4 +663,6 @@ EOD;
     return mb_strpos($haystack, $needle, $offset);
   }
 
+=======
+>>>>>>> dev
 }

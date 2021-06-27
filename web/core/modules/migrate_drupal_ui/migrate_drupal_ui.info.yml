@@ -3,7 +3,10 @@ type: module
 description: 'Provides a user interface for migrating from older Drupal versions.'
 package: Migration
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 configure: migrate_drupal_ui.upgrade
 dependencies:
   - drupal:migrate

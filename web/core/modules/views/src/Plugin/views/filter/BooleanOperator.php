@@ -2,13 +2,20 @@
 
 namespace Drupal\views\Plugin\views\filter;
 
+<<<<<<< HEAD
 use Drupal\Core\Database\Query\Condition;
+=======
+>>>>>>> dev
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\ViewExecutable;
 
 /**
+<<<<<<< HEAD
  * Simple filter to handle matching of boolean values
+=======
+ * Simple filter to handle matching of boolean values.
+>>>>>>> dev
  *
  * Definition items:
  * - label: (REQUIRED) The label for the checkbox.
@@ -41,9 +48,24 @@ class BooleanOperator extends FilterPluginBase {
    */
   const NOT_EQUAL = '<>';
 
+<<<<<<< HEAD
   // exposed filter options
   protected $alwaysMultiple = TRUE;
   // Whether to accept NULL as a false value or not
+=======
+  /**
+   * Exposed filter options.
+   *
+   * @var bool
+   */
+  protected $alwaysMultiple = TRUE;
+
+  /**
+   * Whether to accept NULL as a false value or not.
+   *
+   * @var bool
+   */
+>>>>>>> dev
   public $accept_null = FALSE;
 
   /**
@@ -234,12 +256,20 @@ class BooleanOperator extends FilterPluginBase {
     if (empty($this->value)) {
       if ($this->accept_null) {
         if ($query_operator === self::EQUAL) {
+<<<<<<< HEAD
           $condition = (new Condition('OR'))
+=======
+          $condition = ($this->query->getConnection()->condition('OR'))
+>>>>>>> dev
             ->condition($field, 0, $query_operator)
             ->isNull($field);
         }
         else {
+<<<<<<< HEAD
           $condition = (new Condition('AND'))
+=======
+          $condition = ($this->query->getConnection()->condition('AND'))
+>>>>>>> dev
             ->condition($field, 0, $query_operator)
             ->isNotNull($field);
         }

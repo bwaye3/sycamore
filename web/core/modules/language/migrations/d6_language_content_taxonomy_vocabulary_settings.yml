@@ -49,3 +49,7 @@ destination:
 migration_dependencies:
   required:
     - d6_taxonomy_vocabulary
+<<<<<<< HEAD
+=======
+    - language
+>>>>>>> dev

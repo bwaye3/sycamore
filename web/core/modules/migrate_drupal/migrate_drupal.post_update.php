@@ -2,6 +2,7 @@
 
 /**
  * @file
+<<<<<<< HEAD
  * Post update functions for migrate_drupal.
  */
 
@@ -13,6 +14,15 @@
 function drupal_migrate_post_update_clear_migrate_field_plugin_cache() {
   // Empty post-update hook.
 }
+=======
+ * Post update functions for Migrate Drupal.
+ */
+
+/**
+ * @addtogroup updates-8.9.x
+ * @{
+ */
+>>>>>>> dev
 
 /**
  * Uninstall migrate_drupal_multilingual since migrate_drupal is installed.
@@ -20,3 +30,10 @@ function drupal_migrate_post_update_clear_migrate_field_plugin_cache() {
 function migrate_drupal_post_update_uninstall_multilingual() {
   \Drupal::service('module_installer')->uninstall(['migrate_drupal_multilingual']);
 }
+<<<<<<< HEAD
+=======
+
+/**
+ * @} End of "addtogroup updates-8.9.x".
+ */
+>>>>>>> dev

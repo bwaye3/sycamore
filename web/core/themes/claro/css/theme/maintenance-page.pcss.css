@@ -3,6 +3,7 @@
  * Maintenance theming.
  */
 
+<<<<<<< HEAD
 .maintenance-page {
   min-height: 100%;
   background-color: #e0e0d8;
@@ -20,6 +21,36 @@
   color: #0074bd;
   font-size: 2em;
   line-height: 1.2em;
+=======
+@import "../base/variables.pcss.css";
+
+.maintenance-page {
+  min-height: 100%;
+  background-color: var(--color-lightdiamond);
+}
+
+.site-name {
+  margin-top: var(--space-m);
+  word-wrap: break-word;
+  color: var(--color-davysgray);
+  font-size: var(--font-size-h4);
+}
+
+.site-name,
+.title {
+  margin-bottom: var(--space-l);
+}
+
+.content {
+  margin-bottom: var(--space-m);
+  color: var(--color-davysgray);
+}
+
+.site-name,
+.title,
+.content {
+  max-width: 512px;
+>>>>>>> dev
 }
 
 /**
@@ -103,7 +134,14 @@
   width: auto;
   margin-right: 1.25em;
   margin-left: 1.25em;
+<<<<<<< HEAD
   background: #fff;
+=======
+  padding: var(--space-xl);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: var(--shadow-z3);
+>>>>>>> dev
 }
 .layout-container:after { /* no reason for a clearfix in the markup */
   display: table;
@@ -114,6 +152,7 @@
 @media all and (max-width: 48em) { /* 768px */
   .layout-container {
     margin: 1.25em;
+<<<<<<< HEAD
     padding: 10px 20px;
   }
   .page-title {
@@ -123,6 +162,9 @@
   [dir="rtl"] .page-title {
     margin-right: 0;
     margin-left: 2em;
+=======
+    padding: var(--space-m) var(--space-l);
+>>>>>>> dev
   }
 }
 
@@ -143,6 +185,7 @@
     height: 100%;
     margin: 0;
   }
+<<<<<<< HEAD
   .layout-container {
     width: 75%;
     max-width: 770px;
@@ -163,6 +206,15 @@
   }
   [dir="rtl"] main {
     float: right;
+=======
+  /**
+   * Needed to override rules from system-admin--layout.pcss.
+   */
+  .layout-container.layout-container.layout-container {
+    width: 75%;
+    max-width: 940px;
+    margin: 0 auto;
+>>>>>>> dev
   }
   ul {
     margin: 0.25em 0;
@@ -178,11 +230,14 @@
   [dir="rtl"] .layout-sidebar-first {
     float: right;
   }
+<<<<<<< HEAD
 
   /* Margins for sitename */
   .page-title {
     margin: 0.75em 1.9em;
   }
+=======
+>>>>>>> dev
 }
 
 /**

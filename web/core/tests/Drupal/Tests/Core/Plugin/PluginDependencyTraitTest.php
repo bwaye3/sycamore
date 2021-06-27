@@ -164,6 +164,7 @@ class PluginDependencyTraitTest extends UnitTestCase {
     return $data;
   }
 
+<<<<<<< HEAD
   /**
    * @covers ::getPluginDependencies
    *
@@ -196,6 +197,8 @@ class PluginDependencyTraitTest extends UnitTestCase {
     $this->assertEquals($expected, $actual);
   }
 
+=======
+>>>>>>> dev
 }
 
 class TestPluginDependency {

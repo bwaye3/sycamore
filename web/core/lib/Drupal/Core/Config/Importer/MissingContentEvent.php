@@ -2,7 +2,11 @@
 
 namespace Drupal\Core\Config\Importer;
 
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\Event;
+=======
+use Drupal\Component\EventDispatcher\Event;
+>>>>>>> dev
 
 /**
  * Wraps a configuration event for event listeners.

@@ -1,4 +1,7 @@
 name: 'JSON API test collection counts'
 type: module
 package: Testing
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

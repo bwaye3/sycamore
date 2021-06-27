@@ -12,7 +12,10 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\TypedData\TypedDataManagerInterface;
+<<<<<<< HEAD
 use Drupal\Tests\Traits\ExpectDeprecationTrait;
+=======
+>>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 use Drupal\Core\Language\Language;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -24,8 +27,11 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  */
 class ContentEntityBaseUnitTest extends UnitTestCase {
 
+<<<<<<< HEAD
   use ExpectDeprecationTrait;
 
+=======
+>>>>>>> dev
   /**
    * The bundle of the entity under test.
    *
@@ -127,7 +133,11 @@ class ContentEntityBaseUnitTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->id = 1;
     $values = [
       'id' => $this->id,
@@ -322,11 +332,19 @@ class ContentEntityBaseUnitTest extends UnitTestCase {
     $this->languageManager->expects($this->any())
       ->method('isMultilingual')
       ->will($this->returnValue(TRUE));
+<<<<<<< HEAD
     $this->assertTrue($this->entity->language()->getId() == 'en');
     $this->assertFalse($this->entity->language()->isLocked());
     $this->assertTrue($this->entity->isTranslatable());
 
     $this->assertTrue($this->entityUnd->language()->getId() == LanguageInterface::LANGCODE_NOT_SPECIFIED);
+=======
+    $this->assertSame('en', $this->entity->language()->getId());
+    $this->assertFalse($this->entity->language()->isLocked());
+    $this->assertTrue($this->entity->isTranslatable());
+
+    $this->assertSame(LanguageInterface::LANGCODE_NOT_SPECIFIED, $this->entityUnd->language()->getId());
+>>>>>>> dev
     $this->assertTrue($this->entityUnd->language()->isLocked());
     $this->assertFalse($this->entityUnd->isTranslatable());
   }
@@ -473,6 +491,7 @@ class ContentEntityBaseUnitTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * @covers ::label
    *
    * @group legacy
@@ -498,6 +517,8 @@ class ContentEntityBaseUnitTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Data provider for testGet().
    *
    * @returns
@@ -626,7 +647,11 @@ class ContentEntityBaseUnitTest extends UnitTestCase {
       ->willReturnArgument(0);
 
     // Exercise getFields().
+<<<<<<< HEAD
     $this->assertArrayEquals(
+=======
+    $this->assertEquals(
+>>>>>>> dev
       $expected,
       $mock_base->getFields($include_computed)
     );

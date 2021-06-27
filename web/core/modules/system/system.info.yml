@@ -3,6 +3,9 @@ type: module
 description: 'Handles general site configuration for administrators.'
 package: Core
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 required: true
 configure: system.admin_config_system

@@ -19,7 +19,11 @@ use Drupal\Core\Plugin\DefaultPluginManager;
 class InPlaceEditorManager extends DefaultPluginManager {
 
   /**
+<<<<<<< HEAD
    * Constructs a InPlaceEditorManager object.
+=======
+   * Constructs an InPlaceEditorManager object.
+>>>>>>> dev
    *
    * @param \Traversable $namespaces
    *   An object that implements \Traversable which contains the root paths

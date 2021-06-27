@@ -18,7 +18,11 @@
  *   });
  */
 
+<<<<<<< HEAD
 (function(Drupal, debounce) {
+=======
+(function (Drupal, debounce) {
+>>>>>>> dev
   let liveElement;
   const announcements = [];
 
@@ -102,7 +106,11 @@
    *
    * @see http://www.w3.org/WAI/PF/aria-practices/#liveprops
    */
+<<<<<<< HEAD
   Drupal.announce = function(text, priority) {
+=======
+  Drupal.announce = function (text, priority) {
+>>>>>>> dev
     // Save the text and priority into a closure variable. Multiple simultaneous
     // announcements will be concatenated and read in sequence.
     announcements.push({

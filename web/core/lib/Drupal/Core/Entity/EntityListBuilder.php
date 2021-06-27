@@ -95,6 +95,10 @@ class EntityListBuilder extends EntityHandlerBase implements EntityListBuilderIn
    */
   protected function getEntityIds() {
     $query = $this->getStorage()->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(TRUE)
+>>>>>>> dev
       ->sort($this->entityType->getKey('id'));
 
     // Only add the pager if a limit is specified.
@@ -105,6 +109,7 @@ class EntityListBuilder extends EntityHandlerBase implements EntityListBuilderIn
   }
 
   /**
+<<<<<<< HEAD
    * Gets the label of an entity.
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
@@ -122,6 +127,8 @@ class EntityListBuilder extends EntityHandlerBase implements EntityListBuilderIn
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function getOperations(EntityInterface $entity) {

@@ -10,6 +10,7 @@
  * @{
  */
 
+<<<<<<< HEAD
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Render\Element;
 
@@ -78,6 +79,8 @@ function template_preprocess_menu_local_action(&$variables) {
   ];
 }
 
+=======
+>>>>>>> dev
 /**
  * Returns an array containing the names of system-defined (default) menus.
  */
@@ -92,6 +95,7 @@ function menu_list_system_menus() {
 }
 
 /**
+<<<<<<< HEAD
  * Collects the local tasks (tabs) for the current route.
  *
  * @param int $level
@@ -183,5 +187,7 @@ function menu_cache_clear_all() {
 }
 
 /**
+=======
+>>>>>>> dev
  * @} End of "addtogroup menu".
  */

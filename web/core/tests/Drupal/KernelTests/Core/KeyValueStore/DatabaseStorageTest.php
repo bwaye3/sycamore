@@ -13,6 +13,7 @@ use Drupal\Core\KeyValueStore\KeyValueFactory;
 class DatabaseStorageTest extends StorageTestBase {
 
   /**
+<<<<<<< HEAD
    * Modules to enable.
    *
    * @var array
@@ -25,6 +26,8 @@ class DatabaseStorageTest extends StorageTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function register(ContainerBuilder $container) {

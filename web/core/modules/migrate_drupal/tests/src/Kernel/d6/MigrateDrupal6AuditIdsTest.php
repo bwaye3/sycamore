@@ -8,7 +8,10 @@ use Drupal\migrate\Audit\IdAuditor;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\Tests\content_moderation\Traits\ContentModerationTestTrait;
+<<<<<<< HEAD
 use Drupal\Tests\DeprecatedModulesTestTrait;
+=======
+>>>>>>> dev
 use Drupal\Tests\migrate_drupal\Traits\CreateTestContentEntitiesTrait;
 
 /**
@@ -21,15 +24,24 @@ class MigrateDrupal6AuditIdsTest extends MigrateDrupal6TestBase {
   use FileSystemModuleDiscoveryDataProviderTrait;
   use CreateTestContentEntitiesTrait;
   use ContentModerationTestTrait;
+<<<<<<< HEAD
   use DeprecatedModulesTestTrait;
+=======
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     // Enable all modules.
     self::$modules = array_keys($this->coreModuleListDataProvider());
     self::$modules = $this->removeDeprecatedModules(self::$modules);
+=======
+  protected function setUp(): void {
+    // Enable all modules.
+    self::$modules = array_keys($this->coreModuleListDataProvider());
+>>>>>>> dev
     parent::setUp();
 
     // Install required entity schemas.

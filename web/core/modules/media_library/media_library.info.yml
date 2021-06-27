@@ -3,7 +3,10 @@ type: module
 description: 'Enhances the media list with additional features to more easily find and use existing media items.'
 package: Core
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 configure: media_library.settings
 dependencies:
   - drupal:media

@@ -175,7 +175,11 @@ use Drupal\Core\Database\Query\SelectInterface;
  *   try {
  *     $id = $connection->insert('example')
  *       ->fields(array(
+<<<<<<< HEAD
  *         'field1' => 'mystring',
+=======
+ *         'field1' => 'string',
+>>>>>>> dev
  *         'field2' => 5,
  *       ))
  *       ->execute();
@@ -390,7 +394,13 @@ use Drupal\Core\Database\Query\SelectInterface;
  * ];
  * @endcode
  *
+<<<<<<< HEAD
  * @see drupal_install_schema()
+=======
+ * @see \Drupal\Core\Extension\ModuleInstaller::installSchema()
+ * @see \Drupal\Core\Extension\ModuleInstaller::uninstallSchema()
+ * @see \Drupal\TestTools\Extension\SchemaInspector::getTablesSpecification()
+>>>>>>> dev
  *
  * @}
  */
@@ -432,7 +442,11 @@ function hook_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) 
  *   a listing (e.g., from Views) and therefore require access control.
  *
  * @param $query
+<<<<<<< HEAD
  *   An Query object describing the composite parts of a SQL query.
+=======
+ *   A Query object describing the composite parts of a SQL query.
+>>>>>>> dev
  *
  * @see hook_query_alter()
  * @see node_query_node_access_alter()

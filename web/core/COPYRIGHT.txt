@@ -20,7 +20,11 @@ Drupal includes works under other copyright notices and distributed
 according to the terms of the GNU General Public License or a compatible
 license, including:
 
+<<<<<<< HEAD
 Javascript
+=======
+JavaScript
+>>>>>>> dev
 
   Farbtastic - Copyright (c) 2010 Matt Farina
 
@@ -57,3 +61,11 @@ PHP
 
   Drupal depends on numerous PHP Composer packages. All Composer packages
     retain the copyright of the authors.
+<<<<<<< HEAD
+=======
+
+Brand materials
+
+  Drupal brand materials under core/misc/logo have a dedicated license. See
+  core/misc/logo/LICENSE.txt.
+>>>>>>> dev

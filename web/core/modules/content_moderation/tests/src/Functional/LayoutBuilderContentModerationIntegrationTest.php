@@ -2,6 +2,10 @@
 
 namespace Drupal\Tests\content_moderation\Functional;
 
+<<<<<<< HEAD
+=======
+use Drupal\block_content\Entity\BlockContentType;
+>>>>>>> dev
 use Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\content_moderation\Traits\ContentModerationTestTrait;
@@ -24,6 +28,10 @@ class LayoutBuilderContentModerationIntegrationTest extends BrowserTestBase {
     'node',
     'content_moderation',
     'menu_ui',
+<<<<<<< HEAD
+=======
+    'block_content',
+>>>>>>> dev
   ];
 
   /**
@@ -34,17 +42,39 @@ class LayoutBuilderContentModerationIntegrationTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // @todo The Layout Builder UI relies on local tasks; fix in
     //   https://www.drupal.org/project/drupal/issues/2917777.
     $this->drupalPlaceBlock('local_tasks_block');
 
+<<<<<<< HEAD
     // Add a new bundle and add an editorial workflow.
     $this->createContentType(['type' => 'bundle_with_section_field']);
     $workflow = $this->createEditorialWorkflow();
     $workflow->getTypePlugin()->addEntityTypeAndBundle('node', 'bundle_with_section_field');
+=======
+    $workflow = $this->createEditorialWorkflow();
+
+    // Add a new bundle and add an editorial workflow.
+    $this->createContentType(['type' => 'bundle_with_section_field']);
+    $workflow->getTypePlugin()->addEntityTypeAndBundle('node', 'bundle_with_section_field');
+
+    // Add a new block content bundle to the editorial workflow.
+    BlockContentType::create([
+      'id' => 'basic',
+      'label' => 'Basic',
+      'revision' => 1,
+    ])->save();
+    block_content_add_body_field('basic');
+
+    $workflow->getTypePlugin()->addEntityTypeAndBundle('block_content', 'basic');
+>>>>>>> dev
     $workflow->save();
 
     // Enable layout overrides.
@@ -62,6 +92,10 @@ class LayoutBuilderContentModerationIntegrationTest extends BrowserTestBase {
       'view latest version',
       'use editorial transition create_new_draft',
       'use editorial transition publish',
+<<<<<<< HEAD
+=======
+      'create and edit custom blocks',
+>>>>>>> dev
     ]));
   }
 
@@ -138,4 +172,47 @@ class LayoutBuilderContentModerationIntegrationTest extends BrowserTestBase {
     $assert_session->pageTextNotContains('Powered by Drupal');
   }
 
+<<<<<<< HEAD
+=======
+  /**
+   * Test placing inline blocks that belong to a moderated custom block bundle.
+   */
+  public function testModeratedInlineBlockBundles() {
+    $page = $this->getSession()->getPage();
+    $assert_session = $this->assertSession();
+
+    $node = $this->createNode([
+      'type' => 'bundle_with_section_field',
+      'title' => 'The first node title',
+      'moderation_state' => 'published',
+    ]);
+    $this->drupalGet("node/{$node->id()}/layout");
+    $page->clickLink('Add block');
+    $this->clickLink('Create custom block');
+
+    $assert_session->fieldNotExists('settings[block_form][moderation_state][0][state]');
+    $this->submitForm([
+      'settings[label]' => 'Test inline block',
+      'settings[block_form][body][0][value]' => 'Example block body',
+    ], 'Add block');
+
+    // Save a draft of the page with the inline block and ensure the drafted
+    // content appears on the latest version page.
+    $this->assertSession()->pageTextContains('Example block body');
+    $this->submitForm([
+      'moderation_state[0][state]' => 'draft',
+    ], 'Save layout');
+    $assert_session->pageTextContains('The layout override has been saved.');
+    $assert_session->pageTextContains('Example block body');
+
+    // Publish the draft of the page ensure the draft inline block content
+    // appears on the published page.
+    $this->submitForm([
+      'new_state' => 'published',
+    ], 'Apply');
+    $assert_session->pageTextContains('The moderation state has been updated.');
+    $assert_session->pageTextContains('Example block body');
+  }
+
+>>>>>>> dev
 }

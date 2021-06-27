@@ -10,7 +10,10 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
+<<<<<<< HEAD
 use Drupal\statistics\StatisticsViewsResult;
+=======
+>>>>>>> dev
 
 /**
  * Implements hook_help().
@@ -78,6 +81,7 @@ function statistics_cron() {
 }
 
 /**
+<<<<<<< HEAD
  * Returns the most viewed content of all time, today, or the last-viewed node.
  *
  * @param string $dbfield
@@ -148,6 +152,8 @@ function statistics_get($id) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Implements hook_ENTITY_TYPE_predelete() for node entities.
  */
 function statistics_node_predelete(EntityInterface $node) {
@@ -177,7 +183,11 @@ function statistics_ranking() {
         // values in as strings instead of numbers in complex expressions like
         // this.
         'score' => '2.0 - 2.0 / (1.0 + node_counter.totalcount * (ROUND(:statistics_scale, 4)))',
+<<<<<<< HEAD
         'arguments' => [':statistics_scale' => \Drupal::state()->get('statistics.node_counter_scale') ?: 0],
+=======
+        'arguments' => [':statistics_scale' => \Drupal::state()->get('statistics.node_counter_scale', 0)],
+>>>>>>> dev
       ],
     ];
   }

@@ -45,7 +45,11 @@ class EditorSecurityTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['filter', 'editor', 'editor_test', 'node'];
+=======
+  protected static $modules = ['filter', 'editor', 'editor_test', 'node'];
+>>>>>>> dev
 
   /**
    * User with access to Restricted HTML text format without text editor.
@@ -76,7 +80,11 @@ class EditorSecurityTest extends BrowserTestBase {
    */
   protected $privilegedUser;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create 5 text formats, to cover all potential use cases:
@@ -283,8 +291,13 @@ class EditorSecurityTest extends BrowserTestBase {
       foreach ($case['users'] as $account) {
         $this->drupalLogin($account);
         $this->drupalGet('node/' . $case['node_id'] . '/edit');
+<<<<<<< HEAD
         $dom_node = $this->xpath('//textarea[@id="edit-body-0-value"]');
         $this->assertIdentical($case['value'], $dom_node[0]->getText(), 'The value was correctly filtered for XSS attack vectors.');
+=======
+        // Verify that the value is correctly filtered for XSS attack vectors.
+        $this->assertSession()->fieldValueEquals('edit-body-0-value', $case['value']);
+>>>>>>> dev
       }
     }
   }
@@ -396,9 +409,15 @@ class EditorSecurityTest extends BrowserTestBase {
       $this->drupalGet('node/' . $case['node_id'] . '/edit');
 
       // Verify data- attributes.
+<<<<<<< HEAD
       $dom_node = $this->xpath('//textarea[@id="edit-body-0-value"]');
       $this->assertIdentical(self::$sampleContent, $dom_node[0]->getAttribute('data-editor-value-original'), 'The data-editor-value-original attribute is correctly set.');
       $this->assertIdentical('false', (string) $dom_node[0]->getAttribute('data-editor-value-is-changed'), 'The data-editor-value-is-changed attribute is correctly set.');
+=======
+      $body = $this->assertSession()->fieldExists('edit-body-0-value');
+      $this->assertSame(self::$sampleContent, $body->getAttribute('data-editor-value-original'), 'The data-editor-value-original attribute is correctly set.');
+      $this->assertSame('false', (string) $body->getAttribute('data-editor-value-is-changed'), 'The data-editor-value-is-changed attribute is correctly set.');
+>>>>>>> dev
 
       // Switch to every other text format/editor and verify the results.
       foreach ($case['switch_to'] as $format => $expected_filtered_value) {
@@ -420,7 +439,11 @@ class EditorSecurityTest extends BrowserTestBase {
         $this->assertEquals(200, $response->getStatusCode());
 
         $json = Json::decode($response->getBody());
+<<<<<<< HEAD
         $this->assertIdentical($json, $expected_filtered_value, 'The value was correctly filtered for XSS attack vectors.');
+=======
+        $this->assertSame($expected_filtered_value, $json, 'The value was correctly filtered for XSS attack vectors.');
+>>>>>>> dev
       }
     }
   }
@@ -432,8 +455,12 @@ class EditorSecurityTest extends BrowserTestBase {
     // First: the Standard text editor XSS filter.
     $this->drupalLogin($this->normalUser);
     $this->drupalGet('node/2/edit');
+<<<<<<< HEAD
     $dom_node = $this->xpath('//textarea[@id="edit-body-0-value"]');
     $this->assertIdentical(self::$sampleContentSecured, $dom_node[0]->getText(), 'The value was filtered by the Standard text editor XSS filter.');
+=======
+    $this->assertSession()->fieldValueEquals('edit-body-0-value', self::$sampleContentSecured);
+>>>>>>> dev
 
     // Enable editor_test.module's hook_editor_xss_filter_alter() implementation
     // to alter the text editor XSS filter class being used.
@@ -441,8 +468,12 @@ class EditorSecurityTest extends BrowserTestBase {
 
     // First: the Insecure text editor XSS filter.
     $this->drupalGet('node/2/edit');
+<<<<<<< HEAD
     $dom_node = $this->xpath('//textarea[@id="edit-body-0-value"]');
     $this->assertIdentical(self::$sampleContent, $dom_node[0]->getText(), 'The value was filtered by the Insecure text editor XSS filter.');
+=======
+    $this->assertSession()->fieldValueEquals('edit-body-0-value', self::$sampleContent);
+>>>>>>> dev
   }
 
 }

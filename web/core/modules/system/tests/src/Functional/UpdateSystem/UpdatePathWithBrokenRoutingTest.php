@@ -22,7 +22,11 @@ class UpdatePathWithBrokenRoutingTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->ensureUpdatesToRun();
   }

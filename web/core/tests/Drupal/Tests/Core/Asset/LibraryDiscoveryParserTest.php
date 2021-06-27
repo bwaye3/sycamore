@@ -13,6 +13,11 @@ use Drupal\Core\Asset\Exception\LibraryDefinitionMissingLicenseException;
 use Drupal\Core\Asset\LibrariesDirectoryFileFinder;
 use Drupal\Core\Asset\LibraryDiscoveryParser;
 use Drupal\Core\StreamWrapper\StreamWrapperManagerInterface;
+<<<<<<< HEAD
+=======
+use Drupal\Core\Theme\ActiveTheme;
+use Drupal\Core\Theme\ThemeManagerInterface;
+>>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -50,6 +55,16 @@ class LibraryDiscoveryParserTest extends UnitTestCase {
   protected $themeManager;
 
   /**
+<<<<<<< HEAD
+=======
+   * The mocked active theme.
+   *
+   * @var \Drupal\Core\Theme\ActiveTheme|\PHPUnit\Framework\MockObject\MockObject
+   */
+  protected $activeTheme;
+
+  /**
+>>>>>>> dev
    * The mocked lock backend.
    *
    * @var \Drupal\Core\Lock\LockBackendInterface|\PHPUnit\Framework\MockObject\MockObject
@@ -73,6 +88,7 @@ class LibraryDiscoveryParserTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     parent::setUp();
 
@@ -82,11 +98,26 @@ class LibraryDiscoveryParserTest extends UnitTestCase {
       ->disableOriginalConstructor()
       ->getMock();
     $mock_active_theme->expects($this->any())
+=======
+  protected function setUp(): void {
+    parent::setUp();
+
+    $this->moduleHandler = $this->createMock('Drupal\Core\Extension\ModuleHandlerInterface');
+    $this->themeManager = $this->createMock(ThemeManagerInterface::class);
+    $this->activeTheme = $this->getMockBuilder(ActiveTheme::class)
+      ->disableOriginalConstructor()
+      ->getMock();
+    $this->activeTheme->expects($this->any())
+>>>>>>> dev
       ->method('getLibrariesOverride')
       ->willReturn([]);
     $this->themeManager->expects($this->any())
       ->method('getActiveTheme')
+<<<<<<< HEAD
       ->willReturn($mock_active_theme);
+=======
+      ->willReturn($this->activeTheme);
+>>>>>>> dev
     $this->streamWrapperManager = $this->createMock(StreamWrapperManagerInterface::class);
     $this->librariesDirectoryFileFinder = $this->createMock(LibrariesDirectoryFileFinder::class);
     $this->libraryDiscoveryParser = new TestLibraryDiscoveryParser($this->root, $this->moduleHandler, $this->themeManager, $this->streamWrapperManager, $this->librariesDirectoryFileFinder);
@@ -111,7 +142,11 @@ class LibraryDiscoveryParserTest extends UnitTestCase {
     $library = $libraries['example'];
 
     $this->assertCount(0, $library['js']);
+<<<<<<< HEAD
     $this->assertCount(1, $library['css']);
+=======
+    $this->assertCount(2, $library['css']);
+>>>>>>> dev
     $this->assertCount(0, $library['dependencies']);
     $this->assertEquals($path . '/css/example.css', $library['css'][0]['data']);
 
@@ -545,6 +580,100 @@ class LibraryDiscoveryParserTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * Tests libraries with overrides.
+   *
+   * @covers ::applyLibrariesOverride
+   */
+  public function testLibraryOverride() {
+    $mock_theme_path = 'mocked_themes/kittens';
+    $this->themeManager = $this->createMock(ThemeManagerInterface::class);
+    $this->activeTheme = $this->getMockBuilder(ActiveTheme::class)
+      ->disableOriginalConstructor()
+      ->getMock();
+    $this->activeTheme->expects($this->atLeastOnce())
+      ->method('getLibrariesOverride')
+      ->willReturn([
+        $mock_theme_path => [
+          'example_module/example' => [
+            'css' => [
+              'theme' => [
+                'css/example.css' => 'css/overridden.css',
+                'css/example2.css' => FALSE,
+              ],
+            ],
+          ],
+        ],
+      ]);
+    $this->themeManager->expects($this->any())
+      ->method('getActiveTheme')
+      ->willReturn($this->activeTheme);
+    $this->libraryDiscoveryParser = new TestLibraryDiscoveryParser($this->root, $this->moduleHandler, $this->themeManager, $this->streamWrapperManager, $this->librariesDirectoryFileFinder);
+
+    $this->moduleHandler->expects($this->atLeastOnce())
+      ->method('moduleExists')
+      ->with('example_module')
+      ->will($this->returnValue(TRUE));
+
+    $path = __DIR__ . '/library_test_files';
+    $path = substr($path, strlen($this->root) + 1);
+    $this->libraryDiscoveryParser->setPaths('module', 'example_module', $path);
+
+    $libraries = $this->libraryDiscoveryParser->buildByExtension('example_module');
+    $library = $libraries['example'];
+
+    $this->assertCount(0, $library['js']);
+    $this->assertCount(1, $library['css']);
+    $this->assertCount(0, $library['dependencies']);
+    $this->assertEquals($mock_theme_path . '/css/overridden.css', $library['css'][0]['data']);
+  }
+
+  /**
+   * Tests deprecated library with an override.
+   *
+   * @covers ::applyLibrariesOverride
+   *
+   * @group legacy
+   */
+  public function testLibraryOverrideDeprecated() {
+    $this->expectDeprecation('Theme "deprecated" is overriding a deprecated library. The "deprecated/deprecated" asset library is deprecated in drupal:X.0.0 and is removed from drupal:Y.0.0. Use another library instead. See https://www.example.com');
+    $mock_theme_path = 'mocked_themes/kittens';
+    $this->themeManager = $this->createMock(ThemeManagerInterface::class);
+    $this->activeTheme = $this->getMockBuilder(ActiveTheme::class)
+      ->disableOriginalConstructor()
+      ->getMock();
+    $this->activeTheme->expects($this->atLeastOnce())
+      ->method('getLibrariesOverride')
+      ->willReturn([
+        $mock_theme_path => [
+          'deprecated/deprecated' => [
+            'css' => [
+              'theme' => [
+                'css/example.css' => 'css/overridden.css',
+              ],
+            ],
+          ],
+        ],
+      ]);
+    $this->themeManager->expects($this->any())
+      ->method('getActiveTheme')
+      ->willReturn($this->activeTheme);
+    $this->libraryDiscoveryParser = new TestLibraryDiscoveryParser($this->root, $this->moduleHandler, $this->themeManager, $this->streamWrapperManager, $this->librariesDirectoryFileFinder);
+
+    $this->moduleHandler->expects($this->atLeastOnce())
+      ->method('moduleExists')
+      ->with('deprecated')
+      ->will($this->returnValue(TRUE));
+
+    $path = __DIR__ . '/library_test_files';
+    $path = substr($path, strlen($this->root) + 1);
+    $this->libraryDiscoveryParser->setPaths('module', 'deprecated', $path);
+    $this->libraryDiscoveryParser->buildByExtension('deprecated');
+  }
+
+  /**
+>>>>>>> dev
    * Verifies assertions catch invalid CSS declarations.
    *
    * @dataProvider providerTestCssAssert

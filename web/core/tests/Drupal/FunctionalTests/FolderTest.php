@@ -18,7 +18,11 @@ class FolderTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['image'];
+=======
+  protected static $modules = ['image'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

@@ -15,7 +15,11 @@ class BlockHalJsonCookieTest extends BlockResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['hal'];
+=======
+  protected static $modules = ['hal'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

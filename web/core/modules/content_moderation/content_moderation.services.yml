@@ -1,4 +1,5 @@
 services:
+<<<<<<< HEAD
   paramconverter.latest_revision:
     class: Drupal\content_moderation\ParamConverter\EntityRevisionConverter
     parent: paramconverter.entity
@@ -8,6 +9,10 @@ services:
       - { name: paramconverter, priority: 1 }
   content_moderation.state_transition_validation:
     class: \Drupal\content_moderation\StateTransitionValidation
+=======
+  content_moderation.state_transition_validation:
+    class: Drupal\content_moderation\StateTransitionValidation
+>>>>>>> dev
     arguments: ['@content_moderation.moderation_information']
   content_moderation.moderation_information:
     class: Drupal\content_moderation\ModerationInformation

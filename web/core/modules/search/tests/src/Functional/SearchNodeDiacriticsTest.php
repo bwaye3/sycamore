@@ -28,7 +28,11 @@ class SearchNodeDiacriticsTest extends BrowserTestBase {
    */
   public $testUser;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalCreateContentType(['type' => 'page', 'name' => 'Basic page']);
@@ -49,6 +53,10 @@ class SearchNodeDiacriticsTest extends BrowserTestBase {
    * Tests that search returns results with diacritics in the search phrase.
    */
   public function testPhraseSearchPunctuation() {
+<<<<<<< HEAD
+=======
+    // cSpell:disable
+>>>>>>> dev
     $body_text = 'The Enricþment Center is cómmīŦŧęđ to the well BɆĬŇĜ of æll påŔťıçȉpǎǹţș. ';
     $body_text .= 'Also meklēt (see #731298)';
     $this->drupalCreateNode(['body' => [['value' => $body_text]]]);
@@ -60,6 +68,7 @@ class SearchNodeDiacriticsTest extends BrowserTestBase {
     $this->refreshVariables();
 
     $edit = ['keys' => 'meklet'];
+<<<<<<< HEAD
     $this->drupalPostForm('search/node', $edit, t('Search'));
     $this->assertRaw('<strong>meklēt</strong>');
 
@@ -69,17 +78,37 @@ class SearchNodeDiacriticsTest extends BrowserTestBase {
 
     $edit = ['keys' => 'cómmīŦŧęđ BɆĬŇĜ påŔťıçȉpǎǹţș'];
     $this->drupalPostForm('search/node', $edit, t('Search'));
+=======
+    $this->drupalGet('search/node');
+    $this->submitForm($edit, 'Search');
+    $this->assertRaw('<strong>meklēt</strong>');
+
+    $edit = ['keys' => 'meklēt'];
+    $this->drupalGet('search/node');
+    $this->submitForm($edit, 'Search');
+    $this->assertRaw('<strong>meklēt</strong>');
+
+    $edit = ['keys' => 'cómmīŦŧęđ BɆĬŇĜ påŔťıçȉpǎǹţș'];
+    $this->drupalGet('search/node');
+    $this->submitForm($edit, 'Search');
+>>>>>>> dev
     $this->assertRaw('<strong>cómmīŦŧęđ</strong>');
     $this->assertRaw('<strong>BɆĬŇĜ</strong>');
     $this->assertRaw('<strong>påŔťıçȉpǎǹţș</strong>');
 
     $edit = ['keys' => 'committed being participants'];
+<<<<<<< HEAD
     $this->drupalPostForm('search/node', $edit, t('Search'));
+=======
+    $this->drupalGet('search/node');
+    $this->submitForm($edit, 'Search');
+>>>>>>> dev
     $this->assertRaw('<strong>cómmīŦŧęđ</strong>');
     $this->assertRaw('<strong>BɆĬŇĜ</strong>');
     $this->assertRaw('<strong>påŔťıçȉpǎǹţș</strong>');
 
     $edit = ['keys' => 'Enricþment'];
+<<<<<<< HEAD
     $this->drupalPostForm('search/node', $edit, t('Search'));
     $this->assertRaw('<strong>Enricþment</strong>');
 
@@ -94,6 +123,27 @@ class SearchNodeDiacriticsTest extends BrowserTestBase {
     $edit = ['keys' => 'all'];
     $this->drupalPostForm('search/node', $edit, t('Search'));
     $this->assertNoRaw('<strong>æll</strong>');
+=======
+    $this->drupalGet('search/node');
+    $this->submitForm($edit, 'Search');
+    $this->assertRaw('<strong>Enricþment</strong>');
+
+    $edit = ['keys' => 'Enritchment'];
+    $this->drupalGet('search/node');
+    $this->submitForm($edit, 'Search');
+    $this->assertNoRaw('<strong>Enricþment</strong>');
+
+    $edit = ['keys' => 'æll'];
+    $this->drupalGet('search/node');
+    $this->submitForm($edit, 'Search');
+    $this->assertRaw('<strong>æll</strong>');
+
+    $edit = ['keys' => 'all'];
+    $this->drupalGet('search/node');
+    $this->submitForm($edit, 'Search');
+    $this->assertNoRaw('<strong>æll</strong>');
+    // cSpell:enable
+>>>>>>> dev
   }
 
 }

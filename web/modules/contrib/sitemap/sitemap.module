@@ -1,21 +1,32 @@
 <?php
 
+<<<<<<< HEAD
+=======
+use Drupal\taxonomy\VocabularyInterface;
+use Drupal\system\MenuInterface;
+use Drupal\node\NodeInterface;
+>>>>>>> dev
 /**
  * @file
  * Provides sitemap functionality.
  */
 
+<<<<<<< HEAD
 use Drupal\system\Entity\Menu;
 use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\Url;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Link;
 use Drupal\Core\Form\FormStateInterface;
+=======
+use \Drupal\Component\Utility\Html;
+>>>>>>> dev
 
 /**
  * Implements hook_theme().
  */
 function sitemap_theme() {
+<<<<<<< HEAD
   return array(
     'sitemap' => array(
       'variables' => array(
@@ -201,6 +212,89 @@ function _sitemap_menus($mid) {
   }
 
   return $sitemap_box;
+=======
+  return [
+    'sitemap' => [
+      'variables' => [
+        'message' => NULL,
+        'sitemap_items' => [],
+      ],
+    ],
+    'sitemap_item' => [
+      'variables' => [
+        'title' => '',
+        'content' => [],
+        'sitemap' => '',
+      ],
+      'file' => 'sitemap.theme.inc',
+
+    ],
+    'sitemap_taxonomy_term' => [
+      'variables' => [
+        'name' => '',
+        'show_link' => FALSE,
+        'url' => '',
+        'show_count' => FALSE,
+        'count' => '',
+        'show_feed' => FALSE,
+        'feed' => '',
+        'feed_icon' => '',
+      ],
+      'file' => 'sitemap.theme.inc',
+
+    ],
+    'sitemap_frontpage_item' => [
+      'variables' => [
+        'text' => '',
+        'url' => '',
+        'feed' => '',
+        'feed_icon' => '',
+      ],
+      'file' => 'sitemap.theme.inc',
+    ],
+    'menu__sitemap' => [
+      'base hook' => 'menu',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_sitemap_item
+ */
+function sitemap_theme_suggestions_sitemap_item(array $variables) {
+  $suggestions = array();
+
+  if (isset($variables['sitemap'])) {
+    if ($id = $variables['sitemap']->getPluginDefinition()['id']) {
+      $filter = [
+        ' ' => '_',
+        '-' => '_',
+        '/' => '_',
+        '[' => '_',
+        ']' => '_',
+        ':' => '_',
+      ];
+      $type = Html::cleanCssIdentifier($id, $filter);
+      $suggestions[] = 'sitemap_item__' . $type;
+      $suggestions[] = 'sitemap_item__' . $type . '__' . Html::cleanCssIdentifier($variables['sitemap']->getPluginId(), $filter);
+    }
+  }
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function sitemap_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
+  if (!empty($variables['theme_hook_original'])) {
+    if ($variables['theme_hook_original'] == 'menu__sitemap') {
+      $menu_name =  strtr($variables['menu_name'], '-', '_');
+      array_unshift($suggestions, 'menu__' . $menu_name);
+      $suggestions[] = 'menu__sitemap__' . $menu_name;
+    }
+  }
+>>>>>>> dev
 }
 
 /**
@@ -220,7 +314,11 @@ function _sitemap_menus($mid) {
  *   An integer representing a number of nodes. Results are statically cached.
  */
 function sitemap_taxonomy_term_count_nodes($tid) {
+<<<<<<< HEAD
   $query = db_select('taxonomy_index', 'ti');
+=======
+  $query = \Drupal::database()->select('taxonomy_index', 'ti');
+>>>>>>> dev
   $query->addExpression('COUNT(ti.nid)');
   $count = $query
     ->condition('ti.tid', $tid)
@@ -229,6 +327,7 @@ function sitemap_taxonomy_term_count_nodes($tid) {
 }
 
 /**
+<<<<<<< HEAD
  * Implements hook_form_alter().
  */
 function sitemap_form_alter(&$form, FormStateInterface $form_state, $form_id) {
@@ -268,3 +367,42 @@ function sitemap_form_menu_add_form_builder($entity_type, \Drupal\system\Entity\
     return;
   }
 }
+=======
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function sitemap_taxonomy_vocabulary_insert(VocabularyInterface $vocabulary) {
+  _sitemap_clear_plugin_cache();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function sitemap_taxonomy_vocabulary_delete(VocabularyInterface $vocabulary) {
+  _sitemap_clear_plugin_cache();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function sitemap_menu_delete(MenuInterface $menu) {
+  // @TODO
+  //_sitemap_clear_plugin_cache();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function sitemap_node_delete(NodeInterface $node) {
+  if (\Drupal::moduleHandler()->moduleExists('book')) {
+    // @TODO: Can we tell if the deleted node was a parent book node?
+    _sitemap_clear_plugin_cache();
+  }
+}
+
+/**
+ * Clears the sitemap plugin cache.
+ */
+function _sitemap_clear_plugin_cache() {
+  \Drupal::service('plugin.manager.sitemap')->clearCachedDefinitions();
+}
+>>>>>>> dev

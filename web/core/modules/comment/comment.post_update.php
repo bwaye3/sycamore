@@ -5,6 +5,7 @@
  * Post update functions for the comment module.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Config\InstallStorage;
 
@@ -45,4 +46,14 @@ function comment_post_update_add_ip_address_setting() {
   $settings = $config_factory->getEditable('comment.settings');
   $settings->set('log_ip_addresses', TRUE)
     ->save(TRUE);
+=======
+/**
+ * Implements hook_removed_post_updates().
+ */
+function comment_removed_post_updates() {
+  return [
+    'comment_post_update_enable_comment_admin_view' => '9.0.0',
+    'comment_post_update_add_ip_address_setting' => '9.0.0',
+  ];
+>>>>>>> dev
 }

@@ -18,7 +18,11 @@ class MediaTranslationTest extends MediaKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['language' , 'content_translation'];
+=======
+  protected static $modules = ['language' , 'content_translation'];
+>>>>>>> dev
 
   /**
    * The test media translation type.
@@ -30,7 +34,11 @@ class MediaTranslationTest extends MediaKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installConfig(['language']);
@@ -49,7 +57,11 @@ class MediaTranslationTest extends MediaKernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test translatable fields storage/retrieval.
+=======
+   * Tests translatable fields storage/retrieval.
+>>>>>>> dev
    */
   public function testTranslatableFieldSaveLoad() {
     /** @var \Drupal\Core\Entity\EntityTypeInterface $entity_type */

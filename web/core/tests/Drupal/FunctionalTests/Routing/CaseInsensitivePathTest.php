@@ -14,7 +14,11 @@ class CaseInsensitivePathTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'views', 'node', 'system_test'];
+=======
+  protected static $modules = ['system', 'views', 'node', 'system_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -24,7 +28,11 @@ class CaseInsensitivePathTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     \Drupal::state()->set('system_test.module_hidden', FALSE);
     $this->createContentType(['type' => 'page']);

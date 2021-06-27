@@ -17,9 +17,15 @@ class MediaEmbedFilterTest extends MediaEmbedFilterTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
+<<<<<<< HEAD
     // @see media_test_filter_entity_access()
     // @see media_test_filter_entity_view_alter()
     'media_test_filter',
+=======
+    // @see media_test_embed_entity_access()
+    // @see media_test_embed_entity_view_alter()
+    'media_test_embed',
+>>>>>>> dev
   ];
 
   /**
@@ -47,8 +53,13 @@ class MediaEmbedFilterTest extends MediaEmbedFilterTestBase {
   public function providerTestBasics() {
     $default_cacheability = (new CacheableMetadata())
       ->setCacheTags([
+<<<<<<< HEAD
         '_media_test_filter_access:media:1',
         '_media_test_filter_access:user:2',
+=======
+        '_media_test_embed_filter_access:media:1',
+        '_media_test_embed_filter_access:user:2',
+>>>>>>> dev
         'config:image.style.thumbnail',
         'file:1',
         'media:1',
@@ -98,7 +109,11 @@ class MediaEmbedFilterTest extends MediaEmbedFilterTestBase {
         [],
         (new CacheableMetadata())
           ->setCacheTags([
+<<<<<<< HEAD
             '_media_test_filter_access:media:1',
+=======
+            '_media_test_embed_filter_access:media:1',
+>>>>>>> dev
             'config:image.style.medium',
             'file:1',
             'media:1',
@@ -168,7 +183,11 @@ class MediaEmbedFilterTest extends MediaEmbedFilterTestBase {
         FALSE,
         (new CacheableMetadata())
           ->setCacheTags([
+<<<<<<< HEAD
             '_media_test_filter_access:media:1',
+=======
+            '_media_test_embed_filter_access:media:1',
+>>>>>>> dev
             'media:1',
             'media_view',
           ])
@@ -181,8 +200,13 @@ class MediaEmbedFilterTest extends MediaEmbedFilterTestBase {
         TRUE,
         (new CacheableMetadata())
           ->setCacheTags([
+<<<<<<< HEAD
             '_media_test_filter_access:media:1',
             '_media_test_filter_access:user:2',
+=======
+            '_media_test_embed_filter_access:media:1',
+            '_media_test_embed_filter_access:user:2',
+>>>>>>> dev
             'config:image.style.thumbnail',
             'file:1',
             'media:1',
@@ -409,8 +433,13 @@ class MediaEmbedFilterTest extends MediaEmbedFilterTestBase {
     $this->assertCount($expected_verification_success ? 1 : 0, $this->cssSelect($verification_selector));
     $this->assertCount(1, $this->cssSelect('div[data-media-embed-test-view-mode="default"]'));
     $this->assertSame([
+<<<<<<< HEAD
       '_media_test_filter_access:media:1',
       '_media_test_filter_access:user:2',
+=======
+      '_media_test_embed_filter_access:media:1',
+      '_media_test_embed_filter_access:user:2',
+>>>>>>> dev
       'config:image.style.thumbnail',
       'file:1',
       'media:1',

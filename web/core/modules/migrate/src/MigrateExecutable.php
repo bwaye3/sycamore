@@ -14,7 +14,11 @@ use Drupal\migrate\Event\MigrateRowDeleteEvent;
 use Drupal\migrate\Exception\RequirementsException;
 use Drupal\migrate\Plugin\MigrateIdMapInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+=======
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 
 /**
  * Defines a migrate executable class.
@@ -77,7 +81,11 @@ class MigrateExecutable implements MigrateExecutableInterface {
   /**
    * The event dispatcher.
    *
+<<<<<<< HEAD
    * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+=======
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+>>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -97,10 +105,15 @@ class MigrateExecutable implements MigrateExecutableInterface {
    *   The migration to run.
    * @param \Drupal\migrate\MigrateMessageInterface $message
    *   (optional) The migrate message service.
+<<<<<<< HEAD
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
    *   (optional) The event dispatcher.
    *
    * @throws \Drupal\migrate\MigrateException
+=======
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
+   *   (optional) The event dispatcher.
+>>>>>>> dev
    */
   public function __construct(MigrationInterface $migration, MigrateMessageInterface $message = NULL, EventDispatcherInterface $event_dispatcher = NULL) {
     $this->migration = $migration;
@@ -113,7 +126,11 @@ class MigrateExecutable implements MigrateExecutableInterface {
       $this->memoryLimit = PHP_INT_MAX;
     }
     else {
+<<<<<<< HEAD
       $this->memoryLimit = Bytes::toInt($limit);
+=======
+      $this->memoryLimit = Bytes::toNumber($limit);
+>>>>>>> dev
     }
   }
 
@@ -135,7 +152,11 @@ class MigrateExecutable implements MigrateExecutableInterface {
   /**
    * Gets the event dispatcher.
    *
+<<<<<<< HEAD
    * @return \Symfony\Component\EventDispatcher\EventDispatcherInterface
+=======
+   * @return \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+>>>>>>> dev
    */
   protected function getEventDispatcher() {
     if (!$this->eventDispatcher) {
@@ -157,7 +178,11 @@ class MigrateExecutable implements MigrateExecutableInterface {
         ]), 'error');
       return MigrationInterface::RESULT_FAILED;
     }
+<<<<<<< HEAD
     $this->getEventDispatcher()->dispatch(MigrateEvents::PRE_IMPORT, new MigrateImportEvent($this->migration, $this->message));
+=======
+    $this->getEventDispatcher()->dispatch(new MigrateImportEvent($this->migration, $this->message), MigrateEvents::PRE_IMPORT);
+>>>>>>> dev
 
     // Knock off migration if the requirements haven't been met.
     try {
@@ -224,11 +249,19 @@ class MigrateExecutable implements MigrateExecutableInterface {
 
       if ($save) {
         try {
+<<<<<<< HEAD
           $this->getEventDispatcher()->dispatch(MigrateEvents::PRE_ROW_SAVE, new MigratePreRowSaveEvent($this->migration, $this->message, $row));
           $destination_ids = $id_map->lookupDestinationIds($this->sourceIdValues);
           $destination_id_values = $destination_ids ? reset($destination_ids) : [];
           $destination_id_values = $destination->import($row, $destination_id_values);
           $this->getEventDispatcher()->dispatch(MigrateEvents::POST_ROW_SAVE, new MigratePostRowSaveEvent($this->migration, $this->message, $row, $destination_id_values));
+=======
+          $this->getEventDispatcher()->dispatch(new MigratePreRowSaveEvent($this->migration, $this->message, $row), MigrateEvents::PRE_ROW_SAVE);
+          $destination_ids = $id_map->lookupDestinationIds($this->sourceIdValues);
+          $destination_id_values = $destination_ids ? reset($destination_ids) : [];
+          $destination_id_values = $destination->import($row, $destination_id_values);
+          $this->getEventDispatcher()->dispatch(new MigratePostRowSaveEvent($this->migration, $this->message, $row, $destination_id_values), MigrateEvents::POST_ROW_SAVE);
+>>>>>>> dev
           if ($destination_id_values) {
             // We do not save an idMap entry for config.
             if ($destination_id_values !== TRUE) {
@@ -283,7 +316,11 @@ class MigrateExecutable implements MigrateExecutableInterface {
       }
     }
 
+<<<<<<< HEAD
     $this->getEventDispatcher()->dispatch(MigrateEvents::POST_IMPORT, new MigrateImportEvent($this->migration, $this->message));
+=======
+    $this->getEventDispatcher()->dispatch(new MigrateImportEvent($this->migration, $this->message), MigrateEvents::POST_IMPORT);
+>>>>>>> dev
     $this->migration->setStatus(MigrationInterface::STATUS_IDLE);
     return $return;
   }
@@ -299,7 +336,11 @@ class MigrateExecutable implements MigrateExecutableInterface {
     }
 
     // Announce that rollback is about to happen.
+<<<<<<< HEAD
     $this->getEventDispatcher()->dispatch(MigrateEvents::PRE_ROLLBACK, new MigrateRollbackEvent($this->migration));
+=======
+    $this->getEventDispatcher()->dispatch(new MigrateRollbackEvent($this->migration), MigrateEvents::PRE_ROLLBACK);
+>>>>>>> dev
 
     // Optimistically assume things are going to work out; if not, $return will be
     // updated to some other status.
@@ -317,10 +358,17 @@ class MigrateExecutable implements MigrateExecutableInterface {
         $map_row = $id_map->getRowByDestination($destination_key);
         if ($map_row['rollback_action'] == MigrateIdMapInterface::ROLLBACK_DELETE) {
           $this->getEventDispatcher()
+<<<<<<< HEAD
             ->dispatch(MigrateEvents::PRE_ROW_DELETE, new MigrateRowDeleteEvent($this->migration, $destination_key));
           $destination->rollback($destination_key);
           $this->getEventDispatcher()
             ->dispatch(MigrateEvents::POST_ROW_DELETE, new MigrateRowDeleteEvent($this->migration, $destination_key));
+=======
+            ->dispatch(new MigrateRowDeleteEvent($this->migration, $destination_key), MigrateEvents::PRE_ROW_DELETE);
+          $destination->rollback($destination_key);
+          $this->getEventDispatcher()
+            ->dispatch(new MigrateRowDeleteEvent($this->migration, $destination_key), MigrateEvents::POST_ROW_DELETE);
+>>>>>>> dev
         }
         // We're now done with this row, so remove it from the map.
         $id_map->deleteDestination($destination_key);
@@ -347,7 +395,11 @@ class MigrateExecutable implements MigrateExecutableInterface {
     }
 
     // Notify modules that rollback attempt was complete.
+<<<<<<< HEAD
     $this->getEventDispatcher()->dispatch(MigrateEvents::POST_ROLLBACK, new MigrateRollbackEvent($this->migration));
+=======
+    $this->getEventDispatcher()->dispatch(new MigrateRollbackEvent($this->migration), MigrateEvents::POST_ROLLBACK);
+>>>>>>> dev
     $this->migration->setStatus(MigrationInterface::STATUS_IDLE);
 
     return $return;
@@ -369,7 +421,11 @@ class MigrateExecutable implements MigrateExecutableInterface {
   public function processRow(Row $row, array $process = NULL, $value = NULL) {
     foreach ($this->migration->getProcessPlugins($process) as $destination => $plugins) {
       $multiple = FALSE;
+<<<<<<< HEAD
       /** @var $plugin \Drupal\migrate\Plugin\MigrateProcessInterface */
+=======
+      /** @var \Drupal\migrate\Plugin\MigrateProcessInterface $plugin */
+>>>>>>> dev
       foreach ($plugins as $plugin) {
         $definition = $plugin->getPluginDefinition();
         // Many plugins expect a scalar value but the current value of the
@@ -552,11 +608,16 @@ class MigrateExecutable implements MigrateExecutableInterface {
     // plenty of memory to continue.
     drupal_static_reset();
 
+<<<<<<< HEAD
     // Entity storage can blow up with caches so clear them out.
     $entity_type_manager = \Drupal::entityTypeManager();
     foreach ($entity_type_manager->getDefinitions() as $id => $definition) {
       $entity_type_manager->getStorage($id)->resetCache();
     }
+=======
+    // Entity storage can blow up with caches, so clear it out.
+    \Drupal::service('entity.memory_cache')->deleteAll();
+>>>>>>> dev
 
     // @TODO: explore resetting the container.
 

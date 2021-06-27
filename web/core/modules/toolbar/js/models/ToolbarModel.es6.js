@@ -3,7 +3,11 @@
  * A Backbone Model for the toolbar.
  */
 
+<<<<<<< HEAD
 (function(Backbone, Drupal) {
+=======
+(function (Backbone, Drupal) {
+>>>>>>> dev
   /**
    * Backbone model for the toolbar.
    *

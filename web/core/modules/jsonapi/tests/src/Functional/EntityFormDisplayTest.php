@@ -16,7 +16,11 @@ class EntityFormDisplayTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['node'];
+=======
+  protected static $modules = ['node'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

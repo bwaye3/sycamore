@@ -98,8 +98,13 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
   protected static $uniqueFieldNames = [];
 
   /**
+<<<<<<< HEAD
    * Optionally specify which field is the 'label' field. Some entities specify
    * a 'label_callback', but not a 'label' entity key. For example: User.
+=======
+   * Optionally specify which field is the 'label' field. Some entities do not
+   * specify a 'label' entity key. For example: User.
+>>>>>>> dev
    *
    * @see ::getInvalidNormalizedEntityToCreate
    *
@@ -155,7 +160,11 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['rest_test', 'text'];
+=======
+  protected static $modules = ['rest_test', 'text'];
+>>>>>>> dev
 
   /**
    * Provides an entity resource.
@@ -299,6 +308,7 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Gets the second normalized POST entity.
    *
    * Entity types can have non-sequential IDs, and in that case the second
@@ -316,6 +326,8 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Gets the normalized POST entity with random values for its unique fields.
    *
    * @see ::testPost
@@ -342,11 +354,14 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
+<<<<<<< HEAD
 
     if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
       return parent::getExpectedUnauthorizedAccessMessage($method);
     }
 
+=======
+>>>>>>> dev
     $permission = $this->entity->getEntityType()->getAdminPermission();
     if ($permission !== FALSE) {
       return "The '{$permission}' permission is required.";
@@ -403,9 +418,12 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
   protected function getExpectedCacheTags() {
     $expected_cache_tags = [
       'config:rest.resource.entity.' . static::$entityTypeId,
+<<<<<<< HEAD
       // Necessary for 'bc_entity_resource_permissions'.
       // @see \Drupal\rest\Plugin\rest\resource\EntityResource::permissions()
       'config:rest.settings',
+=======
+>>>>>>> dev
     ];
     if (!static::$auth) {
       $expected_cache_tags[] = 'config:user.role.anonymous';
@@ -429,7 +447,11 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test a GET request for an entity, plus edge cases to ensure good DX.
+=======
+   * Tests a GET request for an entity, plus edge cases to ensure good DX.
+>>>>>>> dev
    */
   public function testGet() {
     $this->initAuthentication();
@@ -640,6 +662,7 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
     $head_headers = $header_cleaner($head_headers);
     $this->assertSame($get_headers, $head_headers);
 
+<<<<<<< HEAD
     // BC: serialization_update_8302().
     // Only run this for fieldable entities. It doesn't make sense for config
     // entities as config values are already casted. They also run through the
@@ -743,6 +766,8 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
     }
     $this->assertResourceResponse(200, FALSE, $response, $expected_cache_tags, $expected_cache_contexts, static::$auth ? FALSE : 'MISS', $is_cacheable_by_dynamic_page_cache ? 'MISS' : 'UNCACHEABLE');
 
+=======
+>>>>>>> dev
     $this->resourceConfigStorage->load(static::$resourceConfigId)->disable()->save();
     $this->refreshTestStateAfterRestConfigChange();
 
@@ -754,7 +779,11 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
 
     // DX: upon re-enabling a resource, immediate 200.
     $response = $this->request('GET', $url, $request_options);
+<<<<<<< HEAD
     $this->assertResourceResponse(200, FALSE, $response, $expected_cache_tags, $expected_cache_contexts, static::$auth ? FALSE : 'MISS', $is_cacheable_by_dynamic_page_cache ? 'MISS' : 'UNCACHEABLE');
+=======
+    $this->assertResourceResponse(200, FALSE, $response, $this->getExpectedCacheTags(), $this->getExpectedCacheContexts(), static::$auth ? FALSE : 'MISS', $is_cacheable_by_dynamic_page_cache ? 'MISS' : 'UNCACHEABLE');
+>>>>>>> dev
 
     $this->resourceConfigStorage->load(static::$resourceConfigId)->delete();
     $this->refreshTestStateAfterRestConfigChange();
@@ -829,7 +858,10 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
     // Try with all of the following request bodies.
     $unparseable_request_body = '!{>}<';
     $parseable_valid_request_body = $this->serializer->encode($this->getNormalizedPostEntity(), static::$format);
+<<<<<<< HEAD
     $parseable_valid_request_body_2 = $this->serializer->encode($this->getSecondNormalizedPostEntity(), static::$format);
+=======
+>>>>>>> dev
     $parseable_invalid_request_body = $this->serializer->encode($this->makeNormalizationInvalid($this->getNormalizedPostEntity(), 'label'), static::$format);
     $parseable_invalid_request_body_2 = $this->serializer->encode($this->getNormalizedPostEntity() + ['uuid' => [$this->randomMachineName(129)]], static::$format);
     $parseable_invalid_request_body_3 = $this->serializer->encode($this->getNormalizedPostEntity() + ['field_rest_test' => [['value' => $this->randomString()]]], static::$format);
@@ -958,6 +990,7 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
       $this->assertStoredEntityMatchesSentNormalization($this->getNormalizedPostEntity(), $created_entity);
     }
 
+<<<<<<< HEAD
     $this->config('rest.settings')->set('bc_entity_resource_permissions', TRUE)->save(TRUE);
     $this->refreshTestStateAfterRestConfigChange();
     $request_options[RequestOptions::BODY] = $parseable_valid_request_body_2;
@@ -986,6 +1019,8 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
     }
     $this->assertFalse($response->hasHeader('X-Drupal-Cache'));
 
+=======
+>>>>>>> dev
     if ($this->entity->getEntityType()->getStorageClass() !== ContentEntityNullStorage::class && $this->entity->getEntityType()->hasKey('uuid')) {
       // 500 when creating an entity with a duplicate UUID.
       $normalized_entity = $this->getModifiedEntityForPostTesting();
@@ -1015,6 +1050,7 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
       $this->assertNotNull($new_entity);
       $new_entity->delete();
     }
+<<<<<<< HEAD
 
     // BC: old default POST URLs have their path updated by the inbound path
     // processor \Drupal\rest\PathProcessor\PathProcessorEntityResourceBC to the
@@ -1027,6 +1063,8 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
       $response = $this->request('POST', $old_url, $request_options);
       $this->assertResourceResponse(201, FALSE, $response);
     }
+=======
+>>>>>>> dev
   }
 
   /**
@@ -1048,7 +1086,10 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
     // Try with all of the following request bodies.
     $unparseable_request_body         = '!{>}<';
     $parseable_valid_request_body     = $this->serializer->encode($this->getNormalizedPatchEntity(), static::$format);
+<<<<<<< HEAD
     $parseable_valid_request_body_2   = $this->serializer->encode($this->getNormalizedPatchEntity(), static::$format);
+=======
+>>>>>>> dev
     $parseable_invalid_request_body   = $this->serializer->encode($this->makeNormalizationInvalid($this->getNormalizedPatchEntity(), 'label'), static::$format);
     $parseable_invalid_request_body_2 = $this->serializer->encode($this->getNormalizedPatchEntity() + ['field_rest_test' => [['value' => $this->randomString()]]], static::$format);
     // The 'field_rest_test' field does not allow 'view' access, so does not end
@@ -1267,6 +1308,7 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
     $response = $this->request('PATCH', $url, $request_options);
     $this->assertResourceResponse(200, FALSE, $response);
     $this->assertSame([0 => ['value' => 'One'], 1 => ['value' => 'Two'], 2 => ['value' => 'Three']], $this->entityStorage->loadUnchanged($this->entity->id())->get('field_rest_test_multivalue')->getValue());
+<<<<<<< HEAD
 
     // BC: rest_update_8203().
     $this->config('rest.settings')->set('bc_entity_resource_permissions', TRUE)->save(TRUE);
@@ -1283,6 +1325,8 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
     $response = $this->request('PATCH', $url, $request_options);
     $this->assertResourceResponse(200, FALSE, $response);
     $this->assertFalse($response->hasHeader('X-Drupal-Cache'));
+=======
+>>>>>>> dev
   }
 
   /**
@@ -1356,6 +1400,7 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
     // 204 for well-formed request.
     $response = $this->request('DELETE', $url, $request_options);
     $this->assertResourceResponse(204, '', $response);
+<<<<<<< HEAD
 
     $this->config('rest.settings')->set('bc_entity_resource_permissions', TRUE)->save(TRUE);
     $this->refreshTestStateAfterRestConfigChange();
@@ -1371,6 +1416,8 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
     // 204 for well-formed request.
     $response = $this->request('DELETE', $url, $request_options);
     $this->assertResourceResponse(204, '', $response);
+=======
+>>>>>>> dev
   }
 
   /**
@@ -1411,9 +1458,20 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
     $is_null_or_string = function ($value) {
       return is_null($value) || is_string($value);
     };
+<<<<<<< HEAD
     $keys_are_field_names = Inspector::assertAllStrings(array_keys(static::$patchProtectedFieldNames));
     $values_are_expected_access_denied_reasons = Inspector::assertAll($is_null_or_string, static::$patchProtectedFieldNames);
     $this->assertTrue($keys_are_field_names && $values_are_expected_access_denied_reasons, 'In Drupal 8.6, the structure of $patchProtectedFieldNames changed. It used to be an array with field names as values. Now those values are the keys, and their values should be either NULL or a string: a string containing the reason for why the field cannot be PATCHed, or NULL otherwise.');
+=======
+    $this->assertTrue(
+      Inspector::assertAllStrings(array_keys(static::$patchProtectedFieldNames)),
+      'In Drupal 8.6, the structure of $patchProtectedFieldNames changed. It used to be an array with field names as values. Now those values are the keys, and their values should be either NULL or a string: a string containing the reason for why the field cannot be PATCHed, or NULL otherwise.'
+    );
+    $this->assertTrue(
+      Inspector::assertAll($is_null_or_string, static::$patchProtectedFieldNames),
+      'In Drupal 8.6, the structure of $patchProtectedFieldNames changed. It used to be an array with field names as values. Now those values are the keys, and their values should be either NULL or a string: a string containing the reason for why the field cannot be PATCHed, or NULL otherwise.'
+    );
+>>>>>>> dev
   }
 
   /**
@@ -1626,10 +1684,36 @@ abstract class EntityResourceTestBase extends ResourceTestBase {
           // as strings in PHP memory.
           $expected_stored_data = static::castToString($expected_stored_data);
         }
+<<<<<<< HEAD
         // Subset, not same, because we can e.g. send just the target_id for the
         // bundle in a PATCH or POST request; the response will include more
         // properties.
         $this->assertArraySubset($expected_stored_data, $modified_entity->get($field_name)->getValue(), TRUE);
+=======
+        $this->assertEntityArraySubset($expected_stored_data, $modified_entity->get($field_name)->getValue());
+      }
+    }
+  }
+
+  /**
+   * Recursively asserts that the expected items are set in the tested entity.
+   *
+   * A response may include more properties, we only need to ensure that all
+   * items in the request exist in the response.
+   *
+   * @param $expected
+   *   An array of expected values, may contain further nested arrays.
+   * @param $actual
+   *   The object to test.
+   */
+  protected function assertEntityArraySubset($expected, $actual) {
+    foreach ($expected as $key => $value) {
+      if (is_array($value)) {
+        $this->assertEntityArraySubset($value, $actual[$key]);
+      }
+      else {
+        $this->assertSame($value, $actual[$key]);
+>>>>>>> dev
       }
     }
   }

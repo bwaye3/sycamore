@@ -7,28 +7,41 @@
 
 use Drupal\Component\FileSecurity\FileSecurity;
 use Drupal\Component\Gettext\PoItem;
+<<<<<<< HEAD
 use Drupal\Component\Render\FormattableMarkup;
+=======
+>>>>>>> dev
 use Drupal\Component\Render\PlainTextOutput;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Database\Query\AlterableInterface;
+<<<<<<< HEAD
 use Drupal\Core\Extension\Dependency;
 use Drupal\Core\Extension\Extension;
 use Drupal\Core\Entity\ContentEntityTypeInterface;
 use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
 use Drupal\Core\Field\Plugin\Field\FieldWidget\EntityReferenceAutocompleteWidget;
+=======
+use Drupal\Core\Extension\Extension;
+use Drupal\Core\Entity\ContentEntityTypeInterface;
+>>>>>>> dev
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\KeyValueStore\KeyValueDatabaseExpirableFactory;
 use Drupal\Core\Language\LanguageInterface;
+<<<<<<< HEAD
+=======
+use Drupal\Core\Link;
+>>>>>>> dev
 use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\PageCache\RequestPolicyInterface;
 use Drupal\Core\Queue\QueueGarbageCollectionInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Routing\StackedRouteMatchInterface;
+<<<<<<< HEAD
 use Drupal\Core\Site\Settings;
 use Drupal\Core\Url;
 use Drupal\path_alias\PathAliasInterface;
@@ -67,16 +80,32 @@ const DRUPAL_USER_TIMEZONE_SELECT = 2;
 
 /**
  * Disabled option on forms and settings
+=======
+use Drupal\Core\Url;
+use GuzzleHttp\Exception\TransferException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Disabled option on forms and settings.
+>>>>>>> dev
  */
 const DRUPAL_DISABLED = 0;
 
 /**
+<<<<<<< HEAD
  * Optional option on forms and settings
+=======
+ * Optional option on forms and settings.
+>>>>>>> dev
  */
 const DRUPAL_OPTIONAL = 1;
 
 /**
+<<<<<<< HEAD
  * Required option on forms and settings
+=======
+ * Required option on forms and settings.
+>>>>>>> dev
  */
 const DRUPAL_REQUIRED = 2;
 
@@ -125,6 +154,14 @@ function system_help($route_name, RouteMatchInterface $route_match) {
       $output .= '<dd>' . t('Your site has several file directories, which are used to store and process uploaded and generated files. The <em>public</em> file directory, which is configured in your settings.php file, is the default place for storing uploaded files. Links to files in this directory contain the direct file URL, so when the files are requested, the web server will send them directly without invoking your site code. This means that the files can be downloaded by anyone with the file URL, so requests are not access-controlled but they are efficient. The <em>private</em> file directory, also configured in your settings.php file and ideally located outside the site web root, is access controlled. Links to files in this directory are not direct, so requests to these files are mediated by your site code. This means that your site can check file access permission for each file before deciding to fulfill the request, so the requests are more secure, but less efficient. You should only use the private storage for files that need access control, not for files like your site logo and background images used on every page. The <em>temporary</em> file directory is used internally by your site code for various operations, and is configured on the <a href=":file-system">File system settings</a> page. You can also see the configured public and private file directories on this page, and choose whether public or private should be the default for uploaded files.', [':file-system' => Url::fromRoute('system.file_system_settings')->toString()]) . '</dd>';
       $output .= '<dt>' . t('Configuring the image toolkit') . '</dt>';
       $output .= '<dd>' . t('On the <a href=":toolkit">Image toolkit page</a>, you can select and configure the PHP toolkit used to manipulate images. Depending on which distribution or installation profile you choose when you install your site, the GD2 toolkit and possibly others are included; other toolkits may be provided by contributed modules.', [':toolkit' => Url::fromRoute('system.image_toolkit_settings')->toString()]) . '</dd>';
+<<<<<<< HEAD
+=======
+      if (\Drupal::currentUser()->hasPermission('administer site configuration')) {
+        $output .= '<dt id="security-advisories">' . t('Critical security advisories') . '</dt>';
+        $output .= '<dd>' . t('The System module displays highly critical and time-sensitive security announcements to site administrators. Some security announcements will be displayed until a critical security update is installed. Announcements that are not associated with a specific release will appear for a fixed period of time. <a href=":handbook">More information on critical security advisories</a>.', [':handbook' => 'https://www.drupal.org/docs/updating-drupal/responding-to-critical-security-update-advisories']) . '</dd>';
+        $output .= '<dd>' . t('Only the most highly critical security announcements will be shown. <a href=":advisories-list">View all security announcements</a>.', [':advisories-list' => 'https://www.drupal.org/security']) . '</dd>';
+      }
+>>>>>>> dev
       $output .= '</dl>';
       return $output;
 
@@ -147,7 +184,11 @@ function system_help($route_name, RouteMatchInterface $route_match) {
       return '<p>' . t('Control default display settings for your site, across all themes. Use theme-specific settings to override these defaults.') . '</p>';
 
     case 'system.modules_list':
+<<<<<<< HEAD
       $output = '<p>' . t('Download additional <a href=":modules">contributed modules</a> to extend your site\'s functionality.', [':modules' => 'https://www.drupal.org/project/modules']) . '</p>';
+=======
+      $output = '<p>' . t('Add <a href=":modules">contributed modules</a> to extend your site\'s functionality.', [':modules' => 'https://www.drupal.org/project/modules']) . '</p>';
+>>>>>>> dev
       if (!\Drupal::moduleHandler()->moduleExists('update')) {
         $output .= '<p>' . t('Regularly review available updates to maintain a secure and current site. Always run the <a href=":update-php">update script</a> each time a module is updated. Enable the <a href=":update-manager">Update Manager module</a> to update and install modules and themes.', [':update-php' => Url::fromRoute('system.db_update')->toString(), ':update-manager' => Url::fromRoute('system.modules_list', [], ['fragment' => 'module-update'])->toString()]) . '</p>';
       }
@@ -175,7 +216,11 @@ function system_help($route_name, RouteMatchInterface $route_match) {
       break;
 
     case 'system.status':
+<<<<<<< HEAD
       return '<p>' . t("Here you can find a short overview of your site's parameters as well as any problems detected with your installation. It may be useful to copy and paste this information into support requests filed on Drupal.org's support forums and project issue queues. Before filing a support request, ensure that your web server meets the <a href=\":system-requirements\">system requirements.</a>", [':system-requirements' => 'https://www.drupal.org/requirements']) . '</p>';
+=======
+      return '<p>' . t("Here you can find a short overview of your site's parameters as well as any problems detected with your installation. It may be useful to copy and paste this information into support requests filed on Drupal.org's support forums and project issue queues. Before filing a support request, ensure that your web server meets the <a href=\":system-requirements\">system requirements.</a>", [':system-requirements' => 'https://www.drupal.org/docs/system-requirements']) . '</p>';
+>>>>>>> dev
   }
 }
 
@@ -278,6 +323,13 @@ function system_theme() {
     'off_canvas_page_wrapper' => [
       'variables' => ['children' => NULL],
     ],
+<<<<<<< HEAD
+=======
+    'system_security_advisories_fetch_error_message' => [
+      'file' => 'system.theme.inc',
+      'variables' => ['error_message' => []],
+    ],
+>>>>>>> dev
   ]);
 }
 
@@ -816,6 +868,7 @@ function system_form_alter(&$form, FormStateInterface $form_state) {
 }
 
 /**
+<<<<<<< HEAD
  * Add the time zone field to the user edit and register forms.
  *
  * @internal
@@ -849,6 +902,8 @@ function system_user_timezone(&$form, FormStateInterface $form_state) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Implements hook_preprocess_HOOK() for block templates.
  */
 function system_preprocess_block(&$variables) {
@@ -918,6 +973,7 @@ function system_check_directory($form_element, FormStateInterface $form_state) {
 }
 
 /**
+<<<<<<< HEAD
  * Returns an array of information about enabled modules or themes.
  *
  * This function returns the contents of the .info.yml file for each installed
@@ -1022,6 +1078,8 @@ function system_rebuild_module_data() {
 }
 
 /**
+=======
+>>>>>>> dev
  * Get a list of available regions from a specified theme.
  *
  * @param \Drupal\Core\Extension\Extension|string $theme
@@ -1231,6 +1289,17 @@ function system_cron() {
   // Ensure that all of Drupal's standard directories (e.g., the public files
   // directory and config directory) have appropriate .htaccess files.
   \Drupal::service('file.htaccess_writer')->ensure();
+<<<<<<< HEAD
+=======
+
+  if (\Drupal::config('system.advisories')->get('enabled')) {
+    // Fetch the security advisories so that they will be pre-fetched during
+    // _system_advisories_requirements() and system_page_top().
+    /** @var \Drupal\system\SecurityAdvisories\SecurityAdvisoriesFetcher $fetcher */
+    $fetcher = \Drupal::service('system.sa_fetcher');
+    $fetcher->getSecurityAdvisories();
+  }
+>>>>>>> dev
 }
 
 /**
@@ -1348,7 +1417,11 @@ function system_retrieve_file($url, $destination = NULL, $managed = FALSE, $repl
       ->getBody();
     $local = $managed ? file_save_data($data, $path, $replace) : $file_system->saveData($data, $path, $replace);
   }
+<<<<<<< HEAD
   catch (RequestException $exception) {
+=======
+  catch (TransferException $exception) {
+>>>>>>> dev
     \Drupal::messenger()->addError(t('Failed to fetch file due to error "%error"', ['%error' => $exception->getMessage()]));
     return FALSE;
   }
@@ -1367,7 +1440,11 @@ function system_retrieve_file($url, $destination = NULL, $managed = FALSE, $repl
  * Implements hook_entity_type_build().
  */
 function system_entity_type_build(array &$entity_types) {
+<<<<<<< HEAD
   /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+=======
+  /** @var \Drupal\Core\Entity\EntityTypeInterface[] $entity_types */
+>>>>>>> dev
   $entity_types['date_format']
     ->setFormClass('add', 'Drupal\system\Form\DateFormatAddForm')
     ->setFormClass('edit', 'Drupal\system\Form\DateFormatEditForm')
@@ -1425,6 +1502,7 @@ function system_modules_uninstalled($modules) {
 }
 
 /**
+<<<<<<< HEAD
  * Implements hook_ENTITY_TYPE_presave() for entity_form_display entities.
  *
  * Provides a BC layer for modules providing old configurations.
@@ -1450,10 +1528,63 @@ function system_entity_form_display_presave(EntityFormDisplayInterface $display)
       $component['settings']['match_limit'] = 10;
       $display->setComponent($field_name, $component);
     }
+=======
+ * Determines if Claro is the admin theme but not the active theme.
+ *
+ * @return bool
+ *   TRUE if Claro is the admin theme but not the active theme.
+ */
+function _system_is_claro_admin_and_not_active() {
+  $admin_theme = \Drupal::configFactory()->get('system.theme')->get('admin');
+  $active_theme = \Drupal::theme()->getActiveTheme()->getName();
+  return $active_theme !== 'claro' && $admin_theme === 'claro';
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function system_library_info_alter(&$libraries, $extension) {
+  // If Claro is the admin theme but not the active theme, grant Claro the
+  // ability to override the toolbar library with its own assets.
+  if ($extension === 'toolbar' && _system_is_claro_admin_and_not_active()) {
+    require_once DRUPAL_ROOT . '/core/themes/claro/claro.theme';
+    claro_system_module_invoked_library_info_alter($libraries, $extension);
   }
 }
 
 /**
+ * Implements hook_preprocess_toolbar().
+ */
+function system_preprocess_toolbar(array &$variables, $hook, $info) {
+  // When Claro is the admin theme, Claro overrides the active theme's if that
+  // active theme is not Claro. Because of these potential overrides, the
+  // toolbar cache should be invalidated any time the default or admin theme
+  // changes.
+  $variables['#cache']['tags'][] = 'config:system.theme';
+
+  // If Claro is the admin theme but not the active theme, still include Claro's
+  // toolbar preprocessing.
+  if (_system_is_claro_admin_and_not_active()) {
+    require_once DRUPAL_ROOT . '/core/themes/claro/claro.theme';
+    claro_preprocess_toolbar($variables, $hook, $info);
+  }
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function system_theme_registry_alter(array &$theme_registry) {
+  // If Claro is the admin theme but not the active theme, use Claro's toolbar
+  // templates.
+  if (_system_is_claro_admin_and_not_active()) {
+    require_once DRUPAL_ROOT . '/core/themes/claro/claro.theme';
+    claro_system_module_invoked_theme_registry_alter($theme_registry);
+>>>>>>> dev
+  }
+}
+
+/**
+<<<<<<< HEAD
  * Implements hook_ENTITY_TYPE_presave().
  */
 function system_path_alias_presave(PathAliasInterface $path_alias) {
@@ -1473,5 +1604,44 @@ function system_path_alias_presave(PathAliasInterface $path_alias) {
     $message = 'Path alias "@alias" ("@path") could not be saved because the "system_update_8804" database update was not applied yet.';
     $args = ['@path' => $path_alias->getPath(), '@alias' => $path_alias->getAlias()];
     throw new \LogicException(new FormattableMarkup($message, $args));
+=======
+ * Implements hook_page_top().
+ */
+function system_page_top() {
+  /** @var \Drupal\Core\Routing\AdminContext $admin_context */
+  $admin_context = \Drupal::service('router.admin_context');
+  if ($admin_context->isAdminRoute() && \Drupal::currentUser()->hasPermission('administer site configuration')) {
+    $route_match = \Drupal::routeMatch();
+    $route_name = $route_match->getRouteName();
+    if ($route_name !== 'system.status' && \Drupal::config('system.advisories')->get('enabled')) {
+      /** @var \Drupal\system\SecurityAdvisories\SecurityAdvisoriesFetcher $fetcher */
+      $fetcher = \Drupal::service('system.sa_fetcher');
+      $advisories = $fetcher->getSecurityAdvisories(FALSE);
+      if ($advisories) {
+        $messenger = \Drupal::messenger();
+        $display_as_errors = FALSE;
+        $links = [];
+        foreach ($advisories as $advisory) {
+          // To ensure that all the advisory messages are grouped together on
+          // the page, they must all be warnings or all be errors. If any
+          // advisories are not public service announcements, then display all
+          // the messages as errors because security advisories already tied to
+          // a specific release are immediately actionable by upgrading to a
+          // secure version of a project.
+          $display_as_errors = $display_as_errors ? TRUE : !$advisory->isPsa();
+          $links[] = new Link($advisory->getTitle(), Url::fromUri($advisory->getUrl()));
+        }
+        foreach ($links as $link) {
+          $display_as_errors ? $messenger->addError($link) : $messenger->addWarning($link);
+        }
+        if (\Drupal::moduleHandler()->moduleExists('help')) {
+          $help_link = t('(<a href=":system-help">What are critical security announcements?</a>)', [
+            ':system-help' => Url::fromRoute('help.page', ['name' => 'system'], ['fragment' => 'security-advisories'])->toString(),
+          ]);
+          $display_as_errors ? $messenger->addError($help_link) : $messenger->addWarning($help_link);
+        }
+      }
+    }
+>>>>>>> dev
   }
 }

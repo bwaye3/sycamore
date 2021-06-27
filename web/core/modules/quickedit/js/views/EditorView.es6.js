@@ -3,7 +3,11 @@
  * An abstract Backbone View that controls an in-place editor.
  */
 
+<<<<<<< HEAD
 (function($, Backbone, Drupal) {
+=======
+(function ($, Backbone, Drupal) {
+>>>>>>> dev
   Drupal.quickedit.EditorView = Backbone.View.extend(
     /** @lends Drupal.quickedit.EditorView# */ {
       /**
@@ -129,7 +133,11 @@
             // do so at this stage, and once the in-place editor is ready,
             // set the 'active' state. A "loading" indicator will be shown in the
             // UI for as long as the field remains in this state.
+<<<<<<< HEAD
             const loadDependencies = function(callback) {
+=======
+            const loadDependencies = function (callback) {
+>>>>>>> dev
               // Do the loading here.
               callback();
             };
@@ -250,7 +258,11 @@
           }
 
           // Successfully saved.
+<<<<<<< HEAD
           self.formSaveAjax.commands.quickeditFieldFormSaved = function(
+=======
+          self.formSaveAjax.commands.quickeditFieldFormSaved = function (
+>>>>>>> dev
             ajax,
             response,
             status,
@@ -269,6 +281,7 @@
           };
 
           // Unsuccessfully saved; validation errors.
+<<<<<<< HEAD
           self.formSaveAjax.commands.quickeditFieldFormValidationErrors = function(
             ajax,
             response,
@@ -278,6 +291,14 @@
             editorModel.set('validationErrors', response.data);
             fieldModel.set('state', 'invalid');
           };
+=======
+          self.formSaveAjax.commands.quickeditFieldFormValidationErrors =
+            function (ajax, response, status) {
+              removeHiddenForm();
+              editorModel.set('validationErrors', response.data);
+              fieldModel.set('state', 'invalid');
+            };
+>>>>>>> dev
 
           // The quickeditFieldForm AJAX command is only called upon loading the
           // form for the first time, and when there are validation errors in the
@@ -285,7 +306,11 @@
           // useful for the form-based in-place editor, but pointless for any
           // other: the form itself won't be visible at all anyway! So, we just
           // ignore it.
+<<<<<<< HEAD
           self.formSaveAjax.commands.quickeditFieldForm = function() {};
+=======
+          self.formSaveAjax.commands.quickeditFieldForm = function () {};
+>>>>>>> dev
 
           fillAndSubmitForm(editorModel.get('currentValue'));
         });

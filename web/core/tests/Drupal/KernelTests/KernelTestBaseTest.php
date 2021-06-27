@@ -5,6 +5,11 @@ namespace Drupal\KernelTests;
 use Drupal\Component\FileCache\FileCacheFactory;
 use Drupal\Core\Database\Database;
 use GuzzleHttp\Exception\GuzzleException;
+<<<<<<< HEAD
+=======
+use Drupal\Tests\StreamCapturer;
+use Drupal\user\Entity\Role;
+>>>>>>> dev
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\visitor\vfsStreamStructureVisitor;
 use PHPUnit\Framework\SkippedTestError;
@@ -30,7 +35,11 @@ class KernelTestBaseTest extends KernelTestBase {
    * @covers ::bootEnvironment
    */
   public function testBootEnvironment() {
+<<<<<<< HEAD
     $this->assertRegExp('/^test\d{8}$/', $this->databasePrefix);
+=======
+    $this->assertMatchesRegularExpression('/^test\d{8}$/', $this->databasePrefix);
+>>>>>>> dev
     $this->assertStringStartsWith('vfs://root/sites/simpletest/', $this->siteDirectory);
     $this->assertEquals([
       'root' => [
@@ -224,8 +233,13 @@ class KernelTestBaseTest extends KernelTestBase {
     $output = \Drupal::service('renderer')->renderRoot($build);
     $this->assertEquals('core', \Drupal::theme()->getActiveTheme()->getName());
 
+<<<<<<< HEAD
     $this->assertRegExp($expected, (string) $build['#children']);
     $this->assertRegExp($expected, (string) $output);
+=======
+    $this->assertMatchesRegularExpression($expected, (string) $build['#children']);
+    $this->assertMatchesRegularExpression($expected, (string) $output);
+>>>>>>> dev
   }
 
   /**
@@ -267,7 +281,11 @@ class KernelTestBaseTest extends KernelTestBase {
       $this->fail('Missing required module throws skipped test exception.');
     }
     catch (SkippedTestError $e) {
+<<<<<<< HEAD
       $this->assertEqual('Required modules: module_does_not_exist', $e->getMessage());
+=======
+      $this->assertEquals('Required modules: module_does_not_exist', $e->getMessage());
+>>>>>>> dev
     }
   }
 
@@ -294,33 +312,56 @@ class KernelTestBaseTest extends KernelTestBase {
       $this->fail('Missing required module throws skipped test exception.');
     }
     catch (SkippedTestError $e) {
+<<<<<<< HEAD
       $this->assertEqual('Required modules: module_does_not_exist', $e->getMessage());
+=======
+      $this->assertEquals('Required modules: module_does_not_exist', $e->getMessage());
+>>>>>>> dev
     }
   }
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function tearDown() {
+=======
+  protected function tearDown(): void {
+>>>>>>> dev
     parent::tearDown();
 
     // Check that all tables of the test instance have been deleted. At this
     // point the original database connection is restored so we need to prefix
     // the tables.
     $connection = Database::getConnection();
+<<<<<<< HEAD
     if ($connection->databaseType() != 'sqlite') {
       $tables = $connection->schema()->findTables($this->databasePrefix . '%');
       $this->assertTrue(empty($tables), 'All test tables have been removed.');
     }
     else {
       $result = $connection->query("SELECT name FROM " . $this->databasePrefix . ".sqlite_master WHERE type = :type AND name LIKE :table_name AND name NOT LIKE :pattern", [
+=======
+    if ($connection->databaseType() === 'sqlite') {
+      $result = $connection->query("SELECT name FROM " . $this->databasePrefix .
+        ".sqlite_master WHERE type = :type AND name LIKE :table_name AND name NOT LIKE :pattern", [
+>>>>>>> dev
         ':type' => 'table',
         ':table_name' => '%',
         ':pattern' => 'sqlite_%',
       ])->fetchAllKeyed(0, 0);
+<<<<<<< HEAD
 
       $this->assertTrue(empty($result), 'All test tables have been removed.');
     }
+=======
+      $this->assertTrue(empty($result), 'All test tables have been removed.');
+    }
+    else {
+      $tables = $connection->schema()->findTables($this->databasePrefix . '%');
+      $this->assertTrue(empty($tables), 'All test tables have been removed.');
+    }
+>>>>>>> dev
   }
 
   /**
@@ -334,4 +375,109 @@ class KernelTestBaseTest extends KernelTestBase {
     );
   }
 
+<<<<<<< HEAD
+=======
+  /**
+   * Tests the deprecation of AssertLegacyTrait::assert.
+   *
+   * @group legacy
+   */
+  public function testAssert() {
+    $this->expectDeprecation('AssertLegacyTrait::assert() is deprecated in drupal:8.0.0 and is removed from drupal:10.0.0. Use $this->assertTrue() instead. See https://www.drupal.org/node/3129738');
+    $this->assert(TRUE);
+  }
+
+  /**
+   * Tests the deprecation of AssertLegacyTrait::assertIdenticalObject.
+   *
+   * @group legacy
+   */
+  public function testAssertIdenticalObject() {
+    $this->expectDeprecation('AssertLegacyTrait::assertIdenticalObject() is deprecated in drupal:8.0.0 and is removed from drupal:10.0.0. Use $this->assertEquals() instead. See https://www.drupal.org/node/3129738');
+    $this->assertIdenticalObject((object) ['foo' => 'bar'], (object) ['foo' => 'bar']);
+  }
+
+  /**
+   * Tests the deprecation of AssertLegacyTrait::assertEqual.
+   *
+   * @group legacy
+   */
+  public function testAssertEqual() {
+    $this->expectDeprecation('AssertLegacyTrait::assertEqual() is deprecated in drupal:8.0.0 and is removed from drupal:10.0.0. Use $this->assertEquals() instead. See https://www.drupal.org/node/3129738');
+    $this->assertEqual('0', 0);
+  }
+
+  /**
+   * Tests the deprecation of AssertLegacyTrait::assertNotEqual.
+   *
+   * @group legacy
+   */
+  public function testAssertNotEqual() {
+    $this->expectDeprecation('AssertLegacyTrait::assertNotEqual() is deprecated in drupal:8.0.0 and is removed from drupal:10.0.0. Use $this->assertNotEquals() instead. See https://www.drupal.org/node/3129738');
+    $this->assertNotEqual('foo', 'bar');
+  }
+
+  /**
+   * Tests the deprecation of AssertLegacyTrait::assertIdentical.
+   *
+   * @group legacy
+   */
+  public function testAssertIdentical() {
+    $this->expectDeprecation('AssertLegacyTrait::assertIdentical() is deprecated in drupal:8.0.0 and is removed from drupal:10.0.0. Use $this->assertSame() instead. See https://www.drupal.org/node/3129738');
+    $this->assertIdentical('foo', 'foo');
+  }
+
+  /**
+   * Tests the deprecation of AssertLegacyTrait::assertNotIdentical.
+   *
+   * @group legacy
+   */
+  public function testAssertNotIdentical() {
+    $this->expectDeprecation('AssertLegacyTrait::assertNotIdentical() is deprecated in drupal:8.0.0 and is removed from drupal:10.0.0. Use $this->assertNotSame() instead. See https://www.drupal.org/node/3129738');
+    $this->assertNotIdentical('foo', 'bar');
+  }
+
+  /**
+   * Tests the deprecation of AssertLegacyTrait::verbose().
+   *
+   * @group legacy
+   */
+  public function testVerbose() {
+    $this->expectDeprecation('AssertLegacyTrait::verbose() is deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use dump() instead. See https://www.drupal.org/node/3197514');
+    $this->verbose('The show must go on');
+  }
+
+  /**
+   * Tests the deprecation of ::installSchema with the tables key_value(_expire).
+   *
+   * @group legacy
+   */
+  public function testKernelTestBaseInstallSchema() {
+    $this->expectDeprecation('Installing the tables key_value and key_value_expire with the method KernelTestBase::installSchema() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. The tables are now lazy loaded and therefore will be installed automatically when used. See https://www.drupal.org/node/3143286');
+    $this->enableModules(['system']);
+    $this->installSchema('system', ['key_value', 'key_value_expire']);
+    $this->assertFalse(Database::getConnection()->schema()->tableExists('key_value'));
+  }
+
+  /**
+   * Tests the dump() function provided by the var-dumper Symfony component.
+   */
+  public function testVarDump() {
+    // Append the stream capturer to the STDOUT stream, so that we can test the
+    // dump() output and also prevent it from actually outputting in this
+    // particular test.
+    stream_filter_register("capture", StreamCapturer::class);
+    stream_filter_append(STDOUT, "capture");
+
+    // Dump some variables.
+    $this->enableModules(['system', 'user']);
+    $role = Role::create(['id' => 'test_role']);
+    dump($role);
+    dump($role->id());
+
+    $this->assertStringContainsString('Drupal\user\Entity\Role', StreamCapturer::$cache);
+    $this->assertStringContainsString('test_role', StreamCapturer::$cache);
+  }
+
+>>>>>>> dev
 }

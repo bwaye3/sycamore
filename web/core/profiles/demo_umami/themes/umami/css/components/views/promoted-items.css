@@ -3,6 +3,7 @@
  * This file is used to style the 'Promoted Items' view.
  */
 
+<<<<<<< HEAD
 .block-views-blockpromoted-items-block-1 {
   margin-top: 1rem;
 }
@@ -21,6 +22,10 @@
 
 .view-promoted-items--single {
   padding: 1rem 14px 2rem;
+=======
+.view-promoted-items--single {
+  padding: 1rem 0 2rem;
+>>>>>>> dev
 }
 /* Small */
 @media screen and (min-width: 30rem) { /* 480px */
@@ -122,3 +127,19 @@
     margin: 0 14px;
   }
 }
+<<<<<<< HEAD
+=======
+
+/* For the front page only, apply .container gutters */
+.path-frontpage .block-views-blockpromoted-items-block-1 {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4%;
+}
+/* Extra large + side margins */
+@media screen and (min-width: 80rem) { /* 1200px (large) + 80px (side margins) = 1280px */
+  .path-frontpage .block-views-blockpromoted-items-block-1 {
+    padding: 0;
+  }
+}
+>>>>>>> dev

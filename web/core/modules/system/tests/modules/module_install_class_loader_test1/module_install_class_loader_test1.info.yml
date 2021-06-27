@@ -2,5 +2,8 @@ name: 'Module install class loader test1'
 description: 'Support module for tests that the class loader behaves as expected during module install.'
 type: module
 package: Testing
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 version: VERSION

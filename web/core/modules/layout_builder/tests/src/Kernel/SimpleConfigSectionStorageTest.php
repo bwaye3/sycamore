@@ -20,7 +20,11 @@ class SimpleConfigSectionStorageTest extends SectionStorageTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'layout_builder_test',
   ];
 

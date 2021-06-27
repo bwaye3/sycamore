@@ -35,7 +35,11 @@ class TwigWhiteListTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'taxonomy',
     'user',
@@ -48,7 +52,11 @@ class TwigWhiteListTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     \Drupal::service('theme_installer')->install(['test_theme']);
     $this->installSchema('system', ['sequences']);
@@ -122,6 +130,11 @@ class TwigWhiteListTest extends KernelTestBase {
    * Tests white-listing of methods doesn't interfere with chaining.
    */
   public function testWhiteListChaining() {
+<<<<<<< HEAD
+=======
+    /** @var \Drupal\Core\Template\TwigEnvironment $environment */
+    $environment = \Drupal::service('twig');
+>>>>>>> dev
     $node = Node::create([
       'type' => 'page',
       'title' => 'Some node mmk',
@@ -129,7 +142,13 @@ class TwigWhiteListTest extends KernelTestBase {
       'field_term' => $this->term->id(),
     ]);
     $node->save();
+<<<<<<< HEAD
     $this->setRawContent(twig_render_template(drupal_get_path('theme', 'test_theme') . '/templates/node.html.twig', ['node' => $node]));
+=======
+    $template = $environment->loadTemplate(drupal_get_path('theme', 'test_theme') . '/templates/node.html.twig');
+    $markup = $template->render(['node' => $node]);
+    $this->setRawContent($markup);
+>>>>>>> dev
     $this->assertText('Sometimes people are just jerks');
   }
 

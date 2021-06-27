@@ -9,6 +9,7 @@
   Drupal.behaviors.fieldUIFieldStorageAddForm = {
     attach: function attach(context) {
       var $form = $(context).find('[data-drupal-selector="field-ui-field-storage-add-form"]').once('field_ui_add');
+<<<<<<< HEAD
       if ($form.length) {
         $form.find('.js-form-item-label label,' + '.js-form-item-field-name label,' + '.js-form-item-existing-storage-label label').addClass('js-form-required form-required');
 
@@ -16,14 +17,28 @@
         var $existingStorageName = $form.find('select[name="existing_storage_name"]');
         var $existingStorageLabel = $form.find('input[name="existing_storage_label"]');
 
+=======
+
+      if ($form.length) {
+        $form.find('.js-form-item-label label,' + '.js-form-item-field-name label,' + '.js-form-item-existing-storage-label label').addClass('js-form-required form-required');
+        var $newFieldType = $form.find('select[name="new_storage_type"]');
+        var $existingStorageName = $form.find('select[name="existing_storage_name"]');
+        var $existingStorageLabel = $form.find('input[name="existing_storage_label"]');
+>>>>>>> dev
         $newFieldType.on('change', function () {
           if ($(this).val() !== '') {
             $existingStorageName.val('').trigger('change');
           }
         });
+<<<<<<< HEAD
 
         $existingStorageName.on('change', function () {
           var value = $(this).val();
+=======
+        $existingStorageName.on('change', function () {
+          var value = $(this).val();
+
+>>>>>>> dev
           if (value !== '') {
             $newFieldType.val('').trigger('change');
 
@@ -35,7 +50,10 @@
       }
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.fieldUIDisplayOverview = {
     attach: function attach(context, settings) {
       $(context).find('table#field-display-overview').once('field-display-overview').each(function () {
@@ -43,6 +61,7 @@
       });
     }
   };
+<<<<<<< HEAD
 
   Drupal.fieldUIOverview = {
     attach: function attach(table, rowsData, rowHandlers) {
@@ -57,6 +76,19 @@
           var data = rowsData[row.id];
           data.tableDrag = tableDrag;
 
+=======
+  Drupal.fieldUIOverview = {
+    attach: function attach(table, rowsData, rowHandlers) {
+      var tableDrag = Drupal.tableDrag[table.id];
+      tableDrag.onDrop = this.onDrop;
+      tableDrag.row.prototype.onSwap = this.onSwap;
+      $(table).find('tr.draggable').each(function () {
+        var row = this;
+
+        if (row.id in rowsData) {
+          var data = rowsData[row.id];
+          data.tableDrag = tableDrag;
+>>>>>>> dev
           var rowHandler = new rowHandlers[data.rowHandler](row, data);
           $(row).data('fieldUIRowHandler', rowHandler);
         }
@@ -66,6 +98,7 @@
       var $trigger = $(this);
       var $row = $trigger.closest('tr');
       var rowHandler = $row.data('fieldUIRowHandler');
+<<<<<<< HEAD
 
       var refreshRows = {};
       refreshRows[rowHandler.name] = $trigger.get(0);
@@ -76,6 +109,15 @@
 
         $.extend(refreshRows, rowHandler.regionChange(region));
 
+=======
+      var refreshRows = {};
+      refreshRows[rowHandler.name] = $trigger.get(0);
+      var region = rowHandler.getRegion();
+
+      if (region !== rowHandler.region) {
+        $row.find('select.js-field-parent').val('');
+        $.extend(refreshRows, rowHandler.regionChange(region));
+>>>>>>> dev
         rowHandler.region = region;
       }
 
@@ -86,15 +128,23 @@
       var row = dragObject.rowObject.element;
       var $row = $(row);
       var rowHandler = $row.data('fieldUIRowHandler');
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       if (typeof rowHandler !== 'undefined') {
         var regionRow = $row.prevAll('tr.region-message').get(0);
         var region = regionRow.className.replace(/([^ ]+[ ]+)*region-([^ ]+)-message([ ]+[^ ]+)*/, '$2');
 
         if (region !== rowHandler.region) {
           var refreshRows = rowHandler.regionChange(region);
+<<<<<<< HEAD
 
           rowHandler.region = region;
 
+=======
+          rowHandler.region = region;
+>>>>>>> dev
           Drupal.fieldUIOverview.AJAXRefreshRows(refreshRows);
         }
       }
@@ -127,15 +177,23 @@
 
       if (rowNames.length) {
         $(ajaxElements).after(Drupal.theme.ajaxProgressThrobber());
+<<<<<<< HEAD
 
         $('input[name=refresh_rows]').val(rowNames.join(' '));
         $('input[data-drupal-selector="edit-refresh"]').trigger('mousedown');
 
+=======
+        $('input[name=refresh_rows]').val(rowNames.join(' '));
+        $('input[data-drupal-selector="edit-refresh"]').trigger('mousedown');
+>>>>>>> dev
         $(ajaxElements).prop('disabled', true);
       }
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.fieldUIDisplayOverview = {};
 
   Drupal.fieldUIDisplayOverview.field = function (row, data) {
@@ -144,6 +202,7 @@
     this.region = data.region;
     this.tableDrag = data.tableDrag;
     this.defaultPlugin = data.defaultPlugin;
+<<<<<<< HEAD
 
     this.$pluginSelect = $(row).find('.field-plugin-type');
     this.$pluginSelect.on('change', Drupal.fieldUIOverview.onChange);
@@ -151,6 +210,12 @@
     this.$regionSelect = $(row).find('select.field-region');
     this.$regionSelect.on('change', Drupal.fieldUIOverview.onChange);
 
+=======
+    this.$pluginSelect = $(row).find('.field-plugin-type');
+    this.$pluginSelect.on('change', Drupal.fieldUIOverview.onChange);
+    this.$regionSelect = $(row).find('select.field-region');
+    this.$regionSelect.on('change', Drupal.fieldUIOverview.onChange);
+>>>>>>> dev
     return this;
   };
 
@@ -160,7 +225,10 @@
     },
     regionChange: function regionChange(region) {
       region = region.replace(/-/g, '_');
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       this.$regionSelect.val(region);
 
       if (this.region === 'hidden') {
@@ -173,7 +241,10 @@
 
       var refreshRows = {};
       refreshRows[this.name] = this.$pluginSelect.get(0);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       return refreshRows;
     }
   };

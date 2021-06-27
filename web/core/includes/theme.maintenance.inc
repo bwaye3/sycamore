@@ -25,10 +25,15 @@ function _drupal_maintenance_theme() {
 
   require_once __DIR__ . '/theme.inc';
   require_once __DIR__ . '/common.inc';
+<<<<<<< HEAD
   require_once __DIR__ . '/unicode.inc';
   require_once __DIR__ . '/file.inc';
   require_once __DIR__ . '/module.inc';
   require_once __DIR__ . '/database.inc';
+=======
+  require_once __DIR__ . '/file.inc';
+  require_once __DIR__ . '/module.inc';
+>>>>>>> dev
 
   // Install and update pages are treated differently to prevent theming overrides.
   if (defined('MAINTENANCE_MODE') && (MAINTENANCE_MODE == 'install' || MAINTENANCE_MODE == 'update')) {

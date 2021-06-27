@@ -11,13 +11,17 @@ use Drupal\migrate\Plugin\MigrateProcessInterface;
  * Tests the file copy process plugin.
  *
  * @group migrate
+<<<<<<< HEAD
  * @group legacy
+=======
+>>>>>>> dev
  *
  * @coversDefaultClass \Drupal\migrate\Plugin\migrate\process\FileCopy
  */
 class FileCopyTest extends MigrateProcessTestCase {
 
   /**
+<<<<<<< HEAD
    * Tests that the rename configuration key will trigger a deprecation notice.
    *
    * @dataProvider providerDeprecationNoticeRename
@@ -70,6 +74,8 @@ class FileCopyTest extends MigrateProcessTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests that the plugin constructor correctly sets the configuration.
    *
    * @dataProvider providerFileProcessBaseConstructor

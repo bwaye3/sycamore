@@ -15,7 +15,11 @@ display:
   default:
     display_plugin: default
     id: default
+<<<<<<< HEAD
     display_title: Master
+=======
+    display_title: Default
+>>>>>>> dev
     position: 0
     display_options:
       access:
@@ -37,7 +41,11 @@ display:
         type: basic
         options:
           submit_button: Apply
+<<<<<<< HEAD
           reset_button: false
+=======
+          reset_button: true
+>>>>>>> dev
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true

@@ -22,12 +22,20 @@ class FunctionsTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['router_test', 'system'];
+=======
+  protected static $modules = ['router_test', 'system'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Enable the Classy theme.
@@ -418,7 +426,11 @@ class FunctionsTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the use of Link::preRenderLinks() on a nested array of links.
+=======
+   * Tests the use of Link::preRenderLinks() on a nested array of links.
+>>>>>>> dev
    *
    * @see \Drupal\Core\Render\Element\Link::preRenderLinks()
    */
@@ -482,12 +494,21 @@ class FunctionsTest extends KernelTestBase {
     $html = \Drupal::service('renderer')->renderRoot($render_array);
     $dom = new \DOMDocument();
     $dom->loadHTML($html);
+<<<<<<< HEAD
     $this->assertEqual($dom->getElementsByTagName('ul')->length, 1, 'One "ul" tag found in the rendered HTML.');
     $list_elements = $dom->getElementsByTagName('li');
     $this->assertEqual($list_elements->length, 3, 'Three "li" tags found in the rendered HTML.');
     $this->assertEqual($list_elements->item(0)->nodeValue, 'Parent link original', 'First expected link found.');
     $this->assertEqual($list_elements->item(1)->nodeValue, 'First child link', 'Second expected link found.');
     $this->assertEqual($list_elements->item(2)->nodeValue, 'Second child link', 'Third expected link found.');
+=======
+    $this->assertEquals(1, $dom->getElementsByTagName('ul')->length, 'One "ul" tag found in the rendered HTML.');
+    $list_elements = $dom->getElementsByTagName('li');
+    $this->assertEquals(3, $list_elements->length, 'Three "li" tags found in the rendered HTML.');
+    $this->assertEquals('Parent link original', $list_elements->item(0)->nodeValue, 'First expected link found.');
+    $this->assertEquals('First child link', $list_elements->item(1)->nodeValue, 'Second expected link found.');
+    $this->assertEquals('Second child link', $list_elements->item(2)->nodeValue, 'Third expected link found.');
+>>>>>>> dev
     $this->assertStringNotContainsString('Parent link copy', $html, '"Parent link copy" link not found.');
     $this->assertStringNotContainsString('Third child link', $html, '"Third child link" link not found.');
 
@@ -500,6 +521,7 @@ class FunctionsTest extends KernelTestBase {
     // First check the child HTML.
     $dom = new \DOMDocument();
     $dom->loadHTML($child_html);
+<<<<<<< HEAD
     $this->assertEqual($dom->getElementsByTagName('ul')->length, 1, 'One "ul" tag found in the rendered child HTML.');
     $list_elements = $dom->getElementsByTagName('li');
     $this->assertEqual($list_elements->length, 2, 'Two "li" tags found in the rendered child HTML.');
@@ -513,11 +535,27 @@ class FunctionsTest extends KernelTestBase {
     $this->assertEqual($list_elements->length, 2, 'Two "li" tags found in the rendered parent HTML.');
     $this->assertEqual($list_elements->item(0)->nodeValue, 'Parent link original', 'First expected link found.');
     $this->assertEqual($list_elements->item(1)->nodeValue, 'Second child link', 'Second expected link found.');
+=======
+    $this->assertEquals(1, $dom->getElementsByTagName('ul')->length, 'One "ul" tag found in the rendered child HTML.');
+    $list_elements = $dom->getElementsByTagName('li');
+    $this->assertEquals(2, $list_elements->length, 'Two "li" tags found in the rendered child HTML.');
+    $this->assertEquals('Parent link copy', $list_elements->item(0)->nodeValue, 'First expected link found.');
+    $this->assertEquals('First child link', $list_elements->item(1)->nodeValue, 'Second expected link found.');
+    // Then check the parent HTML.
+    $dom = new \DOMDocument();
+    $dom->loadHTML($parent_html);
+    $this->assertEquals(1, $dom->getElementsByTagName('ul')->length, 'One "ul" tag found in the rendered parent HTML.');
+    $list_elements = $dom->getElementsByTagName('li');
+    $this->assertEquals(2, $list_elements->length, 'Two "li" tags found in the rendered parent HTML.');
+    $this->assertEquals('Parent link original', $list_elements->item(0)->nodeValue, 'First expected link found.');
+    $this->assertEquals('Second child link', $list_elements->item(1)->nodeValue, 'Second expected link found.');
+>>>>>>> dev
     $this->assertStringNotContainsString('First child link', $parent_html, '"First child link" link not found.');
     $this->assertStringNotContainsString('Third child link', $parent_html, '"Third child link" link not found.');
   }
 
   /**
+<<<<<<< HEAD
    * Test the use of drupal_pre_render_links() on a nested array of links.
    *
    * @group legacy
@@ -621,6 +659,8 @@ class FunctionsTest extends KernelTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests theme_image().
    */
   public function testImage() {

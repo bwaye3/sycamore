@@ -6,7 +6,11 @@ use Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityStorageInterface;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+=======
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 
 /**
  * Reacts to field storage definition CRUD on behalf of the Entity system.
@@ -25,7 +29,11 @@ class FieldStorageDefinitionListener implements FieldStorageDefinitionListenerIn
   /**
    * The event dispatcher.
    *
+<<<<<<< HEAD
    * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+=======
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+>>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -55,7 +63,11 @@ class FieldStorageDefinitionListener implements FieldStorageDefinitionListenerIn
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
+<<<<<<< HEAD
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+=======
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
+>>>>>>> dev
    *   The event dispatcher.
    * @param \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $entity_last_installed_schema_repository
    *   The entity last installed schema repository.
@@ -87,7 +99,11 @@ class FieldStorageDefinitionListener implements FieldStorageDefinitionListenerIn
 
     $this->entityLastInstalledSchemaRepository->setLastInstalledFieldStorageDefinition($storage_definition);
 
+<<<<<<< HEAD
     $this->eventDispatcher->dispatch(FieldStorageDefinitionEvents::CREATE, new FieldStorageDefinitionEvent($storage_definition));
+=======
+    $this->eventDispatcher->dispatch(new FieldStorageDefinitionEvent($storage_definition), FieldStorageDefinitionEvents::CREATE);
+>>>>>>> dev
     $this->entityFieldManager->clearCachedFieldDefinitions();
   }
 
@@ -106,7 +122,11 @@ class FieldStorageDefinitionListener implements FieldStorageDefinitionListenerIn
 
     $this->entityLastInstalledSchemaRepository->setLastInstalledFieldStorageDefinition($storage_definition);
 
+<<<<<<< HEAD
     $this->eventDispatcher->dispatch(FieldStorageDefinitionEvents::UPDATE, new FieldStorageDefinitionEvent($storage_definition, $original));
+=======
+    $this->eventDispatcher->dispatch(new FieldStorageDefinitionEvent($storage_definition, $original), FieldStorageDefinitionEvents::UPDATE);
+>>>>>>> dev
     $this->entityFieldManager->clearCachedFieldDefinitions();
   }
 
@@ -135,7 +155,11 @@ class FieldStorageDefinitionListener implements FieldStorageDefinitionListenerIn
 
     $this->entityLastInstalledSchemaRepository->deleteLastInstalledFieldStorageDefinition($storage_definition);
 
+<<<<<<< HEAD
     $this->eventDispatcher->dispatch(FieldStorageDefinitionEvents::DELETE, new FieldStorageDefinitionEvent($storage_definition));
+=======
+    $this->eventDispatcher->dispatch(new FieldStorageDefinitionEvent($storage_definition), FieldStorageDefinitionEvents::DELETE);
+>>>>>>> dev
     $this->entityFieldManager->clearCachedFieldDefinitions();
   }
 

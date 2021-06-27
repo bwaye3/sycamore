@@ -15,7 +15,11 @@ class AggregatorItemTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['aggregator', 'migrate_drupal'];
+=======
+  protected static $modules = ['aggregator', 'migrate_drupal'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

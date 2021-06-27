@@ -2,12 +2,20 @@
 
 namespace Drupal\twig_loader_test\Loader;
 
+<<<<<<< HEAD
+=======
+use Twig\Loader\LoaderInterface;
+>>>>>>> dev
 use Twig\Source;
 
 /**
  * A test Twig loader.
  */
+<<<<<<< HEAD
 class TestLoader implements \Twig_LoaderInterface, \Twig_ExistsLoaderInterface, \Twig_SourceContextLoaderInterface {
+=======
+class TestLoader implements LoaderInterface {
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -21,6 +29,7 @@ class TestLoader implements \Twig_LoaderInterface, \Twig_ExistsLoaderInterface, 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function getSource($name) {
     return $this->getSourceContext($name)->getCode();
   }
@@ -28,6 +37,8 @@ class TestLoader implements \Twig_LoaderInterface, \Twig_ExistsLoaderInterface, 
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function exists($name) {
     return TRUE;
   }

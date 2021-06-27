@@ -26,7 +26,11 @@ class DerivativeDiscoveryDecoratorTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->discoveryMain = $discovery_main = $this->createMock('Drupal\Component\Plugin\Discovery\DiscoveryInterface');
   }
 
@@ -212,7 +216,11 @@ class DerivativeDiscoveryDecoratorTest extends UnitTestCase {
 
     $expected = $definitions['non_container_aware_discovery'];
     $expected['id'] = 'non_container_aware_discovery:test_discovery_1';
+<<<<<<< HEAD
     $this->assertArrayEquals($expected, $returned_definitions['non_container_aware_discovery:test_discovery_1']);
+=======
+    $this->assertEquals($expected, $returned_definitions['non_container_aware_discovery:test_discovery_1']);
+>>>>>>> dev
   }
 
   /**
@@ -252,7 +260,11 @@ class DerivativeDiscoveryDecoratorTest extends UnitTestCase {
 
     $expected = $base_definition;
     $expected['id'] = 'non_container_aware_discovery:test_discovery_1';
+<<<<<<< HEAD
     $this->assertArrayEquals($expected, $discovery->getDefinition('non_container_aware_discovery:test_discovery_1'));
+=======
+    $this->assertEquals($expected, $discovery->getDefinition('non_container_aware_discovery:test_discovery_1'));
+>>>>>>> dev
   }
 
 }

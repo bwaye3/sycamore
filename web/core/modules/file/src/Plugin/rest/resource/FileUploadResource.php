@@ -14,6 +14,10 @@ use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Utility\Token;
 use Drupal\file\FileInterface;
+<<<<<<< HEAD
+=======
+use Drupal\Core\File\Event\FileUploadSanitizeNameEvent;
+>>>>>>> dev
 use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\Component\Render\PlainTextOutput;
@@ -23,14 +27,25 @@ use Drupal\rest\Plugin\rest\resource\EntityResourceValidationTrait;
 use Drupal\rest\RequestHandler;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+<<<<<<< HEAD
 use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface;
+=======
+>>>>>>> dev
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
+<<<<<<< HEAD
 use Symfony\Component\Routing\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+=======
+use Symfony\Component\Mime\MimeTypeGuesserInterface;
+use Symfony\Component\Routing\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 
 /**
  * File upload resource.
@@ -48,7 +63,11 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  *   label = @Translation("File Upload"),
  *   serialization_class = "Drupal\file\Entity\File",
  *   uri_paths = {
+<<<<<<< HEAD
  *     "https://www.drupal.org/link-relations/create" = "/file/upload/{entity_type_id}/{bundle}/{field_name}"
+=======
+ *     "create" = "/file/upload/{entity_type_id}/{bundle}/{field_name}"
+>>>>>>> dev
  *   }
  * )
  */
@@ -103,7 +122,11 @@ class FileUploadResource extends ResourceBase {
   /**
    * The MIME type guesser.
    *
+<<<<<<< HEAD
    * @var \Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface
+=======
+   * @var \Symfony\Component\Mime\MimeTypeGuesserInterface
+>>>>>>> dev
    */
   protected $mimeTypeGuesser;
 
@@ -127,6 +150,16 @@ class FileUploadResource extends ResourceBase {
   protected $systemFileConfig;
 
   /**
+<<<<<<< HEAD
+=======
+   * The event dispatcher to dispatch the filename sanitize event.
+   *
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+   */
+  protected $eventDispatcher;
+
+  /**
+>>>>>>> dev
    * Constructs a FileUploadResource instance.
    *
    * @param array $configuration
@@ -147,7 +180,11 @@ class FileUploadResource extends ResourceBase {
    *   The entity field manager.
    * @param \Drupal\Core\Session\AccountInterface $current_user
    *   The currently authenticated user.
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface $mime_type_guesser
+=======
+   * @param \Symfony\Component\Mime\MimeTypeGuesserInterface $mime_type_guesser
+>>>>>>> dev
    *   The MIME type guesser.
    * @param \Drupal\Core\Utility\Token $token
    *   The token replacement instance.
@@ -155,8 +192,15 @@ class FileUploadResource extends ResourceBase {
    *   The lock service.
    * @param \Drupal\Core\Config\Config $system_file_config
    *   The system file configuration.
+<<<<<<< HEAD
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, $serializer_formats, LoggerInterface $logger, FileSystemInterface $file_system, EntityTypeManagerInterface $entity_type_manager, EntityFieldManagerInterface $entity_field_manager, AccountInterface $current_user, MimeTypeGuesserInterface $mime_type_guesser, Token $token, LockBackendInterface $lock, Config $system_file_config) {
+=======
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
+   *   The event dispatcher service.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, $serializer_formats, LoggerInterface $logger, FileSystemInterface $file_system, EntityTypeManagerInterface $entity_type_manager, EntityFieldManagerInterface $entity_field_manager, AccountInterface $current_user, $mime_type_guesser, Token $token, LockBackendInterface $lock, Config $system_file_config, EventDispatcherInterface $event_dispatcher = NULL) {
+>>>>>>> dev
     parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
     $this->fileSystem = $file_system;
     $this->entityTypeManager = $entity_type_manager;
@@ -166,6 +210,14 @@ class FileUploadResource extends ResourceBase {
     $this->token = $token;
     $this->lock = $lock;
     $this->systemFileConfig = $system_file_config;
+<<<<<<< HEAD
+=======
+    if (!$event_dispatcher) {
+      @trigger_error('The event dispatcher service should be passed to FileUploadResource::__construct() since 9.2.0. This will be required in Drupal 10.0.0. See https://www.drupal.org/node/3032541', E_USER_DEPRECATED);
+      $event_dispatcher = \Drupal::service('event_dispatcher');
+    }
+    $this->eventDispatcher = $event_dispatcher;
+>>>>>>> dev
   }
 
   /**
@@ -185,7 +237,12 @@ class FileUploadResource extends ResourceBase {
       $container->get('file.mime_type.guesser'),
       $container->get('token'),
       $container->get('lock'),
+<<<<<<< HEAD
       $container->get('config.factory')->get('system.file')
+=======
+      $container->get('config.factory')->get('system.file'),
+      $container->get('event_dispatcher')
+>>>>>>> dev
     );
   }
 
@@ -247,14 +304,28 @@ class FileUploadResource extends ResourceBase {
     $lock_id = $this->generateLockIdFromFileUri($file_uri);
 
     if (!$this->lock->acquire($lock_id)) {
+<<<<<<< HEAD
       throw new HttpException(503, sprintf('File "%s" is already locked for writing'), NULL, ['Retry-After' => 1]);
+=======
+      throw new HttpException(503, sprintf('File "%s" is already locked for writing', $file_uri), NULL, ['Retry-After' => 1]);
+>>>>>>> dev
     }
 
     // Begin building file entity.
     $file = File::create([]);
     $file->setOwnerId($this->currentUser->id());
     $file->setFilename($prepared_filename);
+<<<<<<< HEAD
     $file->setMimeType($this->mimeTypeGuesser->guess($prepared_filename));
+=======
+    if ($this->mimeTypeGuesser instanceof MimeTypeGuesserInterface) {
+      $file->setMimeType($this->mimeTypeGuesser->guessMimeType($prepared_filename));
+    }
+    else {
+      $file->setMimeType($this->mimeTypeGuesser->guess($prepared_filename));
+      @trigger_error('\Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Implement \Symfony\Component\Mime\MimeTypeGuesserInterface instead. See https://www.drupal.org/node/3133341', E_USER_DEPRECATED);
+    }
+>>>>>>> dev
     $file->setFileUri($file_uri);
     // Set the size. This is done in File::preSave() but we validate the file
     // before it is saved.
@@ -462,6 +533,7 @@ class FileUploadResource extends ResourceBase {
    *   The prepared/munged filename.
    */
   protected function prepareFilename($filename, array &$validators) {
+<<<<<<< HEAD
     // Don't rename if 'allow_insecure_uploads' evaluates to TRUE.
     if (!$this->systemFileConfig->get('allow_insecure_uploads')) {
       if (!empty($validators['file_validate_extensions'][0])) {
@@ -502,6 +574,14 @@ class FileUploadResource extends ResourceBase {
     }
 
     return $filename;
+=======
+    // The actual extension validation occurs in
+    // \Drupal\file\Plugin\rest\resource\FileUploadResource::validate().
+    $extensions = $validators['file_validate_extensions'][0] ?? '';
+    $event = new FileUploadSanitizeNameEvent($filename, $extensions);
+    $this->eventDispatcher->dispatch($event);
+    return $event->getFilename();
+>>>>>>> dev
   }
 
   /**
@@ -544,9 +624,15 @@ class FileUploadResource extends ResourceBase {
     $settings = $field_definition->getSettings();
 
     // Cap the upload size according to the PHP limit.
+<<<<<<< HEAD
     $max_filesize = Bytes::toInt(Environment::getUploadMaxSize());
     if (!empty($settings['max_filesize'])) {
       $max_filesize = min($max_filesize, Bytes::toInt($settings['max_filesize']));
+=======
+    $max_filesize = Bytes::toNumber(Environment::getUploadMaxSize());
+    if (!empty($settings['max_filesize'])) {
+      $max_filesize = min($max_filesize, Bytes::toNumber($settings['max_filesize']));
+>>>>>>> dev
     }
 
     // There is always a file size limit due to the PHP server limit.

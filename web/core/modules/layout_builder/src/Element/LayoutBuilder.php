@@ -3,18 +3,30 @@
 namespace Drupal\layout_builder\Element;
 
 use Drupal\Core\Ajax\AjaxHelperTrait;
+<<<<<<< HEAD
 use Drupal\Core\Messenger\MessengerInterface;
+=======
+>>>>>>> dev
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Render\Element\RenderElement;
 use Drupal\Core\Url;
 use Drupal\layout_builder\Context\LayoutBuilderContextTrait;
+<<<<<<< HEAD
 use Drupal\layout_builder\LayoutBuilderHighlightTrait;
 use Drupal\layout_builder\LayoutTempstoreRepositoryInterface;
 use Drupal\layout_builder\OverridesSectionStorageInterface;
 use Drupal\layout_builder\SectionStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+=======
+use Drupal\layout_builder\Event\PrepareLayoutEvent;
+use Drupal\layout_builder\LayoutBuilderEvents;
+use Drupal\layout_builder\LayoutBuilderHighlightTrait;
+use Drupal\layout_builder\SectionStorageInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 
 /**
  * Defines a render element for building the Layout Builder UI.
@@ -31,6 +43,7 @@ class LayoutBuilder extends RenderElement implements ContainerFactoryPluginInter
   use LayoutBuilderHighlightTrait;
 
   /**
+<<<<<<< HEAD
    * The layout tempstore repository.
    *
    * @var \Drupal\layout_builder\LayoutTempstoreRepositoryInterface
@@ -43,6 +56,13 @@ class LayoutBuilder extends RenderElement implements ContainerFactoryPluginInter
    * @var \Drupal\Core\Messenger\MessengerInterface
    */
   protected $messenger;
+=======
+   * The event dispatcher.
+   *
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+   */
+  protected $eventDispatcher;
+>>>>>>> dev
 
   /**
    * Constructs a new LayoutBuilder.
@@ -53,6 +73,7 @@ class LayoutBuilder extends RenderElement implements ContainerFactoryPluginInter
    *   The plugin ID for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
+<<<<<<< HEAD
    * @param \Drupal\layout_builder\LayoutTempstoreRepositoryInterface $layout_tempstore_repository
    *   The layout tempstore repository.
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
@@ -62,6 +83,26 @@ class LayoutBuilder extends RenderElement implements ContainerFactoryPluginInter
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->layoutTempstoreRepository = $layout_tempstore_repository;
     $this->messenger = $messenger;
+=======
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
+   *   The event dispatcher service.
+   * @param \Drupal\Core\Messenger\MessengerInterface|null $messenger
+   *   The messenger service. This is no longer used and will be removed in
+   *   drupal:10.0.0.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, $event_dispatcher, $messenger = NULL) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+
+    if (!($event_dispatcher instanceof EventDispatcherInterface)) {
+      @trigger_error('The event_dispatcher service should be passed to LayoutBuilder::__construct() instead of the layout_builder.tempstore_repository service since 9.1.0. This will be required in Drupal 10.0.0. See https://www.drupal.org/node/3152690', E_USER_DEPRECATED);
+      $event_dispatcher = \Drupal::service('event_dispatcher');
+    }
+    $this->eventDispatcher = $event_dispatcher;
+
+    if ($messenger) {
+      @trigger_error('Calling LayoutBuilder::__construct() with the $messenger argument is deprecated in drupal:9.1.0 and will be removed in drupal:10.0.0. See https://www.drupal.org/node/3152690', E_USER_DEPRECATED);
+    }
+>>>>>>> dev
   }
 
   /**
@@ -72,8 +113,12 @@ class LayoutBuilder extends RenderElement implements ContainerFactoryPluginInter
       $configuration,
       $plugin_id,
       $plugin_definition,
+<<<<<<< HEAD
       $container->get('layout_builder.tempstore_repository'),
       $container->get('messenger')
+=======
+      $container->get('event_dispatcher')
+>>>>>>> dev
     );
   }
 
@@ -145,6 +190,7 @@ class LayoutBuilder extends RenderElement implements ContainerFactoryPluginInter
    *   The section storage.
    */
   protected function prepareLayout(SectionStorageInterface $section_storage) {
+<<<<<<< HEAD
     // If the layout has pending changes, add a warning.
     if ($this->layoutTempstoreRepository->has($section_storage)) {
       $this->messenger->addWarning($this->t('You have unsaved changes.'));
@@ -158,6 +204,10 @@ class LayoutBuilder extends RenderElement implements ContainerFactoryPluginInter
       }
       $this->layoutTempstoreRepository->set($section_storage);
     }
+=======
+    $event = new PrepareLayoutEvent($section_storage);
+    $this->eventDispatcher->dispatch($event, LayoutBuilderEvents::PREPARE_LAYOUT);
+>>>>>>> dev
   }
 
   /**
@@ -243,7 +293,11 @@ class LayoutBuilder extends RenderElement implements ContainerFactoryPluginInter
     $storage_id = $section_storage->getStorageId();
     $section = $section_storage->getSection($delta);
 
+<<<<<<< HEAD
     $layout = $section->getLayout();
+=======
+    $layout = $section->getLayout($this->getAvailableContexts($section_storage));
+>>>>>>> dev
     $layout_settings = $section->getLayoutSettings();
     $section_label = !empty($layout_settings['label']) ? $layout_settings['label'] : $this->t('Section @section', ['@section' => $delta + 1]);
 

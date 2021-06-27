@@ -24,11 +24,19 @@ class DbLogTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     parent::setUp();
 
     $this->installSchema('dblog', ['watchdog']);
     $this->installSchema('system', ['key_value_expire', 'sequences']);
+=======
+  protected function setUp(): void {
+    parent::setUp();
+
+    $this->installSchema('dblog', ['watchdog']);
+    $this->installSchema('system', ['sequences']);
+>>>>>>> dev
     $this->installConfig(['system']);
   }
 
@@ -67,7 +75,11 @@ class DbLogTest extends KernelTestBase {
     // reliably add the number of newly created log entries to the current count
     // to measure number of log entries created by cron.
     $query = $connection->select('watchdog');
+<<<<<<< HEAD
     $query->addExpression('MAX(wid)');
+=======
+    $query->addExpression('MAX([wid])');
+>>>>>>> dev
     $last_id = $query->execute()->fetchField();
 
     // Run a cron job.
@@ -75,7 +87,11 @@ class DbLogTest extends KernelTestBase {
 
     // Get last ID after cron was run.
     $query = $connection->select('watchdog');
+<<<<<<< HEAD
     $query->addExpression('MAX(wid)');
+=======
+    $query->addExpression('MAX([wid])');
+>>>>>>> dev
     $current_id = $query->execute()->fetchField();
 
     return $current_id - $last_id;

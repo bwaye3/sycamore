@@ -3,6 +3,10 @@
 namespace Drupal\views_ui\ParamConverter;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+<<<<<<< HEAD
+=======
+use Drupal\Core\Entity\EntityRepositoryInterface;
+>>>>>>> dev
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\ParamConverter\AdminPathConfigEntityConverter;
 use Drupal\Core\ParamConverter\ParamConverterInterface;
@@ -50,6 +54,7 @@ class ViewUIConverter extends AdminPathConfigEntityConverter implements ParamCon
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
    */
+<<<<<<< HEAD
   public function __construct(EntityTypeManagerInterface $entity_type_manager, SharedTempStoreFactory $temp_store_factory, ConfigFactoryInterface $config_factory = NULL, AdminContext $admin_context = NULL, $entity_repository = NULL) {
     // The config factory and admin context are new arguments due to changing
     // the parent. Avoid an error on updated sites by falling back to getting
@@ -61,6 +66,9 @@ class ViewUIConverter extends AdminPathConfigEntityConverter implements ParamCon
     if (!$admin_context) {
       $admin_context = \Drupal::service('router.admin_context');
     }
+=======
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, SharedTempStoreFactory $temp_store_factory, ConfigFactoryInterface $config_factory, AdminContext $admin_context, EntityRepositoryInterface $entity_repository) {
+>>>>>>> dev
     parent::__construct($entity_type_manager, $config_factory, $admin_context, $entity_repository);
 
     $this->tempStoreFactory = $temp_store_factory;

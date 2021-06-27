@@ -20,12 +20,20 @@ class ContentNegotiationRoutingTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['conneg_test', 'path_alias'];
+=======
+  protected static $modules = ['conneg_test', 'path_alias'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('path_alias');
@@ -107,7 +115,11 @@ class ContentNegotiationRoutingTest extends KernelTestBase {
       // Verbose message since simpletest doesn't let us provide a message and
       // see the error.
       $this->assertTrue(TRUE, $message);
+<<<<<<< HEAD
       $this->assertEqual($response->getStatusCode(), Response::HTTP_OK);
+=======
+      $this->assertEquals(Response::HTTP_OK, $response->getStatusCode());
+>>>>>>> dev
       $this->assertStringContainsString($content_type, $response->headers->get('Content-type'));
     }
   }
@@ -117,7 +129,10 @@ class ContentNegotiationRoutingTest extends KernelTestBase {
    */
   public function testFullNegotiation() {
     $this->enableModules(['accept_header_routing_test']);
+<<<<<<< HEAD
     \Drupal::service('router.builder')->rebuild();
+=======
+>>>>>>> dev
     $tests = [
       // ['path', 'accept', 'content-type'],
 
@@ -142,7 +157,11 @@ class ContentNegotiationRoutingTest extends KernelTestBase {
       /** @var \Symfony\Component\HttpKernel\HttpKernelInterface $kernel */
       $kernel = \Drupal::getContainer()->get('http_kernel');
       $response = $kernel->handle($request);
+<<<<<<< HEAD
       $this->assertEqual($response->getStatusCode(), Response::HTTP_OK, "Testing path:$path Accept:$accept_header Content-type:$content_type");
+=======
+      $this->assertEquals(Response::HTTP_OK, $response->getStatusCode(), "Testing path:{$path} Accept:{$accept_header} Content-type:{$content_type}");
+>>>>>>> dev
     }
   }
 

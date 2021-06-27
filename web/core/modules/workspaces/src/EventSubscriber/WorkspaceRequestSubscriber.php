@@ -8,8 +8,13 @@ use Drupal\Core\Routing\CacheableRouteProviderInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\workspaces\WorkspaceManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+=======
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
+>>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -69,12 +74,21 @@ class WorkspaceRequestSubscriber implements EventSubscriberInterface {
    *
    * KernelEvents::CONTROLLER is used in order to be executed after routing.
    *
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpKernel\Event\FilterControllerEvent $event
    *   The Event to process.
    */
   public function onKernelController(FilterControllerEvent $event) {
     // Set the cache key on the alias manager cache decorator.
     if ($event->isMasterRequest() && $this->workspaceManager->hasActiveWorkspace()) {
+=======
+   * @param \Symfony\Component\HttpKernel\Event\ControllerEvent $event
+   *   The Event to process.
+   */
+  public function onKernelController(ControllerEvent $event) {
+    // Set the cache key on the alias manager cache decorator.
+    if ($event->isMainRequest() && $this->workspaceManager->hasActiveWorkspace()) {
+>>>>>>> dev
       $cache_key = $this->workspaceManager->getActiveWorkspace()->id() . ':' . rtrim($this->currentPath->getPath($event->getRequest()), '/');
       $this->aliasManager->setCacheKey($cache_key);
     }
@@ -83,10 +97,17 @@ class WorkspaceRequestSubscriber implements EventSubscriberInterface {
   /**
    * Adds the active workspace as a cache key part to the route provider.
    *
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
    *   An event object.
    */
   public function onKernelRequest(GetResponseEvent $event) {
+=======
+   * @param \Symfony\Component\HttpKernel\Event\RequestEvent $event
+   *   An event object.
+   */
+  public function onKernelRequest(RequestEvent $event) {
+>>>>>>> dev
     if ($this->workspaceManager->hasActiveWorkspace() && $this->routeProvider instanceof CacheableRouteProviderInterface) {
       $this->routeProvider->addExtraCacheKeyPart('workspace', $this->workspaceManager->getActiveWorkspace()->id());
     }

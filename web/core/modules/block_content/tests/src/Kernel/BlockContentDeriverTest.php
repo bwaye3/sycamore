@@ -17,12 +17,20 @@ class BlockContentDeriverTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['block', 'block_content', 'system', 'user'];
+=======
+  protected static $modules = ['block', 'block_content', 'system', 'user'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
+=======
+  public function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('user');
     $this->installEntitySchema('block_content');

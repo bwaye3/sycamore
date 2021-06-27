@@ -7,7 +7,10 @@
 
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+<<<<<<< HEAD
 use Drupal\entity_test_update\Entity\EntityTestUpdate;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 
@@ -60,6 +63,7 @@ function entity_test_update_view_presave(EntityInterface $entity) {
     throw new \LogicException('The view could not be saved.');
   }
 }
+<<<<<<< HEAD
 
 /**
  * Creates a given number of 'entity_test_update' entities.
@@ -193,3 +197,5 @@ function _entity_test_update_create_test_entities($start = 1, $end = 50, $add_tr
     $entity->save();
   }
 }
+=======
+>>>>>>> dev

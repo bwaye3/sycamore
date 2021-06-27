@@ -5,8 +5,11 @@
  * Install, update and uninstall functions for File module.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 
+=======
+>>>>>>> dev
 /**
  * Implements hook_schema().
  */
@@ -116,6 +119,7 @@ function file_requirements($phase) {
 }
 
 /**
+<<<<<<< HEAD
  * Prevent unused files from being deleted.
  */
 function file_update_8300() {
@@ -172,4 +176,10 @@ function file_update_8700() {
   $entity_type->set('entity_keys', $keys);
   $definition_update_manager->updateEntityType($entity_type);
   $definition_update_manager->updateFieldStorageDefinition($definition_update_manager->getFieldStorageDefinition('uid', 'file'));
+=======
+ * Implements hook_update_last_removed().
+ */
+function file_update_last_removed() {
+  return 8700;
+>>>>>>> dev
 }

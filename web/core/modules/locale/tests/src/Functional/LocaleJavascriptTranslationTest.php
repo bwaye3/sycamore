@@ -19,7 +19,11 @@ class LocaleJavascriptTranslationTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['locale', 'locale_test'];
+=======
+  protected static $modules = ['locale', 'locale_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -103,11 +107,19 @@ class LocaleJavascriptTranslationTest extends BrowserTestBase {
         $this->assertTrue(isset($source_strings[$str]), new FormattableMarkup('Found source string: %source', $args));
 
         // Make sure that the proper context was matched.
+<<<<<<< HEAD
         $message = $context ? new FormattableMarkup('Context for %source is %context', $args) : new FormattableMarkup('Context for %source is blank', $args);
         $this->assertTrue(isset($source_strings[$str]) && $source_strings[$str] === $context, $message);
       }
 
       $this->assertEqual(count($source_strings), count($test_strings), 'Found correct number of source strings.');
+=======
+        $this->assertArrayHasKey($str, $source_strings);
+        $this->assertSame($context, $source_strings[$str]);
+      }
+
+      $this->assertSame(count($test_strings), count($source_strings), 'Found correct number of source strings.');
+>>>>>>> dev
     }
   }
 
@@ -136,11 +148,21 @@ class LocaleJavascriptTranslationTest extends BrowserTestBase {
       'label' => $name,
       'direction' => LanguageInterface::DIRECTION_LTR,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/language/add', $edit, t('Add custom language'));
 
     // Set path prefix.
     $edit = ["prefix[$langcode]" => $prefix];
     $this->drupalPostForm('admin/config/regional/language/detection/url', $edit, t('Save configuration'));
+=======
+    $this->drupalGet('admin/config/regional/language/add');
+    $this->submitForm($edit, 'Add custom language');
+
+    // Set path prefix.
+    $edit = ["prefix[$langcode]" => $prefix];
+    $this->drupalGet('admin/config/regional/language/detection/url');
+    $this->submitForm($edit, 'Save configuration');
+>>>>>>> dev
 
     // This forces locale.admin.js string sources to be imported, which contains
     // the next translation.
@@ -155,9 +177,15 @@ class LocaleJavascriptTranslationTest extends BrowserTestBase {
       ]);
     $string = $strings[0];
 
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, ['string' => 'Show description'], t('Filter'));
     $edit = ['strings[' . $string->lid . '][translations][0]' => 'Mostrar descripcion'];
     $this->drupalPostForm(NULL, $edit, t('Save translations'));
+=======
+    $this->submitForm(['string' => 'Show description'], 'Filter');
+    $edit = ['strings[' . $string->lid . '][translations][0]' => 'Mostrar descripcion'];
+    $this->submitForm($edit, 'Save translations');
+>>>>>>> dev
 
     // Calculate the filename of the JS including the translations.
     $js_translation_files = \Drupal::state()->get('locale.translation.javascript');
@@ -167,7 +195,11 @@ class LocaleJavascriptTranslationTest extends BrowserTestBase {
     $this->assertRaw('core/misc/drupal.js');
     $this->assertRaw($js_filename);
     // Assert translations JS is included before drupal.js.
+<<<<<<< HEAD
     $this->assertTrue(strpos($content, $js_filename) < strpos($content, 'core/misc/drupal.js'), 'Translations are included before Drupal.t.');
+=======
+    $this->assertLessThan(strpos($content, 'core/misc/drupal.js'), strpos($content, $js_filename));
+>>>>>>> dev
   }
 
 }

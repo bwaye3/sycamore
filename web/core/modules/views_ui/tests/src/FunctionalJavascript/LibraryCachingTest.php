@@ -14,7 +14,11 @@ class LibraryCachingTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'views', 'views_ui'];
+=======
+  protected static $modules = ['node', 'views', 'views_ui'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

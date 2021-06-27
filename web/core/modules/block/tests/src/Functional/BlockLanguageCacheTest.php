@@ -17,7 +17,11 @@ class BlockLanguageCacheTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['block', 'language', 'menu_ui'];
+=======
+  protected static $modules = ['block', 'language', 'menu_ui'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -31,7 +35,11 @@ class BlockLanguageCacheTest extends BrowserTestBase {
    */
   protected $langcodes = [];
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create test languages.
@@ -67,14 +75,24 @@ class BlockLanguageCacheTest extends BrowserTestBase {
     // Create a menu in the default language.
     $edit['label'] = $this->randomMachineName();
     $edit['id'] = mb_strtolower($edit['label']);
+<<<<<<< HEAD
     $this->drupalPostForm('admin/structure/menu/add', $edit, t('Save'));
     $this->assertText(t('Menu @label has been added.', ['@label' => $edit['label']]));
+=======
+    $this->drupalGet('admin/structure/menu/add');
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->pageTextContains('Menu ' . $edit['label'] . ' has been added.');
+>>>>>>> dev
 
     // Check that the block is listed for all languages.
     foreach ($this->langcodes as $langcode) {
       $this->drupalGet('admin/structure/block', ['language' => $langcode]);
       $this->clickLink('Place block');
+<<<<<<< HEAD
       $this->assertText($edit['label']);
+=======
+      $this->assertSession()->pageTextContains($edit['label']);
+>>>>>>> dev
     }
   }
 

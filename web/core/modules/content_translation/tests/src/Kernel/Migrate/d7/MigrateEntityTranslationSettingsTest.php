@@ -15,7 +15,11 @@ class MigrateEntityTranslationSettingsTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'comment',
     'content_translation',
     'language',
@@ -29,7 +33,11 @@ class MigrateEntityTranslationSettingsTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installConfig([
@@ -46,6 +54,10 @@ class MigrateEntityTranslationSettingsTest extends MigrateDrupal7TestBase {
     $this->installEntitySchema('user');
 
     $this->executeMigrations([
+<<<<<<< HEAD
+=======
+      'language',
+>>>>>>> dev
       'd7_comment_type',
       'd7_node_type',
       'd7_taxonomy_vocabulary',

@@ -291,7 +291,11 @@ class Fixtures {
   }
 
   /**
+<<<<<<< HEAD
    * Create an isolated cache directory for Composer
+=======
+   * Create an isolated cache directory for Composer.
+>>>>>>> dev
    */
   public function createIsolatedComposerCacheDir() {
     $cacheDir = $this->mkTmpDir('composer-cache');
@@ -301,7 +305,11 @@ class Fixtures {
   /**
    * Calls 'tearDown' in any test that copies fixtures to transient locations.
    */
+<<<<<<< HEAD
   public function tearDown() {
+=======
+  public function tearDown(): void {
+>>>>>>> dev
     // Remove any temporary directories that were created.
     $filesystem = new Filesystem();
     foreach ($this->tmpDirs as $dir) {

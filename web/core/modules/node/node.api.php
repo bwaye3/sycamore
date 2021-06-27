@@ -221,7 +221,11 @@ function hook_node_access_records(\Drupal\node\NodeInterface $node) {
  * @see hook_node_grants_alter()
  * @ingroup node_access
  */
+<<<<<<< HEAD
 function hook_node_access_records_alter(&$grants, Drupal\node\NodeInterface $node) {
+=======
+function hook_node_access_records_alter(&$grants, \Drupal\node\NodeInterface $node) {
+>>>>>>> dev
   // Our module allows editors to mark specific articles with the 'is_preview'
   // field. If the node being saved has a TRUE value for that field, then only
   // our grants are retained, and other grants are removed. Doing so ensures
@@ -306,7 +310,11 @@ function hook_node_grants_alter(&$grants, \Drupal\Core\Session\AccountInterface 
  * @ingroup entity_crud
  */
 function hook_node_search_result(\Drupal\node\NodeInterface $node) {
+<<<<<<< HEAD
   $rating = \Drupal::database()->query('SELECT SUM(points) FROM {my_rating} WHERE nid = :nid', ['nid' => $node->id()])->fetchField();
+=======
+  $rating = \Drupal::database()->query('SELECT SUM([points]) FROM {my_rating} WHERE [nid] = :nid', ['nid' => $node->id()])->fetchField();
+>>>>>>> dev
   return ['rating' => \Drupal::translation()->formatPlural($rating, '1 point', '@count points')];
 }
 
@@ -326,7 +334,11 @@ function hook_node_search_result(\Drupal\node\NodeInterface $node) {
  */
 function hook_node_update_index(\Drupal\node\NodeInterface $node) {
   $text = '';
+<<<<<<< HEAD
   $ratings = \Drupal::database()->query('SELECT title, description FROM {my_ratings} WHERE nid = :nid', [':nid' => $node->id()]);
+=======
+  $ratings = \Drupal::database()->query('SELECT [title], [description] FROM {my_ratings} WHERE [nid] = :nid', [':nid' => $node->id()]);
+>>>>>>> dev
   foreach ($ratings as $rating) {
     $text .= '<h2>' . Html::escape($rating->title) . '</h2>' . Xss::filter($rating->description);
   }

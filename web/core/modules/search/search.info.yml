@@ -3,5 +3,8 @@ type: module
 description: 'Allows users to create search pages based on plugins provided by other modules.'
 package: Core
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 configure: entity.search_page.collection

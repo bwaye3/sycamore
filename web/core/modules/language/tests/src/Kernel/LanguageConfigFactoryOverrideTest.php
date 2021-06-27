@@ -17,7 +17,11 @@ class LanguageConfigFactoryOverrideTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'language'];
+=======
+  protected static $modules = ['system', 'language'];
+>>>>>>> dev
 
   /**
    * Tests language.config_factory_override service has the default language.

@@ -29,14 +29,22 @@ class DisplayFeedTest extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['block', 'node', 'views', 'views_test_rss'];
+=======
+  protected static $modules = ['block', 'node', 'views', 'views_test_rss'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'classy';
 
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();
@@ -101,9 +109,15 @@ class DisplayFeedTest extends ViewTestBase {
     $this->drupalGet('test-feed-icon/' . $node->id());
     $page_url = $this->getUrl();
     $icon_href = $this->cssSelect('a.feed-icon[href *= "test-feed-icon"]')[0]->getAttribute('href');
+<<<<<<< HEAD
     $this->assertEqual($icon_href, $page_url . '/feed', 'The feed icon was found.');
     $link_href = $this->cssSelect('link[type = "application/rss+xml"][href *= "test-feed-icon"]')[0]->getAttribute('href');
     $this->assertEqual($link_href, $page_url . '/feed', 'The RSS link was found.');
+=======
+    $this->assertEquals($page_url . '/feed', $icon_href, 'The feed icon was found.');
+    $link_href = $this->cssSelect('link[type = "application/rss+xml"][href *= "test-feed-icon"]')[0]->getAttribute('href');
+    $this->assertEquals($page_url . '/feed', $link_href, 'The RSS link was found.');
+>>>>>>> dev
     $this->drupalGet($icon_href);
     $this->assertEquals($frontpage_url, $this->getSession()->getDriver()->getText('//channel/link'));
   }
@@ -166,7 +180,11 @@ class DisplayFeedTest extends ViewTestBase {
     // Check that the rss header is output on the page display.
     $this->drupalGet('/test-attached-disabled');
     $feed_header = $this->xpath('//link[@rel="alternate"]');
+<<<<<<< HEAD
     $this->assertEqual($feed_header[0]->getAttribute('type'), 'application/rss+xml', 'The feed link has the type application/rss+xml.');
+=======
+    $this->assertEquals('application/rss+xml', $feed_header[0]->getAttribute('type'), 'The feed link has the type application/rss+xml.');
+>>>>>>> dev
     $this->assertStringContainsString('test-attached-disabled.xml', $feed_header[0]->getAttribute('href'), 'Page display contains the correct feed URL.');
 
     // Disable the feed display.

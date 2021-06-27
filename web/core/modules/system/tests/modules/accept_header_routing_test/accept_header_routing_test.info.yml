@@ -1,5 +1,8 @@
 name: Accept header based routing test
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 type: module
 package: Testing
 version: VERSION

@@ -30,7 +30,11 @@ class NodeViewBuilder extends EntityViewBuilder implements TrustedCallbackInterf
       if ($display->getComponent('links')) {
         $build[$id]['links'] = [
           '#lazy_builder' => [
+<<<<<<< HEAD
             get_called_class() . '::renderLinks', [
+=======
+            static::class . '::renderLinks', [
+>>>>>>> dev
               $entity->id(),
               $view_mode,
               $entity->language()->getId(),

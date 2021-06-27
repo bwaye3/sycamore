@@ -26,7 +26,11 @@ abstract class InlineBlockTestBase extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'block_content',
     'layout_builder',
     'block',
@@ -97,7 +101,15 @@ abstract class InlineBlockTestBase extends WebDriverTestBase {
    * Gets the latest block entity id.
    */
   protected function getLatestBlockEntityId() {
+<<<<<<< HEAD
     $block_ids = \Drupal::entityQuery('block_content')->sort('id', 'DESC')->range(0, 1)->execute();
+=======
+    $block_ids = \Drupal::entityQuery('block_content')
+      ->accessCheck(FALSE)
+      ->sort('id', 'DESC')
+      ->range(0, 1)
+      ->execute();
+>>>>>>> dev
     $block_id = array_pop($block_ids);
     $this->assertNotEmpty($this->blockStorage->load($block_id));
     return $block_id;
@@ -173,6 +185,7 @@ abstract class InlineBlockTestBase extends WebDriverTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Waits for an element to be removed from the page.
    *
    * @param string $selector
@@ -190,6 +203,8 @@ abstract class InlineBlockTestBase extends WebDriverTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Asserts that the dialog closes and the new text appears on the main canvas.
    *
    * @param string $text

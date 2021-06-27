@@ -63,13 +63,19 @@ class MigrationPluginManager extends DefaultPluginManager implements MigrationPl
    * Gets the plugin discovery.
    *
    * This method overrides DefaultPluginManager::getDiscovery() in order to
+<<<<<<< HEAD
    * search for migration configurations in the MODULENAME/migrations and
    * MODULENAME/migration_templates directories. Throws a deprecation notice if
    * the MODULENAME/migration_templates directory exists.
+=======
+   * search for migration configurations in the MODULENAME/migrations
+   * directory.
+>>>>>>> dev
    */
   protected function getDiscovery() {
     if (!isset($this->discovery)) {
       $directories = array_map(function ($directory) {
+<<<<<<< HEAD
         // Check for use of the @deprecated /migration_templates directory.
         // @todo Remove use of /migration_templates in Drupal 9.0.0.
         if (is_dir($directory . '/migration_templates')) {
@@ -77,6 +83,9 @@ class MigrationPluginManager extends DefaultPluginManager implements MigrationPl
         }
         // But still accept configurations found in /migration_templates.
         return [$directory . '/migration_templates', $directory . '/migrations'];
+=======
+        return [$directory . '/migrations'];
+>>>>>>> dev
       }, $this->moduleHandler->getModuleDirectories());
 
       $yaml_discovery = new YamlDirectoryDiscovery($directories, 'migrate');
@@ -133,7 +142,11 @@ class MigrationPluginManager extends DefaultPluginManager implements MigrationPl
     $migrations = array_filter($this->getDefinitions(), function ($migration) use ($tag) {
       return !empty($migration['migration_tags']) && in_array($tag, $migration['migration_tags']);
     });
+<<<<<<< HEAD
     return $this->createInstances(array_keys($migrations));
+=======
+    return $migrations ? $this->createInstances(array_keys($migrations)) : [];
+>>>>>>> dev
   }
 
   /**

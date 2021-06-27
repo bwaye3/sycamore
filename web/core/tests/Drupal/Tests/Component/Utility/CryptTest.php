@@ -15,6 +15,7 @@ use PHPUnit\Framework\TestCase;
 class CryptTest extends TestCase {
 
   /**
+<<<<<<< HEAD
    * Tests random byte generation.
    *
    * @covers ::randomBytes
@@ -26,6 +27,8 @@ class CryptTest extends TestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests hash generation.
    *
    * @dataProvider providerTestHashBase64
@@ -143,6 +146,7 @@ class CryptTest extends TestCase {
     ];
   }
 
+<<<<<<< HEAD
   /**
    * Legacy test of Drupal\Component\Utility\Crypt::hashEquals() method.
    *
@@ -156,4 +160,6 @@ class CryptTest extends TestCase {
     $this->assertFalse(Crypt::hashEquals($a_hash, $b_hash));
   }
 
+=======
+>>>>>>> dev
 }

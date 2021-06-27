@@ -7,10 +7,27 @@ migration_tags:
 source:
   plugin: variable
   variables:
+<<<<<<< HEAD
     - site_offline_message
   source_module: system
 process:
   message: site_offline_message
+=======
+    - maintenance_mode_message
+    - site_offline_message
+  source_module: system
+process:
+  message:
+  -
+    plugin: callback
+    callable: array_filter
+    source:
+      - maintenance_mode_message
+      - site_offline_message
+  -
+    plugin: callback
+    callable: current
+>>>>>>> dev
 destination:
   plugin: config
   config_name: system.maintenance

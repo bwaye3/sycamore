@@ -3,7 +3,10 @@
 namespace Drupal\block;
 
 use Drupal\Component\Utility\Html;
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Plugin\PluginFormFactoryInterface;
 use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\Entity\EntityForm;
@@ -24,12 +27,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @internal
  */
 class BlockForm extends EntityForm {
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
 
   /**
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
+=======
+>>>>>>> dev
 
   /**
    * The block entity.
@@ -84,7 +90,11 @@ class BlockForm extends EntityForm {
    * Constructs a BlockForm object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+<<<<<<< HEAD
    *   The entity manager.
+=======
+   *   The entity type manager.
+>>>>>>> dev
    * @param \Drupal\Core\Executable\ExecutableManagerInterface $manager
    *   The ConditionManager for building the visibility UI.
    * @param \Drupal\Core\Plugin\Context\ContextRepositoryInterface $context_repository
@@ -384,6 +394,7 @@ class BlockForm extends EntityForm {
       $condition = $form_state->get(['conditions', $condition_id]);
       $condition->submitConfigurationForm($form['visibility'][$condition_id], SubformState::createForSubform($form['visibility'][$condition_id], $form, $form_state));
 
+<<<<<<< HEAD
       // Setting conditions' context mappings is the plugins' responsibility.
       // This code exists for backwards compatibility, because
       // \Drupal\Core\Condition\ConditionPluginBase::submitConfigurationForm()
@@ -394,6 +405,8 @@ class BlockForm extends EntityForm {
         $condition->setContextMapping($context_mapping);
       }
 
+=======
+>>>>>>> dev
       $condition_configuration = $condition->getConfiguration();
       // Update the visibility conditions on the block.
       $this->entity->getVisibilityConditions()->addInstanceId($condition_id, $condition_configuration);

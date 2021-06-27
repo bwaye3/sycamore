@@ -26,12 +26,21 @@
  * @return {function}
  *   The debounced function.
  */
+<<<<<<< HEAD
 Drupal.debounce = function(func, wait, immediate) {
   let timeout;
   let result;
   return function(...args) {
     const context = this;
     const later = function() {
+=======
+Drupal.debounce = function (func, wait, immediate) {
+  let timeout;
+  let result;
+  return function (...args) {
+    const context = this;
+    const later = function () {
+>>>>>>> dev
       timeout = null;
       if (!immediate) {
         result = func.apply(context, args);

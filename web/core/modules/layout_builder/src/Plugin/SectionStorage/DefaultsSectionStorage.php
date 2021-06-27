@@ -216,6 +216,7 @@ class DefaultsSectionStorage extends SectionStorageBase implements ContainerFact
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function extractIdFromRoute($value, $definition, $name, array $defaults) {
     @trigger_error('\Drupal\layout_builder\SectionStorageInterface::extractIdFromRoute() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. \Drupal\layout_builder\SectionStorageInterface::deriveContextsFromRoute() should be used instead. See https://www.drupal.org/node/3016262.', E_USER_DEPRECATED);
     if (is_string($value) && strpos($value, '.') !== FALSE) {
@@ -259,6 +260,8 @@ class DefaultsSectionStorage extends SectionStorageBase implements ContainerFact
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function getContextsDuringPreview() {
     $contexts = parent::getContextsDuringPreview();
 

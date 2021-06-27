@@ -14,6 +14,13 @@ class ActionAddForm extends ActionFormBase {
   /**
    * {@inheritdoc}
    *
+<<<<<<< HEAD
+=======
+   * @param array $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+>>>>>>> dev
    * @param string $action_id
    *   The action ID.
    */

@@ -16,7 +16,11 @@ class VariableTranslationTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['migrate_drupal'];
+=======
+  protected static $modules = ['migrate_drupal'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

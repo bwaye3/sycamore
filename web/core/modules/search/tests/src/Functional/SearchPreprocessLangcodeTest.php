@@ -28,7 +28,11 @@ class SearchPreprocessLangcodeTest extends BrowserTestBase {
    */
   protected $node;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalCreateContentType(['type' => 'page', 'name' => 'Basic page']);
@@ -56,10 +60,18 @@ class SearchPreprocessLangcodeTest extends BrowserTestBase {
     // function. If you search for text that is in the node, preprocess is
     // not invoked on the node during the search excerpt generation.
     $edit = ['or' => 'Additional text'];
+<<<<<<< HEAD
     $this->drupalPostForm('search/node', $edit, 'edit-submit--2');
 
     // Checks if the langcode message has been set by hook_search_preprocess().
     $this->assertText('Langcode Preprocess Test: en');
+=======
+    $this->drupalGet('search/node');
+    $this->submitForm($edit, 'edit-submit--2');
+
+    // Checks if the langcode message has been set by hook_search_preprocess().
+    $this->assertSession()->pageTextContains('Langcode Preprocess Test: en');
+>>>>>>> dev
   }
 
   /**
@@ -78,6 +90,7 @@ class SearchPreprocessLangcodeTest extends BrowserTestBase {
 
     // Search for the title of the node with a POST query.
     $edit = ['or' => 'testing'];
+<<<<<<< HEAD
     $this->drupalPostForm('search/node', $edit, 'edit-submit--2');
 
     // Check if the node has been found.
@@ -91,6 +104,23 @@ class SearchPreprocessLangcodeTest extends BrowserTestBase {
     // Check if the node has been found.
     $this->assertText('Search results');
     $this->assertText('we are testing');
+=======
+    $this->drupalGet('search/node');
+    $this->submitForm($edit, 'edit-submit--2');
+
+    // Check if the node has been found.
+    $this->assertSession()->pageTextContains('Search results');
+    $this->assertSession()->pageTextContains('we are testing');
+
+    // Search for the same node using a different query.
+    $edit = ['or' => 'test'];
+    $this->drupalGet('search/node');
+    $this->submitForm($edit, 'edit-submit--2');
+
+    // Check if the node has been found.
+    $this->assertSession()->pageTextContains('Search results');
+    $this->assertSession()->pageTextContains('we are testing');
+>>>>>>> dev
   }
 
 }

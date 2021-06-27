@@ -8,6 +8,7 @@
 (function ($, Drupal, displace) {
   function TableHeader(table) {
     var $table = $(table);
+<<<<<<< HEAD
 
     this.$originalTable = $table;
 
@@ -15,10 +16,16 @@
 
     this.$originalHeaderCells = this.$originalHeader.find('> tr > th');
 
+=======
+    this.$originalTable = $table;
+    this.$originalHeader = $table.children('thead');
+    this.$originalHeaderCells = this.$originalHeader.find('> tr > th');
+>>>>>>> dev
     this.displayWeight = null;
     this.$originalTable.addClass('sticky-table');
     this.tableHeight = $table[0].clientHeight;
     this.tableOffset = this.$originalTable.offset();
+<<<<<<< HEAD
 
     this.$originalTable.on('columnschange', { tableHeader: this }, function (e, display) {
       var tableHeader = e.data.tableHeader;
@@ -28,12 +35,29 @@
       tableHeader.displayWeight = display;
     });
 
+=======
+    this.$originalTable.on('columnschange', {
+      tableHeader: this
+    }, function (e, display) {
+      var tableHeader = e.data.tableHeader;
+
+      if (tableHeader.displayWeight === null || tableHeader.displayWeight !== display) {
+        tableHeader.recalculateSticky();
+      }
+
+      tableHeader.displayWeight = display;
+    });
+>>>>>>> dev
     this.createSticky();
   }
 
   function forTables(method, arg) {
     var tables = TableHeader.tables;
     var il = tables.length;
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     for (var i = 0; i < il; i++) {
       tables[i][method](arg);
     }
@@ -42,15 +66,29 @@
   function tableHeaderInitHandler(e) {
     var $tables = $(e.data.context).find('table.sticky-enabled').once('tableheader');
     var il = $tables.length;
+<<<<<<< HEAD
     for (var i = 0; i < il; i++) {
       TableHeader.tables.push(new TableHeader($tables[i]));
     }
+=======
+
+    for (var i = 0; i < il; i++) {
+      TableHeader.tables.push(new TableHeader($tables[i]));
+    }
+
+>>>>>>> dev
     forTables('onScroll');
   }
 
   Drupal.behaviors.tableHeader = {
     attach: function attach(context) {
+<<<<<<< HEAD
       $(window).one('scroll.TableHeaderInit', { context: context }, tableHeaderInitHandler);
+=======
+      $(window).one('scroll.TableHeaderInit', {
+        context: context
+      }, tableHeaderInitHandler);
+>>>>>>> dev
     }
   };
 
@@ -72,6 +110,7 @@
 
   $(window).on({
     'resize.TableHeader': tableHeaderResizeHandler,
+<<<<<<< HEAD
 
     'scroll.TableHeader': tableHeaderOnScrollHandler
   });
@@ -98,24 +137,60 @@
     createSticky: function createSticky() {
       var $stickyHeader = this.$originalHeader.clone(true);
 
+=======
+    'scroll.TableHeader': tableHeaderOnScrollHandler
+  });
+  $(document).on({
+    'columnschange.TableHeader drupalToolbarTrayChange': tableHeaderResizeHandler,
+    'drupalViewportOffsetChange.TableHeader': tableHeaderOffsetChangeHandler
+  });
+  $.extend(TableHeader, {
+    tables: []
+  });
+  $.extend(TableHeader.prototype, {
+    minHeight: 100,
+    tableOffset: null,
+    tableHeight: null,
+    stickyVisible: false,
+    createSticky: function createSticky() {
+      this.$html = $('html');
+      var $stickyHeader = this.$originalHeader.clone(true);
+>>>>>>> dev
       this.$stickyTable = $('<table class="sticky-header"></table>').css({
         visibility: 'hidden',
         position: 'fixed',
         top: '0px'
       }).append($stickyHeader).insertBefore(this.$originalTable);
+<<<<<<< HEAD
 
       this.$stickyHeaderCells = $stickyHeader.find('> tr > th');
 
+=======
+      this.$stickyHeaderCells = $stickyHeader.find('> tr > th');
+>>>>>>> dev
       this.recalculateSticky();
     },
     stickyPosition: function stickyPosition(offsetTop, offsetLeft) {
       var css = {};
+<<<<<<< HEAD
       if (typeof offsetTop === 'number') {
         css.top = offsetTop + 'px';
       }
       if (typeof offsetLeft === 'number') {
         css.left = this.tableOffset.left - offsetLeft + 'px';
       }
+=======
+
+      if (typeof offsetTop === 'number') {
+        css.top = "".concat(offsetTop, "px");
+      }
+
+      if (typeof offsetLeft === 'number') {
+        css.left = "".concat(this.tableOffset.left - offsetLeft, "px");
+      }
+
+      this.$html.css('scroll-padding-top', displace.offsets.top + (this.stickyVisible ? this.$stickyTable.height() : 0));
+>>>>>>> dev
       return this.$stickyTable.css(css);
     },
     checkStickyVisible: function checkStickyVisible() {
@@ -133,12 +208,16 @@
     },
     onScroll: function onScroll(e) {
       this.checkStickyVisible();
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       this.stickyPosition(null, scrollValue('scrollLeft'));
       this.$stickyTable.css('visibility', this.stickyVisible ? 'visible' : 'hidden');
     },
     recalculateSticky: function recalculateSticky(event) {
       this.tableHeight = this.$originalTable[0].clientHeight;
+<<<<<<< HEAD
 
       displace.offsets.top = displace.calculateOffset('top');
       this.tableOffset = this.$originalTable.offset();
@@ -149,19 +228,45 @@
       var display = null;
 
       var il = this.$originalHeaderCells.length;
+=======
+      displace.offsets.top = displace.calculateOffset('top');
+      this.tableOffset = this.$originalTable.offset();
+      this.stickyPosition(displace.offsets.top, scrollValue('scrollLeft'));
+      var $that = null;
+      var $stickyCell = null;
+      var display = null;
+      var il = this.$originalHeaderCells.length;
+
+>>>>>>> dev
       for (var i = 0; i < il; i++) {
         $that = $(this.$originalHeaderCells[i]);
         $stickyCell = this.$stickyHeaderCells.eq($that.index());
         display = $that.css('display');
+<<<<<<< HEAD
         if (display !== 'none') {
           $stickyCell.css({ width: $that.css('width'), display: display });
+=======
+
+        if (display !== 'none') {
+          $stickyCell.css({
+            width: $that.css('width'),
+            display: display
+          });
+>>>>>>> dev
         } else {
           $stickyCell.css('display', 'none');
         }
       }
+<<<<<<< HEAD
       this.$stickyTable.css('width', this.$originalTable.outerWidth());
     }
   });
 
+=======
+
+      this.$stickyTable.css('width', this.$originalTable.outerWidth());
+    }
+  });
+>>>>>>> dev
   Drupal.TableHeader = TableHeader;
 })(jQuery, Drupal, window.Drupal.displace);

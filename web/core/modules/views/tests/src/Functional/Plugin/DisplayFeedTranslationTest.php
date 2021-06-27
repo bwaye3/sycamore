@@ -29,7 +29,11 @@ class DisplayFeedTranslationTest extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'views',
     'language',
@@ -48,7 +52,11 @@ class DisplayFeedTranslationTest extends ViewTestBase {
    */
   protected $langcodes;
 
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();
@@ -76,7 +84,12 @@ class DisplayFeedTranslationTest extends ViewTestBase {
       'settings[node][page][translatable]' => TRUE,
       'settings[node][page][settings][language][language_alterable]' => TRUE,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/content-language', $edit, t('Save configuration'));
+=======
+    $this->drupalGet('admin/config/regional/content-language');
+    $this->submitForm($edit, 'Save configuration');
+>>>>>>> dev
 
     // Rebuild the container so that the new languages are picked up by services
     // that hold a list of languages.

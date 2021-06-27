@@ -8,7 +8,11 @@ use Drupal\migrate\Plugin\migrate\process\Get;
 use Drupal\migrate\Plugin\migrate\process\SubProcess;
 use Drupal\migrate\Row;
 use Drupal\Tests\migrate\Unit\MigrateTestCase;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+=======
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 
 /**
  * Tests the sub_process process plugin.
@@ -166,7 +170,11 @@ class SubProcessTest extends MigrateTestCase {
     // values ended up in the proper destinations, and that the value of the
     // key (@id) is the same as the destination ID (42).
     $new_value = $plugin->transform($current_value, $migrate_executable, $row, 'test');
+<<<<<<< HEAD
     $this->assertArrayEquals([], $new_value);
+=======
+    $this->assertSame([], $new_value);
+>>>>>>> dev
   }
 
   /**

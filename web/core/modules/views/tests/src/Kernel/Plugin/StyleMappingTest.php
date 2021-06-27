@@ -4,6 +4,10 @@ namespace Drupal\Tests\views\Kernel\Plugin;
 
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\views\Views;
+<<<<<<< HEAD
+=======
+use Drupal\views\ViewExecutable;
+>>>>>>> dev
 
 /**
  * Tests mapping style functionality.
@@ -12,7 +16,11 @@ use Drupal\views\Views;
  */
 class StyleMappingTest extends StyleTestBase {
 
+<<<<<<< HEAD
   public static $modules = ['system'];
+=======
+  protected static $modules = ['system'];
+>>>>>>> dev
 
   /**
    * Views used by this test.
@@ -45,7 +53,11 @@ class StyleMappingTest extends StyleTestBase {
    * @return string
    *   The view rendered as HTML.
    */
+<<<<<<< HEAD
   protected function mappedOutputHelper($view) {
+=======
+  protected function mappedOutputHelper(ViewExecutable $view) {
+>>>>>>> dev
     $output = $view->preview();
     $rendered_output = \Drupal::service('renderer')->renderRoot($output);
     $this->storeViewPreview($rendered_output);
@@ -69,7 +81,11 @@ class StyleMappingTest extends StyleTestBase {
         // separated by ':'.
         $expected_result = $name . ':' . $data_set[$count][$field_id];
         $actual_result = (string) $field;
+<<<<<<< HEAD
         $this->assertIdentical($expected_result, $actual_result, new FormattableMarkup('The fields were mapped successfully: %name => %field_id', ['%name' => $name, '%field_id' => $field_id]));
+=======
+        $this->assertSame($expected_result, $actual_result, new FormattableMarkup('The fields were mapped successfully: %name => %field_id', ['%name' => $name, '%field_id' => $field_id]));
+>>>>>>> dev
       }
 
       $count++;

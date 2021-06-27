@@ -11,12 +11,24 @@ use Drupal\Tests\RequirementsPageTrait;
  * Tries to update a module which has no pre-existing schema.
  *
  * @group Update
+<<<<<<< HEAD
  * @group legacy
+=======
+>>>>>>> dev
  */
 class NoPreExistingSchemaUpdateTest extends BrowserTestBase {
   use RequirementsPageTrait;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'stark';
+
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $connection = Database::getConnection();
 
@@ -38,7 +50,11 @@ class NoPreExistingSchemaUpdateTest extends BrowserTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the system module updates with no dependencies installed.
+=======
+   * Tests the system module updates with no dependencies installed.
+>>>>>>> dev
    */
   public function testNoPreExistingSchema() {
     $schema = \Drupal::keyValue('system.schema')->getAll();

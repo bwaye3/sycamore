@@ -3,7 +3,11 @@
  * Taxonomy behaviors.
  */
 
+<<<<<<< HEAD
 (function($, Drupal) {
+=======
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * Reorder taxonomy terms.
    *
@@ -13,7 +17,11 @@
    * @type {Drupal~behavior}
    *
    * @prop {Drupal~behaviorAttach} attach
+<<<<<<< HEAD
    *   Attaches the drag behavior to a applicable table element.
+=======
+   *   Attaches the drag behavior to an applicable table element.
+>>>>>>> dev
    */
   Drupal.behaviors.termDrag = {
     attach(context, settings) {
@@ -25,7 +33,11 @@
       const rows = $table.find('tr').length;
 
       // When a row is swapped, keep previous and next page classes set.
+<<<<<<< HEAD
       tableDrag.row.prototype.onSwap = function(swappedRow) {
+=======
+      tableDrag.row.prototype.onSwap = function (swappedRow) {
+>>>>>>> dev
         $table
           .find('tr.taxonomy-term-preview')
           .removeClass('taxonomy-term-preview');

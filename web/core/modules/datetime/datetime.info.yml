@@ -3,6 +3,9 @@ type: module
 description: Defines datetime form elements and a datetime field type.
 package: Field types
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:field

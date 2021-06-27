@@ -2,7 +2,10 @@
 
 namespace Drupal\migrate\Plugin\migrate\destination;
 
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
@@ -89,12 +92,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @see \Drupal\migrate\Plugin\migrate\destination\EntityRevision
  */
 class EntityContentBase extends Entity implements HighestIdInterface, MigrateValidatableEntityInterface {
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
 
   /**
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
+=======
+>>>>>>> dev
 
   /**
    * Entity field manager.
@@ -318,7 +324,11 @@ class EntityContentBase extends Entity implements HighestIdInterface, MigrateVal
 
     // Populate any required fields not already populated.
     $fields = $this->entityFieldManager
+<<<<<<< HEAD
       ->getFieldDefinitions($this->storage->getEntityTypeId(), $bundle_key);
+=======
+      ->getFieldDefinitions($this->storage->getEntityTypeId(), $row->getDestinationProperty($bundle_key));
+>>>>>>> dev
     foreach ($fields as $field_name => $field_definition) {
       if ($field_definition->isRequired() && is_null($row->getDestinationProperty($field_name))) {
         // Use the configured default value for this specific field, if any.
@@ -326,8 +336,11 @@ class EntityContentBase extends Entity implements HighestIdInterface, MigrateVal
           $values = $default_value;
         }
         else {
+<<<<<<< HEAD
           // Otherwise, ask the field type to generate a sample value.
           $field_type = $field_definition->getType();
+=======
+>>>>>>> dev
           /** @var \Drupal\Core\Field\FieldItemInterface $field_type_class */
           $field_type_class = $this->fieldTypeManager
             ->getPluginClass($field_definition->getType());

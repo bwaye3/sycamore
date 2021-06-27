@@ -207,6 +207,7 @@ function toolbar_toolbar() {
 }
 
 /**
+<<<<<<< HEAD
  * Renders the toolbar's administration tray.
  *
  * @param array $element
@@ -228,6 +229,8 @@ function toolbar_prerender_toolbar_administration_tray(array $element) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Adds toolbar-specific attributes to the menu link tree.
  *
  * @param \Drupal\Core\Menu\MenuLinkTreeElement[] $tree
@@ -301,6 +304,7 @@ function toolbar_get_rendered_subtrees() {
 }
 
 /**
+<<<<<<< HEAD
  * #pre_render callback for toolbar_get_rendered_subtrees().
  *
  * @deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Use
@@ -315,6 +319,8 @@ function _toolbar_do_get_rendered_subtrees(array $data) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Returns the hash of the per-user rendered toolbar subtrees.
  *
  * @return string

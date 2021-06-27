@@ -1,12 +1,27 @@
 finished:
   6:
+<<<<<<< HEAD
+=======
+    i18n: content_translation
+>>>>>>> dev
     i18nblocks:
       - block
       - block_content
       - content_translation
+<<<<<<< HEAD
     i18nmenu:
       - content_translation
       - menu_link_content
+=======
+    i18ncontent: content_translation
+    i18nmenu:
+      - content_translation
+      - menu_link_content
+    i18npoll: content_translation
+    i18nstrings: content_translation
+    i18nsync: content_translation
+    i18ntaxonomy: content_translation
+>>>>>>> dev
     locale: content_translation
     menu: content_translation
   # Node revision translations.
@@ -15,12 +30,17 @@ finished:
     taxonomy: content_translation
   7:
     entity_translation: content_translation
+<<<<<<< HEAD
+=======
+    i18n: content_translation
+>>>>>>> dev
     i18n_block:
       - block
       - block_content
       - content_translation
     locale: content_translation
     menu: content_translation
+<<<<<<< HEAD
     statistics: statistics
     # Node revision translations.
     node: content_translation
@@ -42,3 +62,12 @@ not_finished:
     # @TODO: Remove when taxonomy term field translations are migrated.
     # See https://www.drupal.org/project/drupal/issues/3073050
     i18n_taxonomy: content_translation
+=======
+    # menu links.
+    i18n_menu: content_translation
+    i18n_string: content_translation
+    i18n_taxonomy: content_translation
+    statistics: statistics
+    # Node revision translations.
+    node: content_translation
+>>>>>>> dev

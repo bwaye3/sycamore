@@ -9,16 +9,36 @@ use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
+<<<<<<< HEAD
 use PHPUnit\Framework\TestCase;
+=======
+use Drupal\Tests\Traits\PhpUnitWarnings;
+use Drupal\TestTools\TestVarDumper;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\VarDumper\VarDumper;
+use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
+>>>>>>> dev
 
 /**
  * Provides a base class and helpers for Drupal unit tests.
  *
+<<<<<<< HEAD
+=======
+ * Using Symfony's dump() function() in Unit tests will produce output on the
+ * command line.
+ *
+>>>>>>> dev
  * @ingroup testing
  */
 abstract class UnitTestCase extends TestCase {
 
+<<<<<<< HEAD
   use PhpunitCompatibilityTrait;
+=======
+  use PhpUnitWarnings;
+  use PhpUnitCompatibilityTrait;
+  use ExpectDeprecationTrait;
+>>>>>>> dev
 
   /**
    * The random generator.
@@ -37,6 +57,17 @@ abstract class UnitTestCase extends TestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
+=======
+  public static function setUpBeforeClass() {
+    parent::setUpBeforeClass();
+    VarDumper::setHandler(TestVarDumper::class . '::cliHandler');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+>>>>>>> dev
   protected function setUp() {
     parent::setUp();
     // Ensure that an instantiated container in the global state of \Drupal from
@@ -49,7 +80,11 @@ abstract class UnitTestCase extends TestCase {
     // Ensure that FileCacheFactory has a prefix.
     FileCacheFactory::setPrefix('prefix');
 
+<<<<<<< HEAD
     $this->root = dirname(dirname(substr(__DIR__, 0, -strlen(__NAMESPACE__))));
+=======
+    $this->root = dirname(substr(__DIR__, 0, -strlen(__NAMESPACE__)), 2);
+>>>>>>> dev
   }
 
   /**
@@ -86,8 +121,19 @@ abstract class UnitTestCase extends TestCase {
    * @param array $expected
    * @param array $actual
    * @param string $message
+<<<<<<< HEAD
    */
   protected function assertArrayEquals(array $expected, array $actual, $message = NULL) {
+=======
+   *
+   * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use
+   *   ::assertEquals, ::assertEqualsCanonicalizing, or ::assertSame instead.
+   *
+   * @see https://www.drupal.org/node/3136304
+   */
+  protected function assertArrayEquals(array $expected, array $actual, $message = NULL) {
+    @trigger_error(__METHOD__ . "() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use ::assertEquals(), ::assertEqualsCanonicalizing(), or ::assertSame() instead. See https://www.drupal.org/node/3136304", E_USER_DEPRECATED);
+>>>>>>> dev
     ksort($expected);
     ksort($actual);
     $this->assertEquals($expected, $actual, !empty($message) ? $message : '');
@@ -186,6 +232,7 @@ abstract class UnitTestCase extends TestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Mocks a block with a block plugin.
    *
    * @param string $machine_name
@@ -219,6 +266,8 @@ abstract class UnitTestCase extends TestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Returns a stub translation manager that just returns the passed string.
    *
    * @return \PHPUnit\Framework\MockObject\MockObject|\Drupal\Core\StringTranslation\TranslationInterface

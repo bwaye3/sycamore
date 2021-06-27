@@ -2,7 +2,10 @@
 
 namespace Drupal\Tests\layout_builder\Functional;
 
+<<<<<<< HEAD
 use Drupal\Component\Render\FormattableMarkup;
+=======
+>>>>>>> dev
 use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\field\Traits\EntityReferenceTestTrait;
@@ -36,7 +39,11 @@ class LayoutBuilderFieldBlockEntityReferenceCacheTagsTest extends BrowserTestBas
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Enable page caching.
@@ -128,11 +135,18 @@ class LayoutBuilderFieldBlockEntityReferenceCacheTagsTest extends BrowserTestBas
    */
   protected function verifyPageCacheContainsTags(Url $url, $hit_or_miss, $tags = FALSE) {
     $this->drupalGet($url);
+<<<<<<< HEAD
     $message = new FormattableMarkup('Page cache @hit_or_miss for %path.', ['@hit_or_miss' => $hit_or_miss, '%path' => $url->toString()]);
     $this->assertEqual($this->drupalGetHeader('X-Drupal-Cache'), $hit_or_miss, $message);
 
     if ($hit_or_miss === 'HIT' && is_array($tags)) {
       $cache_tags = explode(' ', $this->drupalGetHeader('X-Drupal-Cache-Tags'));
+=======
+    $this->assertSession()->responseHeaderEquals('X-Drupal-Cache', $hit_or_miss);
+
+    if ($hit_or_miss === 'HIT' && is_array($tags)) {
+      $cache_tags = explode(' ', $this->getSession()->getResponseHeader('X-Drupal-Cache-Tags'));
+>>>>>>> dev
       $tags = array_unique($tags);
       $this->assertEmpty(array_diff($tags, $cache_tags), 'Page cache tags contains all expected tags.');
     }

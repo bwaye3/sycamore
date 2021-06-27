@@ -192,7 +192,11 @@ class Serializer extends StylePluginBase implements CacheableDependencyInterface
   }
 
   /**
+<<<<<<< HEAD
    * Returns an array of format options
+=======
+   * Returns an array of format options.
+>>>>>>> dev
    *
    * @return string[]
    *   An array of format options. Both key and value are the same.

@@ -7,6 +7,7 @@ services:
     class: Drupal\settings_tray\Access\BlockPluginHasSettingsTrayFormAccessCheck
     tags:
       - { name: access_check, applies_to: _access_block_plugin_has_settings_tray_form }
+<<<<<<< HEAD
 
   # BC layers.
   # @todo Remove in Drupal 9.0.0.
@@ -16,3 +17,5 @@ services:
     public: false
     tags:
       - { name: route_processor_outbound }
+=======
+>>>>>>> dev

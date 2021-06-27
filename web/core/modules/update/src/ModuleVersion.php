@@ -5,9 +5,19 @@ namespace Drupal\update;
 /**
  * Provides a module version value object.
  *
+<<<<<<< HEAD
  * @internal
  *
  * @see https://www.drupal.org/drupalorg/docs/apis/update-status-xml.
+=======
+ * @deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use
+   *   \Drupal\Core\Extension\ExtensionVersion instead. As an internal class
+ *   ExtensionVersion may also be removed in a minor release.
+ *
+ * @internal
+ *
+ * @see https://www.drupal.org/node/3095201
+>>>>>>> dev
  */
 final class ModuleVersion {
 
@@ -43,6 +53,13 @@ final class ModuleVersion {
    *
    * @return \Drupal\update\ModuleVersion
    *   The module version instance.
+<<<<<<< HEAD
+=======
+   *
+   * @throws \UnexpectedValueException
+   *   Thrown when a legacy version string has a core prefix other than "8.x-"
+   *   for example, version strings such as "7.x-1.0" are not supported.
+>>>>>>> dev
    */
   public static function createFromVersionString($version_string) {
     $original_version = $version_string;
@@ -85,6 +102,10 @@ final class ModuleVersion {
    *   The extra version string.
    */
   private function __construct($major_version, $version_extra) {
+<<<<<<< HEAD
+=======
+    @trigger_error(__CLASS__ . ' is deprecated in drupal:9.2.0 and will be removed before drupal:10.0.0. Use The \Drupal\Core\Extension\ExtensionVersion instead. As an internal class, ExtensionVersion may also be removed in a minor release.', E_USER_DEPRECATED);
+>>>>>>> dev
     $this->majorVersion = $major_version;
     $this->versionExtra = $version_extra;
   }
@@ -100,6 +121,12 @@ final class ModuleVersion {
    *
    * @return \Drupal\update\ModuleVersion
    *   The module version instance.
+<<<<<<< HEAD
+=======
+   *
+   * @throws \UnexpectedValueException
+   *   Thrown when $branch is not valid because it does not end in ".".
+>>>>>>> dev
    */
   public static function createFromSupportBranch($branch) {
     if (substr($branch, -1) !== '.') {

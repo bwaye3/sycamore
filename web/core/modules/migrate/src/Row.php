@@ -104,7 +104,11 @@ class Row {
     $this->isStub = $is_stub;
     foreach (array_keys($source_ids) as $id) {
       if (!$this->hasSourceProperty($id)) {
+<<<<<<< HEAD
         throw new \InvalidArgumentException("$id is defined as a source ID but has no value.");
+=======
+        throw new \InvalidArgumentException("'$id' is defined as a source ID but has no value.");
+>>>>>>> dev
       }
     }
   }
@@ -167,7 +171,11 @@ class Row {
   }
 
   /**
+<<<<<<< HEAD
    * Sets a source property.
+=======
+   * Sets a source property if the row is not frozen.
+>>>>>>> dev
    *
    * This can only be called from the source plugin.
    *
@@ -177,6 +185,11 @@ class Row {
    *   The property value to set on the source.
    *
    * @throws \Exception
+<<<<<<< HEAD
+=======
+   *
+   * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase::next
+>>>>>>> dev
    */
   public function setSourceProperty($property, $data) {
     if ($this->frozen) {

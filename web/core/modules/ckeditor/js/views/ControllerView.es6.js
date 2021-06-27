@@ -3,7 +3,11 @@
  * A Backbone View acting as a controller for CKEditor toolbar configuration.
  */
 
+<<<<<<< HEAD
 (function($, Drupal, Backbone, CKEDITOR, _) {
+=======
+(function ($, Drupal, Backbone, CKEDITOR, _) {
+>>>>>>> dev
   Drupal.ckeditor.ControllerView = Backbone.View.extend(
     /** @lends Drupal.ckeditor.ControllerView# */ {
       /**
@@ -58,12 +62,20 @@
           this.$el
             .find('.ckeditor-active-toolbar-configuration')
             .children('.ckeditor-row')
+<<<<<<< HEAD
             .each(function() {
+=======
+            .each(function () {
+>>>>>>> dev
               const groups = [];
               // Process the button groups.
               $(this)
                 .find('.ckeditor-toolbar-group')
+<<<<<<< HEAD
                 .each(function() {
+=======
+                .each(function () {
+>>>>>>> dev
                   const $group = $(this);
                   const $buttons = $group.find('.ckeditor-button');
                   if ($buttons.length) {
@@ -75,7 +87,11 @@
                     };
                     $group
                       .find('.ckeditor-button, .ckeditor-multiple-button')
+<<<<<<< HEAD
                       .each(function() {
+=======
+                      .each(function () {
+>>>>>>> dev
                         group.items.push(
                           $(this).attr('data-drupal-ckeditor-button-name'),
                         );
@@ -130,11 +146,19 @@
        *   CKEditor object.
        */
       getCKEditorFeatures(CKEditorConfig, callback) {
+<<<<<<< HEAD
         const getProperties = function(CKEPropertiesList) {
           return _.isObject(CKEPropertiesList) ? _.keys(CKEPropertiesList) : [];
         };
 
         const convertCKERulesToEditorFeature = function(
+=======
+        const getProperties = function (CKEPropertiesList) {
+          return _.isObject(CKEPropertiesList) ? _.keys(CKEPropertiesList) : [];
+        };
+
+        const convertCKERulesToEditorFeature = function (
+>>>>>>> dev
           feature,
           CKEFeatureRules,
         ) {
@@ -174,7 +198,11 @@
         const hiddenEditorConfig = this.model.get('hiddenEditorConfig');
         if (hiddenEditorConfig.drupalExternalPlugins) {
           const externalPlugins = hiddenEditorConfig.drupalExternalPlugins;
+<<<<<<< HEAD
           Object.keys(externalPlugins || {}).forEach(pluginName => {
+=======
+          Object.keys(externalPlugins || {}).forEach((pluginName) => {
+>>>>>>> dev
             CKEDITOR.plugins.addExternal(
               pluginName,
               externalPlugins[pluginName],
@@ -186,7 +214,11 @@
 
         // Once the instance is ready, retrieve the allowedContent filter rules
         // and convert them to Drupal.EditorFeature objects.
+<<<<<<< HEAD
         CKEDITOR.once('instanceReady', e => {
+=======
+        CKEDITOR.once('instanceReady', (e) => {
+>>>>>>> dev
           if (e.editor.name === hiddenCKEditorID) {
             // First collect all CKEditor allowedContent rules.
             const CKEFeatureRulesMap = {};
@@ -207,7 +239,11 @@
             // @see getFeatureForButton()
             const features = {};
             const buttonsToFeatures = {};
+<<<<<<< HEAD
             Object.keys(CKEFeatureRulesMap).forEach(featureName => {
+=======
+            Object.keys(CKEFeatureRulesMap).forEach((featureName) => {
+>>>>>>> dev
               const feature = new Drupal.EditorFeature(featureName);
               convertCKERulesToEditorFeature(
                 feature,
@@ -244,9 +280,14 @@
         // Get a Drupal.editorFeature object that contains all metadata for
         // the feature that was just added or removed. Not every feature has
         // such metadata.
+<<<<<<< HEAD
         let featureName = this.model.get('buttonsToFeatures')[
           button.toLowerCase()
         ];
+=======
+        let featureName =
+          this.model.get('buttonsToFeatures')[button.toLowerCase()];
+>>>>>>> dev
         // Features without an associated command do not have a 'feature name' by
         // default, so we use the lowercased button name instead.
         if (!featureName) {
@@ -366,16 +407,28 @@
             'CKEditorPluginSettingsChanged.ckeditorAdmin',
             (event, settingsChanges) => {
               // Update hidden CKEditor configuration.
+<<<<<<< HEAD
               Object.keys(settingsChanges || {}).forEach(key => {
+=======
+              Object.keys(settingsChanges || {}).forEach((key) => {
+>>>>>>> dev
                 hiddenEditorConfig[key] = settingsChanges[key];
               });
 
               // Retrieve features for the updated hidden CKEditor configuration.
+<<<<<<< HEAD
               getCKEditorFeatures(hiddenEditorConfig, features => {
                 // Trigger a standardized text editor configuration event for each
                 // feature that was modified by the configuration changes.
                 const featuresMetadata = view.model.get('featuresMetadata');
                 Object.keys(features || {}).forEach(name => {
+=======
+              getCKEditorFeatures(hiddenEditorConfig, (features) => {
+                // Trigger a standardized text editor configuration event for each
+                // feature that was modified by the configuration changes.
+                const featuresMetadata = view.model.get('featuresMetadata');
+                Object.keys(features || {}).forEach((name) => {
+>>>>>>> dev
                   const feature = features[name];
                   if (
                     featuresMetadata.hasOwnProperty(name) &&
@@ -406,8 +459,13 @@
         config = _.flatten(config);
 
         // Loop through the button groups and pull out the buttons.
+<<<<<<< HEAD
         config.forEach(group => {
           group.items.forEach(button => {
+=======
+        config.forEach((group) => {
+          group.items.forEach((button) => {
+>>>>>>> dev
             buttons.push(button);
           });
         });

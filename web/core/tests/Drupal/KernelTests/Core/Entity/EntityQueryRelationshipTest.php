@@ -22,7 +22,11 @@ class EntityQueryRelationshipTest extends EntityKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['taxonomy'];
+=======
+  protected static $modules = ['taxonomy'];
+>>>>>>> dev
 
   /**
    * Term entities.
@@ -59,7 +63,11 @@ class EntityQueryRelationshipTest extends EntityKernelTestBase {
    */
   protected $queryResults;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('taxonomy_term');
@@ -114,78 +122,134 @@ class EntityQueryRelationshipTest extends EntityKernelTestBase {
     // This returns the 0th entity as that's the only one pointing to the 0th
     // account.
     $this->queryResults = $storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->condition("user_id.entity.name", $this->accounts[0]->getAccountName())
       ->execute();
     $this->assertResults([0]);
     // This returns the 1st and 2nd entity as those point to the 1st account.
     $this->queryResults = $storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->condition("user_id.entity.name", $this->accounts[0]->getAccountName(), '<>')
       ->execute();
     $this->assertResults([1, 2]);
     // This returns all three entities because all of them point to an
     // account.
     $this->queryResults = $storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->exists("user_id.entity.name")
       ->execute();
     $this->assertResults([0, 1, 2]);
     // This returns no entities because all of them point to an account.
     $this->queryResults = $storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->notExists("user_id.entity.name")
       ->execute();
     $this->assertCount(0, $this->queryResults);
     // This returns the 0th entity as that's only one pointing to the 0th
     // term (test without specifying the field column).
     $this->queryResults = $storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->condition("$this->fieldName.entity.name", $this->terms[0]->name->value)
       ->execute();
     $this->assertResults([0]);
     // This returns the 0th entity as that's only one pointing to the 0th
     // term (test with specifying the column name).
     $this->queryResults = $storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->condition("$this->fieldName.target_id.entity.name", $this->terms[0]->name->value)
       ->execute();
     $this->assertResults([0]);
     // This returns the 1st and 2nd entity as those point to the 1st term.
     $this->queryResults = $storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->condition("$this->fieldName.entity.name", $this->terms[0]->name->value, '<>')
       ->execute();
     $this->assertResults([1, 2]);
     // This returns the 0th entity as that's only one pointing to the 0th
     // account.
     $this->queryResults = $storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->condition("user_id.entity:user.name", $this->accounts[0]->getAccountName())
       ->execute();
     $this->assertResults([0]);
     // This returns the 1st and 2nd entity as those point to the 1st account.
     $this->queryResults = $storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->condition("user_id.entity:user.name", $this->accounts[0]->getAccountName(), '<>')
       ->execute();
     $this->assertResults([1, 2]);
     // This returns all three entities because all of them point to an
     // account.
     $this->queryResults = $storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->exists("user_id.entity:user.name")
       ->execute();
     $this->assertResults([0, 1, 2]);
     // This returns no entities because all of them point to an account.
     $this->queryResults = $storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->notExists("user_id.entity:user.name")
       ->execute();
     $this->assertCount(0, $this->queryResults);
     // This returns the 0th entity as that's only one pointing to the 0th
     // term (test without specifying the field column).
     $this->queryResults = $storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->condition("$this->fieldName.entity:taxonomy_term.name", $this->terms[0]->name->value)
       ->execute();
     $this->assertResults([0]);
     // This returns the 0th entity as that's only one pointing to the 0th
     // term (test with specifying the column name).
     $this->queryResults = $storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->condition("$this->fieldName.target_id.entity:taxonomy_term.name", $this->terms[0]->name->value)
       ->execute();
     $this->assertResults([0]);
     // This returns the 1st and 2nd entity as those point to the 1st term.
     $this->queryResults = $storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->condition("$this->fieldName.entity:taxonomy_term.name", $this->terms[0]->name->value, '<>')
       ->execute();
     $this->assertResults([1, 2]);
@@ -200,6 +264,10 @@ class EntityQueryRelationshipTest extends EntityKernelTestBase {
       ->get('entity_type.manager')
       ->getStorage('taxonomy_term')
       ->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(FALSE)
+>>>>>>> dev
       ->condition('langcode.language.foo', 'bar')
       ->execute();
   }
@@ -211,10 +279,18 @@ class EntityQueryRelationshipTest extends EntityKernelTestBase {
    *   A list of indexes in the $this->entities array.
    */
   protected function assertResults($expected) {
+<<<<<<< HEAD
     $this->assertEqual(count($this->queryResults), count($expected));
     foreach ($expected as $key) {
       $id = $this->entities[$key]->id();
       $this->assertEqual($this->queryResults[$id], $id);
+=======
+    $expected_count = count($expected);
+    $this->assertCount($expected_count, $this->queryResults);
+    foreach ($expected as $key) {
+      $id = $this->entities[$key]->id();
+      $this->assertEquals($id, $this->queryResults[$id]);
+>>>>>>> dev
     }
   }
 

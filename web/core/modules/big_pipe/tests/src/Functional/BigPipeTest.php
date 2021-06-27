@@ -31,7 +31,11 @@ class BigPipeTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['big_pipe', 'big_pipe_test', 'dblog'];
+=======
+  protected static $modules = ['big_pipe', 'big_pipe_test', 'dblog'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -46,12 +50,21 @@ class BigPipeTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     parent::setUp();
 
     // Ignore the <meta> refresh that big_pipe.module sets. It causes a redirect
     // to a page that sets another cookie, which causes WebTestBase to lose the
     // session cookie. To avoid this problem, tests should first call
+=======
+  protected function setUp(): void {
+    parent::setUp();
+
+    // Ignore the <meta> refresh that big_pipe.module sets. It causes a redirect
+    // to a page that sets another cookie, which causes BrowserTestBase to lose
+    // the session cookie. To avoid this problem, tests should first call
+>>>>>>> dev
     // drupalGet() and then call checkForMetaRefresh() manually, and then reset
     // $this->maximumMetaRefreshCount and $this->metaRefreshCount.
     // @see doMetaRefresh()
@@ -184,21 +197,35 @@ class BigPipeTest extends BrowserTestBase {
       1 => $cases['html']->bigPipePlaceholderId,
     ]);
 
+<<<<<<< HEAD
     $this->assertRaw('</body>', 'Closing body tag present.');
+=======
+    $this->assertRaw('</body>');
+>>>>>>> dev
 
     // Verifying BigPipe assets are present.
     $this->assertFalse(empty($this->getDrupalSettings()), 'drupalSettings present.');
     $this->assertContains('big_pipe/big_pipe', explode(',', $this->getDrupalSettings()['ajaxPageState']['libraries']), 'BigPipe asset library is present.');
 
     // Verify that the two expected exceptions are logged as errors.
+<<<<<<< HEAD
     $this->assertEqual($log_count + 2, (int) $connection->select('watchdog')->countQuery()->execute()->fetchField(), 'Two new watchdog entries.');
+=======
+    $this->assertEquals($log_count + 2, (int) $connection->select('watchdog')->countQuery()->execute()->fetchField(), 'Two new watchdog entries.');
+>>>>>>> dev
     // Using dynamic select queries with the method range() allows contrib
     // database drivers the ability to insert their own limit and offset
     // functionality.
     $records = $connection->select('watchdog', 'w')->fields('w')->orderBy('wid', 'DESC')->range(0, 2)->execute()->fetchAll();
+<<<<<<< HEAD
     $this->assertEqual(RfcLogLevel::ERROR, $records[0]->severity);
     $this->assertStringContainsString('Oh noes!', (string) unserialize($records[0]->variables)['@message']);
     $this->assertEqual(RfcLogLevel::ERROR, $records[1]->severity);
+=======
+    $this->assertEquals(RfcLogLevel::ERROR, $records[0]->severity);
+    $this->assertStringContainsString('Oh noes!', (string) unserialize($records[0]->variables)['@message']);
+    $this->assertEquals(RfcLogLevel::ERROR, $records[1]->severity);
+>>>>>>> dev
     $this->assertStringContainsString('You are not allowed to say llamas are not cool!', (string) unserialize($records[1]->variables)['@message']);
 
     // Verify that 4xx responses work fine. (4xx responses are handled by
@@ -213,8 +240,14 @@ class BigPipeTest extends BrowserTestBase {
     // The 'edge_case__html_exception' case throws an exception.
     $this->assertRaw('The website encountered an unexpected error. Please try again later');
     $this->assertRaw('You are not allowed to say llamas are not cool!');
+<<<<<<< HEAD
     $this->assertNoRaw(BigPipe::STOP_SIGNAL, 'BigPipe stop signal absent: error occurred before then.');
     $this->assertNoRaw('</body>', 'Closing body tag absent: error occurred before then.');
+=======
+    // Check that stop signal and closing body tag are absent.
+    $this->assertNoRaw(BigPipe::STOP_SIGNAL);
+    $this->assertNoRaw('</body>');
+>>>>>>> dev
     // The exception is expected. Do not interpret it as a test failure.
     unlink($this->root . '/' . $this->siteDirectory . '/error.log');
   }
@@ -262,6 +295,7 @@ class BigPipeTest extends BrowserTestBase {
     ]);
 
     // Verifying there are no BigPipe placeholders & replacements.
+<<<<<<< HEAD
     $this->assertEqual('<none>', $this->drupalGetHeader('BigPipe-Test-Placeholders'));
     // Verifying BigPipe start/stop signals are absent.
     $this->assertNoRaw(BigPipe::START_SIGNAL, 'BigPipe start signal absent.');
@@ -270,6 +304,17 @@ class BigPipeTest extends BrowserTestBase {
     // Verifying BigPipe assets are absent.
     $this->assertTrue(!isset($this->getDrupalSettings()['bigPipePlaceholderIds']) && empty($this->getDrupalSettings()['ajaxPageState']), 'BigPipe drupalSettings and BigPipe asset library absent.');
     $this->assertRaw('</body>', 'Closing body tag present.');
+=======
+    $this->assertSession()->responseHeaderEquals('BigPipe-Test-Placeholders', '<none>');
+    // Verifying BigPipe start/stop signals are absent.
+    $this->assertNoRaw(BigPipe::START_SIGNAL);
+    $this->assertNoRaw(BigPipe::STOP_SIGNAL);
+
+    // Verifying BigPipe assets are absent.
+    $this->assertArrayNotHasKey('bigPipePlaceholderIds', $this->getDrupalSettings());
+    $this->assertArrayNotHasKey('ajaxPageState', $this->getDrupalSettings());
+    $this->assertRaw('</body>');
+>>>>>>> dev
 
     // Verify that 4xx responses work fine. (4xx responses are handled by
     // subrequests to a route pointing to a controller with the desired output.)
@@ -283,7 +328,11 @@ class BigPipeTest extends BrowserTestBase {
     // The 'edge_case__html_exception' case throws an exception.
     $this->assertRaw('The website encountered an unexpected error. Please try again later');
     $this->assertRaw('You are not allowed to say llamas are not cool!');
+<<<<<<< HEAD
     $this->assertNoRaw('</body>', 'Closing body tag absent: error occurred before then.');
+=======
+    $this->assertNoRaw('</body>');
+>>>>>>> dev
     // The exception is expected. Do not interpret it as a test failure.
     unlink($this->root . '/' . $this->siteDirectory . '/error.log');
   }
@@ -309,7 +358,11 @@ class BigPipeTest extends BrowserTestBase {
     $this->assertNoRaw('The count is 2.');
     $this->assertNoRaw('The count is 3.');
     $raw_content = $this->getSession()->getPage()->getContent();
+<<<<<<< HEAD
     $this->assertTrue(substr_count($raw_content, $expected_placeholder_replacement) == 1, 'Only one placeholder replacement was found for the duplicate #lazy_builder arrays.');
+=======
+    $this->assertSame(1, substr_count($raw_content, $expected_placeholder_replacement), 'Only one placeholder replacement was found for the duplicate #lazy_builder arrays.');
+>>>>>>> dev
 
     // By calling performMetaRefresh() here, we simulate JavaScript being
     // disabled, because as far as the BigPipe module is concerned, it is
@@ -327,8 +380,13 @@ class BigPipeTest extends BrowserTestBase {
   protected function assertBigPipeResponseHeadersPresent() {
     // Check that Cache-Control header set to "private".
     $this->assertSession()->responseHeaderContains('Cache-Control', 'private');
+<<<<<<< HEAD
     $this->assertEqual('no-store, content="BigPipe/1.0"', $this->drupalGetHeader('Surrogate-Control'));
     $this->assertEqual('no', $this->drupalGetHeader('X-Accel-Buffering'));
+=======
+    $this->assertSession()->responseHeaderEquals('Surrogate-Control', 'no-store, content="BigPipe/1.0"');
+    $this->assertSession()->responseHeaderEquals('X-Accel-Buffering', 'no');
+>>>>>>> dev
   }
 
   /**
@@ -339,7 +397,11 @@ class BigPipeTest extends BrowserTestBase {
    *   markup.
    */
   protected function assertBigPipeNoJsPlaceholders(array $expected_big_pipe_nojs_placeholders) {
+<<<<<<< HEAD
     $this->assertSetsEqual(array_keys($expected_big_pipe_nojs_placeholders), array_map('rawurldecode', explode(' ', $this->drupalGetHeader('BigPipe-Test-No-Js-Placeholders'))));
+=======
+    $this->assertSetsEqual(array_keys($expected_big_pipe_nojs_placeholders), array_map('rawurldecode', explode(' ', $this->getSession()->getResponseHeader('BigPipe-Test-No-Js-Placeholders'))));
+>>>>>>> dev
     foreach ($expected_big_pipe_nojs_placeholders as $big_pipe_nojs_placeholder => $expected_replacement) {
       // Checking whether the replacement for the BigPipe no-JS placeholder
       // $big_pipe_nojs_placeholder is present.
@@ -360,13 +422,21 @@ class BigPipeTest extends BrowserTestBase {
    *   defined in the order that they are expected to be rendered & streamed.
    */
   protected function assertBigPipePlaceholders(array $expected_big_pipe_placeholders, array $expected_big_pipe_placeholder_stream_order) {
+<<<<<<< HEAD
     $this->assertSetsEqual(array_keys($expected_big_pipe_placeholders), explode(' ', $this->drupalGetHeader('BigPipe-Test-Placeholders')));
+=======
+    $this->assertSetsEqual(array_keys($expected_big_pipe_placeholders), explode(' ', $this->getSession()->getResponseHeader('BigPipe-Test-Placeholders')));
+>>>>>>> dev
     $placeholder_positions = [];
     $placeholder_replacement_positions = [];
     foreach ($expected_big_pipe_placeholders as $big_pipe_placeholder_id => $expected_ajax_response) {
       // Verify expected placeholder.
       $expected_placeholder_html = '<span data-big-pipe-placeholder-id="' . $big_pipe_placeholder_id . '"></span>';
+<<<<<<< HEAD
       $this->assertRaw($expected_placeholder_html, 'BigPipe placeholder for placeholder ID "' . $big_pipe_placeholder_id . '" found.');
+=======
+      $this->assertRaw($expected_placeholder_html);
+>>>>>>> dev
       $pos = strpos($this->getSession()->getPage()->getContent(), $expected_placeholder_html);
       $placeholder_positions[$pos] = $big_pipe_placeholder_id;
       // Verify expected placeholder replacement.
@@ -377,21 +447,34 @@ class BigPipeTest extends BrowserTestBase {
         $this->assertNoRaw($expected_placeholder_replacement);
         continue;
       }
+<<<<<<< HEAD
       $this->assertEqual($expected_ajax_response, trim($result[0]->getText()));
+=======
+      $this->assertEquals($expected_ajax_response, trim($result[0]->getText()));
+>>>>>>> dev
       $this->assertRaw($expected_placeholder_replacement);
       $pos = strpos($this->getSession()->getPage()->getContent(), $expected_placeholder_replacement);
       $placeholder_replacement_positions[$pos] = $big_pipe_placeholder_id;
     }
     ksort($placeholder_positions, SORT_NUMERIC);
+<<<<<<< HEAD
     $this->assertEqual(array_keys($expected_big_pipe_placeholders), array_values($placeholder_positions));
     $placeholders = array_map(function (NodeElement $element) {
       return $element->getAttribute('data-big-pipe-placeholder-id');
     }, $this->cssSelect('[data-big-pipe-placeholder-id]'));
     $this->assertEqual(count($expected_big_pipe_placeholders), count(array_unique($placeholders)));
+=======
+    $this->assertEquals(array_keys($expected_big_pipe_placeholders), array_values($placeholder_positions));
+    $placeholders = array_map(function (NodeElement $element) {
+      return $element->getAttribute('data-big-pipe-placeholder-id');
+    }, $this->cssSelect('[data-big-pipe-placeholder-id]'));
+    $this->assertSame(count($expected_big_pipe_placeholders), count(array_unique($placeholders)));
+>>>>>>> dev
     $expected_big_pipe_placeholders_with_replacements = [];
     foreach ($expected_big_pipe_placeholder_stream_order as $big_pipe_placeholder_id) {
       $expected_big_pipe_placeholders_with_replacements[$big_pipe_placeholder_id] = $expected_big_pipe_placeholders[$big_pipe_placeholder_id];
     }
+<<<<<<< HEAD
     $this->assertEqual($expected_big_pipe_placeholders_with_replacements, array_filter($expected_big_pipe_placeholders));
     $this->assertSetsEqual(array_keys($expected_big_pipe_placeholders_with_replacements), array_values($placeholder_replacement_positions));
     $this->assertEqual(count($expected_big_pipe_placeholders_with_replacements), preg_match_all('/' . preg_quote('<script type="application/vnd.drupal-ajax" data-big-pipe-replacement-for-placeholder-with-id="', '/') . '/', $this->getSession()->getPage()->getContent()));
@@ -399,6 +482,15 @@ class BigPipeTest extends BrowserTestBase {
     // Verifying BigPipe start/stop signals.
     $this->assertRaw(BigPipe::START_SIGNAL, 'BigPipe start signal present.');
     $this->assertRaw(BigPipe::STOP_SIGNAL, 'BigPipe stop signal present.');
+=======
+    $this->assertEquals($expected_big_pipe_placeholders_with_replacements, array_filter($expected_big_pipe_placeholders));
+    $this->assertSetsEqual(array_keys($expected_big_pipe_placeholders_with_replacements), array_values($placeholder_replacement_positions));
+    $this->assertSame(count($expected_big_pipe_placeholders_with_replacements), preg_match_all('/' . preg_quote('<script type="application/vnd.drupal-ajax" data-big-pipe-replacement-for-placeholder-with-id="', '/') . '/', $this->getSession()->getPage()->getContent()));
+
+    // Verifying BigPipe start/stop signals.
+    $this->assertRaw(BigPipe::START_SIGNAL);
+    $this->assertRaw(BigPipe::STOP_SIGNAL);
+>>>>>>> dev
     $start_signal_position = strpos($this->getSession()->getPage()->getContent(), BigPipe::START_SIGNAL);
     $stop_signal_position = strpos($this->getSession()->getPage()->getContent(), BigPipe::STOP_SIGNAL);
     $this->assertTrue($start_signal_position < $stop_signal_position, 'BigPipe start signal appears before stop signal.');
@@ -413,7 +505,11 @@ class BigPipeTest extends BrowserTestBase {
         $stop_signal_position => BigPipe::STOP_SIGNAL,
       ];
     ksort($actual_stream_order, SORT_NUMERIC);
+<<<<<<< HEAD
     $this->assertEqual($expected_stream_order, array_values($actual_stream_order));
+=======
+    $this->assertEquals($expected_stream_order, array_values($actual_stream_order));
+>>>>>>> dev
   }
 
   /**
@@ -457,7 +553,11 @@ class BigPipeTest extends BrowserTestBase {
    * Asserts whether a cookie exists on the client or not.
    */
   protected function assertCookieExists($cookie_name, $expected, $cookie_label) {
+<<<<<<< HEAD
     $this->assertEqual($expected, !empty($this->getSession()->getCookie($cookie_name)), $expected ? "$cookie_label cookie exists." : "$cookie_label cookie does not exist.");
+=======
+    $this->assertEquals($expected, !empty($this->getSession()->getCookie($cookie_name)), $expected ? "$cookie_label cookie exists." : "$cookie_label cookie does not exist.");
+>>>>>>> dev
   }
 
   /**
@@ -477,21 +577,39 @@ class BigPipeTest extends BrowserTestBase {
     $statuses[1] = $this->getSession()->getStatusCode();
     $this->getSession()->getDriver()->getClient()->followRedirects(TRUE);
 
+<<<<<<< HEAD
     $this->assertEqual($original_url, $this->getSession()->getCurrentUrl(), 'Redirected back to the original location.');
 
     // First response: redirect.
     $this->assertEqual(302, $statuses[0], 'The first response was a 302 (redirect).');
     $this->assertStringStartsWith('big_pipe_nojs=1', $headers[0]['Set-Cookie'][0], 'The first response sets the big_pipe_nojs cookie.');
     $this->assertEqual($original_url, $headers[0]['Location'][0], 'The first response redirected back to the original page.');
+=======
+    $this->assertEquals($original_url, $this->getSession()->getCurrentUrl(), 'Redirected back to the original location.');
+
+    // First response: redirect.
+    $this->assertEquals(302, $statuses[0], 'The first response was a 302 (redirect).');
+    $this->assertStringStartsWith('big_pipe_nojs=1', $headers[0]['Set-Cookie'][0], 'The first response sets the big_pipe_nojs cookie.');
+    $this->assertEquals($original_url, $headers[0]['Location'][0], 'The first response redirected back to the original page.');
+>>>>>>> dev
     $this->assertTrue(empty(array_diff(['cookies:big_pipe_nojs', 'session.exists'], explode(' ', $headers[0]['X-Drupal-Cache-Contexts'][0]))), 'The first response varies by the "cookies:big_pipe_nojs" and "session.exists" cache contexts.');
     $this->assertFalse(isset($headers[0]['Surrogate-Control']), 'The first response has no "Surrogate-Control" header.');
 
     // Second response: redirect followed.
+<<<<<<< HEAD
     $this->assertEqual(200, $statuses[1], 'The second response was a 200.');
     $this->assertTrue(empty(array_diff(['cookies:big_pipe_nojs', 'session.exists'], explode(' ', $headers[0]['X-Drupal-Cache-Contexts'][0]))), 'The first response varies by the "cookies:big_pipe_nojs" and "session.exists" cache contexts.');
     $this->assertEqual('no-store, content="BigPipe/1.0"', $headers[1]['Surrogate-Control'][0], 'The second response has a "Surrogate-Control" header.');
 
     $this->assertNoRaw('<noscript><meta http-equiv="Refresh" content="0; URL=', 'Once the BigPipe no-JS cookie is set, the <meta> refresh is absent: only one redirect ever happens.');
+=======
+    $this->assertEquals(200, $statuses[1], 'The second response was a 200.');
+    $this->assertTrue(empty(array_diff(['cookies:big_pipe_nojs', 'session.exists'], explode(' ', $headers[0]['X-Drupal-Cache-Contexts'][0]))), 'The first response varies by the "cookies:big_pipe_nojs" and "session.exists" cache contexts.');
+    $this->assertEquals('no-store, content="BigPipe/1.0"', $headers[1]['Surrogate-Control'][0], 'The second response has a "Surrogate-Control" header.');
+
+    // Check that the <meta> refresh is absent, only one redirect ever happens.
+    $this->assertNoRaw('<noscript><meta http-equiv="Refresh" content="0; URL=');
+>>>>>>> dev
   }
 
 }

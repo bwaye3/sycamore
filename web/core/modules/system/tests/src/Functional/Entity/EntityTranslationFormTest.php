@@ -20,7 +20,11 @@ class EntityTranslationFormTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['entity_test', 'language', 'node'];
+=======
+  protected static $modules = ['entity_test', 'language', 'node'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -29,7 +33,11 @@ class EntityTranslationFormTest extends BrowserTestBase {
 
   protected $langcodes;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     // Enable translations for the test entity type.
     \Drupal::state()->set('entity_test.translation', TRUE);
@@ -65,29 +73,51 @@ class EntityTranslationFormTest extends BrowserTestBase {
     $edit['body[0][value]'] = $this->randomMachineName(16);
     $this->drupalGet('node/add/page');
     $form_langcode = \Drupal::state()->get('entity_test.form_langcode');
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, t('Save'));
 
     $node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
 
     $this->assertTrue($node->language()->getId() == $form_langcode, 'Form language is the same as the entity language.');
+=======
+    $this->submitForm($edit, 'Save');
+
+    $node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
+
+    $this->assertSame($form_langcode, $node->language()->getId(), 'Form language is the same as the entity language.');
+>>>>>>> dev
 
     // Edit the node and test the form language.
     $this->drupalGet($this->langcodes[0] . '/node/' . $node->id() . '/edit');
     $form_langcode = \Drupal::state()->get('entity_test.form_langcode');
+<<<<<<< HEAD
     $this->assertTrue($node->language()->getId() == $form_langcode, 'Form language is the same as the entity language.');
+=======
+    $this->assertSame($form_langcode, $node->language()->getId(), 'Form language is the same as the entity language.');
+>>>>>>> dev
 
     // Explicitly set form langcode.
     $langcode = $this->langcodes[0];
     $form_state_additions['langcode'] = $langcode;
     \Drupal::service('entity.form_builder')->getForm($node, 'default', $form_state_additions);
     $form_langcode = \Drupal::state()->get('entity_test.form_langcode');
+<<<<<<< HEAD
     $this->assertTrue($langcode == $form_langcode, 'Form language is the same as the language parameter.');
+=======
+    $this->assertSame($form_langcode, $langcode, 'Form language is the same as the language parameter.');
+>>>>>>> dev
 
     // Enable language selector.
     $this->drupalGet('admin/structure/types/manage/page');
     $edit = ['language_configuration[language_alterable]' => TRUE, 'language_configuration[langcode]' => LanguageInterface::LANGCODE_NOT_SPECIFIED];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/structure/types/manage/page', $edit, t('Save content type'));
     $this->assertRaw(t('The content type %type has been updated.', ['%type' => 'Basic page']), 'Basic page content type has been updated.');
+=======
+    $this->drupalGet('admin/structure/types/manage/page');
+    $this->submitForm($edit, 'Save content type');
+    $this->assertRaw(t('The content type %type has been updated.', ['%type' => 'Basic page']));
+>>>>>>> dev
 
     // Create a node with language.
     $edit = [];
@@ -95,12 +125,21 @@ class EntityTranslationFormTest extends BrowserTestBase {
     $edit['title[0][value]'] = $this->randomMachineName(8);
     $edit['body[0][value]'] = $this->randomMachineName(16);
     $edit['langcode[0][value]'] = $langcode;
+<<<<<<< HEAD
     $this->drupalPostForm('node/add/page', $edit, t('Save'));
     $this->assertText(t('Basic page @title has been created.', ['@title' => $edit['title[0][value]']]), 'Basic page created.');
 
     // Verify that the creation message contains a link to a node.
     $view_link = $this->xpath('//div[@class="messages"]//a[contains(@href, :href)]', [':href' => 'node/']);
     $this->assert(isset($view_link), 'The message area contains a link to a node');
+=======
+    $this->drupalGet('node/add/page');
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->pageTextContains('Basic page ' . $edit['title[0][value]'] . ' has been created.');
+
+    // Verify that the creation message contains a link to a node.
+    $this->assertSession()->elementExists('xpath', '//div[@data-drupal-messages]//a[contains(@href, "node/")]');
+>>>>>>> dev
 
     // Check to make sure the node was created.
     $node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
@@ -122,7 +161,11 @@ class EntityTranslationFormTest extends BrowserTestBase {
     $node->save();
     $this->drupalGet($langcode2 . '/node/' . $node->id() . '/edit');
     $form_langcode = \Drupal::state()->get('entity_test.form_langcode');
+<<<<<<< HEAD
     $this->assertTrue($langcode2 == $form_langcode, "Node edit form language is $langcode2.");
+=======
+    $this->assertSame($form_langcode, $langcode2, "Node edit form language is $langcode2.");
+>>>>>>> dev
   }
 
 }

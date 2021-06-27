@@ -15,7 +15,11 @@ class CommentTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['comment', 'migrate_drupal'];
+=======
+  protected static $modules = ['comment', 'migrate_drupal'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

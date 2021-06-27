@@ -2,7 +2,10 @@
 
 namespace Drupal\Tests\field\Unit;
 
+<<<<<<< HEAD
 use Drupal\Tests\AssertHelperTrait;
+=======
+>>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -11,15 +14,22 @@ use Drupal\Tests\UnitTestCase;
  */
 class FieldUninstallValidatorTest extends UnitTestCase {
 
+<<<<<<< HEAD
   use AssertHelperTrait;
 
+=======
+>>>>>>> dev
   /**
    * @var \Drupal\field\FieldUninstallValidator|\PHPUnit\Framework\MockObject\MockObject
    */
   protected $fieldUninstallValidator;
 
   /**
+<<<<<<< HEAD
    * The mock field type plugin manager;
+=======
+   * The mock field type plugin manager.
+>>>>>>> dev
    *
    * @var \Drupal\Core\Field\FieldTypePluginManagerInterface|\PHPUnit\Framework\MockObject\MockObject
    */
@@ -28,7 +38,11 @@ class FieldUninstallValidatorTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->fieldUninstallValidator = $this->getMockBuilder('Drupal\field\FieldUninstallValidator')
       ->disableOriginalConstructor()
@@ -48,7 +62,11 @@ class FieldUninstallValidatorTest extends UnitTestCase {
     $module = $this->randomMachineName();
     $expected = [];
     $reasons = $this->fieldUninstallValidator->validate($module);
+<<<<<<< HEAD
     $this->assertSame($expected, $this->castSafeStrings($reasons));
+=======
+    $this->assertEquals($expected, $reasons);
+>>>>>>> dev
   }
 
   /**
@@ -68,7 +86,11 @@ class FieldUninstallValidatorTest extends UnitTestCase {
     $module = $this->randomMachineName();
     $expected = ['Fields pending deletion'];
     $reasons = $this->fieldUninstallValidator->validate($module);
+<<<<<<< HEAD
     $this->assertSame($expected, $this->castSafeStrings($reasons));
+=======
+    $this->assertEquals($expected, $reasons);
+>>>>>>> dev
   }
 
   /**
@@ -100,7 +122,11 @@ class FieldUninstallValidatorTest extends UnitTestCase {
     $module = $this->randomMachineName();
     $expected = ["The <em class=\"placeholder\">$field_type_label</em> field type is used in the following field: $field_name"];
     $reasons = $this->fieldUninstallValidator->validate($module);
+<<<<<<< HEAD
     $this->assertSame($expected, $this->castSafeStrings($reasons));
+=======
+    $this->assertEquals($expected, $reasons);
+>>>>>>> dev
   }
 
 }

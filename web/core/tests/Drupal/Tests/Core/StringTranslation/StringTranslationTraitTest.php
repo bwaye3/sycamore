@@ -32,7 +32,11 @@ class StringTranslationTraitTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->translation = $this->getObjectForTrait('\Drupal\Core\StringTranslation\StringTranslationTrait');
     $mock = $this->prophesize(TranslationInterface::class);
     $mock->translate(Argument::cetera())->shouldNotBeCalled();

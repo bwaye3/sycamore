@@ -29,6 +29,7 @@ interface NodeAccessControlHandlerInterface {
   public function acquireGrants(NodeInterface $node);
 
   /**
+<<<<<<< HEAD
    * Writes a list of grants to the database, deleting any previously saved ones.
    *
    * Modules that use node access can use this function when doing mass updates
@@ -50,6 +51,8 @@ interface NodeAccessControlHandlerInterface {
   public function writeGrants(NodeInterface $node, $delete = TRUE);
 
   /**
+=======
+>>>>>>> dev
    * Creates the default node access grant entry on the grant storage.
    */
   public function writeDefaultGrant();

@@ -5,7 +5,11 @@ namespace Drupal\Core\Config;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\Entity\ConfigDependencyManager;
 use Drupal\Core\Installer\InstallerKernel;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+=======
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 
 class ConfigInstaller implements ConfigInstallerInterface {
 
@@ -40,7 +44,11 @@ class ConfigInstaller implements ConfigInstallerInterface {
   /**
    * The event dispatcher.
    *
+<<<<<<< HEAD
    * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+=======
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+>>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -76,7 +84,11 @@ class ConfigInstaller implements ConfigInstallerInterface {
    *   The typed configuration manager.
    * @param \Drupal\Core\Config\ConfigManagerInterface $config_manager
    *   The configuration manager.
+<<<<<<< HEAD
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+=======
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
+>>>>>>> dev
    *   The event dispatcher.
    * @param string $install_profile
    *   The name of the currently active installation profile.
@@ -140,9 +152,17 @@ class ConfigInstaller implements ConfigInstallerInterface {
     }
 
     // During a drupal installation optional configuration is installed at the
+<<<<<<< HEAD
     // end of the installation process.
     // @see install_install_profile()
     if (!$this->isSyncing() && !InstallerKernel::installationAttempted()) {
+=======
+    // end of the installation process. Once the install profile is installed
+    // optional configuration should be installed as usual.
+    // @see install_install_profile()
+    $profile_installed = in_array($this->drupalGetProfile(), $this->getEnabledExtensions(), TRUE);
+    if (!$this->isSyncing() && (!InstallerKernel::installationAttempted() || $profile_installed)) {
+>>>>>>> dev
       $optional_install_path = $extension_path . '/' . InstallStorage::CONFIG_OPTIONAL_DIRECTORY;
       if (is_dir($optional_install_path)) {
         // Install any optional config the module provides.
@@ -725,6 +745,7 @@ class ConfigInstaller implements ConfigInstallerInterface {
     return $this->installProfile;
   }
 
+<<<<<<< HEAD
   /**
    * Wrapper for drupal_installation_attempted().
    *
@@ -743,4 +764,6 @@ class ConfigInstaller implements ConfigInstallerInterface {
     return InstallerKernel::installationAttempted();
   }
 
+=======
+>>>>>>> dev
 }

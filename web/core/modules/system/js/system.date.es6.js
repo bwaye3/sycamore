@@ -3,7 +3,11 @@
  * Provides date format preview feature.
  */
 
+<<<<<<< HEAD
 (function($, Drupal, drupalSettings) {
+=======
+(function ($, Drupal, drupalSettings) {
+>>>>>>> dev
   const dateFormats = drupalSettings.dateFormats;
 
   /**

@@ -3,4 +3,7 @@ type: module
 description: 'Test module that adds date conditions to node searches.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

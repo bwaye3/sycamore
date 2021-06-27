@@ -20,7 +20,11 @@ class ClaroTest extends BrowserTestBase {
    *
    * @var string[]
    */
+<<<<<<< HEAD
   public static $modules = ['shortcut'];
+=======
+  protected static $modules = ['shortcut'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -40,7 +44,11 @@ class ClaroTest extends BrowserTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test Claro's configuration schema.
+=======
+   * Tests Claro's configuration schema.
+>>>>>>> dev
    */
   public function testConfigSchema() {
     $this->drupalLogin($this->rootUser);
@@ -67,7 +75,11 @@ class ClaroTest extends BrowserTestBase {
     $this->drupalGet('admin/appearance');
     $this->cssSelect('a[title="Install Seven as default theme"]')[0]->click();
     $this->cssSelect('a[title="Uninstall Claro theme"]')[0]->click();
+<<<<<<< HEAD
     $this->assertText('The Claro theme has been uninstalled.');
+=======
+    $this->assertSession()->pageTextContains('The Claro theme has been uninstalled.');
+>>>>>>> dev
   }
 
 }

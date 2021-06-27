@@ -46,7 +46,11 @@ class UnroutedUrlAssemblerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->requestStack = new RequestStack();
@@ -85,7 +89,11 @@ class UnroutedUrlAssemblerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Provides test data for testAssembleWithExternalUrl
+=======
+   * Provides test data for testAssembleWithExternalUrl.
+>>>>>>> dev
    */
   public function providerTestAssembleWithExternalUrl() {
     return [

@@ -111,6 +111,7 @@ class MachineNameTest extends UnitTestCase {
   }
 
 }
+<<<<<<< HEAD
 
 namespace Drupal\Core\Render\Element;
 
@@ -121,3 +122,5 @@ if (!function_exists('t')) {
   }
 
 }
+=======
+>>>>>>> dev

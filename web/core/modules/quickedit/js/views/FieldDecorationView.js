@@ -8,7 +8,10 @@
 (function ($, Backbone, Drupal) {
   Drupal.quickedit.FieldDecorationView = Backbone.View.extend({
     _widthAttributeIsEmpty: null,
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     events: {
       'mouseenter.quickedit': 'onMouseEnter',
       'mouseleave.quickedit': 'onMouseLeave',
@@ -16,10 +19,15 @@
       'tabIn.quickedit': 'onMouseEnter',
       'tabOut.quickedit': 'onMouseLeave'
     },
+<<<<<<< HEAD
 
     initialize: function initialize(options) {
       this.editorView = options.editorView;
 
+=======
+    initialize: function initialize(options) {
+      this.editorView = options.editorView;
+>>>>>>> dev
       this.listenTo(this.model, 'change:state', this.stateChange);
       this.listenTo(this.model, 'change:isChanged change:inTempStore', this.renderChanged);
     },
@@ -30,6 +38,10 @@
     stateChange: function stateChange(model, state) {
       var from = model.previous('state');
       var to = state;
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       switch (to) {
         case 'inactive':
           this.undecorate();
@@ -37,14 +49,27 @@
 
         case 'candidate':
           this.decorate();
+<<<<<<< HEAD
           if (from !== 'inactive') {
             this.stopHighlight();
+=======
+
+          if (from !== 'inactive') {
+            this.stopHighlight();
+
+>>>>>>> dev
             if (from !== 'highlighted') {
               this.model.set('isChanged', false);
               this.stopEdit();
             }
           }
+<<<<<<< HEAD
           this._unpad();
+=======
+
+          this._unpad();
+
+>>>>>>> dev
           break;
 
         case 'highlighted':
@@ -59,9 +84,17 @@
           if (from !== 'activating') {
             this.prepareEdit();
           }
+<<<<<<< HEAD
           if (this.editorView.getQuickEditUISettings().padding) {
             this._pad();
           }
+=======
+
+          if (this.editorView.getQuickEditUISettings().padding) {
+            this._pad();
+          }
+
+>>>>>>> dev
           break;
 
         case 'changed':
@@ -88,7 +121,13 @@
     },
     onMouseLeave: function onMouseLeave(event) {
       var that = this;
+<<<<<<< HEAD
       that.model.set('state', 'candidate', { reason: 'mouseleave' });
+=======
+      that.model.set('state', 'candidate', {
+        reason: 'mouseleave'
+      });
+>>>>>>> dev
       event.stopPropagation();
     },
     onClick: function onClick(event) {
@@ -104,7 +143,10 @@
     },
     startHighlight: function startHighlight() {
       var that = this;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       that.$el.addClass('quickedit-highlighted');
     },
     stopHighlight: function stopHighlight() {
@@ -130,6 +172,10 @@
       if (this.$el.data('quickedit-padded')) {
         return;
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       var self = this;
 
       if (this.$el[0].style.width === '') {
@@ -138,6 +184,7 @@
       }
 
       var posProp = this._getPositionProperties(this.$el);
+<<<<<<< HEAD
       setTimeout(function () {
         self.$el.removeClass('quickedit-animate-disable-width');
 
@@ -150,6 +197,20 @@
           'padding-right': posProp['padding-right'] + 5 + 'px',
           'padding-bottom': posProp['padding-bottom'] + 5 + 'px',
           'margin-bottom': posProp['margin-bottom'] - 10 + 'px'
+=======
+
+      setTimeout(function () {
+        self.$el.removeClass('quickedit-animate-disable-width');
+        self.$el.css({
+          position: 'relative',
+          top: "".concat(posProp.top - 5, "px"),
+          left: "".concat(posProp.left - 5, "px"),
+          'padding-top': "".concat(posProp['padding-top'] + 5, "px"),
+          'padding-left': "".concat(posProp['padding-left'] + 5, "px"),
+          'padding-right': "".concat(posProp['padding-right'] + 5, "px"),
+          'padding-bottom': "".concat(posProp['padding-bottom'] + 5, "px"),
+          'margin-bottom': "".concat(posProp['margin-bottom'] - 10, "px")
+>>>>>>> dev
         }).data('quickedit-padded', true);
       }, 0);
     },
@@ -157,6 +218,10 @@
       if (!this.$el.data('quickedit-padded')) {
         return;
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       var self = this;
 
       if (this._widthAttributeIsEmpty) {
@@ -164,6 +229,7 @@
       }
 
       var posProp = this._getPositionProperties(this.$el);
+<<<<<<< HEAD
       setTimeout(function () {
         self.$el.removeClass('quickedit-animate-disable-width');
 
@@ -187,16 +253,48 @@
       var props = ['top', 'left', 'bottom', 'right', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom', 'margin-bottom'];
 
       var propCount = props.length;
+=======
+
+      setTimeout(function () {
+        self.$el.removeClass('quickedit-animate-disable-width');
+        self.$el.css({
+          position: 'relative',
+          top: "".concat(posProp.top + 5, "px"),
+          left: "".concat(posProp.left + 5, "px"),
+          'padding-top': "".concat(posProp['padding-top'] - 5, "px"),
+          'padding-left': "".concat(posProp['padding-left'] - 5, "px"),
+          'padding-right': "".concat(posProp['padding-right'] - 5, "px"),
+          'padding-bottom': "".concat(posProp['padding-bottom'] - 5, "px"),
+          'margin-bottom': "".concat(posProp['margin-bottom'] + 10, "px")
+        });
+      }, 0);
+      this.$el.removeData('quickedit-padded');
+    },
+    _getPositionProperties: function _getPositionProperties($e) {
+      var p;
+      var r = {};
+      var props = ['top', 'left', 'bottom', 'right', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom', 'margin-bottom'];
+      var propCount = props.length;
+
+>>>>>>> dev
       for (var i = 0; i < propCount; i++) {
         p = props[i];
         r[p] = parseInt(this._replaceBlankPosition($e.css(p)), 10);
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       return r;
     },
     _replaceBlankPosition: function _replaceBlankPosition(pos) {
       if (pos === 'auto' || !pos) {
         pos = '0px';
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       return pos;
     }
   });

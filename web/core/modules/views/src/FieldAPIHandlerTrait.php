@@ -66,6 +66,7 @@ trait FieldAPIHandlerTrait {
   }
 
   /**
+<<<<<<< HEAD
    * Returns the entity manager.
    *
    * @return \Drupal\Core\Entity\EntityManagerInterface
@@ -88,6 +89,11 @@ trait FieldAPIHandlerTrait {
    * Returns the entity field manager.
    *
    * @return \Drupal\Core\Entity\EntityManagerInterface
+=======
+   * Returns the entity field manager.
+   *
+   * @return \Drupal\Core\Entity\EntityFieldManagerInterface
+>>>>>>> dev
    *   The entity field manager.
    */
   protected function getEntityFieldManager() {

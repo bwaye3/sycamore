@@ -15,7 +15,11 @@ class VocabularyTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['taxonomy'];
+=======
+  protected static $modules = ['taxonomy'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

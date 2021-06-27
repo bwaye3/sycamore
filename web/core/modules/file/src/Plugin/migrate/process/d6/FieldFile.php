@@ -6,7 +6,10 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\migrate\MigrateLookupInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\MigrateExecutableInterface;
+<<<<<<< HEAD
 use Drupal\migrate\Plugin\MigrateProcessInterface;
+=======
+>>>>>>> dev
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -19,6 +22,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class FieldFile extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 
   /**
+<<<<<<< HEAD
    * The migration process plugin, configured for lookups in d6_file.
    *
    * @var \Drupal\migrate\Plugin\MigrateProcessInterface
@@ -31,6 +35,8 @@ class FieldFile extends ProcessPluginBase implements ContainerFactoryPluginInter
   protected $migrationPlugin;
 
   /**
+=======
+>>>>>>> dev
    * The migrate lookup service.
    *
    * @var \Drupal\migrate\MigrateLookupInterface
@@ -51,6 +57,7 @@ class FieldFile extends ProcessPluginBase implements ContainerFactoryPluginInter
    * @param \Drupal\migrate\MigrateLookupInterface $migrate_lookup
    *   The migrate lookup service.
    */
+<<<<<<< HEAD
   // @codingStandardsIgnoreLine
   public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, $migrate_lookup) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -63,6 +70,10 @@ class FieldFile extends ProcessPluginBase implements ContainerFactoryPluginInter
     elseif (!$migrate_lookup instanceof MigrateLookupInterface) {
       throw new \InvalidArgumentException("The fifth argument to " . __METHOD__ . " must be an instance of MigrateLookupInterface.");
     }
+=======
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, MigrateLookupInterface $migrate_lookup) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+>>>>>>> dev
     $this->migration = $migration;
     $this->migrateLookup = $migrate_lookup;
 
@@ -92,6 +103,7 @@ class FieldFile extends ProcessPluginBase implements ContainerFactoryPluginInter
     // some reason -- file migration is notoriously brittle -- and we do NOT
     // want to send invalid file references into the field system (it causes
     // fatals), so return an empty item instead.
+<<<<<<< HEAD
     // This BC layer is included because if the plugin constructor was called
     // in the legacy way with a migration_lookup process plugin, it may have
     // been preconfigured with a different migration to look up against. While
@@ -110,6 +122,12 @@ class FieldFile extends ProcessPluginBase implements ContainerFactoryPluginInter
     if (!empty($fid)) {
       return [
         'target_id' => $fid,
+=======
+    $lookup_result = $this->migrateLookup->lookup('d6_file', [$value['fid']]);
+    if ($lookup_result) {
+      return [
+        'target_id' => $lookup_result[0]['fid'],
+>>>>>>> dev
         'display' => $value['list'],
         'description' => isset($options['description']) ? $options['description'] : '',
         'alt' => isset($options['alt']) ? $options['alt'] : '',

@@ -114,6 +114,22 @@ class MigrationTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * Tests getting requirement list.
+   *
+   * @covers ::getRequirements
+   */
+  public function testGetMigrations() {
+    $migration = new TestMigration();
+
+    $requirements = ['test_a', 'test_b', 'test_c', 'test_d'];
+    $migration->setRequirements($requirements);
+    $this->assertEquals($requirements, $migration->getRequirements());
+  }
+
+  /**
+>>>>>>> dev
    * Tests valid migration dependencies configuration returns expected values.
    *
    * @param array|null $source

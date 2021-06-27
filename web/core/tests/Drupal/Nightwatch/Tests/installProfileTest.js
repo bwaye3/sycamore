@@ -9,7 +9,11 @@ module.exports = {
   after(browser) {
     browser.drupalUninstall();
   },
+<<<<<<< HEAD
   'Test umami profile': browser => {
+=======
+  'Test umami profile': (browser) => {
+>>>>>>> dev
     browser
       .drupalRelativeURL('/test-page')
       .waitForElementVisible('body', 1000)

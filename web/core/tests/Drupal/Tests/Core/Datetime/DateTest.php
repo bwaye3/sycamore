@@ -17,7 +17,11 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 class DateTest extends UnitTestCase {
 
   /**
+<<<<<<< HEAD
    * The mocked entity manager.
+=======
+   * The mocked entity type manager.
+>>>>>>> dev
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface|\PHPUnit\Framework\MockObject\MockObject
    */
@@ -58,7 +62,11 @@ class DateTest extends UnitTestCase {
    */
   protected $dateFormatterStub;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $entity_storage = $this->createMock('Drupal\Core\Entity\EntityStorageInterface');
@@ -412,7 +420,11 @@ class DateTest extends UnitTestCase {
         'max-age' => $max_age,
       ],
     ];
+<<<<<<< HEAD
     $this->assertArrayEquals($expected, $object->toRenderable());
+=======
+    $this->assertEquals($expected, $object->toRenderable());
+>>>>>>> dev
 
     // Test retrieving the formatted time difference string.
     $this->assertEquals($string, $object->getString());
@@ -424,6 +436,7 @@ class DateTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests FormattedDateDiff.
    *
    * @covers \Drupal\Core\Datetime\FormattedDateDiff::getMaxAge
@@ -438,6 +451,8 @@ class DateTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Creates a UNIX timestamp given a date and time string in the format
    * year-month-day hour:minute:seconds (e.g. 2013-12-11 10:09:08).
    *

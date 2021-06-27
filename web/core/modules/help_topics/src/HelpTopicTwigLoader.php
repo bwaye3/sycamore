@@ -2,11 +2,19 @@
 
 namespace Drupal\help_topics;
 
+<<<<<<< HEAD
+=======
+use Drupal\Component\FrontMatter\FrontMatter;
+>>>>>>> dev
 use Drupal\Component\Serialization\Exception\InvalidDataTypeException;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Serialization\Yaml;
 use Twig\Error\LoaderError;
+<<<<<<< HEAD
+=======
+use Twig\Loader\FilesystemLoader;
+>>>>>>> dev
 use Twig\Source;
 
 /**
@@ -24,7 +32,11 @@ use Twig\Source;
  *   experimental modules and development releases of contributed modules.
  *   See https://www.drupal.org/core/experimental for more information.
  */
+<<<<<<< HEAD
 class HelpTopicTwigLoader extends \Twig_Loader_Filesystem {
+=======
+class HelpTopicTwigLoader extends FilesystemLoader {
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -76,14 +88,22 @@ class HelpTopicTwigLoader extends \Twig_Loader_Filesystem {
       // "serializer.yaml" service. This allows the core serializer to utilize
       // core related functionality which isn't available as the standalone
       // component based serializer.
+<<<<<<< HEAD
       $front_matter = FrontMatter::load($contents, Yaml::class);
+=======
+      $front_matter = new FrontMatter($contents, Yaml::class);
+>>>>>>> dev
 
       // Reconstruct the content if there is front matter data detected. Prepend
       // the source with {% line \d+ %} to inform Twig that the source code
       // actually starts on a different line past the front matter data. This is
       // particularly useful when used in error reporting.
       if ($front_matter->getData() && ($line = $front_matter->getLine())) {
+<<<<<<< HEAD
         $contents = "{% line $line %}" . $front_matter->getCode();
+=======
+        $contents = "{% line $line %}" . $front_matter->getContent();
+>>>>>>> dev
       }
     }
     catch (InvalidDataTypeException $e) {

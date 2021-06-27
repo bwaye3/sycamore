@@ -1,5 +1,8 @@
 type: theme_engine
 name: Nyan cat
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 version: VERSION
 package: Core

@@ -77,6 +77,7 @@ class NullCoalesceTest extends MigrateProcessTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests null_coalesce with default value.
    *
    * @covers ::transform
@@ -87,6 +88,50 @@ class NullCoalesceTest extends MigrateProcessTestCase {
     $this->assertSame('Test', $result);
 
     $this->assertSame('default', $plugin->transform([NULL, NULL], $this->migrateExecutable, $this->row, 'destination_property'));
+=======
+   * Tests null_coalesce.
+   *
+   * @param array $source
+   *   The source value.
+   * @param string $default_value
+   *   The default value.
+   * @param mixed $expected_result
+   *   The expected result.
+   *
+   * @covers ::transform
+   *
+   * @dataProvider transformWithDefaultProvider
+   *
+   * @throws \Drupal\migrate\MigrateException
+   */
+  public function testTransformWithDefault(array $source, $default_value, $expected_result) {
+    $plugin = new NullCoalesce(['default_value' => $default_value], 'null_coalesce', []);
+    $result = $plugin->transform($source, $this->migrateExecutable, $this->row, 'destination_property');
+    $this->assertSame($expected_result, $result);
+  }
+
+  /**
+   * Provides Data for ::testTransformWithDefault.
+   */
+  public function transformWithDefaultProvider() {
+    return [
+      'default not used' => [
+        'source' => [NULL, NULL, 'Test', 'Test 2'],
+        'default_value' => 'default',
+        'expected_result' => 'Test',
+      ],
+      'default string' => [
+        'source' => [NULL, NULL],
+        'default_value' => 'default',
+        'expected_result' => 'default',
+      ],
+      'default NULL' => [
+        'source' => [NULL, NULL],
+        'default_value' => NULL,
+        'expected_result' => NULL,
+      ],
+    ];
+>>>>>>> dev
   }
 
 }

@@ -21,7 +21,11 @@ class PluginBaseTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->testHelperPlugin = new TestHelperPlugin([], 'default', []);
@@ -87,7 +91,11 @@ class PluginBaseTest extends UnitTestCase {
         'key' => 'value',
       ],
     ];
+<<<<<<< HEAD
     // Set a storage and a option value, so the option value should be kept.
+=======
+    // Set a storage and an option value, so the option value should be kept.
+>>>>>>> dev
     $test_parameters[] = [
       'storage' => [
         'key' => 'value',

@@ -19,7 +19,11 @@ class FloodTest extends KernelTestBase {
   protected static $modules = ['system'];
 
   /**
+<<<<<<< HEAD
    * Test flood control mechanism clean-up.
+=======
+   * Tests flood control mechanism clean-up.
+>>>>>>> dev
    */
   public function testCleanUp() {
     $threshold = 1;
@@ -47,7 +51,11 @@ class FloodTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test flood control memory backend.
+=======
+   * Tests flood control memory backend.
+>>>>>>> dev
    */
   public function testMemoryBackend() {
     $threshold = 1;
@@ -75,7 +83,11 @@ class FloodTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test flood control database backend.
+=======
+   * Tests flood control database backend.
+>>>>>>> dev
    */
   public function testDatabaseBackend() {
     $threshold = 1;

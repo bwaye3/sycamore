@@ -14,8 +14,14 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
+<<<<<<< HEAD
 use Drupal\Core\TypedData\DataReferenceTargetDefinition;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+=======
+use Drupal\Core\Installer\InstallerKernel;
+use Drupal\Core\TypedData\DataReferenceTargetDefinition;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 use Symfony\Component\HttpKernel\Exception\PreconditionFailedHttpException;
 
 /**
@@ -71,7 +77,11 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
   /**
    * The event dispatcher.
    *
+<<<<<<< HEAD
    * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+=======
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+>>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -101,7 +111,11 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
    *   The entity field manager.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
    *   The cache backend.
+<<<<<<< HEAD
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
+=======
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $dispatcher
+>>>>>>> dev
    *   The event dispatcher.
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityTypeBundleInfoInterface $entity_bundle_info, EntityFieldManagerInterface $entity_field_manager, CacheBackendInterface $cache, EventDispatcherInterface $dispatcher) {
@@ -154,7 +168,11 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
     $fields = static::getFields($raw_fields, $entity_type, $bundle);
     if (!$internalize_resource_type) {
       $event = ResourceTypeBuildEvent::createFromEntityTypeAndBundle($entity_type, $bundle, $fields);
+<<<<<<< HEAD
       $this->eventDispatcher->dispatch(ResourceTypeBuildEvents::BUILD, $event);
+=======
+      $this->eventDispatcher->dispatch($event, ResourceTypeBuildEvents::BUILD);
+>>>>>>> dev
       $internalize_resource_type = $event->resourceTypeShouldBeDisabled();
       $fields = $event->getFields();
     }
@@ -179,7 +197,11 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
       throw new PreconditionFailedHttpException('Server error. The current route is malformed.');
     }
 
+<<<<<<< HEAD
     return $this->getByTypeName("$entity_type_id--$bundle");
+=======
+    return static::lookupResourceType($this->all(), $entity_type_id, $bundle);
+>>>>>>> dev
   }
 
   /**
@@ -267,9 +289,15 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
     // With all fields now aliased, detect any conflicts caused by the
     // automatically generated aliases above.
     foreach (array_intersect($reserved_field_names, array_keys($fields)) as $reserved_field_name) {
+<<<<<<< HEAD
       /* @var \Drupal\jsonapi\ResourceType\ResourceTypeField $aliased_reserved_field */
       $aliased_reserved_field = $fields[$reserved_field_name];
       /* @var \Drupal\jsonapi\ResourceType\ResourceTypeField $field */
+=======
+      /** @var \Drupal\jsonapi\ResourceType\ResourceTypeField $aliased_reserved_field */
+      $aliased_reserved_field = $fields[$reserved_field_name];
+      /** @var \Drupal\jsonapi\ResourceType\ResourceTypeField $field */
+>>>>>>> dev
       foreach (array_diff_key($fields, array_flip([$reserved_field_name])) as $field) {
         if ($aliased_reserved_field->getPublicName() === $field->getPublicName()) {
           throw new \LogicException("The generated alias '{$aliased_reserved_field->getPublicName()}' for field name '{$aliased_reserved_field->getInternalName()}' conflicts with an existing field. Please report this in the JSON:API issue queue!");
@@ -290,6 +318,7 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
   }
 
   /**
+<<<<<<< HEAD
    * Gets the field mapping for the given field names and entity type + bundle.
    *
    * @param string[] $field_names
@@ -327,6 +356,8 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
   }
 
   /**
+=======
+>>>>>>> dev
    * Gets all field names for a given entity type and bundle.
    *
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
@@ -460,6 +491,7 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
    */
   protected function getRelatableResourceTypesFromFieldDefinition(FieldDefinitionInterface $field_definition, array $resource_types) {
     $item_definition = $field_definition->getItemDefinition();
+<<<<<<< HEAD
 
     $entity_type_id = $item_definition->getSetting('target_type');
     $handler_settings = $item_definition->getSetting('handler_settings');
@@ -473,6 +505,36 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
       $type_name = "$entity_type_id--$target_bundle";
       return isset($resource_types[$type_name]) ? $resource_types[$type_name] : NULL;
     }, $target_bundles);
+=======
+    $entity_type_id = $item_definition->getSetting('target_type');
+    $handler_settings = $item_definition->getSetting('handler_settings');
+    $target_bundles = empty($handler_settings['target_bundles']) ? $this->getAllBundlesForEntityType($entity_type_id) : $handler_settings['target_bundles'];
+    $relatable_resource_types = [];
+
+    foreach ($target_bundles as $target_bundle) {
+      if ($resource_type = static::lookupResourceType($resource_types, $entity_type_id, $target_bundle)) {
+        $relatable_resource_types[] = $resource_type;
+      }
+      // Do not warn during the site installation since system integrity
+      // is not guaranteed in this period and the warnings may pop up falsy,
+      // adding confusion to the process.
+      elseif (!InstallerKernel::installationAttempted()) {
+        trigger_error(
+          sprintf(
+            'The "%s" at "%s:%s" references the "%s:%s" entity type that does not exist. Please take action.',
+            $field_definition->getName(),
+            $field_definition->getTargetEntityTypeId(),
+            $field_definition->getTargetBundle(),
+            $entity_type_id,
+            $target_bundle
+          ),
+          E_USER_WARNING
+        );
+      }
+    }
+
+    return $relatable_resource_types;
+>>>>>>> dev
   }
 
   /**
@@ -492,7 +554,11 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
       return $field_type_is_reference[$field_definition->getType()];
     }
 
+<<<<<<< HEAD
     /* @var \Drupal\Core\Field\TypedData\FieldItemDataDefinition $item_definition */
+=======
+    /** @var \Drupal\Core\Field\TypedData\FieldItemDataDefinition $item_definition */
+>>>>>>> dev
     $item_definition = $field_definition->getItemDefinition();
     $main_property = $item_definition->getMainPropertyName();
     $property_definition = $item_definition->getPropertyDefinition($main_property);
@@ -510,7 +576,40 @@ class ResourceTypeRepository implements ResourceTypeRepositoryInterface {
    *   The bundle IDs.
    */
   protected function getAllBundlesForEntityType($entity_type_id) {
+<<<<<<< HEAD
     return array_keys($this->entityTypeBundleInfo->getBundleInfo($entity_type_id));
+=======
+    // Ensure all keys are strings because numeric values are allowed as bundle
+    // names and "array_keys()" casts "42" to 42.
+    return array_map('strval', array_keys($this->entityTypeBundleInfo->getBundleInfo($entity_type_id)));
+  }
+
+  /**
+   * Lookup a resource type by entity type ID and bundle name.
+   *
+   * @param \Drupal\jsonapi\ResourceType\ResourceType[] $resource_types
+   *   The list of resource types to do a lookup.
+   * @param string $entity_type_id
+   *   The entity type of a seekable resource type.
+   * @param string $bundle
+   *   The entity bundle of a seekable resource type.
+   *
+   * @return \Drupal\jsonapi\ResourceType\ResourceType|null
+   *   The resource type or NULL if one cannot be found.
+   */
+  protected static function lookupResourceType(array $resource_types, $entity_type_id, $bundle) {
+    if (isset($resource_types["$entity_type_id--$bundle"])) {
+      return $resource_types["$entity_type_id--$bundle"];
+    }
+
+    foreach ($resource_types as $resource_type) {
+      if ($resource_type->getEntityTypeId() === $entity_type_id && $resource_type->getBundle() === $bundle) {
+        return $resource_type;
+      }
+    }
+
+    return NULL;
+>>>>>>> dev
   }
 
 }

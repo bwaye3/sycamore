@@ -2,7 +2,11 @@
 
 namespace Drupal\Core\Config;
 
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\Event;
+=======
+use Drupal\Component\EventDispatcher\Event;
+>>>>>>> dev
 
 /**
  * Gets information on all the possible configuration collections.

@@ -8,6 +8,7 @@
 (function ($, _, Drupal) {
   Drupal.quickedit.editors.plain_text = Drupal.quickedit.EditorView.extend({
     $textElement: null,
+<<<<<<< HEAD
 
     initialize: function initialize(options) {
       Drupal.quickedit.EditorView.prototype.initialize.call(this, options);
@@ -15,14 +16,27 @@
       var editorModel = this.model;
       var fieldModel = this.fieldModel;
 
+=======
+    initialize: function initialize(options) {
+      Drupal.quickedit.EditorView.prototype.initialize.call(this, options);
+      var editorModel = this.model;
+      var fieldModel = this.fieldModel;
+>>>>>>> dev
       var $fieldItems = this.$el.find('.quickedit-field');
       var $textElement = $fieldItems.length ? $fieldItems.eq(0) : this.$el;
       this.$textElement = $textElement;
       editorModel.set('originalValue', $.trim(this.$textElement.text()));
+<<<<<<< HEAD
 
       var previousText = editorModel.get('originalValue');
       $textElement.on('keyup paste', function (event) {
         var currentText = $.trim($textElement.text());
+=======
+      var previousText = editorModel.get('originalValue');
+      $textElement.on('keyup paste', function (event) {
+        var currentText = $.trim($textElement.text());
+
+>>>>>>> dev
         if (previousText !== currentText) {
           previousText = currentText;
           editorModel.set('currentValue', currentText);
@@ -36,6 +50,10 @@
     stateChange: function stateChange(fieldModel, state, options) {
       var from = fieldModel.previous('state');
       var to = state;
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       switch (to) {
         case 'inactive':
           break;
@@ -44,9 +62,17 @@
           if (from !== 'inactive') {
             this.$textElement.removeAttr('contenteditable');
           }
+<<<<<<< HEAD
           if (from === 'invalid') {
             this.removeValidationErrors();
           }
+=======
+
+          if (from === 'invalid') {
+            this.removeValidationErrors();
+          }
+
+>>>>>>> dev
           break;
 
         case 'highlighted':
@@ -56,6 +82,10 @@
           _.defer(function () {
             fieldModel.set('state', 'active');
           });
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
           break;
 
         case 'active':
@@ -69,6 +99,10 @@
           if (from === 'invalid') {
             this.removeValidationErrors();
           }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
           this.save(options);
           break;
 

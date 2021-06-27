@@ -19,3 +19,9 @@ process:
   language_alterable: status
 destination:
   plugin: entity:language_content_settings
+<<<<<<< HEAD
+=======
+migration_dependencies:
+  required:
+    - language
+>>>>>>> dev

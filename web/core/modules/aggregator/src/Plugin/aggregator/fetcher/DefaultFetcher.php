@@ -8,7 +8,11 @@ use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Http\ClientFactory;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+<<<<<<< HEAD
 use GuzzleHttp\Exception\RequestException;
+=======
+use GuzzleHttp\Exception\TransferException;
+>>>>>>> dev
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -125,7 +129,11 @@ class DefaultFetcher implements FetcherInterface, ContainerFactoryPluginInterfac
       }
       return TRUE;
     }
+<<<<<<< HEAD
     catch (RequestException $e) {
+=======
+    catch (TransferException $e) {
+>>>>>>> dev
       $this->logger->warning('The feed from %site seems to be broken because of error "%error".', ['%site' => $feed->label(), '%error' => $e->getMessage()]);
       $this->messenger->addWarning(t('The feed from %site seems to be broken because of error "%error".', ['%site' => $feed->label(), '%error' => $e->getMessage()]));
       return FALSE;

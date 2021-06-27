@@ -22,7 +22,11 @@ class UserData extends DestinationBase implements ContainerFactoryPluginInterfac
   protected $userData;
 
   /**
+<<<<<<< HEAD
    * Builds an user data entity destination.
+=======
+   * Builds a user data entity destination.
+>>>>>>> dev
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -78,7 +82,11 @@ class UserData extends DestinationBase implements ContainerFactoryPluginInterfac
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function fields(MigrationInterface $migration = NULL) {
+=======
+  public function fields() {
+>>>>>>> dev
     return [
       'uid' => 'The user id.',
       'module' => 'The module name responsible for the settings.',

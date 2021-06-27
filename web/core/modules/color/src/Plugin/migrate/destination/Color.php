@@ -83,7 +83,11 @@ class Color extends DestinationBase implements ContainerFactoryPluginInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function fields(MigrationInterface $migration = NULL) {
+=======
+  public function fields() {
+>>>>>>> dev
     return [];
   }
 

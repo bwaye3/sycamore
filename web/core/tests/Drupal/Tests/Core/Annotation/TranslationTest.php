@@ -22,7 +22,11 @@ class TranslationTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->translationManager = $this->getStringTranslationStub();
   }
 
@@ -36,11 +40,14 @@ class TranslationTest extends UnitTestCase {
     $container->set('string_translation', $this->translationManager);
     \Drupal::setContainer($container);
 
+<<<<<<< HEAD
     $arguments = isset($values['arguments']) ? $values['arguments'] : [];
     $options = isset($values['context']) ? [
       'context' => $values['context'],
     ] : [];
 
+=======
+>>>>>>> dev
     $annotation = new Translation($values);
 
     $this->assertSame($expected, (string) $annotation->get());

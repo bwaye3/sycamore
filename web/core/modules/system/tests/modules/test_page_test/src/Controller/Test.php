@@ -5,6 +5,10 @@ namespace Drupal\test_page_test\Controller;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+<<<<<<< HEAD
+=======
+use Symfony\Component\HttpFoundation\Response;
+>>>>>>> dev
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
@@ -96,6 +100,23 @@ class Test {
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * Sets an HTTP header.
+   *
+   * @param string $name
+   *   The header name.
+   * @param string $value
+   *   (optional) The header value ot set.
+   */
+  public function setHeader($name, $value = NULL) {
+    $response = new Response();
+    $response->headers->set($name, $value);
+    return $response;
+  }
+
+  /**
+>>>>>>> dev
    * Renders a page with encoded markup.
    *
    * @return array
@@ -156,6 +177,59 @@ class Test {
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * Returns a page render array with 2 elements with the same HTML IDs.
+   *
+   * @return array
+   *   A render array as expected by
+   *   \Drupal\Core\Render\RendererInterface::render().
+   */
+  public function renderPageWithDuplicateIds() {
+    return [
+      '#type' => 'container',
+      'title' => [
+        '#type' => 'html_tag',
+        '#tag' => 'h1',
+        '#value' => 'Hello',
+        '#attributes' => ['id' => 'page-element'],
+      ],
+      'description' => [
+        '#type' => 'html_tag',
+        '#tag' => 'h2',
+        '#value' => 'World',
+        '#attributes' => ['id' => 'page-element'],
+      ],
+    ];
+  }
+
+  /**
+   * Returns a page render array with 2 elements with the unique HTML IDs.
+   *
+   * @return array
+   *   A render array as expected by
+   *   \Drupal\Core\Render\RendererInterface::render().
+   */
+  public function renderPageWithoutDuplicateIds() {
+    return [
+      '#type' => 'container',
+      'title' => [
+        '#type' => 'html_tag',
+        '#tag' => 'h1',
+        '#value' => 'Hello',
+        '#attributes' => ['id' => 'page-element-title'],
+      ],
+      'description' => [
+        '#type' => 'html_tag',
+        '#tag' => 'h2',
+        '#value' => 'World',
+        '#attributes' => ['id' => 'page-element-description'],
+      ],
+    ];
+  }
+
+  /**
+>>>>>>> dev
    * Returns a page while triggering deprecation notices.
    */
   public function deprecations() {

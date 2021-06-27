@@ -3,3 +3,7 @@ example:
   css:
     theme:
       css/example.css: {}
+<<<<<<< HEAD
+=======
+      css/example2.css: {}
+>>>>>>> dev

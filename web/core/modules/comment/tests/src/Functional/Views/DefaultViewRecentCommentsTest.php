@@ -23,7 +23,11 @@ class DefaultViewRecentCommentsTest extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'comment', 'block'];
+=======
+  protected static $modules = ['node', 'comment', 'block'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -31,11 +35,19 @@ class DefaultViewRecentCommentsTest extends ViewTestBase {
   protected $defaultTheme = 'stark';
 
   /**
+<<<<<<< HEAD
    * Number of results for the Master display.
    *
    * @var int
    */
   protected $masterDisplayResults = 5;
+=======
+   * Number of results for the Default display.
+   *
+   * @var int
+   */
+  protected $defaultDisplayResults = 5;
+>>>>>>> dev
 
   /**
    * Number of results for the Block display.
@@ -65,7 +77,11 @@ class DefaultViewRecentCommentsTest extends ViewTestBase {
    */
   public $node;
 
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     // Create a new content type
@@ -83,7 +99,11 @@ class DefaultViewRecentCommentsTest extends ViewTestBase {
     $this->container->get('views.views_data')->clear();
 
     // Create some comments and attach them to the created node.
+<<<<<<< HEAD
     for ($i = 0; $i < $this->masterDisplayResults; $i++) {
+=======
+    for ($i = 0; $i < $this->defaultDisplayResults; $i++) {
+>>>>>>> dev
       /** @var \Drupal\comment\CommentInterface $comment */
       $comment = Comment::create([
         'status' => CommentInterface::PUBLISHED,
@@ -97,7 +117,11 @@ class DefaultViewRecentCommentsTest extends ViewTestBase {
       $comment->comment_body->format = 'full_html';
 
       // Ensure comments are sorted in ascending order.
+<<<<<<< HEAD
       $time = REQUEST_TIME + ($this->masterDisplayResults - $i);
+=======
+      $time = REQUEST_TIME + ($this->defaultDisplayResults - $i);
+>>>>>>> dev
       $comment->setCreatedTime($time);
       $comment->changed->value = $time;
 
@@ -136,7 +160,11 @@ class DefaultViewRecentCommentsTest extends ViewTestBase {
     $this->assertIdenticalResultset($view, $expected_result, $map);
 
     // Check the number of results given by the display is the expected.
+<<<<<<< HEAD
     $this->assertEqual(count($view->result), $this->blockDisplayResults,
+=======
+    $this->assertCount($this->blockDisplayResults, $view->result,
+>>>>>>> dev
       new FormattableMarkup('There are exactly @results comments. Expected @expected',
         ['@results' => count($view->result), '@expected' => $this->blockDisplayResults]
       )

@@ -6,7 +6,11 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
+<<<<<<< HEAD
  * Configure RSS settings for this site
+=======
+ * Configure RSS settings for this site.
+>>>>>>> dev
  *
  * @internal
  */
@@ -30,6 +34,7 @@ class RssFeedsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+<<<<<<< HEAD
     $rss_config = $this->config('system.rss');
     $form['feed_description'] = [
       '#type' => 'textarea',
@@ -55,6 +60,18 @@ class RssFeedsForm extends ConfigFormBase {
         'fulltext' => t('Full text'),
       ],
       '#description' => t('Global setting for the default display of content items in each feed.'),
+=======
+    $form['feed_view_mode'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Feed content'),
+      '#default_value' => $this->config('system.rss')->get('items.view_mode'),
+      '#options' => [
+        'title' => $this->t('Titles only'),
+        'teaser' => $this->t('Titles plus teaser'),
+        'fulltext' => $this->t('Full text'),
+      ],
+      '#description' => $this->t('Global setting for the default display of content items in each feed.'),
+>>>>>>> dev
     ];
 
     return parent::buildForm($form, $form_state);
@@ -65,8 +82,11 @@ class RssFeedsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->config('system.rss')
+<<<<<<< HEAD
       ->set('channel.description', $form_state->getValue('feed_description'))
       ->set('items.limit', $form_state->getValue('feed_default_items'))
+=======
+>>>>>>> dev
       ->set('items.view_mode', $form_state->getValue('feed_view_mode'))
       ->save();
 

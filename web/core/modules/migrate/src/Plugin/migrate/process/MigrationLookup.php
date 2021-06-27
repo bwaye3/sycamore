@@ -145,6 +145,7 @@ class MigrationLookup extends ProcessPluginBase implements ContainerFactoryPlugi
    * @param \Drupal\migrate\MigrateStubInterface $migrate_stub
    *   The migrate stub service.
    */
+<<<<<<< HEAD
   // @codingStandardsIgnoreLine
   public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, $migrate_lookup, $migrate_stub = NULL) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -158,6 +159,11 @@ class MigrationLookup extends ProcessPluginBase implements ContainerFactoryPlugi
     }
     $this->migration = $migration;
 
+=======
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, MigrateLookupInterface $migrate_lookup, MigrateStubInterface $migrate_stub) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->migration = $migration;
+>>>>>>> dev
     $this->migrateLookup = $migrate_lookup;
     $this->migrateStub = $migrate_stub;
   }
@@ -298,6 +304,7 @@ class MigrationLookup extends ProcessPluginBase implements ContainerFactoryPlugi
     return !in_array($value, [NULL, FALSE, [], ""], TRUE);
   }
 
+<<<<<<< HEAD
   /**
    * Create a stub row source for later import as stub data.
    *
@@ -323,4 +330,6 @@ class MigrationLookup extends ProcessPluginBase implements ContainerFactoryPlugi
     return new Row($values, $source_ids, TRUE);
   }
 
+=======
+>>>>>>> dev
 }

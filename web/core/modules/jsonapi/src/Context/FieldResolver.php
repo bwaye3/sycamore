@@ -265,6 +265,7 @@ class FieldResolver {
    *
    * @throws \Drupal\Core\Http\Exception\CacheableBadRequestHttpException
    */
+<<<<<<< HEAD
   public function resolveInternalEntityQueryPath($resource_type, $external_field_name, $operator = NULL) {
     $function_args = func_get_args();
     // @todo Remove this conditional block in drupal:9.0.0 and add a type hint
@@ -279,6 +280,9 @@ class FieldResolver {
       throw new \InvalidArgumentException("The first argument to " . __METHOD__ . " should be an instance of \Drupal\jsonapi\ResourceType\ResourceType, " . gettype($resource_type) . " given.");
     }
 
+=======
+  public function resolveInternalEntityQueryPath(ResourceType $resource_type, $external_field_name, $operator = NULL) {
+>>>>>>> dev
     $cacheability = (new CacheableMetadata())->addCacheContexts(['url.query_args:filter', 'url.query_args:sort']);
     if (empty($external_field_name)) {
       throw new CacheableBadRequestHttpException($cacheability, 'No field name was provided for the filter.');
@@ -290,7 +294,11 @@ class FieldResolver {
     $parts = explode('.', $external_field_name);
     $unresolved_path_parts = $parts;
     $reference_breadcrumbs = [];
+<<<<<<< HEAD
     /* @var \Drupal\jsonapi\ResourceType\ResourceType[] $resource_types */
+=======
+    /** @var \Drupal\jsonapi\ResourceType\ResourceType[] $resource_types */
+>>>>>>> dev
     $resource_types = [$resource_type];
     // This complex expression is needed to handle the string, "0", which would
     // otherwise be evaluated as FALSE.
@@ -484,7 +492,11 @@ class FieldResolver {
    */
   protected function getFieldItemDefinitions(array $resource_types, $field_name) {
     return array_reduce($resource_types, function ($result, ResourceType $resource_type) use ($field_name) {
+<<<<<<< HEAD
       /* @var \Drupal\jsonapi\ResourceType\ResourceType $resource_type */
+=======
+      /** @var \Drupal\jsonapi\ResourceType\ResourceType $resource_type */
+>>>>>>> dev
       $entity_type = $resource_type->getEntityTypeId();
       $bundle = $resource_type->getBundle();
       $definitions = $this->fieldManager->getFieldDefinitions($entity_type, $bundle);

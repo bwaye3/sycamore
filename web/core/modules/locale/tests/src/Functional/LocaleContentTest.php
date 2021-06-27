@@ -19,7 +19,11 @@ class LocaleContentTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'locale'];
+=======
+  protected static $modules = ['node', 'locale'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -43,16 +47,27 @@ class LocaleContentTest extends BrowserTestBase {
 
     // Verify that the machine name field is LTR for a new content type.
     $this->drupalGet('admin/structure/types/add');
+<<<<<<< HEAD
     $this->assertFieldByXpath('//input[@name="type" and @dir="ltr"]', NULL, 'The machine name field is LTR when no additional language is configured.');
+=======
+    $type = $this->assertSession()->fieldExists('type');
+    $this->assertSame('ltr', $type->getAttribute('dir'));
+>>>>>>> dev
 
     // Install the Arabic language (which is RTL) and configure as the default.
     $edit = [];
     $edit['predefined_langcode'] = 'ar';
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/language/add', $edit, t('Add language'));
+=======
+    $this->drupalGet('admin/config/regional/language/add');
+    $this->submitForm($edit, 'Add language');
+>>>>>>> dev
 
     $edit = [
       'site_default_language' => 'ar',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/language', $edit, t('Save configuration'));
 
     // Verify that the machine name field is still LTR for a new content type.
@@ -62,6 +77,19 @@ class LocaleContentTest extends BrowserTestBase {
 
   /**
    * Test if a content type can be set to multilingual and language is present.
+=======
+    $this->drupalGet('admin/config/regional/language');
+    $this->submitForm($edit, 'Save configuration');
+
+    // Verify that the machine name field is still LTR for a new content type.
+    $this->drupalGet('admin/structure/types/add');
+    $type = $this->assertSession()->fieldExists('type');
+    $this->assertSame('ltr', $type->getAttribute('dir'));
+  }
+
+  /**
+   * Tests if a content type can be set to multilingual and language is present.
+>>>>>>> dev
    */
   public function testContentTypeLanguageConfiguration() {
     $type1 = $this->drupalCreateContentType();
@@ -92,6 +120,7 @@ class LocaleContentTest extends BrowserTestBase {
       'label' => $name,
       'direction' => LanguageInterface::DIRECTION_LTR,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/language/add', $edit, t('Add custom language'));
 
     // Set the content type to use multilingual support.
@@ -101,6 +130,19 @@ class LocaleContentTest extends BrowserTestBase {
       'language_configuration[language_alterable]' => TRUE,
     ];
     $this->drupalPostForm("admin/structure/types/manage/{$type2->id()}", $edit, t('Save content type'));
+=======
+    $this->drupalGet('admin/config/regional/language/add');
+    $this->submitForm($edit, 'Add custom language');
+
+    // Set the content type to use multilingual support.
+    $this->drupalGet("admin/structure/types/manage/{$type2->id()}");
+    $this->assertSession()->pageTextContains('Language settings');
+    $edit = [
+      'language_configuration[language_alterable]' => TRUE,
+    ];
+    $this->drupalGet("admin/structure/types/manage/{$type2->id()}");
+    $this->submitForm($edit, 'Save content type');
+>>>>>>> dev
     $this->assertRaw(t('The content type %type has been updated.', ['%type' => $type2->label()]));
     $this->drupalLogout();
     \Drupal::languageManager()->reset();
@@ -109,14 +151,24 @@ class LocaleContentTest extends BrowserTestBase {
     $this->drupalLogin($web_user);
     $this->drupalGet("node/add/{$type1->id()}");
     // Verify language select list is not present.
+<<<<<<< HEAD
     $this->assertNoFieldByName('langcode[0][value]', NULL, 'Language select not present on the node add form.');
+=======
+    $this->assertSession()->fieldNotExists('langcode[0][value]');
+>>>>>>> dev
 
     // Verify language selection appears on the node add form.
     $this->drupalGet("node/add/{$type2->id()}");
     // Verify language select list is present.
+<<<<<<< HEAD
     $this->assertFieldByName('langcode[0][value]', NULL, 'Language select present on the node add form.');
     // Ensure language appears.
     $this->assertText($name, 'Language present.');
+=======
+    $this->assertSession()->fieldExists('langcode[0][value]');
+    // Ensure language appears.
+    $this->assertSession()->pageTextContains($name);
+>>>>>>> dev
 
     // Create a node.
     $node_title = $this->randomMachineName();
@@ -131,23 +183,43 @@ class LocaleContentTest extends BrowserTestBase {
     // Edit the content and ensure correct language is selected.
     $path = 'node/' . $node->id() . '/edit';
     $this->drupalGet($path);
+<<<<<<< HEAD
     $this->assertRaw('<option value="' . $langcode . '" selected="selected">' . $name . '</option>', 'Correct language selected.');
+=======
+    $this->assertRaw('<option value="' . $langcode . '" selected="selected">' . $name . '</option>');
+>>>>>>> dev
     // Ensure we can change the node language.
     $edit = [
       'langcode[0][value]' => 'en',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm($path, $edit, t('Save'));
     $this->assertText(t('@title has been updated.', ['@title' => $node_title]));
 
     // Verify that the creation message contains a link to a node.
     $view_link = $this->xpath('//div[@class="messages"]//a[contains(@href, :href)]', [':href' => 'node/' . $node->id()]);
     $this->assert(isset($view_link), 'The message area contains the link to the edited node');
+=======
+    $this->drupalGet($path);
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->pageTextContains($node_title . ' has been updated.');
+
+    // Verify that the creation message contains a link to a node.
+    $xpath = $this->assertSession()->buildXPathQuery('//div[@data-drupal-messages]//a[contains(@href, :href)]', [
+      ':href' => 'node/' . $node->id(),
+    ]);
+    $this->assertSession()->elementExists('xpath', $xpath);
+>>>>>>> dev
 
     $this->drupalLogout();
   }
 
   /**
+<<<<<<< HEAD
    * Test if a dir and lang tags exist in node's attributes.
+=======
+   * Tests if a dir and lang tags exist in node's attributes.
+>>>>>>> dev
    */
   public function testContentTypeDirLang() {
     $type = $this->drupalCreateContentType();
@@ -170,12 +242,22 @@ class LocaleContentTest extends BrowserTestBase {
     // Install Arabic language.
     $edit = [];
     $edit['predefined_langcode'] = 'ar';
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/language/add', $edit, t('Add language'));
+=======
+    $this->drupalGet('admin/config/regional/language/add');
+    $this->submitForm($edit, 'Add language');
+>>>>>>> dev
 
     // Install Spanish language.
     $edit = [];
     $edit['predefined_langcode'] = 'es';
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/language/add', $edit, t('Add language'));
+=======
+    $this->drupalGet('admin/config/regional/language/add');
+    $this->submitForm($edit, 'Add language');
+>>>>>>> dev
     \Drupal::languageManager()->reset();
 
     // Set the content type to use multilingual support.
@@ -183,7 +265,12 @@ class LocaleContentTest extends BrowserTestBase {
     $edit = [
       'language_configuration[language_alterable]' => TRUE,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm("admin/structure/types/manage/{$type->id()}", $edit, t('Save content type'));
+=======
+    $this->drupalGet("admin/structure/types/manage/{$type->id()}");
+    $this->submitForm($edit, 'Save content type');
+>>>>>>> dev
     $this->assertRaw(t('The content type %type has been updated.', ['%type' => $type->label()]));
     $this->drupalLogout();
 

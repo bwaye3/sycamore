@@ -12,7 +12,10 @@ use Drupal\views\Views;
  * Tests the views integration of content_moderation.
  *
  * @group content_moderation
+<<<<<<< HEAD
  * @group legacy
+=======
+>>>>>>> dev
  */
 class ViewsDataIntegrationTest extends ViewsKernelTestBase {
 
@@ -21,7 +24,11 @@ class ViewsDataIntegrationTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'content_moderation_test_views',
     'node',
     'content_moderation',
@@ -32,7 +39,11 @@ class ViewsDataIntegrationTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->installEntitySchema('node');
@@ -55,6 +66,7 @@ class ViewsDataIntegrationTest extends ViewsKernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests the join from the revision data table to the moderation state table.
    */
   public function testContentModerationStateRevisionJoin() {
@@ -127,6 +139,8 @@ class ViewsDataIntegrationTest extends ViewsKernelTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests the content moderation state views field.
    */
   public function testContentModerationStateField() {

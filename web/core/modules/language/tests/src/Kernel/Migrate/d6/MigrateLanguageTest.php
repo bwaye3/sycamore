@@ -14,7 +14,11 @@ class MigrateLanguageTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['language'];
+=======
+  protected static $modules = ['language'];
+>>>>>>> dev
 
   /**
    * Asserts various properties of a configurable language entity.
@@ -33,9 +37,15 @@ class MigrateLanguageTest extends MigrateDrupal6TestBase {
     /** @var \Drupal\language\ConfigurableLanguageInterface $language */
     $language = ConfigurableLanguage::load($id);
     $this->assertInstanceOf(ConfigurableLanguageInterface::class, $language);
+<<<<<<< HEAD
     $this->assertIdentical($label, $language->label());
     $this->assertIdentical($direction, $language->getDirection());
     $this->assertIdentical(0, $language->getWeight());
+=======
+    $this->assertSame($label, $language->label());
+    $this->assertSame($direction, $language->getDirection());
+    $this->assertSame(0, $language->getWeight());
+>>>>>>> dev
     $this->assertFalse($language->isLocked());
   }
 

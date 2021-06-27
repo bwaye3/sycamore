@@ -2,6 +2,10 @@
 
 namespace Drupal\dialog_renderer_test\Controller;
 
+<<<<<<< HEAD
+=======
+use Drupal\Component\Serialization\Json;
+>>>>>>> dev
 use Drupal\Core\Url;
 
 /**
@@ -23,6 +27,52 @@ class TestController {
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * Return modal content with link.
+   *
+   * @return array
+   *   Render array for display in modal.
+   */
+  public function modalContentLink() {
+    return [
+      '#type' => 'container',
+      'text' => [
+        '#type' => 'markup',
+        '#markup' => 'Look at me in a modal!<br><a href="#">And a link!</a>',
+      ],
+      'input' => [
+        '#type' => 'textfield',
+        '#size' => 60,
+      ],
+    ];
+  }
+
+  /**
+   * Return modal content with autofocus input.
+   *
+   * @return array
+   *   Render array for display in modal.
+   */
+  public function modalContentInput() {
+    return [
+      '#type' => 'container',
+      'text' => [
+        '#type' => 'markup',
+        '#markup' => 'Look at me in a modal!<br><a href="#">And a link!</a>',
+      ],
+      'input' => [
+        '#type' => 'textfield',
+        '#size' => 60,
+        '#attributes' => [
+          'autofocus' => TRUE,
+        ],
+      ],
+    ];
+  }
+
+  /**
+>>>>>>> dev
    * Displays test links that will open in the modal dialog.
    *
    * @return array
@@ -74,6 +124,77 @@ class TestController {
           ],
         ],
       ],
+<<<<<<< HEAD
+=======
+      'no_close_modal' => [
+        '#title' => 'Hidden close button modal!',
+        '#type' => 'link',
+        '#url' => Url::fromRoute('dialog_renderer_test.modal_content'),
+        '#attributes' => [
+          'class' => ['use-ajax'],
+          'data-dialog-type' => 'modal',
+          'data-dialog-options' => Json::encode([
+            'dialogClass' => 'no-close',
+          ]),
+        ],
+        '#attached' => [
+          'library' => [
+            'core/drupal.ajax',
+            'dialog_renderer_test/dialog_test',
+          ],
+        ],
+      ],
+      'button_pane_modal' => [
+        '#title' => 'Button pane modal!',
+        '#type' => 'link',
+        '#url' => Url::fromRoute('dialog_renderer_test.modal_content'),
+        '#attributes' => [
+          'class' => ['use-ajax'],
+          'data-dialog-type' => 'modal',
+          'data-dialog-options' => Json::encode([
+            'buttons' => [
+              [
+                'text' => 'OK',
+                'click' => '() => {}',
+              ],
+            ],
+          ]),
+        ],
+        '#attached' => [
+          'library' => [
+            'core/drupal.ajax',
+          ],
+        ],
+      ],
+      'content_link_modal' => [
+        '#title' => 'Content link modal!',
+        '#type' => 'link',
+        '#url' => Url::fromRoute('dialog_renderer_test.modal_content_link'),
+        '#attributes' => [
+          'class' => ['use-ajax'],
+          'data-dialog-type' => 'modal',
+        ],
+        '#attached' => [
+          'library' => [
+            'core/drupal.ajax',
+          ],
+        ],
+      ],
+      'auto_focus_modal' => [
+        '#title' => 'Auto focus modal!',
+        '#type' => 'link',
+        '#url' => Url::fromRoute('dialog_renderer_test.modal_content_input'),
+        '#attributes' => [
+          'class' => ['use-ajax'],
+          'data-dialog-type' => 'modal',
+        ],
+        '#attached' => [
+          'library' => [
+            'core/drupal.ajax',
+          ],
+        ],
+      ],
+>>>>>>> dev
     ];
   }
 

@@ -20,6 +20,7 @@ class EmailConstraint extends Email {
    * {@inheritdoc}
    */
   public function __construct($options = []) {
+<<<<<<< HEAD
     // Since Symfony 4.1, the 'mode' property is used, for previous versions the
     // 'strict' property. If the 'strict' property is set,
     // \Symfony\Component\Validator\Constraints\EmailValidator will trigger
@@ -33,6 +34,9 @@ class EmailConstraint extends Email {
       $default_options = ['strict' => TRUE];
     }
     $options += $default_options;
+=======
+    $options += ['mode' => 'strict'];
+>>>>>>> dev
     parent::__construct($options);
   }
 

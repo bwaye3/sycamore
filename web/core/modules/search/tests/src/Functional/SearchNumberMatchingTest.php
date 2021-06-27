@@ -2,7 +2,10 @@
 
 namespace Drupal\Tests\search\Functional;
 
+<<<<<<< HEAD
 use Drupal\Component\Render\FormattableMarkup;
+=======
+>>>>>>> dev
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\Traits\Core\CronRunTrait;
@@ -60,7 +63,11 @@ class SearchNumberMatchingTest extends BrowserTestBase {
    */
   protected $nodes;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalCreateContentType(['type' => 'page', 'name' => 'Basic page']);
@@ -85,7 +92,11 @@ class SearchNumberMatchingTest extends BrowserTestBase {
     // Run cron to ensure the content is indexed.
     $this->cronRun();
     $this->drupalGet('admin/reports/dblog');
+<<<<<<< HEAD
     $this->assertText(t('Cron run completed'), 'Log shows cron run completed');
+=======
+    $this->assertSession()->pageTextContains('Cron run completed');
+>>>>>>> dev
   }
 
   /**
@@ -97,10 +108,16 @@ class SearchNumberMatchingTest extends BrowserTestBase {
 
       // Verify that the node title does not appear on the search page
       // with a dummy search.
+<<<<<<< HEAD
       $this->drupalPostForm('search/node',
         ['keys' => 'foo'],
         t('Search'));
       $this->assertNoText($node->label(), new FormattableMarkup('%number: node title not shown in dummy search', ['%number' => $i]));
+=======
+      $this->drupalGet('search/node');
+      $this->submitForm(['keys' => 'foo'], 'Search');
+      $this->assertNoText($node->label());
+>>>>>>> dev
 
       // Now verify that we can find node i by searching for any of the
       // numbers.
@@ -110,10 +127,16 @@ class SearchNumberMatchingTest extends BrowserTestBase {
         // "not keyword" when searching.
         $number = ltrim($number, '-');
 
+<<<<<<< HEAD
         $this->drupalPostForm('search/node',
           ['keys' => $number],
           t('Search'));
         $this->assertText($node->label(), new FormattableMarkup('%i: node title shown (search found the node) in search for number %number', ['%i' => $i, '%number' => $number]));
+=======
+        $this->drupalGet('search/node');
+        $this->submitForm(['keys' => $number], 'Search');
+        $this->assertSession()->pageTextContains($node->label());
+>>>>>>> dev
       }
     }
 

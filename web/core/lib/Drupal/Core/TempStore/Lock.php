@@ -54,6 +54,7 @@ final class Lock {
     return $this->updated;
   }
 
+<<<<<<< HEAD
   /**
    * Provides backwards compatibility for using the lock as a \stdClass object.
    */
@@ -69,4 +70,6 @@ final class Lock {
     throw new \InvalidArgumentException($name);
   }
 
+=======
+>>>>>>> dev
 }

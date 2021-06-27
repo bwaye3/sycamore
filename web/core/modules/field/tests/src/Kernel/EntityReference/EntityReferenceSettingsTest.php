@@ -9,7 +9,11 @@ use Drupal\node\Entity\NodeType;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\Tests\field\Traits\EntityReferenceTestTrait;
+<<<<<<< HEAD
 use Symfony\Component\Debug\BufferingLogger;
+=======
+use Symfony\Component\ErrorHandler\BufferingLogger;
+>>>>>>> dev
 
 /**
  * Tests entity reference field settings.
@@ -23,7 +27,11 @@ class EntityReferenceSettingsTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'taxonomy',
     'field',
@@ -65,8 +73,13 @@ class EntityReferenceSettingsTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     parent::setup();
+=======
+  protected function setUp(): void {
+    parent::setUp();
+>>>>>>> dev
 
     $this->installEntitySchema('node');
     $this->installEntitySchema('taxonomy_term');
@@ -115,7 +128,11 @@ class EntityReferenceSettingsTest extends KernelTestBase {
     // Check that the 'target_bundle' setting contains the vocabulary.
     $field_config = FieldConfig::loadByName('node', $this->nodeType->id(), $name);
     $actual_handler_settings = $field_config->getSetting('handler_settings');
+<<<<<<< HEAD
     $this->assertEqual($handler_settings, $actual_handler_settings);
+=======
+    $this->assertEquals($handler_settings, $actual_handler_settings);
+>>>>>>> dev
 
     // Delete the vocabulary.
     $vocabularies[0]->delete();
@@ -159,7 +176,11 @@ class EntityReferenceSettingsTest extends KernelTestBase {
     // Check that the 'target_bundle' setting contains the custom bundle.
     $field_config = FieldConfig::loadByName('node', $this->nodeType->id(), $name);
     $actual_handler_settings = $field_config->getSetting('handler_settings');
+<<<<<<< HEAD
     $this->assertEqual($handler_settings, $actual_handler_settings);
+=======
+    $this->assertEquals($handler_settings, $actual_handler_settings);
+>>>>>>> dev
 
     // Delete the custom bundle.
     entity_test_delete_bundle($this->customBundle, 'entity_test');

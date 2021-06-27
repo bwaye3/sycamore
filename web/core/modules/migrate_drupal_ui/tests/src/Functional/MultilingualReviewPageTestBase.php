@@ -14,6 +14,7 @@ abstract class MultilingualReviewPageTestBase extends MigrateUpgradeTestBase {
   use CreateTestContentEntitiesTrait;
 
   /**
+<<<<<<< HEAD
    * An array suitable for drupalPostForm().
    *
    * @var array
@@ -24,6 +25,11 @@ abstract class MultilingualReviewPageTestBase extends MigrateUpgradeTestBase {
    * {@inheritdoc}
    */
   public static $modules = ['migrate_drupal_ui'];
+=======
+   * {@inheritdoc}
+   */
+  protected static $modules = ['migrate_drupal_ui'];
+>>>>>>> dev
 
   /**
    * Tests the migrate upgrade review form.
@@ -50,6 +56,7 @@ abstract class MultilingualReviewPageTestBase extends MigrateUpgradeTestBase {
   public function testMigrateUpgradeReviewPage() {
     $this->prepare();
     // Start the upgrade process.
+<<<<<<< HEAD
     $this->drupalGet('/upgrade');
     $this->drupalPostForm(NULL, [], t('Continue'));
     $this->drupalPostForm(NULL, $this->edits, t('Review upgrade'));
@@ -67,11 +74,22 @@ abstract class MultilingualReviewPageTestBase extends MigrateUpgradeTestBase {
     $available_paths = $this->getAvailablePaths();
     $missing_paths = $this->getMissingPaths();
     $this->assertUpgradePaths($session, $available_paths, $missing_paths);
+=======
+    $this->submitCredentialForm();
+    $this->submitForm([], 'I acknowledge I may lose data. Continue anyway.');
+
+    // Test the upgrade paths.
+    $this->assertReviewForm();
+>>>>>>> dev
 
     // Check there are no errors when a module does not have any migrations and
     // does not need any. Test with a module that is in both Drupal 6 and
     // Drupal 7 core.
     $module = 'help';
+<<<<<<< HEAD
+=======
+    $module_name = 'Help';
+>>>>>>> dev
     $query = $this->sourceDatabase->delete('system');
     $query->condition('type', 'module');
     $query->condition('name', $module);
@@ -79,16 +97,27 @@ abstract class MultilingualReviewPageTestBase extends MigrateUpgradeTestBase {
 
     // Start the upgrade process.
     $this->drupalGet('/upgrade');
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, [], t('Continue'));
     $this->drupalPostForm(NULL, $this->edits, t('Review upgrade'));
     $this->drupalPostForm(NULL, [], t('I acknowledge I may lose data. Continue anyway.'));
+=======
+    $this->submitForm([], 'Continue');
+    $this->submitForm($this->edits, 'Review upgrade');
+    $this->submitForm([], 'I acknowledge I may lose data. Continue anyway.');
+>>>>>>> dev
 
     // Test the upgrade paths. First remove the module from the available paths
     // list.
     $available_paths = $this->getAvailablePaths();
+<<<<<<< HEAD
     $available_paths = array_diff($available_paths, [$module]);
     $missing_paths = $this->getMissingPaths();
     $this->assertUpgradePaths($session, $available_paths, $missing_paths);
+=======
+    $available_paths = array_diff($available_paths, [$module_name]);
+    $this->assertReviewForm($available_paths);
+>>>>>>> dev
   }
 
   /**
@@ -98,6 +127,7 @@ abstract class MultilingualReviewPageTestBase extends MigrateUpgradeTestBase {
    * is loaded.
    */
   public function prepare() {
+<<<<<<< HEAD
     $connection_options = $this->sourceDatabase->getConnectionOptions();
     $driver = $connection_options['driver'];
     $connection_options['prefix'] = $connection_options['prefix']['default'];
@@ -124,6 +154,8 @@ abstract class MultilingualReviewPageTestBase extends MigrateUpgradeTestBase {
     }
     $this->edits = $this->translatePostValues($edit);
 
+=======
+>>>>>>> dev
     // Enable all modules in the source except test and example modules, but
     // include simpletest.
     /** @var \Drupal\Core\Database\Query\SelectInterface $update */

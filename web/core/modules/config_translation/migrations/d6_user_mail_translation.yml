@@ -70,3 +70,10 @@ destination:
   plugin: config
   config_name: user.mail
   translations: true
+<<<<<<< HEAD
+=======
+migration_dependencies:
+  required:
+    - d6_user_mail
+    - language
+>>>>>>> dev

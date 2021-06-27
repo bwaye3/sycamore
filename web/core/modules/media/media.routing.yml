@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # @deprecated in Drupal 8.6.x, to be removed before Drupal 9.0.0.
 #   This route is not used in Drupal core. As an internal API, it may also be
 #   removed in a minor release. If you are using it, copy the class
@@ -10,6 +11,8 @@ entity.media.multiple_delete_confirm:
   requirements:
     _permission: 'administer media+delete any media'
 
+=======
+>>>>>>> dev
 entity.media.revision:
   path: '/media/{media}/revisions/{media_revision}/view'
   defaults:

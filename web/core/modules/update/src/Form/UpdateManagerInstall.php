@@ -80,7 +80,11 @@ class UpdateManagerInstall extends FormBase {
     return new static(
       $container->get('update.root'),
       $container->get('module_handler'),
+<<<<<<< HEAD
       $container->get('site.path'),
+=======
+      $container->getParameter('site.path'),
+>>>>>>> dev
       $container->get('plugin.manager.archiver')
     );
   }
@@ -107,7 +111,11 @@ class UpdateManagerInstall extends FormBase {
 
     $form['project_url'] = [
       '#type' => 'url',
+<<<<<<< HEAD
       '#title' => $this->t('Install from a URL'),
+=======
+      '#title' => $this->t('Add from a URL'),
+>>>>>>> dev
       '#description' => $this->t('For example: %url', ['%url' => 'https://ftp.drupal.org/files/projects/name.tar.gz']),
     ];
 
@@ -119,7 +127,11 @@ class UpdateManagerInstall extends FormBase {
 
     $form['project_upload'] = [
       '#type' => 'file',
+<<<<<<< HEAD
       '#title' => $this->t('Upload a module or theme archive to install'),
+=======
+      '#title' => $this->t('Upload a module or theme archive'),
+>>>>>>> dev
       '#description' => $this->t('For example: %filename from your local computer', ['%filename' => 'name.tar.gz']),
     ];
 
@@ -127,7 +139,11 @@ class UpdateManagerInstall extends FormBase {
     $form['actions']['submit'] = [
       '#type' => 'submit',
       '#button_type' => 'primary',
+<<<<<<< HEAD
       '#value' => $this->t('Install'),
+=======
+      '#value' => $this->t('Continue'),
+>>>>>>> dev
     ];
 
     return $form;
@@ -139,7 +155,11 @@ class UpdateManagerInstall extends FormBase {
   public function validateForm(array &$form, FormStateInterface $form_state) {
     $all_files = $this->getRequest()->files->get('files', []);
     if (!($form_state->getValue('project_url') xor !empty($all_files['project_upload']))) {
+<<<<<<< HEAD
       $form_state->setErrorByName('project_url', $this->t('You must either provide a URL or upload an archive file to install.'));
+=======
+      $form_state->setErrorByName('project_url', $this->t('You must either provide a URL or upload an archive file.'));
+>>>>>>> dev
     }
   }
 
@@ -224,7 +244,11 @@ class UpdateManagerInstall extends FormBase {
     }
 
     if ($updater->isInstalled()) {
+<<<<<<< HEAD
       $this->messenger()->addError($this->t('%project is already installed.', ['%project' => $project_title]));
+=======
+      $this->messenger()->addError($this->t('%project is already present.', ['%project' => $project_title]));
+>>>>>>> dev
       return;
     }
 

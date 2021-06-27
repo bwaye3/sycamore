@@ -158,6 +158,7 @@ class SqlContentEntityStorage extends ContentEntityStorageBase implements SqlEnt
   }
 
   /**
+<<<<<<< HEAD
    * Gets the base field definitions for a content entity type.
    *
    * @return \Drupal\Core\Field\FieldDefinitionInterface[]
@@ -176,6 +177,8 @@ class SqlContentEntityStorage extends ContentEntityStorageBase implements SqlEnt
   }
 
   /**
+=======
+>>>>>>> dev
    * Constructs a SqlContentEntityStorage object.
    *
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
@@ -188,13 +191,18 @@ class SqlContentEntityStorage extends ContentEntityStorageBase implements SqlEnt
    *   The cache backend to be used.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.
+<<<<<<< HEAD
    * @param \Drupal\Core\Cache\MemoryCache\MemoryCacheInterface|null $memory_cache
+=======
+   * @param \Drupal\Core\Cache\MemoryCache\MemoryCacheInterface $memory_cache
+>>>>>>> dev
    *   The memory cache backend to be used.
    * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entity_type_bundle_info
    *   The entity type bundle info.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    */
+<<<<<<< HEAD
   public function __construct(EntityTypeInterface $entity_type, Connection $database, EntityFieldManagerInterface $entity_field_manager, CacheBackendInterface $cache, LanguageManagerInterface $language_manager, MemoryCacheInterface $memory_cache = NULL, EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL, EntityTypeManagerInterface $entity_type_manager = NULL) {
     parent::__construct($entity_type, $entity_field_manager, $cache, $memory_cache, $entity_type_bundle_info);
     $this->database = $database;
@@ -203,6 +211,12 @@ class SqlContentEntityStorage extends ContentEntityStorageBase implements SqlEnt
       @trigger_error('Calling SqlContentEntityStorage::__construct() with the $entity_type_manager argument is supported in drupal:8.7.0 and will be required before drupal:9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
       $entity_type_manager = \Drupal::entityTypeManager();
     }
+=======
+  public function __construct(EntityTypeInterface $entity_type, Connection $database, EntityFieldManagerInterface $entity_field_manager, CacheBackendInterface $cache, LanguageManagerInterface $language_manager, MemoryCacheInterface $memory_cache, EntityTypeBundleInfoInterface $entity_type_bundle_info, EntityTypeManagerInterface $entity_type_manager) {
+    parent::__construct($entity_type, $entity_field_manager, $cache, $memory_cache, $entity_type_bundle_info);
+    $this->database = $database;
+    $this->languageManager = $language_manager;
+>>>>>>> dev
     $this->entityTypeManager = $entity_type_manager;
     $this->entityType = $this->entityTypeManager->getActiveDefinition($entity_type->id());
     $this->fieldStorageDefinitions = $this->entityFieldManager->getActiveFieldStorageDefinitions($entity_type->id());
@@ -572,7 +586,11 @@ class SqlContentEntityStorage extends ContentEntityStorageBase implements SqlEnt
         $all_fields = $revisioned_fields;
         if ($data_fields) {
           $all_fields = array_merge($revisioned_fields, $data_fields);
+<<<<<<< HEAD
           $query->leftJoin($this->dataTable, 'data', "(revision.$this->idKey = data.$this->idKey and revision.$this->langcodeKey = data.$this->langcodeKey)");
+=======
+          $query->leftJoin($this->dataTable, 'data', "([revision].[$this->idKey] = [data].[$this->idKey] AND [revision].[$this->langcodeKey] = [data].[$this->langcodeKey])");
+>>>>>>> dev
           $column_names = [];
           // Some fields can have more then one columns in the data table so
           // column names are needed.
@@ -631,6 +649,7 @@ class SqlContentEntityStorage extends ContentEntityStorageBase implements SqlEnt
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function doLoadRevisionFieldItems($revision_id) {
     @trigger_error('"\Drupal\Core\Entity\ContentEntityStorageBase::doLoadRevisionFieldItems()" is deprecated in Drupal 8.5.x and will be removed before Drupal 9.0.0. "\Drupal\Core\Entity\ContentEntityStorageBase::doLoadMultipleRevisionsFieldItems()" should be implemented instead. See https://www.drupal.org/node/2924915.', E_USER_DEPRECATED);
 
@@ -642,6 +661,8 @@ class SqlContentEntityStorage extends ContentEntityStorageBase implements SqlEnt
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   protected function doLoadMultipleRevisionsFieldItems($revision_ids) {
     $revisions = [];
 
@@ -728,6 +749,7 @@ class SqlContentEntityStorage extends ContentEntityStorageBase implements SqlEnt
     $query->addTag($this->entityTypeId . '_load_multiple');
 
     if ($revision_ids) {
+<<<<<<< HEAD
       if (!is_array($revision_ids)) {
         @trigger_error('Passing a single revision ID to "\Drupal\Core\Entity\Sql\SqlContentEntityStorage::buildQuery()" is deprecated in Drupal 8.5.x and will be removed before Drupal 9.0.0. An array of revision IDs should be given instead. See https://www.drupal.org/node/2924915.', E_USER_DEPRECATED);
       }
@@ -735,6 +757,12 @@ class SqlContentEntityStorage extends ContentEntityStorageBase implements SqlEnt
     }
     elseif ($this->revisionTable) {
       $query->join($this->revisionTable, 'revision', "revision.{$this->revisionKey} = base.{$this->revisionKey}");
+=======
+      $query->join($this->revisionTable, 'revision', "[revision].[{$this->idKey}] = [base].[{$this->idKey}] AND [revision].[{$this->revisionKey}] IN (:revisionIds[])", [':revisionIds[]' => $revision_ids]);
+    }
+    elseif ($this->revisionTable) {
+      $query->join($this->revisionTable, 'revision', "[revision].[{$this->revisionKey}] = [base].[{$this->revisionKey}]");
+>>>>>>> dev
     }
 
     // Add fields from the {entity} table.
@@ -760,7 +788,11 @@ class SqlContentEntityStorage extends ContentEntityStorageBase implements SqlEnt
 
       // Compare revision ID of the base and revision table, if equal then this
       // is the default revision.
+<<<<<<< HEAD
       $query->addExpression('CASE base.' . $this->revisionKey . ' WHEN revision.' . $this->revisionKey . ' THEN 1 ELSE 0 END', 'isDefaultRevision');
+=======
+      $query->addExpression('CASE [base].[' . $this->revisionKey . '] WHEN [revision].[' . $this->revisionKey . '] THEN 1 ELSE 0 END', 'isDefaultRevision');
+>>>>>>> dev
     }
 
     $query->fields('base', $entity_fields);
@@ -1112,9 +1144,12 @@ class SqlContentEntityStorage extends ContentEntityStorageBase implements SqlEnt
    *
    * @return bool
    *   TRUE if the column is serial, FALSE otherwise.
+<<<<<<< HEAD
    *
    * @see \Drupal\Core\Entity\Sql\SqlContentEntityStorageSchema::processBaseTable()
    * @see \Drupal\Core\Entity\Sql\SqlContentEntityStorageSchema::processRevisionTable()
+=======
+>>>>>>> dev
    */
   protected function isColumnSerial($table_name, $schema_name) {
     $result = FALSE;
@@ -1810,6 +1845,7 @@ class SqlContentEntityStorage extends ContentEntityStorageBase implements SqlEnt
     return $as_bool ? (bool) $count : (int) $count;
   }
 
+<<<<<<< HEAD
   /**
    * Determines whether the passed field has been already deleted.
    *
@@ -1828,4 +1864,6 @@ class SqlContentEntityStorage extends ContentEntityStorageBase implements SqlEnt
     return $storage_definition->isDeleted();
   }
 
+=======
+>>>>>>> dev
 }

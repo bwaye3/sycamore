@@ -111,6 +111,7 @@ class ViewUIObjectTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests the isLocked method.
    *
    * @expectedDeprecation Using the "lock" public property of a View is deprecated in Drupal 8.7.0 and will not be allowed in Drupal 9.0.0. Use \Drupal\views_ui\ViewUI::setLock() instead. See https://www.drupal.org/node/3025869.
@@ -159,6 +160,8 @@ class ViewUIObjectTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests serialization of the ViewUI object.
    */
   public function testSerialization() {

@@ -47,7 +47,12 @@ interface MigrationPluginManagerInterface extends PluginManagerInterface {
    *   A migration tag we want to filter by.
    *
    * @return array|\Drupal\migrate\Plugin\MigrationInterface[]
+<<<<<<< HEAD
    *   An array of migration objects with the given tag.
+=======
+   *   An array of migration objects with the given tag, or an empty array if no
+   *   migrations with that tag exist.
+>>>>>>> dev
    */
   public function createInstancesByTag($tag);
 

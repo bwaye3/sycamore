@@ -97,7 +97,11 @@ class Table extends StylePluginBase implements CacheableDependencyInterface {
   }
 
   /**
+<<<<<<< HEAD
    * Add our actual sort criteria
+=======
+   * Add our actual sort criteria.
+>>>>>>> dev
    */
   public function buildSortPost() {
     $query = $this->view->getRequest()->query;
@@ -215,7 +219,11 @@ class Table extends StylePluginBase implements CacheableDependencyInterface {
 
     $form['sticky'] = [
       '#type' => 'checkbox',
+<<<<<<< HEAD
       '#title' => $this->t('Enable Drupal style "sticky" table headers (Javascript)'),
+=======
+      '#title' => $this->t('Enable Drupal style "sticky" table headers (JavaScript)'),
+>>>>>>> dev
       '#default_value' => !empty($this->options['sticky']),
       '#description' => $this->t('(Sticky header effects will not be active for preview below, only on live output.)'),
     ];

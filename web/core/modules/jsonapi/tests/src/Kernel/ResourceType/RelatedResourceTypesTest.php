@@ -4,6 +4,10 @@ namespace Drupal\Tests\jsonapi\Kernel\ResourceType;
 
 use Drupal\Tests\jsonapi\Kernel\JsonapiKernelTestBase;
 use Drupal\node\Entity\NodeType;
+<<<<<<< HEAD
+=======
+use PHPUnit\Framework\Error\Warning;
+>>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\jsonapi\ResourceType\ResourceType
@@ -17,7 +21,11 @@ class RelatedResourceTypesTest extends JsonapiKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'jsonapi',
     'serialization',
@@ -50,7 +58,11 @@ class RelatedResourceTypesTest extends JsonapiKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     // Add the entity schemas.
     $this->installEntitySchema('node');
@@ -134,7 +146,11 @@ class RelatedResourceTypesTest extends JsonapiKernelTestBase {
       }
     }
 
+<<<<<<< HEAD
     $this->assertArraySubset($relatable_type_names, $subjects);
+=======
+    $this->assertEquals($relatable_type_names, $subjects);
+>>>>>>> dev
   }
 
   /**
@@ -179,4 +195,38 @@ class RelatedResourceTypesTest extends JsonapiKernelTestBase {
     ];
   }
 
+<<<<<<< HEAD
+=======
+  /**
+   * Ensure a graceful failure when a field can references a missing bundle.
+   *
+   * @covers \Drupal\jsonapi\ResourceType\ResourceTypeRepository::all
+   * @covers \Drupal\jsonapi\ResourceType\ResourceTypeRepository::calculateRelatableResourceTypes
+   * @covers \Drupal\jsonapi\ResourceType\ResourceTypeRepository::getRelatableResourceTypesFromFieldDefinition
+   *
+   * @link https://www.drupal.org/project/drupal/issues/2996114
+   */
+  public function testGetRelatableResourceTypesFromFieldDefinition() {
+    $field_config_storage = $this->container->get('entity_type.manager')->getStorage('field_config');
+
+    static::assertCount(0, $this->resourceTypeRepository->get('node', 'foo')->getRelatableResourceTypesByField('field_relationship'));
+    $this->createEntityReferenceField('node', 'foo', 'field_ref_with_missing_bundle', 'Related entity', 'node', 'default', [
+      'target_bundles' => ['missing_bundle'],
+    ]);
+    $fields = $field_config_storage->loadByProperties(['field_name' => 'field_ref_with_missing_bundle']);
+    static::assertSame(['missing_bundle'], $fields['node.foo.field_ref_with_missing_bundle']->getItemDefinition()->getSetting('handler_settings')['target_bundles']);
+
+    try {
+      $this->resourceTypeRepository->get('node', 'foo')->getRelatableResourceTypesByField('field_ref_with_missing_bundle');
+      static::fail('The above code must produce a warning since the "missing_bundle" does not exist.');
+    }
+    catch (Warning $e) {
+      static::assertSame(
+        'The "field_ref_with_missing_bundle" at "node:foo" references the "node:missing_bundle" entity type that does not exist. Please take action.',
+        $e->getMessage()
+      );
+    }
+  }
+
+>>>>>>> dev
 }

@@ -27,6 +27,7 @@ use Drupal\user\RoleInterface;
 use Drupal\user\UserInterface;
 
 /**
+<<<<<<< HEAD
  * Maximum length of username text field.
  *
  * Keep this under 191 characters so we can use a unique constraint in MySQL.
@@ -71,6 +72,8 @@ const USER_REGISTER_VISITORS = 'visitors';
 const USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL = 'visitors_admin_approval';
 
 /**
+=======
+>>>>>>> dev
  * Implements hook_help().
  */
 function user_help($route_name, RouteMatchInterface $route_match) {
@@ -200,6 +203,7 @@ function user_user_presave(UserInterface $account) {
 }
 
 /**
+<<<<<<< HEAD
  * Loads multiple users based on certain conditions.
  *
  * This function should be used whenever you need to load more than one user
@@ -255,13 +259,21 @@ function user_load($uid, $reset = FALSE) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Fetches a user object by email address.
  *
  * @param string $mail
  *   String with the account's email address.
  *
+<<<<<<< HEAD
  * @return \Drupal\user\UserInterface|false
  *   A user entity upon successful user load, or FALSE if user cannot be loaded.
+=======
+ * @return object|bool
+ *   A fully-loaded $user object upon successful user load or FALSE if user
+ *   cannot be loaded.
+>>>>>>> dev
  *
  * @see \Drupal\user\Entity\User::loadMultiple()
  */
@@ -277,8 +289,14 @@ function user_load_by_mail($mail) {
  * @param string $name
  *   String with the account's user name.
  *
+<<<<<<< HEAD
  * @return \Drupal\user\UserInterface|false
  *   A user entity upon successful user load, or FALSE if user cannot be loaded.
+=======
+ * @return object|bool
+ *   A fully-loaded $user object upon successful user load or FALSE if user
+ *   cannot be loaded.
+>>>>>>> dev
  *
  * @see \Drupal\user\Entity\User::loadMultiple()
  */
@@ -317,6 +335,7 @@ function user_validate_name($name) {
  *
  * @return string
  *   The generated random password.
+<<<<<<< HEAD
  */
 function user_password($length = 10) {
   // This variable contains the list of allowed characters for the password.
@@ -334,6 +353,17 @@ function user_password($length = 10) {
   }
 
   return $pass;
+=======
+ *
+ * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use
+ *   \Drupal\Core\Password\PasswordGeneratorInterface::generate() instead.
+ *
+ * @see https://www.drupal.org/node/3153113
+ */
+function user_password($length = 10) {
+  @trigger_error('user_password() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use \Drupal\Core\Password\PasswordGeneratorInterface::generate() instead. See https://www.drupal.org/node/3153113', E_USER_DEPRECATED);
+  return \Drupal::service('password_generator')->generate($length);
+>>>>>>> dev
 }
 
 /**
@@ -447,6 +477,7 @@ function user_preprocess_block(&$variables) {
 }
 
 /**
+<<<<<<< HEAD
  * Format a username.
  *
  * @param \Drupal\Core\Session\AccountInterface $account
@@ -466,6 +497,8 @@ function user_format_name(AccountInterface $account) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Implements hook_template_preprocess_default_variables_alter().
  *
  * @see user_user_login()
@@ -892,6 +925,7 @@ function user_cancel_methods() {
 }
 
 /**
+<<<<<<< HEAD
  * Delete a user.
  *
  * @param int $uid
@@ -996,6 +1030,8 @@ function user_view_multiple($accounts, $view_mode = 'full', $langcode = NULL) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Implements hook_mail().
  */
 function user_mail($key, &$message, $params) {
@@ -1004,7 +1040,11 @@ function user_mail($key, &$message, $params) {
   $langcode = $message['langcode'];
   $variables = ['user' => $params['account']];
 
+<<<<<<< HEAD
   $language = $language_manager->getLanguage($params['account']->getPreferredLangcode());
+=======
+  $language = $language_manager->getLanguage($langcode);
+>>>>>>> dev
   $original_language = $language_manager->getConfigOverrideLanguage();
   $language_manager->setConfigOverrideLanguage($language);
   $mail_config = \Drupal::config('user.mail');
@@ -1155,6 +1195,7 @@ function user_roles($membersonly = FALSE, $permission = NULL) {
 }
 
 /**
+<<<<<<< HEAD
  * Fetches a user role by role ID.
  *
  * @param string $rid
@@ -1172,6 +1213,8 @@ function user_role_load($rid) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Change permissions for a user role.
  *
  * This function may be used to grant and revoke multiple permissions at once.
@@ -1271,13 +1314,23 @@ function user_role_revoke_permissions($rid, array $permissions = []) {
  *   - 'status_blocked': Account blocked.
  *   - 'cancel_confirm': Account cancellation request.
  *   - 'status_canceled': Account canceled.
+<<<<<<< HEAD
  *
+=======
+>>>>>>> dev
  * @param \Drupal\Core\Session\AccountInterface $account
  *   The user object of the account being notified. Must contain at
  *   least the fields 'uid', 'name', and 'mail'.
  * @param string $langcode
+<<<<<<< HEAD
  *   (optional) Language code to use for the notification, overriding account
  *   language.
+=======
+ *   (deprecated) (optional) Language code to use for the notification,
+ *   overriding account language. Specifying the notification language using
+ *   the $langcode parameter is deprecated in drupal:9.2.0 and is removed from
+ *   drupal:10.0.0. Omit the parameter. See https://www.drupal.org/node/3187082
+>>>>>>> dev
  *
  * @return array
  *   An array containing various information about the message.
@@ -1286,6 +1339,13 @@ function user_role_revoke_permissions($rid, array $permissions = []) {
  * @see user_mail_tokens()
  */
 function _user_mail_notify($op, AccountInterface $account, $langcode = NULL) {
+<<<<<<< HEAD
+=======
+  if ($langcode) {
+    @trigger_error('Specifying the notification language using the $langcode parameter is deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Omit the parameter. See https://www.drupal.org/node/3187082', E_USER_DEPRECATED);
+  }
+
+>>>>>>> dev
   if (\Drupal::config('user.settings')->get('notify.' . $op)) {
     $params['account'] = $account;
     $langcode = $langcode ? $langcode : $account->getPreferredLangcode();

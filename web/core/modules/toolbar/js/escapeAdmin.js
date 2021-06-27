@@ -17,6 +17,10 @@
   Drupal.behaviors.escapeAdmin = {
     attach: function attach() {
       var $toolbarEscape = $('[data-toolbar-escape-admin]').once('escapeAdmin');
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       if ($toolbarEscape.length && pathInfo.currentPathIsAdmin) {
         if (escapeAdminPath !== null) {
           $toolbarEscape.attr('href', escapeAdminPath);

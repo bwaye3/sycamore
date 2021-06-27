@@ -3,7 +3,10 @@
 namespace Drupal\Tests\migrate_drupal\Kernel\d6;
 
 use Drupal\KernelTests\FileSystemModuleDiscoveryDataProviderTrait;
+<<<<<<< HEAD
 use Drupal\Tests\DeprecatedModulesTestTrait;
+=======
+>>>>>>> dev
 
 /**
  * Tests the getProcess() method of all Drupal 6 migrations.
@@ -12,15 +15,23 @@ use Drupal\Tests\DeprecatedModulesTestTrait;
  */
 class MigrationProcessTest extends MigrateDrupal6TestBase {
 
+<<<<<<< HEAD
   use DeprecatedModulesTestTrait;
+=======
+>>>>>>> dev
   use FileSystemModuleDiscoveryDataProviderTrait;
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
     self::$modules = array_keys($this->coreModuleListDataProvider());
     self::$modules = $this->removeDeprecatedModules(self::$modules);
+=======
+  public function setUp(): void {
+    self::$modules = array_keys($this->coreModuleListDataProvider());
+>>>>>>> dev
     parent::setUp();
   }
 

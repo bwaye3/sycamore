@@ -37,6 +37,13 @@ interface ModuleInstallerInterface {
    * @throws \Drupal\Core\Extension\MissingDependencyException
    *   Thrown when a requested module, or a dependency of one, can not be found.
    *
+<<<<<<< HEAD
+=======
+   * @throws \Drupal\Core\Extension\ExtensionNameLengthException
+   *   Thrown when the extension's name is longer than
+   *   DRUPAL_EXTENSION_NAME_MAX_LENGTH.
+   *
+>>>>>>> dev
    * @see hook_module_preinstall()
    * @see hook_install()
    * @see hook_modules_installed()
@@ -56,6 +63,12 @@ interface ModuleInstallerInterface {
    * @return bool
    *   FALSE if one or more dependencies are missing, TRUE otherwise.
    *
+<<<<<<< HEAD
+=======
+   * @throws \Drupal\Core\Extension\ModuleUninstallValidatorException
+   *   Thrown when validation prevented the module from being uninstalled.
+   *
+>>>>>>> dev
    * @see hook_module_preuninstall()
    * @see hook_uninstall()
    * @see hook_modules_uninstalled()

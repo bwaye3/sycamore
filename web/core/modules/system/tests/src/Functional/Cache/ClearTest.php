@@ -17,7 +17,11 @@ class ClearTest extends CacheTestBase {
    */
   protected $defaultTheme = 'stark';
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->defaultBin = 'render';
     $this->defaultValue = $this->randomMachineName(10);
 

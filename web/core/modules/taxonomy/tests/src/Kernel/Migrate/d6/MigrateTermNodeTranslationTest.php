@@ -15,7 +15,11 @@ class MigrateTermNodeTranslationTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'config_translation',
     'content_translation',
     'language',
@@ -26,7 +30,11 @@ class MigrateTermNodeTranslationTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('node');
@@ -34,6 +42,10 @@ class MigrateTermNodeTranslationTest extends MigrateDrupal6TestBase {
     $this->installSchema('node', ['node_access']);
     $this->installSchema('system', ['sequences']);
 
+<<<<<<< HEAD
+=======
+    $this->executeMigration('language');
+>>>>>>> dev
     $this->executeMigration('d6_node_settings');
     $this->migrateUsers(FALSE);
     $this->migrateFields();

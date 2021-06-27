@@ -3,7 +3,10 @@ type: module
 description: 'Allows users to add and arrange blocks and content fields directly on the content.'
 package: Core
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:layout_discovery
   - drupal:contextual

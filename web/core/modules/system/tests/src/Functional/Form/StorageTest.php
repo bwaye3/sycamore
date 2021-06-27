@@ -25,7 +25,11 @@ class StorageTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['form_test', 'dblog'];
+=======
+  protected static $modules = ['form_test', 'dblog'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -35,7 +39,11 @@ class StorageTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalLogin($this->drupalCreateUser());
@@ -53,20 +61,35 @@ class StorageTest extends BrowserTestBase {
     $edit = ['title' => 'new', 'value' => 'value_is_set'];
 
     // Use form rebuilding triggered by a submit button.
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, 'Continue submit');
+=======
+    $this->submitForm($edit, 'Continue submit');
+>>>>>>> dev
     $assert_session->pageTextContains('Form constructions: 2');
     $assert_session->pageTextContains('Form constructions: 3');
 
     // Reset the form to the values of the storage, using a form rebuild
     // triggered by button of type button.
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, ['title' => 'changed'], 'Reset');
+=======
+    $this->submitForm(['title' => 'changed'], 'Reset');
+>>>>>>> dev
     $assert_session->fieldValueEquals('title', 'new');
     // After rebuilding, the form has been cached.
     $assert_session->pageTextContains('Form constructions: 4');
 
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, 'Save');
     $assert_session->pageTextContains('Form constructions: 4');
     $assert_session->pageTextContains('Title: new', 'The form storage has stored the values.');
+=======
+    $this->submitForm($edit, 'Save');
+    $assert_session->pageTextContains('Form constructions: 4');
+    // Verify that the form storage has stored the values.
+    $assert_session->pageTextContains('Title: new');
+>>>>>>> dev
   }
 
   /**
@@ -79,7 +102,11 @@ class StorageTest extends BrowserTestBase {
     $edit = ['title' => 'new', 'value' => 'value_is_set'];
 
     // Use form rebuilding triggered by a submit button.
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, 'Continue submit');
+=======
+    $this->submitForm($edit, 'Continue submit');
+>>>>>>> dev
     // The first one is for the building of the form.
     $this->assertSession()->pageTextContains('Form constructions: 2');
     // The second one is for the rebuilding of the form.
@@ -87,6 +114,7 @@ class StorageTest extends BrowserTestBase {
 
     // Reset the form to the values of the storage, using a form rebuild
     // triggered by button of type button.
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, ['title' => 'changed'], 'Reset');
     $this->assertSession()->fieldValueEquals('title', 'new');
     $this->assertSession()->pageTextContains('Form constructions: 4');
@@ -94,15 +122,35 @@ class StorageTest extends BrowserTestBase {
     $this->drupalPostForm(NULL, $edit, 'Save');
     $this->assertSession()->pageTextContains('Form constructions: 4');
     $this->assertSession()->pageTextContains('Title: new', 'The form storage has stored the values.');
+=======
+    $this->submitForm(['title' => 'changed'], 'Reset');
+    $this->assertSession()->fieldValueEquals('title', 'new');
+    $this->assertSession()->pageTextContains('Form constructions: 4');
+
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->pageTextContains('Form constructions: 4');
+    // Verify that the form storage has stored the values.
+    $this->assertSession()->pageTextContains('Title: new');
+>>>>>>> dev
   }
 
   /**
    * Tests validation when form storage is used.
    */
   public function testValidation() {
+<<<<<<< HEAD
     $this->drupalPostForm('form_test/form-storage', ['title' => '', 'value' => 'value_is_set'], 'Continue submit');
     // Ensure that the input values have been kept.
     $this->assertPattern('/value_is_set/');
+=======
+    $this->drupalGet('form_test/form-storage');
+    $this->submitForm([
+      'title' => '',
+      'value' => 'value_is_set',
+    ], 'Continue submit');
+    // Ensure that the input values have been kept.
+    $this->assertSession()->responseMatches('/value_is_set/');
+>>>>>>> dev
   }
 
   /**
@@ -123,21 +171,34 @@ class StorageTest extends BrowserTestBase {
     // 'title' into form storage, but we want to verify that changes in the form
     // storage are updated in the cache during form validation.
     $edit = ['title' => 'foo'];
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, 'Continue submit');
+=======
+    $this->submitForm($edit, 'Continue submit');
+>>>>>>> dev
 
     // In step 2, trigger a validation error for the required 'title' field, and
     // post the special 'change_title' value for the 'value' field, which
     // conditionally invokes the #element_validate handler to update the form
     // storage.
     $edit = ['title' => '', 'value' => 'change_title'];
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, 'Save');
+=======
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
 
     // At this point, the form storage should contain updated values, but we do
     // not see them, because the form has not been rebuilt yet due to the
     // validation error. Post again and verify that the rebuilt form contains
     // the values of the updated form storage.
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, ['title' => 'foo', 'value' => 'bar'], 'Save');
     $this->assertSession()->pageTextContains("The thing has been changed.", 'The altered form storage value was updated in cache and taken over.');
+=======
+    $this->submitForm(['title' => 'foo', 'value' => 'bar'], 'Save');
+    $this->assertSession()->pageTextContains("The thing has been changed.");
+>>>>>>> dev
   }
 
   /**
@@ -147,6 +208,7 @@ class StorageTest extends BrowserTestBase {
   public function testImmutableForm() {
     // Request the form with 'cache' query parameter to enable form caching.
     $this->drupalGet('form_test/form-storage', ['query' => ['cache' => 1, 'immutable' => 1]]);
+<<<<<<< HEAD
     $buildIdFields = $this->xpath('//input[@name="form_build_id"]');
     $this->assertCount(1, $buildIdFields, 'One form build id field on the page');
     $buildId = $buildIdFields[0]->getValue();
@@ -154,10 +216,22 @@ class StorageTest extends BrowserTestBase {
     // Trigger validation error by submitting an empty title.
     $edit = ['title' => ''];
     $this->drupalPostForm(NULL, $edit, 'Continue submit');
+=======
+
+    // Ensure the hidden 'form_build_id' field is unique.
+    $this->assertSession()->elementsCount('xpath', '//input[@name="form_build_id"]', 1);
+
+    $buildId = $this->assertSession()->hiddenFieldExists('form_build_id')->getValue();
+
+    // Trigger validation error by submitting an empty title.
+    $edit = ['title' => ''];
+    $this->submitForm($edit, 'Continue submit');
+>>>>>>> dev
 
     // Verify that the build-id did change.
     $this->assertSession()->hiddenFieldValueNotEquals('form_build_id', $buildId);
 
+<<<<<<< HEAD
     // Retrieve the new build-id.
     $buildIdFields = $this->xpath('//input[@name="form_build_id"]');
     $this->assertCount(1, $buildIdFields, 'One form build id field on the page');
@@ -166,6 +240,17 @@ class StorageTest extends BrowserTestBase {
     // Trigger validation error by again submitting an empty title.
     $edit = ['title' => ''];
     $this->drupalPostForm(NULL, $edit, 'Continue submit');
+=======
+    // Ensure the hidden 'form_build_id' field is unique.
+    $this->assertSession()->elementsCount('xpath', '//input[@name="form_build_id"]', 1);
+
+    // Retrieve the new build-id.
+    $buildId = (string) $this->assertSession()->hiddenFieldExists('form_build_id')->getValue();
+
+    // Trigger validation error by again submitting an empty title.
+    $edit = ['title' => ''];
+    $this->submitForm($edit, 'Continue submit');
+>>>>>>> dev
 
     // Verify that the build-id does not change the second time.
     $this->assertSession()->hiddenFieldValueEquals('form_build_id', $buildId);
@@ -176,9 +261,15 @@ class StorageTest extends BrowserTestBase {
    */
   public function testImmutableFormLegacyProtection() {
     $this->drupalGet('form_test/form-storage', ['query' => ['cache' => 1, 'immutable' => 1]]);
+<<<<<<< HEAD
     $build_id_fields = $this->xpath('//input[@name="form_build_id"]');
     $this->assertCount(1, $build_id_fields, 'One form build id field on the page');
     $build_id = $build_id_fields[0]->getValue();
+=======
+    // Ensure the hidden 'form_build_id' field is unique.
+    $this->assertSession()->elementsCount('xpath', '//input[@name="form_build_id"]', 1);
+    $build_id = $this->assertSession()->hiddenFieldExists('form_build_id')->getValue();
+>>>>>>> dev
 
     // Try to poison the form cache.
     $response = $this->drupalGet('form-test/form-storage-legacy/' . $build_id, ['query' => [MainContentViewSubscriber::WRAPPER_FORMAT => 'drupal_ajax']], ['X-Requested-With: XMLHttpRequest']);

@@ -6,7 +6,11 @@ use Drupal\Core\Database\Connection;
 use Drupal\Core\Installer\InstallerRedirectTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+=======
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+>>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -35,11 +39,19 @@ class ExceptionDetectNeedsInstallSubscriber implements EventSubscriberInterface 
   /**
    * Handles errors for this subscriber.
    *
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $event
    *   The event to process.
    */
   public function onException(GetResponseForExceptionEvent $event) {
     $exception = $event->getException();
+=======
+   * @param \Symfony\Component\HttpKernel\Event\ExceptionEvent $event
+   *   The event to process.
+   */
+  public function onException(ExceptionEvent $event) {
+    $exception = $event->getThrowable();
+>>>>>>> dev
     if ($this->shouldRedirectToInstaller($exception, $this->connection)) {
       // Only redirect if this is an HTML response (i.e., a user trying to view
       // the site in a web browser before installing it).

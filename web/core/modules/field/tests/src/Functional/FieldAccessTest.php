@@ -17,7 +17,11 @@ class FieldAccessTest extends FieldTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'field_test'];
+=======
+  protected static $modules = ['node', 'field_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -38,7 +42,11 @@ class FieldAccessTest extends FieldTestBase {
    */
   protected $testViewFieldValue;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $web_user = $this->drupalCreateUser(['view test_view_field content']);
@@ -79,13 +87,21 @@ class FieldAccessTest extends FieldTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that hook_entity_field_access() is called.
+=======
+   * Tests that hook_entity_field_access() is called.
+>>>>>>> dev
    */
   public function testFieldAccess() {
 
     // Assert the text is visible.
     $this->drupalGet('node/' . $this->node->id());
+<<<<<<< HEAD
     $this->assertText($this->testViewFieldValue);
+=======
+    $this->assertSession()->pageTextContains($this->testViewFieldValue);
+>>>>>>> dev
 
     // Assert the text is not visible for anonymous users.
     // The field_test module implements hook_entity_field_access() which will

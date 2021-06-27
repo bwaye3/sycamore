@@ -15,6 +15,7 @@ class ContentEntityType extends EntityType implements ContentEntityTypeInterface
   protected $revision_metadata_keys = [];
 
   /**
+<<<<<<< HEAD
    * The required revision metadata keys.
    *
    * @var array
@@ -22,6 +23,8 @@ class ContentEntityType extends EntityType implements ContentEntityTypeInterface
   protected $requiredRevisionMetadataKeys = [];
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function __construct($definition) {
@@ -32,6 +35,7 @@ class ContentEntityType extends EntityType implements ContentEntityTypeInterface
       'view_builder' => 'Drupal\Core\Entity\EntityViewBuilder',
     ];
 
+<<<<<<< HEAD
     // Only new instances should provide the required revision metadata keys.
     // The cached instances should return only what already has been stored
     // under the property $revision_metadata_keys. The BC layer in
@@ -49,6 +53,11 @@ class ContentEntityType extends EntityType implements ContentEntityTypeInterface
     // extended. Only new instances of the class will contain the new list,
     // while the cached instances contain the previous version of the list.
     $this->revision_metadata_keys += $this->requiredRevisionMetadataKeys;
+=======
+    $this->revision_metadata_keys += [
+      'revision_default' => 'revision_default',
+    ];
+>>>>>>> dev
   }
 
   /**
@@ -77,6 +86,7 @@ class ContentEntityType extends EntityType implements ContentEntityTypeInterface
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function getRevisionMetadataKeys($include_backwards_compatibility_field_names = TRUE) {
     // Provide backwards compatibility in case the revision metadata keys are
     // not defined in the entity annotation.
@@ -95,6 +105,9 @@ class ContentEntityType extends EntityType implements ContentEntityTypeInterface
         $this->revision_metadata_keys['revision_log_message'] = $revision_log;
       }
     }
+=======
+  public function getRevisionMetadataKeys() {
+>>>>>>> dev
     return $this->revision_metadata_keys;
   }
 
@@ -119,6 +132,7 @@ class ContentEntityType extends EntityType implements ContentEntityTypeInterface
    */
   public function setRevisionMetadataKey($key, $field_name) {
     if ($field_name !== NULL) {
+<<<<<<< HEAD
       // Update the property holding the required revision metadata keys,
       // which is used by the BC layer for retrieving the revision metadata
       // keys.
@@ -132,6 +146,13 @@ class ContentEntityType extends EntityType implements ContentEntityTypeInterface
       unset($this->requiredRevisionMetadataKeys[$key], $this->revision_metadata_keys[$key]);
     }
 
+=======
+      $this->revision_metadata_keys[$key] = $field_name;
+    }
+    else {
+      unset($this->revision_metadata_keys[$key]);
+    }
+>>>>>>> dev
     return $this;
   }
 

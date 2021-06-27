@@ -3,6 +3,9 @@ type: module
 description: 'Module to test cacheable metadata calculation in Views.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:views

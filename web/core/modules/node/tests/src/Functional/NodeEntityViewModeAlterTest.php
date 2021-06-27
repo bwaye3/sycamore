@@ -17,7 +17,11 @@ class NodeEntityViewModeAlterTest extends NodeTestBase {
   /**
    * Enable dummy module that implements hook_ENTITY_TYPE_view() for nodes.
    */
+<<<<<<< HEAD
   public static $modules = ['node_test'];
+=======
+  protected static $modules = ['node_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -39,7 +43,12 @@ class NodeEntityViewModeAlterTest extends NodeTestBase {
     $edit['title[0][value]'] = $this->randomMachineName(8);
     $edit['body[0][value]'] = t('Data that should appear only in the body for the node.');
     $edit['body[0][summary]'] = t('Extra data that should appear only in the teaser for the node.');
+<<<<<<< HEAD
     $this->drupalPostForm('node/add/page', $edit, t('Save'));
+=======
+    $this->drupalGet('node/add/page');
+    $this->submitForm($edit, 'Save');
+>>>>>>> dev
 
     $node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
 
@@ -49,6 +58,7 @@ class NodeEntityViewModeAlterTest extends NodeTestBase {
     $this->drupalGet('node/' . $node->id());
 
     // Check that teaser mode is viewed.
+<<<<<<< HEAD
     $this->assertText('Extra data that should appear only in the teaser for the node.', 'Teaser text present');
     // Make sure body text is not present.
     $this->assertNoText('Data that should appear only in the body for the node.', 'Body text not present');
@@ -56,6 +66,15 @@ class NodeEntityViewModeAlterTest extends NodeTestBase {
     // Test that the correct build mode has been set.
     $build = $this->buildEntityView($node);
     $this->assertEqual($build['#view_mode'], 'teaser', 'The view mode has correctly been set to teaser.');
+=======
+    $this->assertSession()->pageTextContains('Extra data that should appear only in the teaser for the node.');
+    // Make sure body text is not present.
+    $this->assertNoText('Data that should appear only in the body for the node.');
+
+    // Test that the correct build mode has been set.
+    $build = $this->buildEntityView($node);
+    $this->assertEquals('teaser', $build['#view_mode'], 'The view mode has correctly been set to teaser.');
+>>>>>>> dev
   }
 
 }

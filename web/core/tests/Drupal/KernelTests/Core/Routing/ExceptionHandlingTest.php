@@ -18,12 +18,20 @@ class ExceptionHandlingTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'router_test'];
+=======
+  protected static $modules = ['system', 'router_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('date_format');
@@ -39,7 +47,11 @@ class ExceptionHandlingTest extends KernelTestBase {
     $kernel = \Drupal::getContainer()->get('http_kernel');
     $response = $kernel->handle($request);
 
+<<<<<<< HEAD
     $this->assertEqual(Response::HTTP_METHOD_NOT_ALLOWED, $response->getStatusCode());
+=======
+    $this->assertEquals(Response::HTTP_METHOD_NOT_ALLOWED, $response->getStatusCode());
+>>>>>>> dev
   }
 
   /**
@@ -54,9 +66,15 @@ class ExceptionHandlingTest extends KernelTestBase {
     $kernel = \Drupal::getContainer()->get('http_kernel');
     $response = $kernel->handle($request);
 
+<<<<<<< HEAD
     $this->assertEqual($response->getStatusCode(), Response::HTTP_FORBIDDEN);
     $this->assertEqual($response->headers->get('Content-type'), 'application/json');
     $this->assertEqual('{"message":""}', $response->getContent());
+=======
+    $this->assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
+    $this->assertEquals('application/json', $response->headers->get('Content-type'));
+    $this->assertEquals('{"message":""}', $response->getContent());
+>>>>>>> dev
     $this->assertInstanceOf(CacheableJsonResponse::class, $response);
   }
 
@@ -72,9 +90,15 @@ class ExceptionHandlingTest extends KernelTestBase {
     $kernel = \Drupal::getContainer()->get('http_kernel');
     $response = $kernel->handle($request);
 
+<<<<<<< HEAD
     $this->assertEqual($response->getStatusCode(), Response::HTTP_NOT_FOUND);
     $this->assertEqual($response->headers->get('Content-type'), 'application/json');
     $this->assertEqual('{"message":"No route found for \\u0022GET \\/not-found\\u0022"}', $response->getContent());
+=======
+    $this->assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
+    $this->assertEquals('application/json', $response->headers->get('Content-type'));
+    $this->assertEquals('{"message":"No route found for \\u0022GET \\/not-found\\u0022"}', $response->getContent());
+>>>>>>> dev
   }
 
   /**
@@ -88,8 +112,13 @@ class ExceptionHandlingTest extends KernelTestBase {
     $kernel = \Drupal::getContainer()->get('http_kernel');
     $response = $kernel->handle($request)->prepare($request);
 
+<<<<<<< HEAD
     $this->assertEqual($response->getStatusCode(), Response::HTTP_FORBIDDEN);
     $this->assertEqual($response->headers->get('Content-type'), 'text/html; charset=UTF-8');
+=======
+    $this->assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
+    $this->assertEquals('text/html; charset=UTF-8', $response->headers->get('Content-type'));
+>>>>>>> dev
   }
 
   /**
@@ -103,8 +132,13 @@ class ExceptionHandlingTest extends KernelTestBase {
     $kernel = \Drupal::getContainer()->get('http_kernel');
     $response = $kernel->handle($request)->prepare($request);
 
+<<<<<<< HEAD
     $this->assertEqual($response->getStatusCode(), Response::HTTP_NOT_FOUND);
     $this->assertEqual($response->headers->get('Content-type'), 'text/html; charset=UTF-8');
+=======
+    $this->assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
+    $this->assertEquals('text/html; charset=UTF-8', $response->headers->get('Content-type'));
+>>>>>>> dev
   }
 
   /**
@@ -157,8 +191,13 @@ class ExceptionHandlingTest extends KernelTestBase {
     /** @var \Symfony\Component\HttpKernel\HttpKernelInterface $kernel */
     $kernel = \Drupal::getContainer()->get('http_kernel');
     $response = $kernel->handle($request)->prepare($request);
+<<<<<<< HEAD
     $this->assertEqual($response->getStatusCode(), Response::HTTP_INTERNAL_SERVER_ERROR);
     $this->assertEqual($response->headers->get('Content-type'), 'text/html; charset=UTF-8');
+=======
+    $this->assertEquals(Response::HTTP_INTERNAL_SERVER_ERROR, $response->getStatusCode());
+    $this->assertEquals('text/html; charset=UTF-8', $response->headers->get('Content-type'));
+>>>>>>> dev
 
     // Test both that the backtrace is properly escaped, and that the unescaped
     // string is not output at all.
@@ -180,8 +219,13 @@ class ExceptionHandlingTest extends KernelTestBase {
     /** @var \Symfony\Component\HttpKernel\HttpKernelInterface $kernel */
     $kernel = \Drupal::getContainer()->get('http_kernel');
     $response = $kernel->handle($request)->prepare($request);
+<<<<<<< HEAD
     $this->assertEqual($response->getStatusCode(), Response::HTTP_INTERNAL_SERVER_ERROR);
     $this->assertEqual($response->headers->get('Content-type'), 'text/html; charset=UTF-8');
+=======
+    $this->assertEquals(Response::HTTP_INTERNAL_SERVER_ERROR, $response->getStatusCode());
+    $this->assertEquals('text/html; charset=UTF-8', $response->headers->get('Content-type'));
+>>>>>>> dev
 
     // Test message is properly escaped, and that the unescaped string is not
     // output at all.
@@ -198,7 +242,11 @@ class ExceptionHandlingTest extends KernelTestBase {
     // contained in the output would not matter, but because it is output by the
     // final exception subscriber, it is printed as partial HTML, and hence
     // escaped.
+<<<<<<< HEAD
     $this->assertEqual($response->headers->get('Content-type'), 'text/plain; charset=UTF-8');
+=======
+    $this->assertEquals('text/plain; charset=UTF-8', $response->headers->get('Content-type'));
+>>>>>>> dev
     $this->assertStringStartsWith('The website encountered an unexpected error. Please try again later.</br></br><em class="placeholder">Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException</em>: Not acceptable format: json&lt;script&gt;alert(123);&lt;/script&gt; in <em class="placeholder">', $response->getContent());
   }
 

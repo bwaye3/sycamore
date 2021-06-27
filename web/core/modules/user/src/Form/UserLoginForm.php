@@ -2,7 +2,10 @@
 
 namespace Drupal\user\Form;
 
+<<<<<<< HEAD
 use Drupal\Core\Flood\FloodInterface;
+=======
+>>>>>>> dev
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\RendererInterface;
@@ -10,7 +13,13 @@ use Drupal\Core\Url;
 use Drupal\user\UserAuthInterface;
 use Drupal\user\UserInterface;
 use Drupal\user\UserStorageInterface;
+<<<<<<< HEAD
 use Symfony\Component\DependencyInjection\ContainerInterface;
+=======
+use Drupal\user\UserFloodControlInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Response;
+>>>>>>> dev
 
 /**
  * Provides a user login form.
@@ -20,11 +29,19 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class UserLoginForm extends FormBase {
 
   /**
+<<<<<<< HEAD
    * The flood service.
    *
    * @var \Drupal\Core\Flood\FloodInterface
    */
   protected $flood;
+=======
+   * The user flood control service.
+   *
+   * @var \Drupal\user\UserFloodControl
+   */
+  protected $userFloodControl;
+>>>>>>> dev
 
   /**
    * The user storage.
@@ -50,8 +67,13 @@ class UserLoginForm extends FormBase {
   /**
    * Constructs a new UserLoginForm.
    *
+<<<<<<< HEAD
    * @param \Drupal\Core\Flood\FloodInterface $flood
    *   The flood service.
+=======
+   * @param \Drupal\user\UserFloodControlInterface $user_flood_control
+   *   The user flood control service.
+>>>>>>> dev
    * @param \Drupal\user\UserStorageInterface $user_storage
    *   The user storage.
    * @param \Drupal\user\UserAuthInterface $user_auth
@@ -59,8 +81,17 @@ class UserLoginForm extends FormBase {
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
    */
+<<<<<<< HEAD
   public function __construct(FloodInterface $flood, UserStorageInterface $user_storage, UserAuthInterface $user_auth, RendererInterface $renderer) {
     $this->flood = $flood;
+=======
+  public function __construct($user_flood_control, UserStorageInterface $user_storage, UserAuthInterface $user_auth, RendererInterface $renderer) {
+    if (!$user_flood_control instanceof UserFloodControlInterface) {
+      @trigger_error('Passing the flood service to ' . __METHOD__ . ' is deprecated in drupal:9.1.0 and is replaced by user.flood_control in drupal:10.0.0. See https://www.drupal.org/node/3067148', E_USER_DEPRECATED);
+      $user_flood_control = \Drupal::service('user.flood_control');
+    }
+    $this->userFloodControl = $user_flood_control;
+>>>>>>> dev
     $this->userStorage = $user_storage;
     $this->userAuth = $user_auth;
     $this->renderer = $renderer;
@@ -71,7 +102,11 @@ class UserLoginForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
+<<<<<<< HEAD
       $container->get('flood'),
+=======
+      $container->get('user.flood_control'),
+>>>>>>> dev
       $container->get('entity_type.manager')->getStorage('user'),
       $container->get('user.auth'),
       $container->get('renderer')
@@ -131,9 +166,19 @@ class UserLoginForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+<<<<<<< HEAD
     $account = $this->userStorage->load($form_state->get('uid'));
 
     // A destination was set, probably on an exception controller,
+=======
+
+    if (empty($uid = $form_state->get('uid'))) {
+      return;
+    }
+    $account = $this->userStorage->load($uid);
+
+    // A destination was set, probably on an exception controller.
+>>>>>>> dev
     if (!$this->getRequest()->request->has('destination')) {
       $form_state->setRedirect(
         'entity.user.canonical',
@@ -171,7 +216,11 @@ class UserLoginForm extends FormBase {
       // independent of the per-user limit to catch attempts from one IP to log
       // in to many different user accounts.  We have a reasonably high limit
       // since there may be only one apparent IP for all users at an institution.
+<<<<<<< HEAD
       if (!$this->flood->isAllowed('user.failed_login_ip', $flood_config->get('ip_limit'), $flood_config->get('ip_window'))) {
+=======
+      if (!$this->userFloodControl->isAllowed('user.failed_login_ip', $flood_config->get('ip_limit'), $flood_config->get('ip_window'))) {
+>>>>>>> dev
         $form_state->set('flood_control_triggered', 'ip');
         return;
       }
@@ -193,7 +242,11 @@ class UserLoginForm extends FormBase {
 
         // Don't allow login if the limit for this user has been reached.
         // Default is to allow 5 failed attempts every 6 hours.
+<<<<<<< HEAD
         if (!$this->flood->isAllowed('user.failed_login_user', $flood_config->get('user_limit'), $flood_config->get('user_window'), $identifier)) {
+=======
+        if (!$this->userFloodControl->isAllowed('user.failed_login_user', $flood_config->get('user_limit'), $flood_config->get('user_window'), $identifier)) {
+>>>>>>> dev
           $form_state->set('flood_control_triggered', 'user');
           return;
         }
@@ -214,20 +267,37 @@ class UserLoginForm extends FormBase {
     $flood_config = $this->config('user.flood');
     if (!$form_state->get('uid')) {
       // Always register an IP-based failed login event.
+<<<<<<< HEAD
       $this->flood->register('user.failed_login_ip', $flood_config->get('ip_window'));
       // Register a per-user failed login event.
       if ($flood_control_user_identifier = $form_state->get('flood_control_user_identifier')) {
         $this->flood->register('user.failed_login_user', $flood_config->get('user_window'), $flood_control_user_identifier);
+=======
+      $this->userFloodControl->register('user.failed_login_ip', $flood_config->get('ip_window'));
+      // Register a per-user failed login event.
+      if ($flood_control_user_identifier = $form_state->get('flood_control_user_identifier')) {
+        $this->userFloodControl->register('user.failed_login_user', $flood_config->get('user_window'), $flood_control_user_identifier);
+>>>>>>> dev
       }
 
       if ($flood_control_triggered = $form_state->get('flood_control_triggered')) {
         if ($flood_control_triggered == 'user') {
+<<<<<<< HEAD
           $form_state->setErrorByName('name', $this->formatPlural($flood_config->get('user_limit'), 'There has been more than one failed login attempt for this account. It is temporarily blocked. Try again later or <a href=":url">request a new password</a>.', 'There have been more than @count failed login attempts for this account. It is temporarily blocked. Try again later or <a href=":url">request a new password</a>.', [':url' => Url::fromRoute('user.pass')->toString()]));
         }
         else {
           // We did not find a uid, so the limit is IP-based.
           $form_state->setErrorByName('name', $this->t('Too many failed login attempts from your IP address. This IP address is temporarily blocked. Try again later or <a href=":url">request a new password</a>.', [':url' => Url::fromRoute('user.pass')->toString()]));
         }
+=======
+          $message = $this->formatPlural($flood_config->get('user_limit'), 'There has been more than one failed login attempt for this account. It is temporarily blocked. Try again later or <a href=":url">request a new password</a>.', 'There have been more than @count failed login attempts for this account. It is temporarily blocked. Try again later or <a href=":url">request a new password</a>.', [':url' => Url::fromRoute('user.pass')->toString()]);
+        }
+        else {
+          // We did not find a uid, so the limit is IP-based.
+          $message = $this->t('Too many failed login attempts from your IP address. This IP address is temporarily blocked. Try again later or <a href=":url">request a new password</a>.', [':url' => Url::fromRoute('user.pass')->toString()]);
+        }
+        $form_state->setResponse(new Response($message, 403));
+>>>>>>> dev
       }
       else {
         // Use $form_state->getUserInput() in the error message to guarantee
@@ -251,7 +321,11 @@ class UserLoginForm extends FormBase {
     elseif ($flood_control_user_identifier = $form_state->get('flood_control_user_identifier')) {
       // Clear past failures for this user so as not to block a user who might
       // log in and out more than once in an hour.
+<<<<<<< HEAD
       $this->flood->clear('user.failed_login_user', $flood_control_user_identifier);
+=======
+      $this->userFloodControl->clear('user.failed_login_user', $flood_control_user_identifier);
+>>>>>>> dev
     }
   }
 

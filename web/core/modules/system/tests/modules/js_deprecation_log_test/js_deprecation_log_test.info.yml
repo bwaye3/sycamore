@@ -3,4 +3,7 @@ description: 'Stores all JS deprecation calls to allow JS tests to determine if 
 type: module
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

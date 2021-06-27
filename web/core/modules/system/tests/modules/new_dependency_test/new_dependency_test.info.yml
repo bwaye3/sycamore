@@ -3,6 +3,11 @@ type: module
 description: 'Support module for update testing.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
 dependencies:
   - new_dependency_test_with_service
+=======
+dependencies:
+  - drupal:new_dependency_test_with_service
+>>>>>>> dev

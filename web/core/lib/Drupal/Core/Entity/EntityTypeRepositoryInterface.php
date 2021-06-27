@@ -42,6 +42,7 @@ interface EntityTypeRepositoryInterface {
    */
   public function getEntityTypeFromClass($class_name);
 
+<<<<<<< HEAD
   /**
    * Clear the static cache.
    *
@@ -49,4 +50,6 @@ interface EntityTypeRepositoryInterface {
    */
   public function clearCachedDefinitions();
 
+=======
+>>>>>>> dev
 }

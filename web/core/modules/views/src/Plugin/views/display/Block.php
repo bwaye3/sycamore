@@ -5,7 +5,10 @@ namespace Drupal\views\Plugin\views\display;
 use Drupal\Core\Url;
 use Drupal\Component\Plugin\Discovery\CachedDiscoveryInterface;
 use Drupal\Core\Block\BlockManagerInterface;
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\Plugin\Block\ViewsBlock;
@@ -31,12 +34,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @see \Drupal\views\Plugin\Derivative\ViewsBlock
  */
 class Block extends DisplayPluginBase {
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
 
   /**
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
+=======
+>>>>>>> dev
 
   /**
    * Whether the display allows attachments.
@@ -69,7 +75,11 @@ class Block extends DisplayPluginBase {
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+<<<<<<< HEAD
    *   The entity manager.
+=======
+   *   The entity type manager.
+>>>>>>> dev
    * @param \Drupal\Core\Block\BlockManagerInterface $block_manager
    *   The block manager.
    */
@@ -246,7 +256,11 @@ class Block extends DisplayPluginBase {
           'items_per_page' => $this->t('Items per page'),
         ];
 
+<<<<<<< HEAD
         $allow = array_filter($this->getOption('allow'));
+=======
+        $allow = array_keys(array_filter($this->getOption('allow')));
+>>>>>>> dev
         $form['allow'] = [
           '#type' => 'checkboxes',
           '#default_value' => $allow,

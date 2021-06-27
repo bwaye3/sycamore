@@ -8,7 +8,10 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
+<<<<<<< HEAD
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+=======
+>>>>>>> dev
 use Drupal\Core\Render\Element;
 use Drupal\Core\Render\ElementInfoManagerInterface;
 use Drupal\file\Element\ManagedFile;
@@ -27,7 +30,11 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
  *   }
  * )
  */
+<<<<<<< HEAD
 class FileWidget extends WidgetBase implements ContainerFactoryPluginInterface {
+=======
+class FileWidget extends WidgetBase {
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -174,7 +181,11 @@ class FileWidget extends WidgetBase implements ContainerFactoryPluginInterface {
       $elements['#open'] = TRUE;
       $elements['#theme'] = 'file_widget_multiple';
       $elements['#theme_wrappers'] = ['details'];
+<<<<<<< HEAD
       $elements['#process'] = [[get_class($this), 'processMultiple']];
+=======
+      $elements['#process'] = [[static::class, 'processMultiple']];
+>>>>>>> dev
       $elements['#title'] = $title;
 
       $elements['#description'] = $description;
@@ -230,8 +241,13 @@ class FileWidget extends WidgetBase implements ContainerFactoryPluginInterface {
       '#type' => 'managed_file',
       '#upload_location' => $items[$delta]->getUploadLocation(),
       '#upload_validators' => $items[$delta]->getUploadValidators(),
+<<<<<<< HEAD
       '#value_callback' => [get_class($this), 'value'],
       '#process' => array_merge($element_info['#process'], [[get_class($this), 'process']]),
+=======
+      '#value_callback' => [static::class, 'value'],
+      '#process' => array_merge($element_info['#process'], [[static::class, 'process']]),
+>>>>>>> dev
       '#progress_indicator' => $this->getSetting('progress_indicator'),
       // Allows this field to return an array instead of a single value.
       '#extended' => TRUE,
@@ -264,7 +280,11 @@ class FileWidget extends WidgetBase implements ContainerFactoryPluginInterface {
       $element['#description'] = \Drupal::service('renderer')->renderPlain($file_upload_help);
       $element['#multiple'] = $cardinality != 1 ? TRUE : FALSE;
       if ($cardinality != 1 && $cardinality != -1) {
+<<<<<<< HEAD
         $element['#element_validate'] = [[get_class($this), 'validateMultipleCount']];
+=======
+        $element['#element_validate'] = [[static::class, 'validateMultipleCount']];
+>>>>>>> dev
       }
     }
 
@@ -441,7 +461,11 @@ class FileWidget extends WidgetBase implements ContainerFactoryPluginInterface {
     // the rebuild logic in file_field_widget_form() requires the entire field,
     // not just the individual item, to be valid.
     foreach (['upload_button', 'remove_button'] as $key) {
+<<<<<<< HEAD
       $element[$key]['#submit'][] = [get_called_class(), 'submit'];
+=======
+      $element[$key]['#submit'][] = [static::class, 'submit'];
+>>>>>>> dev
       $element[$key]['#limit_validation_errors'] = [array_slice($element['#parents'], 0, -1)];
     }
 

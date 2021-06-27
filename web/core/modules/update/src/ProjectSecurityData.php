@@ -2,6 +2,11 @@
 
 namespace Drupal\update;
 
+<<<<<<< HEAD
+=======
+use Drupal\Core\Extension\ExtensionVersion;
+
+>>>>>>> dev
 /**
  * Calculates a project's security coverage information.
  *
@@ -129,7 +134,11 @@ final class ProjectSecurityData {
       return [];
     }
     $info = [];
+<<<<<<< HEAD
     $existing_release_version = ModuleVersion::createFromVersionString($this->existingVersion);
+=======
+    $existing_release_version = ExtensionVersion::createFromVersionString($this->existingVersion);
+>>>>>>> dev
 
     // Check if the installed version has a specific end date defined.
     $version_suffix = $existing_release_version->getMajorVersion() . '_' . $this->getSemanticMinorVersion($this->existingVersion);
@@ -165,7 +174,11 @@ final class ProjectSecurityData {
    *   NULL if this cannot be determined.
    */
   private function getSecurityCoverageUntilVersion() {
+<<<<<<< HEAD
     $existing_release_version = ModuleVersion::createFromVersionString($this->existingVersion);
+=======
+    $existing_release_version = ExtensionVersion::createFromVersionString($this->existingVersion);
+>>>>>>> dev
     if (!empty($existing_release_version->getVersionExtra())) {
       // Only full releases receive security coverage.
       return NULL;
@@ -215,10 +228,17 @@ final class ProjectSecurityData {
    * @see \Drupal\update\ProjectSecurityData\getSecurityCoverageUntilVersion()
    */
   private function getAdditionalSecurityCoveredMinors($security_covered_version) {
+<<<<<<< HEAD
     $security_covered_version_major = ModuleVersion::createFromVersionString($security_covered_version)->getMajorVersion();
     $security_covered_version_minor = $this->getSemanticMinorVersion($security_covered_version);
     foreach ($this->releases as $release) {
       $release_version = ModuleVersion::createFromVersionString($release['version']);
+=======
+    $security_covered_version_major = ExtensionVersion::createFromVersionString($security_covered_version)->getMajorVersion();
+    $security_covered_version_minor = $this->getSemanticMinorVersion($security_covered_version);
+    foreach ($this->releases as $release) {
+      $release_version = ExtensionVersion::createFromVersionString($release['version']);
+>>>>>>> dev
       if ($release_version->getMajorVersion() === $security_covered_version_major && $release['status'] === 'published' && !$release_version->getVersionExtra()) {
         // The releases are ordered with the most recent releases first.
         // Therefore, if we have found a published, official release with the

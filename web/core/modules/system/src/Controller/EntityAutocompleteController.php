@@ -33,7 +33,11 @@ class EntityAutocompleteController extends ControllerBase {
   protected $keyValue;
 
   /**
+<<<<<<< HEAD
    * Constructs a EntityAutocompleteController object.
+=======
+   * Constructs an EntityAutocompleteController object.
+>>>>>>> dev
    *
    * @param \Drupal\Core\Entity\EntityAutocompleteMatcherInterface $matcher
    *   The autocomplete matcher for entity references.

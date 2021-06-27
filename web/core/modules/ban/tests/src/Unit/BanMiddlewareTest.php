@@ -38,7 +38,11 @@ class BanMiddlewareTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->kernel = $this->createMock('Symfony\Component\HttpKernel\HttpKernelInterface');

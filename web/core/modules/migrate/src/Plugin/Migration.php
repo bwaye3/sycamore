@@ -14,7 +14,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Defines the Migration plugin.
  *
+<<<<<<< HEAD
  * The migration process plugin represents one single migration and acts like a
+=======
+ * The migration plugin represents one single migration and acts like a
+>>>>>>> dev
  * container for the information about a single migration such as the source,
  * process and destination plugins.
  */
@@ -314,6 +318,7 @@ class Migration extends PluginBase implements MigrationInterface, RequirementsIn
   }
 
   /**
+<<<<<<< HEAD
    * Gets any arbitrary property's value.
    *
    * @param string $property
@@ -333,6 +338,8 @@ class Migration extends PluginBase implements MigrationInterface, RequirementsIn
   }
 
   /**
+=======
+>>>>>>> dev
    * Retrieves the ID map plugin.
    *
    * @return \Drupal\migrate\Plugin\MigrateIdMapInterface
@@ -364,9 +371,12 @@ class Migration extends PluginBase implements MigrationInterface, RequirementsIn
       $this->processPlugins[$index] = [];
       foreach ($this->getProcessNormalized($process) as $property => $configurations) {
         $this->processPlugins[$index][$property] = [];
+<<<<<<< HEAD
         if (!is_array($configurations) && !$this->processPlugins[$index][$property]) {
           throw new MigrateException(sprintf("Process configuration for '$property' must be an array", $property));
         }
+=======
+>>>>>>> dev
         foreach ($configurations as $configuration) {
           if (isset($configuration['source'])) {
             $this->processPlugins[$index][$property][] = $this->processPluginManager->createInstance('get', $configuration, $this);
@@ -440,6 +450,16 @@ class Migration extends PluginBase implements MigrationInterface, RequirementsIn
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * {@inheritDoc}
+   */
+  public function getRequirements(): array {
+    return $this->requirements;
+  }
+
+  /**
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function checkRequirements() {
@@ -474,8 +494,13 @@ class Migration extends PluginBase implements MigrationInterface, RequirementsIn
   /**
    * Gets the migration plugin manager.
    *
+<<<<<<< HEAD
    * @return \Drupal\migrate\Plugin\MigratePluginManager
    *   The plugin manager.
+=======
+   * @return \Drupal\migrate\Plugin\MigrationPluginManagerInterface
+   *   The migration plugin manager.
+>>>>>>> dev
    */
   protected function getMigrationPluginManager() {
     return $this->migrationPluginManager;
@@ -643,6 +668,18 @@ class Migration extends PluginBase implements MigrationInterface, RequirementsIn
     $return = [];
     foreach ($this->getProcessNormalized($process) as $process_pipeline) {
       foreach ($process_pipeline as $plugin_configuration) {
+<<<<<<< HEAD
+=======
+        // If the migration uses a deriver and has a migration_lookup with
+        // itself as the source migration, then skip adding dependencies.
+        // Otherwise the migration will depend on all the variations of itself.
+        // See d7_taxonomy_term for an example.
+        if (isset($this->deriver)
+            && $plugin_configuration['plugin'] === 'migration_lookup'
+            && $plugin_configuration['migration'] == $this->getBaseId()) {
+          continue;
+        }
+>>>>>>> dev
         if (in_array($plugin_configuration['plugin'], ['migration', 'migration_lookup'], TRUE)) {
           $return = array_merge($return, (array) $plugin_configuration['migration']);
         }

@@ -10,6 +10,7 @@ use Drupal\Core\Config\Entity\ConfigEntityInterface;
 interface ImageStyleInterface extends ConfigEntityInterface {
 
   /**
+<<<<<<< HEAD
    * Returns the replacement ID.
    *
    * @return string|null
@@ -24,6 +25,8 @@ interface ImageStyleInterface extends ConfigEntityInterface {
   public function getReplacementID();
 
   /**
+=======
+>>>>>>> dev
    * Returns the image style.
    *
    * @return string

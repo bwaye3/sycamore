@@ -1,7 +1,10 @@
 name: Test features
 type: theme
 base theme: stable
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 description: 'Test theme to test theme settings with limited features.'
 features:
   - node_user_picture

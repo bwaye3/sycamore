@@ -42,6 +42,7 @@ class SectionStorageManager extends DefaultPluginManager implements SectionStora
    * @param \Drupal\Core\Plugin\Context\ContextHandlerInterface $context_handler
    *   The context handler.
    */
+<<<<<<< HEAD
   public function __construct(\Traversable $namespaces, CacheBackendInterface $cache_backend, ModuleHandlerInterface $module_handler, ContextHandlerInterface $context_handler = NULL) {
     parent::__construct('Plugin/SectionStorage', $namespaces, $module_handler, SectionStorageInterface::class, SectionStorage::class);
 
@@ -49,6 +50,11 @@ class SectionStorageManager extends DefaultPluginManager implements SectionStora
       @trigger_error('The context.handler service must be passed to \Drupal\layout_builder\SectionStorage\SectionStorageManager::__construct(); it was added in Drupal 8.7.0 and will be required before Drupal 9.0.0.', E_USER_DEPRECATED);
       $context_handler = \Drupal::service('context.handler');
     }
+=======
+  public function __construct(\Traversable $namespaces, CacheBackendInterface $cache_backend, ModuleHandlerInterface $module_handler, ContextHandlerInterface $context_handler) {
+    parent::__construct('Plugin/SectionStorage', $namespaces, $module_handler, SectionStorageInterface::class, SectionStorage::class);
+
+>>>>>>> dev
     $this->contextHandler = $context_handler;
 
     $this->alterInfo('layout_builder_section_storage');
@@ -111,6 +117,7 @@ class SectionStorageManager extends DefaultPluginManager implements SectionStora
     return $this->createInstance($type);
   }
 
+<<<<<<< HEAD
   /**
    * {@inheritdoc}
    */
@@ -129,4 +136,6 @@ class SectionStorageManager extends DefaultPluginManager implements SectionStora
     return $this->load($type, $contexts);
   }
 
+=======
+>>>>>>> dev
 }

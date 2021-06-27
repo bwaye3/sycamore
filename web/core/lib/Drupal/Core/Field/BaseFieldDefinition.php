@@ -289,6 +289,7 @@ class BaseFieldDefinition extends ListDataDefinition implements FieldDefinitionI
   }
 
   /**
+<<<<<<< HEAD
    * {@inheritdoc}
    */
   public function isQueryable() {
@@ -317,6 +318,8 @@ class BaseFieldDefinition extends ListDataDefinition implements FieldDefinitionI
   }
 
   /**
+=======
+>>>>>>> dev
    * Sets constraints for a given field item property.
    *
    * Note: this overwrites any existing property constraints. If you need to
@@ -635,6 +638,7 @@ class BaseFieldDefinition extends ListDataDefinition implements FieldDefinitionI
   }
 
   /**
+<<<<<<< HEAD
    * Helper to retrieve the field item class.
    *
    * @deprecated in drupal:8.5.0 and is removed from drupal:9.0.0. Use
@@ -653,6 +657,8 @@ class BaseFieldDefinition extends ListDataDefinition implements FieldDefinitionI
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function __sleep() {

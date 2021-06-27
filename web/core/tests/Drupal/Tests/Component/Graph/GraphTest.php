@@ -12,7 +12,11 @@ use PHPUnit\Framework\TestCase;
 class GraphTest extends TestCase {
 
   /**
+<<<<<<< HEAD
    * Test depth-first-search features.
+=======
+   * Tests depth-first-search features.
+>>>>>>> dev
    */
   public function testDepthFirstSearch() {
     // The sample graph used is:
@@ -166,7 +170,11 @@ class GraphTest extends TestCase {
     foreach ($expected_orders as $order) {
       $previous_vertex = array_shift($order);
       foreach ($order as $vertex) {
+<<<<<<< HEAD
         $this->assertTrue($graph[$previous_vertex]['weight'] < $graph[$vertex]['weight'], sprintf('Weights of %s and %s are correct relative to each other', $previous_vertex, $vertex));
+=======
+        $this->assertLessThan($graph[$vertex]['weight'], $graph[$previous_vertex]['weight'], sprintf("Weight of vertex %s should be less than vertex %s.", $previous_vertex, $vertex));
+>>>>>>> dev
       }
     }
   }

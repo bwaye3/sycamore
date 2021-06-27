@@ -14,7 +14,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ConfigTranslationMapperList extends ControllerBase {
 
   /**
+<<<<<<< HEAD
    * A array of configuration mapper instances.
+=======
+   * An array of configuration mapper instances.
+>>>>>>> dev
    *
    * @var \Drupal\config_translation\ConfigMapperInterface[]
    */

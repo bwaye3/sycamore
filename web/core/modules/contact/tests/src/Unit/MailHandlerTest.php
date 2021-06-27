@@ -68,7 +68,11 @@ class MailHandlerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->mailManager = $this->createMock('\Drupal\Core\Mail\MailManagerInterface');
     $this->languageManager = $this->createMock('\Drupal\Core\Language\LanguageManagerInterface');
@@ -144,7 +148,11 @@ class MailHandlerTest extends UnitTestCase {
           $this->assertEquals($key, $result['key']);
           $this->assertEquals($to, $result['to']);
           $this->assertEquals($langcode, $result['langcode']);
+<<<<<<< HEAD
           $this->assertArrayEquals($params, $result['params']);
+=======
+          $this->assertEquals($params, $result['params']);
+>>>>>>> dev
           $this->assertEquals($from, $result['from']);
         });
     $this->userStorage->expects($this->any())

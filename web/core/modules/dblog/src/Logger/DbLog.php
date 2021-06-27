@@ -53,8 +53,13 @@ class DbLog implements LoggerInterface {
    * {@inheritdoc}
    */
   public function log($level, $message, array $context = []) {
+<<<<<<< HEAD
     // Remove any backtraces since they may contain an unserializable variable.
     unset($context['backtrace']);
+=======
+    // Remove backtrace and exception since they may contain an unserializable variable.
+    unset($context['backtrace'], $context['exception']);
+>>>>>>> dev
 
     // Convert PSR3-style messages to \Drupal\Component\Render\FormattableMarkup
     // style, so they can be translated too in runtime.

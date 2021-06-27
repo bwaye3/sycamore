@@ -3,9 +3,12 @@
 namespace Drupal\Core\Controller;
 
 use Drupal\Core\DependencyInjection\ClassResolverInterface;
+<<<<<<< HEAD
 use Drupal\Core\Routing\RouteMatch;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Psr\Http\Message\ServerRequestInterface;
+=======
+>>>>>>> dev
 use Symfony\Bridge\PsrHttpMessage\HttpMessageFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ControllerResolver as BaseControllerResolver;
@@ -122,6 +125,7 @@ class ControllerResolver extends BaseControllerResolver implements ControllerRes
     return [$controller, $method];
   }
 
+<<<<<<< HEAD
   /**
    * {@inheritdoc}
    */
@@ -165,4 +169,6 @@ class ControllerResolver extends BaseControllerResolver implements ControllerRes
     return $arguments;
   }
 
+=======
+>>>>>>> dev
 }

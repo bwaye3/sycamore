@@ -6,6 +6,7 @@
  */
 
 use Drupal\Component\Utility\Crypt;
+<<<<<<< HEAD
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Unicode;
@@ -15,12 +16,20 @@ use Drupal\Core\Logger\RfcLogLevel;
 use Drupal\Core\Test\TestDatabase;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Site\Settings;
+=======
+use Drupal\Core\Logger\RfcLogLevel;
+use Drupal\Core\Test\TestDatabase;
+>>>>>>> dev
 use Drupal\Core\Utility\Error;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
 /**
+<<<<<<< HEAD
  * Minimum allowed version of PHP.
+=======
+ * Minimum allowed version of PHP for Drupal to be bootstrapped.
+>>>>>>> dev
  *
  * Below this version:
  * - The installer cannot be run.
@@ -29,12 +38,22 @@ use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
  * - If a site managed to bypass all of the above, then an error is shown in
  *   the status report and various fatal errors occur on various pages.
  *
+<<<<<<< HEAD
  * @see install.php
  *
  * @todo Move this to an appropriate autoloadable class. See
  *   https://www.drupal.org/project/drupal/issues/2908079
  */
 const DRUPAL_MINIMUM_PHP = '7.0.8';
+=======
+ * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use
+ *   \Drupal::MINIMUM_PHP instead.
+ *
+ * @see https://www.drupal.org/node/2909361
+ * @see install.php
+ */
+const DRUPAL_MINIMUM_PHP = \Drupal::MINIMUM_PHP;
+>>>>>>> dev
 
 /**
  * Minimum supported version of PHP.
@@ -45,10 +64,19 @@ const DRUPAL_MINIMUM_PHP = '7.0.8';
  *   that Drupal no longer supports that PHP version.
  * - An error is shown in the status report that the PHP version is too old.
  *
+<<<<<<< HEAD
  * @todo Move this to an appropriate autoloadable class. See
  *   https://www.drupal.org/project/drupal/issues/2908079
  */
 const DRUPAL_MINIMUM_SUPPORTED_PHP = '7.0.8';
+=======
+ * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use
+ *   \Drupal::MINIMUM_SUPPORTED_PHP instead.
+ *
+ * @see https://www.drupal.org/node/2909361
+ */
+const DRUPAL_MINIMUM_SUPPORTED_PHP = \Drupal::MINIMUM_SUPPORTED_PHP;
+>>>>>>> dev
 
 /**
  * Minimum recommended version of PHP.
@@ -57,10 +85,19 @@ const DRUPAL_MINIMUM_SUPPORTED_PHP = '7.0.8';
  * message, but Drupal can still be installed. Used for (e.g.) PHP versions
  * that have reached their EOL or will in the near future.
  *
+<<<<<<< HEAD
  * @todo Move this to an appropriate autoloadable class. See
  *   https://www.drupal.org/project/drupal/issues/2908079
  */
 const DRUPAL_RECOMMENDED_PHP = '7.3';
+=======
+ * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use
+ *   \Drupal::RECOMMENDED_PHP instead.
+ *
+ * @see https://www.drupal.org/node/2909361
+ */
+const DRUPAL_RECOMMENDED_PHP = \Drupal::RECOMMENDED_PHP;
+>>>>>>> dev
 
 /**
  * Minimum recommended value of PHP memory_limit.
@@ -69,10 +106,19 @@ const DRUPAL_RECOMMENDED_PHP = '7.3';
  * contributed modules to be installed prior to hitting the limit. However,
  * 40M is the target for the Standard installation profile.
  *
+<<<<<<< HEAD
  * @todo Move this to an appropriate autoloadable class. See
  *   https://www.drupal.org/project/drupal/issues/2908079
  */
 const DRUPAL_MINIMUM_PHP_MEMORY_LIMIT = '64M';
+=======
+ * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use
+ *   \Drupal::MINIMUM_PHP_MEMORY_LIMIT instead.
+ *
+ * @see https://www.drupal.org/node/2909361
+ */
+const DRUPAL_MINIMUM_PHP_MEMORY_LIMIT = \Drupal::MINIMUM_PHP_MEMORY_LIMIT;
+>>>>>>> dev
 
 /**
  * Error reporting level: display no errors.
@@ -95,6 +141,7 @@ const ERROR_REPORTING_DISPLAY_ALL = 'all';
 const ERROR_REPORTING_DISPLAY_VERBOSE = 'verbose';
 
 /**
+<<<<<<< HEAD
  * Role ID for anonymous users; should match what's in the "role" table.
  *
  * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0.
@@ -117,6 +164,8 @@ const DRUPAL_ANONYMOUS_RID = AccountInterface::ANONYMOUS_ROLE;
 const DRUPAL_AUTHENTICATED_RID = AccountInterface::AUTHENTICATED_ROLE;
 
 /**
+=======
+>>>>>>> dev
  * The maximum number of characters in a module or theme name.
  */
 const DRUPAL_EXTENSION_NAME_MAX_LENGTH = 50;
@@ -139,6 +188,7 @@ const DRUPAL_EXTENSION_NAME_MAX_LENGTH = 50;
 define('REQUEST_TIME', (int) $_SERVER['REQUEST_TIME']);
 
 /**
+<<<<<<< HEAD
  * Regular expression to match PHP function names.
  *
  * @deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Use
@@ -185,10 +235,13 @@ const CONFIG_SYNC_DIRECTORY = 'sync';
 const CONFIG_STAGING_DIRECTORY = 'staging';
 
 /**
+=======
+>>>>>>> dev
  * Defines the root directory of the Drupal installation.
  *
  * This strips two levels of directories off the current directory.
  */
+<<<<<<< HEAD
 define('DRUPAL_ROOT', dirname(dirname(__DIR__)));
 
 /**
@@ -229,6 +282,16 @@ function config_get_config_directory($type) {
   // @todo https://www.drupal.org/node/2696103 Throw a more specific exception.
   throw new \Exception("The configuration directory type '$type' does not exist");
 }
+=======
+define('DRUPAL_ROOT', dirname(__DIR__, 2));
+
+/**
+ * Declare class aliases that will be added by the autoloader.
+ */
+// @todo https://www.drupal.org/project/drupal/issues/3197482 Remove this class
+//   alias once Drupal is running Symfony 5.3 or higher.
+class_alias('Drupal\Core\Http\KernelEvent', 'Symfony\Component\HttpKernel\Event\KernelEvent', TRUE);
+>>>>>>> dev
 
 /**
  * Returns and optionally sets the filename for a system resource.
@@ -357,6 +420,7 @@ function t($string, array $args = [], array $options = []) {
 }
 
 /**
+<<<<<<< HEAD
  * Formats a string for HTML display by replacing variable placeholders.
  *
  * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0.
@@ -409,6 +473,8 @@ function drupal_validate_utf8($text) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Logs an exception.
  *
  * This is a wrapper logging function which automatically decodes an exception.
@@ -448,6 +514,7 @@ function watchdog_exception($type, Exception $exception, $message = NULL, $varia
 }
 
 /**
+<<<<<<< HEAD
  * Sets a message to display to the user.
  *
  * Messages are stored in a session variable and displayed in the page template
@@ -581,6 +648,8 @@ function drupal_get_user_timezone() {
 }
 
 /**
+=======
+>>>>>>> dev
  * Provides custom PHP error handling.
  *
  * @param $error_level
@@ -591,6 +660,7 @@ function drupal_get_user_timezone() {
  *   (optional) The filename that the error was raised in.
  * @param $line
  *   (optional) The line number the error was raised at.
+<<<<<<< HEAD
  * @param $context
  *   (optional) An array that points to the active symbol table at the point the
  *   error occurred.
@@ -598,6 +668,12 @@ function drupal_get_user_timezone() {
 function _drupal_error_handler($error_level, $message, $filename = NULL, $line = NULL, $context = NULL) {
   require_once __DIR__ . '/errors.inc';
   _drupal_error_handler_real($error_level, $message, $filename, $line, $context);
+=======
+ */
+function _drupal_error_handler($error_level, $message, $filename = NULL, $line = NULL) {
+  require_once __DIR__ . '/errors.inc';
+  _drupal_error_handler_real($error_level, $message, $filename, $line);
+>>>>>>> dev
 }
 
 /**
@@ -760,6 +836,7 @@ function drupal_maintenance_theme() {
 }
 
 /**
+<<<<<<< HEAD
  * Returns TRUE if a Drupal installation is currently being attempted.
  *
  * @deprecated in drupal:8.8.0 and is removed from drupal:9.0.0.
@@ -849,6 +926,8 @@ function drupal_classloader_register($name, $path) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Provides central static variable storage.
  *
  * All functions requiring a static variable to persist or cache data within
@@ -1006,6 +1085,7 @@ function drupal_static_reset($name = NULL) {
 }
 
 /**
+<<<<<<< HEAD
  * Formats text for emphasized display in a placeholder inside a sentence.
  *
  * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0. Use
@@ -1021,6 +1101,8 @@ function drupal_placeholder($text) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Registers a function for execution on shutdown.
  *
  * Wrapper for register_shutdown_function() that catches thrown exceptions to

@@ -36,7 +36,11 @@ class FormTestFormStateValuesCleanForm extends FormBase {
 
     // Add an arbitrary element and manually set it to be cleaned.
     // Using $form_state->addCleanValueKey('wine'); didn't work here.
+<<<<<<< HEAD
     $class = get_class($this);
+=======
+    $class = static::class;
+>>>>>>> dev
     $form['wine'] = [
       '#type' => 'value',
       '#value' => 3000,

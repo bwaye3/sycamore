@@ -2,7 +2,10 @@ name: Workspaces
 type: module
 description: 'Allows users to stage content or preview a full site by using multiple workspaces on a single site.'
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 package: Core (Experimental)
 configure: entity.workspace.collection
 dependencies:

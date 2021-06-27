@@ -6,6 +6,10 @@ use Drupal\Core\Database\Database;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\search\SearchIndexInterface;
+<<<<<<< HEAD
+=======
+use Drupal\search\SearchQuery;
+>>>>>>> dev
 
 /**
  * Indexes content and queries it.
@@ -25,19 +29,31 @@ class SearchMatchTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['search'];
+=======
+  protected static $modules = ['search'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installSchema('search', ['search_index', 'search_dataset', 'search_total']);
     $this->installConfig(['search']);
   }
 
   /**
+<<<<<<< HEAD
    * Test search indexing.
+=======
+   * Tests search indexing.
+>>>>>>> dev
    */
   public function testMatching() {
     $this->_setup();
@@ -164,7 +180,11 @@ class SearchMatchTest extends KernelTestBase {
     $connection = Database::getConnection();
     foreach ($queries as $query => $results) {
       $result = $connection->select('search_index', 'i')
+<<<<<<< HEAD
         ->extend('Drupal\search\SearchQuery')
+=======
+        ->extend(SearchQuery::class)
+>>>>>>> dev
         ->searchExpression($query, static::SEARCH_TYPE)
         ->execute();
 
@@ -184,7 +204,11 @@ class SearchMatchTest extends KernelTestBase {
     ];
     foreach ($queries as $query => $results) {
       $result = $connection->select('search_index', 'i')
+<<<<<<< HEAD
         ->extend('Drupal\search\SearchQuery')
+=======
+        ->extend(SearchQuery::class)
+>>>>>>> dev
         ->searchExpression($query, static::SEARCH_TYPE_2)
         ->execute();
 
@@ -207,7 +231,11 @@ class SearchMatchTest extends KernelTestBase {
     ];
     foreach ($queries as $query => $results) {
       $result = $connection->select('search_index', 'i')
+<<<<<<< HEAD
         ->extend('Drupal\search\SearchQuery')
+=======
+        ->extend(SearchQuery::class)
+>>>>>>> dev
         ->searchExpression($query, static::SEARCH_TYPE_JPN)
         ->execute();
 
@@ -218,7 +246,11 @@ class SearchMatchTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the matching abilities of the engine.
+=======
+   * Tests the matching abilities of the engine.
+>>>>>>> dev
    *
    * Verify if a query produces the correct results.
    */
@@ -232,11 +264,19 @@ class SearchMatchTest extends KernelTestBase {
     // Compare $results and $found.
     sort($found);
     sort($results);
+<<<<<<< HEAD
     $this->assertEqual($found, $results, "Query matching '$query'");
   }
 
   /**
    * Test the scoring abilities of the engine.
+=======
+    $this->assertEquals($found, $results, "Query matching '$query'");
+  }
+
+  /**
+   * Tests the scoring abilities of the engine.
+>>>>>>> dev
    *
    * Verify if a query produces normalized, monotonous scores.
    */
@@ -250,10 +290,17 @@ class SearchMatchTest extends KernelTestBase {
     // Check order.
     $sorted = $scores;
     sort($sorted);
+<<<<<<< HEAD
     $this->assertEqual($scores, array_reverse($sorted), "Query order '$query'");
 
     // Check range.
     $this->assertEqual(!count($scores) || (min($scores) > 0.0 && max($scores) <= 1.0001), TRUE, "Query scoring '$query'");
+=======
+    $this->assertEquals($scores, array_reverse($sorted), "Query order '$query'");
+
+    // Check range.
+    $this->assertTrue(!count($scores) || (min($scores) > 0.0 && max($scores) <= 1.0001), "Query scoring '$query'");
+>>>>>>> dev
   }
 
 }

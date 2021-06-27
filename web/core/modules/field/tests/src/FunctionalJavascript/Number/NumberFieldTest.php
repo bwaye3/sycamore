@@ -27,7 +27,11 @@ class NumberFieldTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalLogin($this->drupalCreateUser([
@@ -42,7 +46,11 @@ class NumberFieldTest extends WebDriverTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test default formatter behavior.
+=======
+   * Tests default formatter behavior.
+>>>>>>> dev
    */
   public function testNumberFormatter() {
     $type = mb_strtolower($this->randomMachineName());
@@ -146,12 +154,20 @@ class NumberFieldTest extends WebDriverTestBase {
     }
     $page->pressButton("${float_field}_plugin_settings_update");
     $assert_session->waitForElement('css', '.field-plugin-summary-cell > .ajax-new-content');
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, [], t('Save'));
+=======
+    $this->submitForm([], 'Save');
+>>>>>>> dev
 
     // Check number_decimal and number_unformatted formatters behavior.
     $this->drupalGet('node/' . $node->id());
     $float_formatted = number_format($random_float, $scale, $decimal_separator, $thousand_separator);
+<<<<<<< HEAD
     $this->assertRaw("$prefix$float_formatted$suffix", 'Prefix and suffix added');
+=======
+    $this->assertRaw("$prefix$float_formatted$suffix");
+>>>>>>> dev
     $this->assertRaw((string) $random_integer);
 
     // Configure the number_decimal formatter.
@@ -176,13 +192,21 @@ class NumberFieldTest extends WebDriverTestBase {
     }
     $page->pressButton("${integer_field}_plugin_settings_update");
     $assert_session->waitForElement('css', '.field-plugin-summary-cell > .ajax-new-content');
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, [], t('Save'));
+=======
+    $this->submitForm([], 'Save');
+>>>>>>> dev
 
     // Check number_integer formatter behavior.
     $this->drupalGet('node/' . $node->id());
 
     $integer_formatted = number_format($random_integer, 0, '', $thousand_separator);
+<<<<<<< HEAD
     $this->assertRaw($integer_formatted, 'Random integer formatted');
+=======
+    $this->assertRaw($integer_formatted);
+>>>>>>> dev
   }
 
 }

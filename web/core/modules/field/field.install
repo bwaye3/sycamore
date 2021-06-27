@@ -5,6 +5,7 @@
  * Install, update and uninstall functions for the field module.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
@@ -132,4 +133,11 @@ function field_update_8500() {
     }
   }
   $state->set('field.storage.deleted', $deleted_field_storage_definitions);
+=======
+/**
+ * Implements hook_update_last_removed().
+ */
+function field_update_last_removed() {
+  return 8500;
+>>>>>>> dev
 }

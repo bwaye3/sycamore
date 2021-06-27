@@ -43,12 +43,20 @@ class FrontPageTest extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'contextual'];
+=======
+  protected static $modules = ['node', 'contextual'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->nodeStorage = $this->container->get('entity_type.manager')
@@ -77,13 +85,21 @@ class FrontPageTest extends ViewTestBase {
         'user',
       ],
     ];
+<<<<<<< HEAD
     $this->assertIdentical($expected, $view->getDependencies());
+=======
+    $this->assertSame($expected, $view->getDependencies());
+>>>>>>> dev
 
     $view->setDisplay('page_1');
     $this->executeView($view);
     $view->preview();
 
+<<<<<<< HEAD
     $this->assertEqual($view->getTitle(), new FormattableMarkup('Welcome to @site_name', ['@site_name' => $site_name]), 'The welcome title is used for the empty view.');
+=======
+    $this->assertEquals(new FormattableMarkup('Welcome to @site_name', ['@site_name' => $site_name]), $view->getTitle(), 'The welcome title is used for the empty view.');
+>>>>>>> dev
     $view->destroy();
 
     // Create some nodes on the frontpage view. Add more than 10 nodes in order
@@ -187,7 +203,11 @@ class FrontPageTest extends ViewTestBase {
     $this->drupalGet('node');
     $this->assertSession()->statusCodeEquals(200);
     // Check that the frontpage view was rendered.
+<<<<<<< HEAD
     $this->assertPattern('/class=".+view-frontpage/');
+=======
+    $this->assertSession()->responseMatches('/class=".+view-frontpage/');
+>>>>>>> dev
   }
 
   /**
@@ -372,7 +392,11 @@ class FrontPageTest extends ViewTestBase {
     $node->save();
 
     $this->drupalGet(Url::fromRoute('view.frontpage.page_1'));
+<<<<<<< HEAD
     $this->assertText($title);
+=======
+    $this->assertSession()->pageTextContains($title);
+>>>>>>> dev
   }
 
 }

@@ -21,7 +21,11 @@ class DateFormatDeleteForm extends EntityDeleteForm {
   protected $dateFormatter;
 
   /**
+<<<<<<< HEAD
    * Constructs an DateFormatDeleteForm object.
+=======
+   * Constructs a DateFormatDeleteForm object.
+>>>>>>> dev
    *
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
@@ -43,7 +47,11 @@ class DateFormatDeleteForm extends EntityDeleteForm {
    * {@inheritdoc}
    */
   public function getQuestion() {
+<<<<<<< HEAD
     return t('Are you sure you want to delete the format %name : %format?', [
+=======
+    return $this->t('Are you sure you want to delete the format %name : %format?', [
+>>>>>>> dev
       '%name' => $this->entity->label(),
       '%format' => $this->dateFormatter->format(REQUEST_TIME, $this->entity->id()),
     ]);

@@ -81,7 +81,11 @@ class EntityTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->entityTypeManager = $this->createMock(EntityTypeManagerInterface::class);
@@ -123,7 +127,11 @@ class EntityTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Ensures that the entity manager returns an entity storage.
+=======
+   * Ensures that the entity type manager returns an entity storage.
+>>>>>>> dev
    */
   protected function setupEntityTypeManager() {
     $this->entityTypeManager->expects($this->any())

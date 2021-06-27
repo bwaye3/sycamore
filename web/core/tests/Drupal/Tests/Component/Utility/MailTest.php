@@ -4,15 +4,27 @@ namespace Drupal\Tests\Component\Utility;
 
 use Drupal\Component\Utility\Mail;
 use PHPUnit\Framework\TestCase;
+<<<<<<< HEAD
+=======
+use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
+>>>>>>> dev
 
 /**
  * Test mail helpers implemented in Mail component.
  *
  * @group Utility
+<<<<<<< HEAD
+=======
+ * @group legacy
+>>>>>>> dev
  *
  * @coversDefaultClass \Drupal\Component\Utility\Mail
  */
 class MailTest extends TestCase {
+<<<<<<< HEAD
+=======
+  use ExpectDeprecationTrait;
+>>>>>>> dev
 
   /**
    * Tests RFC-2822 'display-name' formatter.
@@ -21,6 +33,10 @@ class MailTest extends TestCase {
    * @covers ::formatDisplayName
    */
   public function testFormatDisplayName($string, $safe_display_name) {
+<<<<<<< HEAD
+=======
+    $this->expectDeprecation('\Drupal\Component\Utility\Unicode::mimeHeaderEncode() is deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use \Symfony\Component\Mime\Header\UnstructuredHeader instead. See https://www.drupal.org/node/3207439');
+>>>>>>> dev
     $this->assertEquals($safe_display_name, Mail::formatDisplayName($string));
   }
 

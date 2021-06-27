@@ -3,7 +3,11 @@
  * Polyfill for HTML5 details elements.
  */
 
+<<<<<<< HEAD
 (function($, Modernizr, Drupal) {
+=======
+(function ($, Modernizr, Drupal) {
+>>>>>>> dev
   /**
    * The collapsible details object represents a single details element.
    *
@@ -24,10 +28,15 @@
     if (this.$node.find(`.error${anchor}`).length) {
       this.$node.attr('open', true);
     }
+<<<<<<< HEAD
     // Initialize and setup the summary,
     this.setupSummary();
     // Initialize and setup the legend.
     this.setupLegend();
+=======
+    // Initialize and set up the summary polyfill.
+    this.setupSummaryPolyfill();
+>>>>>>> dev
   }
 
   $.extend(
@@ -46,6 +55,7 @@
     CollapsibleDetails.prototype,
     /** @lends Drupal.CollapsibleDetails# */ {
       /**
+<<<<<<< HEAD
        * Initialize and setup summary events and markup.
        *
        * @fires event:summaryUpdated
@@ -69,11 +79,28 @@
         $('<span class="details-summary-prefix visually-hidden"></span>')
           .append(this.$node.attr('open') ? Drupal.t('Hide') : Drupal.t('Show'))
           .prependTo($legend)
+=======
+       * Initialize and setup summary markup.
+       */
+      setupSummaryPolyfill() {
+        // Turn the summary into a clickable link.
+        const $summary = this.$node.find('> summary');
+
+        // If this polyfill is in use, the browser does not recognize
+        // <summary> as a focusable element. The tabindex is set to -1 so the
+        // tabbable library does not incorrectly identify it as tabbable.
+        $summary.attr('tabindex', '-1');
+
+        $('<span class="details-summary-prefix visually-hidden"></span>')
+          .append(this.$node.attr('open') ? Drupal.t('Hide') : Drupal.t('Show'))
+          .prependTo($summary)
+>>>>>>> dev
           .after(document.createTextNode(' '));
 
         // .wrapInner() does not retain bound events.
         $('<a class="details-title"></a>')
           .attr('href', `#${this.$node.attr('id')}`)
+<<<<<<< HEAD
           .prepend($legend.contents())
           .appendTo($legend);
 
@@ -84,16 +111,33 @@
 
       /**
        * Handle legend clicks.
+=======
+          .prepend($summary.contents())
+          .appendTo($summary);
+
+        $summary
+          .append(this.$summary)
+          .on('click', $.proxy(this.onSummaryClick, this));
+      },
+
+      /**
+       * Handle summary clicks.
+>>>>>>> dev
        *
        * @param {jQuery.Event} e
        *   The event triggered.
        */
+<<<<<<< HEAD
       onLegendClick(e) {
+=======
+      onSummaryClick(e) {
+>>>>>>> dev
         this.toggle();
         e.preventDefault();
       },
 
       /**
+<<<<<<< HEAD
        * Update summary.
        */
       onSummaryUpdated() {
@@ -102,6 +146,8 @@
       },
 
       /**
+=======
+>>>>>>> dev
        * Toggle the visibility of a details element using smooth animations.
        */
       toggle() {
@@ -164,11 +210,15 @@
    *   The targeted node as a jQuery object.
    */
   const handleFragmentLinkClickOrHashChange = (e, $target) => {
+<<<<<<< HEAD
     $target
       .parents('details')
       .not('[open]')
       .find('> summary')
       .trigger('click');
+=======
+    $target.parents('details').not('[open]').find('> summary').trigger('click');
+>>>>>>> dev
   };
 
   /**

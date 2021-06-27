@@ -6,7 +6,10 @@
  */
 
 use Drupal\Core\Cache\Cache;
+<<<<<<< HEAD
 use Drupal\Core\Database\Database;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay;
 use Drupal\layout_builder\Section;
@@ -42,6 +45,7 @@ function layout_builder_install() {
 }
 
 /**
+<<<<<<< HEAD
  * Enable Layout Builder for existing entity displays.
  */
 function layout_builder_update_8601(&$sandbox) {
@@ -66,6 +70,8 @@ function layout_builder_update_8601(&$sandbox) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Implements hook_schema().
  */
 function layout_builder_schema() {
@@ -102,6 +108,7 @@ function layout_builder_schema() {
 }
 
 /**
+<<<<<<< HEAD
  * Create the 'inline_block_usage' table.
  */
 function layout_builder_update_8602() {
@@ -135,4 +142,10 @@ function layout_builder_update_8602() {
     ],
   ];
   Database::getConnection()->schema()->createTable('inline_block_usage', $inline_block_usage);
+=======
+ * Implements hook_update_last_removed().
+ */
+function layout_builder_update_last_removed() {
+  return 8602;
+>>>>>>> dev
 }

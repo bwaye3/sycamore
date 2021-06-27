@@ -18,7 +18,11 @@ class WorkspaceBypassTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'user', 'block', 'workspaces'];
+=======
+  protected static $modules = ['node', 'user', 'block', 'workspaces'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

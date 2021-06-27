@@ -4,7 +4,11 @@ namespace Drupal\layout_builder\Event;
 
 use Drupal\Core\Cache\CacheableResponseTrait;
 use Drupal\layout_builder\SectionComponent;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\Event;
+=======
+use Drupal\Component\EventDispatcher\Event;
+>>>>>>> dev
 
 /**
  * Event fired when a section component's render array is being built.

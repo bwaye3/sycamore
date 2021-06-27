@@ -31,7 +31,11 @@ class WorkspaceAccessTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installSchema('system', ['sequences']);
@@ -45,18 +49,34 @@ class WorkspaceAccessTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test cases for testWorkspaceAccess().
+=======
+   * Tests cases for testWorkspaceAccess().
+>>>>>>> dev
    *
    * @return array
    *   An array of operations and permissions to test with.
    */
   public function operationCases() {
     return [
+<<<<<<< HEAD
       ['create', 'create workspace'],
       ['view', 'view any workspace'],
       ['view', 'view own workspace'],
       ['update', 'edit any workspace'],
       ['update', 'edit own workspace'],
+=======
+      ['create', 'administer workspaces'],
+      ['create', 'create workspace'],
+      ['view', 'administer workspaces'],
+      ['view', 'view any workspace'],
+      ['view', 'view own workspace'],
+      ['update', 'administer workspaces'],
+      ['update', 'edit any workspace'],
+      ['update', 'edit own workspace'],
+      ['delete', 'administer workspaces'],
+>>>>>>> dev
       ['delete', 'delete any workspace'],
       ['delete', 'delete own workspace'],
     ];

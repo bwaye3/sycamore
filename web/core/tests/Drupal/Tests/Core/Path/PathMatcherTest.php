@@ -21,7 +21,11 @@ class PathMatcherTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     // Create a stub config factory with all config settings that will be
     // checked during this test.
     $config_factory_stub = $this->getConfigFactoryStub(
@@ -36,7 +40,11 @@ class PathMatcherTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that standard paths works with multiple patterns.
+=======
+   * Tests that standard paths works with multiple patterns.
+>>>>>>> dev
    *
    * @dataProvider getMatchPathData
    */

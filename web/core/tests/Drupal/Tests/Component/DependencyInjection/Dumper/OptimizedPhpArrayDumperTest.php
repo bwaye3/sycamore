@@ -8,6 +8,10 @@
 namespace Drupal\Tests\Component\DependencyInjection\Dumper {
 
   use Drupal\Component\Utility\Crypt;
+<<<<<<< HEAD
+=======
+  use Drupal\Tests\PhpUnitCompatibilityTrait;
+>>>>>>> dev
   use PHPUnit\Framework\TestCase;
   use Symfony\Component\DependencyInjection\Definition;
   use Symfony\Component\DependencyInjection\Reference;
@@ -24,6 +28,11 @@ namespace Drupal\Tests\Component\DependencyInjection\Dumper {
    */
   class OptimizedPhpArrayDumperTest extends TestCase {
 
+<<<<<<< HEAD
+=======
+    use PhpUnitCompatibilityTrait;
+
+>>>>>>> dev
     /**
      * The container builder instance.
      *
@@ -62,7 +71,11 @@ namespace Drupal\Tests\Component\DependencyInjection\Dumper {
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     protected function setUp() {
+=======
+    protected function setUp(): void {
+>>>>>>> dev
       // Setup a mock container builder.
       $this->containerBuilder = $this->prophesize('\Symfony\Component\DependencyInjection\ContainerBuilder');
       $this->containerBuilder->getAliases()->willReturn([]);
@@ -151,6 +164,10 @@ namespace Drupal\Tests\Component\DependencyInjection\Dumper {
 
       if (isset($parameters['reference'])) {
         $definition = new Definition('\stdClass');
+<<<<<<< HEAD
+=======
+        $definition->setPublic(TRUE);
+>>>>>>> dev
         $this->containerBuilder->getDefinition('referenced_service')->willReturn($definition);
       }
 
@@ -212,8 +229,11 @@ namespace Drupal\Tests\Component\DependencyInjection\Dumper {
      * @covers ::getParameterCall
      *
      * @dataProvider getDefinitionsDataProvider
+<<<<<<< HEAD
      *
      * @group legacy
+=======
+>>>>>>> dev
      */
     public function testGetServiceDefinitions($services, $definition_services) {
       $this->containerDefinition['services'] = $definition_services;
@@ -221,6 +241,10 @@ namespace Drupal\Tests\Component\DependencyInjection\Dumper {
       $this->containerBuilder->getDefinitions()->willReturn($services);
 
       $bar_definition = new Definition('\stdClass');
+<<<<<<< HEAD
+=======
+      $bar_definition->setPublic(TRUE);
+>>>>>>> dev
       $this->containerBuilder->getDefinition('bar')->willReturn($bar_definition);
 
       $private_definition = new Definition('\stdClass');
@@ -479,15 +503,25 @@ namespace Drupal\Tests\Component\DependencyInjection\Dumper {
      * @covers ::getReferenceCall
      *
      * @dataProvider publicPrivateDataProvider
+<<<<<<< HEAD
      *
      * @group legacy
+=======
+>>>>>>> dev
      */
     public function testGetServiceDefinitionWithReferenceToAlias($public) {
       $bar_definition = new Definition('\stdClass');
       $bar_definition_php_array = [
         'class' => '\stdClass',
       ];
+<<<<<<< HEAD
       if (!$public) {
+=======
+      if ($public) {
+        $bar_definition->setPublic(TRUE);
+      }
+      else {
+>>>>>>> dev
         $bar_definition->setPublic(FALSE);
         $bar_definition_php_array['public'] = FALSE;
       }
@@ -498,6 +532,10 @@ namespace Drupal\Tests\Component\DependencyInjection\Dumper {
       $aliases['bar.alias'] = 'bar';
 
       $foo = new Definition('\stdClass');
+<<<<<<< HEAD
+=======
+      $foo->setPublic(TRUE);
+>>>>>>> dev
       $foo->addArgument(new Reference('bar.alias'));
 
       $services['foo'] = $foo;
@@ -536,11 +574,18 @@ namespace Drupal\Tests\Component\DependencyInjection\Dumper {
      * getDecoratedService().
      *
      * @covers ::getServiceDefinition
+<<<<<<< HEAD
      *
      * @group legacy
      */
     public function testGetServiceDefinitionForDecoratedService() {
       $bar_definition = new Definition('\stdClass');
+=======
+     */
+    public function testGetServiceDefinitionForDecoratedService() {
+      $bar_definition = new Definition('\stdClass');
+      $bar_definition->setPublic(TRUE);
+>>>>>>> dev
       $bar_definition->setDecoratedService(new Reference('foo'));
       $services['bar'] = $bar_definition;
 
@@ -558,6 +603,10 @@ namespace Drupal\Tests\Component\DependencyInjection\Dumper {
       $expression = new Expression();
 
       $bar_definition = new Definition('\stdClass');
+<<<<<<< HEAD
+=======
+      $bar_definition->setPublic(TRUE);
+>>>>>>> dev
       $bar_definition->addArgument($expression);
       $services['bar'] = $bar_definition;
 
@@ -575,6 +624,10 @@ namespace Drupal\Tests\Component\DependencyInjection\Dumper {
       $service = new \stdClass();
 
       $bar_definition = new Definition('\stdClass');
+<<<<<<< HEAD
+=======
+      $bar_definition->setPublic(TRUE);
+>>>>>>> dev
       $bar_definition->addArgument($service);
       $services['bar'] = $bar_definition;
 
@@ -592,6 +645,10 @@ namespace Drupal\Tests\Component\DependencyInjection\Dumper {
       $resource = fopen('php://memory', 'r');
 
       $bar_definition = new Definition('\stdClass');
+<<<<<<< HEAD
+=======
+      $bar_definition->setPublic(TRUE);
+>>>>>>> dev
       $bar_definition->addArgument($resource);
       $services['bar'] = $bar_definition;
 
@@ -606,8 +663,15 @@ namespace Drupal\Tests\Component\DependencyInjection\Dumper {
      * @dataProvider percentsEscapeProvider
      */
     public function testPercentsEscape($expected, $argument) {
+<<<<<<< HEAD
       $this->containerBuilder->getDefinitions()->willReturn([
         'test' => new Definition('\stdClass', [$argument]),
+=======
+      $definition = new Definition('\stdClass', [$argument]);
+      $definition->setPublic(TRUE);
+      $this->containerBuilder->getDefinitions()->willReturn([
+        'test' => $definition,
+>>>>>>> dev
       ]);
 
       $dump = $this->dumper->getArray();

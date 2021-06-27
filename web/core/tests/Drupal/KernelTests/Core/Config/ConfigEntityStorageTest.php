@@ -18,7 +18,11 @@ class ConfigEntityStorageTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['config_test'];
+=======
+  protected static $modules = ['config_test'];
+>>>>>>> dev
 
   /**
    * Tests creating configuration entities with changed UUIDs.
@@ -48,7 +52,11 @@ class ConfigEntityStorageTest extends KernelTestBase {
 
     // Ensure that the config entity was not corrupted.
     $entity = $storage->loadUnchanged($entity->id());
+<<<<<<< HEAD
     $this->assertIdentical($entity->toArray(), $original_properties);
+=======
+    $this->assertSame($original_properties, $entity->toArray());
+>>>>>>> dev
   }
 
   /**

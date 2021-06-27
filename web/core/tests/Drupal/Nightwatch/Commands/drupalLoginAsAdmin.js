@@ -12,7 +12,11 @@ import { commandAsWebserver } from '../globals';
  */
 exports.command = function drupalLoginAsAdmin(callback) {
   const self = this;
+<<<<<<< HEAD
   this.drupalUserIsLoggedIn(sessionExists => {
+=======
+  this.drupalUserIsLoggedIn((sessionExists) => {
+>>>>>>> dev
     if (sessionExists) {
       this.drupalLogout();
     }
@@ -24,7 +28,11 @@ exports.command = function drupalLoginAsAdmin(callback) {
 
     this.drupalRelativeURL(userLink.toString());
 
+<<<<<<< HEAD
     this.drupalUserIsLoggedIn(sessionExists => {
+=======
+    this.drupalUserIsLoggedIn((sessionExists) => {
+>>>>>>> dev
       if (!sessionExists) {
         throw new Error('Logging in as an admin user failed.');
       }

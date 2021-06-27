@@ -35,7 +35,11 @@ class MenuLinkTreeTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'system',
     'menu_test',
     'menu_link_content',
@@ -47,9 +51,14 @@ class MenuLinkTreeTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     parent::setUp();
     \Drupal::service('router.builder')->rebuild();
+=======
+  protected function setUp(): void {
+    parent::setUp();
+>>>>>>> dev
     $this->installEntitySchema('user');
     $this->installEntitySchema('menu_link_content');
 
@@ -120,16 +129,26 @@ class MenuLinkTreeTest extends KernelTestBase {
       return array_reduce($tree, $sum);
     };
 
+<<<<<<< HEAD
     $this->assertEqual($count($tree), 8);
+=======
+    $this->assertEquals(8, $count($tree));
+>>>>>>> dev
     $parameters = new MenuTreeParameters();
     $parameters->setRoot('test.example2');
     $tree = $this->linkTree->load($instance->getMenuName(), $parameters);
     $top_link = reset($tree);
     $this->assertCount(1, $top_link->subtree);
     $child = reset($top_link->subtree);
+<<<<<<< HEAD
     $this->assertEqual($child->link->getPluginId(), $links[3]->getPluginId());
     $height = $this->linkTree->getSubtreeHeight('test.example2');
     $this->assertEqual($height, 3);
+=======
+    $this->assertEquals($links[3]->getPluginId(), $child->link->getPluginId());
+    $height = $this->linkTree->getSubtreeHeight('test.example2');
+    $this->assertEquals(3, $height);
+>>>>>>> dev
   }
 
 }

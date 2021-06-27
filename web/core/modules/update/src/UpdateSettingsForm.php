@@ -53,6 +53,7 @@ class UpdateSettingsForm extends ConfigFormBase implements ContainerInjectionInt
 
     $form['update_check_frequency'] = [
       '#type' => 'radios',
+<<<<<<< HEAD
       '#title' => t('Check for updates'),
       '#default_value' => $config->get('check.interval_days'),
       '#options' => [
@@ -60,25 +61,46 @@ class UpdateSettingsForm extends ConfigFormBase implements ContainerInjectionInt
         '7' => t('Weekly'),
       ],
       '#description' => t('Select how frequently you want to automatically check for new releases of your currently installed modules and themes.'),
+=======
+      '#title' => $this->t('Check for updates'),
+      '#default_value' => $config->get('check.interval_days'),
+      '#options' => [
+        '1' => $this->t('Daily'),
+        '7' => $this->t('Weekly'),
+      ],
+      '#description' => $this->t('Select how frequently you want to automatically check for new releases of your currently installed modules and themes.'),
+>>>>>>> dev
     ];
 
     $form['update_check_disabled'] = [
       '#type' => 'checkbox',
+<<<<<<< HEAD
       '#title' => t('Check for updates of uninstalled modules and themes'),
+=======
+      '#title' => $this->t('Check for updates of uninstalled modules and themes'),
+>>>>>>> dev
       '#default_value' => $config->get('check.disabled_extensions'),
     ];
 
     $notification_emails = $config->get('notification.emails');
     $form['update_notify_emails'] = [
       '#type' => 'textarea',
+<<<<<<< HEAD
       '#title' => t('Email addresses to notify when updates are available'),
       '#rows' => 4,
       '#default_value' => implode("\n", $notification_emails),
       '#description' => t('Whenever your site checks for available updates and finds new releases, it can notify a list of users via email. Put each address on a separate line. If blank, no emails will be sent.'),
+=======
+      '#title' => $this->t('Email addresses to notify when updates are available'),
+      '#rows' => 4,
+      '#default_value' => implode("\n", $notification_emails),
+      '#description' => $this->t('Whenever your site checks for available updates and finds new releases, it can notify a list of users via email. Put each address on a separate line. If blank, no emails will be sent.'),
+>>>>>>> dev
     ];
 
     $form['update_notification_threshold'] = [
       '#type' => 'radios',
+<<<<<<< HEAD
       '#title' => t('Email notification threshold'),
       '#default_value' => $config->get('notification.threshold'),
       '#options' => [
@@ -86,6 +108,15 @@ class UpdateSettingsForm extends ConfigFormBase implements ContainerInjectionInt
         'security' => t('Only security updates'),
       ],
       '#description' => t('You can choose to send email only if a security update is available, or to be notified about all newer versions. If there are updates available of Drupal core or any of your installed modules and themes, your site will always print a message on the <a href=":status_report">status report</a> page, and will also display an error message on administration pages if there is a security update.', [':status_report' => Url::fromRoute('system.status')->toString()]),
+=======
+      '#title' => $this->t('Email notification threshold'),
+      '#default_value' => $config->get('notification.threshold'),
+      '#options' => [
+        'all' => $this->t('All newer versions'),
+        'security' => $this->t('Only security updates'),
+      ],
+      '#description' => $this->t('You can choose to send email only if a security update is available, or to be notified about all newer versions. If there are updates available of Drupal core or any of your installed modules and themes, your site will always print a message on the <a href=":status_report">status report</a> page, and will also display an error message on administration pages if there is a security update.', [':status_report' => Url::fromRoute('system.status')->toString()]),
+>>>>>>> dev
     ];
 
     return parent::buildForm($form, $form_state);

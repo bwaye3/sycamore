@@ -16,7 +16,11 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 class NodeType extends DrupalSqlBase {
 
   /**
+<<<<<<< HEAD
    * The teaser length
+=======
+   * The teaser length.
+>>>>>>> dev
    *
    * @var int
    */

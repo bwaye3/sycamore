@@ -230,8 +230,13 @@ class MigrateSqlIdMapEnsureTablesTest extends MigrateTestCase {
     $migration->expects($this->any())
       ->method('getDestinationPlugin')
       ->willReturn($plugin);
+<<<<<<< HEAD
     /** @var \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher */
     $event_dispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+=======
+    /** @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher */
+    $event_dispatcher = $this->createMock('Symfony\Contracts\EventDispatcher\EventDispatcherInterface');
+>>>>>>> dev
     $map = new TestSqlIdMap($database, [], 'sql', [], $migration, $event_dispatcher);
     $map->getDatabase();
   }

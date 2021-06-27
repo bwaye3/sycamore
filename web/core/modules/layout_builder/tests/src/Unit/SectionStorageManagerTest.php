@@ -17,7 +17,10 @@ use Drupal\layout_builder\SectionStorage\SectionStorageDefinition;
 use Drupal\layout_builder\SectionStorage\SectionStorageManager;
 use Drupal\layout_builder\SectionStorageInterface;
 use Drupal\Tests\UnitTestCase;
+<<<<<<< HEAD
 use Symfony\Component\DependencyInjection\ContainerInterface;
+=======
+>>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\layout_builder\SectionStorage\SectionStorageManager
@@ -64,7 +67,11 @@ class SectionStorageManagerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $cache = $this->prophesize(CacheBackendInterface::class);
@@ -86,6 +93,7 @@ class SectionStorageManagerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * @covers ::__construct
    *
    * @expectedDeprecation The context.handler service must be passed to \Drupal\layout_builder\SectionStorage\SectionStorageManager::__construct(); it was added in Drupal 8.7.0 and will be required before Drupal 9.0.0.
@@ -103,6 +111,8 @@ class SectionStorageManagerTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * @covers ::loadEmpty
    */
   public function testLoadEmpty() {
@@ -112,6 +122,7 @@ class SectionStorageManagerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * @covers ::loadFromStorageId
    *
    * @expectedDeprecation \Drupal\layout_builder\SectionStorage\SectionStorageManagerInterface::loadFromStorageId() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. \Drupal\layout_builder\SectionStorage\SectionStorageManagerInterface::load() should be used instead. See https://www.drupal.org/node/3012353.
@@ -152,6 +163,8 @@ class SectionStorageManagerTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * @covers ::load
    */
   public function testLoad() {

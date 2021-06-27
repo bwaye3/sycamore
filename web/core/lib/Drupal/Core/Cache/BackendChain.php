@@ -30,6 +30,7 @@ class BackendChain implements CacheBackendInterface, CacheTagsInvalidatorInterfa
   protected $backends = [];
 
   /**
+<<<<<<< HEAD
    * Constructs a new backend chain service instance.
    *
    * @param string|null $bin
@@ -45,6 +46,8 @@ class BackendChain implements CacheBackendInterface, CacheTagsInvalidatorInterfa
   }
 
   /**
+=======
+>>>>>>> dev
    * Appends a cache backend to the cache chain.
    *
    * @param CacheBackendInterface $backend

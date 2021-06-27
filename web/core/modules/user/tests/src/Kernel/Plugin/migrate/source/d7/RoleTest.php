@@ -15,7 +15,11 @@ class RoleTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['migrate_drupal', 'user'];
+=======
+  protected static $modules = ['migrate_drupal', 'user'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

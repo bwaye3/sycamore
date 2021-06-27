@@ -268,6 +268,7 @@ function language_get_default_langcode($entity_type, $bundle) {
 }
 
 /**
+<<<<<<< HEAD
  * Reads language prefixes and uses the langcode if no prefix is set.
  *
  * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0. Use
@@ -281,6 +282,8 @@ function language_negotiation_url_prefixes() {
 }
 
 /**
+=======
+>>>>>>> dev
  * Update the list of prefixes from the installed languages.
  */
 function language_negotiation_url_prefixes_update() {
@@ -300,6 +303,7 @@ function language_negotiation_url_prefixes_update() {
 }
 
 /**
+<<<<<<< HEAD
  * Reads language domains.
  *
  * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0. Use
@@ -313,6 +317,8 @@ function language_negotiation_url_domains() {
 }
 
 /**
+=======
+>>>>>>> dev
  * Implements hook_modules_installed().
  */
 function language_modules_installed($modules) {
@@ -400,7 +406,11 @@ function language_field_info_alter(&$info) {
 }
 
 /**
+<<<<<<< HEAD
  * Implements hook_entity_field_access()
+=======
+ * Implements hook_entity_field_access().
+>>>>>>> dev
  */
 function language_entity_field_access($operation, FieldDefinitionInterface $field_definition, AccountInterface $account, FieldItemListInterface $items = NULL) {
   // Only allow edit access on a langcode field if the entity it is attached to

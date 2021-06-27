@@ -2,7 +2,10 @@
 
 namespace Drupal\Tests\system\Kernel\Theme;
 
+<<<<<<< HEAD
 use Drupal\Core\Extension\Extension;
+=======
+>>>>>>> dev
 use Drupal\KernelTests\KernelTestBase;
 
 /**
@@ -17,10 +20,17 @@ class TwigFilterTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['twig_theme_test'];
 
   /**
    * Test Twig "without" filter.
+=======
+  protected static $modules = ['twig_theme_test'];
+
+  /**
+   * Tests Twig "without" filter.
+>>>>>>> dev
    */
   public function testTwigWithoutFilter() {
     $filter_test = [
@@ -137,6 +147,7 @@ class TwigFilterTest extends KernelTestBase {
     }
   }
 
+<<<<<<< HEAD
   /**
    * Test "twig_without" filter function.
    *
@@ -172,4 +183,6 @@ class TwigFilterTest extends KernelTestBase {
     $this->assertSame($expected_without_blue_green, $result_without_blue_green);
   }
 
+=======
+>>>>>>> dev
 }

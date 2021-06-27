@@ -51,7 +51,11 @@ abstract class FieldRdfaTestBase extends FieldKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['rdf'];
+=======
+  protected static $modules = ['rdf'];
+>>>>>>> dev
 
   /**
    * @var string
@@ -59,6 +63,7 @@ abstract class FieldRdfaTestBase extends FieldKernelTestBase {
   protected $testValue;
 
   /**
+<<<<<<< HEAD
    * {@inheritdoc}
    */
   protected function setUp() {
@@ -68,6 +73,8 @@ abstract class FieldRdfaTestBase extends FieldKernelTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Helper function to test the formatter's RDFa.
    *
    * @param array $formatter

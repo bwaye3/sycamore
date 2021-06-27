@@ -3,7 +3,11 @@
  * Provides theme functions for image Quick Edit's client-side HTML.
  */
 
+<<<<<<< HEAD
 (function(Drupal) {
+=======
+(function (Drupal) {
+>>>>>>> dev
   /**
    * Theme function for validation errors of the Image in-place editor.
    *
@@ -15,7 +19,11 @@
    * @return {string}
    *   The corresponding HTML.
    */
+<<<<<<< HEAD
   Drupal.theme.quickeditImageErrors = function(settings) {
+=======
+  Drupal.theme.quickeditImageErrors = function (settings) {
+>>>>>>> dev
     return `<div class="quickedit-image-errors">${settings.errors}</div>`;
   };
 
@@ -33,7 +41,11 @@
    * @return {string}
    *   The corresponding HTML.
    */
+<<<<<<< HEAD
   Drupal.theme.quickeditImageDropzone = function(settings) {
+=======
+  Drupal.theme.quickeditImageDropzone = function (settings) {
+>>>>>>> dev
     return (
       `<div class="quickedit-image-dropzone ${settings.state}">` +
       '  <i class="quickedit-image-icon"></i>' +
@@ -63,7 +75,11 @@
    * @return {string}
    *   The corresponding HTML.
    */
+<<<<<<< HEAD
   Drupal.theme.quickeditImageToolbar = function(settings) {
+=======
+  Drupal.theme.quickeditImageToolbar = function (settings) {
+>>>>>>> dev
     let html = '<form class="quickedit-image-field-info">';
     if (settings.alt_field) {
       html +=

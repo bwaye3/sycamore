@@ -30,7 +30,11 @@ class ConfigMapperManagerTest extends UnitTestCase {
    */
   protected $typedConfigManager;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $language = new Language(['id' => 'en']);
     $language_manager = $this->createMock('Drupal\Core\Language\LanguageManagerInterface');
     $language_manager->expects($this->once())

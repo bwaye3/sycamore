@@ -2,7 +2,10 @@
 
 namespace Drupal\Tests\filter\Unit;
 
+<<<<<<< HEAD
 use Drupal\Tests\AssertHelperTrait;
+=======
+>>>>>>> dev
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -11,8 +14,11 @@ use Drupal\Tests\UnitTestCase;
  */
 class FilterUninstallValidatorTest extends UnitTestCase {
 
+<<<<<<< HEAD
   use AssertHelperTrait;
 
+=======
+>>>>>>> dev
   /**
    * @var \Drupal\filter\FilterUninstallValidator|\PHPUnit\Framework\MockObject\MockObject
    */
@@ -21,7 +27,11 @@ class FilterUninstallValidatorTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->filterUninstallValidator = $this->getMockBuilder('Drupal\filter\FilterUninstallValidator')
       ->disableOriginalConstructor()
@@ -43,7 +53,11 @@ class FilterUninstallValidatorTest extends UnitTestCase {
     $module = $this->randomMachineName();
     $expected = [];
     $reasons = $this->filterUninstallValidator->validate($module);
+<<<<<<< HEAD
     $this->assertSame($expected, $this->castSafeStrings($reasons));
+=======
+    $this->assertEquals($expected, $reasons);
+>>>>>>> dev
   }
 
   /**
@@ -65,7 +79,11 @@ class FilterUninstallValidatorTest extends UnitTestCase {
     $module = $this->randomMachineName();
     $expected = [];
     $reasons = $this->filterUninstallValidator->validate($module);
+<<<<<<< HEAD
     $this->assertSame($expected, $this->castSafeStrings($reasons));
+=======
+    $this->assertEquals($expected, $reasons);
+>>>>>>> dev
   }
 
   /**
@@ -160,7 +178,11 @@ class FilterUninstallValidatorTest extends UnitTestCase {
       'Provides a filter plugin that is in use in the following filter formats: <em class="placeholder">Filter Format 1 Label, Filter Format 2 Label</em>',
     ];
     $reasons = $this->filterUninstallValidator->validate($this->randomMachineName());
+<<<<<<< HEAD
     $this->assertSame($expected, $this->castSafeStrings($reasons));
+=======
+    $this->assertEquals($expected, $reasons);
+>>>>>>> dev
   }
 
 }

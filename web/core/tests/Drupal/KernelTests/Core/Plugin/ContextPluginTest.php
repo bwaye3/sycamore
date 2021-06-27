@@ -17,7 +17,11 @@ use Drupal\user\Entity\User;
  */
 class ContextPluginTest extends KernelTestBase {
 
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'system',
     'user',
     'node',
@@ -48,15 +52,26 @@ class ContextPluginTest extends KernelTestBase {
       $this->fail('The user context should not yet be set.');
     }
     catch (ContextException $e) {
+<<<<<<< HEAD
       $this->assertEqual($e->getMessage(), 'The not_exists context is not a valid context.');
+=======
+      $this->assertEquals('The not_exists context is not a valid context.', $e->getMessage());
+>>>>>>> dev
     }
 
     // Test the getContextDefinitions() method.
     $user_context_definition = EntityContextDefinition::fromEntityTypeId('user')->setLabel(t('User'));
+<<<<<<< HEAD
     $this->assertEqual($plugin->getContextDefinitions()['user']->getLabel(), $user_context_definition->getLabel());
 
     // Test the getContextDefinition() method for a valid context.
     $this->assertEqual($plugin->getContextDefinition('user')->getLabel(), $user_context_definition->getLabel());
+=======
+    $this->assertEquals($plugin->getContextDefinitions()['user']->getLabel(), $user_context_definition->getLabel());
+
+    // Test the getContextDefinition() method for a valid context.
+    $this->assertEquals($plugin->getContextDefinition('user')->getLabel(), $user_context_definition->getLabel());
+>>>>>>> dev
 
     // Try to get a context with valid definition.
     $this->assertNotNull($plugin->getContext('user'), 'Succeeded to get a context with a valid definition.');
@@ -79,8 +94,13 @@ class ContextPluginTest extends KernelTestBase {
     $user = User::create(['name' => $name]);
     $plugin->setContextValue('user', $user);
 
+<<<<<<< HEAD
     $this->assertEqual($plugin->getContextValue('user')->getAccountName(), $user->getAccountName());
     $this->assertEqual($user->label(), $plugin->getTitle());
+=======
+    $this->assertEquals($user->getAccountName(), $plugin->getContextValue('user')->getAccountName());
+    $this->assertEquals($user->label(), $plugin->getTitle());
+>>>>>>> dev
 
     // Test Optional context handling.
     $plugin = $manager->createInstance('user_name_optional');
@@ -98,6 +118,7 @@ class ContextPluginTest extends KernelTestBase {
     $complex_plugin->setContextValue('node', $node);
     $context_wrappers = $complex_plugin->getContexts();
     // Make sure what came out of the wrappers is good.
+<<<<<<< HEAD
     $this->assertEqual($context_wrappers['user']->getContextValue()->label(), $user->label());
     $this->assertEqual($context_wrappers['node']->getContextValue()->label(), $node->label());
 
@@ -108,6 +129,18 @@ class ContextPluginTest extends KernelTestBase {
 
     // Test the title method for the complex context plugin.
     $this->assertEqual($user->label() . ' -- ' . $node->label(), $complex_plugin->getTitle());
+=======
+    $this->assertEquals($user->label(), $context_wrappers['user']->getContextValue()->label());
+    $this->assertEquals($node->label(), $context_wrappers['node']->getContextValue()->label());
+
+    // Make sure what comes out of the context values is good.
+    $contexts = $complex_plugin->getContextValues();
+    $this->assertEquals($user->label(), $contexts['user']->label());
+    $this->assertEquals($node->label(), $contexts['node']->label());
+
+    // Test the title method for the complex context plugin.
+    $this->assertEquals($user->label() . ' -- ' . $node->label(), $complex_plugin->getTitle());
+>>>>>>> dev
   }
 
 }

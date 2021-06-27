@@ -6,6 +6,7 @@ use Drupal\Component\Version\Constraint;
 
 /**
  * A value object representing dependency information.
+<<<<<<< HEAD
  *
  * This class implements \ArrayAccess to provide a backwards compatibility layer
  * for Drupal 8.x. This will be removed before Drupal 9.x.
@@ -13,6 +14,10 @@ use Drupal\Component\Version\Constraint;
  * @see https://www.drupal.org/node/2756875
  */
 class Dependency implements \ArrayAccess {
+=======
+ */
+class Dependency {
+>>>>>>> dev
 
   /**
    * The name of the dependency.
@@ -115,6 +120,7 @@ class Dependency implements \ArrayAccess {
   }
 
   /**
+<<<<<<< HEAD
    * {@inheritdoc}
    */
   public function offsetExists($offset) {
@@ -165,6 +171,8 @@ class Dependency implements \ArrayAccess {
   }
 
   /**
+=======
+>>>>>>> dev
    * Creates a new instance of this class from a dependency string.
    *
    * @param string $dependency
@@ -194,7 +202,11 @@ class Dependency implements \ArrayAccess {
    * Prevents unnecessary serialization of constraint objects.
    *
    * @return array
+<<<<<<< HEAD
    *   The properties to seriailize.
+=======
+   *   The properties to serialize.
+>>>>>>> dev
    */
   public function __sleep() {
     return ['name', 'project', 'constraintString'];

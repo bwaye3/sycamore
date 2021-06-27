@@ -4,7 +4,13 @@ namespace Drupal\Core\Utility;
 
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Xss;
+<<<<<<< HEAD
 use Drupal\Core\Database\DatabaseExceptionWrapper;
+=======
+use Drupal\Core\Database\Database;
+use Drupal\Core\Database\DatabaseExceptionWrapper;
+use Drupal\Core\Database\Log;
+>>>>>>> dev
 
 /**
  * Drupal error utility class.
@@ -19,11 +25,19 @@ class Error {
   const ERROR = 3;
 
   /**
+<<<<<<< HEAD
    * An array of blacklisted functions.
    *
    * @var array
    */
   protected static $blacklistFunctions = ['debug', '_drupal_error_handler', '_drupal_exception_handler'];
+=======
+   * An array of ignored functions.
+   *
+   * @var array
+   */
+  protected static $ignoredFunctions = ['debug', '_drupal_error_handler', '_drupal_exception_handler'];
+>>>>>>> dev
 
   /**
    * Decodes an exception and retrieves the correct caller.
@@ -44,6 +58,7 @@ class Error {
     // For PDOException errors, we try to return the initial caller,
     // skipping internal functions of the database layer.
     if ($exception instanceof \PDOException || $exception instanceof DatabaseExceptionWrapper) {
+<<<<<<< HEAD
       // The first element in the stack is the call, the second element gives us
       // the caller. We skip calls that occurred in one of the classes of the
       // database layer or in one of its global functions.
@@ -54,6 +69,10 @@ class Error {
         // We remove that call.
         array_shift($backtrace);
       }
+=======
+      $driver_namespace = Database::getConnectionInfo()['default']['namespace'];
+      $backtrace = Log::removeDatabaseEntries($backtrace, $driver_namespace);
+>>>>>>> dev
       if (isset($exception->query_string, $exception->args)) {
         $message .= ": " . $exception->query_string . "; " . print_r($exception->args, TRUE);
       }
@@ -72,6 +91,10 @@ class Error {
       'severity_level' => static::ERROR,
       'backtrace' => $backtrace,
       '@backtrace_string' => $exception->getTraceAsString(),
+<<<<<<< HEAD
+=======
+      'exception' => $exception,
+>>>>>>> dev
     ];
   }
 
@@ -87,7 +110,11 @@ class Error {
   public static function renderExceptionSafe($exception) {
     $decode = static::decodeException($exception);
     $backtrace = $decode['backtrace'];
+<<<<<<< HEAD
     unset($decode['backtrace']);
+=======
+    unset($decode['backtrace'], $decode['exception']);
+>>>>>>> dev
     // Remove 'main()'.
     array_shift($backtrace);
 
@@ -111,9 +138,15 @@ class Error {
    */
   public static function getLastCaller(array &$backtrace) {
     // Errors that occur inside PHP internal functions do not generate
+<<<<<<< HEAD
     // information about file and line. Ignore black listed functions.
     while (($backtrace && !isset($backtrace[0]['line'])) ||
       (isset($backtrace[1]['function']) && in_array($backtrace[1]['function'], static::$blacklistFunctions))) {
+=======
+    // information about file and line. Ignore the ignored functions.
+    while (($backtrace && !isset($backtrace[0]['line'])) ||
+      (isset($backtrace[1]['function']) && in_array($backtrace[1]['function'], static::$ignoredFunctions))) {
+>>>>>>> dev
       array_shift($backtrace);
     }
 

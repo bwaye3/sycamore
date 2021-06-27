@@ -3,7 +3,11 @@
  * Attaches behaviors for the Contextual module.
  */
 
+<<<<<<< HEAD
 (function($, Drupal, drupalSettings, _, Backbone, JSON, storage) {
+=======
+(function ($, Drupal, drupalSettings, _, Backbone, JSON, storage) {
+>>>>>>> dev
   const options = $.extend(
     drupalSettings.contextual,
     // Merge strings on top of drupalSettings so that they are not mutable.
@@ -25,7 +29,11 @@
     if (typeof permissionsHash === 'string') {
       _.chain(storage)
         .keys()
+<<<<<<< HEAD
         .each(key => {
+=======
+        .each((key) => {
+>>>>>>> dev
           if (key.substring(0, 18) === 'Drupal.contextual.') {
             storage.removeItem(key);
           }
@@ -101,7 +109,11 @@
     const destination = `destination=${Drupal.encodePath(
       Drupal.url(drupalSettings.path.currentPath),
     )}`;
+<<<<<<< HEAD
     $contextual.find('.contextual-links a').each(function() {
+=======
+    $contextual.find('.contextual-links a').each(function () {
+>>>>>>> dev
       const url = this.getAttribute('href');
       const glue = url.indexOf('?') === -1 ? '?' : '&';
       this.setAttribute('href', url + glue + destination);
@@ -109,11 +121,15 @@
 
     // Create a model and the appropriate views.
     const model = new contextual.StateModel({
+<<<<<<< HEAD
       title: $region
         .find('h2')
         .eq(0)
         .text()
         .trim(),
+=======
+      title: $region.find('h2').eq(0).text().trim(),
+>>>>>>> dev
     });
     const viewOptions = $.extend({ el: $contextual, model }, options);
     contextual.views.push({
@@ -167,7 +183,11 @@
 
       // Collect the IDs for all contextual links placeholders.
       const ids = [];
+<<<<<<< HEAD
       $placeholders.each(function() {
+=======
+      $placeholders.each(function () {
+>>>>>>> dev
         ids.push({
           id: $(this).attr('data-contextual-id'),
           token: $(this).attr('data-contextual-token'),
@@ -176,7 +196,11 @@
 
       const uncachedIDs = [];
       const uncachedTokens = [];
+<<<<<<< HEAD
       ids.forEach(contextualID => {
+=======
+      ids.forEach((contextualID) => {
+>>>>>>> dev
         const html = storage.getItem(`Drupal.contextual.${contextualID.id}`);
         if (html && html.length) {
           // Initialize after the current execution cycle, to make the AJAX
@@ -273,7 +297,11 @@
    * @return {string}
    *   A string representing a DOM fragment.
    */
+<<<<<<< HEAD
   Drupal.theme.contextualTrigger = function() {
+=======
+  Drupal.theme.contextualTrigger = function () {
+>>>>>>> dev
     return '<button class="trigger visually-hidden focusable" type="button"></button>';
   };
 

@@ -3,7 +3,11 @@
  * Attaches preview-related behavior for the Color module.
  */
 
+<<<<<<< HEAD
 (function($, Drupal) {
+=======
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * Namespace for color-related functionality for Drupal.
    *
@@ -52,7 +56,11 @@
         );
 
       function gradientLineColor(i, element) {
+<<<<<<< HEAD
         Object.keys(accum || {}).forEach(k => {
+=======
+        Object.keys(accum || {}).forEach((k) => {
+>>>>>>> dev
           accum[k] += delta[k];
         });
         element.style.backgroundColor = farb.pack(accum);
@@ -61,7 +69,11 @@
       // Set up gradients if there are some.
       let colorStart;
       let colorEnd;
+<<<<<<< HEAD
       Object.keys(settings.gradients || {}).forEach(i => {
+=======
+      Object.keys(settings.gradients || {}).forEach((i) => {
+>>>>>>> dev
         colorStart = farb.unpack(
           form
             .find(
@@ -78,7 +90,11 @@
         );
         if (colorStart && colorEnd) {
           delta = [];
+<<<<<<< HEAD
           Object.keys(colorStart || {}).forEach(colorStartKey => {
+=======
+          Object.keys(colorStart || {}).forEach((colorStartKey) => {
+>>>>>>> dev
             delta[colorStartKey] =
               (colorEnd[colorStartKey] - colorStart[colorStartKey]) /
               (settings.gradients[i].vertical ? height[i] : width[i]);

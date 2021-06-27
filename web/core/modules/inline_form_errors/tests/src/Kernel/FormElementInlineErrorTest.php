@@ -15,7 +15,11 @@ class FormElementInlineErrorTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['inline_form_errors'];
+=======
+  protected static $modules = ['inline_form_errors'];
+>>>>>>> dev
 
   /**
    * Tests that no inline form errors are shown when disabled for a form.
@@ -42,7 +46,11 @@ class FormElementInlineErrorTest extends KernelTestBase {
 
     // Just test if the #error_no_message property is TRUE. FormErrorHandlerTest
     // tests if the property actually hides the error message.
+<<<<<<< HEAD
     $this->assertArraySubset(['#error_no_message' => TRUE], $form['test']);
+=======
+    $this->assertTrue($form['test']['#error_no_message']);
+>>>>>>> dev
   }
 
 }

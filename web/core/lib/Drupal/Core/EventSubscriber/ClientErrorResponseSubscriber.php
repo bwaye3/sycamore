@@ -4,7 +4,11 @@ namespace Drupal\Core\EventSubscriber;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\CacheableResponseInterface;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+=======
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
+>>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -16,11 +20,19 @@ class ClientErrorResponseSubscriber implements EventSubscriberInterface {
   /**
    * Sets the '4xx-response' cache tag on 4xx responses.
    *
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpKernel\Event\FilterResponseEvent $event
    *   The event to process.
    */
   public function onRespond(FilterResponseEvent $event) {
     if (!$event->isMasterRequest()) {
+=======
+   * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
+   *   The event to process.
+   */
+  public function onRespond(ResponseEvent $event) {
+    if (!$event->isMainRequest()) {
+>>>>>>> dev
       return;
     }
 

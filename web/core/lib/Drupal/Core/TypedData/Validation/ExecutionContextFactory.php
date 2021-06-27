@@ -10,8 +10,11 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * Defines an execution factory for the Typed Data validator.
  *
  * We do not use the factory provided by Symfony as it is marked internal.
+<<<<<<< HEAD
  *
  * @codingStandardsIgnoreStart
+=======
+>>>>>>> dev
  */
 class ExecutionContextFactory implements ExecutionContextFactoryInterface {
 
@@ -33,8 +36,12 @@ class ExecutionContextFactory implements ExecutionContextFactoryInterface {
    * @param string $translationDomain
    *   (optional) The translation domain.
    */
+<<<<<<< HEAD
   public function __construct(TranslatorInterface $translator, $translationDomain = null)
   {
+=======
+  public function __construct(TranslatorInterface $translator, $translationDomain = NULL) {
+>>>>>>> dev
     $this->translator = $translator;
     $this->translationDomain = $translationDomain;
   }
@@ -42,8 +49,12 @@ class ExecutionContextFactory implements ExecutionContextFactoryInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function createContext(ValidatorInterface $validator, $root)
   {
+=======
+  public function createContext(ValidatorInterface $validator, $root) {
+>>>>>>> dev
     return new ExecutionContext(
       $validator,
       $root,

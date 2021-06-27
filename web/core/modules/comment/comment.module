@@ -29,6 +29,7 @@ use Drupal\user\RoleInterface;
 use Drupal\user\UserInterface;
 
 /**
+<<<<<<< HEAD
  * Anonymous posters cannot enter their contact information.
  *
  * @deprecated in drupal:8.3.0 and is removed from drupal:9.0.0.
@@ -59,6 +60,8 @@ const COMMENT_ANONYMOUS_MAY_CONTACT = 1;
 const COMMENT_ANONYMOUS_MUST_CONTACT = 2;
 
 /**
+=======
+>>>>>>> dev
  * The time cutoff for comments marked as read for entity types other node.
  *
  * Comments changed before this time are always marked as read.
@@ -201,7 +204,11 @@ function comment_field_storage_config_insert(FieldStorageConfigInterface $field_
 function comment_field_config_delete(FieldConfigInterface $field) {
   if ($field->getType() == 'comment') {
     // Delete all comments that used by the entity bundle.
+<<<<<<< HEAD
     $entity_query = \Drupal::entityQuery('comment');
+=======
+    $entity_query = \Drupal::entityQuery('comment')->accessCheck(FALSE);
+>>>>>>> dev
     $entity_query->condition('entity_type', $field->getEntityTypeId());
     $entity_query->condition('field_name', $field->getName());
     $cids = $entity_query->execute();
@@ -260,6 +267,7 @@ function comment_node_view_alter(array &$build, EntityInterface $node, EntityVie
 }
 
 /**
+<<<<<<< HEAD
  * Generates an array for rendering a comment.
  *
  * @param \Drupal\comment\CommentInterface $comment
@@ -317,6 +325,8 @@ function comment_view_multiple($comments, $view_mode = 'full', $langcode = NULL)
 }
 
 /**
+=======
+>>>>>>> dev
  * Implements hook_form_FORM_ID_alter() for field_ui_field_storage_add_form.
  */
 function comment_form_field_ui_field_storage_add_form_alter(&$form, FormStateInterface $form_state) {
@@ -405,7 +415,11 @@ function comment_entity_predelete(EntityInterface $entity) {
   // entity type that has an integer ID, $entity->id() might be a string
   // containing a number), and then cast it to an integer when querying.
   if ($entity instanceof FieldableEntityInterface && is_numeric($entity->id())) {
+<<<<<<< HEAD
     $entity_query = \Drupal::entityQuery('comment');
+=======
+    $entity_query = \Drupal::entityQuery('comment')->accessCheck(FALSE);
+>>>>>>> dev
     $entity_query->condition('entity_id', (int) $entity->id());
     $entity_query->condition('entity_type', $entity->getEntityTypeId());
     $cids = $entity_query->execute();
@@ -559,7 +573,11 @@ function comment_user_cancel($edit, UserInterface $account, $method) {
  * Implements hook_ENTITY_TYPE_predelete() for user entities.
  */
 function comment_user_predelete($account) {
+<<<<<<< HEAD
   $entity_query = \Drupal::entityQuery('comment');
+=======
+  $entity_query = \Drupal::entityQuery('comment')->accessCheck(FALSE);
+>>>>>>> dev
   $entity_query->condition('uid', $account->id());
   $cids = $entity_query->execute();
   $comment_storage = \Drupal::entityTypeManager()->getStorage('comment');

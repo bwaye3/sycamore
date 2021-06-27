@@ -3,7 +3,11 @@
  * A Backbone View that provides an entity level toolbar.
  */
 
+<<<<<<< HEAD
 (function($, _, Backbone, Drupal, debounce, Popper) {
+=======
+(function ($, _, Backbone, Drupal, debounce, Popper) {
+>>>>>>> dev
   Drupal.quickedit.EntityToolbarView = Backbone.View.extend(
     /** @lends Drupal.quickedit.EntityToolbarView# */ {
       /**
@@ -100,8 +104,13 @@
           if ($body.children('#quickedit-entity-toolbar').length === 0) {
             $body.append(this.$el);
           }
+<<<<<<< HEAD
           // The fence will define a area on the screen that the entity toolbar
           // will be position within.
+=======
+          // The fence will define an area on the screen that the entity toolbar
+          // will be positioned within.
+>>>>>>> dev
           if ($body.children('#quickedit-toolbar-fence').length === 0) {
             this.$fence = $(Drupal.theme('quickeditEntityToolbarFence'))
               .css(Drupal.displace())
@@ -258,9 +267,14 @@
 
             case 3:
               // Position against a highlighted field.
+<<<<<<< HEAD
               highlightedField = Drupal.quickedit.app.model.get(
                 'highlightedField',
               );
+=======
+              highlightedField =
+                Drupal.quickedit.app.model.get('highlightedField');
+>>>>>>> dev
               of =
                 highlightedField &&
                 highlightedField.editorView &&
@@ -274,8 +288,14 @@
               let topMostField = null;
               // Position against the topmost field.
               for (let i = 0; i < fieldModels.length; i++) {
+<<<<<<< HEAD
                 const pos = fieldModels[i].get('el').getBoundingClientRect()
                   .top;
+=======
+                const pos = fieldModels[i]
+                  .get('el')
+                  .getBoundingClientRect().top;
+>>>>>>> dev
                 if (pos < topMostPosition) {
                   topMostPosition = pos;
                   topMostField = fieldModels[i];
@@ -296,6 +316,7 @@
          * @param {object} data
          *   Data object containing popper and target data.
          */
+<<<<<<< HEAD
         function refinePopper(data) {
           // Determine if the pointer should be on the top or bottom.
           const isBelow = data.offsets.popper.top > data.offsets.reference.top;
@@ -330,6 +351,15 @@
           ) {
             data.offsets.popper.top = fenceTop + fenceHeight - toolbarHeight;
           }
+=======
+        function refinePopper({ state }) {
+          // Determine if the pointer should be on the top or bottom.
+          const isBelow = state.placement.split('-')[0] === 'bottom';
+          const classListMethod = isBelow ? 'add' : 'remove';
+          state.elements.popper.classList[classListMethod](
+            'quickedit-toolbar-pointer-top',
+          );
+>>>>>>> dev
         }
         /**
          * Calls the Popper() method on the $el of this view.
@@ -341,6 +371,7 @@
           const popperedge = edge === 'left' ? 'start' : 'end';
           if (referenceElement !== undefined) {
             if (!popperElement.classList.contains('js-popper-processed')) {
+<<<<<<< HEAD
               that.popper = new Popper(referenceElement, popperElement, {
                 placement: `top-${popperedge}`,
                 modifiers: {
@@ -364,6 +395,50 @@
                 ? referenceElement[0]
                 : referenceElement;
               that.popper.update();
+=======
+              that.popper = Popper.createPopper(
+                referenceElement,
+                popperElement,
+                {
+                  placement: `top-${popperedge}`,
+                  modifiers: [
+                    {
+                      name: 'flip',
+                      options: {
+                        boundary: boundariesElement,
+                      },
+                    },
+                    {
+                      name: 'preventOverflow',
+                      options: {
+                        boundary: boundariesElement,
+                        tether: false,
+                        altAxis: true,
+                        padding: { top: 5, bottom: 5 },
+                      },
+                    },
+                    {
+                      name: 'computeStyles',
+                      options: {
+                        adaptive: false,
+                      },
+                    },
+                    {
+                      name: 'refinePopper',
+                      phase: 'write',
+                      enabled: true,
+                      fn: refinePopper,
+                    },
+                  ],
+                },
+              );
+              popperElement.classList.add('js-popper-processed');
+            } else {
+              that.popper.state.elements.reference = referenceElement[0]
+                ? referenceElement[0]
+                : referenceElement;
+              that.popper.forceUpdate();
+>>>>>>> dev
             }
           }
 
@@ -504,9 +579,14 @@
         const activeFieldLabel =
           activeField && activeField.get('metadata').label;
         // Label of a highlighted field, if it exists.
+<<<<<<< HEAD
         const highlightedField = Drupal.quickedit.app.model.get(
           'highlightedField',
         );
+=======
+        const highlightedField =
+          Drupal.quickedit.app.model.get('highlightedField');
+>>>>>>> dev
         const highlightedFieldLabel =
           highlightedField && highlightedField.get('metadata').label;
         // The label is constructed in a priority order.

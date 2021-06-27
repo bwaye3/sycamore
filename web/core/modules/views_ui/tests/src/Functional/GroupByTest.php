@@ -30,12 +30,17 @@ class GroupByTest extends UITestBase {
     $this->drupalGet('admin/structure/views/view/test_views_groupby_save/edit');
 
     $edit_groupby_url = 'admin/structure/views/nojs/handler-group/test_views_groupby_save/default/field/id';
+<<<<<<< HEAD
     $this->assertNoLinkByHref($edit_groupby_url, 0, 'No aggregation link found.');
+=======
+    $this->assertSession()->linkByHrefNotExists($edit_groupby_url, 0, 'No aggregation link found.');
+>>>>>>> dev
 
     // Enable aggregation on the view.
     $edit = [
       'group_by' => TRUE,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/structure/views/nojs/display/test_views_groupby_save/default/group_by', $edit, t('Apply'));
 
     $this->assertLinkByHref($edit_groupby_url, 0, 'Aggregation link found.');
@@ -45,11 +50,28 @@ class GroupByTest extends UITestBase {
     $this->assertSession()->linkExists('COUNT(Views test: ID)', 0, 'The count setting is displayed in the UI');
 
     $this->drupalPostForm(NULL, [], t('Save'));
+=======
+    $this->drupalGet('admin/structure/views/nojs/display/test_views_groupby_save/default/group_by');
+    $this->submitForm($edit, 'Apply');
+
+    $this->assertSession()->linkByHrefExists($edit_groupby_url, 0, 'Aggregation link found.');
+
+    // Change the groupby type in the UI.
+    $this->drupalGet($edit_groupby_url);
+    $this->submitForm(['options[group_type]' => 'count'], 'Apply');
+    $this->assertSession()->linkExists('COUNT(Views test: ID)', 0, 'The count setting is displayed in the UI');
+
+    $this->submitForm([], 'Save');
+>>>>>>> dev
 
     $view = $this->container->get('entity_type.manager')->getStorage('view')->load('test_views_groupby_save');
     $display = $view->getDisplay('default');
     $this->assertTrue($display['display_options']['group_by'], 'The groupby setting was saved on the view.');
+<<<<<<< HEAD
     $this->assertEqual($display['display_options']['fields']['id']['group_type'], 'count', 'Count groupby_type was saved on the view.');
+=======
+    $this->assertEquals('count', $display['display_options']['fields']['id']['group_type'], 'Count groupby_type was saved on the view.');
+>>>>>>> dev
   }
 
 }

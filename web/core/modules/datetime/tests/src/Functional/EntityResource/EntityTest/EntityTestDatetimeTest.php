@@ -42,12 +42,20 @@ class EntityTestDatetimeTest extends EntityTestResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['datetime', 'entity_test'];
+=======
+  protected static $modules = ['datetime', 'entity_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
+=======
+  public function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Add datetime field.
@@ -117,6 +125,7 @@ class EntityTestDatetimeTest extends EntityTestResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function getNormalizedPatchEntity() {
     return parent::getNormalizedPostEntity() + [
       static::$fieldName => [
@@ -135,6 +144,8 @@ class EntityTestDatetimeTest extends EntityTestResourceTestBase {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   protected function assertNormalizationEdgeCases($method, Url $url, array $request_options) {
     parent::assertNormalizationEdgeCases($method, $url, $request_options);
 
@@ -159,7 +170,11 @@ class EntityTestDatetimeTest extends EntityTestResourceTestBase {
 
       $request_options[RequestOptions::BODY] = $this->serializer->encode($normalization, static::$format);
       $response = $this->request($method, $url, $request_options);
+<<<<<<< HEAD
       $message = "The specified date \"$value\" is not in an accepted format: \"Y-m-d\\TH:i:sP\" (RFC 3339), \"Y-m-d\\TH:i:sO\" (ISO 8601), \"Y-m-d\\TH:i:s\" (backward compatibility — deprecated).";
+=======
+      $message = "The specified date \"$value\" is not in an accepted format: \"Y-m-d\\TH:i:sP\" (RFC 3339), \"Y-m-d\\TH:i:sO\" (ISO 8601).";
+>>>>>>> dev
       $this->assertResourceErrorResponse(422, $message, $response);
 
       // DX: 422 when date format is incorrect.
@@ -169,7 +184,11 @@ class EntityTestDatetimeTest extends EntityTestResourceTestBase {
 
       $request_options[RequestOptions::BODY] = $this->serializer->encode($normalization, static::$format);
       $response = $this->request($method, $url, $request_options);
+<<<<<<< HEAD
       $message = "The specified date \"$value\" is not in an accepted format: \"Y-m-d\\TH:i:sP\" (RFC 3339), \"Y-m-d\\TH:i:sO\" (ISO 8601), \"Y-m-d\\TH:i:s\" (backward compatibility — deprecated).";
+=======
+      $message = "The specified date \"$value\" is not in an accepted format: \"Y-m-d\\TH:i:sP\" (RFC 3339), \"Y-m-d\\TH:i:sO\" (ISO 8601).";
+>>>>>>> dev
       $this->assertResourceErrorResponse(422, $message, $response);
 
       // DX: 422 when date value is invalid.
@@ -179,11 +198,16 @@ class EntityTestDatetimeTest extends EntityTestResourceTestBase {
 
       $request_options[RequestOptions::BODY] = $this->serializer->encode($normalization, static::$format);
       $response = $this->request($method, $url, $request_options);
+<<<<<<< HEAD
       $message = "The specified date \"$value\" is not in an accepted format: \"Y-m-d\\TH:i:sP\" (RFC 3339), \"Y-m-d\\TH:i:sO\" (ISO 8601), \"Y-m-d\\TH:i:s\" (backward compatibility — deprecated).";
+=======
+      $message = "The specified date \"$value\" is not in an accepted format: \"Y-m-d\\TH:i:sP\" (RFC 3339), \"Y-m-d\\TH:i:sO\" (ISO 8601).";
+>>>>>>> dev
       $this->assertResourceErrorResponse(422, $message, $response);
     }
   }
 
+<<<<<<< HEAD
   /**
    * {@inheritdoc}
    *
@@ -194,4 +218,6 @@ class EntityTestDatetimeTest extends EntityTestResourceTestBase {
     return parent::testPatch();
   }
 
+=======
+>>>>>>> dev
 }

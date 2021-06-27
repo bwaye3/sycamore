@@ -60,6 +60,15 @@ class ConfigCacheTag implements EventSubscriberInterface {
       $this->cacheTagsInvalidator->invalidateTags(['rendered']);
     }
 
+<<<<<<< HEAD
+=======
+    // Library and template overrides potentially change for the default theme
+    // when the admin theme is changed.
+    if ($config_name === 'system.theme' && $event->isChanged('admin')) {
+      $this->cacheTagsInvalidator->invalidateTags(['library_info', 'theme_registry']);
+    }
+
+>>>>>>> dev
     // Theme-specific settings, check if this matches a theme settings
     // configuration object (THEME_NAME.settings), in that case, clear the
     // rendered cache tag.

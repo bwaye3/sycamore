@@ -14,7 +14,11 @@ class ViewsMenuLinkTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'menu_ui',
     'user',
     'views',
@@ -42,7 +46,11 @@ class ViewsMenuLinkTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->menuLinkManager = $this->container->get('plugin.manager.menu.link');
@@ -50,7 +58,11 @@ class ViewsMenuLinkTest extends ViewsKernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test views internal menu link options.
+=======
+   * Tests views internal menu link options.
+>>>>>>> dev
    */
   public function testMenuLinkOverrides() {
     // Link from views module.

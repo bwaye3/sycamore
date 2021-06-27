@@ -5,7 +5,10 @@ namespace Drupal\Core\Entity;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Cache\MemoryCache\MemoryCacheInterface;
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Language\LanguageInterface;
@@ -16,12 +19,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Base class for content entity storage handlers.
  */
 abstract class ContentEntityStorageBase extends EntityStorageBase implements ContentEntityStorageInterface, DynamicallyFieldableEntityStorageInterface {
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
 
   /**
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
+=======
+>>>>>>> dev
 
   /**
    * The entity bundle key.
@@ -67,20 +73,31 @@ abstract class ContentEntityStorageBase extends EntityStorageBase implements Con
    *   The entity field manager.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
    *   The cache backend to be used.
+<<<<<<< HEAD
    * @param \Drupal\Core\Cache\MemoryCache\MemoryCacheInterface|null $memory_cache
+=======
+   * @param \Drupal\Core\Cache\MemoryCache\MemoryCacheInterface $memory_cache
+>>>>>>> dev
    *   The memory cache backend.
    * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entity_type_bundle_info
    *   The entity type bundle info.
    */
+<<<<<<< HEAD
   public function __construct(EntityTypeInterface $entity_type, EntityFieldManagerInterface $entity_field_manager, CacheBackendInterface $cache, MemoryCacheInterface $memory_cache = NULL, EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL) {
+=======
+  public function __construct(EntityTypeInterface $entity_type, EntityFieldManagerInterface $entity_field_manager, CacheBackendInterface $cache, MemoryCacheInterface $memory_cache, EntityTypeBundleInfoInterface $entity_type_bundle_info) {
+>>>>>>> dev
     parent::__construct($entity_type, $memory_cache);
     $this->bundleKey = $this->entityType->getKey('bundle');
     $this->entityFieldManager = $entity_field_manager;
     $this->cacheBackend = $cache;
+<<<<<<< HEAD
     if (!$entity_type_bundle_info) {
       @trigger_error('Calling ContentEntityStorageBase::__construct() with the $entity_type_bundle_info argument is supported in drupal:8.7.0 and will be required before drupal:9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
       $entity_type_bundle_info = \Drupal::service('entity_type.bundle.info');
     }
+=======
+>>>>>>> dev
     $this->entityTypeBundleInfo = $entity_type_bundle_info;
   }
 
@@ -379,7 +396,11 @@ abstract class ContentEntityStorageBase extends EntityStorageBase implements Con
     $entity_type = $this->getEntityType();
 
     // A list of known revision metadata fields which should be skipped from
+<<<<<<< HEAD
     // the comparision.
+=======
+    // the comparison.
+>>>>>>> dev
     $field_names = [
       $entity_type->getKey('revision'),
       $entity_type->getKey('revision_translation_affected'),
@@ -591,6 +612,7 @@ abstract class ContentEntityStorageBase extends EntityStorageBase implements Con
   /**
    * Actually loads revision field item values from the storage.
    *
+<<<<<<< HEAD
    * @param int|string $revision_id
    *   The revision identifier.
    *
@@ -612,11 +634,14 @@ abstract class ContentEntityStorageBase extends EntityStorageBase implements Con
    * from parent::doLoadMultipleRevisionsFieldItems. It will be marked abstract
    * in drupal:9.0.0
    *
+=======
+>>>>>>> dev
    * @param array $revision_ids
    *   An array of revision identifiers.
    *
    * @return \Drupal\Core\Entity\EntityInterface[]
    *   The specified entity revisions or an empty array if none are found.
+<<<<<<< HEAD
    *
    * @todo Remove this logic and make the method abstract in
    *   https://www.drupal.org/project/drupal/issues/3069696
@@ -630,6 +655,10 @@ abstract class ContentEntityStorageBase extends EntityStorageBase implements Con
 
     return $revisions;
   }
+=======
+   */
+  abstract protected function doLoadMultipleRevisionsFieldItems($revision_ids);
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -1106,7 +1135,19 @@ abstract class ContentEntityStorageBase extends EntityStorageBase implements Con
   }
 
   /**
+<<<<<<< HEAD
    * {@inheritdoc}
+=======
+   * Resets the entity cache.
+   *
+   * Content entities have both an in-memory static cache and a persistent
+   * cache. Use this method to clear all caches. To clear just the in-memory
+   * cache, use the 'entity.memory_cache' service.
+   *
+   * @param array $ids
+   *   (optional) If specified, the cache is reset for the entities with the
+   *   given ids only.
+>>>>>>> dev
    */
   public function resetCache(array $ids = NULL) {
     if ($ids) {

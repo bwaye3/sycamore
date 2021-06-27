@@ -5,6 +5,7 @@
  * Post update functions for the Menu link content module.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Logger\RfcLogLevel;
 use Drupal\Core\Site\Settings;
@@ -210,4 +211,13 @@ function _menu_link_content_post_update_make_menu_link_content_revisionable__fix
   $sandbox['data_fix']['default_langcode']['finished'] = $finished;
 
   return $finished;
+=======
+/**
+ * Implements hook_removed_post_updates().
+ */
+function menu_link_content_removed_post_updates() {
+  return [
+    'menu_link_content_post_update_make_menu_link_content_revisionable' => '9.0.0',
+  ];
+>>>>>>> dev
 }

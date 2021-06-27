@@ -5,7 +5,10 @@ namespace Drupal\Core\Routing;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\State\StateInterface;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\Event;
+=======
+>>>>>>> dev
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\KernelEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -109,11 +112,16 @@ class RoutePreloader implements EventSubscriberInterface {
 
   /**
    * Store the non admin routes in state when the route building is finished.
+<<<<<<< HEAD
    *
    * @param \Symfony\Component\EventDispatcher\Event $event
    *   The route finish event.
    */
   public function onFinishedRoutes(Event $event) {
+=======
+   */
+  public function onFinishedRoutes() {
+>>>>>>> dev
     $this->state->set('routing.non_admin_routes', $this->nonAdminRoutesOnRebuild);
     $this->nonAdminRoutesOnRebuild = [];
   }

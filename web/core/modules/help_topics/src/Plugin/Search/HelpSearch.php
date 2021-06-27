@@ -6,7 +6,10 @@ use Drupal\Core\Access\AccessibleInterface;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Config\Config;
 use Drupal\Core\Database\Connection;
+<<<<<<< HEAD
 use Drupal\Core\Database\Query\Condition;
+=======
+>>>>>>> dev
 use Drupal\Core\Database\Query\PagerSelectExtender;
 use Drupal\Core\Database\StatementInterface;
 use Drupal\Core\Language\LanguageInterface;
@@ -33,7 +36,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @SearchPlugin(
  *   id = "help_search",
+<<<<<<< HEAD
  *   title = @Translation("Help")
+=======
+ *   title = @Translation("Help"),
+ *   use_admin_theme = TRUE,
+>>>>>>> dev
  * )
  *
  * @internal
@@ -222,7 +230,11 @@ class HelpSearch extends SearchPluginBase implements AccessibleInterface, Search
       ->condition('i.langcode', $this->languageManager->getCurrentLanguage()->getId())
       ->extend(SearchQuery::class)
       ->extend(PagerSelectExtender::class);
+<<<<<<< HEAD
     $query->innerJoin('help_search_items', 'hsi', 'i.sid = hsi.sid AND i.type = :type', [':type' => $this->getType()]);
+=======
+    $query->innerJoin('help_search_items', 'hsi', '[i].[sid] = [hsi].[sid] AND [i].[type] = :type', [':type' => $this->getType()]);
+>>>>>>> dev
     if ($denied_permissions) {
       $query->condition('hsi.permission', $denied_permissions, 'NOT IN');
     }
@@ -255,6 +267,14 @@ class HelpSearch extends SearchPluginBase implements AccessibleInterface, Search
       $this->messenger->addWarning($this->formatPlural($this->searchSettings->get('index.minimum_word_size'), 'You must include at least one keyword to match in the content, and punctuation is ignored.', 'You must include at least one keyword to match in the content. Keywords must be at least @count characters, and punctuation is ignored.'));
     }
 
+<<<<<<< HEAD
+=======
+    $unindexed = $this->state->get('help_search_unindexed_count', 1);
+    if ($unindexed) {
+      $this->messenger()->addWarning($this->t('Help search is not fully indexed. Some results may be missing or incorrect.'));
+    }
+
+>>>>>>> dev
     return $find;
   }
 
@@ -313,8 +333,13 @@ class HelpSearch extends SearchPluginBase implements AccessibleInterface, Search
 
     $query = $this->database->select('help_search_items', 'hsi');
     $query->fields('hsi', ['sid', 'section_plugin_id', 'topic_id']);
+<<<<<<< HEAD
     $query->leftJoin('search_dataset', 'sd', 'sd.sid = hsi.sid AND sd.type = :type', [':type' => $this->getType()]);
     $query->where('sd.sid IS NULL');
+=======
+    $query->leftJoin('search_dataset', 'sd', '[sd].[sid] = [hsi].[sid] AND [sd].[type] = :type', [':type' => $this->getType()]);
+    $query->where('[sd].[sid] IS NULL');
+>>>>>>> dev
     $query->groupBy('hsi.sid')
       ->groupBy('hsi.section_plugin_id')
       ->groupBy('hsi.topic_id')
@@ -326,7 +351,11 @@ class HelpSearch extends SearchPluginBase implements AccessibleInterface, Search
     if (count($items) < $limit) {
       $query = $this->database->select('help_search_items', 'hsi');
       $query->fields('hsi', ['sid', 'section_plugin_id', 'topic_id']);
+<<<<<<< HEAD
       $query->leftJoin('search_dataset', 'sd', 'sd.sid = hsi.sid AND sd.type = :type', [':type' => $this->getType()]);
+=======
+      $query->leftJoin('search_dataset', 'sd', '[sd].[sid] = [hsi].[sid] AND [sd].[type] = :type', [':type' => $this->getType()]);
+>>>>>>> dev
       $query->condition('sd.reindex', 0, '<>');
       $query->groupBy('hsi.sid')
         ->groupBy('hsi.section_plugin_id')
@@ -366,6 +395,10 @@ class HelpSearch extends SearchPluginBase implements AccessibleInterface, Search
     }
     finally {
       $this->searchIndex->updateWordWeights($words);
+<<<<<<< HEAD
+=======
+      $this->updateIndexState();
+>>>>>>> dev
     }
   }
 
@@ -433,6 +466,23 @@ class HelpSearch extends SearchPluginBase implements AccessibleInterface, Search
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * Updates the 'help_search_unindexed_count' state variable.
+   *
+   * The state variable is a count of help topics that have never been indexed.
+   */
+  public function updateIndexState() {
+    $query = $this->database->select('help_search_items', 'hsi');
+    $query->addExpression('COUNT(DISTINCT(hsi.sid))');
+    $query->leftJoin('search_dataset', 'sd', 'hsi.sid = sd.sid AND sd.type = :type', [':type' => $this->getType()]);
+    $query->isNull('sd.sid');
+    $never_indexed = $query->execute()->fetchField();
+    $this->state->set('help_search_unindexed_count', $never_indexed);
+  }
+
+  /**
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function markForReindex() {
@@ -451,9 +501,15 @@ class HelpSearch extends SearchPluginBase implements AccessibleInterface, Search
       ->fetchField();
 
     $query = $this->database->select('help_search_items', 'hsi');
+<<<<<<< HEAD
     $query->addExpression('COUNT(DISTINCT(hsi.sid))');
     $query->leftJoin('search_dataset', 'sd', 'hsi.sid = sd.sid AND sd.type = :type', [':type' => $this->getType()]);
     $condition = new Condition('OR');
+=======
+    $query->addExpression('COUNT(DISTINCT([hsi].[sid]))');
+    $query->leftJoin('search_dataset', 'sd', '[hsi].[sid] = [sd].[sid] AND [sd].[type] = :type', [':type' => $this->getType()]);
+    $condition = $this->database->condition('OR');
+>>>>>>> dev
     $condition->condition('sd.reindex', 0, '<>')
       ->isNull('sd.sid');
     $query->condition($condition);

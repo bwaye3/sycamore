@@ -3,7 +3,10 @@ type: module
 description: 'Provides a migration plugin for stub testing.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:taxonomy
   - drupal:migrate

@@ -92,6 +92,7 @@ function dblog_schema() {
 }
 
 /**
+<<<<<<< HEAD
  * Use standard plugin for wid and uid fields. Use dblog_types for type filter.
  */
 function dblog_update_8400() {
@@ -194,4 +195,10 @@ function dblog_update_8600() {
     $view->set('display.default.display_options.empty.area', $new_config);
     $view->save();
   }
+=======
+ * Implements hook_update_last_removed().
+ */
+function dblog_update_last_removed() {
+  return 8600;
+>>>>>>> dev
 }

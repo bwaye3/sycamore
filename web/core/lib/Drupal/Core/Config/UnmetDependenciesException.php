@@ -64,6 +64,11 @@ class UnmetDependenciesException extends ConfigException {
    *
    * @param \Drupal\Core\StringTranslation\TranslationInterface $string_translation
    *   The string translation service.
+<<<<<<< HEAD
+=======
+   * @param string $extension
+   *   The name of the extension that is being installed.
+>>>>>>> dev
    *
    * @return string
    */

@@ -16,12 +16,20 @@ class MigrateNodeBundleSettingsTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['menu_ui'];
+=======
+  protected static $modules = ['menu_ui'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installConfig(['node']);
     $this->executeMigration('d6_node_type');
@@ -46,6 +54,7 @@ class MigrateNodeBundleSettingsTest extends MigrateDrupal6TestBase {
   public function testNodeBundleSettings() {
     // Test settings on test_page bundle.
     $node = Node::create(['type' => 'test_page']);
+<<<<<<< HEAD
     $this->assertIdentical(1, $node->status->value);
     $this->assertIdentical(1, $node->promote->value);
     $this->assertIdentical(1, $node->sticky->value);
@@ -61,6 +70,23 @@ class MigrateNodeBundleSettingsTest extends MigrateDrupal6TestBase {
     $this->assertIdentical(0, $node->status->value);
     $this->assertIdentical(0, $node->promote->value);
     $this->assertIdentical(1, $node->sticky->value);
+=======
+    $this->assertSame(1, $node->status->value);
+    $this->assertSame(1, $node->promote->value);
+    $this->assertSame(1, $node->sticky->value);
+
+    // Test settings for test_story bundle.
+    $node = Node::create(['type' => 'test_story']);
+    $this->assertSame(1, $node->status->value);
+    $this->assertSame(1, $node->promote->value);
+    $this->assertSame(0, $node->sticky->value);
+
+    // Test settings for the test_event bundle.
+    $node = Node::create(['type' => 'test_event']);
+    $this->assertSame(0, $node->status->value);
+    $this->assertSame(0, $node->promote->value);
+    $this->assertSame(1, $node->sticky->value);
+>>>>>>> dev
   }
 
 }

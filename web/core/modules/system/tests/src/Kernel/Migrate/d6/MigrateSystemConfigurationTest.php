@@ -14,7 +14,11 @@ class MigrateSystemConfigurationTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['action', 'file', 'system'];
+=======
+  protected static $modules = ['action', 'file', 'system'];
+>>>>>>> dev
 
   protected $expectedConfig = [
     'system.cron' => [
@@ -91,6 +95,7 @@ class MigrateSystemConfigurationTest extends MigrateDrupal6TestBase {
       'stale_file_threshold' => 2592000,
     ],
     'system.rss' => [
+<<<<<<< HEAD
       // channel is not handled by the migration.
       'channel' => [
         'description' => '',
@@ -101,6 +106,11 @@ class MigrateSystemConfigurationTest extends MigrateDrupal6TestBase {
       ],
       // langcode is not handled by the migration.
       'langcode' => 'en',
+=======
+      'items' => [
+        'view_mode' => 'title',
+      ],
+>>>>>>> dev
     ],
     'system.site' => [
       // uuid is not handled by the migration.
@@ -124,7 +134,11 @@ class MigrateSystemConfigurationTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $migrations = [

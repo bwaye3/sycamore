@@ -35,13 +35,21 @@ class ChainEntityResolverTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->testNormalizer = $this->createMock('Symfony\Component\Serializer\Normalizer\NormalizerInterface');
     $this->testData = new \stdClass();
   }
 
   /**
+<<<<<<< HEAD
    * Test the resolve method with no matching resolvers.
+=======
+   * Tests the resolve method with no matching resolvers.
+>>>>>>> dev
    *
    * @covers ::__construct
    * @covers ::resolve
@@ -58,7 +66,11 @@ class ChainEntityResolverTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the resolve method with no matching resolvers, using addResolver.
+=======
+   * Tests the resolve method with no matching resolvers, using addResolver.
+>>>>>>> dev
    *
    * @covers ::addResolver
    * @covers ::resolve
@@ -72,7 +84,11 @@ class ChainEntityResolverTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the resolve method with a matching resolver first.
+=======
+   * Tests the resolve method with a matching resolver first.
+>>>>>>> dev
    *
    * @covers ::__construct
    * @covers ::resolve
@@ -89,7 +105,11 @@ class ChainEntityResolverTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the resolve method with a matching resolver last.
+=======
+   * Tests the resolve method with a matching resolver last.
+>>>>>>> dev
    *
    * @covers ::__construct
    * @covers ::resolve
@@ -106,7 +126,11 @@ class ChainEntityResolverTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the resolve method where one resolver returns 0.
+=======
+   * Tests the resolve method where one resolver returns 0.
+>>>>>>> dev
    *
    * @covers ::__construct
    * @covers ::resolve

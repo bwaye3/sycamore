@@ -9,6 +9,13 @@ use Drupal\migrate\Row;
 /**
  * Profile field source from database.
  *
+<<<<<<< HEAD
+=======
+ * For available configuration keys, refer to the parent classes:
+ * @see \Drupal\migrate\Plugin\migrate\source\SqlBase
+ * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
+ *
+>>>>>>> dev
  * @MigrateSource(
  *   id = "profile_field",
  *   source_module = "profile"

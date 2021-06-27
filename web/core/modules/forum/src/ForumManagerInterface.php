@@ -52,6 +52,7 @@ interface ForumManagerInterface {
   public function resetCache();
 
   /**
+<<<<<<< HEAD
    * Fetches the parent forums for a given forum.
    *
    * @param int $tid
@@ -68,6 +69,8 @@ interface ForumManagerInterface {
   public function getParents($tid);
 
   /**
+=======
+>>>>>>> dev
    * Checks whether a node can be used in a forum, based on its content type.
    *
    * @param \Drupal\node\NodeInterface $node

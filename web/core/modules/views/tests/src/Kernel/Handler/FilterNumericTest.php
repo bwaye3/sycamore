@@ -12,7 +12,11 @@ use Drupal\views\Views;
  */
 class FilterNumericTest extends ViewsKernelTestBase {
 
+<<<<<<< HEAD
   public static $modules = ['system'];
+=======
+  protected static $modules = ['system'];
+>>>>>>> dev
 
   /**
    * Views used by this test.
@@ -75,7 +79,10 @@ class FilterNumericTest extends ViewsKernelTestBase {
     $view->setDisplay('page_1');
     $view->displayHandlers->get('page_1')->overrideOption('filters', $filters);
     $view->save();
+<<<<<<< HEAD
     $this->container->get('router.builder')->rebuild();
+=======
+>>>>>>> dev
 
     $this->executeView($view);
     $resultset = [
@@ -200,7 +207,10 @@ class FilterNumericTest extends ViewsKernelTestBase {
     $view->setDisplay('page_1');
     $view->displayHandlers->get('page_1')->overrideOption('filters', $filters);
     $view->save();
+<<<<<<< HEAD
     $this->container->get('router.builder')->rebuild();
+=======
+>>>>>>> dev
 
     $this->executeView($view);
     $resultset = [
@@ -230,7 +240,10 @@ class FilterNumericTest extends ViewsKernelTestBase {
     $view->setDisplay('page_1');
     $view->displayHandlers->get('page_1')->overrideOption('filters', $filters);
     $view->save();
+<<<<<<< HEAD
     $this->container->get('router.builder')->rebuild();
+=======
+>>>>>>> dev
 
     $this->executeView($view);
     $resultset = [
@@ -375,7 +388,10 @@ class FilterNumericTest extends ViewsKernelTestBase {
     $view->setDisplay('page_1');
     $view->displayHandlers->get('page_1')->overrideOption('filters', $filters);
     $view->save();
+<<<<<<< HEAD
     $this->container->get('router.builder')->rebuild();
+=======
+>>>>>>> dev
 
     $this->executeView($view);
     $resultset = [];
@@ -392,7 +408,10 @@ class FilterNumericTest extends ViewsKernelTestBase {
     $view->setDisplay('page_1');
     $view->displayHandlers->get('page_1')->overrideOption('filters', $filters);
     $view->save();
+<<<<<<< HEAD
     $this->container->get('router.builder')->rebuild();
+=======
+>>>>>>> dev
 
     $this->executeView($view);
     $resultset = [

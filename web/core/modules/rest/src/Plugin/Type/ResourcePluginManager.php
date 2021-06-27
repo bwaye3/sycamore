@@ -34,6 +34,7 @@ class ResourcePluginManager extends DefaultPluginManager {
     $this->alterInfo('rest_resource');
   }
 
+<<<<<<< HEAD
   /**
    * {@inheritdoc}
    *
@@ -49,4 +50,6 @@ class ResourcePluginManager extends DefaultPluginManager {
     }
   }
 
+=======
+>>>>>>> dev
 }

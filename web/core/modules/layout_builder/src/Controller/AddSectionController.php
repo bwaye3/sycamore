@@ -60,7 +60,11 @@ class AddSectionController implements ContainerInjectionInterface {
    * @return \Symfony\Component\HttpFoundation\Response
    *   The controller response.
    */
+<<<<<<< HEAD
   public function build(SectionStorageInterface $section_storage, $delta, $plugin_id) {
+=======
+  public function build(SectionStorageInterface $section_storage, int $delta, $plugin_id) {
+>>>>>>> dev
     $section_storage->insertSection($delta, new Section($plugin_id));
 
     $this->layoutTempstoreRepository->set($section_storage);

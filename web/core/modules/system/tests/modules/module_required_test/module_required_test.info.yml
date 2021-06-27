@@ -3,7 +3,10 @@ type: module
 description: 'Support module for module system testing.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 # Depends on the Node module to test making a module required using
 # hook_system_info_alter() and ensuring that its dependencies also become
 # required.

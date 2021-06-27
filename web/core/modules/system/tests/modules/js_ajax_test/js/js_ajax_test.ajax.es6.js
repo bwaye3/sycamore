@@ -2,7 +2,11 @@
  * @file
  *  Testing behavior for JSWebAssertTest.
  */
+<<<<<<< HEAD
 (function($, Drupal) {
+=======
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * Test Ajax command.
    *
@@ -13,7 +17,11 @@
    * @param {string} response.selector
    *   A jQuery selector string.
    */
+<<<<<<< HEAD
   Drupal.AjaxCommands.prototype.jsAjaxTestCommand = function(ajax, response) {
+=======
+  Drupal.AjaxCommands.prototype.jsAjaxTestCommand = function (ajax, response) {
+>>>>>>> dev
     const $domElement = $(response.selector);
     ajax.element_settings.cat = 'catbro';
 

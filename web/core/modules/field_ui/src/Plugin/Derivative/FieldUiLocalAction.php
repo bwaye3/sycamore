@@ -3,7 +3,10 @@
 namespace Drupal\field_ui\Plugin\Derivative;
 
 use Drupal\Component\Plugin\Derivative\DeriverBase;
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
@@ -16,12 +19,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class FieldUiLocalAction extends DeriverBase implements ContainerDeriverInterface {
 
   use StringTranslationTrait;
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
 
   /**
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
+=======
+>>>>>>> dev
 
   /**
    * The entity type manager.
@@ -35,12 +41,21 @@ class FieldUiLocalAction extends DeriverBase implements ContainerDeriverInterfac
    *
    * @param \Drupal\Core\Routing\RouteProviderInterface $route_provider
    *   The route provider to load routes by name.
+<<<<<<< HEAD
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity type manager.
    */
   public function __construct(RouteProviderInterface $route_provider, EntityTypeManagerInterface $entity_manager) {
     $this->routeProvider = $route_provider;
     $this->entityTypeManager = $entity_manager;
+=======
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   */
+  public function __construct(RouteProviderInterface $route_provider, EntityTypeManagerInterface $entity_type_manager) {
+    $this->routeProvider = $route_provider;
+    $this->entityTypeManager = $entity_type_manager;
+>>>>>>> dev
   }
 
   /**

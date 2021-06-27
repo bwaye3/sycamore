@@ -86,7 +86,12 @@ class ContentEntityNullStorage extends ContentEntityStorageBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function doLoadRevisionFieldItems($revision_id) {
+=======
+  protected function doLoadMultipleRevisionsFieldItems($revision_ids) {
+    return [];
+>>>>>>> dev
   }
 
   /**

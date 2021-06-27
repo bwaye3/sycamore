@@ -2,6 +2,10 @@
 
 namespace Drupal\Tests\content_translation\Functional;
 
+<<<<<<< HEAD
+=======
+use Drupal\Core\Url;
+>>>>>>> dev
 use Drupal\Tests\BrowserTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\entity_test\Entity\EntityTestMul;
@@ -17,7 +21,11 @@ class ContentTranslationLinkTagTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'entity_test',
     'content_translation',
     'content_translation_test',
@@ -39,7 +47,11 @@ class ContentTranslationLinkTagTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Set up user.
@@ -121,6 +133,30 @@ class ContentTranslationLinkTagTest extends BrowserTestBase {
         $this->assertTrue(isset($links[0]), $message);
       }
     }
+<<<<<<< HEAD
+=======
+
+    // Configure entity path as a front page.
+    $entity_canonical = '/entity_test_mul/manage/' . $entity->id();
+    $this->config('system.site')->set('page.front', $entity_canonical)->save();
+
+    // Tests hreflangs when using entities as a front page.
+    foreach ($urls as $langcode => $url) {
+      $this->drupalGet($url);
+      foreach ($entity->getTranslationLanguages() as $language) {
+        $frontpage_path = Url::fromRoute('<front>', [], [
+          'absolute' => TRUE,
+          'language' => $language,
+        ])->toString();
+        $args = [
+          ':href' => $frontpage_path,
+          ':hreflang' => $language->getId(),
+        ];
+        $links = $this->xpath('head/link[@rel = "alternate" and @href = :href and @hreflang = :hreflang]', $args);
+        $this->assertArrayHasKey(0, $links);
+      }
+    }
+>>>>>>> dev
   }
 
   /**

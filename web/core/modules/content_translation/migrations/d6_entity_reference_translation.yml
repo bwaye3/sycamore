@@ -25,3 +25,9 @@ process: []
 # The destination plugin will be set by the deriver.
 destination:
   plugin: null
+<<<<<<< HEAD
+=======
+migration_dependencies:
+  required:
+    - language
+>>>>>>> dev

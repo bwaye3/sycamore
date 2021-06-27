@@ -16,7 +16,11 @@ class MigrateTermNodeComplete extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'content_translation',
     'language',
     'menu_ui',
@@ -28,7 +32,11 @@ class MigrateTermNodeComplete extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Remove the classic node table made in setup.
@@ -62,12 +70,17 @@ class MigrateTermNodeComplete extends MigrateDrupal6TestBase {
     $this->assertCount(2, $node->field_vocabulary_2_i_1_);
     $this->assertSame('2', $node->field_vocabulary_2_i_1_[0]->target_id);
     $this->assertSame('3', $node->field_vocabulary_2_i_1_[1]->target_id);
+<<<<<<< HEAD
   }
 
   /**
    * Tests the Drupal 6 term-node association to Drupal 8 node revisions.
    */
   public function testTermNodeRevision() {
+=======
+
+    // Tests the Drupal 6 term-node association to Drupal 8 node revisions.
+>>>>>>> dev
     $this->executeMigrations(['d6_term_node_revision']);
 
     $node = \Drupal::entityTypeManager()->getStorage('node')->loadRevision(2001);

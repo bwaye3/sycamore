@@ -20,6 +20,7 @@ use Drupal\migrate_drupal\Plugin\MigrateFieldInterface;
 abstract class FieldPluginBase extends PluginBase implements MigrateFieldInterface {
 
   /**
+<<<<<<< HEAD
    * Alters the migration for field definitions.
    *
    * @deprecated in drupal:8.6.0 and is removed from drupal:9.0.0. Use
@@ -34,6 +35,8 @@ abstract class FieldPluginBase extends PluginBase implements MigrateFieldInterfa
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function alterFieldMigration(MigrationInterface $migration) {
@@ -42,6 +45,7 @@ abstract class FieldPluginBase extends PluginBase implements MigrateFieldInterfa
   }
 
   /**
+<<<<<<< HEAD
    * Alert field instance migration.
    *
    * @deprecated in drupal:8.6.0 and is removed from drupal:9.0.0. Use
@@ -56,6 +60,8 @@ abstract class FieldPluginBase extends PluginBase implements MigrateFieldInterfa
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function alterFieldInstanceMigration(MigrationInterface $migration) {
@@ -63,6 +69,7 @@ abstract class FieldPluginBase extends PluginBase implements MigrateFieldInterfa
   }
 
   /**
+<<<<<<< HEAD
    * Alter field widget migration.
    *
    * @deprecated in drupal:8.6.0 and is removed from drupal:9.0.0. Use
@@ -77,6 +84,8 @@ abstract class FieldPluginBase extends PluginBase implements MigrateFieldInterfa
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function alterFieldWidgetMigration(MigrationInterface $migration) {
@@ -119,6 +128,7 @@ abstract class FieldPluginBase extends PluginBase implements MigrateFieldInterfa
   }
 
   /**
+<<<<<<< HEAD
    * Alter field formatter migration.
    *
    * @deprecated in drupal:8.6.0 and is removed from drupal:9.0.0. Use
@@ -133,6 +143,8 @@ abstract class FieldPluginBase extends PluginBase implements MigrateFieldInterfa
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function alterFieldFormatterMigration(MigrationInterface $migration) {
@@ -148,6 +160,7 @@ abstract class FieldPluginBase extends PluginBase implements MigrateFieldInterfa
   }
 
   /**
+<<<<<<< HEAD
    * Defines the process pipeline for field values.
    *
    * @deprecated in drupal:8.6.0 and is removed from drupal:9.0.0. Use
@@ -162,6 +175,8 @@ abstract class FieldPluginBase extends PluginBase implements MigrateFieldInterfa
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function defineValueProcessPipeline(MigrationInterface $migration, $field_name, $data) {

@@ -28,7 +28,11 @@ class LocaleTranslationDownloadTest extends LocaleUpdateBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $moduleHandler = $this->container->get('module_handler');
     $moduleHandler->loadInclude('locale', 'inc', 'locale.batch');
@@ -62,7 +66,11 @@ class LocaleTranslationDownloadTest extends LocaleUpdateBase {
     $result = locale_translation_download_source($source_file, 'translations://');
 
     $this->assertEquals('translations://contrib_module_one-8.x-1.1.de._po', $result->uri);
+<<<<<<< HEAD
     $this->assertFileNotExists('translations://contrib_module_one-8.x-1.1.de_0._po');
+=======
+    $this->assertFileDoesNotExist('translations://contrib_module_one-8.x-1.1.de_0._po');
+>>>>>>> dev
     $this->assertFileExists('translations://contrib_module_one-8.x-1.1.de._po');
     $this->assertStringNotContainsString('__old_content__', file_get_contents('translations://contrib_module_one-8.x-1.1.de._po'));
   }

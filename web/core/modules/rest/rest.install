@@ -5,6 +5,7 @@
  * Install, update and uninstall functions for the rest module.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Config\Entity\ConfigEntityType;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
@@ -102,4 +103,11 @@ function rest_update_8401() {
       $view->save(TRUE);
     }
   }
+=======
+/**
+ * Implements hook_update_last_removed().
+ */
+function rest_update_last_removed() {
+  return 8401;
+>>>>>>> dev
 }

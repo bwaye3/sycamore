@@ -67,7 +67,11 @@ class PrivateTempStoreTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->keyValue = $this->createMock('Drupal\Core\KeyValueStore\KeyValueStoreExpirableInterface');
@@ -193,6 +197,7 @@ class PrivateTempStoreTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * @covers ::getMetadata
    * @expectedDeprecation Using the "owner" public property of a TempStore lock is deprecated in Drupal 8.7.0 and will not be allowed in Drupal 9.0.0. Use \Drupal\Core\TempStore\Lock::getOwnerId() instead. See https://www.drupal.org/node/3025869.
    * @group legacy
@@ -223,6 +228,8 @@ class PrivateTempStoreTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests the locking in the delete() method.
    *
    * @covers ::delete

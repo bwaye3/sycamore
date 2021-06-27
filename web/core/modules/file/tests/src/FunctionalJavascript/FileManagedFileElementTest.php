@@ -31,7 +31,11 @@ class FileManagedFileElementTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->adminUser = $this->drupalCreateUser([
       'access content',
@@ -73,7 +77,11 @@ class FileManagedFileElementTest extends WebDriverTestBase {
           $this->assertNotEmpty($uploaded_file);
           $last_fid = $this->getLastFileId();
           $this->assertGreaterThan($last_fid_prior, $last_fid, 'New file got uploaded.');
+<<<<<<< HEAD
           $this->drupalPostForm(NULL, [], t('Save'));
+=======
+          $this->submitForm([], 'Save');
+>>>>>>> dev
 
           // Remove, then Submit.
           $remove_button_title = $multiple ? t('Remove selected') : t('Remove');
@@ -84,7 +92,11 @@ class FileManagedFileElementTest extends WebDriverTestBase {
           }
           $this->getSession()->getPage()->pressButton($remove_button_title);
           $this->assertSession()->assertWaitOnAjaxRequest();
+<<<<<<< HEAD
           $this->drupalPostForm(NULL, [], t('Save'));
+=======
+          $this->submitForm([], 'Save');
+>>>>>>> dev
           $this->assertSession()->responseContains(t('The file ids are %fids.', ['%fids' => '']));
 
           // Upload, then Remove, then Submit.
@@ -99,7 +111,11 @@ class FileManagedFileElementTest extends WebDriverTestBase {
           $this->getSession()->getPage()->pressButton($remove_button_title);
           $this->assertSession()->assertWaitOnAjaxRequest();
 
+<<<<<<< HEAD
           $this->drupalPostForm(NULL, [], t('Save'));
+=======
+          $this->submitForm([], 'Save');
+>>>>>>> dev
           $this->assertSession()->responseContains(t('The file ids are %fids.', ['%fids' => '']));
         }
       }
@@ -110,7 +126,14 @@ class FileManagedFileElementTest extends WebDriverTestBase {
    * Retrieves the fid of the last inserted file.
    */
   protected function getLastFileId() {
+<<<<<<< HEAD
     return (int) \Drupal::entityQueryAggregate('file')->aggregate('fid', 'max')->execute()[0]['fid_max'];
+=======
+    return (int) \Drupal::entityQueryAggregate('file')
+      ->accessCheck(FALSE)
+      ->aggregate('fid', 'max')
+      ->execute()[0]['fid_max'];
+>>>>>>> dev
   }
 
 }

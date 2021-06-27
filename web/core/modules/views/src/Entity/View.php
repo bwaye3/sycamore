@@ -5,9 +5,13 @@ namespace Drupal\views\Entity;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Config\Entity\ConfigEntityBase;
+<<<<<<< HEAD
 use Drupal\Core\Entity\ContentEntityTypeInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
+=======
+use Drupal\Core\Entity\EntityStorageInterface;
+>>>>>>> dev
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\views\Plugin\DependentWithRemovalPluginInterface;
 use Drupal\views\Views;
@@ -295,10 +299,13 @@ class View extends ConfigEntityBase implements ViewEntityInterface {
 
     $displays = $this->get('display');
 
+<<<<<<< HEAD
     // @todo Remove this line and support for pre-8.3 table names in Drupal 9.
     // @see https://www.drupal.org/project/drupal/issues/3069405 .
     $this->fixTableNames($displays);
 
+=======
+>>>>>>> dev
     // Sort the displays.
     ksort($displays);
     $this->set('display', ['default' => $displays['default']] + $displays);
@@ -312,6 +319,7 @@ class View extends ConfigEntityBase implements ViewEntityInterface {
   }
 
   /**
+<<<<<<< HEAD
    * Fixes table names for revision metadata fields of revisionable entities.
    *
    * Views for revisionable entity types using revision metadata fields might
@@ -354,6 +362,8 @@ class View extends ConfigEntityBase implements ViewEntityInterface {
   }
 
   /**
+=======
+>>>>>>> dev
    * Fills in the cache metadata of this view.
    *
    * Cache metadata is set per view and per display, and ends up being stored in
@@ -426,7 +436,11 @@ class View extends ConfigEntityBase implements ViewEntityInterface {
         'default' => [
           'display_plugin' => 'default',
           'id' => 'default',
+<<<<<<< HEAD
           'display_title' => 'Master',
+=======
+          'display_title' => 'Default',
+>>>>>>> dev
           'position' => 0,
           'display_options' => [],
         ],

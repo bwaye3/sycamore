@@ -24,7 +24,11 @@ class RowRenderCacheTest extends ViewsKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['user', 'node'];
+=======
+  protected static $modules = ['user', 'node'];
+>>>>>>> dev
 
   /**
    * Views used by this test.
@@ -81,7 +85,11 @@ class RowRenderCacheTest extends ViewsKernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test complex field rewriting and uncacheable field handlers.
+=======
+   * Tests complex field rewriting and uncacheable field handlers.
+>>>>>>> dev
    */
   public function testAdvancedCaching() {
     // Test that row field output is actually cached and with the proper cache
@@ -104,7 +112,11 @@ class RowRenderCacheTest extends ViewsKernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that rows are not cached when the none cache plugin is used.
+=======
+   * Tests that rows are not cached when the none cache plugin is used.
+>>>>>>> dev
    */
   public function testNoCaching() {
     $this->setCurrentUser($this->regularUser);
@@ -165,11 +177,16 @@ class RowRenderCacheTest extends ViewsKernelTestBase {
       $counter = $index + 1;
       $expected = "$nid: $counter (just in case: $nid)";
       $counter_output = $view->style_plugin->getField($index, 'counter');
+<<<<<<< HEAD
       $this->assertEqual($counter_output, $expected);
+=======
+      $this->assertEquals($expected, $counter_output);
+>>>>>>> dev
 
       $node_url = $node->toUrl()->toString();
       $expected = "<a href=\"$node_url\"><span class=\"da-title\">{$node->label()}</span> <span class=\"counter\">$counter_output</span></a>";
       $output = $view->style_plugin->getField($index, 'title');
+<<<<<<< HEAD
       $this->assertEqual($output, $expected);
 
       $expected = $access ? "<a href=\"$node_url/edit?destination=/\" hreflang=\"en\">edit</a>" : "";
@@ -179,12 +196,27 @@ class RowRenderCacheTest extends ViewsKernelTestBase {
       $expected = $access ? "<a href=\"$node_url/delete?destination=/\" hreflang=\"en\">delete</a>" : "";
       $output = $view->style_plugin->getField($index, 'delete_node');
       $this->assertEqual($output, $expected);
+=======
+      $this->assertEquals($expected, $output);
+
+      $expected = $access ? "<a href=\"$node_url/edit?destination=/\" hreflang=\"en\">edit</a>" : "";
+      $output = $view->style_plugin->getField($index, 'edit_node');
+      $this->assertEquals($expected, $output);
+
+      $expected = $access ? "<a href=\"$node_url/delete?destination=/\" hreflang=\"en\">delete</a>" : "";
+      $output = $view->style_plugin->getField($index, 'delete_node');
+      $this->assertEquals($expected, $output);
+>>>>>>> dev
       $expected = $access ? '  <div class="dropbutton-wrapper"><div class="dropbutton-widget"><ul class="dropbutton">' .
         '<li><a href="' . $node_url . '/edit?destination=/" hreflang="en">Edit</a></li>' .
         '<li><a href="' . $node_url . '/delete?destination=/" hreflang="en">Delete</a></li>' .
         '</ul></div></div>' : '';
       $output = $view->style_plugin->getField($index, 'operations');
+<<<<<<< HEAD
       $this->assertEqual($output, $expected);
+=======
+      $this->assertEquals($expected, $output);
+>>>>>>> dev
 
       if ($check_cache) {
         $keys = $cache_plugin->getRowCacheKeys($view->result[$index]);

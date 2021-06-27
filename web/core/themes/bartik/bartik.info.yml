@@ -13,6 +13,7 @@
 # changes.
 name: Bartik
 type: theme
+<<<<<<< HEAD
 base theme: classy
 description: 'A flexible, recolorable theme with many regions and a responsive, mobile-first layout.'
 package: Core
@@ -39,6 +40,18 @@ libraries-override:
   classy/search-results: bartik/classy.search-results
   classy/user: bartik/classy.user
 
+=======
+base theme: false
+description: 'A flexible, recolorable theme with many regions and a responsive, mobile-first layout.'
+package: Core
+version: VERSION
+libraries:
+  - bartik/classy.base
+  - bartik/classy.messages
+  - core/normalize
+  - bartik/global-styling
+
+>>>>>>> dev
 libraries-extend:
   core/drupal.dialog:
     - bartik/classy.dialog
@@ -48,14 +61,28 @@ libraries-extend:
     - bartik/classy.progress
   file/drupal.file:
     - bartik/classy.file
+<<<<<<< HEAD
+=======
+  filter/drupal.filter.admin:
+    - bartik/filter
+  filter/drupal.filter:
+    - bartik/filter
+>>>>>>> dev
   media/media_embed_ckeditor_theme:
     - bartik/classy.media_embed_ckeditor_theme
   media_library/view:
     - bartik/classy.media_library
   media_library/widget:
     - bartik/classy.media_library
+<<<<<<< HEAD
   user/drupal.user:
     - bartik/classy.user
+=======
+  tour/tour:
+    - bartik/tour
+  user/drupal.user:
+    - bartik/user
+>>>>>>> dev
 
 ckeditor_stylesheets:
   - css/base/elements.css

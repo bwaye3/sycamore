@@ -4,7 +4,10 @@ namespace Drupal\field_ui\Form;
 
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
+<<<<<<< HEAD
 use Drupal\Core\Field\AllowedTagsXssTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Field\FieldFilteredMarkup;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
@@ -19,8 +22,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class FieldConfigEditForm extends EntityForm {
 
+<<<<<<< HEAD
   use AllowedTagsXssTrait;
 
+=======
+>>>>>>> dev
   /**
    * The entity being used by this form.
    *

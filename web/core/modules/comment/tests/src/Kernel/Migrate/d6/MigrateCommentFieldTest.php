@@ -16,12 +16,20 @@ class MigrateCommentFieldTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['comment', 'menu_ui'];
+=======
+  protected static $modules = ['comment', 'menu_ui'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installConfig(['comment']);
     $this->executeMigrations([

@@ -8,7 +8,11 @@ use Drupal\Core\Site\Settings;
 use Drupal\KernelTests\KernelTestBase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+=======
+use Symfony\Component\HttpKernel\Event\RequestEvent;
+>>>>>>> dev
 
 /**
  * Tests that ReplicaKillSwitch functions correctly.
@@ -32,7 +36,11 @@ class ReplicaKillSwitchTest extends KernelTestBase {
     $service->trigger();
     $class_loader = require $this->root . '/autoload.php';
     $kernel = new DrupalKernel('testing', $class_loader, FALSE);
+<<<<<<< HEAD
     $event = new GetResponseEvent($kernel, Request::create('http://example.com'), HttpKernelInterface::MASTER_REQUEST);
+=======
+    $event = new RequestEvent($kernel, Request::create('http://example.com'), HttpKernelInterface::MASTER_REQUEST);
+>>>>>>> dev
     $service->checkReplicaServer($event);
 
     $db1 = Database::getConnection('default', 'default');

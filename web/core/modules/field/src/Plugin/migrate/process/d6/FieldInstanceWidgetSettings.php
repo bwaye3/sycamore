@@ -6,6 +6,11 @@ use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 
+<<<<<<< HEAD
+=======
+// cspell:ignore imagefield optionwidgets
+
+>>>>>>> dev
 /**
  * Get the field instance widget settings.
  *

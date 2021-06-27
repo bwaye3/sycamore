@@ -39,7 +39,11 @@ class TourHelpSection extends HelpSectionPluginBase implements ContainerFactoryP
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+<<<<<<< HEAD
    *   The entity manager service.
+=======
+   *   The entity type manager service.
+>>>>>>> dev
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);

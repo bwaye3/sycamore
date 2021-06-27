@@ -19,7 +19,11 @@ class HandlerTest extends UITestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['node_test_views'];
+=======
+  protected static $modules = ['node_test_views'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -36,11 +40,19 @@ class HandlerTest extends UITestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
     parent::setUp($import_test_views);
 
     $this->placeBlock('page_title_block');
     ViewTestData::createTestViews(get_class($this), ['node_test_views']);
+=======
+  protected function setUp($import_test_views = TRUE): void {
+    parent::setUp($import_test_views);
+
+    $this->placeBlock('page_title_block');
+    ViewTestData::createTestViews(static::class, ['node_test_views']);
+>>>>>>> dev
   }
 
   /**
@@ -103,21 +115,43 @@ class HandlerTest extends UITestBase {
 
       // Area handler types need to use a different handler.
       if (in_array($type, ['header', 'footer', 'empty'])) {
+<<<<<<< HEAD
         $this->drupalPostForm($add_handler_url, ['name[views.area]' => TRUE], t('Add and configure @handler', ['@handler' => $type_info['ltitle']]));
+=======
+        $this->drupalGet($add_handler_url);
+        $this->submitForm([
+          'name[views.area]' => TRUE,
+        ], 'Add and configure ' . $type_info['ltitle']);
+>>>>>>> dev
         $id = 'area';
         $edit_handler_url = "admin/structure/views/nojs/handler/test_view_empty/default/$type/$id";
       }
       elseif ($type == 'relationship') {
+<<<<<<< HEAD
         $this->drupalPostForm($add_handler_url, ['name[views_test_data.uid]' => TRUE], t('Add and configure @handler', ['@handler' => $type_info['ltitle']]));
+=======
+        $this->drupalGet($add_handler_url);
+        $this->submitForm([
+          'name[views_test_data.uid]' => TRUE,
+        ], 'Add and configure ' . $type_info['ltitle']);
+>>>>>>> dev
         $id = 'uid';
         $edit_handler_url = "admin/structure/views/nojs/handler/test_view_empty/default/$type/$id";
       }
       else {
+<<<<<<< HEAD
         $this->drupalPostForm($add_handler_url, ['name[views_test_data.job]' => TRUE], t('Add and configure @handler', ['@handler' => $type_info['ltitle']]));
+=======
+        $this->drupalGet($add_handler_url);
+        $this->submitForm([
+          'name[views_test_data.job]' => TRUE,
+        ], 'Add and configure ' . $type_info['ltitle']);
+>>>>>>> dev
         $id = 'job';
         $edit_handler_url = "admin/structure/views/nojs/handler/test_view_empty/default/$type/$id";
       }
 
+<<<<<<< HEAD
       $this->assertUrl($edit_handler_url, [], 'The user got redirected to the handler edit form.');
       $random_label = $this->randomMachineName();
       $this->drupalPostForm(NULL, ['options[admin_label]' => $random_label], t('Apply'));
@@ -125,20 +159,43 @@ class HandlerTest extends UITestBase {
       $this->assertUrl('admin/structure/views/view/test_view_empty/edit/default', [], 'The user got redirected to the views edit form.');
 
       $this->assertLinkByHref($edit_handler_url, 0, 'The handler edit link appears in the UI.');
+=======
+      // Verify that the user got redirected to the handler edit form.
+      $this->assertSession()->addressEquals($edit_handler_url);
+      $random_label = $this->randomMachineName();
+      $this->submitForm(['options[admin_label]' => $random_label], 'Apply');
+
+      // Verify that the user got redirected to the views edit form.
+      $this->assertSession()->addressEquals('admin/structure/views/view/test_view_empty/edit/default');
+
+      $this->assertSession()->linkByHrefExists($edit_handler_url, 0, 'The handler edit link appears in the UI.');
+>>>>>>> dev
       $links = $this->xpath('//a[starts-with(normalize-space(text()), :label)]', [':label' => $random_label]);
       $this->assertTrue(isset($links[0]), 'The handler edit link has the right label');
 
       // Save the view and have a look whether the handler was added as expected.
+<<<<<<< HEAD
       $this->drupalPostForm(NULL, [], t('Save'));
+=======
+      $this->submitForm([], 'Save');
+>>>>>>> dev
       $view = $this->container->get('entity_type.manager')->getStorage('view')->load('test_view_empty');
       $display = $view->getDisplay('default');
       $this->assertTrue(isset($display['display_options'][$type_info['plural']][$id]), 'Ensure the field was added to the view itself.');
 
       // Remove the item and check that it's removed
+<<<<<<< HEAD
       $this->drupalPostForm($edit_handler_url, [], t('Remove'));
       $this->assertNoLinkByHref($edit_handler_url, 0, 'The handler edit link does not appears in the UI after removing.');
 
       $this->drupalPostForm(NULL, [], t('Save'));
+=======
+      $this->drupalGet($edit_handler_url);
+      $this->submitForm([], 'Remove');
+      $this->assertSession()->linkByHrefNotExists($edit_handler_url, 0, 'The handler edit link does not appears in the UI after removing.');
+
+      $this->submitForm([], 'Save');
+>>>>>>> dev
       $view = $this->container->get('entity_type.manager')->getStorage('view')->load('test_view_empty');
       $display = $view->getDisplay('default');
       $this->assertFalse(isset($display['display_options'][$type_info['plural']][$id]), 'Ensure the field was removed from the view itself.');
@@ -147,6 +204,7 @@ class HandlerTest extends UITestBase {
     // Test adding a field of the user table using the uid relationship.
     $type_info = $handler_types['relationship'];
     $add_handler_url = "admin/structure/views/nojs/add-handler/test_view_empty/default/relationship";
+<<<<<<< HEAD
     $this->drupalPostForm($add_handler_url, ['name[views_test_data.uid]' => TRUE], t('Add and configure @handler', ['@handler' => $type_info['ltitle']]));
 
     $add_handler_url = "admin/structure/views/nojs/add-handler/test_view_empty/default/field";
@@ -160,6 +218,28 @@ class HandlerTest extends UITestBase {
     $this->drupalPostForm(NULL, [], t('Apply'));
 
     $this->drupalPostForm(NULL, [], t('Save'));
+=======
+    $this->drupalGet($add_handler_url);
+    $this->submitForm([
+      'name[views_test_data.uid]' => TRUE,
+    ], 'Add and configure ' . $type_info['ltitle']);
+
+    $add_handler_url = "admin/structure/views/nojs/add-handler/test_view_empty/default/field";
+    $type_info = $handler_types['field'];
+    $this->drupalGet($add_handler_url);
+    $this->submitForm([
+      'name[users_field_data.name]' => TRUE,
+    ], 'Add and configure ' . $type_info['ltitle']);
+    $id = 'name';
+    $edit_handler_url = "admin/structure/views/nojs/handler/test_view_empty/default/field/$id";
+
+    // Verify that the user got redirected to the handler edit form.
+    $this->assertSession()->addressEquals($edit_handler_url);
+    $this->assertSession()->fieldValueEquals('options[relationship]', 'uid');
+    $this->submitForm([], 'Apply');
+
+    $this->submitForm([], 'Save');
+>>>>>>> dev
     $view = $this->container->get('entity_type.manager')->getStorage('view')->load('test_view_empty');
     $display = $view->getDisplay('default');
     $this->assertTrue(isset($display['display_options'][$type_info['plural']][$id]), 'Ensure the field was added to the view itself.');
@@ -196,8 +276,13 @@ class HandlerTest extends UITestBase {
     ])->save();
 
     $this->drupalGet('admin/structure/views/nojs/add-handler/content/default/field');
+<<<<<<< HEAD
     $this->assertEscaped('The <em>giraffe"</em> label <script>alert("the return of the xss")</script>');
     $this->assertEscaped('Appears in: page, article. Also known as: Content: The giraffe" label');
+=======
+    $this->assertSession()->assertEscaped('The <em>giraffe"</em> label <script>alert("the return of the xss")</script>');
+    $this->assertSession()->assertEscaped('Appears in: page, article. Also known as: Content: The giraffe" label');
+>>>>>>> dev
   }
 
   /**
@@ -215,7 +300,11 @@ class HandlerTest extends UITestBase {
 
       $text = 'Broken/missing handler';
 
+<<<<<<< HEAD
       $this->assertIdentical($result[0]->getText(), $text, 'Ensure the broken handler text was found.');
+=======
+      $this->assertSame($text, $result[0]->getText(), 'Ensure the broken handler text was found.');
+>>>>>>> dev
 
       $this->drupalGet($href);
       $result = $this->xpath('//h1[@class="page-title"]');
@@ -230,7 +319,11 @@ class HandlerTest extends UITestBase {
       ];
 
       foreach ($original_configuration as $key => $value) {
+<<<<<<< HEAD
         $this->assertText(new FormattableMarkup('@key: @value', ['@key' => $key, '@value' => $value]));
+=======
+        $this->assertSession()->pageTextContains($key . ': ' . $value);
+>>>>>>> dev
       }
     }
   }
@@ -266,7 +359,11 @@ class HandlerTest extends UITestBase {
     // description field is shown instead.
     $this->drupalGet('admin/structure/views/nojs/add-handler/test_node_view/default/field');
     $this->assertNoText('Error: missing help');
+<<<<<<< HEAD
     $this->assertRaw('<td class="description"></td>', 'Empty description found');
+=======
+    $this->assertRaw('<td class="description"></td>');
+>>>>>>> dev
 
     // Test that no error message is shown for other fields.
     $this->drupalGet('admin/structure/views/nojs/add-handler/test_view_empty/default/field');

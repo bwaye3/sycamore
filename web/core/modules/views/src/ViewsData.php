@@ -111,8 +111,11 @@ class ViewsData {
   /**
    * Gets all table data.
    *
+<<<<<<< HEAD
    * @see https://www.drupal.org/node/2723553
    *
+=======
+>>>>>>> dev
    * @return array
    *   An array of table data.
    */
@@ -129,6 +132,7 @@ class ViewsData {
   }
 
   /**
+<<<<<<< HEAD
    * Gets data for a particular table, or all tables.
    *
    * @param string|null $key
@@ -138,14 +142,26 @@ class ViewsData {
    *
    * @see https://www.drupal.org/node/2723553
    * @see https://www.drupal.org/node/3090442
+=======
+   * Gets data for a particular table.
+   *
+   * @param string $key
+   *   The key of the cache entry to retrieve.
+>>>>>>> dev
    *
    * @return array
    *   An array of table data.
    */
+<<<<<<< HEAD
   public function get($key = NULL) {
     if (!$key) {
       @trigger_error('Calling get() without the $key argument is deprecated in drupal:8.2.0 and is required in drupal:9.0.0. See https://www.drupal.org/node/3090442', E_USER_DEPRECATED);
       return $this->getAll();
+=======
+  public function get($key) {
+    if (!$key) {
+      throw new \InvalidArgumentException('A valid cache entry key is required. Use getAll() to get all table data.');
+>>>>>>> dev
     }
     if (!isset($this->storage[$key])) {
       // Prepare a cache ID for get and set.

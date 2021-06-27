@@ -3,7 +3,11 @@
  * Attaches administration-specific behavior for the Filter module.
  */
 
+<<<<<<< HEAD
 (function($, Drupal) {
+=======
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * Displays and updates the status of filters on the admin page.
    *
@@ -18,7 +22,11 @@
       $context
         .find('#filters-status-wrapper input.form-checkbox')
         .once('filter-status')
+<<<<<<< HEAD
         .each(function() {
+=======
+        .each(function () {
+>>>>>>> dev
           const $checkbox = $(this);
           // Retrieve the tabledrag row belonging to this filter.
           const $row = $context
@@ -26,7 +34,13 @@
             .closest('tr');
           // Retrieve the vertical tab belonging to this filter.
           const $filterSettings = $context.find(
+<<<<<<< HEAD
             `#${$checkbox.attr('id').replace(/-status$/, '-settings')}`,
+=======
+            `[data-drupal-selector='${$checkbox
+              .attr('id')
+              .replace(/-status$/, '-settings')}']`,
+>>>>>>> dev
           );
           const filterSettingsTab = $filterSettings.data('verticalTab');
 

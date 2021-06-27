@@ -15,6 +15,7 @@ abstract class NormalizerBase extends SerializationNormalizerBase implements Den
    */
   protected $format = ['hal_json'];
 
+<<<<<<< HEAD
   /**
    * {@inheritdoc}
    */
@@ -28,4 +29,6 @@ abstract class NormalizerBase extends SerializationNormalizerBase implements Den
     return parent::checkFormat($format);
   }
 
+=======
+>>>>>>> dev
 }

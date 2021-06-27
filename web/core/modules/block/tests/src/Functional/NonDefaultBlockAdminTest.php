@@ -16,7 +16,11 @@ class NonDefaultBlockAdminTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['block'];
+=======
+  protected static $modules = ['block'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -26,14 +30,22 @@ class NonDefaultBlockAdminTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalPlaceBlock('local_tasks_block');
   }
 
   /**
+<<<<<<< HEAD
    * Test non-default theme admin.
+=======
+   * Tests non-default theme admin.
+>>>>>>> dev
    */
   public function testNonDefaultBlockAdmin() {
     $admin_user = $this->drupalCreateUser([
@@ -43,8 +55,14 @@ class NonDefaultBlockAdminTest extends BrowserTestBase {
     $this->drupalLogin($admin_user);
     $new_theme = 'bartik';
     \Drupal::service('theme_installer')->install([$new_theme]);
+<<<<<<< HEAD
     $this->drupalGet('admin/structure/block/list/' . $new_theme);
     $this->assertText('Bartik(' . t('active tab') . ')', 'Tab for non-default theme found.');
+=======
+    // Ensure that the Bartik tab is shown.
+    $this->drupalGet('admin/structure/block/list/' . $new_theme);
+    $this->assertSession()->pageTextContains('Bartik(active tab)');
+>>>>>>> dev
   }
 
 }

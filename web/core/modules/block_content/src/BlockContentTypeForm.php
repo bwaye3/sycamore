@@ -20,7 +20,11 @@ class BlockContentTypeForm extends BundleEntityFormBase {
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
 
+<<<<<<< HEAD
     /* @var \Drupal\block_content\BlockContentTypeInterface $block_type */
+=======
+    /** @var \Drupal\block_content\BlockContentTypeInterface $block_type */
+>>>>>>> dev
     $block_type = $this->entity;
 
     if ($this->operation == 'add') {
@@ -32,10 +36,17 @@ class BlockContentTypeForm extends BundleEntityFormBase {
 
     $form['label'] = [
       '#type' => 'textfield',
+<<<<<<< HEAD
       '#title' => t('Label'),
       '#maxlength' => 255,
       '#default_value' => $block_type->label(),
       '#description' => t("Provide a label for this block type to help identify it in the administration pages."),
+=======
+      '#title' => $this->t('Label'),
+      '#maxlength' => 255,
+      '#default_value' => $block_type->label(),
+      '#description' => $this->t("Provide a label for this block type to help identify it in the administration pages."),
+>>>>>>> dev
       '#required' => TRUE,
     ];
     $form['id'] = [
@@ -50,21 +61,36 @@ class BlockContentTypeForm extends BundleEntityFormBase {
     $form['description'] = [
       '#type' => 'textarea',
       '#default_value' => $block_type->getDescription(),
+<<<<<<< HEAD
       '#description' => t('Enter a description for this block type.'),
       '#title' => t('Description'),
+=======
+      '#description' => $this->t('Enter a description for this block type.'),
+      '#title' => $this->t('Description'),
+>>>>>>> dev
     ];
 
     $form['revision'] = [
       '#type' => 'checkbox',
+<<<<<<< HEAD
       '#title' => t('Create new revision'),
       '#default_value' => $block_type->shouldCreateNewRevision(),
       '#description' => t('Create a new revision by default for this block type.'),
+=======
+      '#title' => $this->t('Create new revision'),
+      '#default_value' => $block_type->shouldCreateNewRevision(),
+      '#description' => $this->t('Create a new revision by default for this block type.'),
+>>>>>>> dev
     ];
 
     if ($this->moduleHandler->moduleExists('language')) {
       $form['language'] = [
         '#type' => 'details',
+<<<<<<< HEAD
         '#title' => t('Language settings'),
+=======
+        '#title' => $this->t('Language settings'),
+>>>>>>> dev
         '#group' => 'additional_settings',
       ];
 
@@ -84,7 +110,11 @@ class BlockContentTypeForm extends BundleEntityFormBase {
     $form['actions'] = ['#type' => 'actions'];
     $form['actions']['submit'] = [
       '#type' => 'submit',
+<<<<<<< HEAD
       '#value' => t('Save'),
+=======
+      '#value' => $this->t('Save'),
+>>>>>>> dev
     ];
 
     return $this->protectBundleIdElement($form);
@@ -100,12 +130,20 @@ class BlockContentTypeForm extends BundleEntityFormBase {
     $edit_link = $this->entity->toLink($this->t('Edit'), 'edit-form')->toString();
     $logger = $this->logger('block_content');
     if ($status == SAVED_UPDATED) {
+<<<<<<< HEAD
       $this->messenger()->addStatus(t('Custom block type %label has been updated.', ['%label' => $block_type->label()]));
+=======
+      $this->messenger()->addStatus($this->t('Custom block type %label has been updated.', ['%label' => $block_type->label()]));
+>>>>>>> dev
       $logger->notice('Custom block type %label has been updated.', ['%label' => $block_type->label(), 'link' => $edit_link]);
     }
     else {
       block_content_add_body_field($block_type->id());
+<<<<<<< HEAD
       $this->messenger()->addStatus(t('Custom block type %label has been added.', ['%label' => $block_type->label()]));
+=======
+      $this->messenger()->addStatus($this->t('Custom block type %label has been added.', ['%label' => $block_type->label()]));
+>>>>>>> dev
       $logger->notice('Custom block type %label has been added.', ['%label' => $block_type->label(), 'link' => $edit_link]);
     }
 

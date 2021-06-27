@@ -11,7 +11,11 @@ use Drupal\layout_builder\SectionListInterface;
 use Drupal\layout_builder\SectionStorage\SectionStorageTrait;
 
 /**
+<<<<<<< HEAD
  * Defines a item list class for layout section fields.
+=======
+ * Defines an item list class for layout section fields.
+>>>>>>> dev
  *
  * @internal
  *   Plugin classes are internal.

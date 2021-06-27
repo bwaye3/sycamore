@@ -8,6 +8,7 @@
 use Drupal\Core\Extension\ExtensionDiscovery;
 
 /**
+<<<<<<< HEAD
  * Builds a list of installed themes.
  *
  * @param $type
@@ -84,6 +85,8 @@ function system_register($type, $name, $uri) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Loads a module's installation hooks.
  *
  * @param $module

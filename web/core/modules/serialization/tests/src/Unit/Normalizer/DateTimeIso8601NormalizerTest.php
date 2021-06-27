@@ -45,7 +45,11 @@ class DateTimeIso8601NormalizerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $system_date_config = $this->prophesize(ImmutableConfig::class);
@@ -211,6 +215,7 @@ class DateTimeIso8601NormalizerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests the denormalize function with the date+time deprecated format.
    *
    * @covers ::denormalize
@@ -226,6 +231,8 @@ class DateTimeIso8601NormalizerTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests the denormalize function with bad data for the date-only case.
    *
    * @covers ::denormalize
@@ -248,7 +255,11 @@ class DateTimeIso8601NormalizerTest extends UnitTestCase {
    */
   public function testDenormalizeDateAndTimeException() {
     $this->expectException(UnexpectedValueException::class);
+<<<<<<< HEAD
     $this->expectExceptionMessage('The specified date "on a rainy day" is not in an accepted format: "Y-m-d\TH:i:sP" (RFC 3339), "Y-m-d\TH:i:sO" (ISO 8601), "Y-m-d\TH:i:s" (backward compatibility — deprecated).');
+=======
+    $this->expectExceptionMessage('The specified date "on a rainy day" is not in an accepted format: "Y-m-d\TH:i:sP" (RFC 3339), "Y-m-d\TH:i:sO" (ISO 8601).');
+>>>>>>> dev
 
     $normalized = 'on a rainy day';
 

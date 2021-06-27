@@ -23,7 +23,11 @@ class UpdatePostUpdateTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $connection = Database::getConnection();
 
@@ -75,7 +79,11 @@ class UpdatePostUpdateTest extends BrowserTestBase {
   protected function doSelectionTest() {
     // Ensure that normal and post_update updates are merged together on the
     // selection page.
+<<<<<<< HEAD
     $this->assertRaw('<ul><li>8001 -   Normal update_N() function. </li><li>First update.</li><li>Second update.</li><li>Test0 update.</li><li>Test1 update.</li><li>Testing batch processing in post updates update.</li></ul>');
+=======
+    $this->assertSession()->responseContains('<ul><li>8001 - Normal update_N() function.</li><li>First update.</li><li>Second update.</li><li>Test0 update.</li><li>Test1 update.</li><li>Testing batch processing in post updates update.</li></ul>');
+>>>>>>> dev
   }
 
   /**
@@ -105,7 +113,11 @@ class UpdatePostUpdateTest extends BrowserTestBase {
       'update_test_postupdate_post_update_test_batch-2',
       'update_test_postupdate_post_update_test_batch-3',
     ];
+<<<<<<< HEAD
     $this->assertIdentical($updates, \Drupal::state()->get('post_update_test_execution', []));
+=======
+    $this->assertSame($updates, \Drupal::state()->get('post_update_test_execution', []));
+>>>>>>> dev
 
     // Test post_update key value stores contains a list of the update functions
     // that have run.
@@ -118,13 +130,21 @@ class UpdatePostUpdateTest extends BrowserTestBase {
       'update_test_postupdate_post_update_test_batch',
     ];
     foreach ($expected_updates as $expected_update) {
+<<<<<<< HEAD
       $this->assertEqual($existing_updates[$expected_update], 1, new FormattableMarkup("@expected_update exists in 'existing_updates' key and only appears once.", ['@expected_update' => $expected_update]));
+=======
+      $this->assertEquals(1, $existing_updates[$expected_update], new FormattableMarkup("@expected_update exists in 'existing_updates' key and only appears once.", ['@expected_update' => $expected_update]));
+>>>>>>> dev
     }
 
     $this->drupalGet('update.php/selection');
     $this->updateRequirementsProblem();
     $this->drupalGet('update.php/selection');
+<<<<<<< HEAD
     $this->assertText('No pending updates.');
+=======
+    $this->assertSession()->pageTextContains('No pending updates.');
+>>>>>>> dev
   }
 
 }

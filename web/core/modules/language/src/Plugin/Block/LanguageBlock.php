@@ -38,7 +38,11 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
   protected $pathMatcher;
 
   /**
+<<<<<<< HEAD
    * Constructs an LanguageBlock object.
+=======
+   * Constructs a LanguageBlock object.
+>>>>>>> dev
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.

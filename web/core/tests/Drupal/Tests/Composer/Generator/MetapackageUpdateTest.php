@@ -18,7 +18,11 @@ use PHPUnit\Framework\TestCase;
 class MetapackageUpdateTest extends TestCase {
 
   /**
+<<<<<<< HEAD
    * Test data for testUpdated
+=======
+   * Provides test data for testUpdated.
+>>>>>>> dev
    */
   public function updatedTestData() {
     return [
@@ -38,7 +42,11 @@ class MetapackageUpdateTest extends TestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test to see if the generated metapackages are in sync with composer.lock.
+=======
+   * Tests to see if the generated metapackages are in sync with composer.lock.
+>>>>>>> dev
    *
    * Note that this is not a test of code correctness, but rather it merely
    * confirms if the package builder was used on the most recent set of
@@ -55,7 +63,11 @@ class MetapackageUpdateTest extends TestCase {
    */
   public function testUpdated($builderClass, $path) {
     // Create a DrupalCoreComposer for the System Under Test (current repo)
+<<<<<<< HEAD
     $repositoryRoot = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
+=======
+    $repositoryRoot = dirname(__DIR__, 6);
+>>>>>>> dev
     $drupalCoreInfo = DrupalCoreComposer::createFromPath($repositoryRoot);
 
     // Rebuild the metapackage for the composer.json / composer.lock of

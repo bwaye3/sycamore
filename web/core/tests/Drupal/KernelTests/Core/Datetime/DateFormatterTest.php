@@ -16,7 +16,11 @@ class DateFormatterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['language', 'system'];
+=======
+  protected static $modules = ['language', 'system'];
+>>>>>>> dev
 
   /**
    * Arbitrary langcode for a custom language.
@@ -26,7 +30,11 @@ class DateFormatterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installConfig(['system']);

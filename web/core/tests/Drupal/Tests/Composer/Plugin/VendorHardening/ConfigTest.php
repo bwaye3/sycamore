@@ -4,6 +4,10 @@ namespace Drupal\Tests\Composer\Plugin\VendorHardening;
 
 use Composer\Package\RootPackageInterface;
 use Drupal\Composer\Plugin\VendorHardening\Config;
+<<<<<<< HEAD
+=======
+use Drupal\Tests\Traits\PhpUnitWarnings;
+>>>>>>> dev
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,6 +16,11 @@ use PHPUnit\Framework\TestCase;
  */
 class ConfigTest extends TestCase {
 
+<<<<<<< HEAD
+=======
+  use PhpUnitWarnings;
+
+>>>>>>> dev
   /**
    * @covers ::getPathsForPackage
    */
@@ -77,10 +86,15 @@ class ConfigTest extends TestCase {
 
     $plugin_config = $ref_plugin_config->invoke($config);
 
+<<<<<<< HEAD
     $this->assertArraySubset([
       'isa/string' => ['test_dir'],
       'an/array' => ['test_dir', 'doc_dir'],
     ], $plugin_config);
+=======
+    $this->assertSame(['test_dir'], $plugin_config['isa/string']);
+    $this->assertSame(['test_dir', 'doc_dir'], $plugin_config['an/array']);
+>>>>>>> dev
   }
 
   /**
@@ -115,7 +129,11 @@ class ConfigTest extends TestCase {
     $plugin_config = $ref_plugin_config->invoke($config);
 
     foreach (array_keys($plugin_config) as $package_name) {
+<<<<<<< HEAD
       $this->assertNotRegExp('/[A-Z]/', $package_name);
+=======
+      $this->assertDoesNotMatchRegularExpression('/[A-Z]/', $package_name);
+>>>>>>> dev
     }
   }
 

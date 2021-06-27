@@ -92,6 +92,7 @@ function user_install() {
 }
 
 /**
+<<<<<<< HEAD
  * Fix invalid token in the status_blocked email body.
  */
 function user_update_8100() {
@@ -102,4 +103,10 @@ function user_update_8100() {
     $mail['body'] = str_replace('[site:account-name]', '[site:name]', $mail['body']);
     $config->set('status_blocked', $mail)->save(TRUE);
   }
+=======
+ * Implements hook_update_last_removed().
+ */
+function user_update_last_removed() {
+  return 8100;
+>>>>>>> dev
 }

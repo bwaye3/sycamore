@@ -13,14 +13,21 @@ use Drupal\serialization\Normalizer\CacheableNormalizerInterface;
 /**
  * @coversDefaultClass \Drupal\hal\LinkManager\LinkManager
  * @group hal
+<<<<<<< HEAD
  * @group legacy
+=======
+>>>>>>> dev
  */
 class HalLinkManagerTest extends KernelTestBase {
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'hal',
     'hal_test',
     'serialization',
@@ -33,7 +40,11 @@ class HalLinkManagerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('node');
@@ -51,14 +62,20 @@ class HalLinkManagerTest extends KernelTestBase {
       'bundle' => 'page',
       'field_name' => 'field_ref',
     ])->save();
+<<<<<<< HEAD
 
     \Drupal::service('router.builder')->rebuild();
+=======
+>>>>>>> dev
   }
 
   /**
    * @covers ::getTypeUri
    * @dataProvider providerTestGetTypeUri
+<<<<<<< HEAD
    * @expectedDeprecation The deprecated alter hook hook_rest_type_uri_alter() is implemented in these functions: hal_test_rest_type_uri_alter. This hook is deprecated in Drupal 8.3.x and will be removed before Drupal 9.0.0. Implement hook_hal_type_uri_alter() instead.
+=======
+>>>>>>> dev
    */
   public function testGetTypeUri($link_domain, $entity_type, $bundle, array $context, $expected_return, array $expected_context) {
     $hal_settings = \Drupal::configFactory()->getEditable('hal.settings');
@@ -70,7 +87,11 @@ class HalLinkManagerTest extends KernelTestBase {
       $hal_settings->set('link_domain', $link_domain)->save(TRUE);
     }
 
+<<<<<<< HEAD
     /* @var \Drupal\rest\LinkManager\TypeLinkManagerInterface $type_manager */
+=======
+    /** @var \Drupal\hal\LinkManager\TypeLinkManagerInterface $type_manager */
+>>>>>>> dev
     $type_manager = \Drupal::service('hal.link_manager.type');
 
     $link = $type_manager->getTypeUri($entity_type, $bundle, $context);
@@ -116,6 +137,7 @@ class HalLinkManagerTest extends KernelTestBase {
         // No cacheability metadata bubbled.
         'expected context' => ['hal_test' => TRUE] + $serialization_context_collecting_cacheability,
       ],
+<<<<<<< HEAD
       // Test hook_rest_type_uri_alter() — for backwards compatibility.
       'site URL, with optional context, to test hook_rest_type_uri_alter()' => $base_test_case + [
         'context' => ['rest_test' => TRUE],
@@ -128,6 +150,8 @@ class HalLinkManagerTest extends KernelTestBase {
           // No cacheability metadata bubbled.
         'expected context' => ['rest_test' => TRUE] + $serialization_context_collecting_cacheability,
       ],
+=======
+>>>>>>> dev
       'configured URL' => [
         'link_domain' => 'http://llamas-rock.com/for-real/',
         'entity_type' => 'node',
@@ -152,7 +176,10 @@ class HalLinkManagerTest extends KernelTestBase {
   /**
    * @covers ::getRelationUri
    * @dataProvider providerTestGetRelationUri
+<<<<<<< HEAD
    * @expectedDeprecation The deprecated alter hook hook_rest_relation_uri_alter() is implemented in these functions: hal_test_rest_relation_uri_alter. This hook is deprecated in Drupal 8.3.x and will be removed before Drupal 9.0.0. Implement hook_hal_relation_uri_alter() instead.
+=======
+>>>>>>> dev
    */
   public function testGetRelationUri($link_domain, $entity_type, $bundle, $field_name, array $context, $expected_return, array $expected_context) {
     $hal_settings = \Drupal::configFactory()->getEditable('hal.settings');
@@ -164,7 +191,11 @@ class HalLinkManagerTest extends KernelTestBase {
       $hal_settings->set('link_domain', $link_domain)->save(TRUE);
     }
 
+<<<<<<< HEAD
     /* @var \Drupal\rest\LinkManager\RelationLinkManagerInterface $relation_manager */
+=======
+    /** @var \Drupal\hal\LinkManager\RelationLinkManagerInterface $relation_manager */
+>>>>>>> dev
     $relation_manager = \Drupal::service('hal.link_manager.relation');
 
     $link = $relation_manager->getRelationUri($entity_type, $bundle, $field_name, $context);
@@ -212,6 +243,7 @@ class HalLinkManagerTest extends KernelTestBase {
         // No cacheability metadata bubbled.
         'expected context' => ['hal_test' => TRUE] + $serialization_context_collecting_cacheability,
       ],
+<<<<<<< HEAD
       // Test hook_rest_relation_uri_alter() — for backwards compatibility.
       'site URL, with optional context, to test hook_rest_relation_uri_alter()' => $base_test_case + [
         'context' => ['rest_test' => TRUE],
@@ -224,6 +256,8 @@ class HalLinkManagerTest extends KernelTestBase {
         // No cacheability metadata bubbled.
         'expected context' => ['rest_test' => TRUE] + $serialization_context_collecting_cacheability,
       ],
+=======
+>>>>>>> dev
       'configured URL' => [
         'link_domain' => 'http://llamas-rock.com/for-real/',
         'entity_type' => 'node',
@@ -251,14 +285,21 @@ class HalLinkManagerTest extends KernelTestBase {
    * @covers ::getRelationInternalIds
    */
   public function testGetRelationInternalIds() {
+<<<<<<< HEAD
     /* @var \Drupal\rest\LinkManager\RelationLinkManagerInterface $relation_manager */
+=======
+    /** @var \Drupal\hal\LinkManager\RelationLinkManagerInterface $relation_manager */
+>>>>>>> dev
     $relation_manager = \Drupal::service('hal.link_manager.relation');
     $link = $relation_manager->getRelationUri('node', 'page', 'field_ref');
     $internal_ids = $relation_manager->getRelationInternalIds($link);
 
     $this->assertEquals([
       'entity_type_id' => 'node',
+<<<<<<< HEAD
       'entity_type' => \Drupal::entityTypeManager()->getDefinition('node'),
+=======
+>>>>>>> dev
       'bundle' => 'page',
       'field_name' => 'field_ref',
     ], $internal_ids);
@@ -272,6 +313,7 @@ class HalLinkManagerTest extends KernelTestBase {
       CacheableNormalizerInterface::SERIALIZATION_CONTEXT_CACHEABILITY => new CacheableMetadata(),
     ];
 
+<<<<<<< HEAD
     /* @var \Drupal\rest\LinkManager\LinkManager $link_manager */
     $link_manager = \Drupal::service('hal.link_manager');
     $link_manager->setLinkDomain('http://example.com/');
@@ -281,6 +323,17 @@ class HalLinkManagerTest extends KernelTestBase {
     $link = $link_manager->getRelationUri('node', 'page', 'field_ref', $serialization_context);
     $this->assertEqual($link, 'http://example.com/rest/relation/node/page/field_ref');
     $this->assertEqual(new CacheableMetadata(), $serialization_context[CacheableNormalizerInterface::SERIALIZATION_CONTEXT_CACHEABILITY]);
+=======
+    /** @var \Drupal\hal\LinkManager\LinkManager $link_manager */
+    $link_manager = \Drupal::service('hal.link_manager');
+    $link_manager->setLinkDomain('http://example.com/');
+    $link = $link_manager->getTypeUri('node', 'page', $serialization_context);
+    $this->assertEquals('http://example.com/rest/type/node/page', $link);
+    $this->assertEquals($serialization_context[CacheableNormalizerInterface::SERIALIZATION_CONTEXT_CACHEABILITY], new CacheableMetadata());
+    $link = $link_manager->getRelationUri('node', 'page', 'field_ref', $serialization_context);
+    $this->assertEquals('http://example.com/rest/relation/node/page/field_ref', $link);
+    $this->assertEquals($serialization_context[CacheableNormalizerInterface::SERIALIZATION_CONTEXT_CACHEABILITY], new CacheableMetadata());
+>>>>>>> dev
   }
 
 }

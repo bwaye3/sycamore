@@ -21,7 +21,11 @@ class ArgumentValidateTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'path_alias',
     'user_test_views',
@@ -42,12 +46,20 @@ class ArgumentValidateTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
     $this->installEntitySchema('user');
     $this->installEntitySchema('node');
     $this->account = $this->createUser();
+<<<<<<< HEAD
     ViewTestData::createTestViews(get_class($this), ['user_test_views']);
+=======
+    ViewTestData::createTestViews(static::class, ['user_test_views']);
+>>>>>>> dev
   }
 
   /**

@@ -18,7 +18,11 @@ abstract class MediaFunctionalTestBase extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'system',
     'node',
     'field_ui',

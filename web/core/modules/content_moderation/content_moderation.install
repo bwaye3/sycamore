@@ -5,6 +5,7 @@
  * Install, update and uninstall functions for the Content Moderation module.
  */
 
+<<<<<<< HEAD
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Link;
 
@@ -68,4 +69,11 @@ function content_moderation_update_8700() {
   $entity_type->set('entity_keys', $keys);
   $definition_update_manager->updateEntityType($entity_type);
   $definition_update_manager->updateFieldStorageDefinition($definition_update_manager->getFieldStorageDefinition('uid', 'content_moderation_state'));
+=======
+/**
+ * Implements hook_update_last_removed().
+ */
+function content_moderation_update_last_removed() {
+  return 8700;
+>>>>>>> dev
 }

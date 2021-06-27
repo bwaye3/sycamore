@@ -3,7 +3,10 @@
 namespace Drupal\Core\Config\Entity;
 
 use Drupal\Component\Graph\Graph;
+<<<<<<< HEAD
 use Drupal\Component\Utility\SortArray;
+=======
+>>>>>>> dev
 
 /**
  * Provides a class to discover configuration entity dependencies.
@@ -220,6 +223,7 @@ class ConfigDependencyManager {
   }
 
   /**
+<<<<<<< HEAD
    * Sorts the dependency graph by weight and alphabetically.
    *
    * @deprecated in drupal:8.2.0 and is removed from drupal:9.0.0. Use
@@ -270,6 +274,8 @@ class ConfigDependencyManager {
   }
 
   /**
+=======
+>>>>>>> dev
    * Creates a graph of config entity dependencies.
    *
    * @param array $entities_to_check

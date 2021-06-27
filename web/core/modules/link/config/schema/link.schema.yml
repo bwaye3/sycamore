@@ -54,12 +54,28 @@ field.value.link:
   type: mapping
   label: 'Default value'
   mapping:
+<<<<<<< HEAD
     title:
       type: label
       label: 'Link text'
     url:
       type: string
       label: 'URL'
+=======
+    attributes:
+      type: mapping
+      label: 'Link attributes'
+      mapping:
+        title:
+          type: label
+          label: 'Link text'
+    uri:
+      type: string
+      label: 'URL'
+    title:
+      type: label
+      label: 'Link text'
+>>>>>>> dev
     options:
       type: mapping
       label: 'Link options'

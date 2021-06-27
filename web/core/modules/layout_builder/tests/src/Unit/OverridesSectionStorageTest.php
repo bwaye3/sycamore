@@ -56,7 +56,11 @@ class OverridesSectionStorageTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->entityTypeManager = $this->prophesize(EntityTypeManagerInterface::class);
@@ -73,6 +77,7 @@ class OverridesSectionStorageTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * @covers ::extractIdFromRoute
    *
    * @dataProvider providerTestExtractIdFromRoute
@@ -182,6 +187,8 @@ class OverridesSectionStorageTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * @covers ::extractEntityFromRoute
    *
    * @dataProvider providerTestExtractEntityFromRoute

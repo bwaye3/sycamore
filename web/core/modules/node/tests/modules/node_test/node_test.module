@@ -153,9 +153,15 @@ function node_test_node_update(NodeInterface $node) {
 /**
  * Implements hook_entity_view_mode_alter().
  */
+<<<<<<< HEAD
 function node_test_entity_view_mode_alter(&$view_mode, EntityInterface $entity, $context) {
   // Only alter the view mode if we are on the test callback.
   $change_view_mode = \Drupal::state()->get('node_test_change_view_mode') ?: '';
+=======
+function node_test_entity_view_mode_alter(&$view_mode, EntityInterface $entity) {
+  // Only alter the view mode if we are on the test callback.
+  $change_view_mode = \Drupal::state()->get('node_test_change_view_mode', '');
+>>>>>>> dev
   if ($change_view_mode) {
     $view_mode = $change_view_mode;
   }

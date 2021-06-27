@@ -8,10 +8,18 @@ use Drupal\Tests\UnitTestCase;
 use Drupal\text\Plugin\migrate\field\d6\TextField;
 use Prophecy\Argument;
 
+<<<<<<< HEAD
 /**
  * @coversDefaultClass \Drupal\text\Plugin\migrate\field\d6\TextField
  * @group text
  * @group legacy
+=======
+// cspell:ignore optionwidgets
+
+/**
+ * @coversDefaultClass \Drupal\text\Plugin\migrate\field\d6\TextField
+ * @group text
+>>>>>>> dev
  */
 class TextFieldTest extends UnitTestCase {
 
@@ -28,7 +36,11 @@ class TextFieldTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->plugin = new TextField([], 'text', []);
 
     $migration = $this->prophesize(MigrationInterface::class);
@@ -46,6 +58,7 @@ class TextFieldTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Calls the deprecated processFieldValues() method to test BC.
    *
    * @covers ::processFieldValues
@@ -73,6 +86,8 @@ class TextFieldTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * @covers ::defineValueProcessPipeline
    */
   public function testFilteredTextValueProcessPipeline() {
@@ -96,6 +111,7 @@ class TextFieldTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Calls the deprecated processFieldValues() method to test BC.
    *
    * @covers ::processFieldValues
@@ -125,6 +141,8 @@ class TextFieldTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * @covers ::defineValueProcessPipeline
    */
   public function testBooleanTextImplicitValueProcessPipeline() {
@@ -150,6 +168,7 @@ class TextFieldTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Calls the deprecated processFieldValues() method to test BC.
    *
    * @covers ::processFieldValues
@@ -179,6 +198,8 @@ class TextFieldTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * @covers ::defineValueProcessPipeline
    */
   public function testBooleanTextExplicitValueProcessPipeline() {

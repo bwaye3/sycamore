@@ -5,7 +5,11 @@ namespace Drupal\FunctionalTests;
 use Drupal\Tests\BrowserTestBase;
 
 /**
+<<<<<<< HEAD
  * Tests User related helper methods of WebTestBase.
+=======
+ * Tests User related helper methods of BrowserTestBase.
+>>>>>>> dev
  *
  * @group browsertestbase
  */
@@ -17,7 +21,11 @@ class UserHelpersTest extends BrowserTestBase {
   protected $defaultTheme = 'stark';
 
   /**
+<<<<<<< HEAD
    * Tests WebTestBase::drupalUserIsLoggedIn().
+=======
+   * Tests BrowserTestBase::drupalUserIsLoggedIn().
+>>>>>>> dev
    */
   public function testDrupalUserIsLoggedIn() {
     $first_user = $this->drupalCreateUser();

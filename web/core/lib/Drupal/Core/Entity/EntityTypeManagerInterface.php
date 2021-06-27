@@ -17,7 +17,11 @@ interface EntityTypeManagerInterface extends PluginManagerInterface, CachedDisco
    *   The entity type ID for this access control handler.
    *
    * @return \Drupal\Core\Entity\EntityAccessControlHandlerInterface
+<<<<<<< HEAD
    *   A access control handler instance.
+=======
+   *   An access control handler instance.
+>>>>>>> dev
    */
   public function getAccessControlHandler($entity_type_id);
 
@@ -120,7 +124,11 @@ interface EntityTypeManagerInterface extends PluginManagerInterface, CachedDisco
   /**
    * Creates new handler instance.
    *
+<<<<<<< HEAD
    * Usually \Drupal\Core\Entity\EntityManagerInterface::getHandler() is
+=======
+   * Usually \Drupal\Core\Entity\EntityTypeManagerInterface::getHandler() is
+>>>>>>> dev
    * preferred since that method has additional checking that the class exists
    * and has static caches.
    *

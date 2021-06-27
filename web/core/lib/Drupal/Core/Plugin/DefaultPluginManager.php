@@ -286,7 +286,10 @@ class DefaultPluginManager extends PluginManagerBase implements PluginManagerInt
       $this->processDefinition($definition, $plugin_id);
     }
     $this->alterDefinitions($definitions);
+<<<<<<< HEAD
     $this->fixContextAwareDefinitions($definitions);
+=======
+>>>>>>> dev
     // If this plugin was provided by a module that does not exist, remove the
     // plugin definition.
     foreach ($definitions as $plugin_id => $plugin_definition) {
@@ -299,6 +302,7 @@ class DefaultPluginManager extends PluginManagerBase implements PluginManagerInt
   }
 
   /**
+<<<<<<< HEAD
    * Fix the definitions of context-aware plugins.
    *
    * @param array $definitions
@@ -331,6 +335,8 @@ class DefaultPluginManager extends PluginManagerBase implements PluginManagerInt
   }
 
   /**
+=======
+>>>>>>> dev
    * Extracts the provider from a plugin definition.
    *
    * @param mixed $plugin_definition

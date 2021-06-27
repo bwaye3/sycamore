@@ -23,7 +23,11 @@ class DrupalKernelSiteTest extends KernelTestBase {
     // A service provider class always has precedence over services.yml files.
     // KernelTestBase::buildContainer() swaps out many services with in-memory
     // implementations already, so those cannot be tested.
+<<<<<<< HEAD
     $this->assertIdentical(get_class($this->container->get('cache.backend.database')), 'Drupal\Core\Cache\DatabaseBackendFactory');
+=======
+    $this->assertSame('Drupal\\Core\\Cache\\DatabaseBackendFactory', get_class($this->container->get('cache.backend.database')));
+>>>>>>> dev
 
     $class = __CLASS__;
     $doc = <<<EOD
@@ -41,7 +45,11 @@ EOD;
     $this->container->get('kernel')->rebuildContainer();
 
     $this->assertTrue($this->container->has('site.service.yml'));
+<<<<<<< HEAD
     $this->assertIdentical(get_class($this->container->get('cache.backend.database')), 'Drupal\Core\Cache\MemoryBackendFactory');
+=======
+    $this->assertSame('Drupal\\Core\\Cache\\MemoryBackendFactory', get_class($this->container->get('cache.backend.database')));
+>>>>>>> dev
   }
 
 }

@@ -2,6 +2,10 @@
 
 namespace Drupal\comment\Plugin\migrate\source\d7;
 
+<<<<<<< HEAD
+=======
+use Drupal\migrate\Exception\RequirementsException;
+>>>>>>> dev
 use Drupal\migrate\Row;
 use Drupal\migrate_drupal\Plugin\migrate\source\d7\FieldableEntity;
 
@@ -27,8 +31,13 @@ class CommentEntityTranslation extends FieldableEntity {
       ->condition('et.entity_type', 'comment')
       ->condition('et.source', '', '<>');
 
+<<<<<<< HEAD
     $query->innerJoin('comment', 'c', 'c.cid = et.entity_id');
     $query->innerJoin('node', 'n', 'n.nid = c.nid');
+=======
+    $query->innerJoin('comment', 'c', '[c].[cid] = [et].[entity_id]');
+    $query->innerJoin('node', 'n', '[n].[nid] = [c].[nid]');
+>>>>>>> dev
 
     $query->addField('n', 'type', 'node_type');
 
@@ -100,4 +109,23 @@ class CommentEntityTranslation extends FieldableEntity {
     ];
   }
 
+<<<<<<< HEAD
+=======
+  /**
+   * {@inheritdoc}
+   */
+  public function checkRequirements() {
+    parent::checkRequirements();
+
+    if (!$this->moduleExists('comment')) {
+      // If we make it to here, the comment module isn't installed.
+      throw new RequirementsException('The module comment is not enabled in the source site');
+    }
+    if (!$this->moduleExists('node')) {
+      // Node module is also a requirement.
+      throw new RequirementsException('The module node is not enabled in the source site');
+    }
+  }
+
+>>>>>>> dev
 }

@@ -5,9 +5,15 @@
  * Code required only when comparing available updates to existing data.
  */
 
+<<<<<<< HEAD
 use Drupal\update\UpdateFetcherInterface;
 use Drupal\update\UpdateManagerInterface;
 use Drupal\update\ModuleVersion;
+=======
+use Drupal\Core\Extension\ExtensionVersion;
+use Drupal\update\UpdateFetcherInterface;
+use Drupal\update\UpdateManagerInterface;
+>>>>>>> dev
 use Drupal\update\ProjectCoreCompatibility;
 
 /**
@@ -41,10 +47,16 @@ function update_process_project_info(&$projects) {
       if (preg_match('/^(\d+\.x-)?(\d+)\..*$/', $info['version'], $matches)) {
         $info['major'] = $matches[2];
       }
+<<<<<<< HEAD
       elseif (!isset($info['major'])) {
         // This would only happen for version strings that don't follow the
         // drupal.org convention. We let contribs define "major" in their
         // .info.yml in this case, and only if that's missing would we hit this.
+=======
+      else {
+        // This would only happen for version strings that don't follow the
+        // drupal.org convention.
+>>>>>>> dev
         $info['major'] = -1;
       }
     }
@@ -276,7 +288,11 @@ function update_calculate_project_update_status(&$project_data, $available) {
     return;
   }
   try {
+<<<<<<< HEAD
     $existing_major = ModuleVersion::createFromVersionString($project_data['existing_version'])->getMajorVersion();
+=======
+    $existing_major = ExtensionVersion::createFromVersionString($project_data['existing_version'])->getMajorVersion();
+>>>>>>> dev
   }
   catch (UnexpectedValueException $exception) {
     // If the version has an unexpected value we can't determine updates.
@@ -308,7 +324,11 @@ function update_calculate_project_update_status(&$project_data, $available) {
     $project_data['status'] = UpdateManagerInterface::NOT_SUPPORTED;
     foreach ($supported_branches as $supported_branch) {
       try {
+<<<<<<< HEAD
         $target_major = ModuleVersion::createFromSupportBranch($supported_branch)->getMajorVersion();
+=======
+        $target_major = ExtensionVersion::createFromSupportBranch($supported_branch)->getMajorVersion();
+>>>>>>> dev
 
       }
       catch (UnexpectedValueException $exception) {
@@ -358,7 +378,11 @@ function update_calculate_project_update_status(&$project_data, $available) {
 
   foreach ($available['releases'] as $version => $release) {
     try {
+<<<<<<< HEAD
       $release_module_version = ModuleVersion::createFromVersionString($release['version']);
+=======
+      $release_module_version = ExtensionVersion::createFromVersionString($release['version']);
+>>>>>>> dev
     }
     catch (UnexpectedValueException $exception) {
       continue;

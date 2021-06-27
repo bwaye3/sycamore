@@ -6,6 +6,13 @@ use Drupal\Core\Database\Database;
 use Drupal\Core\Database\Connection as DatabaseConnection;
 use Drupal\Core\Database\DatabaseAccessDeniedException;
 use Drupal\Core\Database\DatabaseNotFoundException;
+<<<<<<< HEAD
+=======
+use Drupal\Core\Database\StatementInterface;
+use Drupal\Core\Database\StatementWrapper;
+
+// cSpell:ignore ilike nextval
+>>>>>>> dev
 
 /**
  * @addtogroup database
@@ -36,6 +43,19 @@ class Connection extends DatabaseConnection {
   const CONNECTION_FAILURE = '08006';
 
   /**
+<<<<<<< HEAD
+=======
+   * {@inheritdoc}
+   */
+  protected $statementClass = NULL;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected $statementWrapperClass = StatementWrapper::class;
+
+  /**
+>>>>>>> dev
    * A map of condition operators to PostgreSQL operators.
    *
    * In PostgreSQL, 'LIKE' is case-sensitive. ILIKE should be used for
@@ -50,6 +70,7 @@ class Connection extends DatabaseConnection {
   ];
 
   /**
+<<<<<<< HEAD
    * The list of PostgreSQL reserved key words.
    *
    * @see http://www.postgresql.org/docs/9.4/static/sql-keywords-appendix.html
@@ -70,6 +91,16 @@ class Connection extends DatabaseConnection {
     'trailing', 'true', 'union', 'unique', 'user', 'using', 'variadic', 'verbose',
     'when', 'where', 'window', 'with',
   ];
+=======
+   * {@inheritdoc}
+   */
+  protected $transactionalDDLSupport = TRUE;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected $identifierQuotes = ['"', '"'];
+>>>>>>> dev
 
   /**
    * Constructs a connection object.
@@ -77,6 +108,7 @@ class Connection extends DatabaseConnection {
   public function __construct(\PDO $connection, array $connection_options) {
     parent::__construct($connection, $connection_options);
 
+<<<<<<< HEAD
     // This driver defaults to transaction support, except if explicitly passed FALSE.
     $this->transactionSupport = !isset($connection_options['transactions']) || ($connection_options['transactions'] !== FALSE);
 
@@ -86,6 +118,8 @@ class Connection extends DatabaseConnection {
 
     $this->connectionOptions = $connection_options;
 
+=======
+>>>>>>> dev
     // Force PostgreSQL to use the UTF-8 character set by default.
     $this->connection->exec("SET NAMES 'UTF8'");
 
@@ -205,12 +239,24 @@ class Connection extends DatabaseConnection {
     return $return;
   }
 
+<<<<<<< HEAD
   public function prepareQuery($query) {
+=======
+  /**
+   * {@inheritdoc}
+   */
+  public function prepareStatement(string $query, array $options): StatementInterface {
+>>>>>>> dev
     // mapConditionOperator converts some operations (LIKE, REGEXP, etc.) to
     // PostgreSQL equivalents (ILIKE, ~*, etc.). However PostgreSQL doesn't
     // automatically cast the fields to the right type for these operators,
     // so we need to alter the query and add the type-cast.
+<<<<<<< HEAD
     return parent::prepareQuery(preg_replace('/ ([^ ]+) +(I*LIKE|NOT +I*LIKE|~\*|!~\*) /i', ' ${1}::text ${2} ', $query));
+=======
+    $query = preg_replace('/ ([^ ]+) +(I*LIKE|NOT +I*LIKE|~\*|!~\*) /i', ' ${1}::text ${2} ', $query);
+    return parent::prepareStatement($query, $options);
+>>>>>>> dev
   }
 
   public function queryRange($query, $from, $count, array $args = [], array $options = []) {
@@ -223,6 +269,7 @@ class Connection extends DatabaseConnection {
     return $tablename;
   }
 
+<<<<<<< HEAD
   /**
    * {@inheritdoc}
    */
@@ -297,6 +344,8 @@ class Connection extends DatabaseConnection {
     return $string;
   }
 
+=======
+>>>>>>> dev
   public function driver() {
     return 'pgsql';
   }
@@ -348,7 +397,11 @@ class Connection extends DatabaseConnection {
   public function nextId($existing = 0) {
 
     // Retrieve the name of the sequence. This information cannot be cached
+<<<<<<< HEAD
     // because the prefix may change, for example, like it does in simpletests.
+=======
+    // because the prefix may change, for example, like it does in tests.
+>>>>>>> dev
     $sequence_name = $this->makeSequenceName('sequences', 'value');
 
     // When PostgreSQL gets a value too small then it will lock the table,
@@ -396,7 +449,11 @@ class Connection extends DatabaseConnection {
   }
 
   /**
+<<<<<<< HEAD
    * Add a new savepoint with an unique name.
+=======
+   * Add a new savepoint with a unique name.
+>>>>>>> dev
    *
    * The main use for this method is to mimic InnoDB functionality, which
    * provides an inherent savepoint before any query in a transaction.
@@ -441,6 +498,7 @@ class Connection extends DatabaseConnection {
     }
   }
 
+<<<<<<< HEAD
   /**
    * {@inheritdoc}
    */
@@ -456,6 +514,8 @@ class Connection extends DatabaseConnection {
     return new $class($this, $table, $options);
   }
 
+=======
+>>>>>>> dev
 }
 
 /**

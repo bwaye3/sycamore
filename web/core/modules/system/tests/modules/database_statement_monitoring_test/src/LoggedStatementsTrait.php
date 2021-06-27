@@ -2,8 +2,11 @@
 
 namespace Drupal\database_statement_monitoring_test;
 
+<<<<<<< HEAD
 use Drupal\Core\Database\Query\Condition;
 
+=======
+>>>>>>> dev
 /**
  * Trait for Connection classes that can store logged statements.
  */
@@ -46,6 +49,7 @@ trait LoggedStatementsTrait {
    * {@inheritdoc}
    */
   public function getDriverClass($class) {
+<<<<<<< HEAD
     // Override because the base class uses reflection to determine namespace
     // based on object, which would break.
     $namespace = (new \ReflectionClass(get_parent_class($this)))->getNamespaceName();
@@ -57,6 +61,18 @@ trait LoggedStatementsTrait {
       return Condition::class;
     }
     return $class;
+=======
+    static $fixed_namespace;
+    if (!$fixed_namespace) {
+      // Override because we've altered the namespace in
+      // \Drupal\KernelTests\Core\Cache\EndOfTransactionQueriesTest::getDatabaseConnectionInfo()
+      // to use the logging Connection classes. Set to a proper database driver
+      // namespace.
+      $this->connectionOptions['namespace'] = (new \ReflectionClass(get_parent_class($this)))->getNamespaceName();
+      $fixed_namespace = TRUE;
+    }
+    return parent::getDriverClass($class);
+>>>>>>> dev
   }
 
   /**

@@ -3,7 +3,11 @@
  * Provides utility functions for Quick Edit.
  */
 
+<<<<<<< HEAD
 (function($, Drupal) {
+=======
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * @namespace
    */
@@ -38,7 +42,11 @@
    * @return {string}
    *   The formatted URL.
    */
+<<<<<<< HEAD
   Drupal.quickedit.util.buildUrl = function(id, urlFormat) {
+=======
+  Drupal.quickedit.util.buildUrl = function (id, urlFormat) {
+>>>>>>> dev
     const parts = id.split('/');
     return Drupal.formatString(decodeURIComponent(urlFormat), {
       '!entity_type': parts[0],
@@ -57,7 +65,11 @@
    * @param {string} message
    *   The message to use in the modal dialog.
    */
+<<<<<<< HEAD
   Drupal.quickedit.util.networkErrorModal = function(title, message) {
+=======
+  Drupal.quickedit.util.networkErrorModal = function (title, message) {
+>>>>>>> dev
     const $message = $(`<div>${message}</div>`);
     const networkErrorModal = Drupal.dialog($message.get(0), {
       title,
@@ -72,10 +84,14 @@
         },
       ],
       create() {
+<<<<<<< HEAD
         $(this)
           .parent()
           .find('.ui-dialog-titlebar-close')
           .remove();
+=======
+        $(this).parent().find('.ui-dialog-titlebar-close').remove();
+>>>>>>> dev
       },
       close(event) {
         // Automatically destroy the DOM element that was used for the dialog.
@@ -145,7 +161,11 @@
         },
       });
       // Implement a scoped quickeditFieldForm AJAX command: calls the callback.
+<<<<<<< HEAD
       formLoaderAjax.commands.quickeditFieldForm = function(
+=======
+      formLoaderAjax.commands.quickeditFieldForm = function (
+>>>>>>> dev
         ajax,
         response,
         status,
@@ -199,7 +219,11 @@
          *   The HTTP status code.
          */
         success(response, status) {
+<<<<<<< HEAD
           Object.keys(response || {}).forEach(i => {
+=======
+          Object.keys(response || {}).forEach((i) => {
+>>>>>>> dev
             if (response[i].command && this.commands[response[i].command]) {
               this.commands[response[i].command](this, response[i], status);
             }

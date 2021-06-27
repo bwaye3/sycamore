@@ -7,15 +7,24 @@
 
 (function (Drupal) {
   Drupal.theme.quickeditImageErrors = function (settings) {
+<<<<<<< HEAD
     return '<div class="quickedit-image-errors">' + settings.errors + '</div>';
   };
 
   Drupal.theme.quickeditImageDropzone = function (settings) {
     return '<div class="quickedit-image-dropzone ' + settings.state + '">' + '  <i class="quickedit-image-icon"></i>' + ('  <span class="quickedit-image-text">' + settings.text + '</span>') + '</div>';
+=======
+    return "<div class=\"quickedit-image-errors\">".concat(settings.errors, "</div>");
+  };
+
+  Drupal.theme.quickeditImageDropzone = function (settings) {
+    return "<div class=\"quickedit-image-dropzone ".concat(settings.state, "\">") + '  <i class="quickedit-image-icon"></i>' + "  <span class=\"quickedit-image-text\">".concat(settings.text, "</span>") + '</div>';
+>>>>>>> dev
   };
 
   Drupal.theme.quickeditImageToolbar = function (settings) {
     var html = '<form class="quickedit-image-field-info">';
+<<<<<<< HEAD
     if (settings.alt_field) {
       html += '<div><label for="alt" class="' + (settings.alt_field_required ? 'required' : '') + '">' + Drupal.t('Alternative text') + '</label>' + ('<input type="text" placeholder="' + settings.alt + '" value="' + settings.alt + '" name="alt" ' + (settings.alt_field_required ? 'required' : '') + '/>') + '  </div>';
     }
@@ -24,6 +33,18 @@
     }
     html += '</form>';
 
+=======
+
+    if (settings.alt_field) {
+      html += "<div><label for=\"alt\" class=\"".concat(settings.alt_field_required ? 'required' : '', "\">").concat(Drupal.t('Alternative text'), "</label>") + "<input type=\"text\" placeholder=\"".concat(settings.alt, "\" value=\"").concat(settings.alt, "\" name=\"alt\" ").concat(settings.alt_field_required ? 'required' : '', "/>") + '  </div>';
+    }
+
+    if (settings.title_field) {
+      html += "<div><label for=\"title\" class=\"".concat(settings.title_field_required ? 'form-required' : '', "\">").concat(Drupal.t('Title'), "</label>") + "<input type=\"text\" placeholder=\"".concat(settings.title, "\" value=\"").concat(settings.title, "\" name=\"title\" ").concat(settings.title_field_required ? 'required' : '', "/>") + '</div>';
+    }
+
+    html += '</form>';
+>>>>>>> dev
     return html;
   };
 })(Drupal);

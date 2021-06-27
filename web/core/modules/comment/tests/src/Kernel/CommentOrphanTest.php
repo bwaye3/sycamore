@@ -19,12 +19,20 @@ class CommentOrphanTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['comment', 'node'];
+=======
+  protected static $modules = ['comment', 'node'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('date_format');
     $this->installEntitySchema('comment');

@@ -10,6 +10,10 @@ use Drupal\Core\Template\AttributeString;
 use Drupal\Core\Template\Loader\StringLoader;
 use Drupal\Tests\UnitTestCase;
 use Drupal\Component\Render\MarkupInterface;
+<<<<<<< HEAD
+=======
+use Twig\Environment;
+>>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\Core\Template\Attribute
@@ -93,7 +97,11 @@ class AttributeTest extends UnitTestCase {
     // Test adding array to class.
     $attribute = new Attribute();
     $attribute->setAttribute('class', ['kitten', 'cat']);
+<<<<<<< HEAD
     $this->assertArrayEquals(['kitten', 'cat'], $attribute['class']->value());
+=======
+    $this->assertEquals(['kitten', 'cat'], $attribute['class']->value());
+>>>>>>> dev
 
     // Test adding boolean attributes.
     $attribute = new Attribute();
@@ -173,6 +181,7 @@ class AttributeTest extends UnitTestCase {
 
     // Add one class on empty attribute.
     $attribute->addClass('banana');
+<<<<<<< HEAD
     $this->assertArrayEquals(['banana'], $attribute['class']->value());
 
     // Add one class.
@@ -186,6 +195,21 @@ class AttributeTest extends UnitTestCase {
     // Add an array of classes.
     $attribute->addClass(['red', 'green', 'blue']);
     $this->assertArrayEquals(['banana', 'aa', 'xx', 'yy', 'red', 'green', 'blue'], $attribute['class']->value());
+=======
+    $this->assertEquals(['banana'], $attribute['class']->value());
+
+    // Add one class.
+    $attribute->addClass('aa');
+    $this->assertEquals(['banana', 'aa'], $attribute['class']->value());
+
+    // Add multiple classes.
+    $attribute->addClass('xx', 'yy');
+    $this->assertEquals(['banana', 'aa', 'xx', 'yy'], $attribute['class']->value());
+
+    // Add an array of classes.
+    $attribute->addClass(['red', 'green', 'blue']);
+    $this->assertEquals(['banana', 'aa', 'xx', 'yy', 'red', 'green', 'blue'], $attribute['class']->value());
+>>>>>>> dev
 
     // Add an array of duplicate classes.
     $attribute->addClass(['red', 'green', 'blue'], ['aa', 'aa', 'banana'], 'yy');
@@ -217,7 +241,11 @@ class AttributeTest extends UnitTestCase {
     $attribute->removeClass('gg');
     $this->assertNotContains(['gg'], $attribute['class']->value());
     // Test that the array index remains sequential.
+<<<<<<< HEAD
     $this->assertArrayEquals(['aa'], $attribute['class']->value());
+=======
+    $this->assertEquals(['aa'], $attribute['class']->value());
+>>>>>>> dev
 
     $attribute->removeClass('aa');
     $this->assertEmpty((string) $attribute);
@@ -253,7 +281,11 @@ class AttributeTest extends UnitTestCase {
       ->addClass(['apple', 'lime', 'grapefruit'])
       ->addClass(['banana']);
     $expected = ['example-class', 'blue', 'apple', 'lime', 'grapefruit', 'banana'];
+<<<<<<< HEAD
     $this->assertArrayEquals($expected, $attribute['class']->value(), 'Attributes chained');
+=======
+    $this->assertEquals($expected, $attribute['class']->value(), 'Attributes chained');
+>>>>>>> dev
   }
 
   /**
@@ -265,20 +297,32 @@ class AttributeTest extends UnitTestCase {
    */
   public function testTwigAddRemoveClasses($template, $expected, $seed_attributes = []) {
     $loader = new StringLoader();
+<<<<<<< HEAD
     $twig = new \Twig_Environment($loader);
+=======
+    $twig = new Environment($loader);
+>>>>>>> dev
     $data = ['attributes' => new Attribute($seed_attributes)];
     $result = $twig->createTemplate($template)->render($data);
     $this->assertEquals($expected, $result);
   }
 
   /**
+<<<<<<< HEAD
    * Provides tests data for testEscaping
+=======
+   * Provides tests data for testEscaping.
+>>>>>>> dev
    *
    * @return array
    *   An array of test data each containing of a twig template string,
    *   a resulting string of classes and an optional array of attributes.
    */
   public function providerTestAttributeClassHelpers() {
+<<<<<<< HEAD
+=======
+    // cSpell:disable
+>>>>>>> dev
     return [
       ["{{ attributes.class }}", ''],
       ["{{ attributes.addClass('everest').class }}", 'everest'],
@@ -312,6 +356,10 @@ class AttributeTest extends UnitTestCase {
       // Test for the removal of an empty class name.
       ["{{ attributes.addClass('rakaposhi', '').class }}", 'rakaposhi'],
     ];
+<<<<<<< HEAD
+=======
+    // cSpell:enable
+>>>>>>> dev
   }
 
   /**
@@ -453,7 +501,11 @@ class AttributeTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Provides tests data for testHasAttribute
+=======
+   * Provides tests data for testHasAttribute.
+>>>>>>> dev
    *
    * @return array
    *   An array of test data each containing an array of attributes, the name
@@ -479,7 +531,11 @@ class AttributeTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Provides tests data for testMerge
+=======
+   * Provides tests data for testMerge.
+>>>>>>> dev
    *
    * @return array
    *   An array of test data each containing an initial Attribute object, an

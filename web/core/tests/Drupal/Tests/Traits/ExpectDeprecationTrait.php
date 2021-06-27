@@ -2,20 +2,31 @@
 
 namespace Drupal\Tests\Traits;
 
+<<<<<<< HEAD
 use Symfony\Bridge\PhpUnit\Legacy\SymfonyTestsListener as LegacySymfonyTestsListener;
 use Symfony\Bridge\PhpUnit\SymfonyTestsListener;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Util\Test;
 
+=======
+>>>>>>> dev
 /**
  * Adds the ability to dynamically set expected deprecation messages in tests.
  *
  * @internal
+<<<<<<< HEAD
  *   This class should only be used by Drupal core and will be removed once
  *   https://github.com/symfony/symfony/pull/25757 is resolved.
  *
  * @todo Remove once https://github.com/symfony/symfony/pull/25757 is resolved.
+=======
+ *
+ * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use
+ *   \Symfony\Bridge\PhpUnit\ExpectDeprecationTrait instead.
+ *
+ * @see https://www.drupal.org/node/3161901
+>>>>>>> dev
  */
 trait ExpectDeprecationTrait {
 
@@ -26,6 +37,7 @@ trait ExpectDeprecationTrait {
    *   The expected deprecation message.
    */
   protected function addExpectedDeprecationMessage($message) {
+<<<<<<< HEAD
     $this->expectedDeprecations([$message]);
   }
 
@@ -45,6 +57,10 @@ trait ExpectDeprecationTrait {
       @trigger_error('ExpectDeprecationTrait::expectDeprecation is deprecated in drupal:8.8.5 and is removed from drupal:9.0.0. Use ::addExpectedDeprecationMessage() instead. See https://www.drupal.org/node/3106024', E_USER_DEPRECATED);
     }
     $this->addExpectedDeprecationMessage($message);
+=======
+    @trigger_error(__METHOD__ . '() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use \Symfony\Bridge\PhpUnit\ExpectDeprecationTrait::expectDeprecation() instead. See https://www.drupal.org/node/3161901', E_USER_DEPRECATED);
+    $this->expectDeprecation($message);
+>>>>>>> dev
   }
 
   /**
@@ -52,6 +68,7 @@ trait ExpectDeprecationTrait {
    *
    * @param string[] $messages
    *   The expected deprecation messages.
+<<<<<<< HEAD
    */
   public function expectedDeprecations(array $messages) {
     if ($this instanceof TestCase) {
@@ -124,6 +141,15 @@ trait ExpectDeprecationTrait {
         $reflection_property->setAccessible(TRUE);
         return $reflection_property->getValue($listener);
       }
+=======
+   *
+   * @see \Symfony\Bridge\PhpUnit\Legacy\ExpectDeprecationTraitForV8_4::expectDeprecation()
+   */
+  public function expectedDeprecations(array $messages) {
+    @trigger_error(__METHOD__ . '() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use \Symfony\Bridge\PhpUnit\ExpectDeprecationTrait::expectDeprecation() instead. See https://www.drupal.org/node/3161901', E_USER_DEPRECATED);
+    foreach ($messages as $message) {
+      $this->expectDeprecation($message);
+>>>>>>> dev
     }
   }
 

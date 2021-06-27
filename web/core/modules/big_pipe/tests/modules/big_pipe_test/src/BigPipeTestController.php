@@ -9,7 +9,11 @@ use Drupal\Core\Security\TrustedCallbackInterface;
 class BigPipeTestController implements TrustedCallbackInterface {
 
   /**
+<<<<<<< HEAD
    * Returns a all BigPipe placeholder test case render arrays.
+=======
+   * Returns all BigPipe placeholder test case render arrays.
+>>>>>>> dev
    *
    * @return array
    */
@@ -162,7 +166,11 @@ class BigPipeTestController implements TrustedCallbackInterface {
    * {@inheritdoc}
    */
   public static function trustedCallbacks() {
+<<<<<<< HEAD
     return ['currentTime', 'counter'];
+=======
+    return ['currentTime', 'helloOrYarhar', 'exception', 'responseException', 'counter'];
+>>>>>>> dev
   }
 
 }

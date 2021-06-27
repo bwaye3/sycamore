@@ -19,7 +19,11 @@ class UpdateManagerAccessCheck implements AccessInterface {
   protected $settings;
 
   /**
+<<<<<<< HEAD
    * Constructs a UpdateManagerAccessCheck object.
+=======
+   * Constructs an UpdateManagerAccessCheck object.
+>>>>>>> dev
    *
    * @param \Drupal\Core\Site\Settings $settings
    *   The read-only settings container.

@@ -14,7 +14,11 @@ class MenuLinkContentHalJsonBasicAuthTest extends MenuLinkContentHalJsonAnonTest
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['basic_auth'];
+=======
+  protected static $modules = ['basic_auth'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

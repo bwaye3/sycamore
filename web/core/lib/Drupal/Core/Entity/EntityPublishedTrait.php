@@ -51,6 +51,7 @@ trait EntityPublishedTrait {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setPublished($published = NULL) {
     if ($published !== NULL) {
       @trigger_error('The $published parameter is deprecated since version 8.3.x and will be removed in 9.0.0.', E_USER_DEPRECATED);
@@ -61,6 +62,11 @@ trait EntityPublishedTrait {
     }
     $key = $this->getEntityType()->getKey('published');
     $this->set($key, $value);
+=======
+  public function setPublished() {
+    $key = $this->getEntityType()->getKey('published');
+    $this->set($key, TRUE);
+>>>>>>> dev
 
     return $this;
   }

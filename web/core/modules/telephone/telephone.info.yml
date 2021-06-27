@@ -3,6 +3,9 @@ type: module
 description: 'Defines a field type for telephone numbers.'
 package: Field types
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:field

@@ -9,7 +9,11 @@ use Drupal\Core\Path\CurrentPathStack;
 use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+=======
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
+>>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -72,10 +76,17 @@ class ActiveLinkResponseFilter implements EventSubscriberInterface {
   /**
    * Sets the 'is-active' class on links.
    *
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpKernel\Event\FilterResponseEvent $event
    *   The response event.
    */
   public function onResponse(FilterResponseEvent $event) {
+=======
+   * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
+   *   The response event.
+   */
+  public function onResponse(ResponseEvent $event) {
+>>>>>>> dev
     $response = $event->getResponse();
 
     // Only care about HTML responses.

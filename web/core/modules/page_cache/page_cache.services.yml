@@ -9,5 +9,9 @@ services:
     class: Drupal\Core\Cache\CacheBackendInterface
     tags:
       - { name: cache.bin }
+<<<<<<< HEAD
     factory: cache_factory:get
+=======
+    factory: ['@cache_factory', 'get']
+>>>>>>> dev
     arguments: [page]

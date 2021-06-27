@@ -2,6 +2,7 @@
 
 namespace Drupal\Core\ParamConverter;
 
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
 use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
@@ -11,6 +12,13 @@ use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Plugin\Context\Context;
 use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\Core\TypedData\TranslatableInterface;
+=======
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Plugin\Context\Context;
+use Drupal\Core\Plugin\Context\ContextDefinition;
+>>>>>>> dev
 use Symfony\Component\Routing\Route;
 
 /**
@@ -42,6 +50,26 @@ use Symfony\Component\Routing\Route;
  *         type: entity:{entity_type}
  * @endcode
  *
+<<<<<<< HEAD
+=======
+ * The conversion can be limited to certain entity bundles by specifying a
+ * parameter 'bundle' definition property as an array:
+ * @code
+ * example.route:
+ *   path: foo/{example}
+ *   options:
+ *     parameters:
+ *       example:
+ *         type: entity:node
+ *         bundle:
+ *           - article
+ *           - news
+ * @endcode
+ * In the above example, only node entities of types 'article' and 'news' are
+ * converted. For a node of a different type, such as 'page', the route will
+ * return 404 'Not found'.
+ *
+>>>>>>> dev
  * If your route needs to support pending revisions, you can specify the
  * "load_latest_revision" parameter. This will ensure that the latest revision
  * is returned, even if it is not the default one:
@@ -67,6 +95,7 @@ use Symfony\Component\Routing\Route;
  */
 class EntityConverter implements ParamConverterInterface {
 
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
   use DynamicEntityTypeParamConverterTrait;
 
@@ -79,6 +108,11 @@ class EntityConverter implements ParamConverterInterface {
   ];
 
   /**
+=======
+  use DynamicEntityTypeParamConverterTrait;
+
+  /**
+>>>>>>> dev
    * Entity type manager which performs the upcasting in the end.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -100,6 +134,7 @@ class EntityConverter implements ParamConverterInterface {
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
    *
+<<<<<<< HEAD
    * @see https://www.drupal.org/node/2549139
    * @see https://www.drupal.org/node/2938929
    */
@@ -113,6 +148,12 @@ class EntityConverter implements ParamConverterInterface {
       @trigger_error('Calling EntityConverter::__construct() with the $entity_repository argument is supported in drupal:8.7.0 and will be required before drupal:9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
       $entity_repository = \Drupal::service('entity.repository');
     }
+=======
+   * @see https://www.drupal.org/node/2938929
+   */
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository) {
+    $this->entityTypeManager = $entity_type_manager;
+>>>>>>> dev
     $this->entityRepository = $entity_repository;
   }
 
@@ -148,6 +189,7 @@ class EntityConverter implements ParamConverterInterface {
     }
     $entity = $this->entityRepository->getCanonical($entity_type_id, $value, $contexts);
 
+<<<<<<< HEAD
     return $entity;
   }
 
@@ -210,6 +252,17 @@ class EntityConverter implements ParamConverterInterface {
     else {
       return $entity;
     }
+=======
+    if (
+      !empty($definition['bundle']) &&
+      $entity instanceof EntityInterface &&
+      !in_array($entity->bundle(), $definition['bundle'], TRUE)
+    ) {
+      return NULL;
+    }
+
+    return $entity;
+>>>>>>> dev
   }
 
   /**
@@ -227,6 +280,7 @@ class EntityConverter implements ParamConverterInterface {
     return FALSE;
   }
 
+<<<<<<< HEAD
   /**
    * Returns a language manager instance.
    *
@@ -239,4 +293,6 @@ class EntityConverter implements ParamConverterInterface {
     return $this->__get('languageManager');
   }
 
+=======
+>>>>>>> dev
 }

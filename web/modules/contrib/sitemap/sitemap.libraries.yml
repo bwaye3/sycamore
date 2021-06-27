@@ -1,7 +1,11 @@
 sitemap.admin:
   version: VERSION
   js:
+<<<<<<< HEAD
     sitemap.admin.js: {}
+=======
+    js/sitemap.admin.js: {}
+>>>>>>> dev
 sitemap.theme:
   version: VERSION
   css:

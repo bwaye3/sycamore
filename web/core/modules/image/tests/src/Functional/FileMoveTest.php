@@ -25,7 +25,11 @@ class FileMoveTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['image'];
+=======
+  protected static $modules = ['image'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -58,7 +62,11 @@ class FileMoveTest extends BrowserTestBase {
     $this->assertFileExists($result->getFileUri());
 
     // Check if derivative image has been flushed.
+<<<<<<< HEAD
     $this->assertFileNotExists($derivative_uri);
+=======
+    $this->assertFileDoesNotExist($derivative_uri);
+>>>>>>> dev
   }
 
 }

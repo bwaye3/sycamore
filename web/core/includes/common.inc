@@ -8,6 +8,7 @@
  * a cached page are instead located in bootstrap.inc.
  */
 
+<<<<<<< HEAD
 use Drupal\Component\Gettext\PoItem;
 use Drupal\Component\Utility\Bytes;
 use Drupal\Component\Utility\Environment;
@@ -20,6 +21,13 @@ use Drupal\Core\Render\Element;
 use Drupal\Core\Render\Element\Link;
 use Drupal\Core\Render\HtmlResponseAttachmentsProcessor;
 use Drupal\Core\Render\Markup;
+=======
+use Drupal\Component\Utility\Bytes;
+use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\SortArray;
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\DrupalKernel;
+>>>>>>> dev
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
@@ -124,6 +132,7 @@ const JS_DEFAULT = 0;
 const JS_THEME = 100;
 
 /**
+<<<<<<< HEAD
  * The delimiter used to split plural strings.
  *
  * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0.
@@ -234,6 +243,8 @@ function check_url($uri) {
  */
 
 /**
+=======
+>>>>>>> dev
  * @defgroup format Formatting
  * @{
  * Functions to format numbers, strings, dates, etc.
@@ -295,6 +306,7 @@ function format_size($size, $langcode = NULL) {
 }
 
 /**
+<<<<<<< HEAD
  * Formats a date, using a date type or a custom date format string.
  *
  * @param $timestamp
@@ -356,10 +368,13 @@ function date_iso8601($date) {
 }
 
 /**
+=======
+>>>>>>> dev
  * @} End of "defgroup format".
  */
 
 /**
+<<<<<<< HEAD
  * Formats an attribute string for an HTTP header.
  *
  * @param array $attributes
@@ -419,6 +434,8 @@ function drupal_set_time_limit($time_limit) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Returns the base URL path (i.e., directory) of the Drupal installation.
  *
  * Function base_path() adds a "/" to the beginning and end of the returned path
@@ -433,6 +450,7 @@ function base_path() {
 }
 
 /**
+<<<<<<< HEAD
  * Deletes old cached CSS files.
  *
  * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0.
@@ -445,6 +463,8 @@ function drupal_clear_css_cache() {
 }
 
 /**
+=======
+>>>>>>> dev
  * Constructs an array of the defaults that are used for JavaScript assets.
  *
  * @param $data
@@ -468,6 +488,7 @@ function drupal_js_defaults($data = NULL) {
 }
 
 /**
+<<<<<<< HEAD
  * Adds JavaScript to change the state of an element based on another element.
  *
  * A "state" means a certain property on a DOM element, such as "visible" or
@@ -600,6 +621,8 @@ function drupal_process_states(&$elements) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Assists in attaching the tableDrag JavaScript behavior to a themed table.
  *
  * Draggable tables should be used wherever an outline or list of sortable items
@@ -751,6 +774,7 @@ function drupal_attach_tabledrag(&$element, array $options) {
 }
 
 /**
+<<<<<<< HEAD
  * Deletes old cached JavaScript files and variables.
  *
  * @deprecated in drupal:8.0.0 and is removed from drupal:9.0.0.
@@ -846,6 +870,8 @@ function drupal_render_children(&$element, $children_keys = NULL) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Renders an element.
  *
  * This function renders an element. The top level element is shown with show()
@@ -937,6 +963,7 @@ function show(&$element) {
 }
 
 /**
+<<<<<<< HEAD
  * Retrieves the default properties for the defined element type.
  *
  * @param $type
@@ -976,6 +1003,13 @@ function element_info_property($type, $property_name, $default = NULL) {
  *
  * At times, it is necessary to re-initialize the entire system to account for
  * changed or new code. This function:
+=======
+ * Rebuilds the container, flushes all persistent caches, resets all variables, and rebuilds all data structures.
+ *
+ * At times, it is necessary to re-initialize the entire system to account for
+ * changed or new code. This function:
+ * - Rebuilds the container if $kernel is not passed in.
+>>>>>>> dev
  * - Clears all persistent caches:
  *   - The bootstrap cache bin containing base system, module system, and theme
  *     system information.
@@ -995,6 +1029,13 @@ function element_info_property($type, $property_name, $default = NULL) {
  *   - The 'active' status of fields is refreshed.
  * - Rebuilds the menu router.
  *
+<<<<<<< HEAD
+=======
+ * It's discouraged to call this during a regular page request.
+ * If you call this function in tests, every code afterwards should use the new
+ * container.
+ *
+>>>>>>> dev
  * This means the entire system is reset so all caches and static variables are
  * effectively empty. After that is guaranteed, information about the currently
  * active code is updated, and rebuild operations are successively called in
@@ -1024,12 +1065,28 @@ function element_info_property($type, $property_name, $default = NULL) {
  *   cache though.)
  * @todo Add a global lock to ensure that caches are not primed in concurrent
  *   requests.
+<<<<<<< HEAD
  */
 function drupal_flush_all_caches() {
   $module_handler = \Drupal::moduleHandler();
   // Flush all persistent caches.
   // This is executed based on old/previously known information, which is
   // sufficient, since new extensions cannot have any primed caches yet.
+=======
+ *
+ * @param \Drupal\Core\DrupalKernel|array $kernel
+ *   (optional) The Drupal Kernel. It is the caller's responsibility to rebuild
+ *   the container if this is passed in. Sometimes drupal_flush_all_caches is
+ *   used as a batch operation so $kernel will be an array, in this instance it
+ *   will be treated as if it it NULL.
+ */
+function drupal_flush_all_caches($kernel = NULL) {
+  // This is executed based on old/previously known information if $kernel is
+  // not passed in, which is sufficient, since new extensions cannot have any
+  // primed caches yet.
+  $module_handler = \Drupal::moduleHandler();
+  // Flush all persistent caches.
+>>>>>>> dev
   $module_handler->invokeAll('cache_flush');
   foreach (Cache::getBins() as $service_id => $cache_backend) {
     $cache_backend->deleteAll();
@@ -1043,6 +1100,7 @@ function drupal_flush_all_caches() {
   // Reset all static caches.
   drupal_static_reset();
 
+<<<<<<< HEAD
   // Invalidate the container.
   \Drupal::service('kernel')->invalidateContainer();
 
@@ -1054,10 +1112,18 @@ function drupal_flush_all_caches() {
   /** @var \Drupal\Core\Extension\ThemeHandlerInterface $theme_handler */
   $theme_handler = \Drupal::service('theme_handler');
   $theme_handler->refreshInfo();
+=======
+  // Wipe the Twig PHP Storage cache.
+  \Drupal::service('twig')->invalidate();
+
+  // Rebuild theme data that is stored in state.
+  \Drupal::service('theme_handler')->refreshInfo();
+>>>>>>> dev
   // In case the active theme gets requested later in the same request we need
   // to reset the theme manager.
   \Drupal::theme()->resetActiveTheme();
 
+<<<<<<< HEAD
   // Rebuild and reboot a new kernel. A simple DrupalKernel reboot is not
   // sufficient, since the list of enabled modules might have been adjusted
   // above due to changed code.
@@ -1080,6 +1146,19 @@ function drupal_flush_all_caches() {
 
   // Rebuild all information based on new module data.
   $module_handler->invokeAll('rebuild');
+=======
+  if (!$kernel instanceof DrupalKernel) {
+    $kernel = \Drupal::service('kernel');
+    $kernel->invalidateContainer();
+    $kernel->rebuildContainer();
+  }
+
+  // Rebuild module data that is stored in state.
+  \Drupal::service('extension.list.module')->reset();
+
+  // Rebuild all information based on new module data.
+  \Drupal::moduleHandler()->invokeAll('rebuild');
+>>>>>>> dev
 
   // Clear all plugin caches.
   \Drupal::service('plugin.cache_clearer')->clearCachedDefinitions();
@@ -1113,7 +1192,11 @@ function _drupal_flush_css_js() {
  * Outputs debug information.
  *
  * The debug information is passed on to trigger_error() after being converted
+<<<<<<< HEAD
  * to a string using _drupal_debug_message().
+=======
+ * to a string using print_r() or var_export().
+>>>>>>> dev
  *
  * @param $data
  *   Data to be output.
@@ -1123,8 +1206,19 @@ function _drupal_flush_css_js() {
  *   Flag to switch between print_r() and var_export() for data conversion to
  *   string. Set $print_r to FALSE to use var_export() instead of print_r().
  *   Passing recursive data structures to var_export() will generate an error.
+<<<<<<< HEAD
  */
 function debug($data, $label = NULL, $print_r = TRUE) {
+=======
+ *
+ * @deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use dump()
+ *   instead.
+ *
+ * @see https://www.drupal.org/node/3192283
+ */
+function debug($data, $label = NULL, $print_r = TRUE) {
+  @trigger_error('debug() is deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use dump() instead. See https://www.drupal.org/node/3192283', E_USER_DEPRECATED);
+>>>>>>> dev
   // Print $data contents to string.
   $string = Html::escape($print_r ? print_r($data, TRUE) : var_export($data, TRUE));
 
@@ -1135,6 +1229,7 @@ function debug($data, $label = NULL, $print_r = TRUE) {
 }
 
 /**
+<<<<<<< HEAD
  * Checks whether a version is compatible with a given dependency.
  *
  * @param $v
@@ -1211,6 +1306,8 @@ function archiver_get_archiver($file) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Assembles the Drupal Updater registry.
  *
  * An Updater is a class that knows how to update various parts of the Drupal

@@ -4,6 +4,10 @@ namespace Drupal\Tests\Component\Gettext;
 
 use Drupal\Component\Gettext\PoItem;
 use Drupal\Component\Gettext\PoStreamWriter;
+<<<<<<< HEAD
+=======
+use Drupal\Tests\PhpUnitCompatibilityTrait;
+>>>>>>> dev
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamFile;
 use PHPUnit\Framework\TestCase;
@@ -14,6 +18,11 @@ use PHPUnit\Framework\TestCase;
  */
 class PoStreamWriterTest extends TestCase {
 
+<<<<<<< HEAD
+=======
+  use PhpUnitCompatibilityTrait;
+
+>>>>>>> dev
   /**
    * The PO writer object under test.
    *
@@ -31,7 +40,11 @@ class PoStreamWriterTest extends TestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->poWriter = new PoStreamWriter();
@@ -80,6 +93,10 @@ class PoStreamWriterTest extends TestCase {
    *   - Content longer than 10 bytes.
    */
   public function providerWriteData() {
+<<<<<<< HEAD
+=======
+    // cSpell:disable
+>>>>>>> dev
     return [
       ['', '', FALSE],
       ["\r\n", "\r\n", FALSE],
@@ -89,6 +106,10 @@ class PoStreamWriterTest extends TestCase {
       ['中文 890', '中文 890', FALSE],
       ['中文 89012', '中文 890', TRUE],
     ];
+<<<<<<< HEAD
+=======
+    // cSpell:enable
+>>>>>>> dev
   }
 
   /**

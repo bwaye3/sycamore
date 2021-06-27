@@ -15,7 +15,11 @@ abstract class FileUploadHalJsonTestBase extends FileUploadResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['hal'];
+=======
+  protected static $modules = ['hal'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -46,8 +50,13 @@ abstract class FileUploadHalJsonTestBase extends FileUploadResourceTestBase {
         'self' => [
           // @todo This can use a proper link once
           // https://www.drupal.org/project/drupal/issues/2907402 is complete.
+<<<<<<< HEAD
           // This link matches what is generated from from File::url(), a
           // resource URL is currently not available.
+=======
+          // This link matches what is generated from File::url(), a resource
+          // URL is currently not available.
+>>>>>>> dev
           'href' => file_create_url($normalization['uri'][0]['value']),
         ],
         'type' => [

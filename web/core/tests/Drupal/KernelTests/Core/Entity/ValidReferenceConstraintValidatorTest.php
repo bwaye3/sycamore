@@ -33,12 +33,20 @@ class ValidReferenceConstraintValidatorTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['field', 'node', 'user'];
+=======
+  protected static $modules = ['field', 'node', 'user'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installSchema('user', ['users_data']);
     $this->installSchema('node', ['node_access']);
@@ -76,11 +84,16 @@ class ValidReferenceConstraintValidatorTest extends EntityKernelTestBase {
 
     // Make sure the information provided by a violation is correct.
     $violation = $violations[0];
+<<<<<<< HEAD
     $this->assertEqual($violation->getMessage(), t('The referenced entity (%type: %id) does not exist.', [
       '%type' => 'user',
       '%id' => $entity->id(),
     ]), 'The message for invalid value is correct.');
     $this->assertEqual($violation->getRoot(), $typed_data, 'Violation root is correct.');
+=======
+    $this->assertEquals(t('The referenced entity (%type: %id) does not exist.', ['%type' => 'user', '%id' => $entity->id()]), $violation->getMessage(), 'The message for invalid value is correct.');
+    $this->assertEquals($typed_data, $violation->getRoot(), 'Violation root is correct.');
+>>>>>>> dev
   }
 
   /**

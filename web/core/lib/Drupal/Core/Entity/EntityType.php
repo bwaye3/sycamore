@@ -92,6 +92,7 @@ class EntityType extends PluginDefinition implements EntityTypeInterface {
   protected $links = [];
 
   /**
+<<<<<<< HEAD
    * The name of a callback that returns the label of the entity.
    *
    * @var callable|null
@@ -104,6 +105,8 @@ class EntityType extends PluginDefinition implements EntityTypeInterface {
   protected $label_callback = NULL;
 
   /**
+=======
+>>>>>>> dev
    * The name of the entity type which provides bundles.
    *
    * @var string
@@ -665,6 +668,7 @@ class EntityType extends PluginDefinition implements EntityTypeInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function getLabelCallback() {
     @trigger_error('EntityType::getLabelCallback() is deprecated in drupal:8.0.0 and is removed from drupal:9.0.0. Override the EntityInterface::label() method instead for dynamic labels. See https://www.drupal.org/node/3050794', E_USER_DEPRECATED);
     return $this->label_callback;
@@ -690,6 +694,8 @@ class EntityType extends PluginDefinition implements EntityTypeInterface {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function getBundleEntityType() {
     return $this->bundle_entity_type;
   }
@@ -776,6 +782,7 @@ class EntityType extends PluginDefinition implements EntityTypeInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function getLowercaseLabel() {
     @trigger_error('EntityType::getLowercaseLabel() is deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Instead, you should call getSingularLabel(). See https://www.drupal.org/node/3075567', E_USER_DEPRECATED);
     return mb_strtolower($this->getLabel());
@@ -784,6 +791,8 @@ class EntityType extends PluginDefinition implements EntityTypeInterface {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function getCollectionLabel() {
     if (empty($this->label_collection)) {
       $label = $this->getLabel();

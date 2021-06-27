@@ -8,10 +8,17 @@
 (function ($, Drupal, drupalSettings, CKEDITOR) {
   function parseAttributes(editor, element) {
     var parsedAttributes = {};
+<<<<<<< HEAD
 
     var domElement = element.$;
     var attribute = void 0;
     var attributeName = void 0;
+=======
+    var domElement = element.$;
+    var attribute;
+    var attributeName;
+
+>>>>>>> dev
     for (var attrIndex = 0; attrIndex < domElement.attributes.length; attrIndex++) {
       attribute = domElement.attributes.item(attrIndex);
       attributeName = attribute.nodeName.toLowerCase();
@@ -20,7 +27,11 @@
         continue;
       }
 
+<<<<<<< HEAD
       parsedAttributes[attributeName] = element.data('cke-saved-' + attributeName) || attribute.nodeValue;
+=======
+      parsedAttributes[attributeName] = element.data("cke-saved-".concat(attributeName)) || attribute.nodeValue;
+>>>>>>> dev
     }
 
     if (parsedAttributes.class) {
@@ -35,14 +46,21 @@
     Object.keys(data || {}).forEach(function (attributeName) {
       set[attributeName] = data[attributeName];
     });
+<<<<<<< HEAD
 
     set['data-cke-saved-href'] = set.href;
 
+=======
+    set['data-cke-saved-href'] = set.href;
+>>>>>>> dev
     var removed = {};
     Object.keys(set).forEach(function (s) {
       delete removed[s];
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     return {
       set: set,
       removed: CKEDITOR.tools.objectKeys(removed)
@@ -57,15 +75,27 @@
 
   function getFocusedLinkableWidget(editor) {
     var widget = editor.widgets.focused;
+<<<<<<< HEAD
     if (widget && registeredLinkableWidgets.indexOf(widget.name) !== -1) {
       return widget;
     }
+=======
+
+    if (widget && registeredLinkableWidgets.indexOf(widget.name) !== -1) {
+      return widget;
+    }
+
+>>>>>>> dev
     return null;
   }
 
   function getSelectedLink(editor) {
     var selection = editor.getSelection();
     var selectedElement = selection.getSelectedElement();
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     if (selectedElement && selectedElement.is('a')) {
       return selectedElement;
     }
@@ -76,13 +106,20 @@
       range.shrink(CKEDITOR.SHRINK_TEXT);
       return editor.elementPath(range.getCommonAncestor()).contains('a', 1);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     return null;
   }
 
   CKEDITOR.plugins.add('drupallink', {
     icons: 'drupallink,drupalunlink',
     hidpi: true,
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     init: function init(editor) {
       editor.addCommand('drupallink', {
         allowedContent: {
@@ -99,13 +136,24 @@
             href: ''
           }
         }),
+<<<<<<< HEAD
         modes: { wysiwyg: 1 },
+=======
+        modes: {
+          wysiwyg: 1
+        },
+>>>>>>> dev
         canUndo: true,
         exec: function exec(editor) {
           var focusedLinkableWidget = getFocusedLinkableWidget(editor);
           var linkElement = getSelectedLink(editor);
+<<<<<<< HEAD
 
           var existingValues = {};
+=======
+          var existingValues = {};
+
+>>>>>>> dev
           if (linkElement && linkElement.$) {
             existingValues = parseAttributes(editor, linkElement);
           } else if (focusedLinkableWidget && focusedLinkableWidget.data.link) {
@@ -138,13 +186,20 @@
               style.type = CKEDITOR.STYLE_INLINE;
               style.applyToRange(range);
               range.select();
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
               linkElement = getSelectedLink(editor);
             } else if (linkElement) {
                 Object.keys(returnValues.attributes || {}).forEach(function (attrName) {
                   if (returnValues.attributes[attrName].length > 0) {
                     var value = returnValues.attributes[attrName];
+<<<<<<< HEAD
                     linkElement.data('cke-saved-' + attrName, value);
+=======
+                    linkElement.data("cke-saved-".concat(attrName), value);
+>>>>>>> dev
                     linkElement.setAttribute(attrName, value);
                   } else {
                       linkElement.removeAttribute(attrName);
@@ -159,8 +214,12 @@
             title: linkElement ? editor.config.drupalLink_dialogTitleEdit : editor.config.drupalLink_dialogTitleAdd,
             dialogClass: 'editor-link-dialog'
           };
+<<<<<<< HEAD
 
           Drupal.ckeditor.openDialog(editor, Drupal.url('editor/dialog/link/' + editor.config.drupal.format), existingValues, saveCallback, dialogSettings);
+=======
+          Drupal.ckeditor.openDialog(editor, Drupal.url("editor/dialog/link/".concat(editor.config.drupal.format)), existingValues, saveCallback, dialogSettings);
+>>>>>>> dev
         }
       });
       editor.addCommand('drupalunlink', {
@@ -182,6 +241,10 @@
         },
         refresh: function refresh(editor, path) {
           var element = path.lastElement && path.lastElement.getAscendant('a', true);
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
           if (element && element.getName() === 'a' && element.getAttribute('href') && element.getChildCount()) {
             this.setState(CKEDITOR.TRISTATE_OFF);
           } else {
@@ -189,7 +252,10 @@
           }
         }
       });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       editor.setKeystroke(CKEDITOR.CTRL + 75, 'drupallink');
 
       if (editor.ui.addButton) {
@@ -222,7 +288,10 @@
             group: 'link',
             order: 1
           },
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
           unlink: {
             label: Drupal.t('Unlink'),
             command: 'drupalunlink',
@@ -237,24 +306,41 @@
           if (!element || element.isReadOnly()) {
             return null;
           }
+<<<<<<< HEAD
           var anchor = getSelectedLink(editor);
+=======
+
+          var anchor = getSelectedLink(editor);
+
+>>>>>>> dev
           if (!anchor) {
             return null;
           }
 
           var menu = {};
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
           if (anchor.getAttribute('href') && anchor.getChildCount()) {
             menu = {
               link: CKEDITOR.TRISTATE_OFF,
               unlink: CKEDITOR.TRISTATE_OFF
             };
           }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
           return menu;
         });
       }
     }
   });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   CKEDITOR.plugins.drupallink = {
     parseLinkAttributes: parseAttributes,
     getLinkAttributes: getAttributes,

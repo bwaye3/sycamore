@@ -9,24 +9,44 @@
   Drupal.behaviors.ckeditorStylesComboSettings = {
     attach: function attach(context) {
       var $context = $(context);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       var $ckeditorActiveToolbar = $context.find('.ckeditor-toolbar-configuration').find('.ckeditor-toolbar-active');
       var previousStylesSet = drupalSettings.ckeditor.hiddenCKEditorConfig.stylesSet;
       var that = this;
       $context.find('[name="editor[settings][plugins][stylescombo][styles]"]').on('blur.ckeditorStylesComboSettings', function () {
         var styles = $.trim($(this).val());
+<<<<<<< HEAD
         var stylesSet = that._generateStylesSetSetting(styles);
         if (!_.isEqual(previousStylesSet, stylesSet)) {
           previousStylesSet = stylesSet;
           $ckeditorActiveToolbar.trigger('CKEditorPluginSettingsChanged', [{ stylesSet: stylesSet }]);
+=======
+
+        var stylesSet = that._generateStylesSetSetting(styles);
+
+        if (!_.isEqual(previousStylesSet, stylesSet)) {
+          previousStylesSet = stylesSet;
+          $ckeditorActiveToolbar.trigger('CKEditorPluginSettingsChanged', [{
+            stylesSet: stylesSet
+          }]);
+>>>>>>> dev
         }
       });
     },
     _generateStylesSetSetting: function _generateStylesSetSetting(styles) {
       var stylesSet = [];
+<<<<<<< HEAD
 
       styles = styles.replace(/\r/g, '\n');
       var lines = styles.split('\n');
+=======
+      styles = styles.replace(/\r/g, '\n');
+      var lines = styles.split('\n');
+
+>>>>>>> dev
       for (var i = 0; i < lines.length; i++) {
         var style = $.trim(lines[i]);
 
@@ -43,9 +63,16 @@
         var label = parts[1];
         var classes = selector.split('.');
         var element = classes.shift();
+<<<<<<< HEAD
 
         stylesSet.push({
           attributes: { class: classes.join(' ') },
+=======
+        stylesSet.push({
+          attributes: {
+            class: classes.join(' ')
+          },
+>>>>>>> dev
           element: element,
           name: label
         });
@@ -54,17 +81,30 @@
       return stylesSet;
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.ckeditorStylesComboSettingsSummary = {
     attach: function attach() {
       $('[data-ckeditor-plugin-id="stylescombo"]').drupalSetSummary(function (context) {
         var styles = $.trim($('[data-drupal-selector="edit-editor-settings-plugins-stylescombo-styles"]').val());
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         if (styles.length === 0) {
           return Drupal.t('No styles configured');
         }
 
         var count = $.trim(styles).split('\n').length;
+<<<<<<< HEAD
         return Drupal.t('@count styles configured', { '@count': count });
+=======
+        return Drupal.t('@count styles configured', {
+          '@count': count
+        });
+>>>>>>> dev
       });
     }
   };

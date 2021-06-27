@@ -76,7 +76,11 @@ class SqlContentEntityStorageSchemaTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->entityTypeManager = $this->createMock(EntityTypeManager::class);
     $this->entityFieldManager = $this->createMock(EntityFieldManager::class);
     $this->entityLastInstalledSchemaRepository = $this->createMock(EntityLastInstalledSchemaRepositoryInterface::class);
@@ -111,7 +115,10 @@ class SqlContentEntityStorageSchemaTest extends UnitTestCase {
    * @covers ::getFieldUniqueKeys
    * @covers ::getFieldForeignKeys
    * @covers ::getFieldSchemaData
+<<<<<<< HEAD
    * @covers ::processBaseTable
+=======
+>>>>>>> dev
    * @covers ::processIdentifierSchema
    */
   public function testGetSchemaBase() {
@@ -405,7 +412,10 @@ class SqlContentEntityStorageSchemaTest extends UnitTestCase {
    * @covers ::initializeRevisionTable
    * @covers ::addTableDefaults
    * @covers ::getEntityIndexName
+<<<<<<< HEAD
    * @covers ::processRevisionTable
+=======
+>>>>>>> dev
    * @covers ::processIdentifierSchema
    */
   public function testGetSchemaRevisionable() {
@@ -1473,7 +1483,11 @@ class SqlContentEntityStorageSchemaTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * ::onEntityTypeUpdate
+=======
+   * ::onEntityTypeUpdate.
+>>>>>>> dev
    */
   public function testonEntityTypeUpdateWithNewIndex() {
     $this->entityType = $original_entity_type = new ContentEntityType([

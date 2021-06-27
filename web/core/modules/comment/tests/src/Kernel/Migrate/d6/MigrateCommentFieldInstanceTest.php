@@ -16,12 +16,20 @@ class MigrateCommentFieldInstanceTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['comment', 'menu_ui'];
+=======
+  protected static $modules = ['comment', 'menu_ui'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installConfig(['comment']);
     $this->migrateContentTypes();
@@ -69,7 +77,11 @@ class MigrateCommentFieldInstanceTest extends MigrateDrupal6TestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the migrated field instance values.
+=======
+   * Tests the migrated field instance values.
+>>>>>>> dev
    */
   public function testMigration() {
     $this->assertEntity('article', 'comment_node_article', 2, 1, 50, 0, FALSE, 1);

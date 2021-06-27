@@ -3,13 +3,24 @@
 namespace Drupal\Core\Database\Driver\mysql;
 
 use Drupal\Core\Database\DatabaseAccessDeniedException;
+<<<<<<< HEAD
 use Drupal\Core\Database\DatabaseExceptionWrapper;
 
+=======
+use Drupal\Core\Database\IntegrityConstraintViolationException;
+use Drupal\Core\Database\DatabaseExceptionWrapper;
+use Drupal\Core\Database\StatementInterface;
+use Drupal\Core\Database\StatementWrapper;
+>>>>>>> dev
 use Drupal\Core\Database\Database;
 use Drupal\Core\Database\DatabaseNotFoundException;
 use Drupal\Core\Database\DatabaseException;
 use Drupal\Core\Database\Connection as DatabaseConnection;
+<<<<<<< HEAD
 use Drupal\Component\Utility\Unicode;
+=======
+use Drupal\Core\Database\TransactionNoActiveException;
+>>>>>>> dev
 
 /**
  * @addtogroup database
@@ -47,6 +58,19 @@ class Connection extends DatabaseConnection {
   const SQLSTATE_SYNTAX_ERROR = 42000;
 
   /**
+<<<<<<< HEAD
+=======
+   * {@inheritdoc}
+   */
+  protected $statementClass = NULL;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected $statementWrapperClass = StatementWrapper::class;
+
+  /**
+>>>>>>> dev
    * Flag to indicate if the cleanup function in __destruct() should run.
    *
    * @var bool
@@ -54,6 +78,18 @@ class Connection extends DatabaseConnection {
   protected $needsCleanup = FALSE;
 
   /**
+<<<<<<< HEAD
+=======
+   * Stores the server version after it has been retrieved from the database.
+   *
+   * @var string
+   *
+   * @see \Drupal\Core\Database\Driver\mysql\Connection::version
+   */
+  private $serverVersion;
+
+  /**
+>>>>>>> dev
    * The minimal possible value for the max_allowed_packet setting of MySQL.
    *
    * @link https://mariadb.com/kb/en/mariadb/server-system-variables/#max_allowed_packet
@@ -64,6 +100,7 @@ class Connection extends DatabaseConnection {
   const MIN_MAX_ALLOWED_PACKET = 1024;
 
   /**
+<<<<<<< HEAD
    * The list of MySQL reserved key words.
    *
    * @link https://dev.mysql.com/doc/refman/8.0/en/keywords.html
@@ -348,10 +385,16 @@ class Connection extends DatabaseConnection {
 
     $this->connectionOptions = $connection_options;
   }
+=======
+   * {@inheritdoc}
+   */
+  protected $identifierQuotes = ['"', '"'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function query($query, array $args = [], $options = []) {
     try {
       return parent::query($query, $args, $options);
@@ -366,6 +409,22 @@ class Connection extends DatabaseConnection {
       }
       throw $e;
     }
+=======
+  protected function handleQueryException(\PDOException $e, $query, array $args = [], $options = []) {
+    // In case of attempted INSERT of a record with an undefined column and no
+    // default value indicated in schema, MySql returns a 1364 error code.
+    // Throw an IntegrityConstraintViolationException here like the other
+    // drivers do, to avoid the parent class to throw a generic
+    // DatabaseExceptionWrapper instead.
+    if (!empty($e->errorInfo[1]) && $e->errorInfo[1] === 1364) {
+      @trigger_error('Connection::handleQueryException() is deprecated in drupal:9.2.0 and is removed in drupal:10.0.0. Get a handler through $this->exceptionHandler() instead, and use one of its methods. See https://www.drupal.org/node/3187222', E_USER_DEPRECATED);
+      $query_string = ($query instanceof StatementInterface) ? $query->getQueryString() : $query;
+      $message = $e->getMessage() . ": " . $query_string . "; " . print_r($args, TRUE);
+      throw new IntegrityConstraintViolationException($message, is_int($e->getCode()) ? $e->getCode() : 0, $e);
+    }
+
+    parent::handleQueryException($e, $query, $args, $options);
+>>>>>>> dev
   }
 
   /**
@@ -448,6 +507,7 @@ class Connection extends DatabaseConnection {
       'init_commands' => [],
     ];
 
+<<<<<<< HEAD
     $sql_mode = 'ANSI,STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,ONLY_FULL_GROUP_BY';
     // NO_AUTO_CREATE_USER is removed in MySQL 8.0.11
     // https://dev.mysql.com/doc/relnotes/mysql/8.0/en/news-8-0-11.html#mysqld-8-0-11-deprecation-removal
@@ -457,6 +517,10 @@ class Connection extends DatabaseConnection {
     }
     $connection_options['init_commands'] += [
       'sql_mode' => "SET sql_mode = '$sql_mode'",
+=======
+    $connection_options['init_commands'] += [
+      'sql_mode' => "SET sql_mode = 'ANSI,TRADITIONAL'",
+>>>>>>> dev
     ];
 
     // Execute initial commands.
@@ -470,6 +534,7 @@ class Connection extends DatabaseConnection {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function escapeField($field) {
     $field = parent::escapeField($field);
     return $this->quoteIdentifier($field);
@@ -508,11 +573,33 @@ class Connection extends DatabaseConnection {
       $identifier = '"' . $identifier . '"';
     }
     return isset($table) ? $table . '.' . $identifier : $identifier;
+=======
+  public function __destruct() {
+    if ($this->needsCleanup) {
+      $this->nextIdDelete();
+    }
+    parent::__destruct();
+  }
+
+  public function queryRange($query, $from, $count, array $args = [], array $options = []) {
+    return $this->query($query . ' LIMIT ' . (int) $from . ', ' . (int) $count, $args, $options);
+  }
+
+  public function queryTemporary($query, array $args = [], array $options = []) {
+    $tablename = $this->generateTemporaryTableName();
+    $this->query('CREATE TEMPORARY TABLE {' . $tablename . '} Engine=MEMORY ' . $query, $args, $options);
+    return $tablename;
+  }
+
+  public function driver() {
+    return 'mysql';
+>>>>>>> dev
   }
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function serialize() {
     // Cleanup the connection, much like __destruct() does it as well.
     if ($this->needsCleanup) {
@@ -544,6 +631,53 @@ class Connection extends DatabaseConnection {
 
   public function driver() {
     return 'mysql';
+=======
+  public function version() {
+    if ($this->isMariaDb()) {
+      return $this->getMariaDbVersionMatch();
+    }
+
+    return $this->getServerVersion();
+  }
+
+  /**
+   * Determines whether the MySQL distribution is MariaDB or not.
+   *
+   * @return bool
+   *   Returns TRUE if the distribution is MariaDB, or FALSE if not.
+   */
+  public function isMariaDb(): bool {
+    return (bool) $this->getMariaDbVersionMatch();
+  }
+
+  /**
+   * Gets the MariaDB portion of the server version.
+   *
+   * @return string
+   *   The MariaDB portion of the server version if present, or NULL if not.
+   */
+  protected function getMariaDbVersionMatch(): ?string {
+    // MariaDB may prefix its version string with '5.5.5-', which should be
+    // ignored.
+    // @see https://github.com/MariaDB/server/blob/f6633bf058802ad7da8196d01fd19d75c53f7274/include/mysql_com.h#L42.
+    $regex = '/^(?:5\.5\.5-)?(\d+\.\d+\.\d+.*-mariadb.*)/i';
+
+    preg_match($regex, $this->getServerVersion(), $matches);
+    return (empty($matches[1])) ? NULL : $matches[1];
+  }
+
+  /**
+   * Gets the server version.
+   *
+   * @return string
+   *   The PDO server version.
+   */
+  protected function getServerVersion(): string {
+    if (!$this->serverVersion) {
+      $this->serverVersion = $this->connection->query('SELECT VERSION()')->fetchColumn();
+    }
+    return $this->serverVersion;
+>>>>>>> dev
   }
 
   public function databaseType() {
@@ -664,6 +798,67 @@ class Connection extends DatabaseConnection {
     }
   }
 
+<<<<<<< HEAD
+=======
+  /**
+   * {@inheritdoc}
+   */
+  public function rollBack($savepoint_name = 'drupal_transaction') {
+    // MySQL will automatically commit transactions when tables are altered or
+    // created (DDL transactions are not supported). Prevent triggering an
+    // exception to ensure that the error that has caused the rollback is
+    // properly reported.
+    if (!$this->connection->inTransaction()) {
+      // On PHP 7 $this->connection->inTransaction() will return TRUE and
+      // $this->connection->rollback() does not throw an exception; the
+      // following code is unreachable.
+
+      // If \Drupal\Core\Database\Connection::rollBack() would throw an
+      // exception then continue to throw an exception.
+      if (!$this->inTransaction()) {
+        throw new TransactionNoActiveException();
+      }
+      // A previous rollback to an earlier savepoint may mean that the savepoint
+      // in question has already been accidentally committed.
+      if (!isset($this->transactionLayers[$savepoint_name])) {
+        throw new TransactionNoActiveException();
+      }
+
+      trigger_error('Rollback attempted when there is no active transaction. This can cause data integrity issues.', E_USER_WARNING);
+      return;
+    }
+    return parent::rollBack($savepoint_name);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function doCommit() {
+    // MySQL will automatically commit transactions when tables are altered or
+    // created (DDL transactions are not supported). Prevent triggering an
+    // exception in this case as all statements have been committed.
+    if ($this->connection->inTransaction()) {
+      // On PHP 7 $this->connection->inTransaction() will return TRUE and
+      // $this->connection->commit() does not throw an exception.
+      $success = parent::doCommit();
+    }
+    else {
+      // Process the post-root (non-nested) transaction commit callbacks. The
+      // following code is copied from
+      // \Drupal\Core\Database\Connection::doCommit()
+      $success = TRUE;
+      if (!empty($this->rootTransactionEndCallbacks)) {
+        $callbacks = $this->rootTransactionEndCallbacks;
+        $this->rootTransactionEndCallbacks = [];
+        foreach ($callbacks as $callback) {
+          call_user_func($callback, $success);
+        }
+      }
+    }
+    return $success;
+  }
+
+>>>>>>> dev
 }
 
 

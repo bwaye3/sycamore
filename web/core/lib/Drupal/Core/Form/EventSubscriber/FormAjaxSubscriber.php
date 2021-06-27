@@ -13,8 +13,13 @@ use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+=======
+use Symfony\Component\HttpKernel\Event\ViewEvent;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+>>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -57,10 +62,17 @@ class FormAjaxSubscriber implements EventSubscriberInterface {
   /**
    * Alters the wrapper format if this is an AJAX form request.
    *
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent $event
    *   The event to process.
    */
   public function onView(GetResponseForControllerResultEvent $event) {
+=======
+   * @param \Symfony\Component\HttpKernel\Event\ViewEvent $event
+   *   The event to process.
+   */
+  public function onView(ViewEvent $event) {
+>>>>>>> dev
     // To support an AJAX form submission of a form within a block, make the
     // later VIEW subscribers process the controller result as though for
     // HTML display (i.e., add blocks). During that block building, when the
@@ -76,11 +88,19 @@ class FormAjaxSubscriber implements EventSubscriberInterface {
   /**
    * Catches a form AJAX exception and build a response from it.
    *
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $event
    *   The event to process.
    */
   public function onException(GetResponseForExceptionEvent $event) {
     $exception = $event->getException();
+=======
+   * @param \Symfony\Component\HttpKernel\Event\ExceptionEvent $event
+   *   The event to process.
+   */
+  public function onException(ExceptionEvent $event) {
+    $exception = $event->getThrowable();
+>>>>>>> dev
     $request = $event->getRequest();
 
     // Render a nice error message in case we have a file upload which exceeds
@@ -116,7 +136,11 @@ class FormAjaxSubscriber implements EventSubscriberInterface {
       }
       catch (\Exception $e) {
         // Otherwise, replace the existing exception with the new one.
+<<<<<<< HEAD
         $event->setException($e);
+=======
+        $event->setThrowable($e);
+>>>>>>> dev
       }
     }
   }

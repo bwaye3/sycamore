@@ -17,12 +17,20 @@ class MigrateMenuLinkContentStubTest extends MigrateDrupalTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['menu_link_content', 'link'];
+=======
+  protected static $modules = ['menu_link_content', 'link'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('menu_link_content');
   }

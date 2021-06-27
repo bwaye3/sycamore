@@ -3,7 +3,10 @@
 namespace Drupal\Core\Display;
 
 use Drupal\Component\Plugin\ConfigurableInterface;
+<<<<<<< HEAD
 use Drupal\Component\Plugin\ConfigurablePluginInterface;
+=======
+>>>>>>> dev
 use Drupal\Component\Plugin\DependentPluginInterface;
 use Drupal\Component\Plugin\PluginInspectionInterface;
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
@@ -18,7 +21,11 @@ use Drupal\Core\Session\AccountInterface;
  * @see \Drupal\Core\Display\VariantManager
  * @see plugin_api
  */
+<<<<<<< HEAD
 interface VariantInterface extends PluginInspectionInterface, ConfigurableInterface, DependentPluginInterface, ConfigurablePluginInterface, PluginFormInterface, RefinableCacheableDependencyInterface {
+=======
+interface VariantInterface extends PluginInspectionInterface, ConfigurableInterface, DependentPluginInterface, PluginFormInterface, RefinableCacheableDependencyInterface {
+>>>>>>> dev
 
   /**
    * Returns the user-facing display variant label.

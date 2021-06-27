@@ -14,7 +14,11 @@
     attach(context) {
       // Allow media items to be re-sorted with drag+drop in the widget.
       const selection = context.querySelectorAll('.js-media-library-selection');
+<<<<<<< HEAD
       selection.forEach(widget => {
+=======
+      selection.forEach((widget) => {
+>>>>>>> dev
         Sortable.create(widget, {
           draggable: '.js-media-library-item',
           handle: '.js-media-library-item-preview',
@@ -22,9 +26,13 @@
             $(widget)
               .children()
               .each((index, child) => {
+<<<<<<< HEAD
                 $(child)
                   .find('.js-media-library-item-weight')
                   .val(index);
+=======
+                $(child).find('.js-media-library-item-weight').val(index);
+>>>>>>> dev
               });
           },
         });
@@ -48,7 +56,11 @@
       };
       $('.js-media-library-widget-toggle-weight', context)
         .once('media-library-toggle')
+<<<<<<< HEAD
         .on('click', e => {
+=======
+        .on('click', (e) => {
+>>>>>>> dev
           e.preventDefault();
           $(e.currentTarget)
             .toggleClass('active')
@@ -87,7 +99,11 @@
       // via JavaScript by adding the 'data-disabled-focus' attribute.
       $('.js-media-library-open-button[data-disabled-focus="true"]', context)
         .once('media-library-disable')
+<<<<<<< HEAD
         .each(function() {
+=======
+        .each(function () {
+>>>>>>> dev
           $(this).focus();
 
           // There is a small delay between the focus set by the browser and the

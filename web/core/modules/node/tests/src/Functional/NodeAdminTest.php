@@ -50,9 +50,15 @@ class NodeAdminTest extends NodeTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['views'];
 
   protected function setUp() {
+=======
+  protected static $modules = ['views'];
+
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Remove the "view own unpublished content" permission which is set
@@ -149,32 +155,52 @@ class NodeAdminTest extends NodeTestBase {
     $node_type_labels = $this->xpath('//td[contains(@class, "views-field-type")]');
     $delta = 0;
     foreach ($nodes as $node) {
+<<<<<<< HEAD
       $this->assertLinkByHref('node/' . $node->id());
       $this->assertLinkByHref('node/' . $node->id() . '/edit');
       $this->assertLinkByHref('node/' . $node->id() . '/delete');
       // Verify that we can see the content type label.
       $this->assertEqual(trim($node_type_labels[$delta]->getText()), $node->type->entity->label());
+=======
+      $this->assertSession()->linkByHrefExists('node/' . $node->id());
+      $this->assertSession()->linkByHrefExists('node/' . $node->id() . '/edit');
+      $this->assertSession()->linkByHrefExists('node/' . $node->id() . '/delete');
+      // Verify that we can see the content type label.
+      $this->assertEquals(trim($node_type_labels[$delta]->getText()), $node->type->entity->label());
+>>>>>>> dev
       $delta++;
     }
 
     // Verify filtering by publishing status.
     $this->drupalGet('admin/content', ['query' => ['status' => TRUE]]);
 
+<<<<<<< HEAD
     $this->assertLinkByHref('node/' . $nodes['published_page']->id() . '/edit');
     $this->assertLinkByHref('node/' . $nodes['published_article']->id() . '/edit');
     $this->assertNoLinkByHref('node/' . $nodes['unpublished_page_1']->id() . '/edit');
+=======
+    $this->assertSession()->linkByHrefExists('node/' . $nodes['published_page']->id() . '/edit');
+    $this->assertSession()->linkByHrefExists('node/' . $nodes['published_article']->id() . '/edit');
+    $this->assertSession()->linkByHrefNotExists('node/' . $nodes['unpublished_page_1']->id() . '/edit');
+>>>>>>> dev
 
     // Verify filtering by status and content type.
     $this->drupalGet('admin/content', ['query' => ['status' => TRUE, 'type' => 'page']]);
 
+<<<<<<< HEAD
     $this->assertLinkByHref('node/' . $nodes['published_page']->id() . '/edit');
     $this->assertNoLinkByHref('node/' . $nodes['published_article']->id() . '/edit');
+=======
+    $this->assertSession()->linkByHrefExists('node/' . $nodes['published_page']->id() . '/edit');
+    $this->assertSession()->linkByHrefNotExists('node/' . $nodes['published_article']->id() . '/edit');
+>>>>>>> dev
 
     // Verify no operation links are displayed for regular users.
     $this->drupalLogout();
     $this->drupalLogin($this->baseUser1);
     $this->drupalGet('admin/content');
     $this->assertSession()->statusCodeEquals(200);
+<<<<<<< HEAD
     $this->assertLinkByHref('node/' . $nodes['published_page']->id());
     $this->assertLinkByHref('node/' . $nodes['published_article']->id());
     $this->assertNoLinkByHref('node/' . $nodes['published_page']->id() . '/edit');
@@ -189,12 +215,29 @@ class NodeAdminTest extends NodeTestBase {
 
     // Verify no tableselect.
     $this->assertNoFieldByName('nodes[' . $nodes['published_page']->id() . ']', '', 'No tableselect found.');
+=======
+    $this->assertSession()->linkByHrefExists('node/' . $nodes['published_page']->id());
+    $this->assertSession()->linkByHrefExists('node/' . $nodes['published_article']->id());
+    $this->assertSession()->linkByHrefNotExists('node/' . $nodes['published_page']->id() . '/edit');
+    $this->assertSession()->linkByHrefNotExists('node/' . $nodes['published_page']->id() . '/delete');
+    $this->assertSession()->linkByHrefNotExists('node/' . $nodes['published_article']->id() . '/edit');
+    $this->assertSession()->linkByHrefNotExists('node/' . $nodes['published_article']->id() . '/delete');
+
+    // Verify no unpublished content is displayed without permission.
+    $this->assertSession()->linkByHrefNotExists('node/' . $nodes['unpublished_page_1']->id());
+    $this->assertSession()->linkByHrefNotExists('node/' . $nodes['unpublished_page_1']->id() . '/edit');
+    $this->assertSession()->linkByHrefNotExists('node/' . $nodes['unpublished_page_1']->id() . '/delete');
+
+    // Verify no tableselect.
+    $this->assertSession()->fieldNotExists('nodes[' . $nodes['published_page']->id() . ']');
+>>>>>>> dev
 
     // Verify unpublished content is displayed with permission.
     $this->drupalLogout();
     $this->drupalLogin($this->baseUser2);
     $this->drupalGet('admin/content');
     $this->assertSession()->statusCodeEquals(200);
+<<<<<<< HEAD
     $this->assertLinkByHref('node/' . $nodes['unpublished_page_2']->id());
     // Verify no operation links are displayed.
     $this->assertNoLinkByHref('node/' . $nodes['unpublished_page_2']->id() . '/edit');
@@ -207,6 +250,20 @@ class NodeAdminTest extends NodeTestBase {
 
     // Verify no tableselect.
     $this->assertNoFieldByName('nodes[' . $nodes['unpublished_page_2']->id() . ']', '', 'No tableselect found.');
+=======
+    $this->assertSession()->linkByHrefExists('node/' . $nodes['unpublished_page_2']->id());
+    // Verify no operation links are displayed.
+    $this->assertSession()->linkByHrefNotExists('node/' . $nodes['unpublished_page_2']->id() . '/edit');
+    $this->assertSession()->linkByHrefNotExists('node/' . $nodes['unpublished_page_2']->id() . '/delete');
+
+    // Verify user cannot see unpublished content of other users.
+    $this->assertSession()->linkByHrefNotExists('node/' . $nodes['unpublished_page_1']->id());
+    $this->assertSession()->linkByHrefNotExists('node/' . $nodes['unpublished_page_1']->id() . '/edit');
+    $this->assertSession()->linkByHrefNotExists('node/' . $nodes['unpublished_page_1']->id() . '/delete');
+
+    // Verify no tableselect.
+    $this->assertSession()->fieldNotExists('nodes[' . $nodes['unpublished_page_2']->id() . ']');
+>>>>>>> dev
 
     // Verify node access can be bypassed.
     $this->drupalLogout();
@@ -214,9 +271,15 @@ class NodeAdminTest extends NodeTestBase {
     $this->drupalGet('admin/content');
     $this->assertSession()->statusCodeEquals(200);
     foreach ($nodes as $node) {
+<<<<<<< HEAD
       $this->assertLinkByHref('node/' . $node->id());
       $this->assertLinkByHref('node/' . $node->id() . '/edit');
       $this->assertLinkByHref('node/' . $node->id() . '/delete');
+=======
+      $this->assertSession()->linkByHrefExists('node/' . $node->id());
+      $this->assertSession()->linkByHrefExists('node/' . $node->id() . '/edit');
+      $this->assertSession()->linkByHrefExists('node/' . $node->id() . '/delete');
+>>>>>>> dev
     }
   }
 

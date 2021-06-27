@@ -2,7 +2,10 @@ name: '<"Cat" & ''Mouse''>'
 type: theme
 base theme: stable
 description: 'Theme for testing special characters in block admin.'
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 regions:
   content: Content
   help: Help

@@ -27,6 +27,10 @@ if (typeof Object.assign !== 'function') {
           }
         }
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       return to;
     },
     writable: true,

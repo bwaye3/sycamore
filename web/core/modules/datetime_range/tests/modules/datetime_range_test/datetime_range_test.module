@@ -2,7 +2,11 @@
 
 /**
  * @file
+<<<<<<< HEAD
  * Contains datetime_range_test.module
+=======
+ * Contains datetime_range_test.module.
+>>>>>>> dev
  */
 
 /**

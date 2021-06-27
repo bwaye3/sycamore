@@ -14,6 +14,7 @@ use Drupal\Tests\migrate\Kernel\MigrateSqlSourceTestBase;
 class TrackerNodeTest extends MigrateSqlSourceTestBase {
 
   /**
+<<<<<<< HEAD
   * {@inheritdoc}
   */
   public static $modules = ['tracker', 'migrate_drupal'];
@@ -21,6 +22,15 @@ class TrackerNodeTest extends MigrateSqlSourceTestBase {
   /**
   * {@inheritdoc}
   */
+=======
+   * {@inheritdoc}
+   */
+  protected static $modules = ['tracker', 'migrate_drupal'];
+
+  /**
+   * {@inheritdoc}
+   */
+>>>>>>> dev
   public function providerSource() {
     $tests = [];
 

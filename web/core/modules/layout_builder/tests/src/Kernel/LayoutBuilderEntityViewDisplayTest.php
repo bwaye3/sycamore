@@ -3,7 +3,10 @@
 namespace Drupal\Tests\layout_builder\Kernel;
 
 use Drupal\Core\Config\Schema\SchemaIncompleteException;
+<<<<<<< HEAD
 use Drupal\entity_test\Entity\EntityTest;
+=======
+>>>>>>> dev
 use Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay;
 
 /**
@@ -43,6 +46,7 @@ class LayoutBuilderEntityViewDisplayTest extends SectionStorageTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * @covers ::getRuntimeSections
    * @group legacy
    * @expectedDeprecation \Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay::getRuntimeSections() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. \Drupal\layout_builder\SectionStorage\SectionStorageManagerInterface::findByContext() should be used instead. See https://www.drupal.org/node/3022574.
@@ -62,6 +66,8 @@ class LayoutBuilderEntityViewDisplayTest extends SectionStorageTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * @dataProvider providerTestIsLayoutBuilderEnabled
    */
   public function testIsLayoutBuilderEnabled($expected, $view_mode, $enabled) {
@@ -95,7 +101,11 @@ class LayoutBuilderEntityViewDisplayTest extends SectionStorageTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests that setting overridable enables Layout Builder only when set to TRUE.
+=======
+   * Tests that setting overridable enables Layout Builder only when TRUE.
+>>>>>>> dev
    */
   public function testSetOverridable() {
     // Disable Layout Builder.

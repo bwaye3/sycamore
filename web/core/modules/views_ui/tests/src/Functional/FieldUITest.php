@@ -31,6 +31,7 @@ class FieldUITest extends UITestBase {
   public function testFieldUI() {
     // Ensure the field is not marked as hidden on the first run.
     $this->drupalGet('admin/structure/views/view/test_view/edit');
+<<<<<<< HEAD
     $this->assertText('Views test: Name');
     $this->assertNoText('Views test: Name [' . t('hidden') . ']');
 
@@ -39,10 +40,22 @@ class FieldUITest extends UITestBase {
     $this->drupalPostForm($edit_handler_url, ['options[exclude]' => TRUE], t('Apply'));
 
     $this->assertText('Views test: Name [' . t('hidden') . ']');
+=======
+    $this->assertSession()->pageTextContains('Views test: Name');
+    $this->assertSession()->pageTextNotContains('Views test: Name [hidden]');
+
+    // Hides the field and check whether the hidden label is appended.
+    $edit_handler_url = 'admin/structure/views/nojs/handler/test_view/default/field/name';
+    $this->drupalGet($edit_handler_url);
+    $this->submitForm(['options[exclude]' => TRUE], 'Apply');
+
+    $this->assertSession()->pageTextContains('Views test: Name [hidden]');
+>>>>>>> dev
 
     // Ensure that the expected tokens appear in the UI.
     $edit_handler_url = 'admin/structure/views/nojs/handler/test_view/default/field/age';
     $this->drupalGet($edit_handler_url);
+<<<<<<< HEAD
     $result = $this->xpath('//details[@id="edit-options-alter-help"]/div[@class="details-wrapper"]/div[@class="item-list"]/ul/li');
     $this->assertEqual($result[0]->getHtml(), '{{ age }} == Age');
 
@@ -65,19 +78,52 @@ class FieldUITest extends UITestBase {
     // Ensure that dialog titles are not escaped.
     $edit_groupby_url = 'admin/structure/views/nojs/handler/test_view/default/field/name';
     $this->assertNoLinkByHref($edit_groupby_url, 0, 'No aggregation link found.');
+=======
+    $xpath = '//details[@id="edit-options-alter-help"]/div[@class="details-wrapper"]/div[@class="item-list"]/ul/li';
+    $this->assertSession()->elementTextEquals('xpath', $xpath, '{{ age }} == Age');
+
+    $edit_handler_url = 'admin/structure/views/nojs/handler/test_view/default/field/id';
+    $this->drupalGet($edit_handler_url);
+    $this->assertSession()->elementTextEquals('xpath', "{$xpath}[1]", '{{ age }} == Age');
+    $this->assertSession()->elementTextEquals('xpath', "{$xpath}[2]", '{{ id }} == ID');
+
+    $edit_handler_url = 'admin/structure/views/nojs/handler/test_view/default/field/name';
+    $this->drupalGet($edit_handler_url);
+    $this->assertSession()->elementTextEquals('xpath', "{$xpath}[1]", '{{ age }} == Age');
+    $this->assertSession()->elementTextEquals('xpath', "{$xpath}[2]", '{{ id }} == ID');
+    $this->assertSession()->elementTextEquals('xpath', "{$xpath}[3]", '{{ name }} == Name');
+
+    $result = $this->xpath('//details[@id="edit-options-more"]');
+    $this->assertEmpty($result, "Container 'more' is empty and should not be displayed.");
+
+    // Ensure that dialog titles are not escaped.
+    $edit_groupby_url = 'admin/structure/views/nojs/handler/test_view/default/field/name';
+    $this->assertSession()->linkByHrefNotExists($edit_groupby_url, 0, 'No aggregation link found.');
+>>>>>>> dev
 
     // Enable aggregation on the view.
     $edit = [
       'group_by' => TRUE,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('/admin/structure/views/nojs/display/test_view/default/group_by', $edit, t('Apply'));
 
     $this->assertLinkByHref($edit_groupby_url, 0, 'Aggregation link found.');
+=======
+    $this->drupalGet('/admin/structure/views/nojs/display/test_view/default/group_by');
+    $this->submitForm($edit, 'Apply');
+
+    $this->assertSession()->linkByHrefExists($edit_groupby_url, 0, 'Aggregation link found.');
+>>>>>>> dev
 
     $edit_handler_url = '/admin/structure/views/ajax/handler-group/test_view/default/field/name';
     $this->drupalGet($edit_handler_url);
     $data = Json::decode($this->getSession()->getPage()->getContent());
+<<<<<<< HEAD
     $this->assertEqual($data[3]['dialogOptions']['title'], 'Configure aggregation settings for field Views test: Name');
+=======
+    $this->assertEquals('Configure aggregation settings for field Views test: Name', $data[3]['dialogOptions']['title']);
+>>>>>>> dev
   }
 
   /**
@@ -95,11 +141,20 @@ class FieldUITest extends UITestBase {
     $view['page[style][style_plugin]'] = 'default';
     $view['page[title]'] = $this->randomMachineName(16);
     $view['page[path]'] = $view['id'];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/structure/views/add', $view, t('Save and edit'));
 
     $view = Views::getView($view['id']);
     $view->initHandlers();
     $this->assertEqual($view->field['title']->options['label'], '', 'The field label for normal styles are empty.');
+=======
+    $this->drupalGet('admin/structure/views/add');
+    $this->submitForm($view, 'Save and edit');
+
+    $view = Views::getView($view['id']);
+    $view->initHandlers();
+    $this->assertEquals('', $view->field['title']->options['label'], 'The field label for normal styles are empty.');
+>>>>>>> dev
   }
 
 }

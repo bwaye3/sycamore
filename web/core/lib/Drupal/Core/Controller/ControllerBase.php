@@ -4,9 +4,13 @@ namespace Drupal\Core\Controller;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Logger\LoggerChannelTrait;
+<<<<<<< HEAD
 use Drupal\Core\Routing\LinkGeneratorTrait;
 use Drupal\Core\Routing\RedirectDestinationTrait;
 use Drupal\Core\Routing\UrlGeneratorTrait;
+=======
+use Drupal\Core\Routing\RedirectDestinationTrait;
+>>>>>>> dev
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -36,11 +40,15 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 abstract class ControllerBase implements ContainerInjectionInterface {
 
+<<<<<<< HEAD
   use LinkGeneratorTrait;
+=======
+>>>>>>> dev
   use LoggerChannelTrait;
   use MessengerTrait;
   use RedirectDestinationTrait;
   use StringTranslationTrait;
+<<<<<<< HEAD
   use UrlGeneratorTrait;
 
   /**
@@ -49,6 +57,8 @@ abstract class ControllerBase implements ContainerInjectionInterface {
    * @var \Drupal\Core\Entity\EntityManagerInterface
    */
   protected $entityManager;
+=======
+>>>>>>> dev
 
   /**
    * The entity type manager.
@@ -121,6 +131,7 @@ abstract class ControllerBase implements ContainerInjectionInterface {
   }
 
   /**
+<<<<<<< HEAD
    * Retrieves the entity manager service.
    *
    * @return \Drupal\Core\Entity\EntityManagerInterface
@@ -139,6 +150,8 @@ abstract class ControllerBase implements ContainerInjectionInterface {
   }
 
   /**
+=======
+>>>>>>> dev
    * Retrieves the entity type manager.
    *
    * @return \Drupal\Core\Entity\EntityTypeManagerInterface

@@ -29,11 +29,14 @@ class ViewListBuilder extends ConfigEntityListBuilder {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected $limit;
 
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type) {
     return new static(
       $entity_type,

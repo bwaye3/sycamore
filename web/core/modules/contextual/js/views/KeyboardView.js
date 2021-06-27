@@ -20,7 +20,10 @@
         }, 150);
       }
     },
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     initialize: function initialize() {
       this.timer = NaN;
     },

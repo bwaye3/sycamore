@@ -70,6 +70,7 @@ class ContextDefinition implements ContextDefinitionInterface {
   protected $constraints = [];
 
   /**
+<<<<<<< HEAD
    * An EntityContextDefinition instance, for backwards compatibility.
    *
    * If this context is created with a data type that starts with 'entity:',
@@ -102,6 +103,8 @@ class ContextDefinition implements ContextDefinitionInterface {
   private $entityContextDefinition;
 
   /**
+=======
+>>>>>>> dev
    * Creates a new context definition.
    *
    * @param string $data_type
@@ -112,6 +115,12 @@ class ContextDefinition implements ContextDefinitionInterface {
    *   The created context definition object.
    */
   public static function create($data_type = 'any') {
+<<<<<<< HEAD
+=======
+    if (strpos($data_type, 'entity:') === 0) {
+      return new EntityContextDefinition($data_type);
+    }
+>>>>>>> dev
     return new static(
       $data_type
     );
@@ -141,10 +150,14 @@ class ContextDefinition implements ContextDefinitionInterface {
     $this->description = $description;
     $this->defaultValue = $default_value;
 
+<<<<<<< HEAD
     if (strpos($data_type, 'entity:') === 0 && !($this instanceof EntityContextDefinition)) {
       @trigger_error('Constructing a ContextDefinition object for an entity type is deprecated in Drupal 8.6.0. Use ' . __NAMESPACE__ . '\EntityContextDefinition instead. See https://www.drupal.org/node/2976400 for more information.', E_USER_DEPRECATED);
       $this->initializeEntityContextDefinition();
     }
+=======
+    assert(strpos($data_type, 'entity:') !== 0 || $this instanceof EntityContextDefinition);
+>>>>>>> dev
   }
 
   /**
@@ -241,12 +254,15 @@ class ContextDefinition implements ContextDefinitionInterface {
    * {@inheritdoc}
    */
   public function getConstraints() {
+<<<<<<< HEAD
     // If the backwards compatibility layer is present, delegate to that.
     $this->initializeEntityContextDefinition();
     if ($this->entityContextDefinition) {
       return $this->entityContextDefinition->getConstraints();
     }
 
+=======
+>>>>>>> dev
     // @todo Apply defaults.
     return $this->constraints;
   }
@@ -255,12 +271,15 @@ class ContextDefinition implements ContextDefinitionInterface {
    * {@inheritdoc}
    */
   public function getConstraint($constraint_name) {
+<<<<<<< HEAD
     // If the backwards compatibility layer is present, delegate to that.
     $this->initializeEntityContextDefinition();
     if ($this->entityContextDefinition) {
       return $this->entityContextDefinition->getConstraint($constraint_name);
     }
 
+=======
+>>>>>>> dev
     $constraints = $this->getConstraints();
     return isset($constraints[$constraint_name]) ? $constraints[$constraint_name] : NULL;
   }
@@ -269,12 +288,15 @@ class ContextDefinition implements ContextDefinitionInterface {
    * {@inheritdoc}
    */
   public function setConstraints(array $constraints) {
+<<<<<<< HEAD
     // If the backwards compatibility layer is present, delegate to that.
     $this->initializeEntityContextDefinition();
     if ($this->entityContextDefinition) {
       $this->entityContextDefinition->setConstraints($constraints);
     }
 
+=======
+>>>>>>> dev
     $this->constraints = $constraints;
     return $this;
   }
@@ -283,12 +305,15 @@ class ContextDefinition implements ContextDefinitionInterface {
    * {@inheritdoc}
    */
   public function addConstraint($constraint_name, $options = NULL) {
+<<<<<<< HEAD
     // If the backwards compatibility layer is present, delegate to that.
     $this->initializeEntityContextDefinition();
     if ($this->entityContextDefinition) {
       $this->entityContextDefinition->addConstraint($constraint_name, $options);
     }
 
+=======
+>>>>>>> dev
     $this->constraints[$constraint_name] = $options;
     return $this;
   }
@@ -354,6 +379,7 @@ class ContextDefinition implements ContextDefinitionInterface {
       $values = [$context->getContextData()];
     }
     elseif ($definition instanceof self) {
+<<<<<<< HEAD
       $this->initializeEntityContextDefinition();
       if ($this->entityContextDefinition) {
         $values = $this->entityContextDefinition->getSampleValues();
@@ -361,6 +387,9 @@ class ContextDefinition implements ContextDefinitionInterface {
       else {
         $values = $definition->getSampleValues();
       }
+=======
+      $values = $definition->getSampleValues();
+>>>>>>> dev
     }
     else {
       $values = [];
@@ -405,12 +434,15 @@ class ContextDefinition implements ContextDefinitionInterface {
    *   A list of applied constraints for the context definition.
    */
   protected function getConstraintObjects() {
+<<<<<<< HEAD
     // If the backwards compatibility layer is present, delegate to that.
     $this->initializeEntityContextDefinition();
     if ($this->entityContextDefinition) {
       return $this->entityContextDefinition->getConstraintObjects();
     }
 
+=======
+>>>>>>> dev
     $constraint_definitions = $this->getConstraints();
 
     $validation_constraint_manager = $this->getTypedDataManager()->getValidationConstraintManager();
@@ -422,6 +454,7 @@ class ContextDefinition implements ContextDefinitionInterface {
     return $constraints;
   }
 
+<<<<<<< HEAD
   /**
    * Implements magic __sleep() method.
    */
@@ -450,4 +483,6 @@ class ContextDefinition implements ContextDefinitionInterface {
     }
   }
 
+=======
+>>>>>>> dev
 }

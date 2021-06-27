@@ -3,7 +3,11 @@
  *
  * May only be loaded for authenticated users, with the History module enabled.
  */
+<<<<<<< HEAD
 (function($, Drupal, window) {
+=======
+(function ($, Drupal, window) {
+>>>>>>> dev
   function processNodeNewIndicators($placeholders) {
     const newNodeString = Drupal.t('new');
     const updatedNodeString = Drupal.t('updated');
@@ -55,7 +59,11 @@
       data: { 'node_ids[]': nodeIDs },
       dataType: 'json',
       success(results) {
+<<<<<<< HEAD
         Object.keys(results || {}).forEach(nodeID => {
+=======
+        Object.keys(results || {}).forEach((nodeID) => {
+>>>>>>> dev
           if (placeholdersToUpdate.hasOwnProperty(nodeID)) {
             const url = results[nodeID].first_new_comment_link;
             const text = Drupal.formatPlural(
@@ -83,7 +91,11 @@
       const $nodeNewPlaceholders = $(context)
         .find('[data-history-node-timestamp]')
         .once('history')
+<<<<<<< HEAD
         .filter(function() {
+=======
+        .filter(function () {
+>>>>>>> dev
           const nodeTimestamp = parseInt(
             this.getAttribute('data-history-node-timestamp'),
             10,
@@ -102,7 +114,11 @@
       const $newRepliesPlaceholders = $(context)
         .find('[data-history-node-last-comment-timestamp]')
         .once('history')
+<<<<<<< HEAD
         .filter(function() {
+=======
+        .filter(function () {
+>>>>>>> dev
           const lastCommentTimestamp = parseInt(
             this.getAttribute('data-history-node-last-comment-timestamp'),
             10,

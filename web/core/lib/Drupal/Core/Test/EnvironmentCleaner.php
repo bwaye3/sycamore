@@ -113,7 +113,11 @@ class EnvironmentCleaner implements EnvironmentCleanerInterface {
    *   The number of tables that were removed.
    */
   protected function doCleanDatabase() {
+<<<<<<< HEAD
     /* @var $schema \Drupal\Core\Database\Schema */
+=======
+    /** @var \Drupal\Core\Database\Schema $schema */
+>>>>>>> dev
     $schema = $this->testDatabase->schema();
     $tables = $schema->findTables('test%');
     $count = 0;
@@ -171,7 +175,11 @@ class EnvironmentCleaner implements EnvironmentCleanerInterface {
   public function cleanResultsTable($test_id = NULL) {
     $count = 0;
     if ($test_id) {
+<<<<<<< HEAD
       $count = $this->resultsDatabase->query('SELECT COUNT(test_id) FROM {simpletest_test_id} WHERE test_id = :test_id', [':test_id' => $test_id])->fetchField();
+=======
+      $count = $this->resultsDatabase->query('SELECT COUNT([test_id]) FROM {simpletest_test_id} WHERE [test_id] = :test_id', [':test_id' => $test_id])->fetchField();
+>>>>>>> dev
 
       $this->resultsDatabase->delete('simpletest')
         ->condition('test_id', $test_id)
@@ -181,7 +189,11 @@ class EnvironmentCleaner implements EnvironmentCleanerInterface {
         ->execute();
     }
     else {
+<<<<<<< HEAD
       $count = $this->resultsDatabase->query('SELECT COUNT(test_id) FROM {simpletest_test_id}')->fetchField();
+=======
+      $count = $this->resultsDatabase->query('SELECT COUNT([test_id]) FROM {simpletest_test_id}')->fetchField();
+>>>>>>> dev
 
       // Clear test results.
       $this->resultsDatabase->delete('simpletest')->execute();

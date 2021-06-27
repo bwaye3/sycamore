@@ -35,10 +35,16 @@ class TranslatableFieldTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     parent::setUp();
 
     $this->installSchema('system', ['key_value_expire']);
+=======
+  protected function setUp(): void {
+    parent::setUp();
+
+>>>>>>> dev
     $this->installEntitySchema('entity_test');
 
     // Create a translation.

@@ -17,7 +17,11 @@ class RenderArrayNonHtmlSubscriberTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['render_array_non_html_subscriber_test'];
+=======
+  protected static $modules = ['render_array_non_html_subscriber_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

@@ -18,7 +18,11 @@ class FilterDateTest extends DateTimeHandlerTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'datetime_test',
     'node',
     'datetime_range',
@@ -50,7 +54,11 @@ class FilterDateTest extends DateTimeHandlerTestBase {
    * Create nodes with relative date range of:
    * yesterday - today, today - today, and today - tomorrow.
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     // Set to 'today'.
@@ -114,7 +122,11 @@ class FilterDateTest extends DateTimeHandlerTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test offsets with date-only fields.
+=======
+   * Tests offsets with date-only fields.
+>>>>>>> dev
    */
   public function testDateOffsets() {
     $view = Views::getView('test_filter_datetime');

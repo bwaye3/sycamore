@@ -25,6 +25,7 @@ class AggregatorCronTest extends AggregatorTestBase {
     // Create feed and test basic updating on cron.
     $this->createSampleNodes();
     $feed = $this->createFeed();
+<<<<<<< HEAD
     $count_query = \Drupal::entityQuery('aggregator_item')->condition('fid', $feed->id())->count();
 
     $this->cronRun();
@@ -33,15 +34,35 @@ class AggregatorCronTest extends AggregatorTestBase {
     $this->assertEqual(0, $count_query->execute());
     $this->cronRun();
     $this->assertEqual(5, $count_query->execute());
+=======
+    $count_query = \Drupal::entityQuery('aggregator_item')
+      ->accessCheck(FALSE)
+      ->condition('fid', $feed->id())
+      ->count();
+
+    $this->cronRun();
+    $this->assertEquals(5, $count_query->execute());
+    $this->deleteFeedItems($feed);
+    $this->assertEquals(0, $count_query->execute());
+    $this->cronRun();
+    $this->assertEquals(5, $count_query->execute());
+>>>>>>> dev
 
     // Test feed locking when queued for update.
     $this->deleteFeedItems($feed);
     $feed->setQueuedTime(REQUEST_TIME)->save();
     $this->cronRun();
+<<<<<<< HEAD
     $this->assertEqual(0, $count_query->execute());
     $feed->setQueuedTime(0)->save();
     $this->cronRun();
     $this->assertEqual(5, $count_query->execute());
+=======
+    $this->assertEquals(0, $count_query->execute());
+    $feed->setQueuedTime(0)->save();
+    $this->cronRun();
+    $this->assertEquals(5, $count_query->execute());
+>>>>>>> dev
   }
 
 }

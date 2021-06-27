@@ -84,7 +84,11 @@ class ImageStyleEditForm extends ImageStyleFormBase {
       '#attributes' => [
         'id' => 'image-style-effects',
       ],
+<<<<<<< HEAD
       '#empty' => t('There are currently no effects in this style. Add one by selecting an option below.'),
+=======
+      '#empty' => $this->t('There are currently no effects in this style. Add one by selecting an option below.'),
+>>>>>>> dev
       // Render effects below parent elements.
       '#weight' => 5,
     ];

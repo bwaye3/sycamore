@@ -3,4 +3,7 @@ type: module
 description: 'Provides hook implementations for testing regions.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

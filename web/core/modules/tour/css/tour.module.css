@@ -11,7 +11,11 @@
   float: left;
 }
 
+<<<<<<< HEAD
 /* Override placement of the tour progress indicator. */
+=======
+/* Style the tour progress indicator. */
+>>>>>>> dev
 .tour-progress {
   position: absolute;
   right: 20px; /* LTR */
@@ -22,6 +26,7 @@
   left: 20px;
 }
 
+<<<<<<< HEAD
 /* Default styles for the container */
 .joyride-tip-guide {
   position: absolute;
@@ -29,17 +34,72 @@
   top: 0;
   left: 0;
   display: none;
+=======
+/**
+ * The following are largely Shepherd's default styles, with a few modifications
+ * to facilitate a graceful transition from Joyride, the library used prior to
+ * Shepherd.
+ */
+.shepherd-footer {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 20px 20px;
+}
+
+.shepherd-footer .shepherd-button:last-child {
+  margin-right: 0;
+}
+
+.shepherd-cancel-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  line-height: 1em;
+}
+
+.shepherd-title {
+  margin: 0;
+  padding: 0;
+}
+
+.shepherd-header {
+  position: relative;
+  margin-bottom: 10px;
+  padding: 20px 50px 0 20px;
+}
+
+.shepherd-text {
+  padding: 0 20px;
+}
+
+.shepherd-text p {
+  margin: 0 0 1.4em;
+}
+
+.shepherd-element {
+  z-index: 101;
+>>>>>>> dev
   width: 300px;
   background: #fff;
 }
 
 @media only screen and (max-width: 767px) {
+<<<<<<< HEAD
   .joyride-tip-guide {
+=======
+  .shepherd-element {
+>>>>>>> dev
     left: 2.5%;
     width: 85%;
   }
 }
 
+<<<<<<< HEAD
 .joyride-content-wrapper {
   position: relative;
   padding: 20px 50px 20px 20px;  /* LTR */
@@ -120,10 +180,63 @@
 }
 
 .joyride-modal-bg {
+=======
+.shepherd-enabled.shepherd-element {
+  opacity: 1;
+}
+
+.shepherd-element[data-popper-reference-hidden]:not(.shepherd-centered) {
+  opacity: 0;
+}
+
+.shepherd-element,
+.shepherd-element *,
+.shepherd-element :after,
+.shepherd-element :before {
+  box-sizing: border-box;
+}
+
+.shepherd-arrow,
+.shepherd-arrow:before {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+}
+
+.shepherd-arrow:before {
+  content: "";
+  transform: rotate(45deg);
+  background: #fff;
+}
+
+.shepherd-element[data-popper-placement^=top] > .shepherd-arrow {
+  bottom: -8px;
+}
+
+.shepherd-element[data-popper-placement^=bottom] > .shepherd-arrow {
+  top: -8px;
+}
+
+.shepherd-element[data-popper-placement^=left] > .shepherd-arrow {
+  right: -8px;
+}
+
+.shepherd-element[data-popper-placement^=right] > .shepherd-arrow {
+  left: -8px;
+}
+
+.shepherd-target-click-disabled.shepherd-enabled.shepherd-target,
+.shepherd-target-click-disabled.shepherd-enabled.shepherd-target * {
+  pointer-events: none;
+}
+
+.shepherd-modal-overlay-container {
+>>>>>>> dev
   position: fixed;
   z-index: 100;
   top: 0;
   left: 0;
+<<<<<<< HEAD
   display: none;
   width: 100%;
   height: 100%;
@@ -140,4 +253,21 @@
   z-index: 10000;
   top: 0;
   left: 0;
+=======
+  overflow: hidden;
+  width: 100vw;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+  fill-rule: evenodd;
+}
+
+.shepherd-modal-overlay-container.shepherd-modal-is-visible {
+  height: 100vh;
+  opacity: 0.5;
+}
+
+.shepherd-modal-overlay-container.shepherd-modal-is-visible path {
+  pointer-events: all;
+>>>>>>> dev
 }

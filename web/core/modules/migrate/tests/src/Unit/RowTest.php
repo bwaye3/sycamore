@@ -116,7 +116,11 @@ class RowTest extends UnitTestCase {
       'title' => 'node X',
     ];
     $this->expectException(\Exception::class);
+<<<<<<< HEAD
     $row = new Row($invalid_values, $this->testSourceIds);
+=======
+    new Row($invalid_values, $this->testSourceIds);
+>>>>>>> dev
   }
 
   /**
@@ -310,7 +314,11 @@ class RowTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test getting source and destination properties.
+=======
+   * Tests getting source and destination properties.
+>>>>>>> dev
    *
    * @param string $key
    *   The key to look up.
@@ -354,7 +362,11 @@ class RowTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test getting multiple source and destination properties.
+=======
+   * Tests getting multiple source and destination properties.
+>>>>>>> dev
    *
    * @param array $keys
    *   An array of keys to look up.
@@ -366,7 +378,11 @@ class RowTest extends UnitTestCase {
    */
   public function testGetMultiple(array $keys, array $expected_values) {
     $row = $this->createRowWithDestinationProperties($this->testGetSourceProperties, $this->testGetSourceIds, $this->testGetDestinationProperties);
+<<<<<<< HEAD
     $this->assertArrayEquals(array_combine($keys, $expected_values), $row->getMultiple($keys));
+=======
+    $this->assertEquals(array_combine($keys, $expected_values), $row->getMultiple($keys));
+>>>>>>> dev
   }
 
   /**

@@ -325,6 +325,7 @@ interface SelectInterface extends ConditionInterface, AlterableInterface, Extend
   public function leftJoin($table, $alias = NULL, $condition = NULL, $arguments = []);
 
   /**
+<<<<<<< HEAD
    * Right Outer Join against another table in the database.
    *
    * @param $table
@@ -360,6 +361,8 @@ interface SelectInterface extends ConditionInterface, AlterableInterface, Extend
   public function rightJoin($table, $alias = NULL, $condition = NULL, $arguments = []);
 
   /**
+=======
+>>>>>>> dev
    * Join against another table in the database.
    *
    * This method does the "hard" work of queuing up a table to be joined against.
@@ -414,7 +417,11 @@ interface SelectInterface extends ConditionInterface, AlterableInterface, Extend
    *
    *   Example:
    *   @code
+<<<<<<< HEAD
    *   $query->addExpression('SUBSTRING(thread, 1, (LENGTH(thread) - 1))', 'order_field');
+=======
+   *   $query->addExpression('SUBSTRING([thread], 1, (LENGTH([thread]) - 1))', 'order_field');
+>>>>>>> dev
    *   $query->orderBy('order_field', 'ASC');
    *   @endcode
    * @param $direction

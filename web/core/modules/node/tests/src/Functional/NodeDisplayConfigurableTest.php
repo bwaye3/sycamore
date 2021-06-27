@@ -16,7 +16,11 @@ class NodeDisplayConfigurableTest extends NodeTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['quickedit', 'rdf'];
+=======
+  protected static $modules = ['quickedit', 'rdf'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

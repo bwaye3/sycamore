@@ -14,10 +14,43 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Drupal 6 node source from database.
  *
+<<<<<<< HEAD
  * @MigrateSource(
  *   id = "d6_node",
  *   source_module = "node"
  *
+=======
+ * Available configuration keys:
+ * - node_type: The node_types to get from the source - can be a string or
+ *   an array. If not declared then nodes of all types will be retrieved.
+ *
+ * Examples:
+ *
+ * @code
+ * source:
+ *   plugin: d6_node
+ *   node_type: page
+ * @endcode
+ *
+ * In this example nodes of type page are retrieved from the source database.
+ *
+ * @code
+ * source:
+ *   plugin: d6_node
+ *   node_type: [page, test]
+ * @endcode
+ *
+ * In this example nodes of type page and test are retrieved from the source
+ * database.
+ *
+ * For additional configuration keys, refer to the parent classes:
+ * @see \Drupal\migrate\Plugin\migrate\source\SqlBase
+ * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
+ *
+ * @MigrateSource(
+ *   id = "d6_node",
+ *   source_module = "node"
+>>>>>>> dev
  * )
  */
 class Node extends DrupalSqlBase {
@@ -25,7 +58,11 @@ class Node extends DrupalSqlBase {
   /**
    * The join options between the node and the node_revisions table.
    */
+<<<<<<< HEAD
   const JOIN = 'n.vid = nr.vid';
+=======
+  const JOIN = '[n].[vid] = [nr].[vid]';
+>>>>>>> dev
 
   /**
    * The default filter format.
@@ -108,12 +145,20 @@ class Node extends DrupalSqlBase {
     // If the content_translation module is enabled, get the source langcode
     // to fill the content_translation_source field.
     if ($this->moduleHandler->moduleExists('content_translation')) {
+<<<<<<< HEAD
       $query->leftJoin('node', 'nt', 'n.tnid = nt.nid');
+=======
+      $query->leftJoin('node', 'nt', '[n].[tnid] = [nt].[nid]');
+>>>>>>> dev
       $query->addField('nt', 'language', 'source_langcode');
     }
 
     if (isset($this->configuration['node_type'])) {
+<<<<<<< HEAD
       $query->condition('n.type', $this->configuration['node_type']);
+=======
+      $query->condition('n.type', (array) $this->configuration['node_type'], 'IN');
+>>>>>>> dev
     }
 
     return $query;
@@ -209,7 +254,11 @@ class Node extends DrupalSqlBase {
 
       // Query the database directly for all field info.
       $query = $this->select('content_node_field_instance', 'cnfi');
+<<<<<<< HEAD
       $query->join('content_node_field', 'cnf', 'cnf.field_name = cnfi.field_name');
+=======
+      $query->join('content_node_field', 'cnf', '[cnf].[field_name] = [cnfi].[field_name]');
+>>>>>>> dev
       $query->fields('cnfi');
       $query->fields('cnf');
 
@@ -293,6 +342,7 @@ class Node extends DrupalSqlBase {
   }
 
   /**
+<<<<<<< HEAD
    * Retrieves raw field data for a node.
    *
    * @deprecated in drupal:8.2.0 and is removed from drupal:9.0.0. Use
@@ -311,6 +361,8 @@ class Node extends DrupalSqlBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function getIds() {
@@ -329,11 +381,19 @@ class Node extends DrupalSqlBase {
     // Check whether or not we want translations.
     if (empty($this->configuration['translations'])) {
       // No translations: Yield untranslated nodes, or default translations.
+<<<<<<< HEAD
       $query->where('n.tnid = 0 OR n.tnid = n.nid');
     }
     else {
       // Translations: Yield only non-default translations.
       $query->where('n.tnid <> 0 AND n.tnid <> n.nid');
+=======
+      $query->where('[n].[tnid] = 0 OR [n].[tnid] = [n].[nid]');
+    }
+    else {
+      // Translations: Yield only non-default translations.
+      $query->where('[n].[tnid] <> 0 AND [n].[tnid] <> [n].[nid]');
+>>>>>>> dev
     }
   }
 

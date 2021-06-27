@@ -52,6 +52,7 @@ class Constraint {
   }
 
   /**
+<<<<<<< HEAD
    * A list of associative arrays representing the constraint.
    *
    * Each containing the keys:
@@ -72,6 +73,8 @@ class Constraint {
   }
 
   /**
+=======
+>>>>>>> dev
    * Determines if the provided version is satisfied by this constraint.
    *
    * @param string $version

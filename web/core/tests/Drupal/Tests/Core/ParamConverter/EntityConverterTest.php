@@ -8,8 +8,11 @@ use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\Core\Entity\ContentEntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
+<<<<<<< HEAD
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
+=======
+>>>>>>> dev
 use Drupal\Core\ParamConverter\EntityConverter;
 use Drupal\Core\ParamConverter\ParamNotConvertedException;
 use Drupal\Core\Plugin\Context\Context;
@@ -53,7 +56,11 @@ class EntityConverterTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->entityTypeManager = $this->createMock(EntityTypeManagerInterface::class);
@@ -151,6 +158,7 @@ class EntityConverterTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests that passing the language manager triggers a deprecation error.
    *
    * @group legacy
@@ -253,6 +261,8 @@ class EntityConverterTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests the applies() method.
    *
    * @dataProvider providerTestApplies
@@ -303,7 +313,11 @@ class EntityConverterTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Provides test data for testConvert
+=======
+   * Provides test data for testConvert.
+>>>>>>> dev
    */
   public function providerTestConvert() {
     $data = [];

@@ -16,19 +16,31 @@ class EmailActionTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'user', 'dblog'];
+=======
+  protected static $modules = ['system', 'user', 'dblog'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installEntitySchema('user');
     $this->installSchema('dblog', ['watchdog']);
   }
 
   /**
+<<<<<<< HEAD
    * Test the email action plugin.
+=======
+   * Tests the email action plugin.
+>>>>>>> dev
    */
   public function testEmailAction() {
     /** @var \Drupal\Core\Action\ActionManager $plugin_manager */

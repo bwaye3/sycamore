@@ -3,6 +3,10 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+<<<<<<< HEAD
+=======
+    - field.field.node.page.layout_builder__layout
+>>>>>>> dev
     - node.type.page
     - workflows.workflow.editorial
   module:
@@ -93,4 +97,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+<<<<<<< HEAD
 hidden: {  }
+=======
+hidden:
+  layout_builder__layout: true
+>>>>>>> dev

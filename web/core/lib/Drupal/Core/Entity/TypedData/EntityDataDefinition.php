@@ -15,6 +15,12 @@ class EntityDataDefinition extends ComplexDataDefinitionBase implements EntityDa
    * @param string $entity_type_id
    *   (optional) The ID of the entity type, or NULL if the entity type is
    *   unknown. Defaults to NULL.
+<<<<<<< HEAD
+=======
+   * @param string $bundle
+   *   (optional) The bundle of the entity type, or NULL if the bundle is
+   *   unknown. Defaults to NULL.
+>>>>>>> dev
    *
    * @return static
    */

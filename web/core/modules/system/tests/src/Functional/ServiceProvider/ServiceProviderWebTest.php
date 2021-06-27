@@ -16,7 +16,11 @@ class ServiceProviderWebTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['file', 'service_provider_test'];
+=======
+  protected static $modules = ['file', 'service_provider_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -36,7 +40,11 @@ class ServiceProviderWebTest extends BrowserTestBase {
     // saying it has fired. This will fire on every page request so it should
     // show up on the front page.
     $this->drupalGet('');
+<<<<<<< HEAD
     $this->assertText(t('The service_provider_test event subscriber fired!'), 'The service_provider_test event subscriber fired');
+=======
+    $this->assertSession()->pageTextContains('The service_provider_test event subscriber fired!');
+>>>>>>> dev
   }
 
 }

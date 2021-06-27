@@ -21,7 +21,11 @@ class RowEntityRenderersTest extends ViewsKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'field',
     'filter',
     'text',
@@ -72,7 +76,11 @@ class RowEntityRenderersTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('node');
@@ -80,9 +88,12 @@ class RowEntityRenderersTest extends ViewsKernelTestBase {
     $this->installSchema('node', ['node_access']);
     $this->installConfig(['node', 'language']);
 
+<<<<<<< HEAD
     // The entity.node.canonical route must exist when nodes are rendered.
     $this->container->get('router.builder')->rebuild();
 
+=======
+>>>>>>> dev
     $this->langcodes = [\Drupal::languageManager()->getDefaultLanguage()->getId()];
     for ($i = 0; $i < 2; $i++) {
       $langcode = 'l' . $i;
@@ -246,9 +257,12 @@ class RowEntityRenderersTest extends ViewsKernelTestBase {
    *   (optional) A message to display with the assertion.
    * @param string $group
    *   (optional) The group this message is in.
+<<<<<<< HEAD
    *
    * @return bool
    *   TRUE if the assertion succeeded, FALSE otherwise.
+=======
+>>>>>>> dev
    */
   protected function assertTranslations($display, $renderer_id, array $expected, $message = '', $group = 'Other') {
     $view = Views::getView('test_entity_row_renderers');
@@ -273,7 +287,11 @@ class RowEntityRenderersTest extends ViewsKernelTestBase {
       }
     }
 
+<<<<<<< HEAD
     return $this->assertTrue($result, $message, $group);
+=======
+    $this->assertTrue($result, $message, $group);
+>>>>>>> dev
   }
 
 }

@@ -12,7 +12,11 @@ abstract class ConfigurableLanguageResourceTestBase extends EntityResourceTestBa
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['language'];
+=======
+  protected static $modules = ['language'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -76,7 +80,11 @@ abstract class ConfigurableLanguageResourceTestBase extends EntityResourceTestBa
   }
 
   /**
+<<<<<<< HEAD
    * Test a GET request for a default config entity, which has a _core key.
+=======
+   * Tests a GET request for a default config entity, which has a _core key.
+>>>>>>> dev
    *
    * @see https://www.drupal.org/node/2915414
    */

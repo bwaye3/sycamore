@@ -34,6 +34,7 @@ class MediaTest extends MediaKernelTestBase {
     $this->assertSame($field_definitions['name']->getDisplayOptions('view'), ['region' => 'hidden']);
   }
 
+<<<<<<< HEAD
   /**
    * Tests the legacy method used as the default entity owner.
    *
@@ -44,4 +45,6 @@ class MediaTest extends MediaKernelTestBase {
     $this->assertEquals(['1'], Media::getCurrentUserId());
   }
 
+=======
+>>>>>>> dev
 }

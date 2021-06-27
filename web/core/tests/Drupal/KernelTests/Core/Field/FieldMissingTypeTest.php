@@ -32,7 +32,11 @@ class FieldMissingTypeTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $entity_type_id = 'entity_test_mulrev';

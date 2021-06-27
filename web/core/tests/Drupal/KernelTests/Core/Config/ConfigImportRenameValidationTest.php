@@ -29,7 +29,11 @@ class ConfigImportRenameValidationTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'system',
     'user',
     'node',
@@ -41,7 +45,11 @@ class ConfigImportRenameValidationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('user');
@@ -113,7 +121,11 @@ class ConfigImportRenameValidationTest extends KernelTestBase {
       $expected = [
         new FormattableMarkup('Entity type mismatch on rename. @old_type not equal to @new_type for existing configuration @old_name and staged configuration @new_name.', ['@old_type' => 'node_type', '@new_type' => 'config_test', '@old_name' => 'node.type.' . $content_type->id(), '@new_name' => 'config_test.dynamic.' . $test_entity_id]),
       ];
+<<<<<<< HEAD
       $this->assertEqual($expected, $this->configImporter->getErrors());
+=======
+      $this->assertEquals($expected, $this->configImporter->getErrors());
+>>>>>>> dev
     }
   }
 
@@ -155,7 +167,11 @@ class ConfigImportRenameValidationTest extends KernelTestBase {
       $expected = [
         new FormattableMarkup('Rename operation for simple configuration. Existing configuration @old_name and staged configuration @new_name.', ['@old_name' => 'config_test.old', '@new_name' => 'config_test.new']),
       ];
+<<<<<<< HEAD
       $this->assertEqual($expected, $this->configImporter->getErrors());
+=======
+      $this->assertEquals($expected, $this->configImporter->getErrors());
+>>>>>>> dev
     }
   }
 

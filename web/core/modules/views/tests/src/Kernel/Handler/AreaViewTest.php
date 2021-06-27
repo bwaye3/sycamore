@@ -18,7 +18,11 @@ class AreaViewTest extends ViewsKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['user'];
+=======
+  protected static $modules = ['user'];
+>>>>>>> dev
 
   /**
    * Views used by this test.
@@ -36,7 +40,11 @@ class AreaViewTest extends ViewsKernelTestBase {
     $view = Views::getView('test_area_view');
 
     // Tests \Drupal\views\Plugin\views\area\View::calculateDependencies().
+<<<<<<< HEAD
     $this->assertIdentical(['config' => ['views.view.test_simple_argument'], 'module' => ['views_test_data']], $view->getDependencies());
+=======
+    $this->assertSame(['config' => ['views.view.test_simple_argument'], 'module' => ['views_test_data']], $view->getDependencies());
+>>>>>>> dev
 
     $this->executeView($view);
     $output = $view->render();

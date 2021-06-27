@@ -20,6 +20,14 @@ class StandardInstallerTest extends ConfigAfterInstallerTestBase {
   public function testInstaller() {
     // Verify that the Standard install profile's default frontpage appears.
     $this->assertRaw('No front page content has been created yet.');
+<<<<<<< HEAD
+=======
+    // Ensure that the contact link enabled in standard_install() works as
+    // expected.
+    $this->clickLink('Contact');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->addressEquals('contact');
+>>>>>>> dev
   }
 
   /**
@@ -33,6 +41,7 @@ class StandardInstallerTest extends ConfigAfterInstallerTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * {@inheritdoc}
    */
   protected function curlExec($curl_options, $redirect = FALSE) {
@@ -46,6 +55,8 @@ class StandardInstallerTest extends ConfigAfterInstallerTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Ensures that the exported standard configuration is up to date.
    */
   public function testStandardConfig() {

@@ -63,6 +63,7 @@ action.configuration.node_promote_action:
   type: action_configuration_default
   label: 'Promote selected content from front page configuration'
 
+<<<<<<< HEAD
 # @deprecated in Drupal 8.5.x, to be removed before Drupal 9.0.0.
 # @see https://www.drupal.org/node/2919303
 action.configuration.node_publish_action:
@@ -87,6 +88,8 @@ action.configuration.node_delete_action:
   type: action_configuration_default
   label: 'Delete content configuration'
 
+=======
+>>>>>>> dev
 action.configuration.node_make_sticky_action:
   type: action_configuration_default
   label: 'Make selected content sticky configuration'

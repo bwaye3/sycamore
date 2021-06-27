@@ -1,6 +1,9 @@
 name: 'Entity CRUD Hooks Test'
 type: module
 description: 'Support module for CRUD hook tests.'
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 package: Testing
 version: VERSION

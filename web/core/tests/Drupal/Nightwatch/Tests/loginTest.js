@@ -8,7 +8,11 @@ module.exports = {
     browser.drupalUninstall();
   },
 
+<<<<<<< HEAD
   'Test login': browser => {
+=======
+  'Test login': (browser) => {
+>>>>>>> dev
     browser
       .drupalCreateUser({
         name: 'user',

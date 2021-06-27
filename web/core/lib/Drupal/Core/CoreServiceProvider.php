@@ -7,6 +7,10 @@ use Drupal\Core\Cache\ListCacheBinsPass;
 use Drupal\Core\DependencyInjection\Compiler\AuthenticationProviderPass;
 use Drupal\Core\DependencyInjection\Compiler\BackendCompilerPass;
 use Drupal\Core\DependencyInjection\Compiler\CorsCompilerPass;
+<<<<<<< HEAD
+=======
+use Drupal\Core\DependencyInjection\Compiler\DeprecatedServicePass;
+>>>>>>> dev
 use Drupal\Core\DependencyInjection\Compiler\GuzzleMiddlewarePass;
 use Drupal\Core\DependencyInjection\Compiler\ContextProvidersPass;
 use Drupal\Core\DependencyInjection\Compiler\ProxyServicesPass;
@@ -19,20 +23,30 @@ use Drupal\Core\DependencyInjection\ServiceModifierInterface;
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\DependencyInjection\Compiler\ModifyServiceDefinitionsPass;
+<<<<<<< HEAD
+=======
+use Drupal\Core\DependencyInjection\Compiler\MimeTypePass;
+>>>>>>> dev
 use Drupal\Core\DependencyInjection\Compiler\TaggedHandlersPass;
 use Drupal\Core\DependencyInjection\Compiler\RegisterEventSubscribersPass;
 use Drupal\Core\DependencyInjection\Compiler\RegisterAccessChecksPass;
 use Drupal\Core\DependencyInjection\Compiler\RegisterServicesForDestructionPass;
+<<<<<<< HEAD
 use Drupal\Core\EventSubscriber\PathSubscriber;
 use Drupal\Core\Path\AliasManager;
 use Drupal\Core\Path\AliasRepository;
 use Drupal\Core\Path\AliasWhitelist;
 use Drupal\Core\PathProcessor\PathProcessorAlias;
+=======
+>>>>>>> dev
 use Drupal\Core\Plugin\PluginManagerPass;
 use Drupal\Core\Render\MainContent\MainContentRenderersPass;
 use Drupal\Core\Site\Settings;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
+<<<<<<< HEAD
 use Symfony\Component\DependencyInjection\Reference;
+=======
+>>>>>>> dev
 
 /**
  * ServiceProvider class for mandatory core services.
@@ -79,6 +93,10 @@ class CoreServiceProvider implements ServiceProviderInterface, ServiceModifierIn
 
     // Collect tagged handler services as method calls on consumer services.
     $container->addCompilerPass(new TaggedHandlersPass());
+<<<<<<< HEAD
+=======
+    $container->addCompilerPass(new MimeTypePass());
+>>>>>>> dev
     $container->addCompilerPass(new RegisterStreamWrappersPass());
     $container->addCompilerPass(new GuzzleMiddlewarePass());
 
@@ -102,6 +120,10 @@ class CoreServiceProvider implements ServiceProviderInterface, ServiceModifierIn
     $container->addCompilerPass(new PluginManagerPass());
 
     $container->addCompilerPass(new DependencySerializationTraitPass());
+<<<<<<< HEAD
+=======
+    $container->addCompilerPass(new DeprecatedServicePass());
+>>>>>>> dev
   }
 
   /**
@@ -122,6 +144,7 @@ class CoreServiceProvider implements ServiceProviderInterface, ServiceModifierIn
     elseif (function_exists('com_create_guid')) {
       $uuid_service->setClass('Drupal\Component\Uuid\Com');
     }
+<<<<<<< HEAD
 
     // Look for missing services that are now defined by the path_alias module,
     // add them as a fallback until the module is installed.
@@ -170,6 +193,8 @@ class CoreServiceProvider implements ServiceProviderInterface, ServiceModifierIn
         }
       }
     }
+=======
+>>>>>>> dev
   }
 
   /**

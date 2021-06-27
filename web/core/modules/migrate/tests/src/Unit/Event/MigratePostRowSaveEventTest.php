@@ -11,7 +11,11 @@ use Drupal\migrate\Event\MigratePostRowSaveEvent;
 class MigratePostRowSaveEventTest extends EventBaseTest {
 
   /**
+<<<<<<< HEAD
    * Test getDestinationIdValues method.
+=======
+   * Tests getDestinationIdValues method.
+>>>>>>> dev
    *
    * @covers ::__construct
    * @covers ::getDestinationIdValues
@@ -25,7 +29,11 @@ class MigratePostRowSaveEventTest extends EventBaseTest {
   }
 
   /**
+<<<<<<< HEAD
    * Test getRow method.
+=======
+   * Tests getRow method.
+>>>>>>> dev
    *
    * @covers ::__construct
    * @covers ::getRow

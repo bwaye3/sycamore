@@ -135,6 +135,10 @@ class ContentModerationState extends ContentEntityBase implements ContentModerat
       $storage = \Drupal::entityTypeManager()->getStorage('content_moderation_state');
 
       $ids = $storage->getQuery()
+<<<<<<< HEAD
+=======
+        ->accessCheck(FALSE)
+>>>>>>> dev
         ->condition('content_entity_type_id', $entity->getEntityTypeId())
         ->condition('content_entity_id', $entity->id())
         ->condition('workflow', $moderation_info->getWorkflowForEntity($entity)->id())
@@ -152,6 +156,7 @@ class ContentModerationState extends ContentEntityBase implements ContentModerat
   }
 
   /**
+<<<<<<< HEAD
    * Default value callback for the 'uid' base field definition.
    *
    * @see \Drupal\content_moderation\Entity\ContentModerationState::baseFieldDefinitions()
@@ -168,6 +173,8 @@ class ContentModerationState extends ContentEntityBase implements ContentModerat
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function save() {

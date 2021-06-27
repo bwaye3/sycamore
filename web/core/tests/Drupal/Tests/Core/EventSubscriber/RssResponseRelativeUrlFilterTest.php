@@ -6,7 +6,11 @@ use Drupal\Core\EventSubscriber\RssResponseRelativeUrlFilter;
 use Drupal\Tests\UnitTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+=======
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
+>>>>>>> dev
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
@@ -111,7 +115,11 @@ RSS;
    * @param string $expected_content
    */
   public function testOnResponse($content, $expected_content) {
+<<<<<<< HEAD
     $event = new FilterResponseEvent(
+=======
+    $event = new ResponseEvent(
+>>>>>>> dev
       $this->prophesize(HttpKernelInterface::class)->reveal(),
       Request::create('/'),
       HttpKernelInterface::MASTER_REQUEST,

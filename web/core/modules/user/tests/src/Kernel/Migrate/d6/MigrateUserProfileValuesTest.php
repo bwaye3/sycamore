@@ -15,12 +15,20 @@ class MigrateUserProfileValuesTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['language'];
+=======
+  protected static $modules = ['language'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->executeMigrations([
@@ -40,6 +48,7 @@ class MigrateUserProfileValuesTest extends MigrateDrupal6TestBase {
   public function testUserProfileValues() {
     $user = User::load(2);
     $this->assertNotNull($user);
+<<<<<<< HEAD
     $this->assertIdentical('red', $user->profile_color->value);
     $expected = <<<EOT
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nulla sapien, congue nec risus ut, adipiscing aliquet felis. Maecenas quis justo vel nulla varius euismod. Quisque metus metus, cursus sit amet sem non, bibendum vehicula elit. Cras dui nisl, eleifend at iaculis vitae, lacinia ut felis. Nullam aliquam ligula volutpat nulla consectetur accumsan. Maecenas tincidunt molestie diam, a accumsan enim fringilla sit amet. Morbi a tincidunt tellus. Donec imperdiet scelerisque porta. Sed quis sem bibendum eros congue sodales. Vivamus vel fermentum est, at rutrum orci. Nunc consectetur purus ut dolor pulvinar, ut volutpat felis congue. Cras tincidunt odio sed neque sollicitudin, vehicula tempor metus scelerisque.
@@ -59,6 +68,29 @@ EOT;
     $this->assertNull($user->profile_blog->title);
     $this->assertIdentical([], $user->profile_blog->options);
     $this->assertIdentical('http://example.com/blog', $user->profile_blog->uri);
+=======
+    $this->assertSame('red', $user->profile_color->value);
+    // cSpell:disable
+    $expected = <<<EOT
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nulla sapien, congue nec risus ut, adipiscing aliquet felis. Maecenas quis justo vel nulla varius euismod. Quisque metus metus, cursus sit amet sem non, bibendum vehicula elit. Cras dui nisl, eleifend at iaculis vitae, lacinia ut felis. Nullam aliquam ligula volutpat nulla consectetur accumsan. Maecenas tincidunt molestie diam, a accumsan enim fringilla sit amet. Morbi a tincidunt tellus. Donec imperdiet scelerisque porta. Sed quis sem bibendum eros congue sodales. Vivamus vel fermentum est, at rutrum orci. Nunc consectetur purus ut dolor pulvinar, ut volutpat felis congue. Cras tincidunt odio sed neque sollicitudin, vehicula tempor metus scelerisque.
+EOT;
+    // cSpell:enable
+    $this->assertSame($expected, $user->profile_biography->value);
+    $this->assertSame('1', $user->profile_sell_address->value);
+    $this->assertSame('Back\slash', $user->profile_sold_to->value);
+    $this->assertSame('AC/DC', $user->profile_bands[0]->value);
+    $this->assertSame('Eagles', $user->profile_bands[1]->value);
+    $this->assertSame('Elton John', $user->profile_bands[2]->value);
+    $this->assertSame('Lemonheads', $user->profile_bands[3]->value);
+    $this->assertSame('Rolling Stones', $user->profile_bands[4]->value);
+    $this->assertSame('Queen', $user->profile_bands[5]->value);
+    $this->assertSame('The White Stripes', $user->profile_bands[6]->value);
+    $this->assertSame('1974-06-02', $user->profile_birthdate->value);
+    $this->assertSame('http://example.com/blog', $user->profile_blog->uri);
+    $this->assertNull($user->profile_blog->title);
+    $this->assertSame([], $user->profile_blog->options);
+    $this->assertSame('http://example.com/blog', $user->profile_blog->uri);
+>>>>>>> dev
 
     // Check that the source profile field names that are longer than 32
     // characters have been migrated.
@@ -68,10 +100,17 @@ EOT;
     $this->assertNull($user->profile_really_really_love_mig1->value);
 
     $user = User::load(8);
+<<<<<<< HEAD
     $this->assertIdentical('Forward/slash', $user->profile_sold_to->value);
 
     $user = User::load(15);
     $this->assertIdentical('Dot.in.the.middle', $user->profile_sold_to->value);
+=======
+    $this->assertSame('Forward/slash', $user->profile_sold_to->value);
+
+    $user = User::load(15);
+    $this->assertSame('Dot.in.the.middle', $user->profile_sold_to->value);
+>>>>>>> dev
   }
 
 }

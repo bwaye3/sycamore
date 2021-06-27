@@ -37,6 +37,11 @@ class ConfigSnapshotSubscriber implements EventSubscriberInterface {
   /**
    * Constructs the ConfigSnapshotSubscriber object.
    *
+<<<<<<< HEAD
+=======
+   * @param \Drupal\Core\Config\ConfigManagerInterface $config_manager
+   *   The configuration manager.
+>>>>>>> dev
    * @param \Drupal\Core\Config\StorageInterface $source_storage
    *   The source storage used to discover configuration changes.
    * @param \Drupal\Core\Config\StorageInterface $snapshot_storage

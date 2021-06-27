@@ -9,7 +9,11 @@ use Drupal\Core\Link;
 use Drupal\Tests\UnitTestCase;
 
 /**
+<<<<<<< HEAD
  * @coversDefaultClass \Drupal\Core\Entity\Entity
+=======
+ * @coversDefaultClass \Drupal\Core\Entity\EntityBase
+>>>>>>> dev
  * @group Entity
  */
 class EntityLinkTest extends UnitTestCase {
@@ -38,7 +42,11 @@ class EntityLinkTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->entityTypeManager = $this->createMock(EntityTypeManagerInterface::class);
@@ -53,6 +61,7 @@ class EntityLinkTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests for the Entity::link() method
    *
    * @covers ::link
@@ -123,10 +132,14 @@ class EntityLinkTest extends UnitTestCase {
 
   /**
    * Tests for the Entity::toLink() method
+=======
+   * Tests for the Entity::toLink() method.
+>>>>>>> dev
    *
    * @covers ::toLink
    *
    * @dataProvider providerTestLink
+<<<<<<< HEAD
    *
    * @group legacy
    *
@@ -134,6 +147,8 @@ class EntityLinkTest extends UnitTestCase {
    * \Drupal\Core\Entity\EntityTypeInterface::getLabelCallback() which is mocked
    * and triggers a deprecation error. Remove when ::getLabelCallback() is
    * removed.
+=======
+>>>>>>> dev
    */
   public function testToLink($entity_label, $link_text, $expected_text, $link_rel = 'canonical', array $link_options = []) {
     $language = new Language(['id' => 'es']);
@@ -150,7 +165,10 @@ class EntityLinkTest extends UnitTestCase {
     $route_name = $route_name_map[$link_rel];
     $entity_id = 'test_entity_id';
     $entity_type_id = 'test_entity_type';
+<<<<<<< HEAD
     $expected = '<a href="/test_entity_type/test_entity_id">' . $expected_text . '</a>';
+=======
+>>>>>>> dev
 
     $entity_type = $this->createMock('Drupal\Core\Entity\EntityTypeInterface');
     $entity_type->expects($this->once())

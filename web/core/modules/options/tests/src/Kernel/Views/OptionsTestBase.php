@@ -19,7 +19,11 @@ abstract class OptionsTestBase extends ViewsKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'options',
     'options_test_views',
     'node',
@@ -52,7 +56,11 @@ abstract class OptionsTestBase extends ViewsKernelTestBase {
     parent::setUp();
     $this->mockStandardInstall();
 
+<<<<<<< HEAD
     ViewTestData::createTestViews(get_class($this), ['options_test_views']);
+=======
+    ViewTestData::createTestViews(static::class, ['options_test_views']);
+>>>>>>> dev
 
     $settings = [];
     $settings['type'] = 'article';

@@ -2,6 +2,10 @@
 
 namespace Drupal\content_moderation\Entity\Handler;
 
+<<<<<<< HEAD
+=======
+use Drupal\Core\Entity\ContentEntityInterface;
+>>>>>>> dev
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -29,4 +33,17 @@ class BlockContentModerationHandler extends ModerationHandler {
     $form['revision']['#description'] = $this->t('Revisions must be required when moderation is enabled.');
   }
 
+<<<<<<< HEAD
+=======
+  /**
+   * {@inheritdoc}
+   */
+  public function isModeratedEntity(ContentEntityInterface $entity) {
+    // Only reusable blocks can be moderated individually. Non-reusable or
+    // inline blocks are moderated as part of the entity they are a composite
+    // of.
+    return $entity->isReusable();
+  }
+
+>>>>>>> dev
 }

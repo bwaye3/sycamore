@@ -2,7 +2,10 @@
 
 namespace Drupal\Tests\comment\Functional;
 
+<<<<<<< HEAD
 use Drupal\Component\Render\FormattableMarkup;
+=======
+>>>>>>> dev
 use Drupal\comment\CommentManagerInterface;
 
 /**
@@ -41,7 +44,11 @@ class CommentThreadingTest extends CommentTestBase {
     $comment1 = $this->postComment($this->node, $comment_text, $subject_text, TRUE);
     // Confirm that the comment was created and has the correct threading.
     $this->assertTrue($this->commentExists($comment1), 'Comment #1. Comment found.');
+<<<<<<< HEAD
     $this->assertEqual($comment1->getThread(), '01/');
+=======
+    $this->assertEquals('01/', $comment1->getThread());
+>>>>>>> dev
     // Confirm that there is no reference to a parent comment.
     $this->assertNoParentLink($comment1->id());
 
@@ -57,7 +64,11 @@ class CommentThreadingTest extends CommentTestBase {
 
     // Confirm that the comment was created and has the correct threading.
     $this->assertTrue($this->commentExists($comment1_3, TRUE), 'Comment #1_3. Reply found.');
+<<<<<<< HEAD
     $this->assertEqual($comment1_3->getThread(), '01.00/');
+=======
+    $this->assertEquals('01.00/', $comment1_3->getThread());
+>>>>>>> dev
     // Confirm that there is a link to the parent comment.
     $this->assertParentLink($comment1_3->id(), $comment1->id());
 
@@ -67,7 +78,11 @@ class CommentThreadingTest extends CommentTestBase {
 
     // Confirm that the comment was created and has the correct threading.
     $this->assertTrue($this->commentExists($comment1_3_4, TRUE), 'Comment #1_3_4. Second reply found.');
+<<<<<<< HEAD
     $this->assertEqual($comment1_3_4->getThread(), '01.00.00/');
+=======
+    $this->assertEquals('01.00.00/', $comment1_3_4->getThread());
+>>>>>>> dev
     // Confirm that there is a link to the parent comment.
     $this->assertParentLink($comment1_3_4->id(), $comment1_3->id());
 
@@ -78,7 +93,11 @@ class CommentThreadingTest extends CommentTestBase {
 
     // Confirm that the comment was created and has the correct threading.
     $this->assertTrue($this->commentExists($comment1_5), 'Comment #1_5. Third reply found.');
+<<<<<<< HEAD
     $this->assertEqual($comment1_5->getThread(), '01.01/');
+=======
+    $this->assertEquals('01.01/', $comment1_5->getThread());
+>>>>>>> dev
     // Confirm that there is a link to the parent comment.
     $this->assertParentLink($comment1_5->id(), $comment1->id());
 
@@ -90,7 +109,11 @@ class CommentThreadingTest extends CommentTestBase {
     $comment5 = $this->postComment($this->node, $comment_text, $subject_text, TRUE);
     // Confirm that the comment was created and has the correct threading.
     $this->assertTrue($this->commentExists($comment5), 'Comment #5. Second comment found.');
+<<<<<<< HEAD
     $this->assertEqual($comment5->getThread(), '03/');
+=======
+    $this->assertEquals('03/', $comment5->getThread());
+>>>>>>> dev
     // Confirm that there is no link to a parent comment.
     $this->assertNoParentLink($comment5->id());
 
@@ -100,7 +123,11 @@ class CommentThreadingTest extends CommentTestBase {
 
     // Confirm that the comment was created and has the correct threading.
     $this->assertTrue($this->commentExists($comment5_6, TRUE), 'Comment #6. Reply found.');
+<<<<<<< HEAD
     $this->assertEqual($comment5_6->getThread(), '03.00/');
+=======
+    $this->assertEquals('03.00/', $comment5_6->getThread());
+>>>>>>> dev
     // Confirm that there is a link to the parent comment.
     $this->assertParentLink($comment5_6->id(), $comment5->id());
 
@@ -110,7 +137,11 @@ class CommentThreadingTest extends CommentTestBase {
 
     // Confirm that the comment was created and has the correct threading.
     $this->assertTrue($this->commentExists($comment5_6_7, TRUE), 'Comment #5_6_7. Second reply found.');
+<<<<<<< HEAD
     $this->assertEqual($comment5_6_7->getThread(), '03.00.00/');
+=======
+    $this->assertEquals('03.00.00/', $comment5_6_7->getThread());
+>>>>>>> dev
     // Confirm that there is a link to the parent comment.
     $this->assertParentLink($comment5_6_7->id(), $comment5_6->id());
 
@@ -120,7 +151,11 @@ class CommentThreadingTest extends CommentTestBase {
 
     // Confirm that the comment was created and has the correct threading.
     $this->assertTrue($this->commentExists($comment5_8), 'Comment #5_8. Third reply found.');
+<<<<<<< HEAD
     $this->assertEqual($comment5_8->getThread(), '03.01/');
+=======
+    $this->assertEquals('03.01/', $comment5_8->getThread());
+>>>>>>> dev
     // Confirm that there is a link to the parent comment.
     $this->assertParentLink($comment5_8->id(), $comment5->id());
   }
@@ -143,6 +178,7 @@ class CommentThreadingTest extends CommentTestBase {
     //  </article>
     $pattern = "//article[@id='comment-$cid']//p[contains(@class, 'parent')]//a[contains(@href, 'comment-$pid')]";
 
+<<<<<<< HEAD
     $this->assertFieldByXpath($pattern, NULL, new FormattableMarkup(
       'Comment %cid has a link to parent %pid.',
       [
@@ -150,6 +186,9 @@ class CommentThreadingTest extends CommentTestBase {
         '%pid' => $pid,
       ]
     ));
+=======
+    $this->assertSession()->elementExists('xpath', $pattern);
+>>>>>>> dev
   }
 
   /**
@@ -166,12 +205,16 @@ class CommentThreadingTest extends CommentTestBase {
     //  </article>
 
     $pattern = "//article[@id='comment-$cid']//p[contains(@class, 'parent')]";
+<<<<<<< HEAD
     $this->assertNoFieldByXpath($pattern, NULL, new FormattableMarkup(
       'Comment %cid does not have a link to a parent.',
       [
         '%cid' => $cid,
       ]
     ));
+=======
+    $this->assertSession()->elementNotExists('xpath', $pattern);
+>>>>>>> dev
   }
 
 }

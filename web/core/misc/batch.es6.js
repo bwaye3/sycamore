@@ -3,7 +3,11 @@
  * Drupal's batch API.
  */
 
+<<<<<<< HEAD
 (function($, Drupal) {
+=======
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * Attaches the batch behavior to progress bars.
    *

@@ -3,7 +3,10 @@ type: module
 description: 'Manages the user registration and login system.'
 package: Core
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 required: true
 configure: user.admin_index
 dependencies:

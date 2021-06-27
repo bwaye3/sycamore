@@ -179,4 +179,17 @@ abstract class Query implements PlaceholderInterface {
     return $this->comments;
   }
 
+<<<<<<< HEAD
+=======
+  /**
+   * Gets the database connection to be used for the query.
+   *
+   * @return \Drupal\Core\Database\Connection
+   *   The database connection to be used for the query.
+   */
+  public function getConnection() {
+    return $this->connection;
+  }
+
+>>>>>>> dev
 }

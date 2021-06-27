@@ -2,7 +2,11 @@
 
 namespace Drupal\Core\Session;
 
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\Event;
+=======
+use Drupal\Component\EventDispatcher\Event;
+>>>>>>> dev
 
 /**
  * Event fired when an account is set for the current session.

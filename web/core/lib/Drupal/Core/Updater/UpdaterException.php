@@ -3,7 +3,11 @@
 namespace Drupal\Core\Updater;
 
 /**
+<<<<<<< HEAD
  * Defines a Exception class for the Drupal\Core\Updater\Updater class
+=======
+ * Defines an Exception class for the Drupal\Core\Updater\Updater class
+>>>>>>> dev
  * hierarchy.
  *
  * This is identical to the base Exception class, we just give it a more

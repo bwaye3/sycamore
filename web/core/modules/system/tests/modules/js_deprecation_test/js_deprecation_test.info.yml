@@ -3,4 +3,7 @@ description: 'Provides deprecated code that can be used for tests'
 type: module
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

@@ -4,6 +4,10 @@ namespace Drupal\Tests\system\Functional\Theme;
 
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Tests\BrowserTestBase;
+<<<<<<< HEAD
+=======
+use Twig\Error\SyntaxError;
+>>>>>>> dev
 
 /**
  * Tests Twig "trans" tags.
@@ -17,7 +21,11 @@ class TwigTransTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'theme_test',
     'twig_theme_test',
     'locale',
@@ -49,7 +57,11 @@ class TwigTransTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Setup test_theme.
@@ -73,11 +85,19 @@ class TwigTransTest extends BrowserTestBase {
     $this->rebuildContainer();
 
     // Check that lolspeak is the default language for the site.
+<<<<<<< HEAD
     $this->assertEqual(\Drupal::languageManager()->getDefaultLanguage()->getId(), 'xx', 'Lolspeak is the default language');
   }
 
   /**
    * Test Twig "trans" tags.
+=======
+    $this->assertEquals('xx', \Drupal::languageManager()->getDefaultLanguage()->getId(), 'Lolspeak is the default language');
+  }
+
+  /**
+   * Tests Twig "trans" tags.
+>>>>>>> dev
    */
   public function testTwigTransTags() {
     // Run this once without and once with Twig debug because trans can work
@@ -97,7 +117,11 @@ class TwigTransTest extends BrowserTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test empty Twig "trans" tags.
+=======
+   * Tests empty Twig "trans" tags.
+>>>>>>> dev
    */
   public function testEmptyTwigTransTags() {
     $elements = [
@@ -112,7 +136,11 @@ class TwigTransTest extends BrowserTestBase {
 
       $this->fail('{% trans %}{% endtrans %} did not throw an exception.');
     }
+<<<<<<< HEAD
     catch (\Twig_Error_Syntax $e) {
+=======
+    catch (SyntaxError $e) {
+>>>>>>> dev
       $this->assertStringContainsString('{% trans %} tag cannot be empty', $e->getMessage());
     }
     catch (\Exception $e) {
@@ -124,6 +152,7 @@ class TwigTransTest extends BrowserTestBase {
    * Asserts Twig trans tags.
    */
   protected function assertTwigTransTags() {
+<<<<<<< HEAD
     $this->assertText(
       'OH HAI SUNZ',
       '{% trans "Hello sun." %} was successfully translated.'
@@ -191,6 +220,61 @@ class TwigTransTest extends BrowserTestBase {
     // Makes sure https://www.drupal.org/node/2489024 doesn't happen without
     // twig debug.
     $this->assertNoText(pi(), 'Running php code inside a Twig trans is not possible.');
+=======
+    // Assert that {% trans "Hello sun." %} is translated correctly.
+    $this->assertSession()->pageTextContains('OH HAI SUNZ');
+
+    // Assert that {% trans "Hello sun." %} with {"context": "Lolspeak"} is
+    // translated correctly.
+    $this->assertSession()->pageTextContains('O HAI SUNZZZZZZZ');
+
+    // Assert that {{ "Hello Earth."|trans }} is translated correctly.
+    $this->assertSession()->pageTextContains('O HERRO ERRRF.');
+
+    // Assert that {% trans %}Hello moon.{% endtrans %} is translated correctly.
+    $this->assertSession()->pageTextContains('OH HAI TEH MUUN');
+
+    // Assert that {% trans %} with {% plural count = 1 %} is translated
+    // correctly.
+    $this->assertSession()->pageTextContains('O HAI STARRRRR');
+
+    // Assert that {% trans %} with {% plural count = 2 %} is translated
+    // correctly.
+    $this->assertSession()->pageTextContains('O HAI 2 STARZZZZ');
+
+    // Assert that {{ token }} was successfully translated and prefixed
+    // with "@".
+    $this->assertRaw('ESCAPEE: &amp;&quot;&lt;&gt;');
+
+    // Assert that {{ token|placeholder }} was successfully translated and
+    // prefixed with "%".
+    $this->assertRaw('PLAYSHOLDR: <em class="placeholder">&amp;&quot;&lt;&gt;</em>');
+
+    // Assert that {{ complex.tokens }} were successfully translated with
+    // appropriate prefixes.
+    $this->assertRaw('DIS complex token HAZ LENGTH OV: 3. IT CONTAYNZ: <em class="placeholder">12345</em> AN &amp;&quot;&lt;&gt;.');
+
+    // Assert that {% trans %} with a context only msgid is excluded from
+    // translation.
+    $this->assertSession()->pageTextContains('I have context.');
+
+    // Assert that {% trans with {"context": "Lolspeak"} %} was successfully
+    // translated with context.
+    $this->assertSession()->pageTextContains('I HAZ KONTEX.');
+
+    // Assert that {% trans with {"langcode": "zz"} %} is successfully
+    // translated in specified language.
+    $this->assertSession()->pageTextContains('O HAI NU TXT.');
+
+    // Assert that {% trans with {"context": "Lolspeak", "langcode": "zz"} %}
+    // is successfully translated with context in specified language.
+    $this->assertSession()->pageTextContains('O HAI NU TXTZZZZ.');
+
+    // Makes sure https://www.drupal.org/node/2489024 doesn't happen without
+    // twig debug.
+    // Ensure that running php code inside a Twig trans is not possible.
+    $this->assertNoText(pi());
+>>>>>>> dev
   }
 
   /**
@@ -211,8 +295,14 @@ class TwigTransTest extends BrowserTestBase {
         ];
 
         // Install the language in Drupal.
+<<<<<<< HEAD
         $this->drupalPostForm('admin/config/regional/language/add', $edit, t('Add custom language'));
         $this->assertRaw('"edit-languages-' . $langcode . '-weight"', 'Language code found.');
+=======
+        $this->drupalGet('admin/config/regional/language/add');
+        $this->submitForm($edit, 'Add custom language');
+        $this->assertRaw('"edit-languages-' . $langcode . '-weight"');
+>>>>>>> dev
 
         // Import the custom .po contents for the language.
         $filename = $file_system->tempnam('temporary://', "po_") . '.po';
@@ -222,7 +312,12 @@ class TwigTransTest extends BrowserTestBase {
           'langcode' => $langcode,
           'customized' => TRUE,
         ];
+<<<<<<< HEAD
         $this->drupalPostForm('admin/config/regional/translate/import', $options, t('Import'));
+=======
+        $this->drupalGet('admin/config/regional/translate/import');
+        $this->submitForm($options, 'Import');
+>>>>>>> dev
         $file_system->unlink($filename);
       }
     }

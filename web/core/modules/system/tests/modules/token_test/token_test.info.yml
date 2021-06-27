@@ -1,6 +1,9 @@
 name: Token test
 type: module
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 package: Testing
 version: VERSION
 dependencies:

@@ -23,7 +23,11 @@ class UrlResolverTest extends MediaFunctionalTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->lockHttpClientToFixtures();
     $this->useFixtureProviders();
@@ -50,6 +54,13 @@ class UrlResolverTest extends MediaFunctionalTestBase {
         'http://www.collegehumor.com/video/40002870/lets-not-get-a-drink-sometime',
         'http://www.collegehumor.com/oembed.json?url=http://www.collegehumor.com/video/40002870/lets-not-get-a-drink-sometime',
       ],
+<<<<<<< HEAD
+=======
+      'match by endpoint: Facebook' => [
+        'https://www.facebook.com/facebook/videos/10153231379946729/',
+        'https://www.facebook.com/plugins/video/oembed.json?url=https://www.facebook.com/facebook/videos/10153231379946729/',
+      ],
+>>>>>>> dev
     ];
   }
 

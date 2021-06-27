@@ -55,16 +55,20 @@ class ViewsData {
       return $this->moderationInformation->isModeratedEntityType($type);
     });
 
+<<<<<<< HEAD
     // Provides a relationship from moderated entity to its moderation state
     // entity.
     $content_moderation_state_entity_type = $this->entityTypeManager->getDefinition('content_moderation_state');
     $content_moderation_state_entity_base_table = $content_moderation_state_entity_type->getDataTable() ?: $content_moderation_state_entity_type->getBaseTable();
     $content_moderation_state_entity_revision_base_table = $content_moderation_state_entity_type->getRevisionDataTable() ?: $content_moderation_state_entity_type->getRevisionTable();
+=======
+>>>>>>> dev
     foreach ($entity_types_with_moderation as $entity_type_id => $entity_type) {
       $table = $entity_type->getDataTable() ?: $entity_type->getBaseTable();
 
       $data[$table]['moderation_state'] = [
         'title' => t('Moderation state'),
+<<<<<<< HEAD
         'relationship' => [
           'id' => 'standard',
           'title' => $this->t('Deprecated: @label moderation state', ['@label' => $entity_type->getLabel()]),
@@ -80,6 +84,8 @@ class ViewsData {
           ],
           'deprecated' => 'Moderation state relationships are deprecated in drupal:8.8.0 and is removed in drupal:9.0.0. See https://www.drupal.org/node/3061099',
         ],
+=======
+>>>>>>> dev
         'field' => [
           'id' => 'moderation_state_field',
           'default_formatter' => 'content_moderation_state',
@@ -92,6 +98,7 @@ class ViewsData {
       $revision_table = $entity_type->getRevisionDataTable() ?: $entity_type->getRevisionTable();
       $data[$revision_table]['moderation_state'] = [
         'title' => t('Moderation state'),
+<<<<<<< HEAD
         'relationship' => [
           'id' => 'standard',
           'title' => $this->t('Deprecated: @label moderation state', ['@label' => $entity_type->getLabel()]),
@@ -107,6 +114,8 @@ class ViewsData {
           ],
           'deprecated' => 'Moderation state relationships are deprecated in drupal:8.8.0 and is removed in drupal:9.0.0. See https://www.drupal.org/node/3061099',
         ],
+=======
+>>>>>>> dev
         'field' => [
           'id' => 'moderation_state_field',
           'default_formatter' => 'content_moderation_state',

@@ -19,7 +19,11 @@ class PageTitleTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'test_page_test', 'form_test', 'block'];
+=======
+  protected static $modules = ['node', 'test_page_test', 'form_test', 'block'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -32,7 +36,11 @@ class PageTitleTest extends BrowserTestBase {
   /**
    * Implement setUp().
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalCreateContentType(['type' => 'page', 'name' => 'Basic page']);
@@ -60,6 +68,7 @@ class PageTitleTest extends BrowserTestBase {
       'body[0][value]' => '!SimpleTest! test body' . $this->randomMachineName(200),
     ];
     // Create the node with HTML in the title.
+<<<<<<< HEAD
     $this->drupalPostForm('node/add/page', $edit, t('Save'));
 
     $node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
@@ -71,6 +80,21 @@ class PageTitleTest extends BrowserTestBase {
 
   /**
    * Test if the title of the site is XSS proof.
+=======
+    $this->drupalGet('node/add/page');
+    $this->submitForm($edit, 'Save');
+
+    // Make sure tags in the node title are converted.
+    $node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
+    $this->assertNotNull($node, 'Node created and found in database');
+    $this->assertSession()->responseContains(Html::escape($edit['title[0][value]']));
+    $this->drupalGet("node/" . $node->id());
+    $this->assertSession()->responseContains(Html::escape($edit['title[0][value]']));
+  }
+
+  /**
+   * Tests if the title of the site is XSS proof.
+>>>>>>> dev
    */
   public function testTitleXSS() {
     // Set some title with JavaScript and HTML chars to escape.
@@ -85,7 +109,12 @@ class PageTitleTest extends BrowserTestBase {
       'site_name'    => $title,
       'site_slogan'  => $slogan,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/system/site-information', $edit, t('Save configuration'));
+=======
+    $this->drupalGet('admin/config/system/site-information');
+    $this->submitForm($edit, 'Save configuration');
+>>>>>>> dev
 
     // Place branding block with site name and slogan into header region.
     $this->drupalPlaceBlock('system_branding_block', ['region' => 'header']);
@@ -93,6 +122,7 @@ class PageTitleTest extends BrowserTestBase {
     // Load frontpage.
     $this->drupalGet('');
 
+<<<<<<< HEAD
     // Test the title.
     $this->assertNoRaw($title, 'Check for the lack of the unfiltered version of the title.');
     // Add </title> to make sure we're checking the title tag, rather than the
@@ -102,6 +132,20 @@ class PageTitleTest extends BrowserTestBase {
     // Test the slogan.
     $this->assertNoRaw($slogan, 'Check for the unfiltered version of the slogan.');
     $this->assertRaw($slogan_filtered, 'Check for the filtered version of the slogan.');
+=======
+    // Test the title, checking for the lack of the unfiltered version of the
+    // title.
+    $this->assertNoRaw($title);
+    // Add </title> to make sure we're checking the title tag, rather than the
+    // first 'heading' on the page.
+    $this->assertRaw($title_filtered . '</title>');
+
+    // Test the slogan.
+    // Check the unfiltered version of the slogan is missing.
+    $this->assertNoRaw($slogan);
+    // Check for the filtered version of the slogan.
+    $this->assertRaw($slogan_filtered);
+>>>>>>> dev
   }
 
   /**
@@ -113,16 +157,28 @@ class PageTitleTest extends BrowserTestBase {
     // Test the '#title' render array attribute.
     $this->drupalGet('test-render-title');
 
+<<<<<<< HEAD
     $this->assertTitle('Foo | Drupal');
     $result = $this->xpath('//h1[@class="page-title"]');
     $this->assertEqual('Foo', $result[0]->getText());
+=======
+    $this->assertSession()->titleEquals('Foo | Drupal');
+    $result = $this->xpath('//h1[@class="page-title"]');
+    $this->assertEquals('Foo', $result[0]->getText());
+>>>>>>> dev
 
     // Test forms
     $this->drupalGet('form-test/object-builder');
 
+<<<<<<< HEAD
     $this->assertTitle('Test dynamic title | Drupal');
     $result = $this->xpath('//h1[@class="page-title"]');
     $this->assertEqual('Test dynamic title', $result[0]->getText());
+=======
+    $this->assertSession()->titleEquals('Test dynamic title | Drupal');
+    $result = $this->xpath('//h1[@class="page-title"]');
+    $this->assertEquals('Test dynamic title', $result[0]->getText());
+>>>>>>> dev
 
     // Set some custom translated strings.
     $settings_key = 'locale_custom_strings_en';
@@ -145,24 +201,43 @@ class PageTitleTest extends BrowserTestBase {
     // Ensure that the title got translated.
     $this->drupalGet('test-page-static-title');
 
+<<<<<<< HEAD
     $this->assertTitle('Static title translated | Drupal');
     $result = $this->xpath('//h1[@class="page-title"]');
     $this->assertEqual('Static title translated', $result[0]->getText());
+=======
+    $this->assertSession()->titleEquals('Static title translated | Drupal');
+    $result = $this->xpath('//h1[@class="page-title"]');
+    $this->assertEquals('Static title translated', $result[0]->getText());
+>>>>>>> dev
 
     // Test the dynamic '_title_callback' route option.
     $this->drupalGet('test-page-dynamic-title');
 
+<<<<<<< HEAD
     $this->assertTitle('Dynamic title | Drupal');
     $result = $this->xpath('//h1[@class="page-title"]');
     $this->assertEqual('Dynamic title', $result[0]->getText());
+=======
+    $this->assertSession()->titleEquals('Dynamic title | Drupal');
+    $result = $this->xpath('//h1[@class="page-title"]');
+    $this->assertEquals('Dynamic title', $result[0]->getText());
+>>>>>>> dev
 
     // Ensure that titles are cacheable and are escaped normally if the
     // controller does not escape them.
     $this->drupalGet('test-page-cached-controller');
+<<<<<<< HEAD
     $this->assertTitle('Cached title | Drupal');
     $this->assertRaw(Html::escape('<span>Cached title</span>') . '</h1>');
     $this->drupalGet('test-page-cached-controller');
     $this->assertTitle('Cached title | Drupal');
+=======
+    $this->assertSession()->titleEquals('Cached title | Drupal');
+    $this->assertRaw(Html::escape('<span>Cached title</span>') . '</h1>');
+    $this->drupalGet('test-page-cached-controller');
+    $this->assertSession()->titleEquals('Cached title | Drupal');
+>>>>>>> dev
     $this->assertRaw(Html::escape('<span>Cached title</span>') . '</h1>');
   }
 

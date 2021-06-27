@@ -30,7 +30,11 @@ class BanIpManager implements BanIpManagerInterface {
    * {@inheritdoc}
    */
   public function isBanned($ip) {
+<<<<<<< HEAD
     return (bool) $this->connection->query("SELECT * FROM {ban_ip} WHERE ip = :ip", [':ip' => $ip])->fetchField();
+=======
+    return (bool) $this->connection->query("SELECT * FROM {ban_ip} WHERE [ip] = :ip", [':ip' => $ip])->fetchField();
+>>>>>>> dev
   }
 
   /**
@@ -63,7 +67,11 @@ class BanIpManager implements BanIpManagerInterface {
    * {@inheritdoc}
    */
   public function findById($ban_id) {
+<<<<<<< HEAD
     return $this->connection->query("SELECT ip FROM {ban_ip} WHERE iid = :iid", [':iid' => $ban_id])->fetchField();
+=======
+    return $this->connection->query("SELECT [ip] FROM {ban_ip} WHERE [iid] = :iid", [':iid' => $ban_id])->fetchField();
+>>>>>>> dev
   }
 
 }

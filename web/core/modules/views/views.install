@@ -13,6 +13,7 @@ function views_install() {
 }
 
 /**
+<<<<<<< HEAD
  * Update views field plugins.
  */
 function views_update_8001(&$sandbox) {
@@ -401,4 +402,10 @@ function views_update_8201() {
 function views_update_8500() {
   // This update has been replaced by
   // views_post_update_field_names_for_multivalue_fields().
+=======
+ * Implements hook_update_last_removed().
+ */
+function views_update_last_removed() {
+  return 8500;
+>>>>>>> dev
 }

@@ -206,6 +206,7 @@ class HtmlTagTest extends RendererTestBase {
     $element = [
       '#tag' => 'link',
     ];
+<<<<<<< HEAD
     $tags['link'] = [HtmlTag::preRenderConditionalComments($element), '<link />' . "\n"];
 
     // Conditional link.
@@ -217,11 +218,18 @@ class HtmlTagTest extends RendererTestBase {
       ],
     ];
     $tags['conditional-link'] = [HtmlTag::preRenderConditionalComments($element), "\n" . '<!--[if IE]>' . "\n" . '<link />' . "\n" . '<![endif]-->' . "\n"];
+=======
+    $tags['link'] = [$element, '<link />' . "\n"];
+>>>>>>> dev
 
     return $tags;
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * @group legacy
+>>>>>>> dev
    * @covers ::preRenderConditionalComments
    * @dataProvider providerPreRenderConditionalComments
    */

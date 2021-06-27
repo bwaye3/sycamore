@@ -2,7 +2,10 @@
 
 namespace Drupal\file\Plugin\migrate\source\d7;
 
+<<<<<<< HEAD
 use Drupal\Core\Database\Query\Condition;
+=======
+>>>>>>> dev
 use Drupal\migrate\Row;
 use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 
@@ -31,6 +34,7 @@ class File extends DrupalSqlBase {
   protected $privatePath;
 
   /**
+<<<<<<< HEAD
    * The temporary file directory path.
    *
    * @var string
@@ -38,12 +42,18 @@ class File extends DrupalSqlBase {
   protected $temporaryPath;
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function query() {
     $query = $this->select('file_managed', 'f')
       ->fields('f')
+<<<<<<< HEAD
       ->condition('uri', 'temporary://%', 'NOT LIKE')
+=======
+      ->condition('f.uri', 'temporary://%', 'NOT LIKE')
+>>>>>>> dev
       ->orderBy('f.timestamp');
 
     // Filter by scheme(s), if configured.
@@ -58,9 +68,15 @@ class File extends DrupalSqlBase {
       $schemes = array_map([$this->getDatabase(), 'escapeLike'], $schemes);
 
       // Add conditions, uri LIKE 'public://%' OR uri LIKE 'private://%'.
+<<<<<<< HEAD
       $conditions = new Condition('OR');
       foreach ($schemes as $scheme) {
         $conditions->condition('uri', $scheme . '%', 'LIKE');
+=======
+      $conditions = $this->getDatabase()->condition('OR');
+      foreach ($schemes as $scheme) {
+        $conditions->condition('f.uri', $scheme . '%', 'LIKE');
+>>>>>>> dev
       }
       $query->condition($conditions);
     }
@@ -74,7 +90,10 @@ class File extends DrupalSqlBase {
   protected function initializeIterator() {
     $this->publicPath = $this->variableGet('file_public_path', 'sites/default/files');
     $this->privatePath = $this->variableGet('file_private_path', NULL);
+<<<<<<< HEAD
     $this->temporaryPath = $this->variableGet('file_temporary_path', '/tmp');
+=======
+>>>>>>> dev
     return parent::initializeIterator();
   }
 
@@ -84,11 +103,19 @@ class File extends DrupalSqlBase {
   public function prepareRow(Row $row) {
     // Compute the filepath property, which is a physical representation of
     // the URI relative to the Drupal root.
+<<<<<<< HEAD
     $path = str_replace(['public:/', 'private:/', 'temporary:/'], [$this->publicPath, $this->privatePath, $this->temporaryPath], $row->getSourceProperty('uri'));
     // At this point, $path could be an absolute path or a relative path,
     // depending on how the scheme's variable was set. So we need to shear out
     // the source_base_path in order to make them all relative.
     $path = str_replace($this->configuration['constants']['source_base_path'], NULL, $path);
+=======
+    $path = str_replace(['public:/', 'private:/'], [$this->publicPath, $this->privatePath], $row->getSourceProperty('uri'));
+    // At this point, $path could be an absolute path or a relative path,
+    // depending on how the scheme's variable was set. So we need to shear out
+    // the source_base_path in order to make them all relative.
+    $path = preg_replace('#' . preg_quote($this->configuration['constants']['source_base_path']) . '#', '', $path, 1);
+>>>>>>> dev
     $row->setSourceProperty('filepath', $path);
     return parent::prepareRow($row);
   }
@@ -113,6 +140,10 @@ class File extends DrupalSqlBase {
    */
   public function getIds() {
     $ids['fid']['type'] = 'integer';
+<<<<<<< HEAD
+=======
+    $ids['fid']['alias'] = 'f';
+>>>>>>> dev
     return $ids;
   }
 

@@ -13,20 +13,32 @@ use Drupal\deprecation_test\Deprecation\FixtureDeprecatedClass;
  */
 class PhpUnitBridgeTest extends KernelTestBase {
 
+<<<<<<< HEAD
   public static $modules = ['deprecation_test'];
 
   /**
    * @expectedDeprecation Drupal\deprecation_test\Deprecation\FixtureDeprecatedClass is deprecated.
    */
   public function testDeprecatedClass() {
+=======
+  protected static $modules = ['deprecation_test'];
+
+  public function testDeprecatedClass() {
+    $this->expectDeprecation('Drupal\deprecation_test\Deprecation\FixtureDeprecatedClass is deprecated.');
+>>>>>>> dev
     $deprecated = new FixtureDeprecatedClass();
     $this->assertEquals('test', $deprecated->testFunction());
   }
 
+<<<<<<< HEAD
   /**
    * @expectedDeprecation This is the deprecation message for deprecation_test_function().
    */
   public function testDeprecatedFunction() {
+=======
+  public function testDeprecatedFunction() {
+    $this->expectDeprecation('This is the deprecation message for deprecation_test_function().');
+>>>>>>> dev
     $this->assertEquals('known_return_value', \deprecation_test_function());
   }
 

@@ -58,10 +58,17 @@ class ProtectedUserFieldConstraintValidator extends ConstraintValidator implemen
     if (!isset($items)) {
       return;
     }
+<<<<<<< HEAD
     /* @var \Drupal\Core\Field\FieldItemListInterface $items */
     $field = $items->getFieldDefinition();
 
     /* @var \Drupal\user\UserInterface $account */
+=======
+    /** @var \Drupal\Core\Field\FieldItemListInterface $items */
+    $field = $items->getFieldDefinition();
+
+    /** @var \Drupal\user\UserInterface $account */
+>>>>>>> dev
     $account = $items->getEntity();
     if (!isset($account) || !empty($account->_skipProtectedUserFieldConstraint)) {
       // Looks like we are validating a field not being part of a user, or the
@@ -72,7 +79,11 @@ class ProtectedUserFieldConstraintValidator extends ConstraintValidator implemen
     // Only validate for existing entities and if this is the current user.
     if (!$account->isNew() && $account->id() == $this->currentUser->id()) {
 
+<<<<<<< HEAD
       /* @var \Drupal\user\UserInterface $account_unchanged */
+=======
+      /** @var \Drupal\user\UserInterface $account_unchanged */
+>>>>>>> dev
       $account_unchanged = $this->userStorage
         ->loadUnchanged($account->id());
 

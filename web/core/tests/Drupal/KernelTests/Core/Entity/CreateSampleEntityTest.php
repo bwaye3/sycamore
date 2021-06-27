@@ -25,7 +25,11 @@ class CreateSampleEntityTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'path_alias',
     'system',
     'field',
@@ -41,14 +45,22 @@ class CreateSampleEntityTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     parent::setup();
+=======
+  protected function setUp(): void {
+    parent::setUp();
+>>>>>>> dev
 
     $this->installEntitySchema('file');
     $this->installEntitySchema('user');
     $this->installEntitySchema('node');
     $this->installEntitySchema('node_type');
+<<<<<<< HEAD
     $this->installEntitySchema('file');
+=======
+>>>>>>> dev
     $this->installEntitySchema('comment');
     $this->installEntitySchema('comment_type');
     $this->installEntitySchema('path_alias');

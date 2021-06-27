@@ -3,7 +3,11 @@
  * Attaches the behaviors for the Color module.
  */
 
+<<<<<<< HEAD
 (function($, Drupal) {
+=======
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * Displays farbtastic color selector and initialize color administration UI.
    *
@@ -30,14 +34,22 @@
       let focused = null;
 
       // Add Farbtastic.
+<<<<<<< HEAD
       $('<div class="color-placeholder"></div>')
         .once('color')
         .prependTo(form);
+=======
+      $('<div class="color-placeholder"></div>').once('color').prependTo(form);
+>>>>>>> dev
       const farb = $.farbtastic('.color-placeholder');
 
       // Decode reference colors to HSL.
       const reference = settings.color.reference;
+<<<<<<< HEAD
       Object.keys(reference || {}).forEach(color => {
+=======
+      Object.keys(reference || {}).forEach((color) => {
+>>>>>>> dev
         reference[color] = farb.RGBToHSL(farb.unpack(reference[color]));
       });
 
@@ -56,7 +68,11 @@
        * Resets the color scheme selector.
        */
       function resetScheme() {
+<<<<<<< HEAD
         form.find('#edit-scheme').each(function() {
+=======
+        form.find('#edit-scheme').each(function () {
+>>>>>>> dev
           this.selectedIndex = this.options.length - 1;
         });
       }
@@ -180,7 +196,11 @@
       }
 
       // Loop through all defined gradients.
+<<<<<<< HEAD
       Object.keys(settings.gradients || {}).forEach(i => {
+=======
+      Object.keys(settings.gradients || {}).forEach((i) => {
+>>>>>>> dev
         // Add element to display the gradient.
         $('.color-preview')
           .once('color')
@@ -207,13 +227,21 @@
       });
 
       // Set up colorScheme selector.
+<<<<<<< HEAD
       form.find('#edit-scheme').on('change', function() {
+=======
+      form.find('#edit-scheme').on('change', function () {
+>>>>>>> dev
         const schemes = settings.color.schemes;
         const colorScheme = this.options[this.selectedIndex].value;
         if (colorScheme !== '' && schemes[colorScheme]) {
           // Get colors of active scheme.
           colors = schemes[colorScheme];
+<<<<<<< HEAD
           Object.keys(colors || {}).forEach(fieldName => {
+=======
+          Object.keys(colors || {}).forEach((fieldName) => {
+>>>>>>> dev
             callback(
               $(`#edit-palette-${fieldName}`),
               colors[fieldName],
@@ -245,7 +273,11 @@
 
         // Add new bindings.
         focused = input;
+<<<<<<< HEAD
         farb.linkTo(color => {
+=======
+        farb.linkTo((color) => {
+>>>>>>> dev
           callback(input, color, true, false);
         });
         farb.setColor(input.value);
@@ -260,7 +292,11 @@
       // Initialize color fields.
       form
         .find('.js-color-palette input.form-text')
+<<<<<<< HEAD
         .each(function() {
+=======
+        .each(function () {
+>>>>>>> dev
           // Extract palette field name.
           this.key = this.id.substring(13);
 
@@ -278,12 +314,19 @@
               `<button class="color-palette__lock">${Drupal.t(
                 'Unlock',
               )}</button>`,
+<<<<<<< HEAD
             ).on('click', function(e) {
               e.preventDefault();
               if (toggleClick) {
                 $(this)
                   .addClass('is-unlocked')
                   .html(Drupal.t('Lock'));
+=======
+            ).on('click', function (e) {
+              e.preventDefault();
+              if (toggleClick) {
+                $(this).addClass('is-unlocked').html(Drupal.t('Lock'));
+>>>>>>> dev
                 $(hooks[i - 1]).attr(
                   'class',
                   locks[i - 2] && $(locks[i - 2]).is(':not(.is-unlocked)')
@@ -297,9 +340,13 @@
                     : 'color-palette__hook',
                 );
               } else {
+<<<<<<< HEAD
                 $(this)
                   .removeClass('is-unlocked')
                   .html(Drupal.t('Unlock'));
+=======
+                $(this).removeClass('is-unlocked').html(Drupal.t('Unlock'));
+>>>>>>> dev
                 $(hooks[i - 1]).attr(
                   'class',
                   locks[i - 2] && $(locks[i - 2]).is(':not(.is-unlocked)')
@@ -324,10 +371,14 @@
           $(this).after(hook);
           hooks.push(hook);
 
+<<<<<<< HEAD
           $(this)
             .parent()
             .find('.color-palette__lock')
             .trigger('click');
+=======
+          $(this).parent().find('.color-palette__lock').trigger('click');
+>>>>>>> dev
           this.i = i;
           inputs.push(this);
         })

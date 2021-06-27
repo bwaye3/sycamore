@@ -12,6 +12,7 @@ abstract class MigrateUpgradeExecuteTestBase extends MigrateUpgradeTestBase {
   use CreateTestContentEntitiesTrait;
 
   /**
+<<<<<<< HEAD
    * The destination site major version.
    *
    * @var string
@@ -19,6 +20,8 @@ abstract class MigrateUpgradeExecuteTestBase extends MigrateUpgradeTestBase {
   protected $destinationSiteVersion;
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   protected function setUp() {
@@ -27,6 +30,7 @@ abstract class MigrateUpgradeExecuteTestBase extends MigrateUpgradeTestBase {
     // Create content.
     $this->createContent();
 
+<<<<<<< HEAD
     // Get the current major version.
     list($this->destinationSiteVersion) = explode('.', \Drupal::VERSION, 2);
   }
@@ -142,6 +146,26 @@ abstract class MigrateUpgradeExecuteTestBase extends MigrateUpgradeTestBase {
     $this->drupalPostForm(NULL, [], t('Perform upgrade'));
     $this->assertText(t('Congratulations, you upgraded Drupal!'));
     $this->assertMigrationResults($this->getEntityCounts(), $version);
+=======
+  }
+
+  /**
+   * Executes an upgrade and then an incremental upgrade.
+   */
+  public function doUpgradeAndIncremental() {
+    // Start the upgrade process.
+    $this->submitCredentialForm();
+    $session = $this->assertSession();
+
+    $this->submitForm([], 'I acknowledge I may lose data. Continue anyway.');
+    $session->statusCodeEquals(200);
+
+    // Test the review form.
+    $this->assertReviewForm();
+
+    $this->submitForm([], 'Perform upgrade');
+    $this->assertUpgrade($this->getEntityCounts());
+>>>>>>> dev
 
     \Drupal::service('module_installer')->install(['forum']);
     \Drupal::service('module_installer')->install(['book']);
@@ -151,6 +175,7 @@ abstract class MigrateUpgradeExecuteTestBase extends MigrateUpgradeTestBase {
 
     $this->drupalGet('/upgrade');
     $session->pageTextContains("An upgrade has already been performed on this site. To perform a new migration, create a clean and empty new install of Drupal $this->destinationSiteVersion. Rollbacks are not yet supported through the user interface.");
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, [], t('Import new configuration and content from old site'));
     $this->drupalPostForm(NULL, $edits, t('Review upgrade'));
     $session->pageTextContains('WARNING: Content may be overwritten on your new site.');
@@ -166,6 +191,16 @@ abstract class MigrateUpgradeExecuteTestBase extends MigrateUpgradeTestBase {
     $this->drupalPostForm(NULL, [], t('Perform upgrade'));
     $session->pageTextContains(t('Congratulations, you upgraded Drupal!'));
     $this->assertMigrationResults($this->getEntityCountsIncremental(), $version);
+=======
+    $this->submitForm([], 'Import new configuration and content from old site');
+    $this->submitForm($this->edits, 'Review upgrade');
+    $this->submitForm([], 'I acknowledge I may lose data. Continue anyway.');
+    $session->statusCodeEquals(200);
+
+    // Run the incremental migration and check the results.
+    $this->submitForm([], 'Perform upgrade');
+    $this->assertUpgrade($this->getEntityCountsIncremental());
+>>>>>>> dev
   }
 
 }

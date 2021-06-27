@@ -48,7 +48,11 @@ class VersionByRel extends NegotiatorBase {
     assert($entity instanceof RevisionableInterface);
     switch ($version_argument) {
       case static::WORKING_COPY:
+<<<<<<< HEAD
         /* @var \Drupal\Core\Entity\RevisionableStorageInterface $entity_storage */
+=======
+        /** @var \Drupal\Core\Entity\RevisionableStorageInterface $entity_storage */
+>>>>>>> dev
         $entity_storage = $this->entityTypeManager->getStorage($entity->getEntityTypeId());
         return static::ensureVersionExists($entity_storage->getLatestRevisionId($entity->id()));
 

@@ -48,7 +48,11 @@ class ContextualDynamicContextTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'contextual',
     'node',
     'views',
@@ -57,7 +61,11 @@ class ContextualDynamicContextTest extends BrowserTestBase {
     'menu_test',
   ];
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalCreateContentType(['type' => 'page', 'name' => 'Basic page']);
@@ -115,10 +123,17 @@ class ContextualDynamicContextTest extends BrowserTestBase {
     $response = $this->renderContextualLinks($ids, 'node');
     $this->assertSame(200, $response->getStatusCode());
     $json = Json::decode((string) $response->getBody());
+<<<<<<< HEAD
     $this->assertIdentical($json[$ids[0]], '<ul class="contextual-links"><li class="entitynodeedit-form"><a href="' . base_path() . 'node/1/edit">Edit</a></li></ul>');
     $this->assertIdentical($json[$ids[1]], '');
     $this->assertIdentical($json[$ids[2]], '<ul class="contextual-links"><li class="entitynodeedit-form"><a href="' . base_path() . 'node/3/edit">Edit</a></li></ul>');
     $this->assertIdentical($json[$ids[3]], '');
+=======
+    $this->assertSame('<ul class="contextual-links"><li class="entitynodeedit-form"><a href="' . base_path() . 'node/1/edit">Edit</a></li></ul>', $json[$ids[0]]);
+    $this->assertSame('', $json[$ids[1]]);
+    $this->assertSame('<ul class="contextual-links"><li class="entitynodeedit-form"><a href="' . base_path() . 'node/3/edit">Edit</a></li></ul>', $json[$ids[2]]);
+    $this->assertSame('', $json[$ids[3]]);
+>>>>>>> dev
 
     // Verify that link language is properly handled.
     $node3->addTranslation('it')->set('title', $this->randomString())->save();
@@ -138,10 +153,17 @@ class ContextualDynamicContextTest extends BrowserTestBase {
     $response = $this->renderContextualLinks($ids, 'node');
     $this->assertSame(200, $response->getStatusCode());
     $json = Json::decode((string) $response->getBody());
+<<<<<<< HEAD
     $this->assertIdentical($json[$ids[0]], '');
     $this->assertIdentical($json[$ids[1]], '');
     $this->assertIdentical($json[$ids[2]], '');
     $this->assertIdentical($json[$ids[3]], '');
+=======
+    $this->assertSame('', $json[$ids[0]]);
+    $this->assertSame('', $json[$ids[1]]);
+    $this->assertSame('', $json[$ids[2]]);
+    $this->assertSame('', $json[$ids[3]]);
+>>>>>>> dev
 
     // Anonymous user: cannot access contextual links.
     $this->drupalLogin($this->anonymousUser);
@@ -156,7 +178,11 @@ class ContextualDynamicContextTest extends BrowserTestBase {
 
     // Get a page where contextual links are directly rendered.
     $this->drupalGet(Url::fromRoute('menu_test.contextual_test'));
+<<<<<<< HEAD
     $this->assertEscaped("<script>alert('Welcome to the jungle!')</script>");
+=======
+    $this->assertSession()->assertEscaped("<script>alert('Welcome to the jungle!')</script>");
+>>>>>>> dev
     $this->assertRaw('<li class="menu-testcontextual-hidden-manage-edit"><a href="' . base_path() . 'menu-test-contextual/1/edit" class="use-ajax" data-dialog-type="modal" data-is-something>Edit menu - contextual</a></li>');
   }
 

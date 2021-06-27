@@ -17,5 +17,12 @@ process:
       user-menu: account
   label: title
   description: description
+<<<<<<< HEAD
+=======
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: en
+>>>>>>> dev
 destination:
   plugin: entity:menu

@@ -9,19 +9,31 @@
   Drupal.behaviors.mediaTypeFormSummaries = {
     attach: function attach(context) {
       var $context = $(context);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       $context.find('#edit-workflow').drupalSetSummary(function (context) {
         var vals = [];
         $(context).find('input[name^="options"]:checked').parent().each(function () {
           vals.push(Drupal.checkPlain($(this).find('label').text()));
         });
+<<<<<<< HEAD
         if (!$(context).find('#edit-options-status').is(':checked')) {
           vals.unshift(Drupal.t('Not published'));
         }
+=======
+
+        if (!$(context).find('#edit-options-status').is(':checked')) {
+          vals.unshift(Drupal.t('Not published'));
+        }
+
+>>>>>>> dev
         return vals.join(', ');
       });
       $(context).find('#edit-language').drupalSetSummary(function (context) {
         var vals = [];
+<<<<<<< HEAD
 
         vals.push($(context).find('.js-form-item-language-configuration-langcode select option:selected').text());
 
@@ -29,6 +41,12 @@
           vals.push(Drupal.checkPlain($(this).text()));
         });
 
+=======
+        vals.push($(context).find('.js-form-item-language-configuration-langcode select option:selected').text());
+        $(context).find('input:checked').next('label').each(function () {
+          vals.push(Drupal.checkPlain($(this).text()));
+        });
+>>>>>>> dev
         return vals.join(', ');
       });
     }

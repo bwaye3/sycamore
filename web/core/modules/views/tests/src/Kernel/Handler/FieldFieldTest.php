@@ -24,7 +24,11 @@ class FieldFieldTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'field',
     'entity_test',
     'user',
@@ -68,7 +72,11 @@ class FieldFieldTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     // First setup the needed entity types before installing the views.
     parent::setUp(FALSE);
 
@@ -76,7 +84,11 @@ class FieldFieldTest extends ViewsKernelTestBase {
     $this->installEntitySchema('entity_test');
     $this->installEntitySchema('entity_test_rev');
 
+<<<<<<< HEAD
     ViewTestData::createTestViews(get_class($this), ['views_test_config']);
+=======
+    ViewTestData::createTestViews(static::class, ['views_test_config']);
+>>>>>>> dev
 
     // Bypass any field access.
     $this->adminUser = User::create(['name' => $this->randomString()]);
@@ -257,6 +269,7 @@ class FieldFieldTest extends ViewsKernelTestBase {
     $executable = Views::getView('test_field_field_test');
     $executable->execute();
 
+<<<<<<< HEAD
     $this->assertEqual('1', $executable->getStyle()->getField(0, 'id'));
     $this->assertEqual('3', $executable->getStyle()->getField(0, 'field_test'));
     $this->assertEqual('2', $executable->getStyle()->getField(1, 'id'));
@@ -269,6 +282,20 @@ class FieldFieldTest extends ViewsKernelTestBase {
     $this->assertEqual('5', $executable->getStyle()->getField(3, 'field_test'));
     $this->assertEqual('5', $executable->getStyle()->getField(4, 'id'));
     $this->assertEqual('6', $executable->getStyle()->getField(4, 'field_test'));
+=======
+    $this->assertEquals('1', $executable->getStyle()->getField(0, 'id'));
+    $this->assertEquals('3', $executable->getStyle()->getField(0, 'field_test'));
+    $this->assertEquals('2', $executable->getStyle()->getField(1, 'id'));
+    // @todo Switch this assertion to assertSame('', ...) when
+    //   https://www.drupal.org/node/2488006 gets fixed.
+    $this->assertEquals('0', $executable->getStyle()->getField(1, 'field_test'));
+    $this->assertEquals('3', $executable->getStyle()->getField(2, 'id'));
+    $this->assertEquals('8', $executable->getStyle()->getField(2, 'field_test'));
+    $this->assertEquals('4', $executable->getStyle()->getField(3, 'id'));
+    $this->assertEquals('5', $executable->getStyle()->getField(3, 'field_test'));
+    $this->assertEquals('5', $executable->getStyle()->getField(4, 'id'));
+    $this->assertEquals('6', $executable->getStyle()->getField(4, 'field_test'));
+>>>>>>> dev
   }
 
   /**
@@ -292,7 +319,11 @@ class FieldFieldTest extends ViewsKernelTestBase {
       $expected_attachments['library'][] = 'foo/fake_library';
       $expected_attachments['drupalSettings']['AttachmentIntegerFormatter'][$entity->id()] = $entity->id();
     }
+<<<<<<< HEAD
     $this->assertEqual($expected_attachments, $render['#attached']);
+=======
+    $this->assertEquals($expected_attachments, $render['#attached']);
+>>>>>>> dev
   }
 
   /**
@@ -332,10 +363,17 @@ class FieldFieldTest extends ViewsKernelTestBase {
     $executable->execute();
 
     for ($i = 0; $i < 5; $i++) {
+<<<<<<< HEAD
       $this->assertEqual((string) ($i + 1), $executable->getStyle()->getField($i, 'id'));
       $this->assertEqual('test ' . $i, $executable->getStyle()->getField($i, 'name'));
       $entity = EntityTest::load($i + 1);
       $this->assertEqual('<a href="' . $entity->toUrl()->toString() . '" hreflang="' . $entity->language()->getId() . '">test ' . $i . '</a>', (string) $executable->getStyle()->getField($i, 'name_alias'));
+=======
+      $this->assertEquals((string) ($i + 1), $executable->getStyle()->getField($i, 'id'));
+      $this->assertEquals('test ' . $i, $executable->getStyle()->getField($i, 'name'));
+      $entity = EntityTest::load($i + 1);
+      $this->assertEquals('<a href="' . $entity->toUrl()->toString() . '" hreflang="' . $entity->language()->getId() . '">test ' . $i . '</a>', (string) $executable->getStyle()->getField($i, 'name_alias'));
+>>>>>>> dev
     }
   }
 
@@ -379,6 +417,7 @@ class FieldFieldTest extends ViewsKernelTestBase {
     $executable->execute();
     $date_formatter = \Drupal::service('date.formatter');
 
+<<<<<<< HEAD
     $this->assertEqual($this->testUsers[0]->getTimeZone(), $executable->getStyle()->getField(0, 'timezone'));
     $this->assertEqual("1, 3", $executable->getStyle()->getField(0, 'field_test_multiple'));
     $this->assertEqual("1", $executable->getStyle()->getField(0, 'field_test_multiple_1'));
@@ -418,6 +457,47 @@ class FieldFieldTest extends ViewsKernelTestBase {
     $this->assertEqual($date_formatter->format($this->testUsers[4]->getCreatedTime(), 'custom', 'Y'), $executable->getStyle()->getField(4, 'created'));
     $this->assertEqual($date_formatter->format($this->testUsers[4]->getCreatedTime(), 'custom', 'H:i:s'), $executable->getStyle()->getField(4, 'created_1'));
     $this->assertEqual($date_formatter->format($this->testUsers[4]->getCreatedTime(), 'fallback'), $executable->getStyle()->getField(4, 'created_2'));
+=======
+    $this->assertEquals($this->testUsers[0]->getTimeZone(), $executable->getStyle()->getField(0, 'timezone'));
+    $this->assertEquals("1, 3", $executable->getStyle()->getField(0, 'field_test_multiple'));
+    $this->assertEquals("1", $executable->getStyle()->getField(0, 'field_test_multiple_1'));
+    $this->assertEquals("3", $executable->getStyle()->getField(0, 'field_test_multiple_2'));
+    $this->assertEquals($date_formatter->format($this->testUsers[0]->getCreatedTime(), 'custom', 'Y'), $executable->getStyle()->getField(0, 'created'));
+    $this->assertEquals($date_formatter->format($this->testUsers[0]->getCreatedTime(), 'custom', 'H:i:s'), $executable->getStyle()->getField(0, 'created_1'));
+    $this->assertEquals($date_formatter->format($this->testUsers[0]->getCreatedTime(), 'fallback'), $executable->getStyle()->getField(0, 'created_2'));
+
+    $this->assertEquals($this->testUsers[1]->getTimeZone(), $executable->getStyle()->getField(1, 'timezone'));
+    $this->assertEquals("7, 0", $executable->getStyle()->getField(1, 'field_test_multiple'));
+    $this->assertEquals("7", $executable->getStyle()->getField(1, 'field_test_multiple_1'));
+    $this->assertEquals("0", $executable->getStyle()->getField(1, 'field_test_multiple_2'));
+    $this->assertEquals($date_formatter->format($this->testUsers[1]->getCreatedTime(), 'custom', 'Y'), $executable->getStyle()->getField(1, 'created'));
+    $this->assertEquals($date_formatter->format($this->testUsers[1]->getCreatedTime(), 'custom', 'H:i:s'), $executable->getStyle()->getField(1, 'created_1'));
+    $this->assertEquals($date_formatter->format($this->testUsers[1]->getCreatedTime(), 'fallback'), $executable->getStyle()->getField(1, 'created_2'));
+
+    $this->assertEquals($this->testUsers[2]->getTimeZone(), $executable->getStyle()->getField(2, 'timezone'));
+    $this->assertEquals("3, 5", $executable->getStyle()->getField(2, 'field_test_multiple'));
+    $this->assertEquals("3", $executable->getStyle()->getField(2, 'field_test_multiple_1'));
+    $this->assertEquals("5", $executable->getStyle()->getField(2, 'field_test_multiple_2'));
+    $this->assertEquals($date_formatter->format($this->testUsers[2]->getCreatedTime(), 'custom', 'Y'), $executable->getStyle()->getField(2, 'created'));
+    $this->assertEquals($date_formatter->format($this->testUsers[2]->getCreatedTime(), 'custom', 'H:i:s'), $executable->getStyle()->getField(2, 'created_1'));
+    $this->assertEquals($date_formatter->format($this->testUsers[2]->getCreatedTime(), 'fallback'), $executable->getStyle()->getField(2, 'created_2'));
+
+    $this->assertEquals($this->testUsers[3]->getTimeZone(), $executable->getStyle()->getField(3, 'timezone'));
+    $this->assertEquals("9, 9", $executable->getStyle()->getField(3, 'field_test_multiple'));
+    $this->assertEquals("9", $executable->getStyle()->getField(3, 'field_test_multiple_1'));
+    $this->assertEquals("9", $executable->getStyle()->getField(3, 'field_test_multiple_2'));
+    $this->assertEquals($date_formatter->format($this->testUsers[3]->getCreatedTime(), 'custom', 'Y'), $executable->getStyle()->getField(3, 'created'));
+    $this->assertEquals($date_formatter->format($this->testUsers[3]->getCreatedTime(), 'custom', 'H:i:s'), $executable->getStyle()->getField(3, 'created_1'));
+    $this->assertEquals($date_formatter->format($this->testUsers[3]->getCreatedTime(), 'fallback'), $executable->getStyle()->getField(3, 'created_2'));
+
+    $this->assertEquals($this->testUsers[4]->getTimeZone(), $executable->getStyle()->getField(4, 'timezone'));
+    $this->assertEquals("9, 0", $executable->getStyle()->getField(4, 'field_test_multiple'));
+    $this->assertEquals("9", $executable->getStyle()->getField(4, 'field_test_multiple_1'));
+    $this->assertEquals("0", $executable->getStyle()->getField(4, 'field_test_multiple_2'));
+    $this->assertEquals($date_formatter->format($this->testUsers[4]->getCreatedTime(), 'custom', 'Y'), $executable->getStyle()->getField(4, 'created'));
+    $this->assertEquals($date_formatter->format($this->testUsers[4]->getCreatedTime(), 'custom', 'H:i:s'), $executable->getStyle()->getField(4, 'created_1'));
+    $this->assertEquals($date_formatter->format($this->testUsers[4]->getCreatedTime(), 'fallback'), $executable->getStyle()->getField(4, 'created_2'));
+>>>>>>> dev
   }
 
   /**
@@ -448,6 +528,7 @@ class FieldFieldTest extends ViewsKernelTestBase {
     $executable = Views::getView('test_field_field_revision_test');
     $executable->execute();
 
+<<<<<<< HEAD
     $this->assertEqual('1', $executable->getStyle()->getField(0, 'id'));
     $this->assertEqual('1', $executable->getStyle()->getField(0, 'revision_id'));
     $this->assertEqual('1', $executable->getStyle()->getField(0, 'field_test'));
@@ -467,6 +548,27 @@ class FieldFieldTest extends ViewsKernelTestBase {
     $this->assertEqual('4', $executable->getStyle()->getField(3, 'revision_id'));
     $this->assertEqual('4', $executable->getStyle()->getField(3, 'field_test'));
     $this->assertEqual('next entity value', $executable->getStyle()->getField(3, 'name'));
+=======
+    $this->assertEquals('1', $executable->getStyle()->getField(0, 'id'));
+    $this->assertEquals('1', $executable->getStyle()->getField(0, 'revision_id'));
+    $this->assertEquals('1', $executable->getStyle()->getField(0, 'field_test'));
+    $this->assertEquals('base value', $executable->getStyle()->getField(0, 'name'));
+
+    $this->assertEquals('1', $executable->getStyle()->getField(1, 'id'));
+    $this->assertEquals('2', $executable->getStyle()->getField(1, 'revision_id'));
+    $this->assertEquals('2', $executable->getStyle()->getField(1, 'field_test'));
+    $this->assertEquals('revision value1', $executable->getStyle()->getField(1, 'name'));
+
+    $this->assertEquals('1', $executable->getStyle()->getField(2, 'id'));
+    $this->assertEquals('3', $executable->getStyle()->getField(2, 'revision_id'));
+    $this->assertEquals('3', $executable->getStyle()->getField(2, 'field_test'));
+    $this->assertEquals('revision value2', $executable->getStyle()->getField(2, 'name'));
+
+    $this->assertEquals('2', $executable->getStyle()->getField(3, 'id'));
+    $this->assertEquals('4', $executable->getStyle()->getField(3, 'revision_id'));
+    $this->assertEquals('4', $executable->getStyle()->getField(3, 'field_test'));
+    $this->assertEquals('next entity value', $executable->getStyle()->getField(3, 'name'));
+>>>>>>> dev
   }
 
   /**
@@ -506,6 +608,7 @@ class FieldFieldTest extends ViewsKernelTestBase {
     $executable = Views::getView('test_field_field_revision_complex_test');
     $executable->execute();
 
+<<<<<<< HEAD
     $this->assertEqual('1', $executable->getStyle()->getField(0, 'id'));
     $this->assertEqual('1', $executable->getStyle()->getField(0, 'revision_id'));
     $this->assertEqual($this->testUsers[0]->getTimeZone(), $executable->getStyle()->getField(0, 'timezone'));
@@ -533,6 +636,35 @@ class FieldFieldTest extends ViewsKernelTestBase {
     $this->assertEqual('2, 9, 9', $executable->getStyle()->getField(3, 'field_test_multiple'));
     $this->assertEqual('2', $executable->getStyle()->getField(3, 'field_test_multiple_1'));
     $this->assertEqual('9, 9', $executable->getStyle()->getField(3, 'field_test_multiple_2'));
+=======
+    $this->assertEquals('1', $executable->getStyle()->getField(0, 'id'));
+    $this->assertEquals('1', $executable->getStyle()->getField(0, 'revision_id'));
+    $this->assertEquals($this->testUsers[0]->getTimeZone(), $executable->getStyle()->getField(0, 'timezone'));
+    $this->assertEquals('1, 3, 7', $executable->getStyle()->getField(0, 'field_test_multiple'));
+    $this->assertEquals('1', $executable->getStyle()->getField(0, 'field_test_multiple_1'));
+    $this->assertEquals('3, 7', $executable->getStyle()->getField(0, 'field_test_multiple_2'));
+
+    $this->assertEquals('1', $executable->getStyle()->getField(1, 'id'));
+    $this->assertEquals('2', $executable->getStyle()->getField(1, 'revision_id'));
+    $this->assertEquals($this->testUsers[1]->getTimeZone(), $executable->getStyle()->getField(1, 'timezone'));
+    $this->assertEquals('0, 3, 5', $executable->getStyle()->getField(1, 'field_test_multiple'));
+    $this->assertEquals('0', $executable->getStyle()->getField(1, 'field_test_multiple_1'));
+    $this->assertEquals('3, 5', $executable->getStyle()->getField(1, 'field_test_multiple_2'));
+
+    $this->assertEquals('1', $executable->getStyle()->getField(2, 'id'));
+    $this->assertEquals('3', $executable->getStyle()->getField(2, 'revision_id'));
+    $this->assertEquals($this->testUsers[2]->getTimeZone(), $executable->getStyle()->getField(2, 'timezone'));
+    $this->assertEquals('9, 9, 9', $executable->getStyle()->getField(2, 'field_test_multiple'));
+    $this->assertEquals('9', $executable->getStyle()->getField(2, 'field_test_multiple_1'));
+    $this->assertEquals('9, 9', $executable->getStyle()->getField(2, 'field_test_multiple_2'));
+
+    $this->assertEquals('2', $executable->getStyle()->getField(3, 'id'));
+    $this->assertEquals('4', $executable->getStyle()->getField(3, 'revision_id'));
+    $this->assertEquals($this->testUsers[3]->getTimeZone(), $executable->getStyle()->getField(3, 'timezone'));
+    $this->assertEquals('2, 9, 9', $executable->getStyle()->getField(3, 'field_test_multiple'));
+    $this->assertEquals('2', $executable->getStyle()->getField(3, 'field_test_multiple_1'));
+    $this->assertEquals('9, 9', $executable->getStyle()->getField(3, 'field_test_multiple_2'));
+>>>>>>> dev
   }
 
   /**
@@ -553,11 +685,19 @@ class FieldFieldTest extends ViewsKernelTestBase {
     $executable = Views::getView('test_field_field_test');
     $executable->execute();
 
+<<<<<<< HEAD
     $this->assertEqual('', $executable->getStyle()->getField(6, 'field_test'));
   }
 
   /**
    * Tests \Drupal\views\Plugin\views\field\EntityField::getValue
+=======
+    $this->assertEquals('', $executable->getStyle()->getField(6, 'field_test'));
+  }
+
+  /**
+   * Tests \Drupal\views\Plugin\views\field\EntityField::getValue.
+>>>>>>> dev
    */
   public function testGetValueMethod() {
     $bundle = 'test_bundle';

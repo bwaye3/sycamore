@@ -5,6 +5,10 @@ namespace Drupal\Tests\field\Kernel\String;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
+<<<<<<< HEAD
+=======
+use Drupal\entity_test\Entity\EntityTestLabel;
+>>>>>>> dev
 use Drupal\entity_test\Entity\EntityTestRev;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
@@ -22,7 +26,11 @@ class StringFormatterTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'field',
     'text',
     'entity_test',
@@ -61,13 +69,22 @@ class StringFormatterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Configure the theme system.
     $this->installConfig(['system', 'field']);
+<<<<<<< HEAD
     \Drupal::service('router.builder')->rebuild();
     $this->installEntitySchema('entity_test_rev');
+=======
+    $this->installEntitySchema('entity_test_rev');
+    $this->installEntitySchema('entity_test_label');
+>>>>>>> dev
 
     $this->entityType = 'entity_test_rev';
     $this->bundle = $this->entityType;
@@ -186,4 +203,49 @@ class StringFormatterTest extends KernelTestBase {
     $this->assertLinkByHref($entity->toUrl('canonical')->toString());
   }
 
+<<<<<<< HEAD
+=======
+  /**
+   * Test "link_to_entity" feature on fields which are added to config entity.
+   */
+  public function testLinkToContentForEntitiesWithNoCanonicalPath() {
+    $this->enableModules(['entity_test']);
+    $field_name = 'test_field_name';
+    $entity_type = $bundle = 'entity_test_label';
+
+    $field_storage = FieldStorageConfig::create([
+      'field_name' => $field_name,
+      'entity_type' => $entity_type,
+      'type' => 'string',
+    ]);
+    $field_storage->save();
+
+    $instance = FieldConfig::create([
+      'field_storage' => $field_storage,
+      'bundle' => $entity_type,
+      'label' => $this->randomMachineName(),
+    ]);
+    $instance->save();
+
+    $display = \Drupal::service('entity_display.repository')
+      ->getViewDisplay($entity_type, $bundle)
+      ->setComponent($field_name, [
+        'type' => 'string',
+        'settings' => [
+          'link_to_entity' => TRUE,
+        ],
+        'region' => 'content',
+      ]);
+    $display->save();
+
+    $value = $this->randomMachineName();
+    $entity = EntityTestLabel::create(['name' => 'test']);
+    $entity->{$field_name}->value = $value;
+    $entity->save();
+
+    $this->renderEntityFields($entity, $display);
+    $this->assertRaw($value);
+  }
+
+>>>>>>> dev
 }

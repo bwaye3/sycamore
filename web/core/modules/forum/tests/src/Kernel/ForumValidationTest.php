@@ -18,7 +18,17 @@ class ForumValidationTest extends EntityKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'options', 'comment', 'taxonomy', 'forum'];
+=======
+  protected static $modules = [
+    'node',
+    'options',
+    'comment',
+    'taxonomy',
+    'forum',
+  ];
+>>>>>>> dev
 
   /**
    * Tests the forum validation constraints.
@@ -46,7 +56,11 @@ class ForumValidationTest extends EntityKernelTestBase {
 
     $violations = $forum_post->validate();
     $this->assertCount(1, $violations);
+<<<<<<< HEAD
     $this->assertEqual($violations[0]->getMessage(), 'This value should not be null.');
+=======
+    $this->assertEquals('This value should not be null.', $violations[0]->getMessage());
+>>>>>>> dev
 
     // Add the forum term.
     $forum_post->set('taxonomy_forums', $forum);
@@ -57,9 +71,13 @@ class ForumValidationTest extends EntityKernelTestBase {
     $forum_post->set('taxonomy_forums', $container);
     $violations = $forum_post->validate();
     $this->assertCount(1, $violations);
+<<<<<<< HEAD
     $this->assertEqual($violations[0]->getMessage(), t('The item %forum is a forum container, not a forum. Select one of the forums below instead.', [
       '%forum' => $container->label(),
     ]));
+=======
+    $this->assertEquals(t('The item %forum is a forum container, not a forum. Select one of the forums below instead.', ['%forum' => $container->label()]), $violations[0]->getMessage());
+>>>>>>> dev
   }
 
 }

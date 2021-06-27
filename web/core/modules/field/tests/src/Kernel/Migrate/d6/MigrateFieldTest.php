@@ -15,7 +15,11 @@ class MigrateFieldTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->executeMigration('d6_field');
   }
@@ -114,6 +118,19 @@ class MigrateFieldTest extends MigrateDrupal6TestBase {
     $this->assertSame('entity_reference', $field_storage->getType());
     $this->assertSame('user', $field_storage->getSetting('target_type'));
 
+<<<<<<< HEAD
+=======
+    // Node reference to entity reference migration.
+    $field_storage = FieldStorageConfig::load('node.field_node_reference');
+    $this->assertSame('entity_reference', $field_storage->getType());
+    $this->assertSame('node', $field_storage->getSetting('target_type'));
+
+    // User reference to entity reference migration.
+    $field_storage = FieldStorageConfig::load('node.field_user_reference');
+    $this->assertSame('entity_reference', $field_storage->getType());
+    $this->assertSame('user', $field_storage->getSetting('target_type'));
+
+>>>>>>> dev
     // Validate that the source count and processed count match up.
     /** @var \Drupal\migrate\Plugin\MigrationInterface $migration */
     $migration = $this->getMigration('d6_field');

@@ -7,7 +7,10 @@ use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
+<<<<<<< HEAD
 use Drupal\Core\Plugin\Context\ContextDefinition;
+=======
+>>>>>>> dev
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Tests\UnitTestCase;
 
@@ -37,7 +40,11 @@ class DefaultPluginManagerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->expectedDefinitions = [
       'apple' => [
         'id' => 'apple',
@@ -465,6 +472,7 @@ class DefaultPluginManagerTest extends UnitTestCase {
     return $data;
   }
 
+<<<<<<< HEAD
   /**
    * @covers ::fixContextAwareDefinitions
    *
@@ -494,6 +502,8 @@ class DefaultPluginManagerTest extends UnitTestCase {
     $this->assertSame($expected, $definitions);
   }
 
+=======
+>>>>>>> dev
 }
 
 class TestPluginManagerWithDefaults extends TestPluginManager {

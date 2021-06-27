@@ -75,7 +75,11 @@ class EntityUser extends EntityContentBase {
   protected $password;
 
   /**
+<<<<<<< HEAD
    * Builds an user entity destination.
+=======
+   * Builds a user entity destination.
+>>>>>>> dev
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.

@@ -10,7 +10,11 @@ abstract class RestResourceConfigResourceTestBase extends EntityResourceTestBase
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['dblog'];
+=======
+  protected static $modules = ['dblog'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

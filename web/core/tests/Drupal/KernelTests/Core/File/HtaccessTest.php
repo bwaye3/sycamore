@@ -36,7 +36,11 @@ class HtaccessTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->public = Settings::get('file_public_path') . '/test/public';
     $this->htaccessWriter = $this->container->get('file.htaccess_writer');

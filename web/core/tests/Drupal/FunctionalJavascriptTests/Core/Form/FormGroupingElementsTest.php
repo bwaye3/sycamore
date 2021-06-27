@@ -16,7 +16,11 @@ class FormGroupingElementsTest extends WebDriverTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['form_test'];
+=======
+  protected static $modules = ['form_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -26,7 +30,11 @@ class FormGroupingElementsTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $account = $this->drupalCreateUser();

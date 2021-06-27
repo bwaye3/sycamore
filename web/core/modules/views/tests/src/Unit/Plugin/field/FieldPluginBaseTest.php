@@ -130,7 +130,11 @@ class FieldPluginBaseTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->executable = $this->getMockBuilder('Drupal\views\ViewExecutable')
@@ -210,7 +214,11 @@ class FieldPluginBaseTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test rendering as a link without a path.
+=======
+   * Tests rendering as a link without a path.
+>>>>>>> dev
    *
    * @covers ::renderAsLink
    */
@@ -230,7 +238,11 @@ class FieldPluginBaseTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test rendering with a more link.
+=======
+   * Tests rendering with a more link.
+>>>>>>> dev
    *
    * @param string $path
    *   An internal or external path.
@@ -313,7 +325,11 @@ class FieldPluginBaseTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test rendering of a link with a path and options.
+=======
+   * Tests rendering of a link with a path and options.
+>>>>>>> dev
    *
    * @dataProvider providerTestRenderAsLinkWithPathAndOptions
    * @covers ::renderAsLink
@@ -529,7 +545,11 @@ class FieldPluginBaseTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test rendering of a link with a path and options.
+=======
+   * Tests rendering of a link with a path and options.
+>>>>>>> dev
    *
    * @dataProvider providerTestRenderAsLinkWithPathAndTokens
    * @covers ::renderAsLink
@@ -589,7 +609,11 @@ class FieldPluginBaseTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test rendering of a link with a path and options.
+=======
+   * Tests rendering of a link with a path and options.
+>>>>>>> dev
    *
    * @dataProvider providerTestRenderAsExternalLinkWithPathAndTokens
    * @covers ::renderAsLink

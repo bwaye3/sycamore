@@ -5,6 +5,7 @@
  * Post update functions for Responsive Image.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 
@@ -20,4 +21,13 @@ function responsive_image_post_update_recreate_dependencies() {
       $entity_view_display->save();
     }
   });
+=======
+/**
+ * Implements hook_removed_post_updates().
+ */
+function responsive_image_removed_post_updates() {
+  return [
+    'responsive_image_post_update_recreate_dependencies' => '9.0.0',
+  ];
+>>>>>>> dev
 }

@@ -19,7 +19,11 @@ class EntityTypeWithoutLanguageFormTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'language',
     'language_test',
   ];
@@ -32,7 +36,11 @@ class EntityTypeWithoutLanguageFormTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create and log in administrative user.
@@ -49,7 +57,11 @@ class EntityTypeWithoutLanguageFormTest extends BrowserTestBase {
     // Assert that we can not enable language select from
     // content language settings page.
     $this->drupalGet('admin/config/regional/content-language');
+<<<<<<< HEAD
     $this->assertNoField('entity_types[no_language_entity_test]');
+=======
+    $this->assertSession()->fieldNotExists('entity_types[no_language_entity_test]');
+>>>>>>> dev
   }
 
 }

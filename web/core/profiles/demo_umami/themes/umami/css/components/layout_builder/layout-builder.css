@@ -13,6 +13,7 @@
 .layout-builder__message--overrides .messages__content {
   background-image: url("../../../../../../../misc/icons/73b355/location.svg");
 }
+<<<<<<< HEAD
 
 .layout-builder-form,
 .layout-builder-discard-changes,
@@ -30,3 +31,5 @@
     margin-left: 0;
   }
 }
+=======
+>>>>>>> dev

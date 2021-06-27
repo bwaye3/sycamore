@@ -6,7 +6,10 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Routing\RouteMatch;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Tests\UnitTestCase;
+<<<<<<< HEAD
 use Drupal\workflows\WorkflowDeleteAccessCheck;
+=======
+>>>>>>> dev
 use Drupal\workflows\WorkflowStateTransitionOperationsAccessCheck;
 use Drupal\workflows\WorkflowInterface;
 use Prophecy\Argument;
@@ -19,7 +22,11 @@ use Symfony\Component\Routing\Route;
 class WorkflowStateTransitionOperationsAccessCheckTest extends UnitTestCase {
 
   /**
+<<<<<<< HEAD
    * Test the access method correctly proxies to the entity access system.
+=======
+   * Tests the access method correctly proxies to the entity access system.
+>>>>>>> dev
    *
    * @covers ::access
    * @dataProvider accessTestCases
@@ -147,6 +154,7 @@ class WorkflowStateTransitionOperationsAccessCheckTest extends UnitTestCase {
     ];
   }
 
+<<<<<<< HEAD
   /**
    * @covers \Drupal\workflows\WorkflowDeleteAccessCheck::access
    * @expectedDeprecation Using the _workflow_state_delete_access check is deprecated in Drupal 8.6.0 and will be removed before Drupal 9.0.0, use _workflow_access instead. As an internal API _workflow_state_delete_access may also be removed in a minor release.
@@ -176,4 +184,6 @@ class WorkflowStateTransitionOperationsAccessCheckTest extends UnitTestCase {
     $this->assertEquals($workflow_entity_access_result, $access_check->access($route_match, $this->prophesize(AccountInterface::class)->reveal()));
   }
 
+=======
+>>>>>>> dev
 }

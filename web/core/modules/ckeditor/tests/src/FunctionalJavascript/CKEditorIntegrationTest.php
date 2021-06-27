@@ -42,12 +42,20 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'ckeditor', 'filter', 'ckeditor_test'];
+=======
+  protected static $modules = ['node', 'ckeditor', 'filter', 'ckeditor_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create a text format and associate CKEditor.
@@ -203,6 +211,7 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
     $assert_session->assertWaitOnAjaxRequest();
 
     // Check the background color of two CKEditor elements to confirm they are
+<<<<<<< HEAD
     // not overriden by the off-canvas css reset.
     $assert_session->elementExists('css', '.cke_top');
     $ckeditor_top_bg_color = $this->getSession()->evaluateScript('window.getComputedStyle(document.getElementsByClassName(\'cke_top\')[0]).backgroundColor');
@@ -211,6 +220,16 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
     $assert_session->elementExists('css', '.cke_button__source');
     $ckeditor_source_button_bg_color = $this->getSession()->evaluateScript('window.getComputedStyle(document.getElementsByClassName(\'cke_button__source\')[0]).backgroundColor');
     $this->assertEqual($ckeditor_source_button_bg_color, 'rgba(0, 0, 0, 0)');
+=======
+    // not overridden by the off-canvas css reset.
+    $assert_session->elementExists('css', '.cke_top');
+    $ckeditor_top_bg_color = $this->getSession()->evaluateScript('window.getComputedStyle(document.getElementsByClassName(\'cke_top\')[0]).backgroundColor');
+    $this->assertEquals('rgb(248, 248, 248)', $ckeditor_top_bg_color);
+
+    $assert_session->elementExists('css', '.cke_button__source');
+    $ckeditor_source_button_bg_color = $this->getSession()->evaluateScript('window.getComputedStyle(document.getElementsByClassName(\'cke_button__source\')[0]).backgroundColor');
+    $this->assertEquals('rgba(0, 0, 0, 0)', $ckeditor_source_button_bg_color);
+>>>>>>> dev
 
     // Check that only one off-canvas style is cached in local storage and that
     // it gets updated with the cache-busting query string.

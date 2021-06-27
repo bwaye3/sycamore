@@ -48,12 +48,16 @@ class ProxyBuilder {
    *
    * @param string $class_name
    *   The class name of the actual service.
+<<<<<<< HEAD
    * @param string $proxy_class_name
    *   (optional) The class name of the proxy service.
+=======
+>>>>>>> dev
    *
    * @return string
    *   The full string with namespace class and methods.
    */
+<<<<<<< HEAD
   public function build($class_name, $proxy_class_name = '') {
     $reflection = new \ReflectionClass($class_name);
 
@@ -66,6 +70,14 @@ class ProxyBuilder {
       $proxy_namespace = $this->buildProxyNamespace($class_name);
       $proxy_class_shortname = str_replace($proxy_namespace . '\\', '', $proxy_class_name);
     }
+=======
+  public function build($class_name) {
+    $reflection = new \ReflectionClass($class_name);
+
+    $proxy_class_name = $this->buildProxyClassName($class_name);
+    $proxy_namespace = $this->buildProxyNamespace($class_name);
+    $proxy_class_shortname = str_replace($proxy_namespace . '\\', '', $proxy_class_name);
+>>>>>>> dev
 
     $output = '';
     $class_documentation = <<<'EOS'
@@ -236,6 +248,25 @@ EOS;
 
     $signature_line .= implode(', ', $parameters);
     $signature_line .= ')';
+<<<<<<< HEAD
+=======
+    if ($reflection_method->hasReturnType()) {
+      $signature_line .= ': ';
+      $return_type = $reflection_method->getReturnType();
+      if ($return_type->allowsNull()) {
+        $signature_line .= '?';
+      }
+      if (!$return_type->isBuiltin()) {
+        // The parameter is a class or interface.
+        $signature_line .= '\\';
+      }
+      $return_type_name = $return_type->getName();
+      if ($return_type_name === 'self') {
+        $return_type_name = $reflection_method->getDeclaringClass()->getName();
+      }
+      $signature_line .= $return_type_name;
+    }
+>>>>>>> dev
 
     $output = $signature_line . "\n{\n";
 
@@ -256,6 +287,7 @@ EOS;
   protected function buildParameter(\ReflectionParameter $parameter) {
     $parameter_string = '';
 
+<<<<<<< HEAD
     if ($parameter->isArray()) {
       $parameter_string .= 'array ';
     }
@@ -264,6 +296,22 @@ EOS;
     }
     elseif ($class = $parameter->getClass()) {
       $parameter_string .= '\\' . $class->getName() . ' ';
+=======
+    if ($parameter->hasType()) {
+      $type = $parameter->getType();
+      if ($type->allowsNull()) {
+        $parameter_string .= '?';
+      }
+      if (!$type->isBuiltin()) {
+        // The parameter is a class or interface.
+        $parameter_string .= '\\';
+      }
+      $type_name = $type->getName();
+      if ($type_name === 'self') {
+        $type_name = $parameter->getDeclaringClass()->getName();
+      }
+      $parameter_string .= $type_name . ' ';
+>>>>>>> dev
     }
 
     if ($parameter->isPassedByReference()) {
@@ -294,7 +342,16 @@ EOS;
     $function_name = $reflection_method->getName();
 
     if (!$reflection_method->isStatic()) {
+<<<<<<< HEAD
       $output .= '    return $this->lazyLoadItself()->' . $function_name . '(';
+=======
+      if ($reflection_method->getReturnType() && $reflection_method->getReturnType()->getName() === 'void') {
+        $output .= '    $this->lazyLoadItself()->' . $function_name . '(';
+      }
+      else {
+        $output .= '    return $this->lazyLoadItself()->' . $function_name . '(';
+      }
+>>>>>>> dev
     }
     else {
       $class_name = $reflection_method->getDeclaringClass()->getName();

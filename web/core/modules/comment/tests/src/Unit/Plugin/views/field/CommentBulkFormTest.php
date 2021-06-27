@@ -17,7 +17,11 @@ class CommentBulkFormTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function tearDown() {
+=======
+  protected function tearDown(): void {
+>>>>>>> dev
     parent::tearDown();
     $container = new ContainerBuilder();
     \Drupal::setContainer($container);
@@ -93,7 +97,13 @@ class CommentBulkFormTest extends UnitTestCase {
     $comment_bulk_form = new CommentBulkForm([], 'comment_bulk_form', $definition, $entity_type_manager, $language_manager, $messenger, $entity_repository);
     $comment_bulk_form->init($executable, $display, $options);
 
+<<<<<<< HEAD
     $this->assertAttributeEquals(array_slice($actions, 0, -1, TRUE), 'actions', $comment_bulk_form);
+=======
+    $reflected_actions = (new \ReflectionObject($comment_bulk_form))->getProperty('actions');
+    $reflected_actions->setAccessible(TRUE);
+    $this->assertEquals(array_slice($actions, 0, -1, TRUE), $reflected_actions->getValue($comment_bulk_form));
+>>>>>>> dev
   }
 
 }

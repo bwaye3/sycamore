@@ -27,7 +27,11 @@ class ContactLinkTest extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['contact_test_views'];
+=======
+  protected static $modules = ['contact_test_views'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -44,10 +48,17 @@ class ContactLinkTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
     parent::setUp($import_test_views);
 
     ViewTestData::createTestViews(get_class($this), ['contact_test_views']);
+=======
+  protected function setUp($import_test_views = TRUE): void {
+    parent::setUp($import_test_views);
+
+    ViewTestData::createTestViews(static::class, ['contact_test_views']);
+>>>>>>> dev
 
     $this->userData = $this->container->get('user.data');
   }
@@ -100,6 +111,7 @@ class ContactLinkTest extends ViewTestBase {
    *   Users which should have contact links.
    */
   public function assertContactLinks(array $accounts, array $names) {
+<<<<<<< HEAD
     $result = $this->xpath('//div[contains(@class, "views-field-contact")]//a');
     $this->assertEqual(count($result), count($names));
     foreach ($names as $name) {
@@ -107,6 +119,12 @@ class ContactLinkTest extends ViewTestBase {
 
       $result = $this->xpath('//div[contains(@class, "views-field-contact")]//a[contains(@href, :url)]', [':url' => $account->toUrl('contact-form')->toString()]);
       $this->assertGreaterThan(0, count($result));
+=======
+    $this->assertSession()->elementsCount('xpath', '//div[contains(@class, "views-field-contact")]//a', count($names));
+    foreach ($names as $name) {
+      $account_url = $accounts[$name]->toUrl('contact-form')->toString();
+      $this->assertSession()->elementExists('xpath', "//div[contains(@class, 'views-field-contact')]//a[contains(@href, '$account_url')]");
+>>>>>>> dev
     }
   }
 

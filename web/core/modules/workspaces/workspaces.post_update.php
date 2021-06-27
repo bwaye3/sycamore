@@ -5,6 +5,7 @@
  * Post update functions for the Workspaces module.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Site\Settings;
@@ -144,6 +145,8 @@ function workspaces_post_update_update_deploy_form_display() {
   }
 }
 
+=======
+>>>>>>> dev
 /**
  * Removes the workspace association entity and field schema data.
  */
@@ -162,3 +165,18 @@ function workspaces_post_update_remove_association_schema_data() {
   ];
   \Drupal::keyValue('entity.storage_schema.sql')->deleteMultiple($keys);
 }
+<<<<<<< HEAD
+=======
+
+/**
+ * Implements hook_removed_post_updates().
+ */
+function workspaces_removed_post_updates() {
+  return [
+    'workspaces_post_update_access_clear_caches' => '9.0.0',
+    'workspaces_post_update_remove_default_workspace' => '9.0.0',
+    'workspaces_post_update_move_association_data' => '9.0.0',
+    'workspaces_post_update_update_deploy_form_display' => '9.0.0',
+  ];
+}
+>>>>>>> dev

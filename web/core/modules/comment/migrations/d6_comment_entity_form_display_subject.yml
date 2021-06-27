@@ -4,7 +4,11 @@ migration_tags:
   - Drupal 6
   - Configuration
 source:
+<<<<<<< HEAD
   plugin: d6_node_type
+=======
+  plugin: comment_type
+>>>>>>> dev
   constants:
     entity_type: comment
     field_name: subject

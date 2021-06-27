@@ -19,7 +19,11 @@ class CKEditorToolbarButtonTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['filter', 'editor', 'ckeditor', 'locale'];
+=======
+  protected static $modules = ['filter', 'editor', 'ckeditor', 'locale'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -29,7 +33,11 @@ class CKEditorToolbarButtonTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create a text format and associate this with CKEditor.
@@ -62,10 +70,19 @@ class CKEditorToolbarButtonTest extends BrowserTestBase {
     // Install the Arabic language (which is RTL) and configure as the default.
     $edit = [];
     $edit['predefined_langcode'] = 'ar';
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/language/add', $edit, t('Add language'));
 
     $edit = ['site_default_language' => 'ar'];
     $this->drupalPostForm('admin/config/regional/language', $edit, t('Save configuration'));
+=======
+    $this->drupalGet('admin/config/regional/language/add');
+    $this->submitForm($edit, 'Add language');
+
+    $edit = ['site_default_language' => 'ar'];
+    $this->drupalGet('admin/config/regional/language');
+    $this->submitForm($edit, 'Save configuration');
+>>>>>>> dev
     // Once the default language is changed, go to the tested text format
     // configuration page.
     $this->drupalGet('admin/config/content/formats/manage/full_html');

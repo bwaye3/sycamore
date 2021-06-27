@@ -9,7 +9,11 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+=======
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
+>>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -96,10 +100,17 @@ class ResourceResponseValidator implements EventSubscriberInterface {
   /**
    * Validates JSON:API responses.
    *
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpKernel\Event\FilterResponseEvent $event
    *   The event to process.
    */
   public function onResponse(FilterResponseEvent $event) {
+=======
+   * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
+   *   The event to process.
+   */
+  public function onResponse(ResponseEvent $event) {
+>>>>>>> dev
     $response = $event->getResponse();
     if (strpos($response->headers->get('Content-Type'), 'application/vnd.api+json') === FALSE) {
       return;

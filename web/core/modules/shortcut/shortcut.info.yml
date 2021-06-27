@@ -3,7 +3,10 @@ type: module
 description: 'Allows users to manage customizable lists of shortcut links.'
 package: Core
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 configure: entity.shortcut_set.collection
 dependencies:
   - drupal:link

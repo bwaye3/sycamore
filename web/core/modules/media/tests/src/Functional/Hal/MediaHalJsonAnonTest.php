@@ -2,7 +2,10 @@
 
 namespace Drupal\Tests\media\Functional\Hal;
 
+<<<<<<< HEAD
 use Drupal\Core\Cache\Cache;
+=======
+>>>>>>> dev
 use Drupal\file\Entity\File;
 use Drupal\Tests\hal\Functional\EntityResource\HalEntityNormalizationTrait;
 use Drupal\Tests\media\Functional\Rest\MediaResourceTestBase;
@@ -20,7 +23,11 @@ class MediaHalJsonAnonTest extends MediaResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['hal'];
+=======
+  protected static $modules = ['hal'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -177,8 +184,13 @@ class MediaHalJsonAnonTest extends MediaResourceTestBase {
         'self' => [
           // @todo This can use a proper link once
           // https://www.drupal.org/project/drupal/issues/2907402 is complete.
+<<<<<<< HEAD
           // This link matches what is generated from from File::url(), a
           // resource URL is currently not available.
+=======
+          // This link matches what is generated from File::url(), a resource
+          // URL is currently not available.
+>>>>>>> dev
           'href' => file_create_url($normalization['uri'][0]['value']),
         ],
         'type' => [
@@ -223,6 +235,7 @@ class MediaHalJsonAnonTest extends MediaResourceTestBase {
     ];
   }
 
+<<<<<<< HEAD
   /**
    * {@inheritdoc}
    */
@@ -230,4 +243,6 @@ class MediaHalJsonAnonTest extends MediaResourceTestBase {
     return Cache::mergeTags(parent::getExpectedCacheTags(), ['config:hal.settings']);
   }
 
+=======
+>>>>>>> dev
 }

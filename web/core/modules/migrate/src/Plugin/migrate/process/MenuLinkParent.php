@@ -7,17 +7,62 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Menu\MenuLinkManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
+<<<<<<< HEAD
 use Drupal\migrate\MigrateLookupInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\MigrateSkipRowException;
 use Drupal\migrate\Plugin\MigrateProcessInterface;
+=======
+use Drupal\migrate\MigrateExecutableInterface;
+use Drupal\migrate\MigrateLookupInterface;
+use Drupal\migrate\MigrateSkipRowException;
+use Drupal\migrate\Plugin\MigrationInterface;
+>>>>>>> dev
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
+<<<<<<< HEAD
  * This plugin figures out menu link parent plugin IDs.
+=======
+ * Determines the parent of a menu link.
+ *
+ * Menu link item belongs to a menu such as 'Navigation' or 'Administration'.
+ * Menu link item also has a parent item unless it is the root element of the
+ * menu.
+ *
+ * This process plugin determines the parent item of a menu link. If the parent
+ * item can't be determined by ID, we try to determine it by a combination of
+ * menu name and parent link path.
+ *
+ * The source is an array of three values:
+ * - parent_id: The numeric ID of the parent menu link, or 0 if the link is the
+ *   root element of the menu.
+ * - menu_name: The name of the menu the menu link item belongs to.
+ * - parent_link_path: The Drupal path or external URL the parent of this menu
+ *   link points to.
+ *
+ * Example:
+ *
+ * @code
+ * process:
+ *   parent:
+ *     plugin: menu_link_parent
+ *     source:
+ *       - plid
+ *       - menu_name
+ *       - parent_link_path
+ * @endcode
+ * In this example, first look for a menu link that had an ID defined by 'plid'
+ * in the source (e.g., '20'). If that fails, try to determine the parent by a
+ * combination of a menu name (e.g., 'management') and a parent menu link path
+ * (e.g., 'admin/structure').
+ *
+ * @see https://www.drupal.org/docs/8/api/menu-api
+ * @see \Drupal\migrate\Plugin\MigrateProcessInterface
+>>>>>>> dev
  *
  * @MigrateProcessPlugin(
  *   id = "menu_link_parent"
@@ -26,11 +71,17 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class MenuLinkParent extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 
   /**
+<<<<<<< HEAD
+=======
+   * The menu link plugin manager.
+   *
+>>>>>>> dev
    * @var \Drupal\Core\Menu\MenuLinkManagerInterface
    */
   protected $menuLinkManager;
 
   /**
+<<<<<<< HEAD
    * The Migration process plugin.
    *
    * @var \Drupal\migrate\Plugin\MigrateProcessInterface
@@ -43,6 +94,8 @@ class MenuLinkParent extends ProcessPluginBase implements ContainerFactoryPlugin
   protected $migrationPlugin;
 
   /**
+=======
+>>>>>>> dev
    * The currently running migration.
    *
    * @var \Drupal\migrate\Plugin\MigrationInterface
@@ -57,6 +110,11 @@ class MenuLinkParent extends ProcessPluginBase implements ContainerFactoryPlugin
   protected $migrateLookup;
 
   /**
+<<<<<<< HEAD
+=======
+   * The menu link entity storage handler.
+   *
+>>>>>>> dev
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
   protected $menuLinkStorage;
@@ -79,6 +137,7 @@ class MenuLinkParent extends ProcessPluginBase implements ContainerFactoryPlugin
    * @param \Drupal\migrate\Plugin\MigrationInterface $migration
    *   The currently running migration.
    */
+<<<<<<< HEAD
   // @codingStandardsIgnoreLine
   public function __construct(array $configuration, $plugin_id, $plugin_definition, $migrate_lookup, MenuLinkManagerInterface $menu_link_manager, EntityStorageInterface $menu_link_storage, MigrationInterface $migration = NULL) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -93,6 +152,11 @@ class MenuLinkParent extends ProcessPluginBase implements ContainerFactoryPlugin
     elseif (!$migration instanceof MigrationInterface) {
       throw new \InvalidArgumentException("The seventh argument to " . __METHOD__ . " must be an instance of MigrationInterface.");
     }
+=======
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrateLookupInterface $migrate_lookup, MenuLinkManagerInterface $menu_link_manager, EntityStorageInterface $menu_link_storage, MigrationInterface $migration) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+
+>>>>>>> dev
     $this->migration = $migration;
     $this->migrateLookup = $migrate_lookup;
     $this->menuLinkManager = $menu_link_manager;
@@ -103,7 +167,10 @@ class MenuLinkParent extends ProcessPluginBase implements ContainerFactoryPlugin
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration = NULL) {
+<<<<<<< HEAD
     $migration_configuration['migration'][] = $migration->id();
+=======
+>>>>>>> dev
     return new static(
       $configuration,
       $plugin_id,
@@ -122,6 +189,7 @@ class MenuLinkParent extends ProcessPluginBase implements ContainerFactoryPlugin
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $parent_id = array_shift($value);
+<<<<<<< HEAD
     if (!$parent_id) {
       // Top level item.
       return '';
@@ -146,12 +214,24 @@ class MenuLinkParent extends ProcessPluginBase implements ContainerFactoryPlugin
       if ($lookup_result) {
         $already_migrated_id = $lookup_result[0]['id'];
       }
+=======
+
+    // Handle root elements of a menu.
+    if (!$parent_id) {
+      return '';
+    }
+
+    $lookup_result = $this->migrateLookup->lookup($this->migration->id(), [$parent_id]);
+    if ($lookup_result) {
+      $already_migrated_id = $lookup_result[0]['id'];
+>>>>>>> dev
     }
 
     if (!empty($already_migrated_id) && ($link = $this->menuLinkStorage->load($already_migrated_id))) {
       return $link->getPluginId();
     }
 
+<<<<<<< HEAD
     if (isset($value[1])) {
       list($menu_name, $parent_link_path) = $value;
 
@@ -161,16 +241,42 @@ class MenuLinkParent extends ProcessPluginBase implements ContainerFactoryPlugin
       }
       else {
         $url = Url::fromUserInput("/$parent_link_path");
+=======
+    // Parent could not be determined by ID, so we try to determine by the
+    // combination of the menu name and parent link path.
+    if (isset($value[1])) {
+      [$menu_name, $parent_link_path] = $value;
+
+      // If the parent link path is external, URL will be useless because the
+      // link will definitely not correspond to a Drupal route.
+      if (UrlHelper::isExternal($parent_link_path)) {
+        $links = $this->menuLinkStorage->loadByProperties([
+          'menu_name' => $menu_name,
+          'link.uri' => $parent_link_path,
+        ]);
+      }
+      else {
+        $url = Url::fromUserInput('/' . ltrim($parent_link_path, '/'));
+>>>>>>> dev
         if ($url->isRouted()) {
           $links = $this->menuLinkManager->loadLinksByRoute($url->getRouteName(), $url->getRouteParameters(), $menu_name);
         }
       }
+<<<<<<< HEAD
       if (count($links) == 1) {
         /** @var \Drupal\Core\Menu\MenuLinkInterface $link */
         $link = reset($links);
         return $link->getPluginId();
       }
     }
+=======
+      if (!empty($links)) {
+        return reset($links)->getPluginId();
+      }
+    }
+
+    // Parent could not be determined.
+>>>>>>> dev
     throw new MigrateSkipRowException(sprintf("No parent link found for plid '%d' in menu '%s'.", $parent_id, $value[0]));
   }
 

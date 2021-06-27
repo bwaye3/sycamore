@@ -3,7 +3,10 @@
 namespace Drupal\user\Theme;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Routing\AdminContext;
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -14,12 +17,15 @@ use Drupal\Core\Theme\ThemeNegotiatorInterface;
  * Sets the active theme on admin pages.
  */
 class AdminNegotiator implements ThemeNegotiatorInterface {
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
 
   /**
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
+=======
+>>>>>>> dev
 
   /**
    * The current user.

@@ -19,7 +19,11 @@ class ArgumentUidRevisionTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'field',
     'text',
@@ -35,7 +39,11 @@ class ArgumentUidRevisionTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->installEntitySchema('node');
@@ -43,7 +51,11 @@ class ArgumentUidRevisionTest extends ViewsKernelTestBase {
     $this->installEntitySchema('user');
     $this->installConfig(['node', 'field']);
 
+<<<<<<< HEAD
     ViewTestData::createTestViews(get_class($this), ['node_test_views']);
+=======
+    ViewTestData::createTestViews(static::class, ['node_test_views']);
+>>>>>>> dev
   }
 
   /**

@@ -20,7 +20,11 @@ class ContentTranslationOutdatedRevisionTranslationTest extends ContentTranslati
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->enableContentModeration();
   }
@@ -55,7 +59,11 @@ class ContentTranslationOutdatedRevisionTranslationTest extends ContentTranslati
       'title[0][value]' => 'Test 1.2 IT',
       'moderation_state[0][state]' => 'published',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, t('Save (this translation)'));
+=======
+    $this->submitForm($edit, 'Save (this translation)');
+>>>>>>> dev
 
     // Add a published French translation.
     $add_translation_url = Url::fromRoute("entity.{$this->entityTypeId}.content_translation_add", [
@@ -74,7 +82,11 @@ class ContentTranslationOutdatedRevisionTranslationTest extends ContentTranslati
       'title[0][value]' => 'Test 1.3 FR',
       'moderation_state[0][state]' => 'published',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, t('Save (this translation)'));
+=======
+    $this->submitForm($edit, 'Save (this translation)');
+>>>>>>> dev
 
     // Create an English draft.
     $entity = $this->storage->loadUnchanged($id);

@@ -3,6 +3,9 @@ type: module
 description: 'Records which user has read which content.'
 package: Core
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:node

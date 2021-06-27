@@ -3,5 +3,8 @@ type: module
 description: 'Module to test the help page.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 hidden: true

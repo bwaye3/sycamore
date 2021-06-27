@@ -2,9 +2,13 @@
 
 namespace Drupal\Tests\block_content\Functional;
 
+<<<<<<< HEAD
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\block_content\Entity\BlockContentType;
 use Drupal\Core\Database\Database;
+=======
+use Drupal\block_content\Entity\BlockContentType;
+>>>>>>> dev
 use Drupal\Tests\content_translation\Functional\ContentTranslationUITestBase;
 
 /**
@@ -19,7 +23,11 @@ class BlockContentTranslationUITest extends ContentTranslationUITestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'language',
     'content_translation',
     'block',
@@ -48,7 +56,11 @@ class BlockContentTranslationUITest extends ContentTranslationUITestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->entityTypeId = 'block_content';
     $this->bundle = 'basic';
     $this->testLanguageSelector = FALSE;
@@ -83,6 +95,7 @@ class BlockContentTranslationUITest extends ContentTranslationUITestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Creates a custom block.
    *
    * @param bool|string $title
@@ -108,6 +121,8 @@ class BlockContentTranslationUITest extends ContentTranslationUITestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   protected function getNewEntityValues($langcode) {
@@ -153,6 +168,7 @@ class BlockContentTranslationUITest extends ContentTranslationUITestBase {
 
     // Check that the translate operation link is shown.
     $this->drupalGet('admin/structure/block/block-content');
+<<<<<<< HEAD
     $this->assertLinkByHref('block/' . $entity->id() . '/translations');
   }
 
@@ -176,6 +192,9 @@ class BlockContentTranslationUITest extends ContentTranslationUITestBase {
     // Make sure that only a single row was inserted into the block table.
     $rows = Database::getConnection()->query('SELECT * FROM {block_content_field_data} WHERE id = :id', [':id' => $enabled_block_content->id()])->fetchAll();
     $this->assertCount(1, $rows);
+=======
+    $this->assertSession()->linkByHrefExists('block/' . $entity->id() . '/translations');
+>>>>>>> dev
   }
 
   /**

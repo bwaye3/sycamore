@@ -59,6 +59,7 @@ interface ModerationInformationInterface {
   public function isModeratedEntityType(EntityTypeInterface $entity_type);
 
   /**
+<<<<<<< HEAD
    * Loads the latest revision of a specific entity.
    *
    * @param string $entity_type_id
@@ -98,6 +99,8 @@ interface ModerationInformationInterface {
   public function getLatestRevisionId($entity_type_id, $entity_id);
 
   /**
+=======
+>>>>>>> dev
    * Returns the revision ID of the default revision for the specified entity.
    *
    * @param string $entity_type_id
@@ -123,6 +126,7 @@ interface ModerationInformationInterface {
   public function getAffectedRevisionTranslation(ContentEntityInterface $entity);
 
   /**
+<<<<<<< HEAD
    * Determines if an entity is a latest revision.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
@@ -140,6 +144,8 @@ interface ModerationInformationInterface {
   public function isLatestRevision(ContentEntityInterface $entity);
 
   /**
+=======
+>>>>>>> dev
    * Determines if a pending revision exists for the specified entity.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity

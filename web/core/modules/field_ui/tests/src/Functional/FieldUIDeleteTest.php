@@ -23,7 +23,11 @@ class FieldUIDeleteTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'field_ui',
     'field_test',
@@ -37,7 +41,11 @@ class FieldUIDeleteTest extends BrowserTestBase {
   protected $defaultTheme = 'stark';
 
   /**
+<<<<<<< HEAD
    * Test views to enable
+=======
+   * Test views to enable.
+>>>>>>> dev
    *
    * @var string[]
    */
@@ -46,7 +54,11 @@ class FieldUIDeleteTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalPlaceBlock('system_breadcrumb_block');
@@ -95,7 +107,11 @@ class FieldUIDeleteTest extends BrowserTestBase {
     $this->fieldUIAddExistingField($bundle_path2, $field_name, $field_label);
 
     \Drupal::service('module_installer')->install(['views']);
+<<<<<<< HEAD
     ViewTestData::createTestViews(get_class($this), ['field_test_views']);
+=======
+    ViewTestData::createTestViews(static::class, ['field_test_views']);
+>>>>>>> dev
 
     $view = View::load('test_view_field_delete');
     $this->assertNotNull($view);
@@ -107,8 +123,13 @@ class FieldUIDeleteTest extends BrowserTestBase {
     // Check the config dependencies of the first field, the field storage must
     // not be shown as being deleted yet.
     $this->drupalGet("$bundle_path1/fields/node.$type_name1.$field_name/delete");
+<<<<<<< HEAD
     $this->assertNoText(t('The listed configuration will be deleted.'));
     $this->assertNoText(t('View'));
+=======
+    $this->assertNoText('The listed configuration will be deleted.');
+    $this->assertNoText('View');
+>>>>>>> dev
     $this->assertNoText('test_view_field_delete');
 
     // Delete the first field.
@@ -121,9 +142,15 @@ class FieldUIDeleteTest extends BrowserTestBase {
 
     // Check the config dependencies of the first field.
     $this->drupalGet("$bundle_path2/fields/node.$type_name2.$field_name/delete");
+<<<<<<< HEAD
     $this->assertText(t('The listed configuration will be updated.'));
     $this->assertText(t('View'));
     $this->assertText('test_view_field_delete');
+=======
+    $this->assertSession()->pageTextContains('The listed configuration will be updated.');
+    $this->assertSession()->pageTextContains('View');
+    $this->assertSession()->pageTextContains('test_view_field_delete');
+>>>>>>> dev
 
     $xml = $this->cssSelect('#edit-entity-deletes');
     // Test that nothing is scheduled for deletion.

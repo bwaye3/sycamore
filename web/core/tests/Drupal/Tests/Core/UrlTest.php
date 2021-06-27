@@ -14,7 +14,11 @@ use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Routing\RouteMatch;
 use Drupal\Core\Url;
 use Drupal\Tests\UnitTestCase;
+<<<<<<< HEAD
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
+=======
+use Drupal\Core\Routing\RouteObjectInterface;
+>>>>>>> dev
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
@@ -33,7 +37,11 @@ class UrlTest extends UnitTestCase {
   protected $container;
 
   /**
+<<<<<<< HEAD
    * The URL generator
+=======
+   * The URL generator.
+>>>>>>> dev
    *
    * @var \Drupal\Core\Routing\UrlGeneratorInterface|\PHPUnit\Framework\MockObject\MockObject
    */
@@ -70,7 +78,11 @@ class UrlTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $map = [];
@@ -233,7 +245,11 @@ class UrlTest extends UnitTestCase {
       ->with('invalid-path')
       ->willReturn(FALSE);
     $url = Url::fromUri('internal:/invalid-path');
+<<<<<<< HEAD
     $this->assertSame(FALSE, $url->isRouted());
+=======
+    $this->assertFalse($url->isRouted());
+>>>>>>> dev
     $this->assertSame('base:invalid-path', $url->getUri());
   }
 
@@ -551,7 +567,11 @@ class UrlTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Data provider for testing entity URIs
+=======
+   * Data provider for testing entity URIs.
+>>>>>>> dev
    */
   public function providerTestEntityUris() {
     return [
@@ -653,7 +673,11 @@ class UrlTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Data provider for testing string entity URIs
+=======
+   * Data provider for testing string entity URIs.
+>>>>>>> dev
    */
   public function providerTestToUriStringForEntity() {
     return [

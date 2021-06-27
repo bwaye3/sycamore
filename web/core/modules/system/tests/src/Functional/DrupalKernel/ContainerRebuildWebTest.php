@@ -14,7 +14,11 @@ class ContainerRebuildWebTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['service_provider_test'];
+=======
+  protected static $modules = ['service_provider_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

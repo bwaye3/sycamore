@@ -54,11 +54,19 @@ abstract class UpdatePathTestBase extends BrowserTestBase {
   /**
    * The file path(s) to the dumped database(s) to load into the child site.
    *
+<<<<<<< HEAD
    * The file system/tests/fixtures/update/drupal-8.bare.standard.php.gz is
    * normally included first -- this sets up the base database from a bare
    * standard Drupal installation.
    *
    * The file system/tests/fixtures/update/drupal-8.filled.standard.php.gz
+=======
+   * The file system/tests/fixtures/update/drupal-8.8.0.bare.standard.php.gz is
+   * normally included first -- this sets up the base database from a bare
+   * standard Drupal installation.
+   *
+   * The file system/tests/fixtures/update/drupal-8.8.0.filled.standard.php.gz
+>>>>>>> dev
    * can also be used in case we want to test with a database filled with
    * content, and with all core modules enabled.
    *
@@ -67,6 +75,7 @@ abstract class UpdatePathTestBase extends BrowserTestBase {
   protected $databaseDumpFiles = [];
 
   /**
+<<<<<<< HEAD
    * The install profile used in the database dump file.
    *
    * @var string
@@ -74,6 +83,8 @@ abstract class UpdatePathTestBase extends BrowserTestBase {
   protected $installProfile = 'standard';
 
   /**
+=======
+>>>>>>> dev
    * Flag that indicates whether the child site has been updated.
    *
    * @var bool
@@ -125,6 +136,7 @@ abstract class UpdatePathTestBase extends BrowserTestBase {
   protected $strictConfigSchema = FALSE;
 
   /**
+<<<<<<< HEAD
    * Constructs an UpdatePathTestCase object.
    *
    * @param $test_id
@@ -142,6 +154,9 @@ abstract class UpdatePathTestBase extends BrowserTestBase {
 
   /**
    * Overrides WebTestBase::setUp() for update testing.
+=======
+   * Overrides BrowserTestBase::setUp() for update testing.
+>>>>>>> dev
    *
    * The main difference in this method is that rather than performing the
    * installation via the installer, a database is loaded. Additional work is
@@ -149,6 +164,12 @@ abstract class UpdatePathTestBase extends BrowserTestBase {
    * container that would normally be done via the installer.
    */
   protected function setUp() {
+<<<<<<< HEAD
+=======
+    parent::setUpAppRoot();
+    $this->zlibInstalled = function_exists('gzopen');
+
+>>>>>>> dev
     $request = Request::createFromGlobals();
 
     // Boot up Drupal into a state where calling the database API is possible.
@@ -252,11 +273,14 @@ abstract class UpdatePathTestBase extends BrowserTestBase {
   protected function prepareSettings() {
     parent::prepareSettings();
 
+<<<<<<< HEAD
     // Remember the profile which was used.
     $settings['settings']['install_profile'] = (object) [
       'value' => $this->installProfile,
       'required' => TRUE,
     ];
+=======
+>>>>>>> dev
     // Generate a hash salt.
     $settings['settings']['hash_salt'] = (object) [
       'value'    => Crypt::randomBytesBase64(55),

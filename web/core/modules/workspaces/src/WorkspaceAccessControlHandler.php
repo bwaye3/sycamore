@@ -50,7 +50,11 @@ class WorkspaceAccessControlHandler extends EntityAccessControlHandler {
    * {@inheritdoc}
    */
   protected function checkCreateAccess(AccountInterface $account, array $context, $entity_bundle = NULL) {
+<<<<<<< HEAD
     return AccessResult::allowedIfHasPermission($account, 'create workspace');
+=======
+    return AccessResult::allowedIfHasPermissions($account, ['administer workspaces', 'create workspace'], 'OR');
+>>>>>>> dev
   }
 
 }

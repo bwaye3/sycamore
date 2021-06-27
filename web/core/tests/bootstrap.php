@@ -8,6 +8,7 @@
  */
 
 use Drupal\Component\Assertion\Handle;
+<<<<<<< HEAD
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Constraint\Count;
 use PHPUnit\Framework\Error\Error;
@@ -19,6 +20,9 @@ use PHPUnit\Framework\SkippedTestError;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Util\Test;
 use PHPUnit\Util\Xml;
+=======
+use Drupal\TestTools\PhpUnitCompatibility\PhpUnit8\ClassWriter;
+>>>>>>> dev
 
 /**
  * Finds all valid extension directories recursively within a given directory.
@@ -56,11 +60,19 @@ function drupal_phpunit_find_extension_directories($scan_directory) {
  */
 function drupal_phpunit_contrib_extension_directory_roots($root = NULL) {
   if ($root === NULL) {
+<<<<<<< HEAD
     $root = dirname(dirname(__DIR__));
+=======
+    $root = dirname(__DIR__, 2);
+>>>>>>> dev
   }
   $paths = [
     $root . '/core/modules',
     $root . '/core/profiles',
+<<<<<<< HEAD
+=======
+    $root . '/core/themes',
+>>>>>>> dev
     $root . '/modules',
     $root . '/profiles',
     $root . '/themes',
@@ -162,7 +174,13 @@ function drupal_phpunit_populate_class_loader() {
 }
 
 // Do class loader population.
+<<<<<<< HEAD
 drupal_phpunit_populate_class_loader();
+=======
+$loader = drupal_phpunit_populate_class_loader();
+
+ClassWriter::mutateTestBase($loader);
+>>>>>>> dev
 
 // Set sane locale settings, to ensure consistent string, dates, times and
 // numbers handling.
@@ -185,6 +203,7 @@ date_default_timezone_set('Australia/Sydney');
 // thrown if an assert fails, but this call does not turn runtime assertions on
 // if they weren't on already.
 Handle::register();
+<<<<<<< HEAD
 
 // PHPUnit 4 to PHPUnit 6 bridge. Tests written for PHPUnit 4 need to work on
 // PHPUnit 6 with a minimum of fuss.
@@ -200,3 +219,5 @@ class_alias(SkippedTestError::class, '\PHPUnit_Framework_SkippedTestError');
 class_alias(TestCase::class, '\PHPUnit_Framework_TestCase');
 class_alias(Test::class, '\PHPUnit_Util_Test');
 class_alias(Xml::class, '\PHPUnit_Util_XML');
+=======
+>>>>>>> dev

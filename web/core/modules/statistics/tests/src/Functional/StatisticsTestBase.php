@@ -14,7 +14,11 @@ abstract class StatisticsTestBase extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'block', 'ban', 'statistics'];
+=======
+  protected static $modules = ['node', 'block', 'ban', 'statistics'];
+>>>>>>> dev
 
   /**
    * User with permissions to ban IP's.

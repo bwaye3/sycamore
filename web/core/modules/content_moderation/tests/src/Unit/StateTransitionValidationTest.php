@@ -10,7 +10,10 @@ use Drupal\content_moderation\StateTransitionValidation;
 use Drupal\Tests\UnitTestCase;
 use Drupal\workflow_type_test\Plugin\WorkflowType\TestType;
 use Drupal\workflows\Entity\Workflow;
+<<<<<<< HEAD
 use Drupal\workflows\State;
+=======
+>>>>>>> dev
 use Drupal\workflows\WorkflowTypeManager;
 use Prophecy\Argument;
 
@@ -30,7 +33,11 @@ class StateTransitionValidationTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create a container so that the plugin manager and workflow type can be
@@ -95,6 +102,7 @@ class StateTransitionValidationTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * @expectedDeprecation Omitting the $entity parameter from Drupal\content_moderation\StateTransitionValidation::isTransitionValid is deprecated and will be required in Drupal 9.0.0.
    * @group legacy
    */
@@ -108,6 +116,8 @@ class StateTransitionValidationTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Data provider for the user transition test.
    */
   public function userTransitionsProvider() {

@@ -48,6 +48,13 @@ class BanAdmin extends FormBase {
   /**
    * {@inheritdoc}
    *
+<<<<<<< HEAD
+=======
+   * @param array $form
+   *   A nested array form elements comprising the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+>>>>>>> dev
    * @param string $default_ip
    *   (optional) IP address to be passed on to
    *   \Drupal::formBuilder()->getForm() for use as the default value of the IP

@@ -28,7 +28,11 @@ class MessagesTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->messagesHandler = new Messages([], 'result', []);

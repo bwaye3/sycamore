@@ -28,7 +28,11 @@ class ViewTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->entityStorage = $this->createMock('Drupal\Core\Entity\EntityStorageInterface');
     $this->viewHandler = new ViewAreaPlugin([], 'view', [], $this->entityStorage);
@@ -41,8 +45,13 @@ class ViewTest extends UnitTestCase {
    * @covers ::calculateDependencies
    */
   public function testCalculateDependencies() {
+<<<<<<< HEAD
     /* @var $view_this \Drupal\views\Entity\View */
     /* @var $view_other \Drupal\views\Entity\View */
+=======
+    /** @var \Drupal\views\Entity\View $view_this */
+    /** @var \Drupal\views\Entity\View $view_other */
+>>>>>>> dev
     $view_this = $this->createMock('Drupal\views\ViewEntityInterface');
     $view_this->expects($this->any())->method('getConfigDependencyKey')->willReturn('config');
     $view_this->expects($this->any())->method('getConfigDependencyName')->willReturn('view.this');
@@ -59,10 +68,17 @@ class ViewTest extends UnitTestCase {
     $this->viewHandler->view->storage = $view_this;
 
     $this->viewHandler->options['view_to_insert'] = 'other:default';
+<<<<<<< HEAD
     $this->assertArrayEquals(['config' => ['view.other']], $this->viewHandler->calculateDependencies());
 
     $this->viewHandler->options['view_to_insert'] = 'this:default';
     $this->assertArrayEquals([], $this->viewHandler->calculateDependencies());
+=======
+    $this->assertEquals(['config' => ['view.other']], $this->viewHandler->calculateDependencies());
+
+    $this->viewHandler->options['view_to_insert'] = 'this:default';
+    $this->assertSame([], $this->viewHandler->calculateDependencies());
+>>>>>>> dev
   }
 
 }

@@ -22,6 +22,7 @@ function hal_test_hal_relation_uri_alter(&$uri, $context = []) {
     $uri = 'hal_test_relation';
   }
 }
+<<<<<<< HEAD
 
 /**
  * Implements hook_rest_type_uri_alter().
@@ -48,3 +49,5 @@ function hal_test_rest_relation_uri_alter(&$uri, $context = []) {
     $uri = 'rest_test_relation';
   }
 }
+=======
+>>>>>>> dev

@@ -14,6 +14,7 @@ use Drupal\Core\Entity\RevisionLogInterface;
 interface BlockContentInterface extends ContentEntityInterface, EntityChangedInterface, RevisionLogInterface, EntityPublishedInterface, RefinableDependentAccessInterface {
 
   /**
+<<<<<<< HEAD
    * Returns the block revision log message.
    *
    * @return string
@@ -25,6 +26,8 @@ interface BlockContentInterface extends ContentEntityInterface, EntityChangedInt
   public function getRevisionLog();
 
   /**
+=======
+>>>>>>> dev
    * Sets the block description.
    *
    * @param string $info
@@ -36,6 +39,7 @@ interface BlockContentInterface extends ContentEntityInterface, EntityChangedInt
   public function setInfo($info);
 
   /**
+<<<<<<< HEAD
    * Sets the block revision log message.
    *
    * @param string $revision_log
@@ -50,6 +54,8 @@ interface BlockContentInterface extends ContentEntityInterface, EntityChangedInt
   public function setRevisionLog($revision_log);
 
   /**
+=======
+>>>>>>> dev
    * Determines if the block is reusable or not.
    *
    * @return bool

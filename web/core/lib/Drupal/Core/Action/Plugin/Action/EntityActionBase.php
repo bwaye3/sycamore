@@ -21,7 +21,11 @@ abstract class EntityActionBase extends ActionBase implements DependentPluginInt
   protected $entityTypeManager;
 
   /**
+<<<<<<< HEAD
    * Constructs a EntityActionBase object.
+=======
+   * Constructs an EntityActionBase object.
+>>>>>>> dev
    *
    * @param mixed[] $configuration
    *   A configuration array containing information about the plugin instance.

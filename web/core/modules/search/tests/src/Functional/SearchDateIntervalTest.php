@@ -27,7 +27,11 @@ class SearchDateIntervalTest extends BrowserTestBase {
    */
   protected $defaultTheme = 'stark';
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->drupalCreateContentType(['type' => 'page', 'name' => 'Basic page']);
@@ -82,7 +86,12 @@ class SearchDateIntervalTest extends BrowserTestBase {
   public function testDateIntervalQueryAlter() {
     // Search for keyword node.
     $edit = ['keys' => 'node'];
+<<<<<<< HEAD
     $this->drupalPostForm('search/node', $edit, t('Search'));
+=======
+    $this->drupalGet('search/node');
+    $this->submitForm($edit, 'Search');
+>>>>>>> dev
 
     // The nodes must have the same node ID but the created date is different.
     // So only the Spanish translation must appear.

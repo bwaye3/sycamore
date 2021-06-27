@@ -27,7 +27,11 @@ class FilterTest extends JsonapiKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'field',
     'file',
     'image',
@@ -56,7 +60,11 @@ class FilterTest extends JsonapiKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
+=======
+  public function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->setUpSchemas();
@@ -169,7 +177,11 @@ class FilterTest extends JsonapiKernelTestBase {
       $expected_query = $case[1];
       $filter = Filter::createFromQueryParameter($parameter, $resource_type, $this->fieldResolver);
 
+<<<<<<< HEAD
       $query = $this->nodeStorage->getQuery();
+=======
+      $query = $this->nodeStorage->getQuery()->accessCheck(FALSE);
+>>>>>>> dev
 
       // Get the query condition parsed from the input.
       $condition = $filter->queryCondition($query);
@@ -192,7 +204,11 @@ class FilterTest extends JsonapiKernelTestBase {
    */
   protected function queryConditionData() {
     // ((RED or CIRCLE) or (YELLOW and SQUARE))
+<<<<<<< HEAD
     $query = $this->nodeStorage->getQuery();
+=======
+    $query = $this->nodeStorage->getQuery()->accessCheck(FALSE);
+>>>>>>> dev
 
     $or_group = $query->orConditionGroup();
 

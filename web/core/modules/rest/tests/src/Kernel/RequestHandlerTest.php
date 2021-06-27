@@ -3,8 +3,11 @@
 namespace Drupal\Tests\rest\Kernel;
 
 use Drupal\Component\Serialization\Json;
+<<<<<<< HEAD
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\ImmutableConfig;
+=======
+>>>>>>> dev
 use Drupal\Core\Routing\RouteMatch;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\rest\Plugin\ResourceBase;
@@ -30,7 +33,11 @@ class RequestHandlerTest extends KernelTestBase {
    */
   protected $requestHandler;
 
+<<<<<<< HEAD
   public static $modules = ['serialization', 'rest'];
+=======
+  protected static $modules = ['serialization', 'rest'];
+>>>>>>> dev
 
   /**
    * The entity storage.
@@ -42,6 +49,7 @@ class RequestHandlerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
     parent::setUp();
     $config_factory = $this->prophesize(ConfigFactoryInterface::class);
@@ -52,13 +60,26 @@ class RequestHandlerTest extends KernelTestBase {
     $serializer->decode(Json::encode(['this is an array']), NULL, Argument::type('array'))
       ->willReturn(['this is an array']);
     $this->requestHandler = new RequestHandler($config_factory->reveal(), $serializer->reveal());
+=======
+  public function setUp(): void {
+    parent::setUp();
+    $serializer = $this->prophesize(SerializerInterface::class);
+    $serializer->willImplement(DecoderInterface::class);
+    $serializer->decode(Json::encode(['this is an array']), 'json', Argument::type('array'))
+      ->willReturn(['this is an array']);
+    $this->requestHandler = new RequestHandler($serializer->reveal());
+>>>>>>> dev
   }
 
   /**
    * @covers ::handle
    */
   public function testHandle() {
+<<<<<<< HEAD
     $request = new Request([], [], [], [], [], [], Json::encode(['this is an array']));
+=======
+    $request = new Request([], [], [], [], [], ['CONTENT_TYPE' => 'application/json'], Json::encode(['this is an array']));
+>>>>>>> dev
     $route_match = new RouteMatch('test', (new Route('/rest/test', ['_rest_resource_config' => 'restplugin', 'example' => ''], ['_format' => 'json']))->setMethods(['GET']));
 
     $resource = $this->prophesize(StubRequestHandlerResourcePlugin::class);
@@ -98,6 +119,7 @@ class RequestHandlerTest extends KernelTestBase {
     $this->assertEquals($response, $handler_response);
   }
 
+<<<<<<< HEAD
   /**
    * @covers ::handle
    * @covers ::getLegacyParameters
@@ -142,6 +164,8 @@ class RequestHandlerTest extends KernelTestBase {
     $this->assertEquals($response, $handler_response);
   }
 
+=======
+>>>>>>> dev
 }
 
 /**
@@ -149,7 +173,11 @@ class RequestHandlerTest extends KernelTestBase {
  */
 class StubRequestHandlerResourcePlugin extends ResourceBase {
 
+<<<<<<< HEAD
   public function get($example, Request $request) {}
+=======
+  public function get($example = NULL, Request $request = NULL) {}
+>>>>>>> dev
 
   public function post() {}
 

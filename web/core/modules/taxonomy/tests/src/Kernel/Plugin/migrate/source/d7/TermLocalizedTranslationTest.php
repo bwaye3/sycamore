@@ -13,7 +13,11 @@ class TermLocalizedTranslationTest extends TermTest {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['taxonomy', 'migrate_drupal'];
+=======
+  protected static $modules = ['taxonomy', 'migrate_drupal'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -100,7 +104,11 @@ class TermLocalizedTranslationTest extends TermTest {
         'description' => 'description value 1 (description_field)',
         'weight' => 0,
         'is_container' => '',
+<<<<<<< HEAD
         'language' => 'en',
+=======
+        'language' => 'fr',
+>>>>>>> dev
         'i18n_tsid' => '0',
         'machine_name' => 'tags',
         'tdlanguage' => 'und',
@@ -108,6 +116,11 @@ class TermLocalizedTranslationTest extends TermTest {
         'property' => 'name',
         'ltlanguage' => 'fr',
         'translation' => 'fr - name value 1',
+<<<<<<< HEAD
+=======
+        'name_translated' => 'fr - name value 1',
+        'description_translated' => 'fr - description value 1',
+>>>>>>> dev
       ],
       [
         'tid' => 1,
@@ -116,7 +129,11 @@ class TermLocalizedTranslationTest extends TermTest {
         'description' => 'description value 1 (description_field)',
         'weight' => 0,
         'is_container' => '',
+<<<<<<< HEAD
         'language' => 'en',
+=======
+        'language' => 'fr',
+>>>>>>> dev
         'i18n_tsid' => '0',
         'machine_name' => 'tags',
         'tdlanguage' => 'und',
@@ -124,7 +141,58 @@ class TermLocalizedTranslationTest extends TermTest {
         'property' => 'description',
         'ltlanguage' => 'fr',
         'translation' => 'fr - description value 1',
+<<<<<<< HEAD
       ],
+=======
+        'name_translated' => 'fr - name value 1',
+        'description_translated' => 'fr - description value 1',
+      ],
+    ];
+
+    $tests[0]['expected_count'] = NULL;
+    // Get translations for the tags bundle.
+    $tests[0]['configuration']['bundle'] = ['tags'];
+
+    // The source data.
+    $tests[1] = $tests[0];
+    array_push($tests[1]['source_data']['i18n_string'],
+      [
+        'lid' => 10,
+        'objectid' => 5,
+        'type' => 'term',
+        'property' => 'name',
+        'objectindex' => '5',
+        'format' => 0,
+      ],
+      [
+        'lid' => 11,
+        'objectid' => 5,
+        'type' => 'term',
+        'property' => 'description',
+        'objectindex' => '5',
+        'format' => 0,
+       ]);
+    array_push($tests[1]['source_data']['locales_target'],
+      [
+        'lid' => 10,
+        'language' => 'fr',
+        'translation' => 'fr - name value 5',
+        'plid' => 0,
+        'plural' => 0,
+        'i18n_status' => 0,
+      ],
+      [
+        'lid' => 11,
+        'language' => 'fr',
+        'translation' => 'fr - description value 5',
+        'plid' => 0,
+        'plural' => 0,
+        'i18n_status' => 0,
+    ]);
+
+    // The expected results.
+    array_push($tests[1]['expected_data'],
+>>>>>>> dev
       [
         'tid' => 3,
         'vid' => 6,
@@ -132,7 +200,11 @@ class TermLocalizedTranslationTest extends TermTest {
         'description' => 'description value 3',
         'weight' => 0,
         'is_container' => '',
+<<<<<<< HEAD
         'language' => 'en',
+=======
+        'language' => 'zu',
+>>>>>>> dev
         'i18n_tsid' => '0',
         'machine_name' => 'categories',
         'tdlanguage' => 'und',
@@ -141,11 +213,54 @@ class TermLocalizedTranslationTest extends TermTest {
         'ltlanguage' => 'zu',
         'translation' => 'zu - name value 3',
       ],
+<<<<<<< HEAD
     ];
 
     $tests[0]['expected_count'] = NULL;
     // Empty configuration will return terms for all vocabularies.
     $tests[0]['configuration'] = [];
+=======
+      [
+        'tid' => 5,
+        'vid' => 6,
+        'name' => 'name value 5',
+        'description' => 'description value 5',
+        'weight' => 1,
+        'is_container' => '1',
+        'language' => 'fr',
+        'i18n_tsid' => '0',
+        'machine_name' => 'categories',
+        'tdlanguage' => 'und',
+        'lid' => '10',
+        'property' => 'name',
+        'ltlanguage' => 'fr',
+        'translation' => 'fr - name value 5',
+        'name_translated' => 'fr - name value 5',
+        'description_translated' => 'fr - description value 5',
+      ],
+      [
+        'tid' => 5,
+        'vid' => 6,
+        'name' => 'name value 5',
+        'description' => 'description value 5',
+        'weight' => 1,
+        'is_container' => '1',
+        'language' => 'fr',
+        'i18n_tsid' => '0',
+        'machine_name' => 'categories',
+        'tdlanguage' => 'und',
+        'lid' => '11',
+        'property' => 'description',
+        'ltlanguage' => 'fr',
+        'translation' => 'fr - description value 5',
+        'name_translated' => 'fr - name value 5',
+        'description_translated' => 'fr - description value 5',
+    ]);
+
+    $tests[1]['expected_count'] = NULL;
+    // Empty configuration will return terms for all vocabularies.
+    $tests[1]['configuration'] = [];
+>>>>>>> dev
 
     return $tests;
   }

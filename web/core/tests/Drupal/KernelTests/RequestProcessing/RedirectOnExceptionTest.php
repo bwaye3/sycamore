@@ -16,6 +16,7 @@ class RedirectOnExceptionTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'test_page_test'];
 
   /**
@@ -26,6 +27,9 @@ class RedirectOnExceptionTest extends KernelTestBase {
 
     \Drupal::service('router.builder')->rebuild();
   }
+=======
+  protected static $modules = ['system', 'test_page_test'];
+>>>>>>> dev
 
   public function testRedirectOn404() {
     \Drupal::configFactory()->getEditable('system.site')

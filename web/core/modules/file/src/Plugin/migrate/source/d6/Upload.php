@@ -18,7 +18,11 @@ class Upload extends DrupalSqlBase {
   /**
    * The join options between the node and the upload table.
    */
+<<<<<<< HEAD
   const JOIN = 'n.nid = u.nid AND n.vid = u.vid';
+=======
+  const JOIN = '[n].[nid] = [u].[nid] AND [n].[vid] = [u].[vid]';
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

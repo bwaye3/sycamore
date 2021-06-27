@@ -3,6 +3,9 @@ type: module
 description: 'Support module for testing empty title accessibility with Comment module.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:comment

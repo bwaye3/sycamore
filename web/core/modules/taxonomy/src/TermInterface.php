@@ -84,6 +84,7 @@ interface TermInterface extends ContentEntityInterface, EntityChangedInterface, 
    */
   public function setWeight($weight);
 
+<<<<<<< HEAD
   /**
    * Gets the ID of the vocabulary that owns the term.
    *
@@ -95,4 +96,6 @@ interface TermInterface extends ContentEntityInterface, EntityChangedInterface, 
    */
   public function getVocabularyId();
 
+=======
+>>>>>>> dev
 }

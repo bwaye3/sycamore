@@ -12,12 +12,22 @@ class BadPluginDefinitionException extends InvalidPluginDefinitionException {
   /**
    * Constructs a BadPluginDefinitionException.
    *
+<<<<<<< HEAD
    * For the remaining parameters see \Exception.
    *
+=======
+>>>>>>> dev
    * @param string $plugin_id
    *   The plugin ID of the mapper.
    * @param string $property
    *   The name of the property that is missing from the plugin.
+<<<<<<< HEAD
+=======
+   * @param int $code
+   *   (optional) The exception code. Defaults to 0.
+   * @param \Exception|null $previous
+   *   The previous throwable used for exception chaining.
+>>>>>>> dev
    *
    * @see \Exception
    */

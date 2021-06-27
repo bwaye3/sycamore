@@ -15,7 +15,11 @@ class ActionTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['action', 'migrate_drupal', 'system'];
+=======
+  protected static $modules = ['action', 'migrate_drupal', 'system'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

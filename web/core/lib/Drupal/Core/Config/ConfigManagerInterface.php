@@ -30,6 +30,7 @@ interface ConfigManagerInterface {
   public function loadConfigEntityByName($name);
 
   /**
+<<<<<<< HEAD
    * Gets the entity manager.
    *
    * @return \Drupal\Core\Entity\EntityManagerInterface
@@ -42,6 +43,8 @@ interface ConfigManagerInterface {
   public function getEntityManager();
 
   /**
+=======
+>>>>>>> dev
    * Gets the entity type manager.
    *
    * @return \Drupal\Core\Entity\EntityTypeManagerInterface

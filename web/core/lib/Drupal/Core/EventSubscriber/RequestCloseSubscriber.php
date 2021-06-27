@@ -4,7 +4,11 @@ namespace Drupal\Core\EventSubscriber;
 
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\PostResponseEvent;
+=======
+use Symfony\Component\HttpKernel\Event\TerminateEvent;
+>>>>>>> dev
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -35,10 +39,17 @@ class RequestCloseSubscriber implements EventSubscriberInterface {
    *   removed/changed. Also, if possible, do more light-weight shutdowns on
    *   AJAX requests.
    *
+<<<<<<< HEAD
    * @param Symfony\Component\HttpKernel\Event\PostResponseEvent $event
    *   The Event to process.
    */
   public function onTerminate(PostResponseEvent $event) {
+=======
+   * @param Symfony\Component\HttpKernel\Event\TerminateEvent $event
+   *   The Event to process.
+   */
+  public function onTerminate(TerminateEvent $event) {
+>>>>>>> dev
     $this->moduleHandler->writeCache();
   }
 

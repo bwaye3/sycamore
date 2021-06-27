@@ -1,6 +1,9 @@
 name: 'Node configuration tests'
 type: module
 description: 'Support module for node configuration tests.'
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 package: Testing
 version: VERSION

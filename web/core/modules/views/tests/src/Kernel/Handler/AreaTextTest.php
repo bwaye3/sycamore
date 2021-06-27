@@ -13,7 +13,11 @@ use Drupal\views\Views;
  */
 class AreaTextTest extends ViewsKernelTestBase {
 
+<<<<<<< HEAD
   public static $modules = ['system', 'user', 'filter'];
+=======
+  protected static $modules = ['system', 'user', 'filter'];
+>>>>>>> dev
 
   /**
    * Views used by this test.
@@ -22,7 +26,11 @@ class AreaTextTest extends ViewsKernelTestBase {
    */
   public static $testViews = ['test_view'];
 
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installConfig(['system', 'filter']);
@@ -53,6 +61,7 @@ class AreaTextTest extends ViewsKernelTestBase {
 
     $view->display_handler->handlers['header']['area']->options['content']['format'] = $this->randomString();
     $build = $view->display_handler->handlers['header']['area']->render();
+<<<<<<< HEAD
     $this->assertEqual('', $renderer->renderRoot($build), 'Nonexistent format should return empty markup.');
 
     $view->display_handler->handlers['header']['area']->options['content']['format'] = filter_default_format();
@@ -65,6 +74,20 @@ class AreaTextTest extends ViewsKernelTestBase {
     $view->display_handler->handlers['header']['area']->options['empty'] = TRUE;
     $build = $view->display_handler->handlers['header']['area']->render(TRUE);
     $this->assertEqual(check_markup($string), $renderer->renderRoot($build), 'No result, but empty enabled lead to a full header');
+=======
+    $this->assertEquals('', $renderer->renderRoot($build), 'Nonexistent format should return empty markup.');
+
+    $view->display_handler->handlers['header']['area']->options['content']['format'] = filter_default_format();
+    $build = $view->display_handler->handlers['header']['area']->render();
+    $this->assertEquals(check_markup($string), $renderer->renderRoot($build), 'Existent format should return something');
+
+    // Empty results, and it shouldn't be displayed .
+    $this->assertEquals([], $view->display_handler->handlers['header']['area']->render(TRUE), 'No result should lead to no header');
+    // Empty results, and it should be displayed.
+    $view->display_handler->handlers['header']['area']->options['empty'] = TRUE;
+    $build = $view->display_handler->handlers['header']['area']->render(TRUE);
+    $this->assertEquals(check_markup($string), $renderer->renderRoot($build), 'No result, but empty enabled lead to a full header');
+>>>>>>> dev
   }
 
 }

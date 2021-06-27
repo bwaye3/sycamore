@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 // @codingStandardsIgnoreFile
+=======
+// phpcs:ignoreFile
+>>>>>>> dev
 
 /**
  * @file

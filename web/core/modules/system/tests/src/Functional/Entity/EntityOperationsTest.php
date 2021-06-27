@@ -17,14 +17,22 @@ class EntityOperationsTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['entity_test'];
+=======
+  protected static $modules = ['entity_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create and log in user.
@@ -41,7 +49,11 @@ class EntityOperationsTest extends BrowserTestBase {
     $this->drupalGet('admin/people/roles');
     $roles = user_roles();
     foreach ($roles as $role) {
+<<<<<<< HEAD
       $this->assertLinkByHref($role->toUrl()->toString() . '/test_operation');
+=======
+      $this->assertSession()->linkByHrefExists($role->toUrl()->toString() . '/test_operation');
+>>>>>>> dev
       $this->assertSession()->linkExists(new FormattableMarkup('Test Operation: @label', ['@label' => $role->label()]));
     }
   }
@@ -50,10 +62,17 @@ class EntityOperationsTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected function createRole(array $permissions, $rid = NULL, $name = NULL, $weight = NULL) {
+<<<<<<< HEAD
     // WebTestBase::drupalCreateRole() by default uses random strings which may
     // include HTML entities for the entity label. Since in this test the entity
     // label is used to generate a link, and AssertContentTrait::assertLink() is
     // not designed to deal with links potentially containing HTML entities this
+=======
+    // The parent method uses random strings by default, which may include HTML
+    // entities for the entity label. Since in this test the entity label is
+    // used to generate a link, and AssertContentTrait::assertLink() is not
+    // designed to deal with links potentially containing HTML entities this
+>>>>>>> dev
     // causes random failures. Use a random HTML safe string instead.
     $name = $name ?: $this->randomMachineName();
     return parent::createRole($permissions, $rid, $name, $weight);

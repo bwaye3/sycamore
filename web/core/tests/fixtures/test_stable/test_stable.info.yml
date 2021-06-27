@@ -2,4 +2,7 @@ name: Test Stable
 type: theme
 description: A theme to test that stable is set as the default.
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

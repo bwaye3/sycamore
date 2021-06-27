@@ -16,7 +16,11 @@ class WhosOnlineBlockTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'user', 'block', 'views'];
+=======
+  protected static $modules = ['system', 'user', 'block', 'views'];
+>>>>>>> dev
 
   /**
    * The block being tested.
@@ -42,7 +46,11 @@ class WhosOnlineBlockTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installConfig(['system', 'block', 'views', 'user']);
     $this->installSchema('system', ['sequences']);
@@ -69,7 +77,11 @@ class WhosOnlineBlockTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the Who's Online block.
+=======
+   * Tests the Who's Online block.
+>>>>>>> dev
    */
   public function testWhosOnlineBlock() {
     $request_time = \Drupal::time()->getRequestTime();
@@ -114,7 +126,12 @@ class WhosOnlineBlockTest extends KernelTestBase {
     $this->assertText($user1->getAccountName(), 'Active user 1 found in online list.');
     $this->assertText($user2->getAccountName(), 'Active user 2 found in online list.');
     $this->assertNoText($user3->getAccountName(), 'Inactive user not found in online list.');
+<<<<<<< HEAD
     $this->assertTrue(strpos($this->getRawContent(), $user1->getAccountName()) > strpos($this->getRawContent(), $user2->getAccountName()), 'Online users are ordered correctly.');
+=======
+    // Verify that online users are ordered correctly.
+    $this->assertGreaterThan(strpos($this->getRawContent(), $user2->getAccountName()), strpos($this->getRawContent(), $user1->getAccountName()));
+>>>>>>> dev
   }
 
 }

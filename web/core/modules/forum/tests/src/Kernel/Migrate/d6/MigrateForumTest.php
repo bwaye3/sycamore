@@ -19,7 +19,11 @@ class MigrateForumTest extends MigrateNodeTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'comment',
     'forum',
     'menu_ui',
@@ -29,7 +33,11 @@ class MigrateForumTest extends MigrateNodeTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('comment');

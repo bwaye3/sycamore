@@ -506,6 +506,7 @@ class ImageStyle extends ConfigEntityBase implements ImageStyleInterface, Entity
   }
 
   /**
+<<<<<<< HEAD
    * Provides a wrapper for file_uri_scheme() to allow unit testing.
    *
    * Returns the scheme of a URI (e.g. a stream).
@@ -551,6 +552,8 @@ class ImageStyle extends ConfigEntityBase implements ImageStyleInterface, Entity
   }
 
   /**
+=======
+>>>>>>> dev
    * Provides a wrapper to allow unit testing.
    *
    * Gets the default file stream implementation.

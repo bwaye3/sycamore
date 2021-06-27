@@ -3,7 +3,10 @@ type: theme
 description: 'Test theme for configuration clash detection'
 version: VERSION
 base theme: classy
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 regions:
   content: Content
   left: Left

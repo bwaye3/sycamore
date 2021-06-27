@@ -8,7 +8,11 @@ namespace Drupal\Core\Plugin;
 trait PluginWithFormsTrait {
 
   /**
+<<<<<<< HEAD
    * {@inheritdoc}
+=======
+   * Implements \Drupal\Core\Plugin\PluginWithFormsInterface::getFormClass().
+>>>>>>> dev
    */
   public function getFormClass($operation) {
     if (isset($this->getPluginDefinition()['forms'][$operation])) {
@@ -20,7 +24,11 @@ trait PluginWithFormsTrait {
   }
 
   /**
+<<<<<<< HEAD
    * {@inheritdoc}
+=======
+   * Implements \Drupal\Core\Plugin\PluginWithFormsInterface::hasFormClass().
+>>>>>>> dev
    */
   public function hasFormClass($operation) {
     return !empty($this->getFormClass($operation));

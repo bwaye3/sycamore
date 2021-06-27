@@ -23,7 +23,11 @@ use Drupal\filter\FilterFormatInterface;
  */
 function hook_editor_info_alter(array &$editors) {
   $editors['some_other_editor']['label'] = t('A different name');
+<<<<<<< HEAD
   $editors['some_other_editor']['library']['module'] = 'myeditoroverride';
+=======
+  $editors['some_other_editor']['library']['module'] = 'my_editor_override';
+>>>>>>> dev
 }
 
 /**

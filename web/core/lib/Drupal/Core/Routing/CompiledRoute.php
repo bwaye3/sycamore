@@ -113,53 +113,105 @@ class CompiledRoute extends SymfonyCompiledRoute {
   /**
    * Returns the options.
    *
+<<<<<<< HEAD
+=======
+   * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. No direct
+   *   replacement is provided.
+   *
+   * @see https://www.drupal.org/node/3159706
+   *
+>>>>>>> dev
    * @return array
    *   The options.
    */
   public function getOptions() {
+<<<<<<< HEAD
+=======
+    @trigger_error(__METHOD__ . '() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. No direct replacement is provided. See https://www.drupal.org/node/3159706', E_USER_DEPRECATED);
+>>>>>>> dev
     return $this->route->getOptions();
   }
 
   /**
    * Returns the defaults.
    *
+<<<<<<< HEAD
+=======
+   * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. No direct
+   *   replacement is provided.
+   *
+   * @see https://www.drupal.org/node/3159706
+   *
+>>>>>>> dev
    * @return array
    *   The defaults.
    */
   public function getDefaults() {
+<<<<<<< HEAD
+=======
+    @trigger_error(__METHOD__ . '() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. No direct replacement is provided. See https://www.drupal.org/node/3159706', E_USER_DEPRECATED);
+>>>>>>> dev
     return $this->route->getDefaults();
   }
 
   /**
    * Returns the requirements.
    *
+<<<<<<< HEAD
+=======
+   * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. No direct
+   *   replacement is provided.
+   *
+   * @see https://www.drupal.org/node/3159706
+   *
+>>>>>>> dev
    * @return array
    *   The requirements.
    */
   public function getRequirements() {
+<<<<<<< HEAD
+=======
+    @trigger_error(__METHOD__ . '() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. No direct replacement is provided. See https://www.drupal.org/node/3159706', E_USER_DEPRECATED);
+>>>>>>> dev
     return $this->route->getRequirements();
   }
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function serialize() {
     // Calling the parent method is safer than trying to optimize out the extra
     // function calls.
     $data = unserialize(parent::serialize());
+=======
+  public function __serialize(): array {
+    // Calling the parent method is safer than trying to optimize out the extra
+    // function calls.
+    $data = parent::__serialize();
+>>>>>>> dev
     $data['fit'] = $this->fit;
     $data['patternOutline'] = $this->patternOutline;
     $data['numParts'] = $this->numParts;
 
+<<<<<<< HEAD
     return serialize($data);
+=======
+    return $data;
+>>>>>>> dev
   }
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function unserialize($serialized) {
     parent::unserialize($serialized);
     $data = unserialize($serialized);
+=======
+  public function __unserialize(array $data): void {
+    parent::__unserialize($data);
+>>>>>>> dev
 
     $this->fit = $data['fit'];
     $this->patternOutline = $data['patternOutline'];

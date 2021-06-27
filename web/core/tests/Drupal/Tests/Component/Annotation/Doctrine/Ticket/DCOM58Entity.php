@@ -1,5 +1,8 @@
 <?php
+<<<<<<< HEAD
 // @codingStandardsIgnoreFile
+=======
+>>>>>>> dev
 
 // Some class named Entity in the global namespace
 /**

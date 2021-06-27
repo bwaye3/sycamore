@@ -31,6 +31,7 @@ class EntityNormalizer extends ComplexDataNormalizer implements DenormalizerInte
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
    *   The entity field manager.
    */
+<<<<<<< HEAD
   public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityTypeRepositoryInterface $entity_type_repository = NULL, EntityFieldManagerInterface $entity_field_manager = NULL) {
     $this->entityTypeManager = $entity_type_manager;
     if (!$entity_type_repository) {
@@ -42,6 +43,11 @@ class EntityNormalizer extends ComplexDataNormalizer implements DenormalizerInte
       @trigger_error('The entity_field.manager service must be passed to EntityNormalizer::__construct(), it is required before Drupal 9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
       $entity_field_manager = \Drupal::service('entity_field.manager');
     }
+=======
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityTypeRepositoryInterface $entity_type_repository, EntityFieldManagerInterface $entity_field_manager) {
+    $this->entityTypeManager = $entity_type_manager;
+    $this->entityTypeRepository = $entity_type_repository;
+>>>>>>> dev
     $this->entityFieldManager = $entity_field_manager;
   }
 

@@ -22,7 +22,11 @@ class InlineBlockPrivateFilesTest extends InlineBlockTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'file',
   ];
 
@@ -41,7 +45,11 @@ class InlineBlockPrivateFilesTest extends InlineBlockTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Update the test node type to not create new revisions by default. This
@@ -58,7 +66,11 @@ class InlineBlockPrivateFilesTest extends InlineBlockTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test access to private files added via inline blocks in the layout builder.
+=======
+   * Tests access to private files added to inline blocks in the layout builder.
+>>>>>>> dev
    */
   public function testPrivateFiles() {
     $assert_session = $this->assertSession();
@@ -71,11 +83,19 @@ class InlineBlockPrivateFilesTest extends InlineBlockTestBase {
     ]));
 
     // Enable layout builder and overrides.
+<<<<<<< HEAD
     $this->drupalPostForm(
       static::FIELD_UI_PREFIX . '/display/default',
       ['layout[enabled]' => TRUE, 'layout[allow_custom]' => TRUE],
       'Save'
     );
+=======
+    $this->drupalGet(static::FIELD_UI_PREFIX . '/display/default');
+    $this->submitForm([
+      'layout[enabled]' => TRUE,
+      'layout[allow_custom]' => TRUE,
+    ], 'Save');
+>>>>>>> dev
     $this->drupalLogout();
 
     // Log in as user you can only configure layouts and access content.

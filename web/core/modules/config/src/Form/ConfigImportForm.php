@@ -48,6 +48,7 @@ class ConfigImportForm extends FormBase {
    * @param \Drupal\Core\Site\Settings $settings
    *   The settings object.
    */
+<<<<<<< HEAD
   public function __construct(StorageInterface $config_storage, FileSystemInterface $file_system = NULL, Settings $settings = NULL) {
     $this->configStorage = $config_storage;
     if (!isset($file_system)) {
@@ -59,6 +60,11 @@ class ConfigImportForm extends FormBase {
       @trigger_error('The $settings parameter was added in Drupal 8.8.0 and will be required in 9.0.0. See https://www.drupal.org/node/2980712.', E_USER_DEPRECATED);
       $settings = \Drupal::service('settings');
     }
+=======
+  public function __construct(StorageInterface $config_storage, FileSystemInterface $file_system, Settings $settings) {
+    $this->configStorage = $config_storage;
+    $this->fileSystem = $file_system;
+>>>>>>> dev
     $this->settings = $settings;
   }
 

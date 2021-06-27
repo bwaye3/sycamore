@@ -7,6 +7,7 @@
 
 use Drupal\Core\Config\Entity\ConfigEntityUpdater;
 use Drupal\Core\Entity\Display\EntityDisplayInterface;
+<<<<<<< HEAD
 use Drupal\Core\Field\FieldConfigInterface;
 use Drupal\text\Plugin\Field\FieldWidget\TextareaWithSummaryWidget;
 
@@ -25,6 +26,17 @@ function text_post_update_add_required_summary_flag(&$sandbox = NULL) {
   };
 
   $config_entity_updater->update($sandbox, 'field_config', $field_callback);
+=======
+use Drupal\text\Plugin\Field\FieldWidget\TextareaWithSummaryWidget;
+
+/**
+ * Implements hook_removed_post_updates().
+ */
+function text_removed_post_updates() {
+  return [
+    'text_post_update_add_required_summary_flag' => '9.0.0',
+  ];
+>>>>>>> dev
 }
 
 /**

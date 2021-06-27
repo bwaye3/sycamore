@@ -23,7 +23,11 @@ class ShortcutTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['comment', 'shortcut'];
+=======
+  protected static $modules = ['comment', 'shortcut'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

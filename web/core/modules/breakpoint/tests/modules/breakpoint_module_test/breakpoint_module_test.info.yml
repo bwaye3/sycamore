@@ -3,4 +3,7 @@ type: module
 description: 'Test module for breakpoint.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

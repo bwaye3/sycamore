@@ -3,17 +3,27 @@
 namespace Drupal\Tests\contact\Functional\Rest;
 
 use Drupal\contact\Entity\ContactForm;
+<<<<<<< HEAD
 use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
+=======
+>>>>>>> dev
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 
 abstract class ContactFormResourceTestBase extends EntityResourceTestBase {
 
+<<<<<<< HEAD
   use BcTimestampNormalizerUnixTestTrait;
 
   /**
    * {@inheritdoc}
    */
   public static $modules = ['contact'];
+=======
+  /**
+   * {@inheritdoc}
+   */
+  protected static $modules = ['contact'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -94,10 +104,13 @@ abstract class ContactFormResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
+<<<<<<< HEAD
     if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
       return parent::getExpectedUnauthorizedAccessMessage($method);
     }
 
+=======
+>>>>>>> dev
     return "The 'access site-wide contact form' permission is required.";
   }
 

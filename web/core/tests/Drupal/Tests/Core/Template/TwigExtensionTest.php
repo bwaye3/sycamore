@@ -10,6 +10,14 @@ use Drupal\Core\Template\TwigEnvironment;
 use Drupal\Core\Template\TwigExtension;
 use Drupal\Core\Url;
 use Drupal\Tests\UnitTestCase;
+<<<<<<< HEAD
+=======
+use Twig\Environment;
+use Twig\Loader\ArrayLoader;
+use Twig\Loader\FilesystemLoader;
+use Twig\Node\Expression\FilterExpression;
+use Twig\Source;
+>>>>>>> dev
 
 /**
  * Tests the twig extension.
@@ -58,7 +66,11 @@ class TwigExtensionTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
+=======
+  public function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->renderer = $this->createMock('\Drupal\Core\Render\RendererInterface');
@@ -70,13 +82,22 @@ class TwigExtensionTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests the escaping
+=======
+   * Tests the escaping.
+>>>>>>> dev
    *
    * @dataProvider providerTestEscaping
    */
   public function testEscaping($template, $expected) {
+<<<<<<< HEAD
     $loader = new \Twig_Loader_Filesystem();
     $twig = new \Twig_Environment($loader, [
+=======
+    $loader = new FilesystemLoader();
+    $twig = new Environment($loader, [
+>>>>>>> dev
       'debug' => TRUE,
       'cache' => FALSE,
       'autoescape' => 'html',
@@ -85,6 +106,7 @@ class TwigExtensionTest extends UnitTestCase {
     $twig->addExtension($this->systemUnderTest);
 
     $name = '__string_template_test__';
+<<<<<<< HEAD
     $nodes = $twig->parse($twig->tokenize(new \Twig_Source($template, $name)));
 
     $this->assertSame($expected, $nodes->getNode('body')
@@ -94,6 +116,17 @@ class TwigExtensionTest extends UnitTestCase {
 
   /**
    * Provides tests data for testEscaping
+=======
+    $nodes = $twig->parse($twig->tokenize(new Source($template, $name)));
+
+    $this->assertSame($expected, $nodes->getNode('body')
+      ->getNode(0)
+      ->getNode('expr') instanceof FilterExpression);
+  }
+
+  /**
+   * Provides tests data for testEscaping.
+>>>>>>> dev
    *
    * @return array
    *   An array of test data each containing of a twig template string and
@@ -138,7 +171,11 @@ class TwigExtensionTest extends UnitTestCase {
       ->willReturn($active_theme);
 
     $loader = new StringLoader();
+<<<<<<< HEAD
     $twig = new \Twig_Environment($loader);
+=======
+    $twig = new Environment($loader);
+>>>>>>> dev
     $twig->addExtension($this->systemUnderTest);
     $result = $twig->render('{{ active_theme() }}');
     $this->assertEquals('test_theme', $result);
@@ -155,7 +192,11 @@ class TwigExtensionTest extends UnitTestCase {
       }));
 
     $loader = new StringLoader();
+<<<<<<< HEAD
     $twig = new \Twig_Environment($loader);
+=======
+    $twig = new Environment($loader);
+>>>>>>> dev
     $twig->addExtension($this->systemUnderTest);
     $timestamp = strtotime('1978-11-19');
     $result = $twig->render('{{ time|format_date("html_date") }}', ['time' => $timestamp]);
@@ -178,7 +219,11 @@ class TwigExtensionTest extends UnitTestCase {
       ->willReturn($active_theme);
 
     $loader = new StringLoader();
+<<<<<<< HEAD
     $twig = new \Twig_Environment($loader);
+=======
+    $twig = new Environment($loader);
+>>>>>>> dev
     $twig->addExtension($this->systemUnderTest);
     $result = $twig->render('{{ active_theme_path() }}');
     $this->assertEquals('foo/bar', $result);
@@ -190,8 +235,13 @@ class TwigExtensionTest extends UnitTestCase {
    * @covers ::escapeFilter
    */
   public function testSafeStringEscaping() {
+<<<<<<< HEAD
     $loader = new \Twig_Loader_Filesystem();
     $twig = new \Twig_Environment($loader, [
+=======
+    $loader = new FilesystemLoader();
+    $twig = new Environment($loader, [
+>>>>>>> dev
       'debug' => TRUE,
       'cache' => FALSE,
       'autoescape' => 'html',
@@ -275,8 +325,13 @@ class TwigExtensionTest extends UnitTestCase {
    * @covers ::bubbleArgMetadata
    */
   public function testEscapeWithGeneratedLink() {
+<<<<<<< HEAD
     $loader = new \Twig_Loader_Filesystem();
     $twig = new \Twig_Environment($loader, [
+=======
+    $loader = new FilesystemLoader();
+    $twig = new Environment($loader, [
+>>>>>>> dev
         'debug' => TRUE,
         'cache' => FALSE,
         'autoescape' => 'html',
@@ -335,8 +390,13 @@ class TwigExtensionTest extends UnitTestCase {
    */
   public function testCreateAttribute() {
     $name = '__string_template_test_1__';
+<<<<<<< HEAD
     $loader = new \Twig_Loader_Array([$name => "{% for iteration in iterations %}<div{{ create_attribute(iteration) }}></div>{% endfor %}"]);
     $twig = new \Twig_Environment($loader);
+=======
+    $loader = new ArrayLoader([$name => "{% for iteration in iterations %}<div{{ create_attribute(iteration) }}></div>{% endfor %}"]);
+    $twig = new Environment($loader);
+>>>>>>> dev
     $twig->addExtension($this->systemUnderTest);
 
     $iterations = [
@@ -350,7 +410,11 @@ class TwigExtensionTest extends UnitTestCase {
 
     // Test default creation of empty attribute object and using its method.
     $name = '__string_template_test_2__';
+<<<<<<< HEAD
     $loader = new \Twig_Loader_Array([$name => "<div{{ create_attribute().addClass('meow') }}></div>"]);
+=======
+    $loader = new ArrayLoader([$name => "<div{{ create_attribute().addClass('meow') }}></div>"]);
+>>>>>>> dev
     $twig->setLoader($loader);
     $result = $twig->render($name);
     $expected = '<div class="meow"></div>';

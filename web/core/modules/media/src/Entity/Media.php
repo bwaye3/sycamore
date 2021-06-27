@@ -261,6 +261,7 @@ class Media extends EditorialContentEntityBase implements MediaInterface {
   /**
    * Determines if the source field value has changed.
    *
+<<<<<<< HEAD
    * @return bool
    *   TRUE if the source field value changed, FALSE otherwise.
    *
@@ -270,6 +271,21 @@ class Media extends EditorialContentEntityBase implements MediaInterface {
     $source_field_name = $this->getSource()->getConfiguration()['source_field'];
     $current_items = $this->get($source_field_name);
     return isset($this->original) && !$current_items->equals($this->original->get($source_field_name));
+=======
+   * The comparison uses MediaSourceInterface::getSourceFieldValue() to ensure
+   * that the correct property from the source field is used.
+   *
+   * @return bool
+   *   TRUE if the source field value changed, FALSE otherwise.
+   *
+   * @see \Drupal\media\MediaSourceInterface::getSourceFieldValue()
+   *
+   * @internal
+   */
+  protected function hasSourceFieldChanged() {
+    $source = $this->getSource();
+    return isset($this->original) && $source->getSourceFieldValue($this) !== $source->getSourceFieldValue($this->original);
+>>>>>>> dev
   }
 
   /**
@@ -508,6 +524,7 @@ class Media extends EditorialContentEntityBase implements MediaInterface {
   }
 
   /**
+<<<<<<< HEAD
    * Default value callback for 'uid' base field definition.
    *
    * @see ::baseFieldDefinitions()
@@ -524,6 +541,8 @@ class Media extends EditorialContentEntityBase implements MediaInterface {
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public static function getRequestTime() {

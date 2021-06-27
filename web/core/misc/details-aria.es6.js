@@ -3,7 +3,11 @@
  * Add aria attribute handling for details and summary elements.
  */
 
+<<<<<<< HEAD
 (function($, Drupal) {
+=======
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * Handles `aria-expanded` and `aria-pressed` attributes on details elements.
    *
@@ -13,7 +17,11 @@
     attach() {
       $('body')
         .once('detailsAria')
+<<<<<<< HEAD
         .on('click.detailsAria', 'summary', event => {
+=======
+        .on('click.detailsAria', 'summary', (event) => {
+>>>>>>> dev
           const $summary = $(event.currentTarget);
           const open =
             $(event.currentTarget.parentNode).attr('open') === 'open'

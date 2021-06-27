@@ -26,7 +26,11 @@ class LocalePluralFormatTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['locale'];
+=======
+  protected static $modules = ['locale'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -36,7 +40,11 @@ class LocalePluralFormatTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->adminUser = $this->drupalCreateUser([
@@ -139,12 +147,20 @@ class LocalePluralFormatTest extends BrowserTestBase {
     foreach ($plural_tests as $langcode => $tests) {
       foreach ($tests as $count => $expected_plural_index) {
         // Assert that the we get the right plural index.
+<<<<<<< HEAD
         $this->assertIdentical(locale_get_plural($count, $langcode), $expected_plural_index, 'Computed plural index for ' . $langcode . ' for count ' . $count . ' is ' . $expected_plural_index);
+=======
+        $this->assertSame($expected_plural_index, locale_get_plural($count, $langcode), 'Computed plural index for ' . $langcode . ' for count ' . $count . ' is ' . $expected_plural_index);
+>>>>>>> dev
         // Assert that the we get the right translation for that. Change the
         // expected index as per the logic for translation lookups.
         $expected_plural_index = ($count == 1) ? 0 : $expected_plural_index;
         $expected_plural_string = str_replace('@count', $count, $plural_strings[$langcode][$expected_plural_index]);
+<<<<<<< HEAD
         $this->assertIdentical(\Drupal::translation()->formatPlural($count, '1 hour', '@count hours', [], ['langcode' => $langcode])->render(), $expected_plural_string, 'Plural translation of 1 hours / @count hours for count ' . $count . ' in ' . $langcode . ' is ' . $expected_plural_string);
+=======
+        $this->assertSame($expected_plural_string, \Drupal::translation()->formatPlural($count, '1 hour', '@count hours', [], ['langcode' => $langcode])->render(), 'Plural translation of 1 hours / @count hours for count ' . $count . ' in ' . $langcode . ' is ' . $expected_plural_string);
+>>>>>>> dev
         // DO NOT use translation to pass translated strings into
         // PluralTranslatableMarkup::createFromTranslatedString() this way. It
         // is designed to be used with *already* translated text like settings
@@ -152,13 +168,21 @@ class LocalePluralFormatTest extends BrowserTestBase {
         // the expected result data in that format.
         $translated_string = \Drupal::translation()->translate('1 hour' . PoItem::DELIMITER . '@count hours', [], ['langcode' => $langcode]);
         $plural = PluralTranslatableMarkup::createFromTranslatedString($count, $translated_string, [], ['langcode' => $langcode]);
+<<<<<<< HEAD
         $this->assertIdentical($plural->render(), $expected_plural_string);
+=======
+        $this->assertSame($expected_plural_string, $plural->render());
+>>>>>>> dev
       }
     }
   }
 
   /**
+<<<<<<< HEAD
    * Tests plural editing of DateFormatter strings
+=======
+   * Tests plural editing of DateFormatter strings.
+>>>>>>> dev
    */
   public function testPluralEditDateFormatter() {
 
@@ -178,7 +202,11 @@ class LocalePluralFormatTest extends BrowserTestBase {
     $this->drupalGet('user');
 
     // Member for time should be translated.
+<<<<<<< HEAD
     $this->assertText("seconde", "'Member for' text is translated.");
+=======
+    $this->assertSession()->pageTextContains("seconde");
+>>>>>>> dev
 
     $path = 'admin/config/regional/translate/';
     $search = [
@@ -187,10 +215,18 @@ class LocalePluralFormatTest extends BrowserTestBase {
       // not break the test.
       'translation' => 'translated',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm($path, $search, t('Filter'));
     // Plural values for the langcode fr.
     $this->assertText('@count seconde');
     $this->assertText('@count secondes');
+=======
+    $this->drupalGet($path);
+    $this->submitForm($search, 'Filter');
+    // Plural values for the langcode fr.
+    $this->assertSession()->pageTextContains('@count seconde');
+    $this->assertSession()->pageTextContains('@count secondes');
+>>>>>>> dev
 
     // Inject a plural source string to the database. We need to use a specific
     // langcode here because the language will be English by default and will
@@ -208,24 +244,41 @@ class LocalePluralFormatTest extends BrowserTestBase {
       'string' => '1 second',
       'langcode' => 'fr',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/translate', $search, t('Filter'));
+=======
+    $this->drupalGet('admin/config/regional/translate');
+    $this->submitForm($search, 'Filter');
+>>>>>>> dev
 
     // Save complete translations for the string in langcode fr.
     $edit = [
       "strings[$lid][translations][0]" => '1 seconde updated',
       "strings[$lid][translations][1]" => '@count secondes updated',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm($path, $edit, t('Save translations'));
 
     // User interface input for translating seconds should not be duplicated
     $this->assertUniqueText('@count seconds', 'Interface translation input for @count seconds only appears once.');
+=======
+    $this->drupalGet($path);
+    $this->submitForm($edit, 'Save translations');
+
+    // User interface input for translating seconds should not be duplicated
+    $this->assertSession()->pageTextContainsOnce('@count seconds');
+>>>>>>> dev
 
     // Member for time should be translated. Change the created time to ensure
     // that the we're dealing in multiple seconds and it can't be exactly 1
     // second or minute.
     $this->adminUser->set('created', time() - 2)->save();
     $this->drupalGet('user');
+<<<<<<< HEAD
     $this->assertText("secondes updated", "'Member for' text is translated.");
+=======
+    $this->assertSession()->pageTextContains("secondes updated");
+>>>>>>> dev
   }
 
   /**
@@ -242,6 +295,7 @@ class LocalePluralFormatTest extends BrowserTestBase {
     ]);
 
     // Get the French translations.
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/translate/export', [
       'langcode' => 'fr',
     ], t('Export'));
@@ -267,12 +321,38 @@ class LocalePluralFormatTest extends BrowserTestBase {
     $this->drupalGet('admin/config/regional/translate');
     $this->assertText("1 hour");
     $this->assertText("@count hours");
+=======
+    $this->drupalGet('admin/config/regional/translate/export');
+    $this->submitForm(['langcode' => 'fr'], 'Export');
+    // Ensure we have a translation file.
+    $this->assertRaw('# French translation of Drupal');
+    // Ensure our imported translations exist in the file.
+    $this->assertRaw("msgid \"Monday\"\nmsgstr \"lundi\"");
+    // Check for plural export specifically.
+    $this->assertRaw("msgid \"1 hour\"\nmsgid_plural \"@count hours\"\nmsgstr[0] \"@count heure\"\nmsgstr[1] \"@count heures\"");
+
+    // Get the Croatian translations.
+    $this->drupalGet('admin/config/regional/translate/export');
+    $this->submitForm(['langcode' => 'hr'], 'Export');
+    // Ensure we have a translation file.
+    $this->assertRaw('# Croatian translation of Drupal');
+    // Ensure our imported translations exist in the file.
+    $this->assertRaw("msgid \"Monday\"\nmsgstr \"Ponedjeljak\"");
+    // Check for plural export specifically.
+    $this->assertRaw("msgid \"1 hour\"\nmsgid_plural \"@count hours\"\nmsgstr[0] \"@count sat\"\nmsgstr[1] \"@count sata\"\nmsgstr[2] \"@count sati\"");
+
+    // Check if the source appears on the translation page.
+    $this->drupalGet('admin/config/regional/translate');
+    $this->assertSession()->pageTextContains("1 hour");
+    $this->assertSession()->pageTextContains("@count hours");
+>>>>>>> dev
 
     // Look up editing page for this plural string and check fields.
     $path = 'admin/config/regional/translate/';
     $search = [
       'langcode' => 'hr',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm($path, $search, t('Filter'));
     // Labels for plural editing elements.
     $this->assertText('Singular form');
@@ -284,6 +364,20 @@ class LocalePluralFormatTest extends BrowserTestBase {
     $this->assertText('@count sat');
     $this->assertText('@count sata');
     $this->assertText('@count sati');
+=======
+    $this->drupalGet($path);
+    $this->submitForm($search, 'Filter');
+    // Labels for plural editing elements.
+    $this->assertSession()->pageTextContains('Singular form');
+    $this->assertSession()->pageTextContains('First plural form');
+    $this->assertSession()->pageTextContains('2. plural form');
+    $this->assertNoText('3. plural form');
+
+    // Plural values for langcode hr.
+    $this->assertSession()->pageTextContains('@count sat');
+    $this->assertSession()->pageTextContains('@count sata');
+    $this->assertSession()->pageTextContains('@count sati');
+>>>>>>> dev
 
     $connection = Database::getConnection();
     // Edit langcode hr translations and see if that took effect.
@@ -296,22 +390,40 @@ class LocalePluralFormatTest extends BrowserTestBase {
     $edit = [
       "strings[$lid][translations][1]" => '@count sata edited',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm($path, $edit, t('Save translations'));
+=======
+    $this->drupalGet($path);
+    $this->submitForm($edit, 'Save translations');
+>>>>>>> dev
 
     $search = [
       'langcode' => 'fr',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/translate', $search, t('Filter'));
     // Plural values for the langcode fr.
     $this->assertText('@count heure');
     $this->assertText('@count heures');
+=======
+    $this->drupalGet('admin/config/regional/translate');
+    $this->submitForm($search, 'Filter');
+    // Plural values for the langcode fr.
+    $this->assertSession()->pageTextContains('@count heure');
+    $this->assertSession()->pageTextContains('@count heures');
+>>>>>>> dev
     $this->assertNoText('2. plural form');
 
     // Edit langcode fr translations and see if that took effect.
     $edit = [
       "strings[$lid][translations][0]" => '@count heure edited',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm($path, $edit, t('Save translations'));
+=======
+    $this->drupalGet($path);
+    $this->submitForm($edit, 'Save translations');
+>>>>>>> dev
 
     // Inject a plural source string to the database. We need to use a specific
     // langcode here because the language will be English by default and will
@@ -329,27 +441,43 @@ class LocalePluralFormatTest extends BrowserTestBase {
       'string' => '1 day',
       'langcode' => 'fr',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/translate', $search, t('Filter'));
+=======
+    $this->drupalGet('admin/config/regional/translate');
+    $this->submitForm($search, 'Filter');
+>>>>>>> dev
 
     // Save complete translations for the string in langcode fr.
     $edit = [
       "strings[$lid][translations][0]" => '1 jour',
       "strings[$lid][translations][1]" => '@count jours',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm($path, $edit, t('Save translations'));
+=======
+    $this->drupalGet($path);
+    $this->submitForm($edit, 'Save translations');
+>>>>>>> dev
 
     // Save complete translations for the string in langcode hr.
     $search = [
       'string' => '1 day',
       'langcode' => 'hr',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/translate', $search, t('Filter'));
+=======
+    $this->drupalGet('admin/config/regional/translate');
+    $this->submitForm($search, 'Filter');
+>>>>>>> dev
 
     $edit = [
       "strings[$lid][translations][0]" => '@count dan',
       "strings[$lid][translations][1]" => '@count dana',
       "strings[$lid][translations][2]" => '@count dana',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm($path, $edit, t('Save translations'));
 
     // Get the French translations.
@@ -367,6 +495,24 @@ class LocalePluralFormatTest extends BrowserTestBase {
     // Check for plural export specifically.
     $this->assertRaw("msgid \"1 hour\"\nmsgid_plural \"@count hours\"\nmsgstr[0] \"@count sat\"\nmsgstr[1] \"@count sata edited\"\nmsgstr[2] \"@count sati\"", 'Edited Croatian plural translations exported properly.');
     $this->assertRaw("msgid \"1 day\"\nmsgid_plural \"@count days\"\nmsgstr[0] \"@count dan\"\nmsgstr[1] \"@count dana\"\nmsgstr[2] \"@count dana\"", 'Added Croatian plural translations exported properly.');
+=======
+    $this->drupalGet($path);
+    $this->submitForm($edit, 'Save translations');
+
+    // Get the French translations.
+    $this->drupalGet('admin/config/regional/translate/export');
+    $this->submitForm(['langcode' => 'fr'], 'Export');
+    // Check for plural export specifically.
+    $this->assertRaw("msgid \"1 hour\"\nmsgid_plural \"@count hours\"\nmsgstr[0] \"@count heure edited\"\nmsgstr[1] \"@count heures\"");
+    $this->assertRaw("msgid \"1 day\"\nmsgid_plural \"@count days\"\nmsgstr[0] \"1 jour\"\nmsgstr[1] \"@count jours\"");
+
+    // Get the Croatian translations.
+    $this->drupalGet('admin/config/regional/translate/export');
+    $this->submitForm(['langcode' => 'hr'], 'Export');
+    // Check for plural export specifically.
+    $this->assertRaw("msgid \"1 hour\"\nmsgid_plural \"@count hours\"\nmsgstr[0] \"@count sat\"\nmsgstr[1] \"@count sata edited\"\nmsgstr[2] \"@count sati\"");
+    $this->assertRaw("msgid \"1 day\"\nmsgid_plural \"@count days\"\nmsgstr[0] \"@count dan\"\nmsgstr[1] \"@count dana\"\nmsgstr[2] \"@count dana\"");
+>>>>>>> dev
   }
 
   /**
@@ -382,7 +528,12 @@ class LocalePluralFormatTest extends BrowserTestBase {
     $name = $file_system->tempnam('temporary://', "po_") . '.po';
     file_put_contents($name, $contents);
     $options['files[file]'] = $name;
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/translate/import', $options, t('Import'));
+=======
+    $this->drupalGet('admin/config/regional/translate/import');
+    $this->submitForm($options, 'Import');
+>>>>>>> dev
     $file_system->unlink($name);
   }
 

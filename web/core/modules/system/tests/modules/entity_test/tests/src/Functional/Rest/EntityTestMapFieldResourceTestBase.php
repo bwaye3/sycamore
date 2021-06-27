@@ -3,13 +3,18 @@
 namespace Drupal\Tests\entity_test\Functional\Rest;
 
 use Drupal\entity_test\Entity\EntityTestMapField;
+<<<<<<< HEAD
 use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 use Drupal\Tests\Traits\ExpectDeprecationTrait;
+=======
+use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
+>>>>>>> dev
 use Drupal\user\Entity\User;
 
 abstract class EntityTestMapFieldResourceTestBase extends EntityResourceTestBase {
 
+<<<<<<< HEAD
   use BcTimestampNormalizerUnixTestTrait;
   use ExpectDeprecationTrait;
 
@@ -17,6 +22,12 @@ abstract class EntityTestMapFieldResourceTestBase extends EntityResourceTestBase
    * {@inheritdoc}
    */
   public static $modules = ['entity_test'];
+=======
+  /**
+   * {@inheritdoc}
+   */
+  protected static $modules = ['entity_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -34,7 +45,11 @@ abstract class EntityTestMapFieldResourceTestBase extends EntityResourceTestBase
   protected $entity;
 
   /**
+<<<<<<< HEAD
    * The complex nested value to assign to a @FieldType=map field.
+=======
+   * The complex nested value to assign to a map field.
+>>>>>>> dev
    *
    * @var array
    */
@@ -99,7 +114,14 @@ abstract class EntityTestMapFieldResourceTestBase extends EntityResourceTestBase
         ],
       ],
       'created' => [
+<<<<<<< HEAD
         $this->formatExpectedTimestampItemValues((int) $this->entity->get('created')->value),
+=======
+        [
+          'value' => (new \DateTime())->setTimestamp((int) $this->entity->get('created')->value)->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
+          'format' => \DateTime::RFC3339,
+        ],
+>>>>>>> dev
       ],
       'user_id' => [
         [
@@ -135,10 +157,13 @@ abstract class EntityTestMapFieldResourceTestBase extends EntityResourceTestBase
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
+<<<<<<< HEAD
     if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
       return parent::getExpectedUnauthorizedAccessMessage($method);
     }
 
+=======
+>>>>>>> dev
     return "The 'administer entity_test content' permission is required.";
   }
 

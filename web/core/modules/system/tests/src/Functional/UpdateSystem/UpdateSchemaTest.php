@@ -19,7 +19,11 @@ class UpdateSchemaTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['update_test_schema'];
+=======
+  protected static $modules = ['update_test_schema'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -41,7 +45,11 @@ class UpdateSchemaTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     require_once $this->root . '/core/includes/update.inc';
@@ -59,7 +67,11 @@ class UpdateSchemaTest extends BrowserTestBase {
     $connection = Database::getConnection();
 
     // Verify that the 8000 schema is in place.
+<<<<<<< HEAD
     $this->assertEqual(drupal_get_installed_schema_version('update_test_schema'), 8000);
+=======
+    $this->assertEquals(8000, drupal_get_installed_schema_version('update_test_schema'));
+>>>>>>> dev
     $this->assertFalse($connection->schema()->indexExists('update_test_schema_table', 'test'), 'Version 8000 of the update_test_schema module is installed.');
 
     // Increment the schema version.
@@ -75,6 +87,7 @@ class UpdateSchemaTest extends BrowserTestBase {
     $this->checkForMetaRefresh();
 
     // Ensure schema has changed.
+<<<<<<< HEAD
     $this->assertEqual(drupal_get_installed_schema_version('update_test_schema', TRUE), 8001);
     // Ensure the index was added for column a.
     $this->assertTrue($connection->schema()->indexExists('update_test_schema_table', 'test'), 'Version 8001 of the update_test_schema module is installed.');
@@ -85,6 +98,11 @@ class UpdateSchemaTest extends BrowserTestBase {
     // Ensure schema has changed.
     $this->assertEqual(drupal_get_installed_schema_version('update_test_schema'), 8003);
 
+=======
+    $this->assertEquals(8001, drupal_get_installed_schema_version('update_test_schema', TRUE));
+    // Ensure the index was added for column a.
+    $this->assertTrue($connection->schema()->indexExists('update_test_schema_table', 'test'), 'Version 8001 of the update_test_schema module is installed.');
+>>>>>>> dev
   }
 
 }

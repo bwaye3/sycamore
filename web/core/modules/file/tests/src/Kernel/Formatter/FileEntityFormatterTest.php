@@ -17,7 +17,11 @@ class FileEntityFormatterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['file', 'user'];
+=======
+  protected static $modules = ['file', 'user'];
+>>>>>>> dev
 
   /**
    * The files.
@@ -29,7 +33,11 @@ class FileEntityFormatterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('file');
@@ -79,8 +87,13 @@ class FileEntityFormatterTest extends KernelTestBase {
     $entity_display->setComponent('filename', ['type' => 'file_link']);
 
     $build = $entity_display->buildMultiple($this->files)[0]['filename'][0];
+<<<<<<< HEAD
     $this->assertEqual('file.png', $build['#title']);
     $this->assertEqual(Url::fromUri(file_create_url('public://file.png')), $build['#url']);
+=======
+    $this->assertEquals('file.png', $build['#title']);
+    $this->assertEquals(Url::fromUri(file_create_url('public://file.png')), $build['#url']);
+>>>>>>> dev
   }
 
   /**
@@ -94,6 +107,7 @@ class FileEntityFormatterTest extends KernelTestBase {
     $entity_display->setComponent('uri', ['type' => 'file_uri']);
 
     $build = $entity_display->buildMultiple($this->files)[0]['uri'][0];
+<<<<<<< HEAD
     $this->assertEqual('public://file.png', $build['#markup']);
 
     $entity_display->setComponent('uri', ['type' => 'file_uri', 'settings' => ['file_download_path' => TRUE]]);
@@ -104,6 +118,18 @@ class FileEntityFormatterTest extends KernelTestBase {
     $build = $entity_display->buildMultiple($this->files)[0]['uri'][0];
     $this->assertEqual(file_create_url('public://file.png'), $build['#title']);
     $this->assertEqual(Url::fromUri(file_create_url('public://file.png')), $build['#url']);
+=======
+    $this->assertEquals('public://file.png', $build['#markup']);
+
+    $entity_display->setComponent('uri', ['type' => 'file_uri', 'settings' => ['file_download_path' => TRUE]]);
+    $build = $entity_display->buildMultiple($this->files)[0]['uri'][0];
+    $this->assertEquals(file_create_url('public://file.png'), $build['#markup']);
+
+    $entity_display->setComponent('uri', ['type' => 'file_uri', 'settings' => ['file_download_path' => TRUE, 'link_to_file' => TRUE]]);
+    $build = $entity_display->buildMultiple($this->files)[0]['uri'][0];
+    $this->assertEquals(file_create_url('public://file.png'), $build['#title']);
+    $this->assertEquals(Url::fromUri(file_create_url('public://file.png')), $build['#url']);
+>>>>>>> dev
   }
 
   /**
@@ -119,7 +145,11 @@ class FileEntityFormatterTest extends KernelTestBase {
     $expected = ['png', 'tar', 'gz', ''];
     foreach (array_values($this->files) as $i => $file) {
       $build = $entity_display->build($file);
+<<<<<<< HEAD
       $this->assertEqual($expected[$i], $build['filename'][0]['#markup']);
+=======
+      $this->assertEquals($expected[$i], $build['filename'][0]['#markup']);
+>>>>>>> dev
     }
 
     $entity_display->setComponent('filename', ['type' => 'file_extension', 'settings' => ['extension_detect_tar' => TRUE]]);
@@ -127,7 +157,11 @@ class FileEntityFormatterTest extends KernelTestBase {
     $expected = ['png', 'tar', 'tar.gz', ''];
     foreach (array_values($this->files) as $i => $file) {
       $build = $entity_display->build($file);
+<<<<<<< HEAD
       $this->assertEqual($expected[$i], $build['filename'][0]['#markup']);
+=======
+      $this->assertEquals($expected[$i], $build['filename'][0]['#markup']);
+>>>>>>> dev
     }
   }
 
@@ -143,8 +177,13 @@ class FileEntityFormatterTest extends KernelTestBase {
 
     foreach (array_values($this->files) as $i => $file) {
       $build = $entity_display->build($file);
+<<<<<<< HEAD
       $this->assertEqual('image__file_icon', $build['filemime'][0]['#theme']);
       $this->assertEqual(spl_object_hash($file), spl_object_hash($build['filemime'][0]['#file']));
+=======
+      $this->assertEquals('image__file_icon', $build['filemime'][0]['#theme']);
+      $this->assertEquals(spl_object_hash($file), spl_object_hash($build['filemime'][0]['#file']));
+>>>>>>> dev
     }
   }
 
@@ -161,7 +200,11 @@ class FileEntityFormatterTest extends KernelTestBase {
     $expected = ['10 bytes', '200 bytes', '39.06 KB', '7.63 MB'];
     foreach (array_values($this->files) as $i => $file) {
       $build = $entity_display->build($file);
+<<<<<<< HEAD
       $this->assertEqual($expected[$i], $build['filesize'][0]['#markup']);
+=======
+      $this->assertEquals($expected[$i], $build['filesize'][0]['#markup']);
+>>>>>>> dev
     }
   }
 

@@ -16,7 +16,11 @@ class ExplodeTest extends MigrateProcessTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $configuration = [
       'delimiter' => ',',
     ];
@@ -25,7 +29,11 @@ class ExplodeTest extends MigrateProcessTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test explode transform process works.
+=======
+   * Tests explode transform process works.
+>>>>>>> dev
    */
   public function testTransform() {
     $value = $this->plugin->transform('foo,bar,tik', $this->migrateExecutable, $this->row, 'destination_property');
@@ -33,7 +41,11 @@ class ExplodeTest extends MigrateProcessTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test explode transform process works with a limit.
+=======
+   * Tests explode transform process works with a limit.
+>>>>>>> dev
    */
   public function testTransformLimit() {
     $plugin = new Explode(['delimiter' => '_', 'limit' => 2], 'map', []);
@@ -42,7 +54,11 @@ class ExplodeTest extends MigrateProcessTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test if the explode process can be chained with a handles_multiple process.
+=======
+   * Tests if the explode process can be chained with handles_multiple process.
+>>>>>>> dev
    */
   public function testChainedTransform() {
     $exploded = $this->plugin->transform('foo,bar,tik', $this->migrateExecutable, $this->row, 'destination_property');
@@ -53,7 +69,11 @@ class ExplodeTest extends MigrateProcessTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test explode fails properly on non-strings.
+=======
+   * Tests explode fails properly on non-strings.
+>>>>>>> dev
    */
   public function testExplodeWithNonString() {
     $this->expectException(MigrateException::class);
@@ -111,7 +131,11 @@ class ExplodeTest extends MigrateProcessTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test explode fails with empty delimiter.
+=======
+   * Tests explode fails with empty delimiter.
+>>>>>>> dev
    */
   public function testExplodeWithEmptyDelimiter() {
     $this->expectException(MigrateException::class);

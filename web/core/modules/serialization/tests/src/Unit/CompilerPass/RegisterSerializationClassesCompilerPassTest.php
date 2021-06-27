@@ -19,25 +19,48 @@ class RegisterSerializationClassesCompilerPassTest extends UnitTestCase {
    */
   public function testEncoders() {
     $container = new ContainerBuilder();
+<<<<<<< HEAD
     $container->setDefinition('serializer', new Definition(Serializer::class, [[], []]));
+=======
+
+    $serializer_definition = new Definition(Serializer::class, [[], []]);
+    $serializer_definition->setPublic(TRUE);
+    $container->setDefinition('serializer', $serializer_definition);
+>>>>>>> dev
 
     $encoder_1_definition = new Definition('TestClass');
     $encoder_1_definition->addTag('encoder', ['format' => 'xml']);
     $encoder_1_definition->addTag('_provider', ['provider' => 'test_provider_a']);
+<<<<<<< HEAD
+=======
+    $encoder_1_definition->setPublic(TRUE);
+>>>>>>> dev
     $container->setDefinition('encoder_1', $encoder_1_definition);
 
     $encoder_2_definition = new Definition('TestClass');
     $encoder_2_definition->addTag('encoder', ['format' => 'json']);
     $encoder_2_definition->addTag('_provider', ['provider' => 'test_provider_a']);
+<<<<<<< HEAD
+=======
+    $encoder_2_definition->setPublic(TRUE);
+>>>>>>> dev
     $container->setDefinition('encoder_2', $encoder_2_definition);
 
     $encoder_3_definition = new Definition('TestClass');
     $encoder_3_definition->addTag('encoder', ['format' => 'hal_json']);
     $encoder_3_definition->addTag('_provider', ['provider' => 'test_provider_b']);
+<<<<<<< HEAD
+=======
+    $encoder_3_definition->setPublic(TRUE);
+>>>>>>> dev
     $container->setDefinition('encoder_3', $encoder_3_definition);
 
     $normalizer_1_definition = new Definition('TestClass');
     $normalizer_1_definition->addTag('normalizer');
+<<<<<<< HEAD
+=======
+    $normalizer_1_definition->setPublic(TRUE);
+>>>>>>> dev
     $container->setDefinition('normalizer_1', $normalizer_1_definition);
 
     $compiler_pass = new RegisterSerializationClassesCompilerPass();

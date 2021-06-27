@@ -50,7 +50,11 @@ interface AccessResultInterface {
   /**
    * Combine this access result with another using OR.
    *
+<<<<<<< HEAD
    * When OR-ing two access results, the result is:
+=======
+   * When ORing two access results, the result is:
+>>>>>>> dev
    * - isForbidden() in either ⇒ isForbidden()
    * - otherwise if isAllowed() in either ⇒ isAllowed()
    * - otherwise both must be isNeutral() ⇒ isNeutral()
@@ -74,7 +78,11 @@ interface AccessResultInterface {
   /**
    * Combine this access result with another using AND.
    *
+<<<<<<< HEAD
    * When AND-ing two access results, the result is:
+=======
+   * When ANDing two access results, the result is:
+>>>>>>> dev
    * - isForbidden() in either ⇒ isForbidden()
    * - otherwise, if isAllowed() in both ⇒ isAllowed()
    * - otherwise, one of them is isNeutral()  ⇒ isNeutral()

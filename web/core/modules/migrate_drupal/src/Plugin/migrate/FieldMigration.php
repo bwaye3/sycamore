@@ -16,6 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class FieldMigration extends Migration implements ContainerFactoryPluginInterface {
 
   /**
+<<<<<<< HEAD
    * Defines which configuration option has the migration processing function.
    *
    * Default method is 'field_plugin_method'. For backwards compatibility,
@@ -28,6 +29,8 @@ class FieldMigration extends Migration implements ContainerFactoryPluginInterfac
   const PLUGIN_METHOD = 'field_plugin_method';
 
   /**
+=======
+>>>>>>> dev
    * Flag indicating whether the field data has been filled already.
    *
    * @var bool

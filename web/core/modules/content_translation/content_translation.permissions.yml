@@ -8,6 +8,11 @@ delete content translations:
   title: 'Delete translations'
 translate any entity:
   title: 'Translate any entity'
+<<<<<<< HEAD
+=======
+translate editable entities:
+  title: 'Manage translations for any entity that the user can edit'
+>>>>>>> dev
 
 permission_callbacks:
   - \Drupal\content_translation\ContentTranslationPermissions::contentPermissions

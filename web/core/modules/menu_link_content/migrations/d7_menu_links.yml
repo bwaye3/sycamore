@@ -9,7 +9,19 @@ source:
   constants:
     bundle: menu_link_content
 process:
+<<<<<<< HEAD
   id: mlid
+=======
+  skip_translation:
+    plugin: skip_on_empty
+    method: row
+    source: skip_translation
+  id: mlid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+>>>>>>> dev
   bundle: 'constants/bundle'
   title: link_title
   description: description

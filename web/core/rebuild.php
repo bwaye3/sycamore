@@ -25,7 +25,10 @@ require_once __DIR__ . '/includes/utility.inc';
 
 $request = Request::createFromGlobals();
 // Manually resemble early bootstrap of DrupalKernel::boot().
+<<<<<<< HEAD
 require_once __DIR__ . '/includes/bootstrap.inc';
+=======
+>>>>>>> dev
 DrupalKernel::bootEnvironment();
 
 try {
@@ -46,12 +49,19 @@ if (Settings::get('rebuild_access', FALSE) ||
   $user_caches = [
     'apcu_clear_cache',
     'wincache_ucache_clear',
+<<<<<<< HEAD
     'xcache_clear_cache',
+=======
+>>>>>>> dev
   ];
   array_map('call_user_func', array_filter($user_caches, 'is_callable'));
 
   drupal_rebuild($autoloader, $request);
   \Drupal::messenger()->addStatus('Cache rebuild complete.');
 }
+<<<<<<< HEAD
 $base_path = dirname(dirname($request->getBaseUrl()));
+=======
+$base_path = dirname($request->getBaseUrl(), 2);
+>>>>>>> dev
 header('Location: ' . $request->getSchemeAndHttpHost() . $base_path);

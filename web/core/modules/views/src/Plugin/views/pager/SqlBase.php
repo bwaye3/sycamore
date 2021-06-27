@@ -6,7 +6,11 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Pager\PagerManagerInterface;
+<<<<<<< HEAD
 use Drupal\Core\Pager\PagerParameters;
+=======
+use Drupal\Core\Pager\PagerParametersInterface;
+>>>>>>> dev
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -40,6 +44,7 @@ abstract class SqlBase extends PagerPluginBase implements CacheableDependencyInt
    *   The plugin implementation definition.
    * @param \Drupal\Core\Pager\PagerManagerInterface $pager_manager
    *   The pager manager.
+<<<<<<< HEAD
    * @param \Drupal\Core\Pager\PagerParameters|null $pager_parameters
    *   The pager parameters.
    */
@@ -54,6 +59,14 @@ abstract class SqlBase extends PagerPluginBase implements CacheableDependencyInt
       @trigger_error('Calling ' . __METHOD__ . ' without the $pager_parameters argument is deprecated in drupal:8.8.0 and is required in drupal:9.0.0. See https://www.drupal.org/node/2779457', E_USER_DEPRECATED);
       $pager_parameters = \Drupal::service('pager.parameters');
     }
+=======
+   * @param \Drupal\Core\Pager\PagerParametersInterface $pager_parameters
+   *   The pager parameters.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, PagerManagerInterface $pager_manager, PagerParametersInterface $pager_parameters) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->pagerManager = $pager_manager;
+>>>>>>> dev
     $this->pagerParameters = $pager_parameters;
   }
 

@@ -16,7 +16,11 @@ class ElementsContainerTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['form_test'];
+=======
+  protected static $modules = ['form_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

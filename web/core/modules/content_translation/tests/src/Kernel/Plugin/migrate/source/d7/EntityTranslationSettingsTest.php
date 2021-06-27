@@ -16,7 +16,11 @@ class EntityTranslationSettingsTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'content_translation',
     'language',
     'migrate_drupal',

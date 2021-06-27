@@ -23,7 +23,11 @@ class UpdateRemovedPostUpdateTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $connection = Database::getConnection();
 

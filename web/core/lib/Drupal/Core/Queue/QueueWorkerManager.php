@@ -17,7 +17,11 @@ use Drupal\Core\Plugin\DefaultPluginManager;
 class QueueWorkerManager extends DefaultPluginManager implements QueueWorkerManagerInterface {
 
   /**
+<<<<<<< HEAD
    * Constructs an QueueWorkerManager object.
+=======
+   * Constructs a QueueWorkerManager object.
+>>>>>>> dev
    *
    * @param \Traversable $namespaces
    *   An object that implements \Traversable which contains the root paths

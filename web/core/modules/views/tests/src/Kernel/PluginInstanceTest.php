@@ -44,9 +44,13 @@ class PluginInstanceTest extends ViewsKernelTestBase {
    *
    * @var string[]
    */
+<<<<<<< HEAD
   protected $deprecatedPlugins = [
     'Drupal\system\Plugin\views\field\BulkForm',
   ];
+=======
+  protected $deprecatedPlugins = [];
+>>>>>>> dev
 
   /**
    * An array of plugin definitions, keyed by plugin type.
@@ -55,7 +59,11 @@ class PluginInstanceTest extends ViewsKernelTestBase {
    */
   protected $definitions;
 
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->definitions = Views::getPluginDefinitions();
@@ -81,6 +89,7 @@ class PluginInstanceTest extends ViewsKernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests creating instances of deprecated views plugin.
    *
    * This will iterate through all plugins from _views_fetch_plugin_data() and
@@ -95,6 +104,8 @@ class PluginInstanceTest extends ViewsKernelTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests creating instances of every views plugin.
    *
    * This will iterate through all plugins from _views_fetch_plugin_data(),

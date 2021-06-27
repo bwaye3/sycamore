@@ -8,6 +8,11 @@ use Drupal\Tests\UnitTestCase;
 use Drupal\text\Plugin\migrate\field\d6\TextField;
 use Prophecy\Argument;
 
+<<<<<<< HEAD
+=======
+// cspell:ignore optionwidgets
+
+>>>>>>> dev
 /**
  * @coversDefaultClass \Drupal\text\Plugin\migrate\field\d6\TextField
  * @group text
@@ -27,7 +32,11 @@ class TextFieldTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->plugin = new TextField([], 'text', []);
 
     $migration = $this->prophesize(MigrationInterface::class);

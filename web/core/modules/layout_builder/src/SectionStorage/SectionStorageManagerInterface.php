@@ -59,6 +59,7 @@ interface SectionStorageManagerInterface extends DiscoveryInterface {
    */
   public function loadEmpty($type);
 
+<<<<<<< HEAD
   /**
    * Loads a section storage populated with an existing section list.
    *
@@ -105,4 +106,6 @@ interface SectionStorageManagerInterface extends DiscoveryInterface {
    */
   public function loadFromRoute($type, $value, $definition, $name, array $defaults);
 
+=======
+>>>>>>> dev
 }

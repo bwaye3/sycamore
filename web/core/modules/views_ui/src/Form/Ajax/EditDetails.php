@@ -41,7 +41,11 @@ class EditDetails extends ViewsFormBase {
     ];
     $form['details']['label'] = [
       '#type' => 'textfield',
+<<<<<<< HEAD
       '#title' => t('Administrative name'),
+=======
+      '#title' => $this->t('Administrative name'),
+>>>>>>> dev
       '#default_value' => $view->label(),
     ];
     $form['details']['langcode'] = [
@@ -52,13 +56,22 @@ class EditDetails extends ViewsFormBase {
     ];
     $form['details']['description'] = [
        '#type' => 'textfield',
+<<<<<<< HEAD
        '#title' => t('Administrative description'),
+=======
+       '#title' => $this->t('Administrative description'),
+>>>>>>> dev
        '#default_value' => $view->get('description'),
      ];
     $form['details']['tag'] = [
       '#type' => 'textfield',
+<<<<<<< HEAD
       '#title' => t('Administrative tags'),
       '#description' => t('Enter a comma-separated list of words to describe your view.'),
+=======
+      '#title' => $this->t('Administrative tags'),
+      '#description' => $this->t('Enter a comma-separated list of words to describe your view.'),
+>>>>>>> dev
       '#default_value' => $view->get('tag'),
       '#autocomplete_route_name' => 'views_ui.autocomplete',
     ];

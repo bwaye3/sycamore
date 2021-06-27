@@ -49,7 +49,11 @@ class CommentFieldNameTest extends KernelTestBase {
   public static $testViews = ['test_comment_field_name'];
 
   /**
+<<<<<<< HEAD
    * Test comment field name.
+=======
+   * Tests comment field name.
+>>>>>>> dev
    */
   public function testCommentFieldName() {
     $renderer = $this->container->get('renderer');

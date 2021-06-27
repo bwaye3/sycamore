@@ -6,7 +6,10 @@ use Composer\Util\Filesystem;
 use Drupal\Tests\Composer\Plugin\Scaffold\AssertUtilsTrait;
 use Drupal\Tests\Composer\Plugin\Scaffold\Fixtures;
 use Drupal\Tests\Composer\Plugin\Scaffold\ScaffoldTestResult;
+<<<<<<< HEAD
 use Drupal\Tests\PhpunitCompatibilityTrait;
+=======
+>>>>>>> dev
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,7 +22,10 @@ use PHPUnit\Framework\TestCase;
  */
 class ScaffoldTest extends TestCase {
   use AssertUtilsTrait;
+<<<<<<< HEAD
   use PhpunitCompatibilityTrait;
+=======
+>>>>>>> dev
 
   /**
    * The root of this project.
@@ -55,7 +61,11 @@ class ScaffoldTest extends TestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->fileSystem = new Filesystem();
     $this->fixtures = new Fixtures();
     $this->fixtures->createIsolatedComposerCacheDir();
@@ -72,7 +82,11 @@ class ScaffoldTest extends TestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function tearDown() {
+=======
+  protected function tearDown(): void {
+>>>>>>> dev
     // Remove any temporary directories et. al. that were created.
     $this->fixtures->tearDown();
   }
@@ -126,7 +140,11 @@ class ScaffoldTest extends TestCase {
       $this->assertFileExists($docroot);
     }
     else {
+<<<<<<< HEAD
       $this->assertFileNotExists($sut . '/docroot');
+=======
+      $this->assertFileDoesNotExist($sut . '/docroot');
+>>>>>>> dev
     }
 
     return new ScaffoldTestResult($docroot, $scaffoldOutput);
@@ -256,7 +274,11 @@ class ScaffoldTest extends TestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test values for testDrupalDrupalFileWasAppended.
+=======
+   * Provides test values for testDrupalDrupalFileWasAppended.
+>>>>>>> dev
    */
   public function scaffoldAppendTestValues() {
     return array_merge(
@@ -279,7 +301,11 @@ include __DIR__ . "/settings-custom-additions.php";',
   }
 
   /**
+<<<<<<< HEAD
    * Test values to run both with $is_link FALSE and $is_link TRUE.
+=======
+   * Tests values to run both with $is_link FALSE and $is_link TRUE.
+>>>>>>> dev
    *
    * @param bool $is_link
    *   Whether or not symlinking should be used.
@@ -372,7 +398,11 @@ include __DIR__ . "/settings-custom-additions.php";',
   protected function assertHtaccessExcluded($docroot) {
     // Ensure that the .htaccess.txt file was not written, as our
     // top-level composer.json excludes it from the files to scaffold.
+<<<<<<< HEAD
     $this->assertFileNotExists($docroot . '/.htaccess');
+=======
+    $this->assertFileDoesNotExist($docroot . '/.htaccess');
+>>>>>>> dev
   }
 
   /**

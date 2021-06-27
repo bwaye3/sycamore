@@ -68,7 +68,11 @@ class InstallCommand extends Command {
     }
 
     // Change the directory to the Drupal root.
+<<<<<<< HEAD
     chdir(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
+=======
+    chdir(dirname(__DIR__, 5));
+>>>>>>> dev
 
     // Check whether there is already an installation.
     if ($this->isDrupalInstalled()) {

@@ -33,7 +33,11 @@ class EmbeddedFormWidgetTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $display_repository = $this->container->get('entity_display.repository');
@@ -90,7 +94,11 @@ class EmbeddedFormWidgetTest extends WebDriverTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test media inside another widget that validates too enthusiastically.
+=======
+   * Tests media inside another widget that validates too enthusiastically.
+>>>>>>> dev
    *
    * @dataProvider insertionReselectionProvider
    */

@@ -8,7 +8,10 @@ use Drupal\migrate\MigrateException;
 use Drupal\migrate\MigrateExecutable;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Row;
+<<<<<<< HEAD
 use Drupal\migrate_drupal\Plugin\MigrateCckFieldPluginManagerInterface;
+=======
+>>>>>>> dev
 use Drupal\migrate_drupal\Plugin\MigrateFieldInterface;
 use Drupal\migrate_drupal\Plugin\MigrateFieldPluginManagerInterface;
 use Drupal\Tests\migrate\Unit\MigrateTestCase;
@@ -18,15 +21,22 @@ use Drupal\Tests\migrate\Unit\MigrateTestCase;
  *
  * @coversDefaultClass \Drupal\field\Plugin\migrate\process\ProcessField
  * @group field
+<<<<<<< HEAD
  * @group legacy
+=======
+>>>>>>> dev
  */
 class ProcessFieldTest extends MigrateTestCase {
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     $this->cckFieldManager = $this->prophesize(MigrateCckFieldPluginManagerInterface::class);
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->fieldManager = $this->prophesize(MigrateFieldPluginManagerInterface::class);
     $this->fieldPlugin = $this->prophesize(MigrateFieldInterface::class);
     $this->migrateExecutable = $this->prophesize(MigrateExecutable::class);
@@ -60,7 +70,11 @@ class ProcessFieldTest extends MigrateTestCase {
     if ($method) {
       $this->fieldPlugin->$method($this->row->reveal())->willReturn($expected_value);
     }
+<<<<<<< HEAD
     $this->plugin = new ProcessField(['method' => $method], $value, [], $this->cckFieldManager->reveal(), $this->fieldManager->reveal(), $this->migration->reveal());
+=======
+    $this->plugin = new ProcessField(['method' => $method], $value, [], $this->fieldManager->reveal(), $this->migration->reveal());
+>>>>>>> dev
 
     if ($migrate_exception) {
       $this->expectException(MigrateException::class);
@@ -69,7 +83,10 @@ class ProcessFieldTest extends MigrateTestCase {
 
     if ($plugin_not_found) {
       $exception = new PluginNotFoundException('foo');
+<<<<<<< HEAD
       $this->cckFieldManager->getPluginIdFromFieldType()->willThrow($exception);
+=======
+>>>>>>> dev
       $this->fieldManager->getPluginIdFromFieldType()->willThrow($exception);
     }
 

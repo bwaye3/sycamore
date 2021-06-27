@@ -14,7 +14,11 @@ class NewViewConfigSchemaTest extends UITestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'views_ui',
     'node',
     'comment',
@@ -55,7 +59,12 @@ class NewViewConfigSchemaTest extends UITestBase {
       $edit['id'] = strtolower($this->randomMachineName());
       $edit['show[wizard_key]'] = $wizard_key;
       $edit['description'] = $this->randomString();
+<<<<<<< HEAD
       $this->drupalPostForm('admin/structure/views/add', $edit, t('Save and edit'));
+=======
+      $this->drupalGet('admin/structure/views/add');
+      $this->submitForm($edit, 'Save and edit');
+>>>>>>> dev
     }
   }
 

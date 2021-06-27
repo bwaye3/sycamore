@@ -10,7 +10,11 @@
  * @ignore
  */
 
+<<<<<<< HEAD
 (function(CKEDITOR) {
+=======
+(function (CKEDITOR) {
+>>>>>>> dev
   /**
    * Finds an element by its name.
    *
@@ -31,7 +35,11 @@
     }
 
     let found = null;
+<<<<<<< HEAD
     element.forEach(el => {
+=======
+    element.forEach((el) => {
+>>>>>>> dev
       if (el.name === name) {
         found = el;
         // Stop here.
@@ -60,7 +68,11 @@
       // data-align and data-caption attributes.
       editor.on(
         'widgetDefinition',
+<<<<<<< HEAD
         event => {
+=======
+        (event) => {
+>>>>>>> dev
           const widgetDefinition = event.data;
           if (widgetDefinition.name !== 'image') {
             return;
@@ -90,7 +102,12 @@
           // CKEDITOR.style is an immutable object: we cannot modify its
           // definition to extend requiredContent. Hence we get the definition,
           // modify it, and pass it to a new CKEDITOR.style instance.
+<<<<<<< HEAD
           const requiredContent = widgetDefinition.requiredContent.getDefinition();
+=======
+          const requiredContent =
+            widgetDefinition.requiredContent.getDefinition();
+>>>>>>> dev
           requiredContent.attributes['data-align'] = '';
           requiredContent.attributes['data-caption'] = '';
           widgetDefinition.requiredContent = new CKEDITOR.style(
@@ -112,7 +129,11 @@
           // we include the data-entity-type, data-entity-uuid, data-align and
           // data-caption attributes.
           const originalDowncast = widgetDefinition.downcast;
+<<<<<<< HEAD
           widgetDefinition.downcast = function(element) {
+=======
+          widgetDefinition.downcast = function (element) {
+>>>>>>> dev
             const img = findElementByName(element, 'img');
             originalDowncast.call(this, img);
 
@@ -148,7 +169,11 @@
           //   - <figure> tag (captioned image).
           // We take the same attributes into account as downcast() does.
           const originalUpcast = widgetDefinition.upcast;
+<<<<<<< HEAD
           widgetDefinition.upcast = function(element, data) {
+=======
+          widgetDefinition.upcast = function (element, data) {
+>>>>>>> dev
             if (
               element.name !== 'img' ||
               !element.attributes['data-entity-type'] ||
@@ -267,7 +292,11 @@
           // Override Drupal dialog save callback.
           const originalCreateDialogSaveCallback =
             widgetDefinition._createDialogSaveCallback;
+<<<<<<< HEAD
           widgetDefinition._createDialogSaveCallback = function(
+=======
+          widgetDefinition._createDialogSaveCallback = function (
+>>>>>>> dev
             editor,
             widget,
           ) {
@@ -277,15 +306,24 @@
               widget,
             );
 
+<<<<<<< HEAD
             return function(dialogReturnValues) {
+=======
+            return function (dialogReturnValues) {
+>>>>>>> dev
               // Ensure hasCaption is a boolean. image2 assumes it always works
               // with booleans; if this is not the case, then
               // CKEDITOR.plugins.image2.stateShifter() will incorrectly mark
               // widget.data.hasCaption as "changed" (e.g. when hasCaption === 0
               // instead of hasCaption === false). This causes image2's "state
               // shifter" to enter the wrong branch of the algorithm and blow up.
+<<<<<<< HEAD
               dialogReturnValues.attributes.hasCaption = !!dialogReturnValues
                 .attributes.hasCaption;
+=======
+              dialogReturnValues.attributes.hasCaption =
+                !!dialogReturnValues.attributes.hasCaption;
+>>>>>>> dev
 
               const actualWidget = saveCallback(dialogReturnValues);
 
@@ -321,7 +359,11 @@
     },
 
     afterInit(editor) {
+<<<<<<< HEAD
       const disableButtonIfOnWidget = function(evt) {
+=======
+      const disableButtonIfOnWidget = function (evt) {
+>>>>>>> dev
         const widget = editor.widgets.focused;
         if (widget && widget.name === 'image') {
           this.setState(CKEDITOR.TRISTATE_DISABLED);

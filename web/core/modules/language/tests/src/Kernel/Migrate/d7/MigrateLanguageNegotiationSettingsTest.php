@@ -15,7 +15,11 @@ class MigrateLanguageNegotiationSettingsTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['language'];
+=======
+  protected static $modules = ['language'];
+>>>>>>> dev
 
   /**
    * Tests migration of language types variables to language.types.yml.

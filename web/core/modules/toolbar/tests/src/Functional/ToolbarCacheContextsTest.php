@@ -21,7 +21,11 @@ class ToolbarCacheContextsTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['toolbar', 'test_page_test'];
+=======
+  protected static $modules = ['toolbar', 'test_page_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -56,7 +60,11 @@ class ToolbarCacheContextsTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->adminUser = $this->drupalCreateUser($this->perms);
@@ -70,9 +78,15 @@ class ToolbarCacheContextsTest extends BrowserTestBase {
     $this->installExtraModules(['dynamic_page_cache']);
     $this->drupalLogin($this->adminUser);
     $this->drupalGet('test-page');
+<<<<<<< HEAD
     $this->assertSame('MISS', $this->getSession()->getResponseHeader('X-Drupal-Dynamic-Cache'));
     $this->drupalGet('test-page');
     $this->assertSame('HIT', $this->getSession()->getResponseHeader('X-Drupal-Dynamic-Cache'));
+=======
+    $this->assertSession()->responseHeaderEquals('X-Drupal-Dynamic-Cache', 'MISS');
+    $this->drupalGet('test-page');
+    $this->assertSession()->responseHeaderEquals('X-Drupal-Dynamic-Cache', 'HIT');
+>>>>>>> dev
   }
 
   /**

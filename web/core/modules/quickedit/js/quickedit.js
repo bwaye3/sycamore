@@ -11,6 +11,7 @@
       quickEdit: Drupal.t('Quick edit')
     }
   });
+<<<<<<< HEAD
 
   var fieldsMetadataQueue = [];
 
@@ -18,12 +19,20 @@
 
   var contextualLinksQueue = [];
 
+=======
+  var fieldsMetadataQueue = [];
+  var fieldsAvailableQueue = [];
+  var contextualLinksQueue = [];
+>>>>>>> dev
   var entityInstancesTracker = {};
 
   function initQuickEdit(bodyElement) {
     Drupal.quickedit.collections.entities = new Drupal.quickedit.EntityCollection();
     Drupal.quickedit.collections.fields = new Drupal.quickedit.FieldCollection();
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     Drupal.quickedit.app = new Drupal.quickedit.AppView({
       el: bodyElement,
       model: new Drupal.quickedit.AppModel(),
@@ -34,6 +43,10 @@
 
   function processEntity(entityElement) {
     var entityID = entityElement.getAttribute('data-quickedit-entity-id');
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     if (!entityInstancesTracker.hasOwnProperty(entityID)) {
       entityInstancesTracker[entityID] = 0;
     } else {
@@ -49,6 +62,7 @@
       entityID: entityID,
       entityInstanceID: entityInstanceID
     });
+<<<<<<< HEAD
 
     $(fieldElement).addClass('quickedit-field');
 
@@ -56,26 +70,50 @@
       el: fieldElement,
       fieldID: fieldID,
       id: fieldID + '[' + entity.get('entityInstanceID') + ']',
+=======
+    $(fieldElement).addClass('quickedit-field');
+    var field = new Drupal.quickedit.FieldModel({
+      el: fieldElement,
+      fieldID: fieldID,
+      id: "".concat(fieldID, "[").concat(entity.get('entityInstanceID'), "]"),
+>>>>>>> dev
       entity: entity,
       metadata: Drupal.quickedit.metadata.get(fieldID),
       acceptStateChange: _.bind(Drupal.quickedit.app.acceptEditorStateChange, Drupal.quickedit.app)
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     Drupal.quickedit.collections.fields.add(field);
   }
 
   function loadMissingEditors(callback) {
     var loadedEditors = _.keys(Drupal.quickedit.editors);
+<<<<<<< HEAD
     var missingEditors = [];
     Drupal.quickedit.collections.fields.each(function (fieldModel) {
       var metadata = Drupal.quickedit.metadata.get(fieldModel.get('fieldID'));
       if (metadata.access && _.indexOf(loadedEditors, metadata.editor) === -1) {
         missingEditors.push(metadata.editor);
 
+=======
+
+    var missingEditors = [];
+    Drupal.quickedit.collections.fields.each(function (fieldModel) {
+      var metadata = Drupal.quickedit.metadata.get(fieldModel.get('fieldID'));
+
+      if (metadata.access && _.indexOf(loadedEditors, metadata.editor) === -1) {
+        missingEditors.push(metadata.editor);
+>>>>>>> dev
         Drupal.quickedit.editors[metadata.editor] = false;
       }
     });
     missingEditors = _.uniq(missingEditors);
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     if (missingEditors.length === 0) {
       callback();
       return;
@@ -83,12 +121,24 @@
 
     var loadEditorsAjax = Drupal.ajax({
       url: Drupal.url('quickedit/attachments'),
+<<<<<<< HEAD
       submit: { 'editors[]': missingEditors }
     });
 
     var realInsert = Drupal.AjaxCommands.prototype.insert;
     loadEditorsAjax.commands.insert = function (ajax, response, status) {
       _.defer(callback);
+=======
+      submit: {
+        'editors[]': missingEditors
+      }
+    });
+    var realInsert = Drupal.AjaxCommands.prototype.insert;
+
+    loadEditorsAjax.commands.insert = function (ajax, response, status) {
+      _.defer(callback);
+
+>>>>>>> dev
       realInsert(ajax, response, status);
     };
 
@@ -101,10 +151,18 @@
     function hasFieldWithPermission(fieldIDs) {
       for (var i = 0; i < fieldIDs.length; i++) {
         var fieldID = fieldIDs[i];
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         if (metadata.get(fieldID, 'access') === true) {
           return true;
         }
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       return false;
     }
 
@@ -116,6 +174,10 @@
       entityID: contextualLink.entityID,
       entityInstanceID: contextualLink.entityInstanceID
     });
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     var fieldIDs = _.pluck(fields, 'fieldID');
 
     if (fieldIDs.length === 0) {
@@ -127,11 +189,18 @@
         el: contextualLink.region,
         entityID: contextualLink.entityID,
         entityInstanceID: contextualLink.entityInstanceID,
+<<<<<<< HEAD
         id: contextualLink.entityID + '[' + contextualLink.entityInstanceID + ']',
         label: Drupal.quickedit.metadata.get(contextualLink.entityID, 'label')
       });
       Drupal.quickedit.collections.entities.add(entityModel);
 
+=======
+        id: "".concat(contextualLink.entityID, "[").concat(contextualLink.entityInstanceID, "]"),
+        label: Drupal.quickedit.metadata.get(contextualLink.entityID, 'label')
+      });
+      Drupal.quickedit.collections.entities.add(entityModel);
+>>>>>>> dev
       var entityDecorationView = new Drupal.quickedit.EntityDecorationView({
         el: contextualLink.region,
         model: entityModel
@@ -141,6 +210,10 @@
       _.each(fields, function (field) {
         initializeField(field.el, field.fieldID, contextualLink.entityID, contextualLink.entityInstanceID);
       });
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       fieldsAvailableQueue = _.difference(fieldsAvailableQueue, fields);
 
       var initContextualLink = _.once(function () {
@@ -154,7 +227,10 @@
       });
 
       loadMissingEditors(initContextualLink);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       return true;
     }
 
@@ -173,6 +249,7 @@
     var metadata = Drupal.quickedit.metadata;
     var fieldID = fieldElement.getAttribute('data-quickedit-field-id');
     var entityID = extractEntityID(fieldID);
+<<<<<<< HEAD
 
     var entityElementSelector = '[data-quickedit-entity-id="' + entityID + '"]';
     var $entityElement = $(entityElementSelector);
@@ -180,12 +257,25 @@
     if (!$entityElement.length) {
       throw new Error('Quick Edit could not associate the rendered entity field markup (with [data-quickedit-field-id="' + fieldID + '"]) with the corresponding rendered entity markup: no parent DOM node found with [data-quickedit-entity-id="' + entityID + '"]. This is typically caused by the theme\'s template for this entity type forgetting to print the attributes.');
     }
+=======
+    var entityElementSelector = "[data-quickedit-entity-id=\"".concat(entityID, "\"]");
+    var $entityElement = $(entityElementSelector);
+
+    if (!$entityElement.length) {
+      throw new Error("Quick Edit could not associate the rendered entity field markup (with [data-quickedit-field-id=\"".concat(fieldID, "\"]) with the corresponding rendered entity markup: no parent DOM node found with [data-quickedit-entity-id=\"").concat(entityID, "\"]. This is typically caused by the theme's template for this entity type forgetting to print the attributes."));
+    }
+
+>>>>>>> dev
     var entityElement = $(fieldElement).closest($entityElement);
 
     if (entityElement.length === 0) {
       var $lowestCommonParent = $entityElement.parents().has(fieldElement).first();
       entityElement = $lowestCommonParent.find($entityElement);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     var entityInstanceID = entityElement.get(0).getAttribute('data-quickedit-entity-instance-id');
 
     if (!metadata.has(fieldID)) {
@@ -222,13 +312,21 @@
       var entityModel = Drupal.quickedit.collections.entities.findWhere({
         el: entityElement
       });
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       if (entityModel) {
         var contextualLinkView = entityModel.get('contextualLinkView');
         contextualLinkView.undelegateEvents();
         contextualLinkView.remove();
+<<<<<<< HEAD
 
         entityModel.get('entityDecorationView').remove();
 
+=======
+        entityModel.get('entityDecorationView').remove();
+>>>>>>> dev
         entityModel.destroy();
       }
 
@@ -238,7 +336,10 @@
 
       contextualLinksQueue = _.filter(contextualLinksQueue, hasOtherRegion);
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     $context.find('[data-quickedit-field-id]').addBack('[data-quickedit-field-id]').each(function (index, fieldElement) {
       Drupal.quickedit.collections.fields.chain().filter(function (fieldModel) {
         return fieldModel.get('el') === fieldElement;
@@ -256,12 +357,21 @@
   function fetchMissingMetadata(callback) {
     if (fieldsMetadataQueue.length) {
       var fieldIDs = _.pluck(fieldsMetadataQueue, 'fieldID');
+<<<<<<< HEAD
       var fieldElementsWithoutMetadata = _.pluck(fieldsMetadataQueue, 'el');
+=======
+
+      var fieldElementsWithoutMetadata = _.pluck(fieldsMetadataQueue, 'el');
+
+>>>>>>> dev
       var entityIDs = _.uniq(_.pluck(fieldsMetadataQueue, 'entityID'), true);
 
       entityIDs = _.difference(entityIDs, Drupal.quickedit.metadata.intersection(entityIDs));
       fieldsMetadataQueue = [];
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       $.ajax({
         url: Drupal.url('quickedit/metadata'),
         type: 'POST',
@@ -284,8 +394,13 @@
   Drupal.behaviors.quickedit = {
     attach: function attach(context) {
       $('body').once('quickedit-init').each(initQuickEdit);
+<<<<<<< HEAD
 
       var $fields = $(context).find('[data-quickedit-field-id]').once('quickedit');
+=======
+      var $fields = $(context).find('[data-quickedit-field-id]').once('quickedit');
+
+>>>>>>> dev
       if ($fields.length === 0) {
         return;
       }
@@ -293,6 +408,7 @@
       $(context).find('[data-quickedit-entity-id]').once('quickedit').each(function (index, entityElement) {
         processEntity(entityElement);
       });
+<<<<<<< HEAD
 
       $fields.each(function (index, fieldElement) {
         processField(fieldElement);
@@ -302,6 +418,14 @@
         return !initializeEntityContextualLink(contextualLink);
       });
 
+=======
+      $fields.each(function (index, fieldElement) {
+        processField(fieldElement);
+      });
+      contextualLinksQueue = _.filter(contextualLinksQueue, function (contextualLink) {
+        return !initializeEntityContextualLink(contextualLink);
+      });
+>>>>>>> dev
       fetchMissingMetadata(function (fieldElementsWithFreshMetadata) {
         _.each(fieldElementsWithFreshMetadata, processField);
 
@@ -316,6 +440,7 @@
       }
     }
   };
+<<<<<<< HEAD
 
   Drupal.quickedit = {
     app: null,
@@ -328,6 +453,15 @@
 
     editors: {},
 
+=======
+  Drupal.quickedit = {
+    app: null,
+    collections: {
+      entities: null,
+      fields: null
+    },
+    editors: {},
+>>>>>>> dev
     metadata: {
       has: function has(fieldID) {
         return storage.getItem(this._prefixFieldID(fieldID)) !== null;
@@ -340,22 +474,39 @@
         return typeof key === 'undefined' ? metadata : metadata[key];
       },
       _prefixFieldID: function _prefixFieldID(fieldID) {
+<<<<<<< HEAD
         return 'Drupal.quickedit.metadata.' + fieldID;
+=======
+        return "Drupal.quickedit.metadata.".concat(fieldID);
+>>>>>>> dev
       },
       _unprefixFieldID: function _unprefixFieldID(fieldID) {
         return fieldID.substring(26);
       },
       intersection: function intersection(fieldIDs) {
         var prefixedFieldIDs = _.map(fieldIDs, this._prefixFieldID);
+<<<<<<< HEAD
         var intersection = _.intersection(prefixedFieldIDs, _.keys(sessionStorage));
+=======
+
+        var intersection = _.intersection(prefixedFieldIDs, _.keys(sessionStorage));
+
+>>>>>>> dev
         return _.map(intersection, this._unprefixFieldID);
       }
     }
   };
 
   var permissionsHashKey = Drupal.quickedit.metadata._prefixFieldID('permissionsHash');
+<<<<<<< HEAD
   var permissionsHashValue = storage.getItem(permissionsHashKey);
   var permissionsHash = drupalSettings.user.permissionsHash;
+=======
+
+  var permissionsHashValue = storage.getItem(permissionsHashKey);
+  var permissionsHash = drupalSettings.user.permissionsHash;
+
+>>>>>>> dev
   if (permissionsHashValue !== permissionsHash) {
     if (typeof permissionsHash === 'string') {
       _.chain(storage).keys().each(function (key) {
@@ -364,6 +515,10 @@
         }
       });
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     storage.setItem(permissionsHashKey, permissionsHash);
   }
 
@@ -373,6 +528,10 @@
         data.$region.once('quickedit');
         processEntity(data.$region.get(0));
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       var contextualLink = {
         entityID: data.$region.attr('data-quickedit-entity-id'),
         entityInstanceID: data.$region.attr('data-quickedit-entity-instance-id'),

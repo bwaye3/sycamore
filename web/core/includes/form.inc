@@ -216,6 +216,10 @@ function template_preprocess_fieldset(&$variables) {
   if (!empty($element['#description'])) {
     $description_id = $element['#attributes']['id'] . '--description';
     $description_attributes['id'] = $description_id;
+<<<<<<< HEAD
+=======
+    $description_attributes['data-drupal-field-elements'] = 'description';
+>>>>>>> dev
     $variables['description']['attributes'] = new Attribute($description_attributes);
     $variables['description']['content'] = $element['#description'];
 
@@ -576,7 +580,11 @@ function template_preprocess_form_element_label(&$variables) {
  *     array('my_function_2', array()),
  *   ),
  *   'finished' => 'my_finished_callback',
+<<<<<<< HEAD
  *   'file' => 'path_to_file_containing_myfunctions',
+=======
+ *   'file' => 'path_to_file_containing_my_functions',
+>>>>>>> dev
  * );
  * batch_set($batch);
  * // Only needed if not inside a form _submit handler.
@@ -626,7 +634,11 @@ function template_preprocess_form_element_label(&$variables) {
  *     $context['sandbox']['progress'] = 0;
  *     $context['sandbox']['current_id'] = 0;
  *     $context['sandbox']['max'] = \Drupal::database()
+<<<<<<< HEAD
  *       ->query('SELECT COUNT(DISTINCT id) FROM {example}')
+=======
+ *       ->query('SELECT COUNT(DISTINCT [id]) FROM {example}')
+>>>>>>> dev
  *       ->fetchField();
  *   }
  *   $limit = 5;
@@ -650,7 +662,13 @@ function template_preprocess_form_element_label(&$variables) {
  *
  * Sample callback_batch_finished():
  * @code
+<<<<<<< HEAD
  * function my_finished_callback($success, $results, $operations) {
+=======
+ * function my_finished_callback($success, $results, $operations, $elapsed) {
+ *   // See callback_batch_finished() for more information about these
+ *   // parameters.
+>>>>>>> dev
  *   // The 'success' parameter means no fatal PHP errors were detected. All
  *   // other error management should be handled using 'results'.
  *   if ($success) {

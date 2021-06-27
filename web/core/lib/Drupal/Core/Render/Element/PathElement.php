@@ -8,7 +8,11 @@ use Drupal\Core\Form\FormStateInterface;
  * Provides a matched path render element.
  *
  * Provides a form element to enter a path which can be optionally validated and
+<<<<<<< HEAD
  * stored as either a \Drupal\Core\Url value object or a array containing a
+=======
+ * stored as either a \Drupal\Core\Url value object or an array containing a
+>>>>>>> dev
  * route name and route parameters pair.
  *
  * @FormElement("path")
@@ -35,7 +39,11 @@ class PathElement extends Textfield {
    */
   public function getInfo() {
     $info = parent::getInfo();
+<<<<<<< HEAD
     $class = get_class($this);
+=======
+    $class = static::class;
+>>>>>>> dev
     $info['#validate_path'] = TRUE;
     $info['#convert_path'] = self::CONVERT_ROUTE;
     $info['#element_validate'] = [

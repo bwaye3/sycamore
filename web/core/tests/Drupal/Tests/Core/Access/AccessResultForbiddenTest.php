@@ -28,7 +28,11 @@ class AccessResultForbiddenTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test setReason()
+=======
+   * Tests setReason()
+>>>>>>> dev
    *
    * @covers ::setReason
    */

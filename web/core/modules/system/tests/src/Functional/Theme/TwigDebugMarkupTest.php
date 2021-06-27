@@ -17,7 +17,11 @@ class TwigDebugMarkupTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['theme_test', 'node'];
+=======
+  protected static $modules = ['theme_test', 'node'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

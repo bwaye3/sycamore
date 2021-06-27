@@ -98,6 +98,7 @@ class EntityTypeRepository implements EntityTypeRepositoryInterface {
     throw new NoCorrespondingEntityClassException($class_name);
   }
 
+<<<<<<< HEAD
   /**
    * {@inheritdoc}
    */
@@ -106,4 +107,6 @@ class EntityTypeRepository implements EntityTypeRepositoryInterface {
     $this->classNameEntityTypeMap = [];
   }
 
+=======
+>>>>>>> dev
 }

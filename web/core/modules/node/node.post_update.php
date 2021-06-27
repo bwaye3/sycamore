@@ -5,6 +5,7 @@
  * Post update functions for Node.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\views\Entity\View;
 
@@ -34,6 +35,18 @@ function node_post_update_configure_status_field_widget() {
  */
 function node_post_update_node_revision_views_data() {
   // Empty post-update hook.
+=======
+use Drupal\views\Entity\View;
+
+/**
+ * Implements hook_removed_post_updates().
+ */
+function node_removed_post_updates() {
+  return [
+    'node_post_update_configure_status_field_widget' => '9.0.0',
+    'node_post_update_node_revision_views_data' => '9.0.0',
+  ];
+>>>>>>> dev
 }
 
 /**

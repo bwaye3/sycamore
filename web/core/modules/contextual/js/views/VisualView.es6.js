@@ -3,7 +3,11 @@
  * A Backbone View that provides the visual view of a contextual link.
  */
 
+<<<<<<< HEAD
 (function(Drupal, Backbone, Modernizr) {
+=======
+(function (Drupal, Backbone, Modernizr) {
+>>>>>>> dev
   Drupal.contextual.VisualView = Backbone.View.extend(
     /** @lends Drupal.contextual.VisualView# */ {
       /**
@@ -14,23 +18,39 @@
        */
       events() {
         // Prevents delay and simulated mouse events.
+<<<<<<< HEAD
         const touchEndToClick = function(event) {
+=======
+        const touchEndToClick = function (event) {
+>>>>>>> dev
           event.preventDefault();
           event.target.click();
         };
         const mapping = {
+<<<<<<< HEAD
           'click .trigger': function() {
             this.model.toggleOpen();
           },
           'touchend .trigger': touchEndToClick,
           'click .contextual-links a': function() {
+=======
+          'click .trigger': function () {
+            this.model.toggleOpen();
+          },
+          'touchend .trigger': touchEndToClick,
+          'click .contextual-links a': function () {
+>>>>>>> dev
             this.model.close().blur();
           },
           'touchend .contextual-links a': touchEndToClick,
         };
         // We only want mouse hover events on non-touch.
         if (!Modernizr.touchevents) {
+<<<<<<< HEAD
           mapping.mouseenter = function() {
+=======
+          mapping.mouseenter = function () {
+>>>>>>> dev
             this.model.focus();
           };
         }

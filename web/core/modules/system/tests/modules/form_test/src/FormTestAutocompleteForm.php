@@ -34,6 +34,22 @@ class FormTestAutocompleteForm extends FormBase {
       '#autocomplete_route_name' => 'form_test.autocomplete_2',
       '#autocomplete_route_parameters' => ['param' => 'value'],
     ];
+<<<<<<< HEAD
+=======
+    $form['autocomplete_3'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => [
+          'container-inline',
+        ],
+      ],
+      'autocomplete_3' => [
+        '#type' => 'textfield',
+        '#title' => 'Autocomplete 3',
+        '#autocomplete_route_name' => 'form_test.autocomplete_1',
+      ],
+    ];
+>>>>>>> dev
 
     return $form;
   }

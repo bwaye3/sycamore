@@ -18,7 +18,11 @@ class LinkTypeConstraintValidator extends ConstraintValidator {
     if (isset($value)) {
       $uri_is_valid = TRUE;
 
+<<<<<<< HEAD
       /** @var $link_item \Drupal\link\LinkItemInterface */
+=======
+      /** @var \Drupal\link\LinkItemInterface $link_item */
+>>>>>>> dev
       $link_item = $value;
       $link_type = $link_item->getFieldDefinition()->getSetting('link_type');
 

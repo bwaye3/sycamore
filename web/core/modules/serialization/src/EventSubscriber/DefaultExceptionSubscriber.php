@@ -6,7 +6,11 @@ use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Cache\CacheableResponse;
 use Drupal\Core\EventSubscriber\HttpExceptionSubscriberBase;
 use Symfony\Component\HttpFoundation\Response;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+=======
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+>>>>>>> dev
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -64,12 +68,21 @@ class DefaultExceptionSubscriber extends HttpExceptionSubscriberBase {
   /**
    * Handles all 4xx errors for all serialization failures.
    *
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $event
    *   The event to process.
    */
   public function on4xx(GetResponseForExceptionEvent $event) {
     /** @var \Symfony\Component\HttpKernel\Exception\HttpExceptionInterface $exception */
     $exception = $event->getException();
+=======
+   * @param \Symfony\Component\HttpKernel\Event\ExceptionEvent $event
+   *   The event to process.
+   */
+  public function on4xx(ExceptionEvent $event) {
+    /** @var \Symfony\Component\HttpKernel\Exception\HttpExceptionInterface $exception */
+    $exception = $event->getThrowable();
+>>>>>>> dev
     $request = $event->getRequest();
 
     $format = $request->getRequestFormat();

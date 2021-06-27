@@ -16,7 +16,11 @@ class MigrateConfigRollbackTest extends MigrateTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'language', 'config_translation'];
+=======
+  protected static $modules = ['system', 'language', 'config_translation'];
+>>>>>>> dev
 
   /**
    * Tests rolling back configuration.

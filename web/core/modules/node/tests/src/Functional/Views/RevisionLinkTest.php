@@ -58,14 +58,22 @@ class RevisionLinkTest extends NodeTestBase {
     // The first node revision should link to the node directly as you get an
     // access denied if you link to the revision.
     $url = $nodes[0]->toUrl()->toString();
+<<<<<<< HEAD
     $this->assertLinkByHref($url);
     $this->assertNoLinkByHref($url . '/revisions/' . $nodes[0]->getRevisionId() . '/view');
     $this->assertNoLinkByHref($url . '/revisions/' . $nodes[0]->getRevisionId() . '/delete');
     $this->assertNoLinkByHref($url . '/revisions/' . $nodes[0]->getRevisionId() . '/revert');
+=======
+    $this->assertSession()->linkByHrefExists($url);
+    $this->assertSession()->linkByHrefNotExists($url . '/revisions/' . $nodes[0]->getRevisionId() . '/view');
+    $this->assertSession()->linkByHrefNotExists($url . '/revisions/' . $nodes[0]->getRevisionId() . '/delete');
+    $this->assertSession()->linkByHrefNotExists($url . '/revisions/' . $nodes[0]->getRevisionId() . '/revert');
+>>>>>>> dev
 
     // For the second node the current revision got set to the last revision, so
     // the first one should also link to the node page itself.
     $url = $nodes[1]->toUrl()->toString();
+<<<<<<< HEAD
     $this->assertLinkByHref($url);
     $this->assertLinkByHref($url . '/revisions/' . $first_revision . '/view');
     $this->assertLinkByHref($url . '/revisions/' . $first_revision . '/delete');
@@ -73,6 +81,15 @@ class RevisionLinkTest extends NodeTestBase {
     $this->assertNoLinkByHref($url . '/revisions/' . $second_revision . '/view');
     $this->assertNoLinkByHref($url . '/revisions/' . $second_revision . '/delete');
     $this->assertNoLinkByHref($url . '/revisions/' . $second_revision . '/revert');
+=======
+    $this->assertSession()->linkByHrefExists($url);
+    $this->assertSession()->linkByHrefExists($url . '/revisions/' . $first_revision . '/view');
+    $this->assertSession()->linkByHrefExists($url . '/revisions/' . $first_revision . '/delete');
+    $this->assertSession()->linkByHrefExists($url . '/revisions/' . $first_revision . '/revert');
+    $this->assertSession()->linkByHrefNotExists($url . '/revisions/' . $second_revision . '/view');
+    $this->assertSession()->linkByHrefNotExists($url . '/revisions/' . $second_revision . '/delete');
+    $this->assertSession()->linkByHrefNotExists($url . '/revisions/' . $second_revision . '/revert');
+>>>>>>> dev
 
     $accounts = [
       'view' => $this->drupalCreateUser(['view all revisions']),
@@ -94,10 +111,17 @@ class RevisionLinkTest extends NodeTestBase {
       // Check expected links.
       foreach (['revert', 'delete'] as $operation) {
         if ($operation == $allowed_operation) {
+<<<<<<< HEAD
           $this->assertLinkByHref($url . '/revisions/' . $first_revision . '/' . $operation);
         }
         else {
           $this->assertNoLinkByHref($url . '/revisions/' . $first_revision . '/' . $operation);
+=======
+          $this->assertSession()->linkByHrefExists($url . '/revisions/' . $first_revision . '/' . $operation);
+        }
+        else {
+          $this->assertSession()->linkByHrefNotExists($url . '/revisions/' . $first_revision . '/' . $operation);
+>>>>>>> dev
         }
       }
     }

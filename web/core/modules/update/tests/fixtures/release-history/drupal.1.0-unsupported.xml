@@ -18,7 +18,10 @@ all the releases that start with '8.0.' are in an unsupported branch.
  <release>
    <name>Drupal 8.1.0</name>
    <version>8.1.0</version>
+<<<<<<< HEAD
    <tag>8.1.0</tag>
+=======
+>>>>>>> dev
    <status>published</status>
    <release_link>http://example.com/drupal-8-1-0-release</release_link>
    <download_link>http://example.com/drupal-8-1-0.tar.gz</download_link>
@@ -31,7 +34,10 @@ all the releases that start with '8.0.' are in an unsupported branch.
  <release>
    <name>Drupal 8.1.0-beta1</name>
    <version>8.1.0-beta1</version>
+<<<<<<< HEAD
    <tag>8.1.0-beta1</tag>
+=======
+>>>>>>> dev
    <status>published</status>
    <release_link>http://example.com/drupal-8-1-0-beta1-release</release_link>
    <download_link>http://example.com/drupal-8-1-0-beta1.tar.gz</download_link>
@@ -44,7 +50,10 @@ all the releases that start with '8.0.' are in an unsupported branch.
  <release>
    <name>Drupal 8.1.0-alpha1</name>
    <version>8.1.0-alpha1</version>
+<<<<<<< HEAD
    <tag>8.1.0-alpha1</tag>
+=======
+>>>>>>> dev
    <status>published</status>
    <release_link>http://example.com/drupal-8-1-0-alpha1-release</release_link>
    <download_link>http://example.com/drupal-8-1-0-alpha1.tar.gz</download_link>
@@ -57,7 +66,10 @@ all the releases that start with '8.0.' are in an unsupported branch.
  <release>
    <name>Drupal 8.0.3</name>
    <version>8.0.3</version>
+<<<<<<< HEAD
    <tag>8.0.3</tag>
+=======
+>>>>>>> dev
    <status>published</status>
    <release_link>http://example.com/drupal-8-0-3-release</release_link>
    <download_link>http://example.com/drupal-8-0-3.tar.gz</download_link>
@@ -71,7 +83,10 @@ all the releases that start with '8.0.' are in an unsupported branch.
  <release>
    <name>Drupal 8.0.2</name>
    <version>8.0.2</version>
+<<<<<<< HEAD
    <tag>8.0.2</tag>
+=======
+>>>>>>> dev
    <status>unpublished</status>
    <release_link>http://example.com/drupal-8-0-2-release</release_link>
    <download_link>http://example.com/drupal-8-0-2.tar.gz</download_link>
@@ -84,7 +99,10 @@ all the releases that start with '8.0.' are in an unsupported branch.
  <release>
    <name>Drupal 8.0.1</name>
    <version>8.0.1</version>
+<<<<<<< HEAD
    <tag>8.0.1</tag>
+=======
+>>>>>>> dev
    <status>published</status>
    <release_link>http://example.com/drupal-8-0-1-release</release_link>
    <download_link>http://example.com/drupal-8-0-1.tar.gz</download_link>
@@ -97,7 +115,10 @@ all the releases that start with '8.0.' are in an unsupported branch.
  <release>
    <name>Drupal 8.0.1-beta1</name>
    <version>8.0.1-beta1</version>
+<<<<<<< HEAD
    <tag>8.0.1-beta1</tag>
+=======
+>>>>>>> dev
    <status>published</status>
    <release_link>http://example.com/drupal-8-0-1-beta1-release</release_link>
    <download_link>http://example.com/drupal-8-0-1-beta1.tar.gz</download_link>
@@ -110,7 +131,10 @@ all the releases that start with '8.0.' are in an unsupported branch.
  <release>
    <name>Drupal 8.0.1-alpha1</name>
    <version>8.0.1-alpha1</version>
+<<<<<<< HEAD
    <tag>8.0.1-alpha1</tag>
+=======
+>>>>>>> dev
    <status>published</status>
    <release_link>http://example.com/drupal-8-0-1-alpha1-release</release_link>
    <download_link>http://example.com/drupal-8-0-1-alpha1.tar.gz</download_link>
@@ -123,7 +147,10 @@ all the releases that start with '8.0.' are in an unsupported branch.
  <release>
    <name>Drupal 8.0.0</name>
    <version>8.0.0</version>
+<<<<<<< HEAD
    <tag>8.0.0</tag>
+=======
+>>>>>>> dev
    <status>published</status>
    <release_link>http://example.com/drupal-8-0-0-release</release_link>
    <download_link>http://example.com/drupal-8-0-0.tar.gz</download_link>
@@ -136,7 +163,10 @@ all the releases that start with '8.0.' are in an unsupported branch.
  <release>
    <name>Drupal 8.0.0-beta1</name>
    <version>8.0.0-beta1</version>
+<<<<<<< HEAD
    <tag>8.0.0-beta1</tag>
+=======
+>>>>>>> dev
    <status>published</status>
    <release_link>http://example.com/drupal-8-0-0-beta1-release</release_link>
    <download_link>http://example.com/drupal-8-0-0-beta1.tar.gz</download_link>
@@ -149,7 +179,10 @@ all the releases that start with '8.0.' are in an unsupported branch.
  <release>
    <name>Drupal 8.0.0-alpha1</name>
    <version>8.0.0-alpha1</version>
+<<<<<<< HEAD
    <tag>8.0.0-alpha1</tag>
+=======
+>>>>>>> dev
    <status>published</status>
    <release_link>http://example.com/drupal-8-0-0-alpha1-release</release_link>
    <download_link>http://example.com/drupal-8-0-0-alpha1.tar.gz</download_link>

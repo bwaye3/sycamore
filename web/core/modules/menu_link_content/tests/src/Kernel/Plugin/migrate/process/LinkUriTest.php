@@ -26,12 +26,20 @@ class LinkUriTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'user'];
+=======
+  protected static $modules = ['node', 'user'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
+=======
+  public function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->setUpCurrentUser();
     $this->installEntitySchema('node');
@@ -55,6 +63,7 @@ class LinkUriTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests legacy handling for LinkUri::transform().
    *
    * @dataProvider providerTestRouted
@@ -67,6 +76,8 @@ class LinkUriTest extends KernelTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Provides test cases for LinkUriTest::testTransform().
    *
    * @return array

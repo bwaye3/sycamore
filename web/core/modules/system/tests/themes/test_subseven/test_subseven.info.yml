@@ -2,5 +2,8 @@ name: 'Theme test subseven'
 type: theme
 description: 'Test theme which uses seven as the base theme.'
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 base theme: seven

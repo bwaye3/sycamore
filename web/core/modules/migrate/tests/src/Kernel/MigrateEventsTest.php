@@ -30,12 +30,20 @@ class MigrateEventsTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['migrate', 'migrate_events_test'];
+=======
+  protected static $modules = ['migrate', 'migrate_events_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->state = \Drupal::state();
     \Drupal::service('event_dispatcher')->addListener(MigrateEvents::MAP_SAVE,
@@ -82,6 +90,7 @@ class MigrateEventsTest extends KernelTestBase {
 
     // Validate from the recorded state that the events were received.
     $event = $this->state->get('migrate_events_test.pre_import_event', []);
+<<<<<<< HEAD
     $this->assertIdentical($event['event_name'], MigrateEvents::PRE_IMPORT);
     $this->assertIdentical($event['migration']->id(), $migration->id());
 
@@ -111,12 +120,48 @@ class MigrateEventsTest extends KernelTestBase {
     // Validating the last row processed.
     $this->assertIdentical($event['row']->getSourceProperty('data'), 'dummy value');
     $this->assertIdentical($event['destination_id_values']['value'], 'dummy value');
+=======
+    $this->assertSame(MigrateEvents::PRE_IMPORT, $event['event_name']);
+    $this->assertSame($migration->id(), $event['migration']->id());
+
+    $event = $this->state->get('migrate_events_test.post_import_event', []);
+    $this->assertSame(MigrateEvents::POST_IMPORT, $event['event_name']);
+    $this->assertSame($migration->id(), $event['migration']->id());
+
+    $event = $this->state->get('migrate_events_test.map_save_event', []);
+    $this->assertSame(MigrateEvents::MAP_SAVE, $event['event_name']);
+    // Validating the last row processed.
+    $this->assertSame('dummy value', $event['fields']['sourceid1']);
+    $this->assertSame('dummy value', $event['fields']['destid1']);
+    $this->assertSame(0, $event['fields']['source_row_status']);
+
+    $event = $this->state->get('migrate_events_test.map_delete_event', []);
+    $this->assertSame([], $event);
+
+    $event = $this->state->get('migrate_events_test.pre_row_save_event', []);
+    $this->assertSame(MigrateEvents::PRE_ROW_SAVE, $event['event_name']);
+    $this->assertSame($migration->id(), $event['migration']->id());
+    // Validating the last row processed.
+    $this->assertSame('dummy value', $event['row']->getSourceProperty('data'));
+
+    $event = $this->state->get('migrate_events_test.post_row_save_event', []);
+    $this->assertSame(MigrateEvents::POST_ROW_SAVE, $event['event_name']);
+    $this->assertSame($migration->id(), $event['migration']->id());
+    // Validating the last row processed.
+    $this->assertSame('dummy value', $event['row']->getSourceProperty('data'));
+    $this->assertSame('dummy value', $event['destination_id_values']['value']);
+>>>>>>> dev
 
     // Generate a map delete event.
     $migration->getIdMap()->delete(['data' => 'dummy value']);
     $event = $this->state->get('migrate_events_test.map_delete_event', []);
+<<<<<<< HEAD
     $this->assertIdentical($event['event_name'], MigrateEvents::MAP_DELETE);
     $this->assertIdentical($event['source_id'], ['data' => 'dummy value']);
+=======
+    $this->assertSame(MigrateEvents::MAP_DELETE, $event['event_name']);
+    $this->assertSame(['data' => 'dummy value'], $event['source_id']);
+>>>>>>> dev
   }
 
   /**

@@ -2,6 +2,7 @@
   margin-bottom: 0.5em;
 }
 
+<<<<<<< HEAD
 .sitemap .sitemap-box {
   margin-bottom: 1em;
 }
@@ -28,3 +29,23 @@
 .sitemap .sitemap-rss-left ul li li {
   padding-left: 1.5em;
 }
+=======
+.sitemap-item {
+  margin-bottom: 1em;
+}
+
+.sitemap-item .item-list ul {
+  padding-left: 1.5em;
+  list-style-type: disc;
+}
+
+.sitemap-item .item-list ul ul {
+  margin: 0;
+  list-style-type: circle;
+}
+
+.sitemap-item .item-list ul ul ul {
+  list-style-type: square;
+}
+
+>>>>>>> dev

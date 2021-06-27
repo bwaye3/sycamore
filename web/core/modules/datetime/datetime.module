@@ -9,6 +9,7 @@ use Drupal\Core\Url;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
+<<<<<<< HEAD
  * Defines the timezone that dates should be stored in.
  *
  * @deprecated in drupal:8.5.0 and is removed from drupal:9.0.0. Use
@@ -42,6 +43,8 @@ const DATETIME_DATETIME_STORAGE_FORMAT = 'Y-m-d\TH:i:s';
 const DATETIME_DATE_STORAGE_FORMAT = 'Y-m-d';
 
 /**
+=======
+>>>>>>> dev
  * Implements hook_help().
  */
 function datetime_help($route_name, RouteMatchInterface $route_match) {
@@ -60,6 +63,7 @@ function datetime_help($route_name, RouteMatchInterface $route_match) {
       return $output;
   }
 }
+<<<<<<< HEAD
 
 /**
  * Sets a consistent time on a date without time.
@@ -86,3 +90,5 @@ function datetime_date_default_time($date) {
   // may derive from them).
   $date->setTime(12, 0, 0);
 }
+=======
+>>>>>>> dev

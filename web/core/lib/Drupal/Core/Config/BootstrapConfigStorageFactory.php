@@ -40,6 +40,7 @@ class BootstrapConfigStorageFactory {
     return new DatabaseStorage(Database::getConnection(), 'config');
   }
 
+<<<<<<< HEAD
   /**
    * Returns a File-based configuration storage implementation.
    *
@@ -57,4 +58,6 @@ class BootstrapConfigStorageFactory {
     return new FileStorage(config_get_config_directory(CONFIG_ACTIVE_DIRECTORY));
   }
 
+=======
+>>>>>>> dev
 }

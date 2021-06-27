@@ -16,7 +16,11 @@ class HandleMultiplesTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['migrate'];
+=======
+  protected static $modules = ['migrate'];
+>>>>>>> dev
 
   /**
    * Provides the test migration definition.

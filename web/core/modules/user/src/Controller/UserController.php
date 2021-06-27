@@ -71,15 +71,22 @@ class UserController extends ControllerBase {
    * @param \Drupal\Core\Flood\FloodInterface $flood
    *   The flood service.
    */
+<<<<<<< HEAD
   public function __construct(DateFormatterInterface $date_formatter, UserStorageInterface $user_storage, UserDataInterface $user_data, LoggerInterface $logger, FloodInterface $flood = NULL) {
+=======
+  public function __construct(DateFormatterInterface $date_formatter, UserStorageInterface $user_storage, UserDataInterface $user_data, LoggerInterface $logger, FloodInterface $flood) {
+>>>>>>> dev
     $this->dateFormatter = $date_formatter;
     $this->userStorage = $user_storage;
     $this->userData = $user_data;
     $this->logger = $logger;
+<<<<<<< HEAD
     if (!$flood) {
       @trigger_error('Calling ' . __METHOD__ . ' without the $flood parameter is deprecated in drupal:8.8.0 and is required in drupal:9.0.0. See https://www.drupal.org/node/1681832', E_USER_DEPRECATED);
       $flood = \Drupal::service('flood');
     }
+=======
+>>>>>>> dev
     $this->flood = $flood;
   }
 
@@ -317,7 +324,13 @@ class UserController extends ControllerBase {
    *   A redirection to home page.
    */
   public function logout() {
+<<<<<<< HEAD
     user_logout();
+=======
+    if ($this->currentUser()->isAuthenticated()) {
+      user_logout();
+    }
+>>>>>>> dev
     return $this->redirect('<front>');
   }
 

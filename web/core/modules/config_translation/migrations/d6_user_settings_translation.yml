@@ -31,3 +31,10 @@ destination:
   plugin: config
   config_name: user.settings
   translations: true
+<<<<<<< HEAD
+=======
+migration_dependencies:
+  required:
+    - d6_user_settings
+    - language
+>>>>>>> dev

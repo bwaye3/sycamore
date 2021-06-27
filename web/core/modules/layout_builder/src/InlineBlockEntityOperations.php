@@ -2,7 +2,10 @@
 
 namespace Drupal\layout_builder;
 
+<<<<<<< HEAD
 use Drupal\Core\Database\Connection;
+=======
+>>>>>>> dev
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -55,6 +58,7 @@ class InlineBlockEntityOperations implements ContainerInjectionInterface {
    *   The entity type manager service.
    * @param \Drupal\layout_builder\InlineBlockUsageInterface $usage
    *   Inline block usage tracking service.
+<<<<<<< HEAD
    * @param \Drupal\Core\Database\Connection $database
    *   The database connection.
    * @param \Drupal\layout_builder\SectionStorage\SectionStorageManagerInterface $section_storage_manager
@@ -74,6 +78,15 @@ class InlineBlockEntityOperations implements ContainerInjectionInterface {
       @trigger_error('The plugin.manager.layout_builder.section_storage service must be passed to \Drupal\layout_builder\InlineBlockEntityOperations::__construct(). It was added in Drupal 8.7.0 and will be required before Drupal 9.0.0.', E_USER_DEPRECATED);
       $section_storage_manager = \Drupal::service('plugin.manager.layout_builder.section_storage');
     }
+=======
+   * @param \Drupal\layout_builder\SectionStorage\SectionStorageManagerInterface $section_storage_manager
+   *   (optional) The section storage manager.
+   */
+  public function __construct(EntityTypeManagerInterface $entityTypeManager, InlineBlockUsageInterface $usage, SectionStorageManagerInterface $section_storage_manager) {
+    $this->entityTypeManager = $entityTypeManager;
+    $this->blockContentStorage = $entityTypeManager->getStorage('block_content');
+    $this->usage = $usage;
+>>>>>>> dev
     $this->sectionStorageManager = $section_storage_manager;
   }
 
@@ -84,7 +97,10 @@ class InlineBlockEntityOperations implements ContainerInjectionInterface {
     return new static(
       $container->get('entity_type.manager'),
       $container->get('inline_block.usage'),
+<<<<<<< HEAD
       $container->get('database'),
+=======
+>>>>>>> dev
       $container->get('plugin.manager.layout_builder.section_storage')
     );
   }
@@ -177,6 +193,7 @@ class InlineBlockEntityOperations implements ContainerInjectionInterface {
         // duplicated.
         $duplicate_blocks = TRUE;
       }
+<<<<<<< HEAD
       $new_revision = FALSE;
       if ($entity instanceof RevisionableInterface) {
         // If the parent entity will have a new revision create a new revision
@@ -189,6 +206,12 @@ class InlineBlockEntityOperations implements ContainerInjectionInterface {
         $new_revision = TRUE;
       }
 
+=======
+      // Since multiple parent entity revisions may reference common block
+      // revisions, when a block is modified, it must always result in the
+      // creation of a new block revision.
+      $new_revision = $entity instanceof RevisionableInterface;
+>>>>>>> dev
       foreach ($this->getInlineBlockComponents($sections) as $component) {
         $this->saveInlineBlockComponent($entity, $component, $new_revision, $duplicate_blocks);
       }
@@ -250,7 +273,11 @@ class InlineBlockEntityOperations implements ContainerInjectionInterface {
    */
   protected function getBlockIdsForRevisionIds(array $revision_ids) {
     if ($revision_ids) {
+<<<<<<< HEAD
       $query = $this->blockContentStorage->getQuery();
+=======
+      $query = $this->blockContentStorage->getQuery()->accessCheck(FALSE);
+>>>>>>> dev
       $query->condition('revision_id', $revision_ids, 'IN');
       $block_ids = $query->execute();
       return $block_ids;
@@ -266,7 +293,11 @@ class InlineBlockEntityOperations implements ContainerInjectionInterface {
    * @param \Drupal\layout_builder\SectionComponent $component
    *   The section component with an inline block.
    * @param bool $new_revision
+<<<<<<< HEAD
    *   Whether a new revision of the block should be created.
+=======
+   *   Whether a new revision of the block should be created when modified.
+>>>>>>> dev
    * @param bool $duplicate_blocks
    *   Whether the blocks should be duplicated.
    */

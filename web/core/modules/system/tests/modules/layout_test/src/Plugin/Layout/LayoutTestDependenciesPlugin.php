@@ -27,7 +27,11 @@ class LayoutTestDependenciesPlugin extends LayoutDefault implements DependentPlu
    */
   public function calculateDependencies() {
     $dependencies = [];
+<<<<<<< HEAD
     $dependencies['config'][] = 'system.menu.myothermenu';
+=======
+    $dependencies['config'][] = 'system.menu.my-other-menu';
+>>>>>>> dev
     return $dependencies;
   }
 

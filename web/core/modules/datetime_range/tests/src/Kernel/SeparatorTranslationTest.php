@@ -35,7 +35,11 @@ class SeparatorTranslationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'datetime',
     'datetime_range',
     'entity_test',
@@ -48,13 +52,21 @@ class SeparatorTranslationTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('entity_test');
     $this->installEntitySchema('user');
     $this->installConfig(['system']);
+<<<<<<< HEAD
     $this->installSchema('system', ['sequences', 'key_value']);
+=======
+    $this->installSchema('system', ['sequences']);
+>>>>>>> dev
 
     // Add a datetime range field.
     $this->fieldStorage = FieldStorageConfig::create([
@@ -106,7 +118,10 @@ class SeparatorTranslationTest extends KernelTestBase {
     $display = EntityViewDisplay::collectRenderDisplay($entity, 'default');
     $build = $display->build($entity);
     $output = $this->container->get('renderer')->renderRoot($build);
+<<<<<<< HEAD
     $this->verbose($output);
+=======
+>>>>>>> dev
     $this->assertStringContainsString('UNTRANSLATED', (string) $output);
 
     // Translate the separator.
@@ -123,7 +138,10 @@ class SeparatorTranslationTest extends KernelTestBase {
     $display = EntityViewDisplay::collectRenderDisplay($entity, 'default');
     $build = $display->build($entity);
     $output = $this->container->get('renderer')->renderRoot($build);
+<<<<<<< HEAD
     $this->verbose($output);
+=======
+>>>>>>> dev
     $this->assertStringContainsString('NL_TRANSLATED!', (string) $output);
   }
 

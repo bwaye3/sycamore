@@ -3,8 +3,11 @@
 namespace Drupal\Tests\user\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
+<<<<<<< HEAD
 use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
+=======
+>>>>>>> dev
 
 /**
  * Tests legacy user functionality.
@@ -15,6 +18,7 @@ use Drupal\user\UserInterface;
 class UserLegacyTest extends KernelTestBase {
 
   /**
+<<<<<<< HEAD
    * Modules to enable.
    *
    * @var array
@@ -92,6 +96,15 @@ class UserLegacyTest extends KernelTestBase {
   public function testUserFormatName() {
     $user = User::create(['name' => 'foo', 'uid' => 10]);
     $this->assertSame('foo', user_format_name($user));
+=======
+   * {@inheritdoc}
+   */
+  protected static $modules = ['user'];
+
+  public function testUserPassword() {
+    $this->expectDeprecation('user_password() is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Use \Drupal\Core\Password\PasswordGeneratorInterface::generate() instead. See https://www.drupal.org/node/3153113');
+    $this->assertNotEmpty(user_password());
+>>>>>>> dev
   }
 
 }

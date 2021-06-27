@@ -5,7 +5,11 @@
  * @ignore
  */
 
+<<<<<<< HEAD
 (function($, Drupal, drupalSettings, CKEDITOR) {
+=======
+(function ($, Drupal, drupalSettings, CKEDITOR) {
+>>>>>>> dev
   function parseAttributes(editor, element) {
     const parsedAttributes = {};
 
@@ -41,7 +45,11 @@
 
   function getAttributes(editor, data) {
     const set = {};
+<<<<<<< HEAD
     Object.keys(data || {}).forEach(attributeName => {
+=======
+    Object.keys(data || {}).forEach((attributeName) => {
+>>>>>>> dev
       set[attributeName] = data[attributeName];
     });
 
@@ -51,7 +59,11 @@
 
     // Remove all attributes which are not currently set.
     const removed = {};
+<<<<<<< HEAD
     Object.keys(set).forEach(s => {
+=======
+    Object.keys(set).forEach((s) => {
+>>>>>>> dev
       delete removed[s];
     });
 
@@ -167,7 +179,11 @@
           }
 
           // Prepare a save callback to be used upon saving the dialog.
+<<<<<<< HEAD
           const saveCallback = function(returnValues) {
+=======
+          const saveCallback = function (returnValues) {
+>>>>>>> dev
             // If an image widget is focused, we're not editing an independent
             // link, but we're wrapping an image widget in a link.
             if (focusedLinkableWidget) {
@@ -214,7 +230,11 @@
             }
             // Update the link properties.
             else if (linkElement) {
+<<<<<<< HEAD
               Object.keys(returnValues.attributes || {}).forEach(attrName => {
+=======
+              Object.keys(returnValues.attributes || {}).forEach((attrName) => {
+>>>>>>> dev
                 // Update the property if a value is specified.
                 if (returnValues.attributes[attrName].length > 0) {
                   const value = returnValues.attributes[attrName];
@@ -299,7 +319,11 @@
         });
       }
 
+<<<<<<< HEAD
       editor.on('doubleclick', evt => {
+=======
+      editor.on('doubleclick', (evt) => {
+>>>>>>> dev
         const element = getSelectedLink(editor) || evt.data.element;
 
         if (!element.isReadOnly()) {

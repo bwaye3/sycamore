@@ -126,7 +126,11 @@ class RandomTest extends TestCase {
     $random = new Random();
     for ($i = 0; $i <= 1; $i++) {
       $obj = $random->object($i);
+<<<<<<< HEAD
       $this->assertEquals($i, count(get_object_vars($obj)), 'Generated random object has expected number of properties');
+=======
+      $this->assertCount($i, get_object_vars($obj), 'Generated random object has expected number of properties');
+>>>>>>> dev
     }
   }
 
@@ -143,6 +147,29 @@ class RandomTest extends TestCase {
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * Tests random word.
+   *
+   * @covers ::word
+   */
+  public function testRandomWordValidator() {
+    $random = new Random();
+    // Without a seed, test a different word is returned each time.
+    $this->firstStringGenerated = $random->word(5);
+    $next_str = $random->word(5);
+    $this->assertNotEquals($this->firstStringGenerated, $next_str);
+
+    // With a seed, test the same word is returned each time.
+    mt_srand(0);
+    $this->firstStringGenerated = $random->word(5);
+    mt_srand(0);
+    $next_str = $random->word(5);
+    $this->assertEquals($this->firstStringGenerated, $next_str);
+  }
+
+  /**
+>>>>>>> dev
    * Callback for random string validation.
    *
    * @see \Drupal\Component\Utility\Random::name()

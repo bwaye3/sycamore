@@ -30,7 +30,11 @@ class DbLogFormInjectionTest extends KernelTestBase implements FormInterface {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'dblog', 'user'];
+=======
+  protected static $modules = ['system', 'dblog', 'user'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -75,10 +79,17 @@ class DbLogFormInjectionTest extends KernelTestBase implements FormInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     parent::setUp();
     $this->installSchema('dblog', ['watchdog']);
     $this->installSchema('system', ['key_value_expire', 'sequences']);
+=======
+  protected function setUp(): void {
+    parent::setUp();
+    $this->installSchema('dblog', ['watchdog']);
+    $this->installSchema('system', ['sequences']);
+>>>>>>> dev
     $this->installEntitySchema('user');
     $this->logger = \Drupal::logger('test_logger');
     $test_user = User::create([

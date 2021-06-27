@@ -2,7 +2,10 @@
 
 namespace Drupal\options\Plugin\Field\FieldType;
 
+<<<<<<< HEAD
 use Drupal\Core\Field\AllowedTagsXssTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -15,8 +18,11 @@ use Drupal\Core\TypedData\OptionsProviderInterface;
  */
 abstract class ListItemBase extends FieldItemBase implements OptionsProviderInterface {
 
+<<<<<<< HEAD
   use AllowedTagsXssTrait;
 
+=======
+>>>>>>> dev
   /**
    * {@inheritdoc}
    */
@@ -91,7 +97,11 @@ abstract class ListItemBase extends FieldItemBase implements OptionsProviderInte
       '#default_value' => $this->allowedValuesString($allowed_values),
       '#rows' => 10,
       '#access' => empty($allowed_values_function),
+<<<<<<< HEAD
       '#element_validate' => [[get_class($this), 'validateAllowedValues']],
+=======
+      '#element_validate' => [[static::class, 'validateAllowedValues']],
+>>>>>>> dev
       '#field_has_data' => $has_data,
       '#field_name' => $this->getFieldDefinition()->getName(),
       '#entity_type' => $this->getEntity()->getEntityTypeId(),

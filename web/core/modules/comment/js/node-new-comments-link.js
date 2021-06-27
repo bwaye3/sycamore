@@ -21,7 +21,11 @@
   function processNodeNewCommentLinks($placeholders) {
     var $placeholdersToUpdate = {};
     var fieldName = 'comment';
+<<<<<<< HEAD
     var $placeholder = void 0;
+=======
+    var $placeholder;
+>>>>>>> dev
     $placeholders.each(function (index, placeholder) {
       $placeholder = $(placeholder);
       var timestamp = parseInt($placeholder.attr('data-history-node-last-comment-timestamp'), 10);
@@ -35,8 +39,13 @@
           remove($placeholder);
         }
     });
+<<<<<<< HEAD
 
     var nodeIDs = Object.keys($placeholdersToUpdate);
+=======
+    var nodeIDs = Object.keys($placeholdersToUpdate);
+
+>>>>>>> dev
     if (nodeIDs.length === 0) {
       return;
     }
@@ -56,7 +65,14 @@
       $.ajax({
         url: Drupal.url('comments/render_new_comments_node_links'),
         type: 'POST',
+<<<<<<< HEAD
         data: { 'node_ids[]': nodeIDs, field_name: fieldName },
+=======
+        data: {
+          'node_ids[]': nodeIDs,
+          field_name: fieldName
+        },
+>>>>>>> dev
         dataType: 'json',
         success: render
       });
@@ -70,9 +86,15 @@
         var $placeholder = $(this);
         var lastCommentTimestamp = parseInt($placeholder.attr('data-history-node-last-comment-timestamp'), 10);
         var nodeID = $placeholder.closest('[data-history-node-id]').attr('data-history-node-id');
+<<<<<<< HEAD
         if (Drupal.history.needsServerCheck(nodeID, lastCommentTimestamp)) {
           nodeIDs.push(nodeID);
 
+=======
+
+        if (Drupal.history.needsServerCheck(nodeID, lastCommentTimestamp)) {
+          nodeIDs.push(nodeID);
+>>>>>>> dev
           hide($placeholder);
           return true;
         }

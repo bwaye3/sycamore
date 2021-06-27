@@ -11,7 +11,11 @@ abstract class ContentLanguageSettingsResourceTestBase extends EntityResourceTes
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['language', 'node'];
+=======
+  protected static $modules = ['language', 'node'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

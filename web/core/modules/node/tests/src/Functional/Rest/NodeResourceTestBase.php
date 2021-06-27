@@ -4,19 +4,29 @@ namespace Drupal\Tests\node\Functional\Rest;
 
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
+<<<<<<< HEAD
 use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
+=======
+>>>>>>> dev
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 use Drupal\user\Entity\User;
 use GuzzleHttp\RequestOptions;
 
 abstract class NodeResourceTestBase extends EntityResourceTestBase {
 
+<<<<<<< HEAD
   use BcTimestampNormalizerUnixTestTrait;
 
   /**
    * {@inheritdoc}
    */
   public static $modules = ['node', 'path'];
+=======
+  /**
+   * {@inheritdoc}
+   */
+  protected static $modules = ['node', 'path'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -132,10 +142,23 @@ abstract class NodeResourceTestBase extends EntityResourceTestBase {
         ],
       ],
       'created' => [
+<<<<<<< HEAD
         $this->formatExpectedTimestampItemValues(123456789),
       ],
       'changed' => [
         $this->formatExpectedTimestampItemValues($this->entity->getChangedTime()),
+=======
+        [
+          'value' => (new \DateTime())->setTimestamp(123456789)->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
+          'format' => \DateTime::RFC3339,
+        ],
+      ],
+      'changed' => [
+        [
+          'value' => (new \DateTime())->setTimestamp($this->entity->getChangedTime())->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
+          'format' => \DateTime::RFC3339,
+        ],
+>>>>>>> dev
       ],
       'promote' => [
         [
@@ -148,7 +171,14 @@ abstract class NodeResourceTestBase extends EntityResourceTestBase {
         ],
       ],
       'revision_timestamp' => [
+<<<<<<< HEAD
         $this->formatExpectedTimestampItemValues(123456789),
+=======
+        [
+          'value' => (new \DateTime())->setTimestamp(123456789)->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
+          'format' => \DateTime::RFC3339,
+        ],
+>>>>>>> dev
       ],
       'revision_translation_affected' => [
         [
@@ -209,10 +239,13 @@ abstract class NodeResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
+<<<<<<< HEAD
     if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
       return parent::getExpectedUnauthorizedAccessMessage($method);
     }
 
+=======
+>>>>>>> dev
     if ($method === 'GET' || $method == 'PATCH' || $method == 'DELETE' || $method == 'POST') {
       return "The 'access content' permission is required.";
     }

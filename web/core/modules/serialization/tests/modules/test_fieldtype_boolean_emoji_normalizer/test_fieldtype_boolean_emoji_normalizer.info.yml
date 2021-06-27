@@ -3,4 +3,7 @@ type: module
 description: 'Provides test support for @FieldType-level normalization.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

@@ -214,7 +214,14 @@ class FileSystem implements FileSystemInterface {
         $recursive_path .= $component;
 
         if (!file_exists($recursive_path)) {
+<<<<<<< HEAD
           if (!$this->mkdirCall($recursive_path, $mode, FALSE, $context)) {
+=======
+          $success = $this->mkdirCall($recursive_path, $mode, FALSE, $context);
+          // If the operation failed, check again if the directory was created
+          // by another process/server, only report a failure if not.
+          if (!$success && !file_exists($recursive_path)) {
+>>>>>>> dev
             return FALSE;
           }
           // Not necessary to use self::chmod() as there is no scheme.
@@ -291,6 +298,7 @@ class FileSystem implements FileSystemInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function uriScheme($uri) {
     @trigger_error('FileSystem::uriScheme() is deprecated in drupal:8.8.0. It will be removed from drupal:9.0.0. Use \Drupal\Core\StreamWrapper\StreamWrapperManagerInterface::getScheme() instead. See https://www.drupal.org/node/3035273', E_USER_DEPRECATED);
     return StreamWrapperManager::getScheme($uri);
@@ -307,6 +315,8 @@ class FileSystem implements FileSystemInterface {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function copy($source, $destination, $replace = self::EXISTS_RENAME) {
     $this->prepareDestination($source, $destination, $replace);
 
@@ -482,10 +492,18 @@ class FileSystem implements FileSystemInterface {
       // Perhaps $destination is a dir/file?
       $dirname = $this->dirname($destination);
       if (!$this->prepareDirectory($dirname)) {
+<<<<<<< HEAD
         $this->logger->error("The specified file '%original_source' could not be copied because the destination directory is not properly configured. This may be caused by a problem with file or directory permissions.", [
           '%original_source' => $original_source,
         ]);
         throw new DirectoryNotReadyException("The specified file '$original_source' could not be copied because the destination directory is not properly configured. This may be caused by a problem with file or directory permissions.");
+=======
+        $this->logger->error("The specified file '%original_source' could not be copied because the destination directory '%destination_directory' is not properly configured. This may be caused by a problem with file or directory permissions.", [
+          '%original_source' => $original_source,
+          '%destination_directory' => $dirname,
+        ]);
+        throw new DirectoryNotReadyException("The specified file '$original_source' could not be copied because the destination directory '$dirname' is not properly configured. This may be caused by a problem with file or directory permissions.");
+>>>>>>> dev
       }
     }
 
@@ -645,6 +663,7 @@ class FileSystem implements FileSystemInterface {
       return $temporary_directory;
     }
 
+<<<<<<< HEAD
     // Fallback to config for Backwards compatibility.
     // This service is lazy-loaded and not injected, as the file_system service
     // is used in the install phase before config_factory service exists. It
@@ -657,6 +676,8 @@ class FileSystem implements FileSystemInterface {
       }
     }
 
+=======
+>>>>>>> dev
     // Fallback to OS default.
     $temporary_directory = FileSystemComponent::getOsTemporaryDirectory();
 

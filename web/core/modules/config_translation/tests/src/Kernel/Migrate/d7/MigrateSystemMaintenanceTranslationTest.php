@@ -11,7 +11,11 @@ use Drupal\Tests\migrate_drupal\Kernel\d7\MigrateDrupal7TestBase;
  */
 class MigrateSystemMaintenanceTranslationTest extends MigrateDrupal7TestBase {
 
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'language',
     'config_translation',
   ];
@@ -19,9 +23,19 @@ class MigrateSystemMaintenanceTranslationTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     parent::setUp();
     $this->executeMigration('d7_system_maintenance_translation');
+=======
+  protected function setUp(): void {
+    parent::setUp();
+    $this->executeMigrations([
+      'language',
+      'system_maintenance',
+      'd7_system_maintenance_translation',
+    ]);
+>>>>>>> dev
   }
 
   /**

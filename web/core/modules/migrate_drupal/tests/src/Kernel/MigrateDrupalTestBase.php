@@ -15,7 +15,11 @@ abstract class MigrateDrupalTestBase extends MigrateTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'system',
     'user',
     'field',

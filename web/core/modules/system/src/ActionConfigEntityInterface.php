@@ -5,7 +5,11 @@ namespace Drupal\system;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 
 /**
+<<<<<<< HEAD
  * Provides an interface defining a action entity.
+=======
+ * Provides an interface defining an action entity.
+>>>>>>> dev
  */
 interface ActionConfigEntityInterface extends ConfigEntityInterface {
 

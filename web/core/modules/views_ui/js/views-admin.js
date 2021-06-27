@@ -7,7 +7,10 @@
 
 (function ($, Drupal, drupalSettings) {
   Drupal.viewsUi = {};
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.viewsUiEditView = {
     attach: function attach() {
       $('[data-drupal-selector="edit-query-options-disable-sql-rewrite"]').on('click', function () {
@@ -15,6 +18,7 @@
       });
     }
   };
+<<<<<<< HEAD
 
   Drupal.behaviors.viewsUiAddView = {
     attach: function attach(context) {
@@ -25,6 +29,16 @@
       var suffix = void 0;
 
       var $fields = $context.find('[id^="edit-page-title"], [id^="edit-block-title"], [id^="edit-page-link-properties-title"]');
+=======
+  Drupal.behaviors.viewsUiAddView = {
+    attach: function attach(context) {
+      var $context = $(context);
+      var exclude = new RegExp('[^a-z0-9\\-]+', 'g');
+      var replace = '-';
+      var suffix;
+      var $fields = $context.find('[id^="edit-page-title"], [id^="edit-block-title"], [id^="edit-page-link-properties-title"]');
+
+>>>>>>> dev
       if ($fields.length) {
         if (!this.fieldsFiller) {
           this.fieldsFiller = new Drupal.viewsUi.FormFieldFiller($fields);
@@ -34,6 +48,10 @@
       }
 
       var $pathField = $context.find('[id^="edit-page-path"]');
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       if ($pathField.length) {
         if (!this.pathFiller) {
           this.pathFiller = new Drupal.viewsUi.FormFieldFiller($pathField, exclude, replace);
@@ -43,6 +61,10 @@
       }
 
       var $feedField = $context.find('[id^="edit-page-feed-properties-path"]');
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       if ($feedField.length) {
         if (!this.feedFiller) {
           suffix = '.xml';
@@ -56,6 +78,7 @@
 
   Drupal.viewsUi.FormFieldFiller = function ($target, exclude, replace, suffix) {
     this.source = $('#edit-label');
+<<<<<<< HEAD
 
     this.target = $target;
 
@@ -65,6 +88,12 @@
 
     this.suffix = suffix || '';
 
+=======
+    this.target = $target;
+    this.exclude = exclude || false;
+    this.replace = replace || '';
+    this.suffix = suffix || '';
+>>>>>>> dev
     var self = this;
 
     this.populate = function () {
@@ -81,16 +110,28 @@
   $.extend(Drupal.viewsUi.FormFieldFiller.prototype, {
     bind: function bind() {
       this.unbind();
+<<<<<<< HEAD
 
       this.source.on('keyup.viewsUi change.viewsUi', this.populate);
 
+=======
+      this.source.on('keyup.viewsUi change.viewsUi', this.populate);
+>>>>>>> dev
       this.target.on('focus.viewsUi', this.unbind);
     },
     getTransliterated: function getTransliterated() {
       var from = this.source.val();
+<<<<<<< HEAD
       if (this.exclude) {
         from = from.toLowerCase().replace(this.exclude, this.replace);
       }
+=======
+
+      if (this.exclude) {
+        from = from.toLowerCase().replace(this.exclude, this.replace);
+      }
+
+>>>>>>> dev
       return from;
     },
     _populate: function _populate() {
@@ -110,7 +151,10 @@
       this.bind();
     }
   });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.addItemForm = {
     attach: function attach(context) {
       var $context = $(context);
@@ -119,6 +163,10 @@
       if (!$context.is('form[id^="views-ui-add-handler-form"]')) {
         $form = $context.find('form[id^="views-ui-add-handler-form"]');
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       if ($form.once('views-ui-add-handler-form').length) {
         new Drupal.viewsUi.AddItemForm($form);
       }
@@ -128,10 +176,15 @@
   Drupal.viewsUi.AddItemForm = function ($form) {
     this.$form = $form;
     this.$form.find('.views-filterable-options :checkbox').on('click', $.proxy(this.handleCheck, this));
+<<<<<<< HEAD
 
     this.$selected_div = this.$form.find('.views-selected-options').parent();
     this.$selected_div.hide();
 
+=======
+    this.$selected_div = this.$form.find('.views-selected-options').parent();
+    this.$selected_div.hide();
+>>>>>>> dev
     this.checkedItems = [];
   };
 
@@ -157,6 +210,10 @@
         this.$selected_div.hide();
       }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     this.refreshCheckedItems();
   };
 
@@ -167,31 +224,54 @@
   Drupal.behaviors.viewsUiRenderAddViewButton = {
     attach: function attach(context) {
       var $menu = $(context).find('#views-display-menu-tabs').once('views-ui-render-add-view-button');
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       if (!$menu.length) {
         return;
       }
 
+<<<<<<< HEAD
       var $addDisplayDropdown = $('<li class="add"><a href="#"><span class="icon add"></span>' + Drupal.t('Add') + '</a><ul class="action-list" style="display:none;"></ul></li>');
       var $displayButtons = $menu.nextAll('input.add-display').detach();
       $displayButtons.appendTo($addDisplayDropdown.find('.action-list')).wrap('<li>').parent().eq(0).addClass('first').end().eq(-1).addClass('last');
 
       $displayButtons.each(function () {
         var label = $(this).val();
+=======
+      var $addDisplayDropdown = $("<li class=\"add\"><a href=\"#\"><span class=\"icon add\"></span>".concat(Drupal.t('Add'), "</a><ul class=\"action-list\" style=\"display:none;\"></ul></li>"));
+      var $displayButtons = $menu.nextAll('input.add-display').detach();
+      $displayButtons.appendTo($addDisplayDropdown.find('.action-list')).wrap('<li>').parent().eq(0).addClass('first').end().eq(-1).addClass('last');
+      $displayButtons.each(function () {
+        var label = $(this).val();
+
+>>>>>>> dev
         if (label.substr(0, 4) === 'Add ') {
           $(this).val(label.substr(4));
         }
       });
       $addDisplayDropdown.appendTo($menu);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       $menu.find('li.add > a').on('click', function (event) {
         event.preventDefault();
         var $trigger = $(this);
         Drupal.behaviors.viewsUiRenderAddViewButton.toggleMenu($trigger);
       });
+<<<<<<< HEAD
 
       $('li.add', $menu).on('mouseleave', function (event) {
         var $this = $(this);
         var $trigger = $this.children('a[href="#"]');
+=======
+      $('li.add', $menu).on('mouseleave', function (event) {
+        var $this = $(this);
+        var $trigger = $this.children('a[href="#"]');
+
+>>>>>>> dev
         if ($this.children('.action-list').is(':visible')) {
           Drupal.behaviors.viewsUiRenderAddViewButton.toggleMenu($trigger);
         }
@@ -221,11 +301,15 @@
 
   Drupal.viewsUi.OptionsSearch = function ($form) {
     this.$form = $form;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     this.$form.on('click', 'td.title', function (event) {
       var $target = $(event.currentTarget);
       $target.closest('tr').find('input').trigger('click');
     });
+<<<<<<< HEAD
 
     var searchBoxSelector = '[data-drupal-selector="edit-override-controls-options-search"]';
     var controlGroupSelector = '[data-drupal-selector="edit-override-controls-group"]';
@@ -236,6 +320,14 @@
 
     this.options = this.getOptions(this.$form.find('.filterable-option'));
 
+=======
+    var searchBoxSelector = '[data-drupal-selector="edit-override-controls-options-search"]';
+    var controlGroupSelector = '[data-drupal-selector="edit-override-controls-group"]';
+    this.$form.on('formUpdated', "".concat(searchBoxSelector, ",").concat(controlGroupSelector), $.proxy(this.handleFilter, this));
+    this.$searchBox = this.$form.find(searchBoxSelector);
+    this.$controlGroup = this.$form.find(controlGroupSelector);
+    this.options = this.getOptions(this.$form.find('.filterable-option'));
+>>>>>>> dev
     this.$searchBox.on('keypress', function (event) {
       if (event.which === 13) {
         event.preventDefault();
@@ -245,29 +337,50 @@
 
   $.extend(Drupal.viewsUi.OptionsSearch.prototype, {
     getOptions: function getOptions($allOptions) {
+<<<<<<< HEAD
       var $title = void 0;
       var $description = void 0;
       var $option = void 0;
       var options = [];
       var length = $allOptions.length;
+=======
+      var $title;
+      var $description;
+      var $option;
+      var options = [];
+      var length = $allOptions.length;
+
+>>>>>>> dev
       for (var i = 0; i < length; i++) {
         $option = $($allOptions[i]);
         $title = $option.find('.title');
         $description = $option.find('.description');
         options[i] = {
+<<<<<<< HEAD
           searchText: $title.text().toLowerCase() + ' ' + $description.text().toLowerCase(),
 
           $div: $option
         };
       }
+=======
+          searchText: "".concat($title.text().toLowerCase(), " ").concat($description.text().toLowerCase()),
+          $div: $option
+        };
+      }
+
+>>>>>>> dev
       return options;
     },
     handleFilter: function handleFilter(event) {
       var search = this.$searchBox.val().toLowerCase();
       var words = search.split(' ');
+<<<<<<< HEAD
 
       var group = this.$controlGroup.val();
 
+=======
+      var group = this.$controlGroup.val();
+>>>>>>> dev
       this.options.forEach(function (option) {
         function hasWord(word) {
           return option.searchText.indexOf(word) !== -1;
@@ -278,12 +391,17 @@
         if (search) {
           found = words.every(hasWord);
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         if (found && group !== 'all') {
           found = option.$div.hasClass(group);
         }
 
         option.$div.toggle(found);
       });
+<<<<<<< HEAD
 
       $(event.target).trigger('dialogContentResize');
     }
@@ -292,11 +410,24 @@
   Drupal.behaviors.viewsUiPreview = {
     attach: function attach(context) {
       var $contextualFiltersBucket = $(context).find('.views-display-column .views-ui-display-tab-bucket.argument');
+=======
+      $(event.target).trigger('dialogContentResize');
+    }
+  });
+  Drupal.behaviors.viewsUiPreview = {
+    attach: function attach(context) {
+      var $contextualFiltersBucket = $(context).find('.views-display-column .views-ui-display-tab-bucket.argument');
+
+>>>>>>> dev
       if ($contextualFiltersBucket.length === 0) {
         return;
       }
 
       var $contextualFilters = $contextualFiltersBucket.find('.views-display-setting a');
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       if ($contextualFilters.length) {
         $('#preview-args').parent().show();
       } else {
@@ -309,6 +440,7 @@
     }
   };
 
+<<<<<<< HEAD
   Drupal.behaviors.viewsUiRearrangeFilter = {
     attach: function attach(context) {
       if (typeof Drupal.tableDrag === 'undefined' || typeof Drupal.tableDrag['views-rearrange-filters'] === 'undefined') {
@@ -336,6 +468,15 @@
 
     this.removeGroupButtons = $table.find('input.views-remove-group');
 
+=======
+  Drupal.viewsUi.RearrangeFilterHandler = function ($table, $operator) {
+    this.table = $table;
+    this.operator = $operator;
+    this.hasGroupOperator = this.operator.length > 0;
+    this.draggableRows = $table.find('.draggable');
+    this.addGroupButton = $('#views-add-group');
+    this.removeGroupButtons = $table.find('.views-remove-group');
+>>>>>>> dev
     this.insertAddRemoveFilterGroupLinks();
 
     if (this.hasGroupOperator) {
@@ -344,15 +485,21 @@
     }
 
     this.modifyTableDrag();
+<<<<<<< HEAD
 
     this.redrawOperatorLabels();
     $table.find('.views-group-title select').once('views-rearrange-filter-handler').on('change.views-rearrange-filter-handler', $.proxy(this, 'redrawOperatorLabels'));
 
+=======
+    this.redrawOperatorLabels();
+    $table.find('.views-group-title select').once('views-rearrange-filter-handler').on('change.views-rearrange-filter-handler', $.proxy(this, 'redrawOperatorLabels'));
+>>>>>>> dev
     $table.find('a.views-groups-remove-link').once('views-rearrange-filter-handler').on('click.views-rearrange-filter-handler', $.proxy(this, 'updateRowspans')).on('click.views-rearrange-filter-handler', $.proxy(this, 'redrawOperatorLabels'));
   };
 
   $.extend(Drupal.viewsUi.RearrangeFilterHandler.prototype, {
     insertAddRemoveFilterGroupLinks: function insertAddRemoveFilterGroupLinks() {
+<<<<<<< HEAD
       $('<ul class="action-links"><li><a id="views-add-group-link" href="#">' + this.addGroupButton.val() + '</a></li></ul>').prependTo(this.table.parent()).once('views-rearrange-filter-handler').find('#views-add-group-link').on('click.views-rearrange-filter-handler', $.proxy(this, 'clickAddGroupButton'));
 
       var length = this.removeGroupButtons.length;
@@ -361,6 +508,18 @@
         var $removeGroupButton = $(this.removeGroupButtons[i]);
         var buttonId = $removeGroupButton.attr('id');
         $('<a href="#" class="views-remove-group-link">' + Drupal.t('Remove group') + '</a>').insertBefore($removeGroupButton).once('views-rearrange-filter-handler').on('click.views-rearrange-filter-handler', { buttonId: buttonId }, $.proxy(this, 'clickRemoveGroupButton'));
+=======
+      $("<ul class=\"action-links\"><li><a id=\"views-add-group-link\" href=\"#\">".concat(this.addGroupButton.val(), "</a></li></ul>")).prependTo(this.table.parent()).once('views-rearrange-filter-handler').find('#views-add-group-link').on('click.views-rearrange-filter-handler', $.proxy(this, 'clickAddGroupButton'));
+      var length = this.removeGroupButtons.length;
+      var i;
+
+      for (i = 0; i < length; i++) {
+        var $removeGroupButton = $(this.removeGroupButtons[i]);
+        var buttonId = $removeGroupButton.attr('id');
+        $("<a href=\"#\" class=\"views-remove-group-link\">".concat(Drupal.t('Remove group'), "</a>")).insertBefore($removeGroupButton).once('views-rearrange-filter-handler').on('click.views-rearrange-filter-handler', {
+          buttonId: buttonId
+        }, $.proxy(this, 'clickRemoveGroupButton'));
+>>>>>>> dev
       }
     },
     clickAddGroupButton: function clickAddGroupButton(event) {
@@ -368,6 +527,7 @@
       event.preventDefault();
     },
     clickRemoveGroupButton: function clickRemoveGroupButton(event) {
+<<<<<<< HEAD
       this.table.find('#' + event.data.buttonId).trigger('mousedown');
       event.preventDefault();
     },
@@ -375,6 +535,14 @@
       var newRow = void 0;
       var titleRow = void 0;
 
+=======
+      this.table.find("#".concat(event.data.buttonId)).trigger('mousedown');
+      event.preventDefault();
+    },
+    duplicateGroupsOperator: function duplicateGroupsOperator() {
+      var newRow;
+      var titleRow;
+>>>>>>> dev
       var titleRows = $('tr.views-group-title').once('duplicateGroupsOperator');
 
       if (!titleRows.length) {
@@ -383,9 +551,13 @@
 
       this.operator.find('label').add('div.description').addClass('visually-hidden');
       this.operator.find('select').addClass('form-select');
+<<<<<<< HEAD
 
       var dropdowns = this.operator;
 
+=======
+      var dropdowns = this.operator;
+>>>>>>> dev
       titleRow = $('tr#views-group-title-2');
       newRow = $('<tr class="filter-group-operator-row"><td colspan="5"></td></tr>');
       newRow.find('td').append(this.operator);
@@ -394,7 +566,10 @@
 
       for (var i = 2; i < length; i++) {
         titleRow = $(titleRows[i]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         var fakeOperator = this.operator.clone();
         fakeOperator.attr('id', '');
         newRow = $('<tr class="filter-group-operator-row"><td colspan="5"></td></tr>');
@@ -415,7 +590,10 @@
     operatorChangeHandler: function operatorChangeHandler(event) {
       var $target = $(event.target);
       var operators = this.dropdowns.find('select').not($target);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       operators.val($target.val());
     },
     modifyTableDrag: function modifyTableDrag() {
@@ -426,12 +604,23 @@
         if (filterHandler.hasGroupOperator) {
           var thisRow = $(this.group);
           var previousRow = thisRow.prev('tr');
+<<<<<<< HEAD
           if (previousRow.length && !previousRow.hasClass('group-message') && !previousRow.hasClass('draggable')) {
             var next = thisRow.next();
+=======
+
+          if (previousRow.length && !previousRow.hasClass('group-message') && !previousRow.hasClass('draggable')) {
+            var next = thisRow.next();
+
+>>>>>>> dev
             if (next.is('tr')) {
               this.swap('after', next);
             }
           }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
           filterHandler.updateRowspans();
         }
 
@@ -440,8 +629,15 @@
 
       tableDrag.onDrop = function () {
         var changeMarker = $(this.oldRowElement).find('.tabledrag-changed');
+<<<<<<< HEAD
         if (changeMarker.length) {
           var operatorLabel = changeMarker.prevAll('.views-operator-label');
+=======
+
+        if (changeMarker.length) {
+          var operatorLabel = changeMarker.prevAll('.views-operator-label');
+
+>>>>>>> dev
           if (operatorLabel.length) {
             operatorLabel.insertAfter(changeMarker);
           }
@@ -450,9 +646,16 @@
         var groupRow = $(this.rowObject.element).prevAll('tr.group-message').get(0);
         var groupName = groupRow.className.replace(/([^ ]+[ ]+)*group-([^ ]+)-message([ ]+[^ ]+)*/, '$2');
         var groupField = $('select.views-group-select', this.rowObject.element);
+<<<<<<< HEAD
         if (!groupField.is('.views-group-select-' + groupName)) {
           var oldGroupName = groupField.attr('class').replace(/([^ ]+[ ]+)*views-group-select-([^ ]+)([ ]+[^ ]+)*/, '$2');
           groupField.removeClass('views-group-select-' + oldGroupName).addClass('views-group-select-' + groupName);
+=======
+
+        if (!groupField.is(".views-group-select-".concat(groupName))) {
+          var oldGroupName = groupField.attr('class').replace(/([^ ]+[ ]+)*views-group-select-([^ ]+)([ ]+[^ ]+)*/, '$2');
+          groupField.removeClass("views-group-select-".concat(oldGroupName)).addClass("views-group-select-".concat(groupName));
+>>>>>>> dev
           groupField.val(groupName);
         }
       };
@@ -461,12 +664,22 @@
       for (var i = 0; i < this.draggableRows.length; i++) {
         var $draggableRow = $(this.draggableRows[i]);
         var $firstCell = $draggableRow.find('td').eq(0);
+<<<<<<< HEAD
         if ($firstCell.length) {
           var operatorValue = $draggableRow.prevAll('.views-group-title').find('option:selected').html();
           var operatorLabel = '<span class="views-operator-label">' + operatorValue + '</span>';
 
           var $nextRow = $draggableRow.nextAll(':visible').eq(0);
           var $existingOperatorLabel = $firstCell.find('.views-operator-label');
+=======
+
+        if ($firstCell.length) {
+          var operatorValue = $draggableRow.prevAll('.views-group-title').find('option:selected').html();
+          var operatorLabel = "<span class=\"views-operator-label\">".concat(operatorValue, "</span>");
+          var $nextRow = $draggableRow.nextAll(':visible').eq(0);
+          var $existingOperatorLabel = $firstCell.find('.views-operator-label');
+
+>>>>>>> dev
           if ($nextRow.hasClass('draggable')) {
             if ($existingOperatorLabel.length) {
               $existingOperatorLabel.replaceWith(operatorLabel);
@@ -480,6 +693,7 @@
       }
     },
     updateRowspans: function updateRowspans() {
+<<<<<<< HEAD
       var $row = void 0;
       var $currentEmptyRow = void 0;
       var draggableCount = void 0;
@@ -495,21 +709,47 @@
           $currentEmptyRow = $row.next('tr');
           $currentEmptyRow.removeClass('group-populated').addClass('group-empty');
 
+=======
+      var $row;
+      var $currentEmptyRow;
+      var draggableCount;
+      var $operatorCell;
+      var rows = $(this.table).find('tr');
+      var length = rows.length;
+
+      for (var i = 0; i < length; i++) {
+        $row = $(rows[i]);
+
+        if ($row.hasClass('views-group-title')) {
+          $operatorCell = $row.find('td.group-operator');
+          draggableCount = 0;
+          $currentEmptyRow = $row.next('tr');
+          $currentEmptyRow.removeClass('group-populated').addClass('group-empty');
+>>>>>>> dev
           $operatorCell.attr('rowspan', 2);
         } else if ($row.hasClass('draggable') && $row.is(':visible')) {
           draggableCount++;
           $currentEmptyRow.removeClass('group-empty').addClass('group-populated');
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
           $operatorCell.attr('rowspan', draggableCount + 1);
         }
       }
     }
   });
+<<<<<<< HEAD
 
   Drupal.behaviors.viewsFilterConfigSelectAll = {
     attach: function attach(context) {
       var $context = $(context);
 
+=======
+  Drupal.behaviors.viewsFilterConfigSelectAll = {
+    attach: function attach(context) {
+      var $context = $(context);
+>>>>>>> dev
       var $selectAll = $context.find('.js-form-item-options-value-all').once('filterConfigSelectAll');
       var $selectAllCheckbox = $selectAll.find('input[type=checkbox]');
       var $checkboxes = $selectAll.closest('.form-checkboxes').find('.js-form-type-checkbox:not(.js-form-item-options-value-all) input[type="checkbox"]');
@@ -519,7 +759,10 @@
         $selectAllCheckbox.on('click', function () {
           $checkboxes.prop('checked', $(this).is(':checked'));
         });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         $checkboxes.on('click', function () {
           if ($(this).is('checked') === false) {
             $selectAllCheckbox.prop('checked', false);
@@ -528,24 +771,38 @@
       }
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.viewsRemoveIconClass = {
     attach: function attach(context) {
       $(context).find('.dropbutton').once('dropbutton-icon').find('.icon').removeClass('icon');
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.viewsUiCheckboxify = {
     attach: function attach(context, settings) {
       var $buttons = $('[data-drupal-selector="edit-options-expose-button-button"], [data-drupal-selector="edit-options-group-button-button"]').once('views-ui-checkboxify');
       var length = $buttons.length;
+<<<<<<< HEAD
       var i = void 0;
+=======
+      var i;
+
+>>>>>>> dev
       for (i = 0; i < length; i++) {
         new Drupal.viewsUi.Checkboxifier($buttons[i]);
       }
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.viewsUiChangeDefaultWidget = {
     attach: function attach(context) {
       var $context = $(context);
@@ -570,10 +827,15 @@
     this.$button = $(button);
     this.$parent = this.$button.parent('div.views-expose, div.views-grouped');
     this.$input = this.$parent.find('input:checkbox, input:radio');
+<<<<<<< HEAD
 
     this.$button.hide();
     this.$parent.find('.exposed-description, .grouped-description').hide();
 
+=======
+    this.$button.hide();
+    this.$parent.find('.exposed-description, .grouped-description').hide();
+>>>>>>> dev
     this.$input.on('click', $.proxy(this, 'clickHandler'));
   };
 
@@ -587,14 +849,23 @@
         var $context = $(context);
         var $submit = $context.find('[id^=edit-submit]');
         var oldValue = $submit.val();
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         $submit.once('views-ui-override-button-text').on('mouseup', function () {
           $(this).val(oldValue);
           return true;
         });
+<<<<<<< HEAD
 
         $(this).on('change', function () {
           var $this = $(this);
+=======
+        $(this).on('change', function () {
+          var $this = $(this);
+
+>>>>>>> dev
           if ($this.val() === 'default') {
             $submit.val(Drupal.t('Apply (all displays)'));
           } else if ($this.val() === 'default_revert') {
@@ -602,12 +873,17 @@
           } else {
             $submit.val(Drupal.t('Apply (this display)'));
           }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
           var $dialog = $context.closest('.ui-dialog-content');
           $dialog.trigger('dialogButtonsChange');
         }).trigger('change');
       });
     }
   };
+<<<<<<< HEAD
 
   Drupal.behaviors.viewsUiHandlerRemoveLink = {
     attach: function attach(context) {
@@ -624,8 +900,41 @@
         var id = $(this).attr('id').replace('display-remove-link-', '');
         $context.find('#display-row-' + id).hide();
         $context.find('#display-removed-' + id).prop('checked', true);
+=======
+  Drupal.behaviors.viewsUiHandlerRemoveLink = {
+    attach: function attach(context) {
+      var $context = $(context);
+      $context.find('a.views-remove-link').once('views').on('click', function (event) {
+        var id = $(this).attr('id').replace('views-remove-link-', '');
+        $context.find("#views-row-".concat(id)).hide();
+        $context.find("#views-removed-".concat(id)).prop('checked', true);
+        event.preventDefault();
+      });
+      $context.find('a.display-remove-link').once('display').on('click', function (event) {
+        var id = $(this).attr('id').replace('display-remove-link-', '');
+        $context.find("#display-row-".concat(id)).hide();
+        $context.find("#display-removed-".concat(id)).prop('checked', true);
+>>>>>>> dev
         event.preventDefault();
       });
     }
   };
+<<<<<<< HEAD
+=======
+  Drupal.behaviors.viewsUiRearrangeFilter = {
+    attach: function attach(context) {
+      if (typeof Drupal.tableDrag === 'undefined' || typeof Drupal.tableDrag['views-rearrange-filters'] === 'undefined') {
+        return;
+      }
+
+      var $context = $(context);
+      var $table = $context.find('#views-rearrange-filters').once('views-rearrange-filters');
+      var $operator = $context.find('.js-form-item-filter-groups-operator').once('views-rearrange-filters');
+
+      if ($table.length) {
+        new Drupal.viewsUi.RearrangeFilterHandler($table, $operator);
+      }
+    }
+  };
+>>>>>>> dev
 })(jQuery, Drupal, drupalSettings);

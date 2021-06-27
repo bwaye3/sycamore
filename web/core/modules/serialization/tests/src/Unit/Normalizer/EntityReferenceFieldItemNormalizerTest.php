@@ -69,7 +69,11 @@ class EntityReferenceFieldItemNormalizerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->entityRepository = $this->prophesize(EntityRepositoryInterface::class);
     $this->normalizer = new EntityReferenceFieldItemNormalizer($this->entityRepository->reveal());
 
@@ -393,9 +397,15 @@ class EntityReferenceFieldItemNormalizerTest extends UnitTestCase {
   /**
    * @covers ::denormalize
    */
+<<<<<<< HEAD
   public function testDenormalizeWithEmtpyUuid() {
     $this->expectException(InvalidArgumentException::class);
     $this->expectExceptionMessage('If provided "target_uuid" cannot be empty for field "test_type".');
+=======
+  public function testDenormalizeWithEmptyUuid() {
+    $this->expectException(InvalidArgumentException::class);
+    $this->expectExceptionMessage('If provided "target_uuid" cannot be empty for field "field_reference".');
+>>>>>>> dev
 
     $data = [
       'target_id' => 'test',

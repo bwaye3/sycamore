@@ -3,4 +3,7 @@ type: module
 description: 'Provides test support for fieldItem normalization test support.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

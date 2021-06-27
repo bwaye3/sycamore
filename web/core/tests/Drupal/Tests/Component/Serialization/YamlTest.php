@@ -20,7 +20,11 @@ class YamlTest extends TestCase {
    */
   protected $mockParser;
 
+<<<<<<< HEAD
   public function setUp() {
+=======
+  public function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->mockParser = $this->getMockBuilder('\stdClass')
       ->setMethods(['encode', 'decode', 'getFileExtension'])
@@ -28,7 +32,11 @@ class YamlTest extends TestCase {
     YamlParserProxy::setMock($this->mockParser);
   }
 
+<<<<<<< HEAD
   public function tearDown() {
+=======
+  public function tearDown(): void {
+>>>>>>> dev
     YamlParserProxy::setMock(NULL);
     parent::tearDown();
   }
@@ -103,7 +111,11 @@ class YamlTest extends TestCase {
    */
   public function testObjectSupportDisabledSymfony() {
     $this->expectException(InvalidDataTypeException::class);
+<<<<<<< HEAD
     $this->expectExceptionMessageRegExp('/^Object support when parsing a YAML file has been disabled/');
+=======
+    $this->expectExceptionMessageMatches('/^Object support when parsing a YAML file has been disabled/');
+>>>>>>> dev
     $object = new \stdClass();
     $object->foo = 'bar';
     // In core all Yaml encoding is done via Symfony and it does not support

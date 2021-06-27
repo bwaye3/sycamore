@@ -42,6 +42,7 @@ class ExtensionInstallStorage extends InstallStorage {
    *   The active configuration store where the list of enabled modules and
    *   themes is stored.
    * @param string $directory
+<<<<<<< HEAD
    *   The directory to scan in each extension to scan for files. Defaults to
    *   'config/install'. This parameter will be mandatory in Drupal 9.0.0.
    * @param string $collection
@@ -63,6 +64,21 @@ class ExtensionInstallStorage extends InstallStorage {
       $profile = \Drupal::installProfile();
       @trigger_error('All \Drupal\Core\Config\ExtensionInstallStorage::__construct() arguments will be required in drupal:9.0.0. See https://www.drupal.org/node/2538996', E_USER_DEPRECATED);
     }
+=======
+   *   The directory to scan in each extension to scan for files.
+   * @param string $collection
+   *   The collection to store configuration in.
+   * @param bool $include_profile
+   *   Whether to include the install profile in extensions to
+   *   search and to get overrides from.
+   * @param string $profile
+   *   The current installation profile.
+   */
+  public function __construct(StorageInterface $config_storage, $directory, $collection, $include_profile, $profile) {
+    parent::__construct($directory, $collection);
+    $this->configStorage = $config_storage;
+    $this->includeProfile = $include_profile;
+>>>>>>> dev
     $this->installProfile = $profile;
   }
 
@@ -73,7 +89,13 @@ class ExtensionInstallStorage extends InstallStorage {
     return new static(
       $this->configStorage,
       $this->directory,
+<<<<<<< HEAD
       $collection
+=======
+      $collection,
+      $this->includeProfile,
+      $this->installProfile
+>>>>>>> dev
     );
   }
 

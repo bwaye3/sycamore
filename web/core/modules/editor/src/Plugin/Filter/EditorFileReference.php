@@ -3,8 +3,13 @@
 namespace Drupal\editor\Plugin\Filter;
 
 use Drupal\Component\Utility\Html;
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
 use Drupal\Core\Entity\EntityRepositoryInterface;
+=======
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Image\ImageFactory;
+>>>>>>> dev
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\file\FileInterface;
 use Drupal\filter\FilterProcessResult;
@@ -24,12 +29,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class EditorFileReference extends FilterBase implements ContainerFactoryPluginInterface {
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
 
   /**
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
+=======
+>>>>>>> dev
 
   /**
    * The entity repository.
@@ -39,6 +47,16 @@ class EditorFileReference extends FilterBase implements ContainerFactoryPluginIn
   protected $entityRepository;
 
   /**
+<<<<<<< HEAD
+=======
+   * The image factory.
+   *
+   * @var \Drupal\Core\Image\ImageFactory
+   */
+  protected $imageFactory;
+
+  /**
+>>>>>>> dev
    * Constructs a \Drupal\editor\Plugin\Filter\EditorFileReference object.
    *
    * @param array $configuration
@@ -49,9 +67,22 @@ class EditorFileReference extends FilterBase implements ContainerFactoryPluginIn
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
+<<<<<<< HEAD
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityRepositoryInterface $entity_repository) {
     $this->entityRepository = $entity_repository;
+=======
+   * @param \Drupal\Core\Image\ImageFactory $image_factory
+   *   The image factory.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityRepositoryInterface $entity_repository, ImageFactory $image_factory = NULL) {
+    $this->entityRepository = $entity_repository;
+    if ($image_factory === NULL) {
+      @trigger_error('Calling ' . __METHOD__ . '() without the $image_factory argument is deprecated in drupal:9.1.0 and is required in drupal:10.0.0. See https://www.drupal.org/node/3173719', E_USER_DEPRECATED);
+      $image_factory = \Drupal::service('image.factory');
+    }
+    $this->imageFactory = $image_factory;
+>>>>>>> dev
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
 
@@ -63,7 +94,12 @@ class EditorFileReference extends FilterBase implements ContainerFactoryPluginIn
       $configuration,
       $plugin_id,
       $plugin_definition,
+<<<<<<< HEAD
       $container->get('entity.repository')
+=======
+      $container->get('entity.repository'),
+      $container->get('image.factory')
+>>>>>>> dev
     );
   }
 
@@ -86,6 +122,28 @@ class EditorFileReference extends FilterBase implements ContainerFactoryPluginIn
           $file = $this->entityRepository->loadEntityByUuid('file', $uuid);
           if ($file instanceof FileInterface) {
             $node->setAttribute('src', $file->createFileUrl());
+<<<<<<< HEAD
+=======
+            if ($node->nodeName == 'img') {
+              // Without dimensions specified, layout shifts can occur,
+              // which are more noticeable on pages that take some time to load.
+              // As a result, only mark images as lazy load that have dimensions.
+              $image = $this->imageFactory->get($file->getFileUri());
+              $width = $image->getWidth();
+              $height = $image->getHeight();
+              if ($width !== NULL && $height !== NULL) {
+                if (!$node->hasAttribute('width')) {
+                  $node->setAttribute('width', $width);
+                }
+                if (!$node->hasAttribute('height')) {
+                  $node->setAttribute('height', $height);
+                }
+                if (!$node->hasAttribute('loading')) {
+                  $node->setAttribute('loading', 'lazy');
+                }
+              }
+            }
+>>>>>>> dev
           }
         }
 

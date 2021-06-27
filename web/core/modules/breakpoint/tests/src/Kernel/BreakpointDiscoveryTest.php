@@ -16,15 +16,29 @@ class BreakpointDiscoveryTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'breakpoint', 'breakpoint_module_test'];
 
   protected function setUp() {
+=======
+  protected static $modules = [
+    'system',
+    'breakpoint',
+    'breakpoint_module_test',
+  ];
+
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     \Drupal::service('theme_installer')->install(['breakpoint_theme_test']);
   }
 
   /**
+<<<<<<< HEAD
    * Test the breakpoint group created for a theme.
+=======
+   * Tests the breakpoint group created for a theme.
+>>>>>>> dev
    */
   public function testThemeBreakpoints() {
     // Verify the breakpoint group for breakpoint_theme_test was created.
@@ -81,6 +95,7 @@ class BreakpointDiscoveryTest extends KernelTestBase {
 
     $breakpoints = \Drupal::service('breakpoint.manager')->getBreakpointsByGroup('breakpoint_theme_test');
     foreach ($expected_breakpoints as $id => $expected_breakpoint) {
+<<<<<<< HEAD
       $this->assertEqual($expected_breakpoint, $breakpoints[$id]->getPluginDefinition());
     }
 
@@ -90,6 +105,17 @@ class BreakpointDiscoveryTest extends KernelTestBase {
 
   /**
    * Test the custom breakpoint group provided by a theme and a module.
+=======
+      $this->assertEquals($expected_breakpoint, $breakpoints[$id]->getPluginDefinition());
+    }
+
+    // Test that the order is as expected.
+    $this->assertSame(array_keys($expected_breakpoints), array_keys($breakpoints));
+  }
+
+  /**
+   * Tests the custom breakpoint group provided by a theme and a module.
+>>>>>>> dev
    */
   public function testCustomBreakpointGroups() {
     // Verify the breakpoint group for breakpoint_theme_test.group2 was created.
@@ -136,12 +162,20 @@ class BreakpointDiscoveryTest extends KernelTestBase {
 
     $breakpoints = \Drupal::service('breakpoint.manager')->getBreakpointsByGroup('breakpoint_theme_test.group2');
     foreach ($expected_breakpoints as $id => $expected_breakpoint) {
+<<<<<<< HEAD
       $this->assertEqual($expected_breakpoint, $breakpoints[$id]->getPluginDefinition());
+=======
+      $this->assertEquals($expected_breakpoint, $breakpoints[$id]->getPluginDefinition());
+>>>>>>> dev
     }
   }
 
   /**
+<<<<<<< HEAD
    * Test the breakpoint group created for a module.
+=======
+   * Tests the breakpoint group created for a module.
+>>>>>>> dev
    */
   public function testModuleBreakpoints() {
     $expected_breakpoints = [
@@ -173,11 +207,19 @@ class BreakpointDiscoveryTest extends KernelTestBase {
     ];
 
     $breakpoints = \Drupal::service('breakpoint.manager')->getBreakpointsByGroup('breakpoint_module_test');
+<<<<<<< HEAD
     $this->assertEqual(array_keys($expected_breakpoints), array_keys($breakpoints));
   }
 
   /**
    * Test the collection of breakpoint groups.
+=======
+    $this->assertEquals(array_keys($expected_breakpoints), array_keys($breakpoints));
+  }
+
+  /**
+   * Tests the collection of breakpoint groups.
+>>>>>>> dev
    */
   public function testBreakpointGroups() {
     $expected = [
@@ -188,14 +230,22 @@ class BreakpointDiscoveryTest extends KernelTestBase {
     ];
     $breakpoint_groups = \Drupal::service('breakpoint.manager')->getGroups();
     // Ensure the order is as expected. Should be sorted by label.
+<<<<<<< HEAD
     $this->assertIdentical($expected, $this->castSafeStrings($breakpoint_groups));
+=======
+    $this->assertEquals($expected, $breakpoint_groups);
+>>>>>>> dev
 
     $expected = [
       'breakpoint_theme_test' => 'theme',
       'breakpoint_module_test' => 'module',
     ];
     $breakpoint_group_providers = \Drupal::service('breakpoint.manager')->getGroupProviders('breakpoint_theme_test.group2');
+<<<<<<< HEAD
     $this->assertEqual($expected, $breakpoint_group_providers);
+=======
+    $this->assertEquals($expected, $breakpoint_group_providers);
+>>>>>>> dev
   }
 
 }

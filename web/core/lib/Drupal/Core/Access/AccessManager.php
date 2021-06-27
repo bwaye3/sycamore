@@ -11,7 +11,11 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Component\Utility\ArgumentsResolverInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
+<<<<<<< HEAD
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
+=======
+use Drupal\Core\Routing\RouteObjectInterface;
+>>>>>>> dev
 
 /**
  * Attaches access check services to routes and runs them on request.
@@ -55,7 +59,11 @@ class AccessManager implements AccessManagerInterface {
   protected $checkProvider;
 
   /**
+<<<<<<< HEAD
    * Constructs a AccessManager instance.
+=======
+   * Constructs an AccessManager instance.
+>>>>>>> dev
    *
    * @param \Drupal\Core\Routing\RouteProviderInterface $route_provider
    *   The route provider.

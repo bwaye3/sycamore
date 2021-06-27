@@ -72,7 +72,11 @@ class ContextualLinkManagerTest extends UnitTestCase {
    */
   protected $account;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->contextualLinkManager = $this
       ->getMockBuilder('Drupal\Core\Menu\ContextualLinkManager')
       ->disableOriginalConstructor()

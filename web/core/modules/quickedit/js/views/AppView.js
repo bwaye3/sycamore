@@ -7,13 +7,17 @@
 
 (function ($, _, Backbone, Drupal) {
   var reload = false;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.quickedit.AppView = Backbone.View.extend({
     initialize: function initialize(options) {
       this.activeFieldStates = ['activating', 'active'];
       this.singleFieldStates = ['highlighted', 'activating', 'active'];
       this.changedFieldStates = ['changed', 'saving', 'saved', 'invalid'];
       this.readyFieldStates = ['candidate', 'highlighted'];
+<<<<<<< HEAD
 
       this.listenTo(options.entitiesCollection, 'change:state', this.appStateChange);
       this.listenTo(options.entitiesCollection, 'change:isActive', this.enforceSingleActiveEntity);
@@ -25,21 +29,40 @@
 
       this.listenTo(options.fieldsCollection, 'add', this.rerenderedFieldToCandidate);
 
+=======
+      this.listenTo(options.entitiesCollection, 'change:state', this.appStateChange);
+      this.listenTo(options.entitiesCollection, 'change:isActive', this.enforceSingleActiveEntity);
+      this.listenTo(options.fieldsCollection, 'change:state', this.editorStateChange);
+      this.listenTo(options.fieldsCollection, 'change:html', this.renderUpdatedField);
+      this.listenTo(options.fieldsCollection, 'change:html', this.propagateUpdatedField);
+      this.listenTo(options.fieldsCollection, 'add', this.rerenderedFieldToCandidate);
+>>>>>>> dev
       this.listenTo(options.fieldsCollection, 'destroy', this.teardownEditor);
     },
     appStateChange: function appStateChange(entityModel, state) {
       var app = this;
+<<<<<<< HEAD
       var entityToolbarView = void 0;
       switch (state) {
         case 'launching':
           reload = false;
 
+=======
+      var entityToolbarView;
+
+      switch (state) {
+        case 'launching':
+          reload = false;
+>>>>>>> dev
           entityToolbarView = new Drupal.quickedit.EntityToolbarView({
             model: entityModel,
             appModel: this.model
           });
           entityModel.toolbarView = entityToolbarView;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
           entityModel.get('fields').each(function (fieldModel) {
             app.setupEditor(fieldModel);
           });
@@ -47,11 +70,18 @@
           _.defer(function () {
             entityModel.set('state', 'opening');
           });
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
           break;
 
         case 'closed':
           entityToolbarView = entityModel.toolbarView;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
           entityModel.get('fields').each(function (fieldModel) {
             app.teardownEditor(fieldModel);
           });
@@ -65,6 +95,10 @@
             reload = false;
             window.location.reload();
           }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
           break;
       }
     },
@@ -95,11 +129,20 @@
           }
 
           if (accept) {
+<<<<<<< HEAD
             var activeField = void 0;
             var activeFieldState = void 0;
 
             if ((this.readyFieldStates.indexOf(from) !== -1 || from === 'invalid') && this.activeFieldStates.indexOf(to) !== -1) {
               activeField = this.model.get('activeField');
+=======
+            var activeField;
+            var activeFieldState;
+
+            if ((this.readyFieldStates.indexOf(from) !== -1 || from === 'invalid') && this.activeFieldStates.indexOf(to) !== -1) {
+              activeField = this.model.get('activeField');
+
+>>>>>>> dev
               if (activeField && activeField !== fieldModel) {
                 activeFieldState = activeField.get('state');
 
@@ -133,9 +176,13 @@
     setupEditor: function setupEditor(fieldModel) {
       var entityModel = fieldModel.get('entity');
       var entityToolbarView = entityModel.toolbarView;
+<<<<<<< HEAD
 
       var fieldToolbarRoot = entityToolbarView.getToolbarRoot();
 
+=======
+      var fieldToolbarRoot = entityToolbarView.getToolbarRoot();
+>>>>>>> dev
       var editorName = fieldModel.get('metadata').editor;
       var editorModel = new Drupal.quickedit.EditorModel();
       var editorView = new Drupal.quickedit.editors[editorName]({
@@ -143,7 +190,10 @@
         model: editorModel,
         fieldModel: fieldModel
       });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       var toolbarView = new Drupal.quickedit.FieldToolbarView({
         el: fieldToolbarRoot,
         model: fieldModel,
@@ -151,13 +201,19 @@
         editorView: editorView,
         entityModel: entityModel
       });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       var decorationView = new Drupal.quickedit.FieldDecorationView({
         el: $(editorView.getEditedElement()),
         model: fieldModel,
         editorView: editorView
       });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       fieldModel.editorView = editorView;
       fieldModel.toolbarView = toolbarView;
       fieldModel.decorationView = decorationView;
@@ -169,15 +225,21 @@
 
       fieldModel.toolbarView.remove();
       delete fieldModel.toolbarView;
+<<<<<<< HEAD
 
       fieldModel.decorationView.remove();
       delete fieldModel.decorationView;
 
+=======
+      fieldModel.decorationView.remove();
+      delete fieldModel.decorationView;
+>>>>>>> dev
       fieldModel.editorView.remove();
       delete fieldModel.editorView;
     },
     confirmEntityDeactivation: function confirmEntityDeactivation(entityModel) {
       var that = this;
+<<<<<<< HEAD
       var discardDialog = void 0;
 
       function closeDiscardDialog(action) {
@@ -189,6 +251,22 @@
           entityModel.set('state', 'committing', { confirmed: true });
         } else {
           entityModel.set('state', 'deactivating', { confirmed: true });
+=======
+      var discardDialog;
+
+      function closeDiscardDialog(action) {
+        discardDialog.close(action);
+        that.model.set('activeModal', null);
+
+        if (action === 'save') {
+          entityModel.set('state', 'committing', {
+            confirmed: true
+          });
+        } else {
+          entityModel.set('state', 'deactivating', {
+            confirmed: true
+          });
+>>>>>>> dev
 
           if (entityModel.get('reload')) {
             reload = true;
@@ -198,7 +276,11 @@
       }
 
       if (!this.model.get('activeModal')) {
+<<<<<<< HEAD
         var $unsavedChanges = $('<div>' + Drupal.t('You have unsaved changes') + '</div>');
+=======
+        var $unsavedChanges = $("<div>".concat(Drupal.t('You have unsaved changes'), "</div>"));
+>>>>>>> dev
         discardDialog = Drupal.dialog($unsavedChanges.get(0), {
           title: Drupal.t('Discard changes?'),
           dialogClass: 'quickedit-discard-modal',
@@ -208,7 +290,10 @@
             click: function click() {
               closeDiscardDialog('save');
             },
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
             primary: true
           }, {
             text: Drupal.t('Discard changes'),
@@ -216,19 +301,28 @@
               closeDiscardDialog('discard');
             }
           }],
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
           closeOnEscape: false,
           create: function create() {
             $(this).parent().find('.ui-dialog-titlebar-close').remove();
           },
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
           beforeClose: false,
           close: function close(event) {
             $(event.target).remove();
           }
         });
         this.model.set('activeModal', discardDialog);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         discardDialog.showModal();
       }
     },
@@ -248,6 +342,10 @@
         if (from === 'changed' || from === 'invalid') {
           fieldModel.editorView.revert();
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         this.model.set('activeField', null);
       }
     },
@@ -257,9 +355,13 @@
 
       var renderField = function renderField() {
         fieldModel.destroy();
+<<<<<<< HEAD
 
         $fieldWrapper.replaceWith(html);
 
+=======
+        $fieldWrapper.replaceWith(html);
+>>>>>>> dev
         Drupal.attachBehaviors($context.get(0));
       };
 
@@ -268,8 +370,14 @@
           fieldModel.set('state', 'candidate');
 
           _.defer(function () {
+<<<<<<< HEAD
             fieldModel.set('state', 'inactive', { reason: 'rerender' });
 
+=======
+            fieldModel.set('state', 'inactive', {
+              reason: 'rerender'
+            });
+>>>>>>> dev
             renderField();
           });
         });
@@ -283,7 +391,13 @@
       }
 
       var htmlForOtherViewModes = updatedField.get('htmlForOtherViewModes');
+<<<<<<< HEAD
       Drupal.quickedit.collections.fields.where({ logicalFieldID: updatedField.get('logicalFieldID') }).forEach(function (field) {
+=======
+      Drupal.quickedit.collections.fields.where({
+        logicalFieldID: updatedField.get('logicalFieldID')
+      }).forEach(function (field) {
+>>>>>>> dev
         if (field === updatedField) {} else if (field.getViewMode() === updatedField.getViewMode()) {
             field.set('html', updatedField.get('html'));
           } else if (field.getViewMode() in htmlForOtherViewModes) {

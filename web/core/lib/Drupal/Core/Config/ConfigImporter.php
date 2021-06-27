@@ -13,7 +13,11 @@ use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+=======
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 
 /**
  * Defines a configuration importer.
@@ -23,7 +27,11 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  *
  * @see \Drupal\Core\Config\StorageComparerInterface
  *
+<<<<<<< HEAD
  * The ConfigImporter has a identifier which is used to construct event names.
+=======
+ * The ConfigImporter has an identifier which is used to construct event names.
+>>>>>>> dev
  * The events fired during an import are:
  * - ConfigEvents::IMPORT_VALIDATE: Events listening can throw a
  *   \Drupal\Core\Config\ConfigImporterException to prevent an import from
@@ -53,7 +61,11 @@ class ConfigImporter {
   /**
    * The event dispatcher used to notify subscribers.
    *
+<<<<<<< HEAD
    * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+=======
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+>>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -172,7 +184,11 @@ class ConfigImporter {
    * @param \Drupal\Core\Config\StorageComparerInterface $storage_comparer
    *   A storage comparer object used to determine configuration changes and
    *   access the source and target storage objects.
+<<<<<<< HEAD
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+=======
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
+>>>>>>> dev
    *   The event dispatcher used to notify subscribers of config import events.
    * @param \Drupal\Core\Config\ConfigManagerInterface $config_manager
    *   The configuration manager.
@@ -188,6 +204,7 @@ class ConfigImporter {
    *   The theme handler
    * @param \Drupal\Core\StringTranslation\TranslationInterface $string_translation
    *   The string translation service.
+<<<<<<< HEAD
    * @param \Drupal\Core\Extension\ModuleExtensionList|null $extension_list_module
    *   The module extension list. This is left optional for BC reasons, but the
    *   optional usage is deprecated and will become required in Drupal 9.0.0.
@@ -199,6 +216,12 @@ class ConfigImporter {
       @trigger_error('Invoking the ConfigImporter constructor without the module extension list parameter is deprecated in Drupal 8.8.0 and will no longer be supported in Drupal 9.0.0. The extension list parameter is now required in the ConfigImporter constructor. See https://www.drupal.org/node/2943918', E_USER_DEPRECATED);
       $extension_list_module = \Drupal::service('extension.list.module');
     }
+=======
+   * @param \Drupal\Core\Extension\ModuleExtensionList $extension_list_module
+   *   The module extension list.
+   */
+  public function __construct(StorageComparerInterface $storage_comparer, EventDispatcherInterface $event_dispatcher, ConfigManagerInterface $config_manager, LockBackendInterface $lock, TypedConfigManagerInterface $typed_config, ModuleHandlerInterface $module_handler, ModuleInstallerInterface $module_installer, ThemeHandlerInterface $theme_handler, TranslationInterface $string_translation, ModuleExtensionList $extension_list_module) {
+>>>>>>> dev
     $this->moduleExtensionList = $extension_list_module;
     $this->storageComparer = $storage_comparer;
     $this->eventDispatcher = $event_dispatcher;
@@ -647,7 +670,11 @@ class ConfigImporter {
     if (!empty($missing_content)) {
       $event = new MissingContentEvent($missing_content);
       // Fire an event to allow listeners to create the missing content.
+<<<<<<< HEAD
       $this->eventDispatcher->dispatch(ConfigEvents::IMPORT_MISSING_CONTENT, $event);
+=======
+      $this->eventDispatcher->dispatch($event, ConfigEvents::IMPORT_MISSING_CONTENT);
+>>>>>>> dev
       $sandbox['missing_content']['data'] = $event->getMissingContent();
     }
     $current_count = count($sandbox['missing_content']['data']);
@@ -667,7 +694,11 @@ class ConfigImporter {
    *   The batch context.
    */
   protected function finish(&$context) {
+<<<<<<< HEAD
     $this->eventDispatcher->dispatch(ConfigEvents::IMPORT, new ConfigImporterEvent($this));
+=======
+    $this->eventDispatcher->dispatch(new ConfigImporterEvent($this), ConfigEvents::IMPORT);
+>>>>>>> dev
     // The import is now complete.
     $this->lock->release(static::LOCK_NAME);
     $this->reset();
@@ -749,7 +780,11 @@ class ConfigImporter {
           $this->logError($this->t('Rename operation for simple configuration. Existing configuration @old_name and staged configuration @new_name.', ['@old_name' => $names['old_name'], '@new_name' => $names['new_name']]));
         }
       }
+<<<<<<< HEAD
       $this->eventDispatcher->dispatch(ConfigEvents::IMPORT_VALIDATE, new ConfigImporterEvent($this));
+=======
+      $this->eventDispatcher->dispatch(new ConfigImporterEvent($this), ConfigEvents::IMPORT_VALIDATE);
+>>>>>>> dev
       if (count($this->getErrors())) {
         $errors = array_merge(['There were errors validating the config synchronization.'], $this->getErrors());
         throw new ConfigImporterException(implode(PHP_EOL, $errors));
@@ -1046,7 +1081,11 @@ class ConfigImporter {
   }
 
   /**
+<<<<<<< HEAD
    * Determines if a import is already running.
+=======
+   * Determines if an import is already running.
+>>>>>>> dev
    *
    * @return bool
    *   TRUE if an import is already running, FALSE if not.

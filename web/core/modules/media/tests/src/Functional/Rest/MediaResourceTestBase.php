@@ -8,7 +8,10 @@ use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
 use Drupal\media\Entity\MediaType;
 use Drupal\rest\RestResourceConfigInterface;
+<<<<<<< HEAD
 use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
+=======
+>>>>>>> dev
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
@@ -17,12 +20,19 @@ use GuzzleHttp\RequestOptions;
 
 abstract class MediaResourceTestBase extends EntityResourceTestBase {
 
+<<<<<<< HEAD
   use BcTimestampNormalizerUnixTestTrait;
 
   /**
    * {@inheritdoc}
    */
   public static $modules = ['media'];
+=======
+  /**
+   * {@inheritdoc}
+   */
+  protected static $modules = ['media'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -210,6 +220,7 @@ abstract class MediaResourceTestBase extends EntityResourceTestBase {
         ],
       ],
       'created' => [
+<<<<<<< HEAD
         $this->formatExpectedTimestampItemValues(123456789),
       ],
       'changed' => [
@@ -217,6 +228,24 @@ abstract class MediaResourceTestBase extends EntityResourceTestBase {
       ],
       'revision_created' => [
         $this->formatExpectedTimestampItemValues((int) $this->entity->getRevisionCreationTime()),
+=======
+        [
+          'value' => (new \DateTime())->setTimestamp(123456789)->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
+          'format' => \DateTime::RFC3339,
+        ],
+      ],
+      'changed' => [
+        [
+          'value' => (new \DateTime())->setTimestamp((int) $this->entity->getChangedTime())->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
+          'format' => \DateTime::RFC3339,
+        ],
+      ],
+      'revision_created' => [
+        [
+          'value' => (new \DateTime())->setTimestamp((int) $this->entity->getRevisionCreationTime())->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
+          'format' => \DateTime::RFC3339,
+        ],
+>>>>>>> dev
       ],
       'default_langcode' => [
         [
@@ -284,10 +313,13 @@ abstract class MediaResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
+<<<<<<< HEAD
     if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
       return parent::getExpectedUnauthorizedAccessMessage($method);
     }
 
+=======
+>>>>>>> dev
     switch ($method) {
       case 'GET';
         return "The 'view media' permission is required when the media item is published.";
@@ -438,10 +470,23 @@ abstract class MediaResourceTestBase extends EntityResourceTestBase {
         ],
       ],
       'created' => [
+<<<<<<< HEAD
         $this->formatExpectedTimestampItemValues($file->getCreatedTime()),
       ],
       'changed' => [
         $this->formatExpectedTimestampItemValues($file->getChangedTime()),
+=======
+        [
+          'value' => (new \DateTime())->setTimestamp($file->getCreatedTime())->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
+          'format' => \DateTime::RFC3339,
+        ],
+      ],
+      'changed' => [
+        [
+          'value' => (new \DateTime())->setTimestamp($file->getChangedTime())->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
+          'format' => \DateTime::RFC3339,
+        ],
+>>>>>>> dev
       ],
     ];
   }

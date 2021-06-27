@@ -17,7 +17,11 @@ class DateTimeFormatConstraintValidator extends ConstraintValidator {
    * {@inheritdoc}
    */
   public function validate($item, Constraint $constraint) {
+<<<<<<< HEAD
     /* @var $item \Drupal\datetime\Plugin\Field\FieldType\DateTimeItem */
+=======
+    /** @var \Drupal\datetime\Plugin\Field\FieldType\DateTimeItem $item */
+>>>>>>> dev
     if (isset($item)) {
       $value = $item->getValue()['value'];
       if (!is_string($value)) {

@@ -12,7 +12,11 @@ class EntityTestRevisionTest extends WizardTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['entity_test'];
+=======
+  protected static $modules = ['entity_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -26,14 +30,23 @@ class EntityTestRevisionTest extends WizardTestBase {
     $type = [
       'show[wizard_key]' => 'standard:entity_test_rev_revision',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/structure/views/add', $type, t('Update "Show" choice'));
+=======
+    $this->drupalGet('admin/structure/views/add');
+    $this->submitForm($type, 'Update "Show" choice');
+>>>>>>> dev
     $view = [];
     $view['label'] = $this->randomMachineName(16);
     $view['id'] = strtolower($this->randomMachineName(16));
     $view['description'] = $this->randomMachineName(16);
     $view['page[create]'] = FALSE;
     $view['show[type]'] = 'entity_test_rev';
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $view, t('Save and edit'));
+=======
+    $this->submitForm($view, 'Save and edit');
+>>>>>>> dev
 
     $view_storage_controller = \Drupal::entityTypeManager()->getStorage('view');
     /** @var \Drupal\views\Entity\View $view */

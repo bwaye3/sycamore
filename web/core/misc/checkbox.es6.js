@@ -3,7 +3,11 @@
  * Defines checkbox theme functions.
  */
 
+<<<<<<< HEAD
 (Drupal => {
+=======
+((Drupal) => {
+>>>>>>> dev
   /**
    * Theme function for a checkbox.
    *

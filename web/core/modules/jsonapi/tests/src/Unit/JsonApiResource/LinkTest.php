@@ -128,6 +128,7 @@ class LinkTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * @group legacy
    * @expectedDeprecation Constructing a Drupal\jsonapi\JsonApiResource\Link with an array of link relation types is deprecated in drupal:8.8.0 and will throw a fatal error in drupal:9.0.0. Pass a single string instead. See https://www.drupal.org/node/3087821.
    * @expectedDeprecation Drupal\jsonapi\JsonApiResource\Link::getLinkRelationTypes() is deprecated in drupal:8.8.0 and will be removed in drupal:9.0.0. Use getLinkRelationType() instead. See https://www.drupal.org/node/3087821.
@@ -145,6 +146,8 @@ class LinkTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Mocks the unrouted URL assembler.
    */
   protected function mockUrlAssembler() {

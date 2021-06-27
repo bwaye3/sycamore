@@ -42,7 +42,11 @@ class CommentStatusFieldAccessTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'comment',
     'user',
@@ -53,7 +57,11 @@ class CommentStatusFieldAccessTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $node_type = NodeType::create([
       'type' => 'article',
@@ -88,16 +96,24 @@ class CommentStatusFieldAccessTest extends BrowserTestBase {
     $this->drupalGet('node/add/article');
     $assert = $this->assertSession();
     $assert->fieldNotExists('comment[0][status]');
+<<<<<<< HEAD
     $this->submitForm([
       'title[0][value]' => 'Node 1',
     ], t('Save'));
+=======
+    $this->submitForm(['title[0][value]' => 'Node 1'], 'Save');
+>>>>>>> dev
     $assert->fieldExists('subject[0][value]');
     $this->drupalLogin($this->commentAdmin);
     $this->drupalGet('node/add/article');
     $assert->fieldExists('comment[0][status]');
+<<<<<<< HEAD
     $this->submitForm([
       'title[0][value]' => 'Node 2',
     ], t('Save'));
+=======
+    $this->submitForm(['title[0][value]' => 'Node 2'], 'Save');
+>>>>>>> dev
     $assert->fieldExists('subject[0][value]');
   }
 

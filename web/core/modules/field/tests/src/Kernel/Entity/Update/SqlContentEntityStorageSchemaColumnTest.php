@@ -21,7 +21,11 @@ class SqlContentEntityStorageSchemaColumnTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['entity_test', 'field', 'text', 'user'];
+=======
+  protected static $modules = ['entity_test', 'field', 'text', 'user'];
+>>>>>>> dev
 
   /**
    * The created entity.
@@ -47,7 +51,11 @@ class SqlContentEntityStorageSchemaColumnTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('entity_test_rev');

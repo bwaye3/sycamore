@@ -2,10 +2,13 @@
 
 namespace Drupal\jsonapi\ResourceType;
 
+<<<<<<< HEAD
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\TypedData\DataReferenceTargetDefinition;
 
+=======
+>>>>>>> dev
 /**
  * Value object containing all metadata for a JSON:API resource type.
  *
@@ -344,9 +347,12 @@ class ResourceType {
    *   (optional) The resource type fields, keyed by internal field name.
    */
   public function __construct($entity_type_id, $bundle, $deserialization_target_class, $internal = FALSE, $is_locatable = TRUE, $is_mutable = TRUE, $is_versionable = FALSE, array $fields = []) {
+<<<<<<< HEAD
     if (!empty($fields) && !reset($fields) instanceof ResourceTypeField) {
       $fields = $this->updateDeprecatedFieldMapping($fields, $entity_type_id, $bundle);
     }
+=======
+>>>>>>> dev
     $this->entityTypeId = $entity_type_id;
     $this->bundle = $bundle;
     $this->deserializationTargetClass = $deserialization_target_class;
@@ -435,6 +441,7 @@ class ResourceType {
     return sprintf('/%s/%s', $this->getEntityTypeId(), $this->getBundle());
   }
 
+<<<<<<< HEAD
   /**
    * {@inheritdoc}
    */
@@ -523,4 +530,6 @@ class ResourceType {
     return $fields;
   }
 
+=======
+>>>>>>> dev
 }

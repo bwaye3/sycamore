@@ -42,4 +42,8 @@ destination:
   translations: true
 migration_dependencies:
   required:
+<<<<<<< HEAD
+=======
+    - language
+>>>>>>> dev
     - d7_taxonomy_term

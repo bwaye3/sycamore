@@ -32,7 +32,11 @@ class CacheCollectorTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests setting and invalidating
+=======
+   * Tests setting and invalidating.
+>>>>>>> dev
    *
    * @dataProvider providerTestInvalidCharacters
    */
@@ -54,6 +58,10 @@ class CacheCollectorTest extends KernelTestBase {
       // Nothing special.
       ['foo', 'bar', 'baz'],
       // Invalid characters in CID.
+<<<<<<< HEAD
+=======
+      // cSpell:disable-next-line
+>>>>>>> dev
       ['éøïвβ中國書۞', 'foo', 'bar'],
       // Really long CID.
       [$this->randomString(1024), 'foo', 'bar'],

@@ -19,7 +19,11 @@ class EntityRevisionsTest extends EntityKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'system',
     'entity_test',
     'language',
@@ -29,14 +33,22 @@ class EntityRevisionsTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('entity_test_mulrev');
   }
 
   /**
+<<<<<<< HEAD
    * Test getLoadedRevisionId() returns the correct ID throughout the process.
+=======
+   * Tests getLoadedRevisionId() returns the correct ID throughout the process.
+>>>>>>> dev
    */
   public function testLoadedRevisionId() {
     // Create a basic EntityTestMulRev entity and save it.

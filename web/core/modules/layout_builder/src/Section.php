@@ -88,17 +88,36 @@ class Section implements ThirdPartySettingsInterface {
       }
     }
 
+<<<<<<< HEAD
     return $this->getLayout()->build($regions);
+=======
+    return $this->getLayout($contexts)->build($regions);
+>>>>>>> dev
   }
 
   /**
    * Gets the layout plugin for this section.
    *
+<<<<<<< HEAD
    * @return \Drupal\Core\Layout\LayoutInterface
    *   The layout plugin.
    */
   public function getLayout() {
     return $this->layoutPluginManager()->createInstance($this->getLayoutId(), $this->layoutSettings);
+=======
+   * @param \Drupal\Core\Plugin\Context\ContextInterface[] $contexts
+   *   An array of available contexts.
+   *
+   * @return \Drupal\Core\Layout\LayoutInterface
+   *   The layout plugin.
+   */
+  public function getLayout(array $contexts = []) {
+    $layout = $this->layoutPluginManager()->createInstance($this->getLayoutId(), $this->layoutSettings);
+    if ($contexts) {
+      $this->contextHandler()->applyContextMapping($layout, $contexts);
+    }
+    return $layout;
+>>>>>>> dev
   }
 
   /**
@@ -422,4 +441,17 @@ class Section implements ThirdPartySettingsInterface {
     return array_keys($this->thirdPartySettings);
   }
 
+<<<<<<< HEAD
+=======
+  /**
+   * Wraps the context handler.
+   *
+   * @return \Drupal\Core\Plugin\Context\ContextHandlerInterface
+   *   The context handler.
+   */
+  protected function contextHandler() {
+    return \Drupal::service('context.handler');
+  }
+
+>>>>>>> dev
 }

@@ -3,7 +3,11 @@
  * Table select functionality.
  */
 
+<<<<<<< HEAD
 (function($, Drupal) {
+=======
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * Initialize tableSelects.
    *
@@ -26,7 +30,11 @@
   /**
    * Callback used in {@link Drupal.behaviors.tableSelect}.
    */
+<<<<<<< HEAD
   Drupal.tableSelect = function() {
+=======
+  Drupal.tableSelect = function () {
+>>>>>>> dev
     // Do not add a "Select all" checkbox if there are no rows with checkboxes
     // in the table.
     if ($(this).find('td input[type="checkbox"]').length === 0) {
@@ -43,13 +51,21 @@
       selectAll: Drupal.t('Select all rows in this table'),
       selectNone: Drupal.t('Deselect all rows in this table'),
     };
+<<<<<<< HEAD
     const updateSelectAll = function(state) {
+=======
+    const updateSelectAll = function (state) {
+>>>>>>> dev
       // Update table's select-all checkbox (and sticky header's if available).
       $table
         .prev('table.sticky-header')
         .addBack()
         .find('th.select-all input[type="checkbox"]')
+<<<<<<< HEAD
         .each(function() {
+=======
+        .each(function () {
+>>>>>>> dev
           const $checkbox = $(this);
           const stateChanged = $checkbox.prop('checked') !== state;
 
@@ -71,11 +87,19 @@
     $table
       .find('th.select-all')
       .prepend($(Drupal.theme('checkbox')).attr('title', strings.selectAll))
+<<<<<<< HEAD
       .on('click', event => {
         if ($(event.target).is('input[type="checkbox"]')) {
           // Loop through all checkboxes and set their state to the select all
           // checkbox' state.
           checkboxes.each(function() {
+=======
+      .on('click', (event) => {
+        if ($(event.target).is('input[type="checkbox"]')) {
+          // Loop through all checkboxes and set their state to the select all
+          // checkbox' state.
+          checkboxes.each(function () {
+>>>>>>> dev
             const $checkbox = $(this);
             const stateChanged =
               $checkbox.prop('checked') !== event.target.checked;
@@ -102,16 +126,24 @@
     // For each of the checkboxes within the table that are not disabled.
     checkboxes = $table
       .find('td input[type="checkbox"]:enabled')
+<<<<<<< HEAD
       .on('click', function(e) {
+=======
+      .on('click', function (e) {
+>>>>>>> dev
         // Either add or remove the selected class based on the state of the
         // check all checkbox.
 
         /**
          * @this {HTMLElement}
          */
+<<<<<<< HEAD
         $(this)
           .closest('tr')
           .toggleClass('selected', this.checked);
+=======
+        $(this).closest('tr').toggleClass('selected', this.checked);
+>>>>>>> dev
 
         // If this is a shift click, we need to highlight everything in the
         // range. Also make sure that we are actually checking checkboxes
@@ -148,7 +180,11 @@
    * @param {bool} state
    *   The state to set on the range.
    */
+<<<<<<< HEAD
   Drupal.tableSelectRange = function(from, to, state) {
+=======
+  Drupal.tableSelectRange = function (from, to, state) {
+>>>>>>> dev
     // We determine the looping mode based on the order of from and to.
     const mode =
       from.rowIndex > to.rowIndex ? 'previousSibling' : 'nextSibling';

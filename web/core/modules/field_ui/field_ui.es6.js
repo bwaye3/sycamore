@@ -3,7 +3,11 @@
  * Attaches the behaviors for the Field UI module.
  */
 
+<<<<<<< HEAD
 (function($, Drupal, drupalSettings) {
+=======
+(function ($, Drupal, drupalSettings) {
+>>>>>>> dev
   /**
    * @type {Drupal~behavior}
    *
@@ -39,7 +43,11 @@
 
         // When the user selects a new field type, clear the "existing field"
         // selection.
+<<<<<<< HEAD
         $newFieldType.on('change', function() {
+=======
+        $newFieldType.on('change', function () {
+>>>>>>> dev
           if ($(this).val() !== '') {
             // Reset the "existing storage name" selection.
             $existingStorageName.val('').trigger('change');
@@ -48,7 +56,11 @@
 
         // When the user selects an existing storage name, clear the "new field
         // type" selection and populate the 'existing_storage_label' element.
+<<<<<<< HEAD
         $existingStorageName.on('change', function() {
+=======
+        $existingStorageName.on('change', function () {
+>>>>>>> dev
           const value = $(this).val();
           if (value !== '') {
             // Reset the "new field type" selection.
@@ -83,7 +95,11 @@
       $(context)
         .find('table#field-display-overview')
         .once('field-display-overview')
+<<<<<<< HEAD
         .each(function() {
+=======
+        .each(function () {
+>>>>>>> dev
           Drupal.fieldUIOverview.attach(
             this,
             settings.fieldUIRowsData,
@@ -119,7 +135,11 @@
       // Create row handlers.
       $(table)
         .find('tr.draggable')
+<<<<<<< HEAD
         .each(function() {
+=======
+        .each(function () {
+>>>>>>> dev
           // Extract server-side data for the row.
           const row = this;
           if (row.id in rowsData) {
@@ -198,7 +218,11 @@
       const rowObject = this;
       $(rowObject.table)
         .find('tr.region-message')
+<<<<<<< HEAD
         .each(function() {
+=======
+        .each(function () {
+>>>>>>> dev
           const $this = $(this);
           // If the dragged row is in this region, but above the message row, swap
           // it down one space.
@@ -246,7 +270,11 @@
       // Separate keys and values.
       const rowNames = [];
       const ajaxElements = [];
+<<<<<<< HEAD
       Object.keys(rows || {}).forEach(rowName => {
+=======
+      Object.keys(rows || {}).forEach((rowName) => {
+>>>>>>> dev
         rowNames.push(rowName);
         ajaxElements.push(rows[rowName]);
       });
@@ -288,7 +316,11 @@
    * @return {Drupal.fieldUIDisplayOverview.field}
    *   The field row handler constructed.
    */
+<<<<<<< HEAD
   Drupal.fieldUIDisplayOverview.field = function(row, data) {
+=======
+  Drupal.fieldUIDisplayOverview.field = function (row, data) {
+>>>>>>> dev
     this.row = row;
     this.name = data.name;
     this.region = data.region;

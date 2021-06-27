@@ -7,13 +7,19 @@ use Drupal\TestTools\PhpUnitCompatibility\RunnerVersion;
 // In order to manage different method signatures between PHPUnit versions, we
 // dynamically load a compatibility trait dependent on the PHPUnit runner
 // version.
+<<<<<<< HEAD
 if (!trait_exists(PhpunitVersionDependentTestCompatibilityTrait::class, FALSE)) {
   class_alias("Drupal\TestTools\PhpUnitCompatibility\PhpUnit" . RunnerVersion::getMajor() . "\TestCompatibilityTrait", PhpunitVersionDependentTestCompatibilityTrait::class);
+=======
+if (!trait_exists(PhpUnitVersionDependentTestCompatibilityTrait::class, FALSE)) {
+  class_alias("Drupal\TestTools\PhpUnitCompatibility\PhpUnit" . RunnerVersion::getMajor() . "\TestCompatibilityTrait", PhpUnitVersionDependentTestCompatibilityTrait::class);
+>>>>>>> dev
 }
 
 /**
  * Makes Drupal's test API forward compatible with multiple versions of PHPUnit.
  */
+<<<<<<< HEAD
 trait PhpunitCompatibilityTrait {
 
   use PhpunitVersionDependentTestCompatibilityTrait;
@@ -123,5 +129,10 @@ trait PhpunitCompatibilityTrait {
       $this->expectExceptionCode($exception_code);
     }
   }
+=======
+trait PhpUnitCompatibilityTrait {
+
+  use PhpUnitVersionDependentTestCompatibilityTrait;
+>>>>>>> dev
 
 }

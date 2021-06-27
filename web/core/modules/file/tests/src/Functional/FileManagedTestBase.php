@@ -18,7 +18,11 @@ abstract class FileManagedTestBase extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['file_test', 'file'];
+=======
+  protected static $modules = ['file_test', 'file'];
+>>>>>>> dev
 
   protected function setUp() {
     parent::setUp();
@@ -83,7 +87,11 @@ abstract class FileManagedTestBase extends BrowserTestBase {
         $message = new FormattableMarkup('hook_file_@name was expected to be called %expected times but was called %actual times.', ['@name' => $hook, '%expected' => $expected_count, '%actual' => $actual_count]);
       }
     }
+<<<<<<< HEAD
     $this->assertEqual($actual_count, $expected_count, $message);
+=======
+    $this->assertEquals($expected_count, $actual_count, $message);
+>>>>>>> dev
   }
 
   /**
@@ -95,6 +103,7 @@ abstract class FileManagedTestBase extends BrowserTestBase {
    *   File object to compare.
    */
   public function assertFileUnchanged(FileInterface $before, FileInterface $after) {
+<<<<<<< HEAD
     $this->assertEqual($before->id(), $after->id(), t('File id is the same: %file1 == %file2.', ['%file1' => $before->id(), '%file2' => $after->id()]), 'File unchanged');
     $this->assertEqual($before->getOwner()->id(), $after->getOwner()->id(), t('File owner is the same: %file1 == %file2.', ['%file1' => $before->getOwner()->id(), '%file2' => $after->getOwner()->id()]), 'File unchanged');
     $this->assertEqual($before->getFilename(), $after->getFilename(), t('File name is the same: %file1 == %file2.', ['%file1' => $before->getFilename(), '%file2' => $after->getFilename()]), 'File unchanged');
@@ -102,6 +111,15 @@ abstract class FileManagedTestBase extends BrowserTestBase {
     $this->assertEqual($before->getMimeType(), $after->getMimeType(), t('File MIME type is the same: %file1 == %file2.', ['%file1' => $before->getMimeType(), '%file2' => $after->getMimeType()]), 'File unchanged');
     $this->assertEqual($before->getSize(), $after->getSize(), t('File size is the same: %file1 == %file2.', ['%file1' => $before->getSize(), '%file2' => $after->getSize()]), 'File unchanged');
     $this->assertEqual($before->isPermanent(), $after->isPermanent(), t('File status is the same: %file1 == %file2.', ['%file1' => $before->isPermanent(), '%file2' => $after->isPermanent()]), 'File unchanged');
+=======
+    $this->assertEquals($before->id(), $after->id(), t('File id is the same: %file1 == %file2.', ['%file1' => $before->id(), '%file2' => $after->id()]), 'File unchanged');
+    $this->assertEquals($before->getOwner()->id(), $after->getOwner()->id(), t('File owner is the same: %file1 == %file2.', ['%file1' => $before->getOwner()->id(), '%file2' => $after->getOwner()->id()]), 'File unchanged');
+    $this->assertEquals($before->getFilename(), $after->getFilename(), t('File name is the same: %file1 == %file2.', ['%file1' => $before->getFilename(), '%file2' => $after->getFilename()]), 'File unchanged');
+    $this->assertEquals($before->getFileUri(), $after->getFileUri(), t('File path is the same: %file1 == %file2.', ['%file1' => $before->getFileUri(), '%file2' => $after->getFileUri()]), 'File unchanged');
+    $this->assertEquals($before->getMimeType(), $after->getMimeType(), t('File MIME type is the same: %file1 == %file2.', ['%file1' => $before->getMimeType(), '%file2' => $after->getMimeType()]), 'File unchanged');
+    $this->assertEquals($before->getSize(), $after->getSize(), t('File size is the same: %file1 == %file2.', ['%file1' => $before->getSize(), '%file2' => $after->getSize()]), 'File unchanged');
+    $this->assertEquals($before->isPermanent(), $after->isPermanent(), t('File status is the same: %file1 == %file2.', ['%file1' => $before->isPermanent(), '%file2' => $after->isPermanent()]), 'File unchanged');
+>>>>>>> dev
   }
 
   /**
@@ -113,8 +131,13 @@ abstract class FileManagedTestBase extends BrowserTestBase {
    *   File object to compare.
    */
   public function assertDifferentFile(FileInterface $file1, FileInterface $file2) {
+<<<<<<< HEAD
     $this->assertNotEqual($file1->id(), $file2->id(), t('Files have different ids: %file1 != %file2.', ['%file1' => $file1->id(), '%file2' => $file2->id()]), 'Different file');
     $this->assertNotEqual($file1->getFileUri(), $file2->getFileUri(), t('Files have different paths: %file1 != %file2.', ['%file1' => $file1->getFileUri(), '%file2' => $file2->getFileUri()]), 'Different file');
+=======
+    $this->assertNotEquals($file1->id(), $file2->id(), t('Files have different ids: %file1 != %file2.', ['%file1' => $file1->id(), '%file2' => $file2->id()]));
+    $this->assertNotEquals($file1->getFileUri(), $file2->getFileUri(), t('Files have different paths: %file1 != %file2.', ['%file1' => $file1->getFileUri(), '%file2' => $file2->getFileUri()]));
+>>>>>>> dev
   }
 
   /**
@@ -126,8 +149,13 @@ abstract class FileManagedTestBase extends BrowserTestBase {
    *   File object to compare.
    */
   public function assertSameFile(FileInterface $file1, FileInterface $file2) {
+<<<<<<< HEAD
     $this->assertEqual($file1->id(), $file2->id(), t('Files have the same ids: %file1 == %file2.', ['%file1' => $file1->id(), '%file2-fid' => $file2->id()]), 'Same file');
     $this->assertEqual($file1->getFileUri(), $file2->getFileUri(), t('Files have the same path: %file1 == %file2.', ['%file1' => $file1->getFileUri(), '%file2' => $file2->getFileUri()]), 'Same file');
+=======
+    $this->assertEquals($file1->id(), $file2->id(), t('Files have the same ids: %file1 == %file2.', ['%file1' => $file1->id(), '%file2-fid' => $file2->id()]), 'Same file');
+    $this->assertEquals($file1->getFileUri(), $file2->getFileUri(), t('Files have the same path: %file1 == %file2.', ['%file1' => $file1->getFileUri(), '%file2' => $file2->getFileUri()]), 'Same file');
+>>>>>>> dev
   }
 
   /**
@@ -157,7 +185,12 @@ abstract class FileManagedTestBase extends BrowserTestBase {
     $file->save();
     // Write the record directly rather than using the API so we don't invoke
     // the hooks.
+<<<<<<< HEAD
     $this->assertTrue($file->id() > 0, 'The file was added to the database.', 'Create test file');
+=======
+    // Verify that the file was added to the database.
+    $this->assertGreaterThan(0, $file->id());
+>>>>>>> dev
 
     \Drupal::state()->set('file_test.count_hook_invocations', TRUE);
     return $file;
@@ -183,6 +216,10 @@ abstract class FileManagedTestBase extends BrowserTestBase {
     if (!isset($filepath)) {
       // Prefix with non-latin characters to ensure that all file-related
       // tests work with international filenames.
+<<<<<<< HEAD
+=======
+      // cSpell:disable-next-line
+>>>>>>> dev
       $filepath = 'Файл для тестирования ' . $this->randomMachineName();
     }
     if (!isset($scheme)) {

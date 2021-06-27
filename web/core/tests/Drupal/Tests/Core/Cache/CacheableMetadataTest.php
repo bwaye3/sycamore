@@ -103,7 +103,11 @@ class CacheableMetadataTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test valid and invalid values as max age.
+=======
+   * Tests valid and invalid values as max age.
+>>>>>>> dev
    *
    * @covers ::setCacheMaxAge
    * @dataProvider providerSetCacheMaxAge

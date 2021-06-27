@@ -103,11 +103,19 @@ class CronForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['description'] = [
+<<<<<<< HEAD
       '#markup' => '<p>' . t('Cron takes care of running periodic tasks like checking for updates and indexing content for search.') . '</p>',
     ];
     $form['run'] = [
       '#type' => 'submit',
       '#value' => t('Run cron'),
+=======
+      '#markup' => '<p>' . $this->t('Cron takes care of running periodic tasks like checking for updates and indexing content for search.') . '</p>',
+    ];
+    $form['run'] = [
+      '#type' => 'submit',
+      '#value' => $this->t('Run cron'),
+>>>>>>> dev
       '#submit' => ['::runCron'],
     ];
     $status = '<p>' . $this->t('Last run: %time ago.', ['%time' => $this->dateFormatter->formatTimeDiffSince($this->state->get('system.cron_last'))]) . '</p>';
@@ -117,7 +125,11 @@ class CronForm extends FormBase {
 
     $cron_url = Url::fromRoute('system.cron', ['key' => $this->state->get('system.cron_key')], ['absolute' => TRUE])->toString();
     $form['cron_url'] = [
+<<<<<<< HEAD
       '#markup' => '<p>' . t('To run cron from outside the site, go to <a href=":cron" class="system-cron-settings__link">@cron</a>', [':cron' => $cron_url, '@cron' => $cron_url]) . '</p>',
+=======
+      '#markup' => '<p>' . $this->t('To run cron from outside the site, go to <a href=":cron" class="system-cron-settings__link">@cron</a>', [':cron' => $cron_url, '@cron' => $cron_url]) . '</p>',
+>>>>>>> dev
     ];
 
     if (!$this->moduleHandler->moduleExists('automated_cron')) {
@@ -127,14 +139,22 @@ class CronForm extends FormBase {
     }
 
     $form['cron'] = [
+<<<<<<< HEAD
       '#title' => t('Cron settings'),
+=======
+      '#title' => $this->t('Cron settings'),
+>>>>>>> dev
       '#type' => 'details',
       '#open' => TRUE,
     ];
 
     $form['cron']['logging'] = [
       '#type' => 'checkbox',
+<<<<<<< HEAD
       '#title' => t('Detailed cron logging'),
+=======
+      '#title' => $this->t('Detailed cron logging'),
+>>>>>>> dev
       '#default_value' => $this->config('system.cron')->get('logging'),
       '#description' => $this->t('Run times of individual cron jobs will be written to watchdog'),
     ];
@@ -142,7 +162,11 @@ class CronForm extends FormBase {
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
+<<<<<<< HEAD
       '#value' => t('Save configuration'),
+=======
+      '#value' => $this->t('Save configuration'),
+>>>>>>> dev
       '#button_type' => 'primary',
     ];
 
@@ -156,7 +180,11 @@ class CronForm extends FormBase {
     $this->config('system.cron')
       ->set('logging', $form_state->getValue('logging'))
       ->save();
+<<<<<<< HEAD
     $this->messenger()->addStatus(t('The configuration options have been saved.'));
+=======
+    $this->messenger()->addStatus($this->t('The configuration options have been saved.'));
+>>>>>>> dev
   }
 
   /**

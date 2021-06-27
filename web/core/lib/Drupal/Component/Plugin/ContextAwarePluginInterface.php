@@ -31,7 +31,11 @@ interface ContextAwarePluginInterface extends PluginInspectionInterface {
    * @return \Drupal\Component\Plugin\Context\ContextDefinitionInterface
    *   The definition against which the context value must validate.
    *
+<<<<<<< HEAD
    * @throws \Drupal\Component\Plugin\Exception\PluginException
+=======
+   * @throws \Drupal\Component\Plugin\Exception\ContextException
+>>>>>>> dev
    *   If the requested context is not defined.
    */
   public function getContextDefinition($name);
@@ -42,7 +46,11 @@ interface ContextAwarePluginInterface extends PluginInspectionInterface {
    * @return array
    *   The set context objects.
    *
+<<<<<<< HEAD
    * @throws \Drupal\Component\Plugin\Exception\PluginException
+=======
+   * @throws \Drupal\Component\Plugin\Exception\ContextException
+>>>>>>> dev
    *   If contexts are defined but not set.
    */
   public function getContexts();
@@ -56,7 +64,11 @@ interface ContextAwarePluginInterface extends PluginInspectionInterface {
    * @return \Drupal\Component\Plugin\Context\ContextInterface
    *   The context object.
    *
+<<<<<<< HEAD
    * @throws \Drupal\Component\Plugin\Exception\PluginException
+=======
+   * @throws \Drupal\Component\Plugin\Exception\ContextException
+>>>>>>> dev
    *   If the requested context is not set.
    */
   public function getContext($name);
@@ -79,7 +91,11 @@ interface ContextAwarePluginInterface extends PluginInspectionInterface {
    * @return mixed
    *   The currently set context value.
    *
+<<<<<<< HEAD
    * @throws \Drupal\Component\Plugin\Exception\PluginException
+=======
+   * @throws \Drupal\Component\Plugin\Exception\ContextException
+>>>>>>> dev
    *   If the requested context is not set.
    */
   public function getContextValue($name);
@@ -106,7 +122,11 @@ interface ContextAwarePluginInterface extends PluginInspectionInterface {
    * @return $this
    *   A context aware plugin object for chaining.
    *
+<<<<<<< HEAD
    * @throws \Drupal\Component\Plugin\Exception\PluginException
+=======
+   * @throws \Drupal\Component\Plugin\Exception\ContextException
+>>>>>>> dev
    *   If the value does not pass validation.
    */
   public function setContextValue($name, $value);

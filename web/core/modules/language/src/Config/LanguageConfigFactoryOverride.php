@@ -11,7 +11,11 @@ use Drupal\Core\Config\StorageInterface;
 use Drupal\Core\Config\TypedConfigManagerInterface;
 use Drupal\Core\Language\LanguageDefault;
 use Drupal\Core\Language\LanguageInterface;
+<<<<<<< HEAD
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+=======
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+>>>>>>> dev
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -48,7 +52,11 @@ class LanguageConfigFactoryOverride extends ConfigFactoryOverrideBase implements
   /**
    * An event dispatcher instance to use for configuration events.
    *
+<<<<<<< HEAD
    * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+=======
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+>>>>>>> dev
    */
   protected $eventDispatcher;
 
@@ -64,7 +72,11 @@ class LanguageConfigFactoryOverride extends ConfigFactoryOverrideBase implements
    *
    * @param \Drupal\Core\Config\StorageInterface $storage
    *   The configuration storage engine.
+<<<<<<< HEAD
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+=======
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
+>>>>>>> dev
    *   An event dispatcher instance to use for configuration events.
    * @param \Drupal\Core\Config\TypedConfigManagerInterface $typed_config
    *   The typed configuration manager.
@@ -146,6 +158,7 @@ class LanguageConfigFactoryOverride extends ConfigFactoryOverrideBase implements
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setLanguageFromDefault(LanguageDefault $language_default = NULL) {
     $this->language = $language_default ? $language_default->get() : NULL;
     return $this;
@@ -154,6 +167,8 @@ class LanguageConfigFactoryOverride extends ConfigFactoryOverrideBase implements
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function installLanguageOverrides($langcode) {
     /** @var \Drupal\Core\Config\ConfigInstallerInterface $config_installer */
     $config_installer = \Drupal::service('config.installer');

@@ -23,7 +23,11 @@ class TranslationTest extends FieldKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['language', 'node'];
+=======
+  protected static $modules = ['language', 'node'];
+>>>>>>> dev
 
   /**
    * The name of the field to use in this test.
@@ -70,7 +74,11 @@ class TranslationTest extends FieldKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('node');
@@ -105,7 +113,11 @@ class TranslationTest extends FieldKernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test translatable fields storage/retrieval.
+=======
+   * Tests translatable fields storage/retrieval.
+>>>>>>> dev
    */
   public function testTranslatableFieldSaveLoad() {
     // Enable field translations for nodes.
@@ -169,12 +181,20 @@ class TranslationTest extends FieldKernelTestBase {
 
     $field_langcodes = array_keys($entity->getTranslationLanguages());
     sort($field_langcodes);
+<<<<<<< HEAD
     $this->assertEqual($translation_langcodes, $field_langcodes, 'Missing translations did not get a default value.');
+=======
+    $this->assertEquals($translation_langcodes, $field_langcodes, 'Missing translations did not get a default value.');
+>>>>>>> dev
 
     // @todo Test every translation once the Entity Translation API allows for
     //   multilingual defaults.
     $langcode = $entity->language()->getId();
+<<<<<<< HEAD
     $this->assertEqual($entity->getTranslation($langcode)->{$field_name_default}->getValue(), $field->getDefaultValueLiteral(), new FormattableMarkup('Default value correctly populated for language %language.', ['%language' => $langcode]));
+=======
+    $this->assertEquals($field->getDefaultValueLiteral(), $entity->getTranslation($langcode)->{$field_name_default}->getValue(), new FormattableMarkup('Default value correctly populated for language %language.', ['%language' => $langcode]));
+>>>>>>> dev
 
     $storage = \Drupal::entityTypeManager()->getStorage($entity_type_id);
     // Check that explicit empty values are not overridden with default values.

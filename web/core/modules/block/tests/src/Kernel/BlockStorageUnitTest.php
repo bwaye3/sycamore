@@ -21,7 +21,11 @@ class BlockStorageUnitTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['block', 'block_test', 'system'];
+=======
+  protected static $modules = ['block', 'block_test', 'system'];
+>>>>>>> dev
 
   /**
    * The block storage.
@@ -30,7 +34,11 @@ class BlockStorageUnitTest extends KernelTestBase {
    */
   protected $controller;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->controller = $this->container->get('entity_type.manager')->getStorage('block');
@@ -61,7 +69,11 @@ class BlockStorageUnitTest extends KernelTestBase {
       $this->fail('A block without a plugin was created with no exception thrown.');
     }
     catch (PluginException $e) {
+<<<<<<< HEAD
       $this->assertEqual('The block \'\' did not specify a plugin.', $e->getMessage(), 'An exception was thrown when a block was created without a plugin.');
+=======
+      $this->assertEquals('The block \'\' did not specify a plugin.', $e->getMessage(), 'An exception was thrown when a block was created without a plugin.');
+>>>>>>> dev
     }
 
     // Create a block with only required values.
@@ -100,7 +112,11 @@ class BlockStorageUnitTest extends KernelTestBase {
       'visibility' => [],
     ];
 
+<<<<<<< HEAD
     $this->assertIdentical($actual_properties, $expected_properties);
+=======
+    $this->assertSame($expected_properties, $actual_properties);
+>>>>>>> dev
 
     $this->assertInstanceOf(TestHtmlBlock::class, $entity->getPlugin());
   }
@@ -116,7 +132,11 @@ class BlockStorageUnitTest extends KernelTestBase {
     // Verify several properties of the block.
     $this->assertSame('content', $entity->getRegion());
     $this->assertTrue($entity->status());
+<<<<<<< HEAD
     $this->assertEqual($entity->getTheme(), 'stark');
+=======
+    $this->assertEquals('stark', $entity->getTheme());
+>>>>>>> dev
     $this->assertNotEmpty($entity->uuid());
   }
 
@@ -152,7 +172,11 @@ class BlockStorageUnitTest extends KernelTestBase {
 
     $entities = $this->controller->loadMultiple();
     $entity = reset($entities);
+<<<<<<< HEAD
     $this->assertEqual($entity->id(), 'test_block', 'The default test block was loaded.');
+=======
+    $this->assertEquals('test_block', $entity->id(), 'The default test block was loaded.');
+>>>>>>> dev
   }
 
 }

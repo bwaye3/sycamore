@@ -19,7 +19,11 @@ class UserNameFormatterTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['field', 'user', 'system'];
+=======
+  protected static $modules = ['field', 'user', 'system'];
+>>>>>>> dev
 
   /**
    * @var string
@@ -39,7 +43,11 @@ class UserNameFormatterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installConfig(['field']);
@@ -78,21 +86,38 @@ class UserNameFormatterTest extends KernelTestBase {
     $user->save();
 
     $result = $user->{$this->fieldName}->view(['type' => 'user_name']);
+<<<<<<< HEAD
     $this->assertEqual('username', $result[0]['#theme']);
     $this->assertEqual(spl_object_hash($user), spl_object_hash($result[0]['#account']));
 
     $result = $user->{$this->fieldName}->view(['type' => 'user_name', 'settings' => ['link_to_entity' => FALSE]]);
     $this->assertEqual($user->getDisplayName(), $result[0]['#markup']);
+=======
+    $this->assertEquals('username', $result[0]['#theme']);
+    $this->assertEquals(spl_object_hash($user), spl_object_hash($result[0]['#account']));
+
+    $result = $user->{$this->fieldName}->view(['type' => 'user_name', 'settings' => ['link_to_entity' => FALSE]]);
+    $this->assertEquals($user->getDisplayName(), $result[0]['#markup']);
+>>>>>>> dev
 
     $user = User::getAnonymousUser();
 
     $result = $user->{$this->fieldName}->view(['type' => 'user_name']);
+<<<<<<< HEAD
     $this->assertEqual('username', $result[0]['#theme']);
     $this->assertEqual(spl_object_hash($user), spl_object_hash($result[0]['#account']));
 
     $result = $user->{$this->fieldName}->view(['type' => 'user_name', 'settings' => ['link_to_entity' => FALSE]]);
     $this->assertEqual($user->getDisplayName(), $result[0]['#markup']);
     $this->assertEqual($this->config('user.settings')->get('anonymous'), $result[0]['#markup']);
+=======
+    $this->assertEquals('username', $result[0]['#theme']);
+    $this->assertEquals(spl_object_hash($user), spl_object_hash($result[0]['#account']));
+
+    $result = $user->{$this->fieldName}->view(['type' => 'user_name', 'settings' => ['link_to_entity' => FALSE]]);
+    $this->assertEquals($user->getDisplayName(), $result[0]['#markup']);
+    $this->assertEquals($this->config('user.settings')->get('anonymous'), $result[0]['#markup']);
+>>>>>>> dev
   }
 
 }

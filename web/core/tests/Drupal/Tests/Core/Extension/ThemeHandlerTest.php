@@ -43,7 +43,11 @@ class ThemeHandlerTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->configFactory = $this->getConfigFactoryStub([
@@ -145,7 +149,10 @@ class StubThemeHandler extends ThemeHandler {
   }
 
 }
+<<<<<<< HEAD
 
 if (!defined('DRUPAL_MINIMUM_PHP')) {
   define('DRUPAL_MINIMUM_PHP', '5.5.9');
 }
+=======
+>>>>>>> dev

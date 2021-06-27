@@ -17,7 +17,11 @@ class RedirectTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['form_test', 'block'];
+=======
+  protected static $modules = ['form_test', 'block'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -37,46 +41,86 @@ class RedirectTest extends BrowserTestBase {
       'redirection' => TRUE,
       'destination' => $this->randomMachineName(),
     ];
+<<<<<<< HEAD
     $this->drupalPostForm($path, $edit, t('Submit'));
     $this->assertUrl($edit['destination'], [], 'Basic redirection works.');
+=======
+    $this->drupalGet($path);
+    $this->submitForm($edit, 'Submit');
+    $this->assertSession()->addressEquals($edit['destination']);
+>>>>>>> dev
 
     // Test without redirection.
     $edit = [
       'redirection' => FALSE,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm($path, $edit, t('Submit'));
     $this->assertUrl($path, [], 'When redirect is set to FALSE, there should be no redirection.');
+=======
+    $this->drupalGet($path);
+    $this->submitForm($edit, 'Submit');
+    $this->assertSession()->addressEquals($path);
+>>>>>>> dev
 
     // Test redirection with query parameters.
     $edit = [
       'redirection' => TRUE,
       'destination' => $this->randomMachineName(),
     ];
+<<<<<<< HEAD
     $this->drupalPostForm($path, $edit, t('Submit'), $options);
     $this->assertUrl($edit['destination'], [], 'Redirection with query parameters works.');
+=======
+    $this->drupalGet($path, $options);
+    $this->submitForm($edit, 'Submit');
+    $this->assertSession()->addressEquals($edit['destination']);
+>>>>>>> dev
 
     // Test without redirection but with query parameters.
     $edit = [
       'redirection' => FALSE,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm($path, $edit, t('Submit'), $options);
     $this->assertUrl($path, $options, 'When redirect is set to FALSE, there should be no redirection, and the query parameters should be passed along.');
+=======
+    $this->drupalGet($path, $options);
+    $this->submitForm($edit, 'Submit');
+    // When redirect is set to FALSE, there should be no redirection, and the
+    // query parameters should be passed along.
+    $this->assertSession()->addressEquals($path . '?foo=bar');
+>>>>>>> dev
 
     // Test redirection back to the original path.
     $edit = [
       'redirection' => TRUE,
       'destination' => '',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm($path, $edit, t('Submit'));
     $this->assertUrl($path, [], 'When using an empty redirection string, there should be no redirection.');
+=======
+    $this->drupalGet($path);
+    $this->submitForm($edit, 'Submit');
+    $this->assertSession()->addressEquals($path);
+>>>>>>> dev
 
     // Test redirection back to the original path with query parameters.
     $edit = [
       'redirection' => TRUE,
       'destination' => '',
     ];
+<<<<<<< HEAD
     $this->drupalPostForm($path, $edit, t('Submit'), $options);
     $this->assertUrl($path, $options, 'When using an empty redirection string, there should be no redirection, and the query parameters should be passed along.');
+=======
+    $this->drupalGet($path, $options);
+    $this->submitForm($edit, 'Submit');
+    // When using an empty redirection string, there should be no redirection,
+    // and the query parameters should be passed along.
+    $this->assertSession()->addressEquals($path . '?foo=bar');
+>>>>>>> dev
   }
 
   /**
@@ -95,17 +139,29 @@ class RedirectTest extends BrowserTestBase {
     $expected = Url::fromRoute('form_test.route1', [], ['query' => ['test1' => 'test2'], 'absolute' => TRUE])->toString();
     $this->drupalGet('foo');
     $this->assertSession()->statusCodeEquals(404);
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, [], t('Submit'));
     $this->assertSession()->statusCodeEquals(200);
     $this->assertUrl($expected, [], 'Redirected to correct URL/query.');
+=======
+    $this->submitForm([], 'Submit');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->addressEquals($expected);
+>>>>>>> dev
 
     // Visit the block admin page (403 page) and submit the form. Verify it
     // ends up at the right URL.
     $this->drupalGet('admin/structure/block');
     $this->assertSession()->statusCodeEquals(403);
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, [], t('Submit'));
     $this->assertSession()->statusCodeEquals(200);
     $this->assertUrl($expected, [], 'Redirected to correct URL/query.');
+=======
+    $this->submitForm([], 'Submit');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->addressEquals($expected);
+>>>>>>> dev
   }
 
 }

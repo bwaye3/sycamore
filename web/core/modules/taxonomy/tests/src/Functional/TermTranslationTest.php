@@ -36,7 +36,11 @@ class TermTranslationTest extends TaxonomyTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['taxonomy', 'language', 'content_translation'];
+=======
+  protected static $modules = ['taxonomy', 'language', 'content_translation'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -46,7 +50,11 @@ class TermTranslationTest extends TaxonomyTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->setupLanguages();
     $this->vocabulary = $this->createVocabulary();
@@ -56,7 +64,11 @@ class TermTranslationTest extends TaxonomyTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test translated breadcrumbs.
+=======
+   * Tests translated breadcrumbs.
+>>>>>>> dev
    */
   public function testTranslatedBreadcrumbs() {
     // Ensure non-translated breadcrumb is correct.
@@ -90,7 +102,11 @@ class TermTranslationTest extends TaxonomyTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test translation of terms are showed in the node.
+=======
+   * Tests translation of terms are showed in the node.
+>>>>>>> dev
    */
   public function testTermsTranslation() {
 
@@ -106,6 +122,7 @@ class TermTranslationTest extends TaxonomyTestBase {
 
     // Test terms are listed.
     $this->drupalget('node/add/article');
+<<<<<<< HEAD
     $this->assertText('one');
     $this->assertText('two');
     $this->assertText('three');
@@ -115,6 +132,17 @@ class TermTranslationTest extends TaxonomyTestBase {
     $this->assertText('translatedOne');
     $this->assertText('translatedTwo');
     $this->assertText('translatedThree');
+=======
+    $this->assertSession()->pageTextContains('one');
+    $this->assertSession()->pageTextContains('two');
+    $this->assertSession()->pageTextContains('three');
+
+    // Test terms translated are listed.
+    $this->drupalget('hu/node/add/article');
+    $this->assertSession()->pageTextContains('translatedOne');
+    $this->assertSession()->pageTextContains('translatedTwo');
+    $this->assertSession()->pageTextContains('translatedThree');
+>>>>>>> dev
   }
 
   /**

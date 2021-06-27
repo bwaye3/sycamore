@@ -16,7 +16,11 @@ abstract class LayoutBuilderCompatibilityTestBase extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'layout_discovery',
   ];
 
@@ -42,7 +46,10 @@ abstract class LayoutBuilderCompatibilityTestBase extends EntityKernelTestBase {
 
     $this->installEntitySchema('entity_test_base_field_display');
     $this->installConfig(['filter']);
+<<<<<<< HEAD
     $this->installSchema('system', ['key_value_expire']);
+=======
+>>>>>>> dev
 
     // Set up a non-admin user that is allowed to view test entities.
     \Drupal::currentUser()->setAccount($this->createUser(['uid' => 2], ['view test entity']));

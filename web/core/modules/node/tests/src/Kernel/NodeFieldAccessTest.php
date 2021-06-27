@@ -19,7 +19,11 @@ class NodeFieldAccessTest extends EntityKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['node'];
+=======
+  protected static $modules = ['node'];
+>>>>>>> dev
 
   /**
    * Fields that only users with administer nodes permissions can change.
@@ -42,7 +46,11 @@ class NodeFieldAccessTest extends EntityKernelTestBase {
   protected $readOnlyFields = ['changed', 'revision_uid', 'revision_timestamp'];
 
   /**
+<<<<<<< HEAD
    * Test permissions on nodes status field.
+=======
+   * Tests permissions on nodes status field.
+>>>>>>> dev
    */
   public function testAccessToAdministrativeFields() {
 

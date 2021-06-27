@@ -15,6 +15,10 @@
         if (val === '0') {
           return Drupal.t('Not in book');
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         if (val === 'new') {
           return Drupal.t('New book');
         }

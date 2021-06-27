@@ -1,6 +1,7 @@
 {#
 /**
  * @file
+<<<<<<< HEAD
  * Theme implementation to display the sitemap.
  *
  * Available variables:
@@ -17,18 +18,29 @@
  *   - attributes:  Optional attributes for the box.
  *   - options:  Options are set by sitemap.helper service.
  * - additional:
+=======
+ * Theme implementation to display the sitemap page.
+ *
+ * Available variables:
+ * - message: A configurable introductory message.
+ * - sitemap_items: An array of renderable content items
+>>>>>>> dev
  *
  * @see template_preprocess()
  * @see template_preprocess_sitemap()
  */
 #}
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
 <div class="sitemap">
   {% if message %}
     <div class="sitemap-message">
       {{ message }}
     </div>
   {% endif %}
+<<<<<<< HEAD
 
   {% if sitemap_items %}
     {% for item in sitemap_items %}
@@ -50,4 +62,11 @@
       {{ additional }}
     </div>
   {% endif %}
+=======
+  {% if sitemap_items %}
+    {% for item in sitemap_items %}
+      {{ item }}
+    {% endfor %}
+  {% endif %}
+>>>>>>> dev
 </div>

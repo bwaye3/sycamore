@@ -30,7 +30,11 @@ class DefaultViewsTest extends ViewTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'views',
     'node',
     'search',
@@ -56,7 +60,11 @@ class DefaultViewsTest extends ViewTestBase {
     'glossary' => ['all'],
   ];
 
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->drupalPlaceBlock('page_title_block');
@@ -132,7 +140,11 @@ class DefaultViewsTest extends ViewTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that all Default views work as expected.
+=======
+   * Tests that all Default views work as expected.
+>>>>>>> dev
    */
   public function testDefaultViews() {
     // Get all default views.
@@ -150,14 +162,21 @@ class DefaultViewsTest extends ViewTestBase {
           $view->preExecute($this->viewArgMap[$name]);
         }
 
+<<<<<<< HEAD
         $this->assert(TRUE, new FormattableMarkup('View @view will be executed.', ['@view' => $view->storage->id()]));
+=======
+>>>>>>> dev
         $view->execute();
 
         $tokens = ['@name' => $name, '@display_id' => $display_id];
         $this->assertTrue($view->executed, new FormattableMarkup('@name:@display_id has been executed.', $tokens));
 
+<<<<<<< HEAD
         $count = count($view->result);
         $this->assertTrue($count > 0, new FormattableMarkup('@count results returned', ['@count' => $count]));
+=======
+        $this->assertNotEmpty($view->result);
+>>>>>>> dev
         $view->destroy();
       }
     }

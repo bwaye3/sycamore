@@ -32,7 +32,11 @@ class LanguageSelectWidgetTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('entity_test');
@@ -61,7 +65,11 @@ class LanguageSelectWidgetTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the widget without the locked languages.
+=======
+   * Tests the widget without the locked languages.
+>>>>>>> dev
    */
   public function testWithoutIncludedLockedLanguage() {
     $this->entityFormDisplay->setComponent('langcode', [

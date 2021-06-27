@@ -24,7 +24,11 @@ class TermTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['taxonomy', 'path'];
+=======
+  protected static $modules = ['taxonomy', 'path'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -472,6 +476,7 @@ class TermTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function testRelated() {
     $this->markTestSkipped('Remove this in https://www.drupal.org/project/drupal/issues/2940339');
   }
@@ -479,6 +484,8 @@ class TermTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public function testCollectionFilterAccess() {
     $this->doTestCollectionFilterAccessBasedOnPermissions('name', 'access content');
   }

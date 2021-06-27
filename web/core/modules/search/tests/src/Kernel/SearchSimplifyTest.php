@@ -3,6 +3,10 @@
 namespace Drupal\Tests\search\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
+<<<<<<< HEAD
+=======
+use Drupal\search\SearchTextProcessorInterface;
+>>>>>>> dev
 
 /**
  * Tests that the search_simply() function works as intended.
@@ -30,6 +34,7 @@ class SearchSimplifyTest extends KernelTestBase {
     $input = file_get_contents($this->root . '/core/modules/search/tests/UnicodeTest.txt');
     $basestrings = explode(chr(10), $input);
     $strings = [];
+<<<<<<< HEAD
     foreach ($basestrings as $key => $string) {
       if ($key % 2) {
         // Even line - should simplify down to a space.
@@ -40,6 +45,21 @@ class SearchSimplifyTest extends KernelTestBase {
         // Odd line, should be word characters.
         // Split this into 30-character chunks, so we don't run into limits
         // of truncation in search_simplify().
+=======
+    $text_processor = \Drupal::service('search.text_processor');
+    assert($text_processor instanceof SearchTextProcessorInterface);
+    foreach ($basestrings as $key => $string) {
+      if ($key % 2) {
+        // Even line - should simplify down to a space.
+        $simplified = $text_processor->analyze($string);
+        $this->assertSame(' ', $simplified, "Line {$key} is excluded from the index");
+      }
+      else {
+        // Odd line, should be word characters.
+        // Split this into 30-character chunks, so we don't run into limits of
+        // truncation in
+        // \Drupal\search\SearchTextProcessorInterface::analyze().
+>>>>>>> dev
         $start = 0;
         while ($start < mb_strlen($string)) {
           $newstr = mb_substr($string, $start, 30);
@@ -55,8 +75,13 @@ class SearchSimplifyTest extends KernelTestBase {
       }
     }
     foreach ($strings as $key => $string) {
+<<<<<<< HEAD
       $simplified = search_simplify($string);
       $this->assertTrue(mb_strlen($simplified) >= mb_strlen($string), "Nothing is removed from string $key.");
+=======
+      $simplified = $text_processor->analyze($string);
+      $this->assertGreaterThanOrEqual(mb_strlen($string), mb_strlen($simplified), "Nothing is removed from string $key.");
+>>>>>>> dev
     }
 
     // Test the low-numbered ASCII control characters separately. They are not
@@ -65,11 +90,19 @@ class SearchSimplifyTest extends KernelTestBase {
     for ($i = 0; $i < 32; $i++) {
       $string .= chr($i);
     }
+<<<<<<< HEAD
     $this->assertIdentical(' ', search_simplify($string), 'Search simplify works for ASCII control characters.');
   }
 
   /**
    * Tests that search_simplify() does the right thing with punctuation.
+=======
+    $this->assertSame(' ', $text_processor->analyze($string), 'Search simplify works for ASCII control characters.');
+  }
+
+  /**
+   * Tests that text analysis does the right thing with punctuation.
+>>>>>>> dev
    */
   public function testSearchSimplifyPunctuation() {
     $cases = [
@@ -79,9 +112,17 @@ class SearchSimplifyTest extends KernelTestBase {
       ['regular,punctuation;word', 'regular punctuation word', 'Punctuation is a word boundary'],
     ];
 
+<<<<<<< HEAD
     foreach ($cases as $case) {
       $out = trim(search_simplify($case[0]));
       $this->assertEqual($out, $case[1], $case[2]);
+=======
+    $text_processor = \Drupal::service('search.text_processor');
+    assert($text_processor instanceof SearchTextProcessorInterface);
+    foreach ($cases as $case) {
+      $out = trim($text_processor->analyze($case[0]));
+      $this->assertEquals($case[1], $out, $case[2]);
+>>>>>>> dev
     }
   }
 

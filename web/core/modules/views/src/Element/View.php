@@ -3,6 +3,10 @@
 namespace Drupal\views\Element;
 
 use Drupal\Core\Render\Element\RenderElement;
+<<<<<<< HEAD
+=======
+use Drupal\views\Exception\ViewRenderElementException;
+>>>>>>> dev
 use Drupal\views\Views;
 
 /**
@@ -16,7 +20,11 @@ class View extends RenderElement {
    * {@inheritdoc}
    */
   public function getInfo() {
+<<<<<<< HEAD
     $class = get_class($this);
+=======
+    $class = static::class;
+>>>>>>> dev
     return [
       '#pre_render' => [
         [$class, 'preRenderViewElement'],
@@ -41,6 +49,12 @@ class View extends RenderElement {
 
     if (!isset($element['#view'])) {
       $view = Views::getView($element['#name']);
+<<<<<<< HEAD
+=======
+      if (!$view) {
+        throw new ViewRenderElementException("Invalid View name ({$element['#name']}) given.");
+      }
+>>>>>>> dev
     }
     else {
       $view = $element['#view'];

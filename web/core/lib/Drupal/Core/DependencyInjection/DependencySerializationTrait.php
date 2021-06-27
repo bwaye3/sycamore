@@ -15,6 +15,10 @@ trait DependencySerializationTrait {
    *
    * @var array
    */
+<<<<<<< HEAD
+=======
+  // phpcs:ignore Drupal.Classes.PropertyDeclaration
+>>>>>>> dev
   protected $_serviceIds = [];
 
   /**
@@ -22,6 +26,10 @@ trait DependencySerializationTrait {
    *
    * @var array
    */
+<<<<<<< HEAD
+=======
+  // phpcs:ignore Drupal.Classes.PropertyDeclaration
+>>>>>>> dev
   protected $_entityStorages = [];
 
   /**

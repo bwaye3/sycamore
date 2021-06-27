@@ -15,7 +15,11 @@ class ScanDirectoryTest extends FileTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['file_test'];
+=======
+  protected static $modules = ['file_test'];
+>>>>>>> dev
 
   /**
    * @var string
@@ -32,7 +36,11 @@ class ScanDirectoryTest extends FileTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     // Hardcode the location of the fixtures files as it is already known
     // and shouldn't change, and we don't yet have a way to retrieve their
@@ -56,6 +64,7 @@ class ScanDirectoryTest extends FileTestBase {
 
     // Check the first file.
     $file = reset($all_files);
+<<<<<<< HEAD
     $this->assertEqual(key($all_files), $file->uri, 'Correct array key was used for the first returned file.');
     $this->assertEqual($file->uri, $this->path . '/javascript-1.txt', 'First file name was set correctly.');
     $this->assertEqual($file->filename, 'javascript-1.txt', 'First basename was set correctly');
@@ -67,6 +76,19 @@ class ScanDirectoryTest extends FileTestBase {
     $this->assertEqual($file->uri, $this->path . '/javascript-2.script', 'Second file name was set correctly.');
     $this->assertEqual($file->filename, 'javascript-2.script', 'Second basename was set correctly');
     $this->assertEqual($file->name, 'javascript-2', 'Second name was set correctly.');
+=======
+    $this->assertEquals(key($all_files), $file->uri, 'Correct array key was used for the first returned file.');
+    $this->assertEquals($this->path . '/javascript-1.txt', $file->uri, 'First file name was set correctly.');
+    $this->assertEquals('javascript-1.txt', $file->filename, 'First basename was set correctly');
+    $this->assertEquals('javascript-1', $file->name, 'First name was set correctly.');
+
+    // Check the second file.
+    $file = next($all_files);
+    $this->assertEquals(key($all_files), $file->uri, 'Correct array key was used for the second returned file.');
+    $this->assertEquals($this->path . '/javascript-2.script', $file->uri, 'Second file name was set correctly.');
+    $this->assertEquals('javascript-2.script', $file->filename, 'Second basename was set correctly');
+    $this->assertEquals('javascript-2', $file->name, 'Second name was set correctly.');
+>>>>>>> dev
   }
 
   /**
@@ -117,25 +139,41 @@ class ScanDirectoryTest extends FileTestBase {
     $expected = [$this->path . '/javascript-1.txt', $this->path . '/javascript-2.script'];
     $actual = array_keys($this->fileSystem->scanDirectory($this->path, '/^javascript-/', ['key' => 'filepath']));
     sort($actual);
+<<<<<<< HEAD
     $this->assertEqual($expected, $actual, 'Returned the correct values for the filename key.');
+=======
+    $this->assertEquals($expected, $actual, 'Returned the correct values for the filename key.');
+>>>>>>> dev
 
     // "basename", for the basename of the file.
     $expected = ['javascript-1.txt', 'javascript-2.script'];
     $actual = array_keys($this->fileSystem->scanDirectory($this->path, '/^javascript-/', ['key' => 'filename']));
     sort($actual);
+<<<<<<< HEAD
     $this->assertEqual($expected, $actual, 'Returned the correct values for the basename key.');
+=======
+    $this->assertEquals($expected, $actual, 'Returned the correct values for the basename key.');
+>>>>>>> dev
 
     // "name" for the name of the file without an extension.
     $expected = ['javascript-1', 'javascript-2'];
     $actual = array_keys($this->fileSystem->scanDirectory($this->path, '/^javascript-/', ['key' => 'name']));
     sort($actual);
+<<<<<<< HEAD
     $this->assertEqual($expected, $actual, 'Returned the correct values for the name key.');
+=======
+    $this->assertEquals($expected, $actual, 'Returned the correct values for the name key.');
+>>>>>>> dev
 
     // Invalid option that should default back to "filename".
     $expected = [$this->path . '/javascript-1.txt', $this->path . '/javascript-2.script'];
     $actual = array_keys($this->fileSystem->scanDirectory($this->path, '/^javascript-/', ['key' => 'INVALID']));
     sort($actual);
+<<<<<<< HEAD
     $this->assertEqual($expected, $actual, 'An invalid key defaulted back to the default.');
+=======
+    $this->assertEquals($expected, $actual, 'An invalid key defaulted back to the default.');
+>>>>>>> dev
   }
 
   /**

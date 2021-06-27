@@ -21,7 +21,11 @@ class NodeClassicTest extends MigrateUpgradeExecuteTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'language',
     'content_translation',
     'config_translation',
@@ -38,7 +42,11 @@ class NodeClassicTest extends MigrateUpgradeExecuteTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->loadFixture(drupal_get_path('module', 'migrate_drupal') . '/tests/fixtures/drupal6.php');
   }
@@ -75,6 +83,7 @@ class NodeClassicTest extends MigrateUpgradeExecuteTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests ID Conflict form.
    */
   public function testMigrateUpgradeExecute() {
@@ -120,11 +129,25 @@ class NodeClassicTest extends MigrateUpgradeExecuteTestBase {
 
     // When the Credential form is submitted the migrate map tables are created.
     $this->drupalPostForm(NULL, $edits, t('Review upgrade'));
+=======
+   * Tests node classic migration via the UI.
+   */
+  public function testNodeClassicUpgrade() {
+    // Add a node classic migrate table to d8.
+    $this->makeNodeMigrateMapTable(NodeMigrateType::NODE_MIGRATE_TYPE_CLASSIC, '6');
+
+    // Start the upgrade process.
+    $this->submitCredentialForm();
+>>>>>>> dev
 
     // Confirm there are only classic node migration map tables. This shows
     // that only the classic migration will run.
     $results = $this->nodeMigrateMapTableCount('6');
+<<<<<<< HEAD
     $this->assertSame(13, $results['node']);
+=======
+    $this->assertSame(14, $results['node']);
+>>>>>>> dev
     $this->assertSame(0, $results['node_complete']);
   }
 

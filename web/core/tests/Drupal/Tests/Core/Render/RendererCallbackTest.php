@@ -2,11 +2,16 @@
 
 namespace Drupal\Tests\Core\Render;
 
+<<<<<<< HEAD
 use Drupal\Tests\Traits\ExpectDeprecationTrait;
+=======
+use Drupal\Core\Security\UntrustedCallbackException;
+>>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\Core\Render\Renderer
  * @group Render
+<<<<<<< HEAD
  * @group legacy
  * Once Renderer::doCallback() throws exceptions this will no longer be a legacy
  * test.
@@ -19,6 +24,15 @@ class RendererCallbackTest extends RendererTestBase {
    * {@inheritdoc}
    */
   protected function setUp() {
+=======
+ */
+class RendererCallbackTest extends RendererTestBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->controllerResolver->expects($this->any())
       ->method('getControllerFromDefinition')
@@ -36,7 +50,12 @@ class RendererCallbackTest extends RendererTestBase {
    * @dataProvider providerTestCallback
    */
   public function testCallback(array $render_array, $expected_deprecation) {
+<<<<<<< HEAD
     $this->expectedDeprecations([$expected_deprecation]);
+=======
+    $this->expectException(UntrustedCallbackException::class);
+    $this->expectExceptionMessage($expected_deprecation);
+>>>>>>> dev
     $this->renderer->renderRoot($render_array);
   }
 
@@ -47,6 +66,7 @@ class RendererCallbackTest extends RendererTestBase {
     return [
       'Procedural function pre render' => [
         ['#pre_render' => ['\Drupal\Tests\Core\Render\callback'], '#type' => 'container'],
+<<<<<<< HEAD
         'Render #pre_render callbacks must be methods of a class that implements \Drupal\Core\Security\TrustedCallbackInterface or be an anonymous function. The callback was \Drupal\Tests\Core\Render\callback. Support for this callback implementation is deprecated in 8.8.0 and will be removed in Drupal 9.0.0. See https://www.drupal.org/node/2966725',
       ],
       'Static object method post render' => [
@@ -64,6 +84,25 @@ class RendererCallbackTest extends RendererTestBase {
       'Invokable object access callback' => [
         ['#access_callback' => $this, '#type' => 'container'],
         'Render #access_callback callbacks must be methods of a class that implements \Drupal\Core\Security\TrustedCallbackInterface or be an anonymous function. The callback was Drupal\Tests\Core\Render\RendererCallbackTest. Support for this callback implementation is deprecated in 8.8.0 and will be removed in Drupal 9.0.0. See https://www.drupal.org/node/2966725',
+=======
+        'Render #pre_render callbacks must be methods of a class that implements \Drupal\Core\Security\TrustedCallbackInterface or be an anonymous function. The callback was \Drupal\Tests\Core\Render\callback. See https://www.drupal.org/node/2966725',
+      ],
+      'Static object method post render' => [
+        ['#post_render' => ['\Drupal\Tests\Core\Render\RendererCallbackTest::renderCallback'], '#type' => 'container'],
+        'Render #post_render callbacks must be methods of a class that implements \Drupal\Core\Security\TrustedCallbackInterface or be an anonymous function. The callback was \Drupal\Tests\Core\Render\RendererCallbackTest::renderCallback. See https://www.drupal.org/node/2966725',
+      ],
+      'Object method access callback' => [
+        ['#access_callback' => [$this, 'renderCallback'], '#type' => 'container'],
+        'Render #access_callback callbacks must be methods of a class that implements \Drupal\Core\Security\TrustedCallbackInterface or be an anonymous function. The callback was Drupal\Tests\Core\Render\RendererCallbackTest::renderCallback. See https://www.drupal.org/node/2966725',
+      ],
+      'Procedural function lazy builder' => [
+        ['#lazy_builder' => ['\Drupal\Tests\Core\Render\callback', []]],
+        'Render #lazy_builder callbacks must be methods of a class that implements \Drupal\Core\Security\TrustedCallbackInterface or be an anonymous function. The callback was \Drupal\Tests\Core\Render\callback. See https://www.drupal.org/node/2966725',
+      ],
+      'Invokable object access callback' => [
+        ['#access_callback' => $this, '#type' => 'container'],
+        'Render #access_callback callbacks must be methods of a class that implements \Drupal\Core\Security\TrustedCallbackInterface or be an anonymous function. The callback was Drupal\Tests\Core\Render\RendererCallbackTest. See https://www.drupal.org/node/2966725',
+>>>>>>> dev
       ],
     ];
   }

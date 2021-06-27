@@ -14,7 +14,11 @@ class DuplicateContextualLinksTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'block',
     'contextual',
     'node',

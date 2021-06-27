@@ -8,6 +8,11 @@ use Drupal\Tests\UnitTestCase;
 use Drupal\file\Plugin\migrate\field\d6\FileField;
 use Prophecy\Argument;
 
+<<<<<<< HEAD
+=======
+// cspell:ignore imagefield
+
+>>>>>>> dev
 /**
  * @coversDefaultClass \Drupal\file\Plugin\migrate\field\d6\FileField
  * @group file
@@ -27,7 +32,11 @@ class FileFieldTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->plugin = new FileField([], 'file', []);
 
     $migration = $this->prophesize(MigrationInterface::class);

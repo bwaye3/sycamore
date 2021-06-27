@@ -32,7 +32,11 @@ class InstallerLanguageTest extends KernelTestBase {
     $file_translation = new FileTranslation('core/tests/fixtures/files/translations', $this->container->get('file_system'));
     foreach ($expected_translation_files as $langcode => $files_expected) {
       $files_found = $file_translation->findTranslationFiles($langcode);
+<<<<<<< HEAD
       $this->assertTrue(count($files_found) == count($files_expected), new FormattableMarkup('@count installer languages found.', ['@count' => count($files_expected)]));
+=======
+      $this->assertSame(count($files_expected), count($files_found), new FormattableMarkup('@count installer languages found.', ['@count' => count($files_expected)]));
+>>>>>>> dev
       foreach ($files_found as $file) {
         $this->assertContains($file->filename, $files_expected, new FormattableMarkup('@file found.', ['@file' => $file->filename]));
       }

@@ -52,7 +52,11 @@ class DefaultsSectionStorageTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->entityTypeManager = $this->prophesize(EntityTypeManagerInterface::class);
@@ -106,6 +110,7 @@ class DefaultsSectionStorageTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * @covers ::extractIdFromRoute
    *
    * @dataProvider providerTestExtractIdFromRoute
@@ -234,6 +239,8 @@ class DefaultsSectionStorageTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * @covers ::extractEntityFromRoute
    *
    * @dataProvider providerTestExtractEntityFromRoute

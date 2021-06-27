@@ -16,7 +16,11 @@ class LanguageEntityFieldAccessHookTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'text',
     'field',

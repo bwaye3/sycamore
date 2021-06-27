@@ -2,24 +2,34 @@
 
 namespace Drupal\user\EventSubscriber;
 
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
+=======
+>>>>>>> dev
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Site\Settings;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Event\PostResponseEvent;
+=======
+use Symfony\Component\HttpKernel\Event\TerminateEvent;
+>>>>>>> dev
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Updates the current user's last access time.
  */
 class UserRequestSubscriber implements EventSubscriberInterface {
+<<<<<<< HEAD
   use DeprecatedServicePropertyTrait;
 
   /**
    * {@inheritdoc}
    */
   protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
+=======
+>>>>>>> dev
 
   /**
    * The current account.
@@ -51,10 +61,17 @@ class UserRequestSubscriber implements EventSubscriberInterface {
   /**
    * Updates the current user's last access time.
    *
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpKernel\Event\PostResponseEvent $event
    *   The event to process.
    */
   public function onKernelTerminate(PostResponseEvent $event) {
+=======
+   * @param \Symfony\Component\HttpKernel\Event\TerminateEvent $event
+   *   The event to process.
+   */
+  public function onKernelTerminate(TerminateEvent $event) {
+>>>>>>> dev
     if ($this->account->isAuthenticated() && REQUEST_TIME - $this->account->getLastAccessedTime() > Settings::get('session_write_interval', 180)) {
       // Do that no more than once per 180 seconds.
       /** @var \Drupal\user\UserStorageInterface $storage */

@@ -15,7 +15,11 @@ class ConfigTestTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['config_test', 'config_test_rest'];
+=======
+  protected static $modules = ['config_test', 'config_test_rest'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

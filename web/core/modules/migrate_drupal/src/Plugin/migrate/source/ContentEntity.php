@@ -58,6 +58,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   include_translations: false
  * @endcode
  *
+<<<<<<< HEAD
+=======
+ * For additional configuration keys, refer to the parent class:
+ * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
+ *
+>>>>>>> dev
  * @MigrateSource(
  *   id = "content_entity",
  *   source_module = "migrate_drupal",
@@ -228,6 +234,13 @@ class ContentEntity extends SourcePluginBase implements ContainerFactoryPluginIn
     if (!empty($this->configuration['bundle'])) {
       $query->condition($this->entityType->getKey('bundle'), $this->configuration['bundle']);
     }
+<<<<<<< HEAD
+=======
+    // Exclude anonymous user account.
+    if ($this->entityType->id() === 'user' && !empty($this->entityType->getKey('id'))) {
+      $query->condition($this->entityType->getKey('id'), 0, '>');
+    }
+>>>>>>> dev
     return $query;
   }
 

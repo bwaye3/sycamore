@@ -2,7 +2,10 @@
 
 namespace Drupal\block;
 
+<<<<<<< HEAD
 use Drupal\Core\Block\BlockPluginInterface;
+=======
+>>>>>>> dev
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 
 /**
@@ -11,6 +14,7 @@ use Drupal\Core\Config\Entity\ConfigEntityInterface;
 interface BlockInterface extends ConfigEntityInterface {
 
   /**
+<<<<<<< HEAD
    * Indicates the block label (title) should be displayed to end users.
    *
    * @deprecated in drupal:8.3.0 and is removed from drupal:9.0.0.
@@ -28,6 +32,8 @@ interface BlockInterface extends ConfigEntityInterface {
   const BLOCK_REGION_NONE = -1;
 
   /**
+=======
+>>>>>>> dev
    * Returns the plugin instance.
    *
    * @return \Drupal\Core\Block\BlockPluginInterface

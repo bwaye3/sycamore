@@ -6,6 +6,7 @@
  */
 
 /**
+<<<<<<< HEAD
  * Remove load plugin references from existing migrations.
  */
 function migrate_update_8001() {
@@ -15,4 +16,10 @@ function migrate_update_8001() {
     $migration->clear('load');
     $migration->save(TRUE);
   }
+=======
+ * Implements hook_update_last_removed().
+ */
+function migrate_update_last_removed() {
+  return 8001;
+>>>>>>> dev
 }

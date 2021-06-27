@@ -5,7 +5,14 @@
 * @preserve
 **/
 
+<<<<<<< HEAD
 window.Drupal = { behaviors: {}, locale: {} };
+=======
+window.Drupal = {
+  behaviors: {},
+  locale: {}
+};
+>>>>>>> dev
 
 (function (Drupal, drupalSettings, drupalTranslations, console, Proxy, Reflect) {
   Drupal.throwError = function (error) {
@@ -18,7 +25,10 @@ window.Drupal = { behaviors: {}, locale: {} };
     context = context || document;
     settings = settings || drupalSettings;
     var behaviors = Drupal.behaviors;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     Object.keys(behaviors || {}).forEach(function (i) {
       if (typeof behaviors[i].attach === 'function') {
         try {
@@ -35,7 +45,10 @@ window.Drupal = { behaviors: {}, locale: {} };
     settings = settings || drupalSettings;
     trigger = trigger || 'unload';
     var behaviors = Drupal.behaviors;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     Object.keys(behaviors || {}).forEach(function (i) {
       if (typeof behaviors[i].detach === 'function') {
         try {
@@ -54,7 +67,10 @@ window.Drupal = { behaviors: {}, locale: {} };
 
   Drupal.formatString = function (str, args) {
     var processedArgs = {};
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     Object.keys(args || {}).forEach(function (key) {
       switch (key.charAt(0)) {
         case '@':
@@ -70,7 +86,10 @@ window.Drupal = { behaviors: {}, locale: {} };
           break;
       }
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     return Drupal.stringReplace(str, processedArgs, null);
   };
 
@@ -81,7 +100,10 @@ window.Drupal = { behaviors: {}, locale: {} };
 
     if (!Array.isArray(keys)) {
       keys = Object.keys(args || {});
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       keys.sort(function (a, b) {
         return a.length - b.length;
       });
@@ -114,6 +136,10 @@ window.Drupal = { behaviors: {}, locale: {} };
     if (args) {
       str = Drupal.formatString(str, args);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     return str;
   };
 
@@ -129,7 +155,10 @@ window.Drupal = { behaviors: {}, locale: {} };
     } catch (e) {}
 
     urlParsingNode.setAttribute('href', url);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     return urlParsingNode.cloneNode(false).href;
   };
 
@@ -140,22 +169,38 @@ window.Drupal = { behaviors: {}, locale: {} };
     if (protocol === 'http:' && absoluteUrl.indexOf('https:') === 0) {
       protocol = 'https:';
     }
+<<<<<<< HEAD
     var baseUrl = protocol + '//' + window.location.host + drupalSettings.path.baseUrl.slice(0, -1);
+=======
+
+    var baseUrl = "".concat(protocol, "//").concat(window.location.host).concat(drupalSettings.path.baseUrl.slice(0, -1));
+>>>>>>> dev
 
     try {
       absoluteUrl = decodeURIComponent(absoluteUrl);
     } catch (e) {}
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     try {
       baseUrl = decodeURIComponent(baseUrl);
     } catch (e) {}
 
+<<<<<<< HEAD
     return absoluteUrl === baseUrl || absoluteUrl.indexOf(baseUrl + '/') === 0;
+=======
+    return absoluteUrl === baseUrl || absoluteUrl.indexOf("".concat(baseUrl, "/")) === 0;
+>>>>>>> dev
   };
 
   Drupal.formatPlural = function (count, singular, plural, args, options) {
     args = args || {};
     args['@count'] = count;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     var pluralDelimiter = drupalSettings.pluralDelimiter;
     var translations = Drupal.t(singular + pluralDelimiter + plural, args, options).split(pluralDelimiter);
     var index = 0;
@@ -177,7 +222,11 @@ window.Drupal = { behaviors: {}, locale: {} };
     var message = _ref.message;
 
     if (drupalSettings.suppressDeprecationErrors === false && typeof console !== 'undefined' && console.warn) {
+<<<<<<< HEAD
       console.warn('[Deprecation] ' + message);
+=======
+      console.warn("[Deprecation] ".concat(message));
+>>>>>>> dev
     }
   };
 
@@ -192,6 +241,7 @@ window.Drupal = { behaviors: {}, locale: {} };
 
     return new Proxy(target, {
       get: function get(target, key) {
+<<<<<<< HEAD
         for (var _len = arguments.length, rest = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
           rest[_key - 2] = arguments[_key];
         }
@@ -199,6 +249,18 @@ window.Drupal = { behaviors: {}, locale: {} };
         if (key === deprecatedProperty) {
           Drupal.deprecationError({ message: message });
         }
+=======
+        if (key === deprecatedProperty) {
+          Drupal.deprecationError({
+            message: message
+          });
+        }
+
+        for (var _len = arguments.length, rest = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+          rest[_key - 2] = arguments[_key];
+        }
+
+>>>>>>> dev
         return Reflect.get.apply(Reflect, [target, key].concat(rest));
       }
     });
@@ -208,7 +270,11 @@ window.Drupal = { behaviors: {}, locale: {} };
     if (func in Drupal.theme) {
       var _Drupal$theme;
 
+<<<<<<< HEAD
       for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+=======
+      for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+>>>>>>> dev
         args[_key2 - 1] = arguments[_key2];
       }
 
@@ -217,6 +283,10 @@ window.Drupal = { behaviors: {}, locale: {} };
   };
 
   Drupal.theme.placeholder = function (str) {
+<<<<<<< HEAD
     return '<em class="placeholder">' + Drupal.checkPlain(str) + '</em>';
+=======
+    return "<em class=\"placeholder\">".concat(Drupal.checkPlain(str), "</em>");
+>>>>>>> dev
   };
 })(Drupal, window.drupalSettings, window.drupalTranslations, window.console, window.Proxy, window.Reflect);

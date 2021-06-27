@@ -3,6 +3,9 @@ type: module
 description: 'Serializes entities using Hypertext Application Language.'
 package: Web services
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:serialization

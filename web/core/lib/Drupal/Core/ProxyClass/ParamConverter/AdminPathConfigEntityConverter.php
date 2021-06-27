@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 // @codingStandardsIgnoreFile
+=======
+// phpcs:ignoreFile
+>>>>>>> dev
 
 /**
  * This file was generated via php core/scripts/generate-proxy-class.php 'Drupal\Core\ParamConverter\AdminPathConfigEntityConverter' "core/lib/Drupal/Core".

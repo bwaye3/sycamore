@@ -25,5 +25,8 @@ small .admin-link:after {
  */
 .system-cron-settings__link {
   overflow-wrap: break-word;
+<<<<<<< HEAD
   word-wrap: break-word;
+=======
+>>>>>>> dev
 }

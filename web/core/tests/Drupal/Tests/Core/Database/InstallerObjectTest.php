@@ -27,7 +27,11 @@ class InstallerObjectTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     require_once __DIR__ . '/../../../../../includes/install.inc';
     $additional_class_loader = new ClassLoader();
@@ -47,7 +51,11 @@ class InstallerObjectTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Dataprovider for testDbUrltoConnectionConversion().
+=======
+   * Data provider for testDbUrlToConnectionConversion().
+>>>>>>> dev
    *
    * @return array
    *   Array of arrays with the following elements:

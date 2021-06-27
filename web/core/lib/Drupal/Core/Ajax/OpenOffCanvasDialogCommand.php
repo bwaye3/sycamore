@@ -3,7 +3,11 @@
 namespace Drupal\Core\Ajax;
 
 /**
+<<<<<<< HEAD
  * Defines an AJAX command to open content in a dialog in a off-canvas dialog.
+=======
+ * Defines an AJAX command to open content in a dialog in an off-canvas tray.
+>>>>>>> dev
  *
  * @ingroup ajax
  */
@@ -18,7 +22,11 @@ class OpenOffCanvasDialogCommand extends OpenDialogCommand {
    * Constructs an OpenOffCanvasDialogCommand object.
    *
    * The off-canvas dialog differs from the normal modal provided by
+<<<<<<< HEAD
    * OpenDialogCommand in that a off-canvas has built in positioning and
+=======
+   * OpenDialogCommand in that an off-canvas has built in positioning and
+>>>>>>> dev
    * behaviors. Drupal provides a built-in off-canvas dialog for this purpose,
    * so the selector is hard-coded in the call to the parent constructor.
    *

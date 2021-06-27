@@ -28,7 +28,11 @@ class ModuleHandlerTest extends UnitTestCase {
    *
    * @covers ::__construct
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     // We can mock the cache handler here, but not the module handler.
     $this->cacheBackend = $this->createMock(CacheBackendInterface::class);
@@ -59,7 +63,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test loading a module.
+=======
+   * Tests loading a module.
+>>>>>>> dev
    *
    * @covers ::load
    */
@@ -79,7 +87,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test loading all modules.
+=======
+   * Tests loading all modules.
+>>>>>>> dev
    *
    * @covers ::loadAll
    */
@@ -95,7 +107,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test reload method.
+=======
+   * Tests reload method.
+>>>>>>> dev
    *
    * @covers ::reload
    */
@@ -130,7 +146,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test isLoaded accessor.
+=======
+   * Tests isLoaded accessor.
+>>>>>>> dev
    *
    * @covers ::isLoaded
    */
@@ -153,7 +173,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Confirm we get back a module from the module list
+=======
+   * Confirm we get back a module from the module list.
+>>>>>>> dev
    *
    * @covers ::getModule
    */
@@ -197,7 +221,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test adding a module.
+=======
+   * Tests adding a module.
+>>>>>>> dev
    *
    * @covers ::addModule
    * @covers ::add
@@ -219,7 +247,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test adding a profile.
+=======
+   * Tests adding a profile.
+>>>>>>> dev
    *
    * @covers ::addProfile
    * @covers ::add
@@ -242,7 +274,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test module exists returns correct module status.
+=======
+   * Tests module exists returns correct module status.
+>>>>>>> dev
    *
    * @covers ::moduleExists
    */
@@ -294,7 +330,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test invoke methods when module is enabled.
+=======
+   * Tests invoke methods when module is enabled.
+>>>>>>> dev
    *
    * @covers ::invoke
    */
@@ -306,7 +346,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test implementations methods when module is enabled.
+=======
+   * Tests implementations methods when module is enabled.
+>>>>>>> dev
    *
    * @covers ::implementsHook
    * @covers ::loadAllIncludes
@@ -323,7 +367,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test getImplementations.
+=======
+   * Tests getImplementations.
+>>>>>>> dev
    *
    * @covers ::getImplementations
    * @covers ::getImplementationInfo
@@ -334,7 +382,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test getImplementations.
+=======
+   * Tests getImplementations.
+>>>>>>> dev
    *
    * @covers ::getImplementations
    * @covers ::getImplementationInfo
@@ -367,7 +419,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test getImplementations.
+=======
+   * Tests getImplementations.
+>>>>>>> dev
    *
    * @covers ::getImplementations
    * @covers ::getImplementationInfo
@@ -404,7 +460,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test invoke all.
+=======
+   * Tests invoke all.
+>>>>>>> dev
    *
    * @covers ::invokeAll
    */
@@ -416,7 +476,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that write cache calls through to cache library correctly.
+=======
+   * Tests that write cache calls through to cache library correctly.
+>>>>>>> dev
    *
    * @covers ::writeCache
    */
@@ -435,7 +499,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test hook_hook_info() fetching through getHookInfo().
+=======
+   * Tests hook_hook_info() fetching through getHookInfo().
+>>>>>>> dev
    *
    * @covers ::getHookInfo
    * @covers ::buildHookInfo
@@ -464,7 +532,11 @@ class ModuleHandlerTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test internal implementation cache reset.
+=======
+   * Tests internal implementation cache reset.
+>>>>>>> dev
    *
    * @covers ::resetImplementations
    */

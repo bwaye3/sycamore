@@ -8,7 +8,13 @@ use Drupal\Component\Utility\Timer;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\Core\Queue\QueueFactory;
+<<<<<<< HEAD
 use Drupal\Core\Queue\QueueWorkerManagerInterface;
+=======
+use Drupal\Core\Queue\DelayableQueueInterface;
+use Drupal\Core\Queue\QueueWorkerManagerInterface;
+use Drupal\Core\Queue\DelayedRequeueException;
+>>>>>>> dev
 use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\Queue\SuspendQueueException;
 use Drupal\Core\Session\AccountSwitcherInterface;
@@ -157,7 +163,11 @@ class Cron implements CronInterface {
     // Record cron time.
     $request_time = $this->time->getRequestTime();
     $this->state->set('system.cron_last', $request_time);
+<<<<<<< HEAD
     $this->logger->notice('Cron run completed.');
+=======
+    $this->logger->info('Cron run completed.');
+>>>>>>> dev
   }
 
   /**
@@ -180,6 +190,21 @@ class Cron implements CronInterface {
             $queue_worker->processItem($item->data);
             $queue->deleteItem($item);
           }
+<<<<<<< HEAD
+=======
+          catch (DelayedRequeueException $e) {
+            // The worker requested the task not be immediately re-queued.
+            // - If the queue doesn't support ::delayItem(), we should leave the
+            // item's current expiry time alone.
+            // - If the queue does support ::delayItem(), we should allow the
+            // queue to update the item's expiry using the requested delay.
+            if ($queue instanceof DelayableQueueInterface) {
+              // This queue can handle a custom delay; use the duration provided
+              // by the exception.
+              $queue->delayItem($item, $e->getDelay());
+            }
+          }
+>>>>>>> dev
           catch (RequeueException $e) {
             // The worker requested the task be immediately requeued.
             $queue->releaseItem($item);
@@ -218,12 +243,20 @@ class Cron implements CronInterface {
     foreach ($this->moduleHandler->getImplementations('cron') as $module) {
 
       if (!$module_previous) {
+<<<<<<< HEAD
         $logger->notice('Starting execution of @module_cron().', [
+=======
+        $logger->info('Starting execution of @module_cron().', [
+>>>>>>> dev
           '@module' => $module,
         ]);
       }
       else {
+<<<<<<< HEAD
         $logger->notice('Starting execution of @module_cron(), execution of @module_previous_cron() took @time.', [
+=======
+        $logger->info('Starting execution of @module_cron(), execution of @module_previous_cron() took @time.', [
+>>>>>>> dev
           '@module' => $module,
           '@module_previous' => $module_previous,
           '@time' => Timer::read('cron_' . $module_previous) . 'ms',
@@ -243,7 +276,11 @@ class Cron implements CronInterface {
       $module_previous = $module;
     }
     if ($module_previous) {
+<<<<<<< HEAD
       $logger->notice('Execution of @module_previous_cron() took @time.', [
+=======
+      $logger->info('Execution of @module_previous_cron() took @time.', [
+>>>>>>> dev
         '@module_previous' => $module_previous,
         '@time' => Timer::read('cron_' . $module_previous) . 'ms',
       ]);

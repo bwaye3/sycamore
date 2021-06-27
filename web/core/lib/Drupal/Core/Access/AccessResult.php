@@ -6,8 +6,11 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 use Drupal\Core\Cache\RefinableCacheableDependencyTrait;
+<<<<<<< HEAD
 use Drupal\Core\Config\ConfigBase;
 use Drupal\Core\Entity\EntityInterface;
+=======
+>>>>>>> dev
 use Drupal\Core\Session\AccountInterface;
 
 /**
@@ -279,6 +282,7 @@ abstract class AccessResult implements AccessResultInterface, RefinableCacheable
   }
 
   /**
+<<<<<<< HEAD
    * Convenience method, adds the entity's cache tag.
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
@@ -311,6 +315,8 @@ abstract class AccessResult implements AccessResultInterface, RefinableCacheable
   }
 
   /**
+=======
+>>>>>>> dev
    * {@inheritdoc}
    */
   public function orIf(AccessResultInterface $other) {

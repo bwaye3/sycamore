@@ -14,7 +14,11 @@ abstract class EditorResourceTestBase extends EntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['ckeditor', 'editor'];
+=======
+  protected static $modules = ['ckeditor', 'editor'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -174,10 +178,13 @@ abstract class EditorResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
+<<<<<<< HEAD
     if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
       return parent::getExpectedUnauthorizedAccessMessage($method);
     }
 
+=======
+>>>>>>> dev
     return "The 'administer filters' permission is required.";
   }
 

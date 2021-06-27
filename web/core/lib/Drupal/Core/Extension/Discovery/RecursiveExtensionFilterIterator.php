@@ -11,7 +11,11 @@ namespace Drupal\Core\Extension\Discovery;
  * subdirectory tree recursion is avoided.
  *
  * The list of globally ignored directory names is defined in the
+<<<<<<< HEAD
  * RecursiveExtensionFilterIterator::$blacklist property.
+=======
+ * RecursiveExtensionFilterIterator::$skippedFolders property.
+>>>>>>> dev
  *
  * In addition, all 'config' directories are skipped, unless the directory path
  * ends with 'modules/config', so as to still find the config module provided by
@@ -39,7 +43,11 @@ class RecursiveExtensionFilterIterator extends \RecursiveFilterIterator {
    *
    * @var array
    */
+<<<<<<< HEAD
   protected $whitelist = [
+=======
+  protected $allowedExtensionTypes = [
+>>>>>>> dev
     'profiles',
     'modules',
     'themes',
@@ -54,7 +62,11 @@ class RecursiveExtensionFilterIterator extends \RecursiveFilterIterator {
    *
    * @var array
    */
+<<<<<<< HEAD
   protected $blacklist = [
+=======
+  protected $skippedFolders = [
+>>>>>>> dev
     // Object-oriented code subdirectories.
     'src',
     'lib',
@@ -87,6 +99,7 @@ class RecursiveExtensionFilterIterator extends \RecursiveFilterIterator {
    *
    * @param \RecursiveIterator $iterator
    *   The iterator to filter.
+<<<<<<< HEAD
    * @param array $blacklist
    *   (optional) Add to the blacklist of directories that should be filtered
    *   out during the iteration.
@@ -94,6 +107,15 @@ class RecursiveExtensionFilterIterator extends \RecursiveFilterIterator {
   public function __construct(\RecursiveIterator $iterator, array $blacklist = []) {
     parent::__construct($iterator);
     $this->blacklist = array_merge($this->blacklist, $blacklist);
+=======
+   * @param string[] $skipped_folders
+   *   (optional) Add to the list of directories that should be filtered out
+   *   during the iteration.
+   */
+  public function __construct(\RecursiveIterator $iterator, array $skipped_folders = []) {
+    parent::__construct($iterator);
+    $this->skippedFolders = array_merge($this->skippedFolders, $skipped_folders);
+>>>>>>> dev
   }
 
   /**
@@ -102,13 +124,22 @@ class RecursiveExtensionFilterIterator extends \RecursiveFilterIterator {
    * @param bool $flag
    *   Pass FALSE to skip all test directories in the discovery. If TRUE,
    *   extensions in test directories will be discovered and only the global
+<<<<<<< HEAD
    *   directory blacklist in RecursiveExtensionFilterIterator::$blacklist is
    *   applied.
+=======
+   *   directory skip list in RecursiveExtensionFilterIterator::$skippedFolders
+   *   is applied.
+>>>>>>> dev
    */
   public function acceptTests($flag = FALSE) {
     $this->acceptTests = $flag;
     if (!$this->acceptTests) {
+<<<<<<< HEAD
       $this->blacklist[] = 'tests';
+=======
+      $this->skippedFolders[] = 'tests';
+>>>>>>> dev
     }
   }
 
@@ -117,8 +148,13 @@ class RecursiveExtensionFilterIterator extends \RecursiveFilterIterator {
    */
   public function getChildren() {
     $filter = parent::getChildren();
+<<<<<<< HEAD
     // Pass on the blacklist.
     $filter->blacklist = $this->blacklist;
+=======
+    // Pass on the skipped folders list.
+    $filter->skippedFolders = $this->skippedFolders;
+>>>>>>> dev
     // Pass the $acceptTests flag forward to child iterators.
     $filter->acceptTests($this->acceptTests);
     return $filter;
@@ -141,7 +177,11 @@ class RecursiveExtensionFilterIterator extends \RecursiveFilterIterator {
       // recurse into the whole filesystem tree that possibly contains other
       // files aside from Drupal.
       if ($this->current()->getSubPath() == '') {
+<<<<<<< HEAD
         return in_array($name, $this->whitelist, TRUE);
+=======
+        return in_array($name, $this->allowedExtensionTypes, TRUE);
+>>>>>>> dev
       }
       // 'config' directories are special-cased here, because every extension
       // contains one. However, those default configuration directories cannot
@@ -154,8 +194,13 @@ class RecursiveExtensionFilterIterator extends \RecursiveFilterIterator {
       if ($name == 'config') {
         return substr($this->current()->getPathname(), -14) == 'modules/config';
       }
+<<<<<<< HEAD
       // Accept the directory unless the name is blacklisted.
       return !in_array($name, $this->blacklist, TRUE);
+=======
+      // Accept the directory unless the folder is skipped.
+      return !in_array($name, $this->skippedFolders, TRUE);
+>>>>>>> dev
     }
     else {
       // Only accept extension info files.

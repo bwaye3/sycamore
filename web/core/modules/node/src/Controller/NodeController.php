@@ -51,6 +51,7 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
    */
+<<<<<<< HEAD
   public function __construct(DateFormatterInterface $date_formatter, RendererInterface $renderer, EntityRepositoryInterface $entity_repository = NULL) {
     $this->dateFormatter = $date_formatter;
     $this->renderer = $renderer;
@@ -58,6 +59,11 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
       @trigger_error('The entity.repository service must be passed to NodeController::__construct(), it is required before Drupal 9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
       $entity_repository = \Drupal::service('entity.repository');
     }
+=======
+  public function __construct(DateFormatterInterface $date_formatter, RendererInterface $renderer, EntityRepositoryInterface $entity_repository) {
+    $this->dateFormatter = $date_formatter;
+    $this->renderer = $renderer;
+>>>>>>> dev
     $this->entityRepository = $entity_repository;
   }
 
@@ -84,6 +90,10 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
    *   type.
    */
   public function addPage() {
+<<<<<<< HEAD
+=======
+    $definition = $this->entityTypeManager()->getDefinition('node_type');
+>>>>>>> dev
     $build = [
       '#theme' => 'node_add_list',
       '#cache' => [
@@ -93,8 +103,15 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
 
     $content = [];
 
+<<<<<<< HEAD
     // Only use node types the user has access to.
     foreach ($this->entityTypeManager()->getStorage('node_type')->loadMultiple() as $type) {
+=======
+    $types = $this->entityTypeManager()->getStorage('node_type')->loadMultiple();
+    uasort($types, [$definition->getClass(), 'sort']);
+    // Only use node types the user has access to.
+    foreach ($types as $type) {
+>>>>>>> dev
       $access = $this->entityTypeManager()->getAccessControlHandler('node')->createAccess($type->id(), NULL, [], TRUE);
       if ($access->isAllowed()) {
         $content[$type->id()] = $type;
@@ -114,6 +131,7 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
   }
 
   /**
+<<<<<<< HEAD
    * Provides the node submission form.
    *
    * @param \Drupal\node\NodeTypeInterface $node_type
@@ -138,6 +156,8 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
   }
 
   /**
+=======
+>>>>>>> dev
    * Displays a node revision.
    *
    * @param int $node_revision
@@ -325,6 +345,10 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
    */
   protected function getRevisionIds(NodeInterface $node, NodeStorageInterface $node_storage) {
     $result = $node_storage->getQuery()
+<<<<<<< HEAD
+=======
+      ->accessCheck(TRUE)
+>>>>>>> dev
       ->allRevisions()
       ->condition($node->getEntityType()->getKey('id'), $node->id())
       ->sort($node->getEntityType()->getKey('revision'), 'DESC')

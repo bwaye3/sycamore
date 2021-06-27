@@ -6,7 +6,10 @@
 .contact-form {
   max-width: 600px;
   margin: auto auto 1rem;
+<<<<<<< HEAD
   padding: 0 1rem;
+=======
+>>>>>>> dev
 }
 
 @media screen and (min-width: 30rem) { /* 480px */

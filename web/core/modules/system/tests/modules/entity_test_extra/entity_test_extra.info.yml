@@ -3,6 +3,9 @@ type: module
 description: 'Provides extra fields for entity test entity types.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:entity_test

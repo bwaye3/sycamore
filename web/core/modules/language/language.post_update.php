@@ -5,6 +5,7 @@
  * Post update functions for Language module.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 
 /**
@@ -25,4 +26,13 @@ function language_post_update_language_select_widget() {
       $display_form->save();
     }
   }
+=======
+/**
+ * Implements hook_removed_post_updates().
+ */
+function language_removed_post_updates() {
+  return [
+    'language_post_update_language_select_widget' => '9.0.0',
+  ];
+>>>>>>> dev
 }

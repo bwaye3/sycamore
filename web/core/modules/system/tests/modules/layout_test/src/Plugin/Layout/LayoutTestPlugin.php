@@ -49,6 +49,12 @@ class LayoutTestPlugin extends LayoutDefault implements PluginFormInterface {
    * {@inheritdoc}
    */
   public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
+<<<<<<< HEAD
+=======
+    if ($form_state->getValue('setting_1') === 'Test Validation Error Message') {
+      $form_state->setErrorByName('setting_1', 'Validation Error Message');
+    }
+>>>>>>> dev
   }
 
   /**

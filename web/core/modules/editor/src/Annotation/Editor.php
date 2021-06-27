@@ -28,7 +28,11 @@ use Drupal\Component\Annotation\Plugin;
  *
  * @code
  * @Editor(
+<<<<<<< HEAD
  *   id = "myeditor",
+=======
+ *   id = "my_editor",
+>>>>>>> dev
  *   label = @Translation("My Editor"),
  *   supports_content_filtering = FALSE,
  *   supports_inline_editing = FALSE,

@@ -10,7 +10,11 @@ abstract class ConfigTestResourceTestBase extends EntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['config_test', 'config_test_rest'];
+=======
+  protected static $modules = ['config_test', 'config_test_rest'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -74,10 +78,13 @@ abstract class ConfigTestResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
+<<<<<<< HEAD
     if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
       return parent::getExpectedUnauthorizedAccessMessage($method);
     }
 
+=======
+>>>>>>> dev
     switch ($method) {
       case 'GET':
         return "The 'view config_test' permission is required.";

@@ -22,14 +22,22 @@
  * @event formFragmentLinkClickOrHashChange
  */
 
+<<<<<<< HEAD
 (function($, Drupal, debounce) {
+=======
+(function ($, Drupal, debounce) {
+>>>>>>> dev
   /**
    * Retrieves the summary for the first element.
    *
    * @return {string}
    *   The text of the summary.
    */
+<<<<<<< HEAD
   $.fn.drupalGetSummary = function() {
+=======
+  $.fn.drupalGetSummary = function () {
+>>>>>>> dev
     const callback = this.data('summaryCallback');
     return this[0] && callback ? $.trim(callback(this[0])) : '';
   };
@@ -48,14 +56,22 @@
    *
    * @listens event:formUpdated
    */
+<<<<<<< HEAD
   $.fn.drupalSetSummary = function(callback) {
+=======
+  $.fn.drupalSetSummary = function (callback) {
+>>>>>>> dev
     const self = this;
 
     // To facilitate things, the callback should always be a function. If it's
     // not, we wrap it into an anonymous function which just returns the value.
     if (typeof callback !== 'function') {
       const val = callback;
+<<<<<<< HEAD
       callback = function() {
+=======
+      callback = function () {
+>>>>>>> dev
         return val;
       };
     }
@@ -191,9 +207,15 @@
         // Initialize form behaviors, use $.makeArray to be able to use native
         // forEach array method and have the callback parameters in the right
         // order.
+<<<<<<< HEAD
         $.makeArray($forms).forEach(form => {
           const events = 'change.formUpdated input.formUpdated ';
           const eventHandler = debounce(event => {
+=======
+        $.makeArray($forms).forEach((form) => {
+          const events = 'change.formUpdated input.formUpdated ';
+          const eventHandler = debounce((event) => {
+>>>>>>> dev
             triggerFormUpdated(event.target);
           }, 300);
           formFields = fieldsList(form).join(',');
@@ -218,12 +240,20 @@
       const $context = $(context);
       const contextIsForm = $context.is('form');
       if (trigger === 'unload') {
+<<<<<<< HEAD
         const $forms = (contextIsForm
           ? $context
           : $context.find('form')
         ).removeOnce('form-updated');
         if ($forms.length) {
           $.makeArray($forms).forEach(form => {
+=======
+        const $forms = (
+          contextIsForm ? $context : $context.find('form')
+        ).removeOnce('form-updated');
+        if ($forms.length) {
+          $.makeArray($forms).forEach((form) => {
+>>>>>>> dev
             form.removeAttribute('data-drupal-form-fields');
             $(form).off('.formUpdated');
           });
@@ -247,7 +277,11 @@
         'user-info-from-browser',
       );
       if ($forms.length) {
+<<<<<<< HEAD
         userInfo.forEach(info => {
+=======
+        userInfo.forEach((info) => {
+>>>>>>> dev
           const $element = $forms.find(`[name=${info}]`);
           const browserData = localStorage.getItem(`Drupal.visitor.${info}`);
           const emptyOrDefault =
@@ -259,7 +293,11 @@
         });
       }
       $forms.on('submit', () => {
+<<<<<<< HEAD
         userInfo.forEach(info => {
+=======
+        userInfo.forEach((info) => {
+>>>>>>> dev
           const $element = $forms.find(`[name=${info}]`);
           if ($element.length) {
             localStorage.setItem(`Drupal.visitor.${info}`, $element.val());
@@ -277,7 +315,11 @@
    *
    * @fires event:formFragmentLinkClickOrHashChange
    */
+<<<<<<< HEAD
   const handleFragmentLinkClickOrHashChange = e => {
+=======
+  const handleFragmentLinkClickOrHashChange = (e) => {
+>>>>>>> dev
     let url;
     if (e.type === 'click') {
       url = e.currentTarget.location

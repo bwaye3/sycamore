@@ -14,12 +14,20 @@ class ClassyTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'twig_theme_test'];
+=======
+  protected static $modules = ['system', 'twig_theme_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
+=======
+  public function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Use the classy theme.
@@ -34,7 +42,11 @@ class ClassyTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the classy theme.
+=======
+   * Tests the classy theme.
+>>>>>>> dev
    */
   public function testClassyTheme() {
     \Drupal::messenger()->addError('An error occurred');

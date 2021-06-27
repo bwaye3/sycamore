@@ -2,7 +2,10 @@ name: Quick Edit
 type: module
 description: 'In-place content editing.'
 package: Core
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 version: VERSION
 dependencies:
   - drupal:contextual

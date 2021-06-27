@@ -29,7 +29,11 @@ class CommentTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['comment', 'entity_test'];
+=======
+  protected static $modules = ['comment', 'entity_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -391,6 +395,7 @@ class CommentTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function testRelated() {
     $this->markTestSkipped('Remove this in https://www.drupal.org/project/drupal/issues/2940339');
   }
@@ -398,6 +403,8 @@ class CommentTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   protected static function getIncludePermissions() {
     return [
       'type' => ['administer comment types'],

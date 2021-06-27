@@ -24,7 +24,11 @@ class DialogTest extends WebDriverTestBase {
   protected $defaultTheme = 'classy';
 
   /**
+<<<<<<< HEAD
    * Test sending non-JS and AJAX requests to open and manipulate modals.
+=======
+   * Tests sending non-JS and AJAX requests to open and manipulate modals.
+>>>>>>> dev
    */
   public function testDialog() {
     $this->drupalLogin($this->drupalCreateUser(['administer contact forms']));
@@ -46,7 +50,11 @@ class DialogTest extends WebDriverTestBase {
     // expected.
     $this->getSession()->getPage()->clickLink('Link 1 (modal)');
 
+<<<<<<< HEAD
     // Clicking the link triggers a AJAX request/response.
+=======
+    // Clicking the link triggers an AJAX request/response.
+>>>>>>> dev
     // Opens a Dialog panel.
     $link1_dialog_div = $this->assertSession()->waitForElementVisible('css', 'div.ui-dialog');
     $this->assertNotNull($link1_dialog_div, 'Link was used to open a dialog ( modal )');
@@ -125,7 +133,11 @@ class DialogTest extends WebDriverTestBase {
     $button2_dialog = $this->assertSession()->waitForElementVisible('css', 'div.ui-dialog-content');
     $this->assertNotNull($button2_dialog, 'Non-modal content displays as expected.');
 
+<<<<<<< HEAD
     // Use a link to close the pagnel opened by button 2.
+=======
+    // Use a link to close the panel opened by button 2.
+>>>>>>> dev
     $this->getSession()->getPage()->clickLink('Link 4 (close non-modal if open)');
 
     // Form modal.
@@ -153,7 +165,11 @@ class DialogTest extends WebDriverTestBase {
     $hidden_button_text = [];
     foreach ($hidden_buttons as $button) {
       $styles = $button->getAttribute('style');
+<<<<<<< HEAD
       $this->assertTrue((stripos($styles, 'display: none;') !== FALSE));
+=======
+      $this->assertStringContainsStringIgnoringCase('display: none;', $styles);
+>>>>>>> dev
       $hidden_button_text[] = $button->getAttribute('value');
     }
 
@@ -162,7 +178,11 @@ class DialogTest extends WebDriverTestBase {
     $moved_to_buttonpane_buttons = $this->getSession()->getPage()->findAll('css', '.ui-dialog-buttonpane button');
     $this->assertCount(2, $moved_to_buttonpane_buttons);
     foreach ($moved_to_buttonpane_buttons as $key => $button) {
+<<<<<<< HEAD
       $this->assertEqual($button->getText(), $hidden_button_text[$key]);
+=======
+      $this->assertEquals($hidden_button_text[$key], $button->getText());
+>>>>>>> dev
     }
 
     // Reset: close the form.

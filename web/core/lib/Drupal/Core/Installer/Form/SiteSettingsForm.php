@@ -37,6 +37,11 @@ class SiteSettingsForm extends FormBase {
    *
    * @param string $site_path
    *   The site path.
+<<<<<<< HEAD
+=======
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer.
+>>>>>>> dev
    */
   public function __construct($site_path, RendererInterface $renderer) {
     $this->sitePath = $site_path;
@@ -44,11 +49,19 @@ class SiteSettingsForm extends FormBase {
   }
 
   /**
+<<<<<<< HEAD
     * {@inheritdoc}
     */
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('site.path'),
+=======
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->getParameter('site.path'),
+>>>>>>> dev
       $container->get('renderer')
     );
   }
@@ -281,7 +294,11 @@ class SiteSettingsForm extends FormBase {
    *   The path to the generated config sync directory.
    */
   protected function createRandomConfigDirectory() {
+<<<<<<< HEAD
     $config_sync_directory = \Drupal::service('site.path') . '/files/config_' . Crypt::randomBytesBase64(55) . '/sync';
+=======
+    $config_sync_directory = $this->sitePath . '/files/config_' . Crypt::randomBytesBase64(55) . '/sync';
+>>>>>>> dev
     // This should never fail, it is created here inside the public files
     // directory, which has already been verified to be writable itself.
     if (\Drupal::service('file_system')->prepareDirectory($config_sync_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS)) {

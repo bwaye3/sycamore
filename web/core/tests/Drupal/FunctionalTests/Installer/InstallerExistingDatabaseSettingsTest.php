@@ -52,14 +52,22 @@ class InstallerExistingDatabaseSettingsTest extends InstallerTestBase {
         ],
       ]);
     }
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, $edit, $this->translations['Save and continue']);
+=======
+    $this->submitForm($edit, $this->translations['Save and continue']);
+>>>>>>> dev
   }
 
   /**
    * Verifies that installation succeeded.
    */
   public function testInstaller() {
+<<<<<<< HEAD
     $this->assertUrl('user/1');
+=======
+    $this->assertSession()->addressEquals('user/1');
+>>>>>>> dev
     $this->assertSession()->statusCodeEquals(200);
   }
 

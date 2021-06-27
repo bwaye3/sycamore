@@ -5,7 +5,12 @@
 * @preserve
 **/
 
+<<<<<<< HEAD
 (function ($, Drupal, window) {
+=======
+(function ($, Drupal, window, _ref) {
+  var tabbable = _ref.tabbable;
+>>>>>>> dev
   Drupal.MediaLibrary = {
     currentSelection: []
   };
@@ -28,7 +33,10 @@
       }).on('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         var ajaxObject = Drupal.ajax({
           wrapper: 'media-library-content',
           url: e.currentTarget.href,
@@ -45,16 +53,26 @@
           if (this.progress.element) {
             $(this.progress.element).remove();
           }
+<<<<<<< HEAD
           if (this.progress.object) {
             this.progress.object.stopMonitoring();
           }
           $(this.element).prop('disabled', false);
 
+=======
+
+          if (this.progress.object) {
+            this.progress.object.stopMonitoring();
+          }
+
+          $(this.element).prop('disabled', false);
+>>>>>>> dev
           Object.keys(response || {}).forEach(function (i) {
             if (response[i].command && _this.commands[response[i].command]) {
               _this.commands[response[i].command](_this, response[i], status);
             }
           });
+<<<<<<< HEAD
 
           $('#media-library-content :tabbable:first').focus();
 
@@ -66,12 +84,34 @@
         $menu.find('a').removeClass('active');
         $(e.currentTarget).addClass('active').html(Drupal.t('<span class="visually-hidden">Show </span>@title<span class="visually-hidden"> media</span><span class="active-tab visually-hidden"> (selected)</span>', { '@title': $(e.currentTarget).data('title') }));
 
+=======
+          var mediaLibraryContent = document.getElementById('media-library-content');
+
+          if (mediaLibraryContent) {
+            var tabbableContent = tabbable(mediaLibraryContent);
+
+            if (tabbableContent.length) {
+              tabbableContent[0].focus();
+            }
+          }
+
+          this.settings = null;
+        };
+
+        ajaxObject.execute();
+        $menu.find('.active-tab').remove();
+        $menu.find('a').removeClass('active');
+        $(e.currentTarget).addClass('active').html(Drupal.t('<span class="visually-hidden">Show </span>@title<span class="visually-hidden"> media</span><span class="active-tab visually-hidden"> (selected)</span>', {
+          '@title': $(e.currentTarget).data('title')
+        }));
+>>>>>>> dev
         Drupal.announce(Drupal.t('Showing @title media.', {
           '@title': $(e.currentTarget).data('title')
         }));
       });
     }
   };
+<<<<<<< HEAD
 
   Drupal.behaviors.MediaLibraryViewsDisplay = {
     attach: function attach(context) {
@@ -88,6 +128,20 @@
         var loadingAnnouncement = '';
         var displayAnnouncement = '';
         var focusSelector = '';
+=======
+  Drupal.behaviors.MediaLibraryViewsDisplay = {
+    attach: function attach(context) {
+      var $view = $(context).hasClass('.js-media-library-view') ? $(context) : $('.js-media-library-view', context);
+      $view.closest('.views-element-container').attr('id', 'media-library-view');
+      $('.views-display-link-widget, .views-display-link-widget_table', context).once('media-library-views-display-link').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $link = $(e.currentTarget);
+        var loadingAnnouncement = '';
+        var displayAnnouncement = '';
+        var focusSelector = '';
+
+>>>>>>> dev
         if ($link.hasClass('views-display-link-widget')) {
           loadingAnnouncement = Drupal.t('Loading grid view.');
           displayAnnouncement = Drupal.t('Changed to grid view.');
@@ -110,6 +164,10 @@
 
         if (displayAnnouncement || focusSelector) {
           var success = ajaxObject.success;
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
           ajaxObject.success = function (response, status) {
             success.bind(this)(response, status);
 
@@ -131,7 +189,10 @@
       });
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.MediaLibraryItemSelection = {
     attach: function attach(context, settings) {
       var $form = $('.js-media-library-views-form, .js-media-library-add-form', context);
@@ -155,14 +216,22 @@
         var selectItemsText = remaining < 0 ? Drupal.formatPlural(currentSelection.length, '1 item selected', '@count items selected') : Drupal.formatPlural(remaining, '@selected of @count item selected', '@selected of @count items selected', {
           '@selected': currentSelection.length
         });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         $('.js-media-library-selected-count').html(selectItemsText);
       }
 
       $mediaItems.once('media-item-change').on('change', function (e) {
         var id = e.currentTarget.value;
+<<<<<<< HEAD
 
         var position = currentSelection.indexOf(id);
+=======
+        var position = currentSelection.indexOf(id);
+
+>>>>>>> dev
         if (e.currentTarget.checked) {
           if (position === -1) {
             currentSelection.push(id);
@@ -172,10 +241,15 @@
         }
 
         $form.find('#media-library-modal-selection').val(currentSelection.join()).trigger('change');
+<<<<<<< HEAD
 
         $('.js-media-library-add-form-current-selection').val(currentSelection.join());
       });
 
+=======
+        $('.js-media-library-add-form-current-selection').val(currentSelection.join());
+      });
+>>>>>>> dev
       $('#media-library-modal-selection', $form).once('media-library-selection-change').on('change', function (e) {
         updateSelectionCount(settings.media_library.selection_remaining);
 
@@ -186,6 +260,7 @@
           enableItems($mediaItems);
         }
       });
+<<<<<<< HEAD
 
       currentSelection.forEach(function (value) {
         $form.find('input[type="checkbox"][value="' + value + '"]').prop('checked', true).trigger('change');
@@ -196,12 +271,27 @@
         if (!$buttonPane.length) {
           return;
         }
+=======
+      currentSelection.forEach(function (value) {
+        $form.find("input[type=\"checkbox\"][value=\"".concat(value, "\"]")).prop('checked', true).trigger('change');
+      });
+      $(window).once('media-library-selection-info').on('dialog:aftercreate', function () {
+        var $buttonPane = $('.media-library-widget-modal .ui-dialog-buttonpane');
+
+        if (!$buttonPane.length) {
+          return;
+        }
+
+>>>>>>> dev
         $buttonPane.append(Drupal.theme('mediaLibrarySelectionCount'));
         updateSelectionCount(settings.media_library.selection_remaining);
       });
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.MediaLibraryModalClearSelection = {
     attach: function attach() {
       $(window).once('media-library-clear-selection').on('dialog:afterclose', function () {
@@ -211,6 +301,12 @@
   };
 
   Drupal.theme.mediaLibrarySelectionCount = function () {
+<<<<<<< HEAD
     return '<div class="media-library-selected-count js-media-library-selected-count" role="status" aria-live="polite" aria-atomic="true"></div>';
   };
 })(jQuery, Drupal, window);
+=======
+    return "<div class=\"media-library-selected-count js-media-library-selected-count\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></div>";
+  };
+})(jQuery, Drupal, window, window.tabbable);
+>>>>>>> dev

@@ -3,7 +3,11 @@
  * A Backbone View that decorates the in-place edited element.
  */
 
+<<<<<<< HEAD
 (function($, Backbone, Drupal) {
+=======
+(function ($, Backbone, Drupal) {
+>>>>>>> dev
   Drupal.quickedit.FieldDecorationView = Backbone.View.extend(
     /** @lends Drupal.quickedit.FieldDecorationView# */ {
       /**

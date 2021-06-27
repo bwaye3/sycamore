@@ -194,9 +194,15 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
    *     handler's constructor, so that one class can be used for multiple
    *     entity forms when the forms are similar. The classes must implement
    *     \Drupal\Core\Entity\EntityFormInterface.
+<<<<<<< HEAD
    *   - list: The name of the class that provides listings of the entities. The
    *     class must implement \Drupal\Core\Entity\EntityListBuilderInterface.
    *   - render: The name of the class that is used to render the entities. The
+=======
+   *   - list_builder: The name of the class that provides listings of the entities. The
+   *     class must implement \Drupal\Core\Entity\EntityListBuilderInterface.
+   *   - view_builder: The name of the class that is used to render the entities. The
+>>>>>>> dev
    *     class must implement \Drupal\Core\Entity\EntityViewBuilderInterface.
    *   - access: The name of the class that is used for access checks. The class
    *     must implement \Drupal\Core\Entity\EntityAccessControlHandlerInterface.
@@ -480,6 +486,7 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
   public function setLinkTemplate($key, $path);
 
   /**
+<<<<<<< HEAD
    * Gets the callback for the label of the entity.
    *
    * The function takes an entity and returns the label of the entity. Use
@@ -536,6 +543,8 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
   public function hasLabelCallback();
 
   /**
+=======
+>>>>>>> dev
    * Gets the name of the entity type which provides bundles.
    *
    * @return string|null
@@ -661,6 +670,7 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
   public function getLabel();
 
   /**
+<<<<<<< HEAD
    * Gets the lowercase form of the human-readable entity type name.
    *
    * @return string
@@ -675,6 +685,8 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
   public function getLowercaseLabel();
 
   /**
+=======
+>>>>>>> dev
    * Gets the uppercase plural form of the name of the entity type.
    *
    * This should return a human-readable version of the name that can refer

@@ -14,14 +14,22 @@ use Drupal\views\Views;
 abstract class FieldFieldAccessTestBase extends ViewsKernelTestBase {
 
   /**
+<<<<<<< HEAD
    * Stores an user entity with access to fields.
+=======
+   * Stores a user entity with access to fields.
+>>>>>>> dev
    *
    * @var \Drupal\user\UserInterface
    */
   protected $userWithAccess;
 
   /**
+<<<<<<< HEAD
    * Stores an user entity without access to fields.
+=======
+   * Stores a user entity without access to fields.
+>>>>>>> dev
    *
    * @var \Drupal\user\UserInterface
    */
@@ -30,7 +38,11 @@ abstract class FieldFieldAccessTestBase extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['user'];
+=======
+  protected static $modules = ['user'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

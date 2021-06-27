@@ -4,16 +4,43 @@
 * https://www.drupal.org/node/2815083
 * @preserve
 **/
+<<<<<<< HEAD
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 (function ($, window, Drupal, drupalSettings) {
+=======
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+(function ($, window, Drupal, drupalSettings, _ref) {
+  var isFocusable = _ref.isFocusable,
+      tabbable = _ref.tabbable;
+>>>>>>> dev
   Drupal.behaviors.AJAX = {
     attach: function attach(context, settings) {
       function loadAjaxBehavior(base) {
         var elementSettings = settings.ajax[base];
+<<<<<<< HEAD
         if (typeof elementSettings.selector === 'undefined') {
           elementSettings.selector = '#' + base;
         }
+=======
+
+        if (typeof elementSettings.selector === 'undefined') {
+          elementSettings.selector = "#".concat(base);
+        }
+
+>>>>>>> dev
         $(elementSettings.selector).once('drupal-ajax').each(function () {
           elementSettings.element = this;
           elementSettings.base = base;
@@ -24,6 +51,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       Object.keys(settings.ajax || {}).forEach(function (base) {
         return loadAjaxBehavior(base);
       });
+<<<<<<< HEAD
 
       Drupal.ajax.bindAjaxLinks(document.body);
 
@@ -40,6 +68,19 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         elementSettings.base = $(this).attr('id');
         elementSettings.element = this;
 
+=======
+      Drupal.ajax.bindAjaxLinks(document.body);
+      $('.use-ajax-submit').once('ajax').each(function () {
+        var elementSettings = {};
+        elementSettings.url = $(this.form).attr('action');
+        elementSettings.setClick = true;
+        elementSettings.event = 'click';
+        elementSettings.progress = {
+          type: 'throbber'
+        };
+        elementSettings.base = $(this).attr('id');
+        elementSettings.element = this;
+>>>>>>> dev
         Drupal.ajax(elementSettings);
       });
     },
@@ -53,6 +94,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   };
 
   Drupal.AjaxError = function (xmlhttp, uri, customMessage) {
+<<<<<<< HEAD
     var statusCode = void 0;
     var statusText = void 0;
     var responseText = void 0;
@@ -71,18 +113,49 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       statusText = '\n' + Drupal.t('StatusText: !statusText', {
         '!statusText': $.trim(xmlhttp.statusText)
       });
+=======
+    var statusCode;
+    var statusText;
+    var responseText;
+
+    if (xmlhttp.status) {
+      statusCode = "\n".concat(Drupal.t('An AJAX HTTP error occurred.'), "\n").concat(Drupal.t('HTTP Result Code: !status', {
+        '!status': xmlhttp.status
+      }));
+    } else {
+      statusCode = "\n".concat(Drupal.t('An AJAX HTTP request terminated abnormally.'));
+    }
+
+    statusCode += "\n".concat(Drupal.t('Debugging information follows.'));
+    var pathText = "\n".concat(Drupal.t('Path: !uri', {
+      '!uri': uri
+    }));
+    statusText = '';
+
+    try {
+      statusText = "\n".concat(Drupal.t('StatusText: !statusText', {
+        '!statusText': $.trim(xmlhttp.statusText)
+      }));
+>>>>>>> dev
     } catch (e) {}
 
     responseText = '';
 
     try {
+<<<<<<< HEAD
       responseText = '\n' + Drupal.t('ResponseText: !responseText', {
         '!responseText': $.trim(xmlhttp.responseText)
       });
+=======
+      responseText = "\n".concat(Drupal.t('ResponseText: !responseText', {
+        '!responseText': $.trim(xmlhttp.responseText)
+      }));
+>>>>>>> dev
     } catch (e) {}
 
     responseText = responseText.replace(/<("[^"]*"|'[^']*'|[^'">])*>/gi, '');
     responseText = responseText.replace(/[\n]+\s+/g, '\n');
+<<<<<<< HEAD
 
     var readyStateText = xmlhttp.status === 0 ? '\n' + Drupal.t('ReadyState: !readyState', {
       '!readyState': xmlhttp.readyState
@@ -94,6 +167,15 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     this.message = statusCode + pathText + statusText + customMessage + responseText + readyStateText;
 
+=======
+    var readyStateText = xmlhttp.status === 0 ? "\n".concat(Drupal.t('ReadyState: !readyState', {
+      '!readyState': xmlhttp.readyState
+    })) : '';
+    customMessage = customMessage ? "\n".concat(Drupal.t('CustomMessage: !customMessage', {
+      '!customMessage': customMessage
+    })) : '';
+    this.message = statusCode + pathText + statusText + customMessage + responseText + readyStateText;
+>>>>>>> dev
     this.name = 'AjaxError';
   };
 
@@ -117,7 +199,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     var ajax = new Drupal.Ajax(base, element, settings);
     ajax.instanceIndex = Drupal.ajax.instances.length;
     Drupal.ajax.instances.push(ajax);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     return ajax;
   };
 
@@ -132,9 +217,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   Drupal.ajax.bindAjaxLinks = function (element) {
     $(element).find('.use-ajax').once('ajax').each(function (i, ajaxLink) {
       var $linkElement = $(ajaxLink);
+<<<<<<< HEAD
 
       var elementSettings = {
         progress: { type: 'throbber' },
+=======
+      var elementSettings = {
+        progress: {
+          type: 'throbber'
+        },
+>>>>>>> dev
         dialogType: $linkElement.data('dialog-type'),
         dialog: $linkElement.data('dialog-options'),
         dialogRenderer: $linkElement.data('dialog-renderer'),
@@ -147,6 +239,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         elementSettings.url = href;
         elementSettings.event = 'click';
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       Drupal.ajax(elementSettings);
     });
   };
@@ -155,7 +251,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     var defaults = {
       event: element ? 'mousedown' : null,
       keypress: true,
+<<<<<<< HEAD
       selector: base ? '#' + base : null,
+=======
+      selector: base ? "#".concat(base) : null,
+>>>>>>> dev
       effect: 'none',
       speed: 'none',
       method: 'replaceWith',
@@ -167,6 +267,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         js: true
       }
     };
+<<<<<<< HEAD
 
     $.extend(this, defaults, elementSettings);
 
@@ -182,6 +283,18 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     this.element_settings = elementSettings;
 
+=======
+    $.extend(this, defaults, elementSettings);
+    this.commands = new Drupal.AjaxCommands();
+    this.instanceIndex = false;
+
+    if (this.wrapper) {
+      this.wrapper = "#".concat(this.wrapper);
+    }
+
+    this.element = element;
+    this.element_settings = elementSettings;
+>>>>>>> dev
     this.elementSettings = elementSettings;
 
     if (this.element && this.element.form) {
@@ -190,6 +303,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     if (!this.url) {
       var $element = $(this.element);
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       if ($element.is('a')) {
         this.url = $element.attr('href');
       } else if (this.element && element.form) {
@@ -198,7 +315,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }
 
     var originalUrl = this.url;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     this.url = this.url.replace(/\/nojs(\/|$|\?|#)/, '/ajax$1');
 
     if (drupalSettings.ajaxTrustedUrl[originalUrl]) {
@@ -206,7 +326,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }
 
     var ajax = this;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     ajax.options = {
       url: ajax.url,
       data: ajax.submit,
@@ -237,11 +360,18 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       },
       complete: function complete(xmlhttprequest, status) {
         ajax.ajaxing = false;
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         if (status === 'error' || status === 'parsererror') {
           return ajax.error(xmlhttprequest, ajax.url);
         }
       },
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       dataType: 'json',
       jsonp: false,
       type: 'POST'
@@ -257,18 +387,32 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       ajax.options.url += '&';
     }
 
+<<<<<<< HEAD
     var wrapper = 'drupal_' + (elementSettings.dialogType || 'ajax');
     if (elementSettings.dialogRenderer) {
       wrapper += '.' + elementSettings.dialogRenderer;
     }
     ajax.options.url += Drupal.ajax.WRAPPER_FORMAT + '=' + wrapper;
 
+=======
+    var wrapper = "drupal_".concat(elementSettings.dialogType || 'ajax');
+
+    if (elementSettings.dialogRenderer) {
+      wrapper += ".".concat(elementSettings.dialogRenderer);
+    }
+
+    ajax.options.url += "".concat(Drupal.ajax.WRAPPER_FORMAT, "=").concat(wrapper);
+>>>>>>> dev
     $(ajax.element).on(elementSettings.event, function (event) {
       if (!drupalSettings.ajaxTrustedUrl[ajax.url] && !Drupal.url.isLocal(ajax.url)) {
         throw new Error(Drupal.t('The callback URL is not local and not trusted: !url', {
           '!url': ajax.url
         }));
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       return ajax.eventResponse(this, event);
     });
 
@@ -284,7 +428,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   };
 
   Drupal.ajax.WRAPPER_FORMAT = '_wrapper_format';
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.Ajax.AJAX_REQUEST_PARAMETER = '_drupal_ajax';
 
   Drupal.Ajax.prototype.execute = function () {
@@ -294,12 +441,19 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     try {
       this.beforeSerialize(this.element, this.options);
+<<<<<<< HEAD
 
       return $.ajax(this.options);
     } catch (e) {
       this.ajaxing = false;
       window.alert('An error occurred while attempting to process ' + this.options.url + ': ' + e.message);
 
+=======
+      return $.ajax(this.options);
+    } catch (e) {
+      this.ajaxing = false;
+      window.alert("An error occurred while attempting to process ".concat(this.options.url, ": ").concat(e.message));
+>>>>>>> dev
       return $.Deferred().reject();
     }
   };
@@ -317,7 +471,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   Drupal.Ajax.prototype.eventResponse = function (element, event) {
     event.preventDefault();
     event.stopPropagation();
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     var ajax = this;
 
     if (ajax.ajaxing) {
@@ -337,7 +494,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       }
     } catch (e) {
       ajax.ajaxing = false;
+<<<<<<< HEAD
       window.alert('An error occurred while attempting to process ' + ajax.options.url + ': ' + e.message);
+=======
+      window.alert("An error occurred while attempting to process ".concat(ajax.options.url, ": ").concat(e.message));
+>>>>>>> dev
     }
   };
 
@@ -348,7 +509,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }
 
     options.data[Drupal.Ajax.AJAX_REQUEST_PARAMETER] = 1;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     var pageState = drupalSettings.ajaxPageState;
     options.data['ajax_page_state[theme]'] = pageState.theme;
     options.data['ajax_page_state[theme_token]'] = pageState.theme_token;
@@ -360,10 +524,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   Drupal.Ajax.prototype.beforeSend = function (xmlhttprequest, options) {
     if (this.$form) {
       options.extraData = options.extraData || {};
+<<<<<<< HEAD
 
       options.extraData.ajax_iframe_upload = '1';
 
       var v = $.fieldValue(this.element);
+=======
+      options.extraData.ajax_iframe_upload = '1';
+      var v = $.fieldValue(this.element);
+
+>>>>>>> dev
       if (v !== null) {
         options.extraData[this.element.name] = v;
       }
@@ -375,7 +545,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       return;
     }
 
+<<<<<<< HEAD
     var progressIndicatorMethod = 'setProgressIndicator' + this.progress.type.slice(0, 1).toUpperCase() + this.progress.type.slice(1).toLowerCase();
+=======
+    var progressIndicatorMethod = "setProgressIndicator".concat(this.progress.type.slice(0, 1).toUpperCase()).concat(this.progress.type.slice(1).toLowerCase());
+
+>>>>>>> dev
     if (progressIndicatorMethod in this && typeof this[progressIndicatorMethod] === 'function') {
       this[progressIndicatorMethod].call(this);
     }
@@ -384,8 +559,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   Drupal.theme.ajaxProgressThrobber = function (message) {
     var messageMarkup = typeof message === 'string' ? Drupal.theme('ajaxProgressMessage', message) : '';
     var throbber = '<div class="throbber">&nbsp;</div>';
+<<<<<<< HEAD
 
     return '<div class="ajax-progress ajax-progress-throbber">' + throbber + messageMarkup + '</div>';
+=======
+    return "<div class=\"ajax-progress ajax-progress-throbber\">".concat(throbber).concat(messageMarkup, "</div>");
+>>>>>>> dev
   };
 
   Drupal.theme.ajaxProgressIndicatorFullscreen = function () {
@@ -393,7 +572,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   };
 
   Drupal.theme.ajaxProgressMessage = function (message) {
+<<<<<<< HEAD
     return '<div class="message">' + message + '</div>';
+=======
+    return "<div class=\"message\">".concat(message, "</div>");
+>>>>>>> dev
   };
 
   Drupal.theme.ajaxProgressBar = function ($element) {
@@ -401,6 +584,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   };
 
   Drupal.Ajax.prototype.setProgressIndicatorBar = function () {
+<<<<<<< HEAD
     var progressBar = new Drupal.ProgressBar('ajax-progress-' + this.element.id, $.noop, this.progress.method, $.noop);
     if (this.progress.message) {
       progressBar.setProgress(-1, this.progress.message);
@@ -408,6 +592,18 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     if (this.progress.url) {
       progressBar.startMonitoring(this.progress.url, this.progress.interval || 1500);
     }
+=======
+    var progressBar = new Drupal.ProgressBar("ajax-progress-".concat(this.element.id), $.noop, this.progress.method, $.noop);
+
+    if (this.progress.message) {
+      progressBar.setProgress(-1, this.progress.message);
+    }
+
+    if (this.progress.url) {
+      progressBar.startMonitoring(this.progress.url, this.progress.interval || 1500);
+    }
+
+>>>>>>> dev
     this.progress.element = $(Drupal.theme('ajaxProgressBar', progressBar.element));
     this.progress.object = progressBar;
     $(this.element).after(this.progress.element);
@@ -429,6 +625,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     if (this.progress.element) {
       $(this.progress.element).remove();
     }
+<<<<<<< HEAD
     if (this.progress.object) {
       this.progress.object.stopMonitoring();
     }
@@ -436,11 +633,25 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     var elementParents = $(this.element).parents('[data-drupal-selector]').addBack().toArray();
 
+=======
+
+    if (this.progress.object) {
+      this.progress.object.stopMonitoring();
+    }
+
+    $(this.element).prop('disabled', false);
+    var elementParents = $(this.element).parents('[data-drupal-selector]').addBack().toArray();
+>>>>>>> dev
     var focusChanged = false;
     Object.keys(response || {}).forEach(function (i) {
       if (response[i].command && _this.commands[response[i].command]) {
         _this.commands[response[i].command](_this, response[i], status);
+<<<<<<< HEAD
         if (response[i].command === 'invoke' && response[i].method === 'focus') {
+=======
+
+        if (response[i].command === 'invoke' && response[i].method === 'focus' || response[i].command === 'focusFirst') {
+>>>>>>> dev
           focusChanged = true;
         }
       }
@@ -450,7 +661,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       var target = false;
 
       for (var n = elementParents.length - 1; !target && n >= 0; n--) {
+<<<<<<< HEAD
         target = document.querySelector('[data-drupal-selector="' + elementParents[n].getAttribute('data-drupal-selector') + '"]');
+=======
+        target = document.querySelector("[data-drupal-selector=\"".concat(elementParents[n].getAttribute('data-drupal-selector'), "\"]"));
+>>>>>>> dev
       }
 
       if (target) {
@@ -469,8 +684,13 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   Drupal.Ajax.prototype.getEffect = function (response) {
     var type = response.effect || this.effect;
     var speed = response.speed || this.speed;
+<<<<<<< HEAD
 
     var effect = {};
+=======
+    var effect = {};
+
+>>>>>>> dev
     if (type === 'none') {
       effect.showEffect = 'show';
       effect.hideEffect = 'hide';
@@ -480,8 +700,13 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       effect.hideEffect = 'fadeOut';
       effect.showSpeed = speed;
     } else {
+<<<<<<< HEAD
       effect.showEffect = type + 'Toggle';
       effect.hideEffect = type + 'Toggle';
+=======
+      effect.showEffect = "".concat(type, "Toggle");
+      effect.hideEffect = "".concat(type, "Toggle");
+>>>>>>> dev
       effect.showSpeed = speed;
     }
 
@@ -492,18 +717,29 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     if (this.progress.element) {
       $(this.progress.element).remove();
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     if (this.progress.object) {
       this.progress.object.stopMonitoring();
     }
 
     $(this.wrapper).show();
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     $(this.element).prop('disabled', false);
 
     if (this.$form && document.body.contains(this.$form.get(0))) {
       var settings = this.settings || drupalSettings;
       Drupal.attachBehaviors(this.$form.get(0), settings);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     throw new Drupal.AjaxError(xmlhttprequest, uri, customMessage);
   };
 
@@ -518,16 +754,25 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   };
 
   Drupal.AjaxCommands = function () {};
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
   Drupal.AjaxCommands.prototype = {
     insert: function insert(ajax, response) {
       var $wrapper = response.selector ? $(response.selector) : $(ajax.wrapper);
       var method = response.method || ajax.method;
       var effect = ajax.getEffect(response);
+<<<<<<< HEAD
 
       var settings = response.settings || ajax.settings || drupalSettings;
 
       var $newContent = $($.parseHTML(response.data, document, true));
 
+=======
+      var settings = response.settings || ajax.settings || drupalSettings;
+      var $newContent = $($.parseHTML(response.data, document, true));
+>>>>>>> dev
       $newContent = Drupal.theme('ajaxWrapperNewContent', $newContent, ajax, response);
 
       switch (method) {
@@ -538,6 +783,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         case 'remove':
           Drupal.detachBehaviors($wrapper.get(0), settings);
           break;
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         default:
           break;
       }
@@ -549,6 +798,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       }
 
       var $ajaxNewContent = $newContent.find('.ajax-new-content');
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       if ($ajaxNewContent.length) {
         $ajaxNewContent.hide();
         $newContent.show();
@@ -573,15 +826,28 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     },
     changed: function changed(ajax, response, status) {
       var $element = $(response.selector);
+<<<<<<< HEAD
       if (!$element.hasClass('ajax-changed')) {
         $element.addClass('ajax-changed');
         if (response.asterisk) {
           $element.find(response.asterisk).append(' <abbr class="ajax-changed" title="' + Drupal.t('Changed') + '">*</abbr> ');
+=======
+
+      if (!$element.hasClass('ajax-changed')) {
+        $element.addClass('ajax-changed');
+
+        if (response.asterisk) {
+          $element.find(response.asterisk).append(" <abbr class=\"ajax-changed\" title=\"".concat(Drupal.t('Changed'), "\">*</abbr> "));
+>>>>>>> dev
         }
       }
     },
     alert: function alert(ajax, response, status) {
+<<<<<<< HEAD
       window.alert(response.text, response.title);
+=======
+      window.alert(response.text);
+>>>>>>> dev
     },
     announce: function announce(ajax, response) {
       if (response.priority) {
@@ -601,9 +867,15 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       if (ajaxSettings) {
         Drupal.ajax.expired().forEach(function (instance) {
+<<<<<<< HEAD
 
           if (instance.selector) {
             var selector = instance.selector.replace('#', '');
+=======
+          if (instance.selector) {
+            var selector = instance.selector.replace('#', '');
+
+>>>>>>> dev
             if (selector in ajaxSettings) {
               delete ajaxSettings[selector];
             }
@@ -620,6 +892,29 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     data: function data(ajax, response, status) {
       $(response.selector).data(response.name, response.value);
     },
+<<<<<<< HEAD
+=======
+    focusFirst: function focusFirst(ajax, response, status) {
+      var focusChanged = false;
+      var container = document.querySelector(response.selector);
+
+      if (container) {
+        var tabbableElements = tabbable(container);
+
+        if (tabbableElements.length) {
+          tabbableElements[0].focus();
+          focusChanged = true;
+        } else if (isFocusable(container)) {
+          container.focus();
+          focusChanged = true;
+        }
+      }
+
+      if (ajax.hasOwnProperty('element') && !focusChanged) {
+        ajax.element.focus();
+      }
+    },
+>>>>>>> dev
     invoke: function invoke(ajax, response, status) {
       var $element = $(response.selector);
       $element[response.method].apply($element, _toConsumableArray(response.args));
@@ -628,13 +923,18 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       $(response.selector).find('> tbody > tr:visible, > tr:visible').removeClass('odd even').filter(':even').addClass('odd').end().filter(':odd').addClass('even');
     },
     update_build_id: function update_build_id(ajax, response, status) {
+<<<<<<< HEAD
       $('input[name="form_build_id"][value="' + response.old + '"]').val(response.new);
+=======
+      $("input[name=\"form_build_id\"][value=\"".concat(response.old, "\"]")).val(response.new);
+>>>>>>> dev
     },
     add_css: function add_css(ajax, response, status) {
       $('head').prepend(response.data);
     },
     message: function message(ajax, response) {
       var messages = new Drupal.Message(document.querySelector(response.messageWrapperQuerySelector));
+<<<<<<< HEAD
       if (response.clearPrevious) {
         messages.clear();
       }
@@ -642,3 +942,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }
   };
 })(jQuery, window, Drupal, drupalSettings);
+=======
+
+      if (response.clearPrevious) {
+        messages.clear();
+      }
+
+      messages.add(response.message, response.messageOptions);
+    }
+  };
+})(jQuery, window, Drupal, drupalSettings, window.tabbable);
+>>>>>>> dev

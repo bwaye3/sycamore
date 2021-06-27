@@ -3,7 +3,11 @@
  * Views listing behaviors.
  */
 
+<<<<<<< HEAD
 (function($, Drupal) {
+=======
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * Filters the view listing tables by a text input search string.
    *
@@ -23,20 +27,28 @@
       let $rows;
 
       function filterViewList(e) {
+<<<<<<< HEAD
         const query = $(e.target)
           .val()
           .toLowerCase();
+=======
+        const query = $(e.target).val().toLowerCase();
+>>>>>>> dev
 
         function showViewRow(index, row) {
           const $row = $(row);
           const $sources = $row.find(
             '[data-drupal-selector="views-table-filter-text-source"]',
           );
+<<<<<<< HEAD
           const textMatch =
             $sources
               .text()
               .toLowerCase()
               .indexOf(query) !== -1;
+=======
+          const textMatch = $sources.text().toLowerCase().indexOf(query) !== -1;
+>>>>>>> dev
           $row.closest('tr').toggle(textMatch);
         }
 

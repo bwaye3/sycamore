@@ -2,9 +2,18 @@
 
 namespace Drupal\Core\Database\Driver\pgsql;
 
+<<<<<<< HEAD
 use Drupal\Core\Database\Database;
 use Drupal\Core\Database\Query\Insert as QueryInsert;
 
+=======
+use Drupal\Core\Database\DatabaseExceptionWrapper;
+use Drupal\Core\Database\IntegrityConstraintViolationException;
+use Drupal\Core\Database\Query\Insert as QueryInsert;
+
+// cSpell:ignore nextval setval
+
+>>>>>>> dev
 /**
  * @ingroup database
  * @{
@@ -20,7 +29,11 @@ class Insert extends QueryInsert {
       return NULL;
     }
 
+<<<<<<< HEAD
     $stmt = $this->connection->prepareQuery((string) $this);
+=======
+    $stmt = $this->connection->prepareStatement((string) $this, $this->queryOptions);
+>>>>>>> dev
 
     // Fetch the list of blobs and sequences used on that table.
     $table_information = $this->connection->schema()->queryTableInformation($this->table);
@@ -35,13 +48,21 @@ class Insert extends QueryInsert {
           fwrite($blobs[$blob_count], $insert_values[$idx]);
           rewind($blobs[$blob_count]);
 
+<<<<<<< HEAD
           $stmt->bindParam(':db_insert_placeholder_' . $max_placeholder++, $blobs[$blob_count], \PDO::PARAM_LOB);
+=======
+          $stmt->getClientStatement()->bindParam(':db_insert_placeholder_' . $max_placeholder++, $blobs[$blob_count], \PDO::PARAM_LOB);
+>>>>>>> dev
 
           // Pre-increment is faster in PHP than increment.
           ++$blob_count;
         }
         else {
+<<<<<<< HEAD
           $stmt->bindParam(':db_insert_placeholder_' . $max_placeholder++, $insert_values[$idx]);
+=======
+          $stmt->getClientStatement()->bindParam(':db_insert_placeholder_' . $max_placeholder++, $insert_values[$idx]);
+>>>>>>> dev
         }
       }
       // Check if values for a serial field has been passed.
@@ -51,11 +72,14 @@ class Insert extends QueryInsert {
           if ($serial_key !== FALSE) {
             $serial_value = $insert_values[$serial_key];
 
+<<<<<<< HEAD
             // Force $last_insert_id to the specified value. This is only done
             // if $index is 0.
             if ($index == 0) {
               $last_insert_id = $serial_value;
             }
+=======
+>>>>>>> dev
             // Sequences must be greater than or equal to 1.
             if ($serial_value === NULL || !$serial_value) {
               $serial_value = 1;
@@ -78,6 +102,7 @@ class Insert extends QueryInsert {
       // the foreach statement assigns the element to the existing reference.
       $arguments = $this->fromQuery->getArguments();
       foreach ($arguments as $key => $value) {
+<<<<<<< HEAD
         $stmt->bindParam($key, $arguments[$key]);
       }
     }
@@ -95,12 +120,19 @@ class Insert extends QueryInsert {
       $options['return'] = Database::RETURN_NULL;
     }
 
+=======
+        $stmt->getClientStatement()->bindParam($key, $arguments[$key]);
+      }
+    }
+
+>>>>>>> dev
     // Create a savepoint so we can rollback a failed query. This is so we can
     // mimic MySQL and SQLite transactions which don't fail if a single query
     // fails. This is important for tables that are created on demand. For
     // example, \Drupal\Core\Cache\DatabaseBackend.
     $this->connection->addSavepoint();
     try {
+<<<<<<< HEAD
       // Only use the returned last_insert_id if it is not already set.
       if (!empty($last_insert_id)) {
         $this->connection->query($stmt, [], $options);
@@ -109,6 +141,24 @@ class Insert extends QueryInsert {
         $last_insert_id = $this->connection->query($stmt, [], $options);
       }
       $this->connection->releaseSavepoint();
+=======
+      $stmt->execute(NULL, $this->queryOptions);
+      if (isset($table_information->serial_fields[0])) {
+        $last_insert_id = $stmt->fetchField();
+      }
+      $this->connection->releaseSavepoint();
+    }
+    catch (\PDOException $e) {
+      $this->connection->rollbackSavepoint();
+      $message = $e->getMessage() . ": " . $stmt->getQueryString();
+      // Match all SQLSTATE 23xxx errors.
+      if (substr($e->getCode(), -6, -3) == '23') {
+        throw new IntegrityConstraintViolationException($message, $e->getCode(), $e);
+      }
+      else {
+        throw new DatabaseExceptionWrapper($message, 0, $e->getCode());
+      }
+>>>>>>> dev
     }
     catch (\Exception $e) {
       $this->connection->rollbackSavepoint();
@@ -118,7 +168,11 @@ class Insert extends QueryInsert {
     // Re-initialize the values array so that we can re-use this query.
     $this->insertValues = [];
 
+<<<<<<< HEAD
     return $last_insert_id;
+=======
+    return $last_insert_id ?? NULL;
+>>>>>>> dev
   }
 
   public function __toString() {
@@ -136,6 +190,7 @@ class Insert extends QueryInsert {
     // pass it back, as any remaining options are irrelevant.
     if (!empty($this->fromQuery)) {
       $insert_fields_string = $insert_fields ? ' (' . implode(', ', $insert_fields) . ') ' : ' ';
+<<<<<<< HEAD
       return $comments . 'INSERT INTO {' . $this->table . '}' . $insert_fields_string . $this->fromQuery;
     }
 
@@ -144,6 +199,31 @@ class Insert extends QueryInsert {
     $values = $this->getInsertPlaceholderFragment($this->insertValues, $this->defaultFields);
     $query .= implode(', ', $values);
 
+=======
+      $query = $comments . 'INSERT INTO {' . $this->table . '}' . $insert_fields_string . $this->fromQuery;
+    }
+    else {
+      $query = $comments . 'INSERT INTO {' . $this->table . '} (' . implode(', ', $insert_fields) . ') VALUES ';
+
+      $values = $this->getInsertPlaceholderFragment($this->insertValues, $this->defaultFields);
+      $query .= implode(', ', $values);
+    }
+    try {
+      // Fetch the list of blobs and sequences used on that table.
+      $table_information = $this->connection->schema()->queryTableInformation($this->table);
+      if (isset($table_information->serial_fields[0])) {
+        // Use RETURNING syntax to get the last insert ID in the same INSERT
+        // query, see https://www.postgresql.org/docs/10/dml-returning.html.
+        $query .= ' RETURNING ' . $table_information->serial_fields[0];
+      }
+    }
+    catch (DatabaseExceptionWrapper $e) {
+      // If we fail to get the table information it is probably because the
+      // table does not exist yet so adding the returning statement is pointless
+      // because the query will fail. This happens for tables created on demand,
+      // for example, cache tables.
+    }
+>>>>>>> dev
     return $query;
   }
 

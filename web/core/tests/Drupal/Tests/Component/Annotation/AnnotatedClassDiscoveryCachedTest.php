@@ -16,7 +16,11 @@ class AnnotatedClassDiscoveryCachedTest extends TestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     // Ensure FileCacheFactory::DISABLE_CACHE is *not* set, since we're testing
     // integration with the file cache.
@@ -26,7 +30,11 @@ class AnnotatedClassDiscoveryCachedTest extends TestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Test that getDefinitions() retrieves the file cache correctly.
+=======
+   * Tests that getDefinitions() retrieves the file cache correctly.
+>>>>>>> dev
    *
    * @covers ::getDefinitions
    */
@@ -47,7 +55,11 @@ class AnnotatedClassDiscoveryCachedTest extends TestCase {
     // Gain access to the file cache so we can change it.
     $ref_file_cache = new \ReflectionProperty($discovery, 'fileCache');
     $ref_file_cache->setAccessible(TRUE);
+<<<<<<< HEAD
     /* @var $file_cache \Drupal\Component\FileCache\FileCacheInterface */
+=======
+    /** @var \Drupal\Component\FileCache\FileCacheInterface $file_cache */
+>>>>>>> dev
     $file_cache = $ref_file_cache->getValue($discovery);
     // The file cache is keyed by the file path, and we'll add some known
     // content to test against.

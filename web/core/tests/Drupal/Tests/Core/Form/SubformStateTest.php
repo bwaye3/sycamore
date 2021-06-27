@@ -296,6 +296,10 @@ class SubformStateTest extends UnitTestCase {
   public function testSetErrorByName() {
     $parent_form_error_name = 'dog][name';
     $subform_error_name = 'name';
+<<<<<<< HEAD
+=======
+    // cSpell:disable-next-line
+>>>>>>> dev
     $message = 'De kat krabt de krullen van de trap.';
 
     $parent_form_state = $this->prophesize(FormStateInterface::class);

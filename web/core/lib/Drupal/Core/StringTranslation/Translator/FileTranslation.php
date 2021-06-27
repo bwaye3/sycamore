@@ -39,6 +39,7 @@ class FileTranslation extends StaticTranslation {
    * @param \Drupal\Core\File\FileSystemInterface $file_system
    *   The file system service.
    */
+<<<<<<< HEAD
   public function __construct($directory, FileSystemInterface $file_system = NULL) {
     parent::__construct();
     $this->directory = $directory;
@@ -46,6 +47,11 @@ class FileTranslation extends StaticTranslation {
       @trigger_error('Calling FileTranslation::__construct() without the $file_system argument is deprecated in drupal:8.8.0. The $file_system argument will be required in drupal:9.0.0. See https://www.drupal.org/node/3038437', E_USER_DEPRECATED);
       $file_system = \Drupal::service('file_system');
     }
+=======
+  public function __construct($directory, FileSystemInterface $file_system) {
+    parent::__construct();
+    $this->directory = $directory;
+>>>>>>> dev
     $this->fileSystem = $file_system;
   }
 

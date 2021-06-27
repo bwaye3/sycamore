@@ -26,7 +26,11 @@ class ImageItemTest extends FieldKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['file', 'image'];
+=======
+  protected static $modules = ['file', 'image'];
+>>>>>>> dev
 
   /**
    * Created file entity.
@@ -40,7 +44,11 @@ class ImageItemTest extends FieldKernelTestBase {
    */
   protected $imageFactory;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('user');
@@ -91,6 +99,7 @@ class ImageItemTest extends FieldKernelTestBase {
     $entity = EntityTest::load($entity->id());
     $this->assertInstanceOf(FieldItemListInterface::class, $entity->image_test);
     $this->assertInstanceOf(FieldItemInterface::class, $entity->image_test[0]);
+<<<<<<< HEAD
     $this->assertEqual($entity->image_test->target_id, $this->image->id());
     $this->assertEqual($entity->image_test->alt, $alt);
     $this->assertEqual($entity->image_test->title, $title);
@@ -99,6 +108,16 @@ class ImageItemTest extends FieldKernelTestBase {
     $this->assertEqual($entity->image_test->height, $image->getHeight());
     $this->assertEqual($entity->image_test->entity->id(), $this->image->id());
     $this->assertEqual($entity->image_test->entity->uuid(), $this->image->uuid());
+=======
+    $this->assertEquals($this->image->id(), $entity->image_test->target_id);
+    $this->assertEquals($alt, $entity->image_test->alt);
+    $this->assertEquals($title, $entity->image_test->title);
+    $image = $this->imageFactory->get('public://example.jpg');
+    $this->assertEquals($image->getWidth(), $entity->image_test->width);
+    $this->assertEquals($image->getHeight(), $entity->image_test->height);
+    $this->assertEquals($this->image->id(), $entity->image_test->entity->id());
+    $this->assertEquals($this->image->uuid(), $entity->image_test->entity->uuid());
+>>>>>>> dev
 
     // Make sure the computed entity reflects updates to the referenced file.
     \Drupal::service('file_system')->copy($this->root . '/core/misc/druplicon.png', 'public://example-2.jpg');
@@ -112,6 +131,7 @@ class ImageItemTest extends FieldKernelTestBase {
     // The width and height is only updated when width is not set.
     $entity->image_test->width = NULL;
     $entity->save();
+<<<<<<< HEAD
     $this->assertEqual($entity->image_test->entity->id(), $image2->id());
     $this->assertEqual($entity->image_test->entity->getFileUri(), $image2->getFileUri());
     $image = $this->imageFactory->get('public://example-2.jpg');
@@ -122,6 +142,18 @@ class ImageItemTest extends FieldKernelTestBase {
     // Check that the image item can be set to the referenced file directly.
     $entity->image_test = $this->image;
     $this->assertEqual($entity->image_test->target_id, $this->image->id());
+=======
+    $this->assertEquals($image2->id(), $entity->image_test->entity->id());
+    $this->assertEquals($image2->getFileUri(), $entity->image_test->entity->getFileUri());
+    $image = $this->imageFactory->get('public://example-2.jpg');
+    $this->assertEquals($image->getWidth(), $entity->image_test->width);
+    $this->assertEquals($image->getHeight(), $entity->image_test->height);
+    $this->assertEquals($new_alt, $entity->image_test->alt);
+
+    // Check that the image item can be set to the referenced file directly.
+    $entity->image_test = $this->image;
+    $this->assertEquals($this->image->id(), $entity->image_test->target_id);
+>>>>>>> dev
 
     // Delete the image and try to save the entity again.
     $this->image->delete();
@@ -131,13 +163,21 @@ class ImageItemTest extends FieldKernelTestBase {
     // Test image item properties.
     $expected = ['target_id', 'entity', 'alt', 'title', 'width', 'height'];
     $properties = $entity->getFieldDefinition('image_test')->getFieldStorageDefinition()->getPropertyDefinitions();
+<<<<<<< HEAD
     $this->assertEqual(array_keys($properties), $expected);
+=======
+    $this->assertEquals($expected, array_keys($properties));
+>>>>>>> dev
 
     // Test the generateSampleValue() method.
     $entity = EntityTest::create();
     $entity->image_test->generateSampleItems();
     $this->entityValidateAndSave($entity);
+<<<<<<< HEAD
     $this->assertEqual($entity->image_test->entity->get('filemime')->value, 'image/jpeg');
+=======
+    $this->assertEquals('image/jpeg', $entity->image_test->entity->get('filemime')->value);
+>>>>>>> dev
   }
 
   /**

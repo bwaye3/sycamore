@@ -7,7 +7,11 @@ use Drupal\entity_test\Entity\EntityTest;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\language\Plugin\LanguageNegotiation\LanguageNegotiationContentEntity;
 use Drupal\language\Plugin\LanguageNegotiation\LanguageNegotiationUrl;
+<<<<<<< HEAD
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
+=======
+use Drupal\Core\Routing\RouteObjectInterface;
+>>>>>>> dev
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route;
 
@@ -22,7 +26,11 @@ class EntityUrlLanguageTest extends LanguageTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['entity_test', 'user'];
+=======
+  protected static $modules = ['entity_test', 'user'];
+>>>>>>> dev
 
   /**
    * The entity being used for testing.
@@ -31,12 +39,19 @@ class EntityUrlLanguageTest extends LanguageTestBase {
    */
   protected $entity;
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('entity_test');
     $this->installEntitySchema('configurable_language');
+<<<<<<< HEAD
     \Drupal::service('router.builder')->rebuild();
+=======
+>>>>>>> dev
 
     // In order to reflect the changes for a multilingual site in the container
     // we have to rebuild it.
@@ -78,7 +93,11 @@ class EntityUrlLanguageTest extends LanguageTestBase {
     ]);
     $config->save();
 
+<<<<<<< HEAD
     // Without being on an content entity route the default entity URL tests
+=======
+    // Without being on a content entity route the default entity URL tests
+>>>>>>> dev
     // should still pass.
     $this->testEntityUrlLanguage();
 

@@ -16,7 +16,11 @@ class PageTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['batch_test'];
+=======
+  protected static $modules = ['batch_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -45,7 +49,11 @@ class PageTest extends BrowserTestBase {
     $this->drupalGet('admin/batch-test/test-theme');
     // The stack should contain the name of the theme used on the progress
     // page.
+<<<<<<< HEAD
     $this->assertEqual(batch_test_stack(), ['seven'], 'A progressive batch correctly uses the theme of the page that started the batch.');
+=======
+    $this->assertEquals(['seven'], batch_test_stack(), 'A progressive batch correctly uses the theme of the page that started the batch.');
+>>>>>>> dev
   }
 
   /**
@@ -58,15 +66,24 @@ class PageTest extends BrowserTestBase {
     // Run initial step only first.
     $this->maximumMetaRefreshCount = 0;
     $this->drupalGet('batch-test/test-title');
+<<<<<<< HEAD
     $this->assertText('Batch Test', 'The test is in the html output.');
+=======
+    $this->assertSession()->pageTextContains('Batch Test');
+>>>>>>> dev
 
     // Leave the batch process running.
     $this->maximumMetaRefreshCount = NULL;
     $this->drupalGet('batch-test/test-title');
 
     // The stack should contain the title shown on the progress page.
+<<<<<<< HEAD
     $this->assertEqual(batch_test_stack(), ['Batch Test'], 'The batch title is shown on the batch page.');
     $this->assertText('Redirection successful.', 'Redirection after batch execution is correct.');
+=======
+    $this->assertEquals(['Batch Test'], batch_test_stack(), 'The batch title is shown on the batch page.');
+    $this->assertSession()->pageTextContains('Redirection successful.');
+>>>>>>> dev
   }
 
   /**
@@ -76,12 +93,24 @@ class PageTest extends BrowserTestBase {
     // Go to the initial step only.
     $this->maximumMetaRefreshCount = 0;
     $this->drupalGet('batch-test/test-title');
+<<<<<<< HEAD
     $this->assertRaw('<div class="progress__description">Initializing.<br />&nbsp;</div>', 'Initial progress message appears correctly.');
     $this->assertNoRaw('&amp;nbsp;', 'Initial progress message is not double escaped.');
     // Now also go to the next step.
     $this->maximumMetaRefreshCount = 1;
     $this->drupalGet('batch-test/test-title');
     $this->assertRaw('<div class="progress__description">Completed 1 of 1.</div>', 'Progress message for second step appears correctly.');
+=======
+    // Check that the initial progress message appears correctly and is not
+    // double escaped.
+    $this->assertRaw('<div class="progress__description">Initializing.<br />&nbsp;</div>');
+    $this->assertNoRaw('&amp;nbsp;');
+    // Now also go to the next step.
+    $this->maximumMetaRefreshCount = 1;
+    $this->drupalGet('batch-test/test-title');
+    // Check that the progress message for second step appears correctly.
+    $this->assertRaw('<div class="progress__description">Completed 1 of 1.</div>');
+>>>>>>> dev
   }
 
 }

@@ -19,7 +19,11 @@ class ViewsBlockTest extends ViewsKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['block', 'block_test_views'];
+=======
+  protected static $modules = ['block', 'block_test_views'];
+>>>>>>> dev
 
   /**
    * Views used by this test.
@@ -31,10 +35,17 @@ class ViewsBlockTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
     parent::setUp();
 
     ViewTestData::createTestViews(get_class($this), ['block_test_views']);
+=======
+  protected function setUp($import_test_views = TRUE): void {
+    parent::setUp();
+
+    ViewTestData::createTestViews(static::class, ['block_test_views']);
+>>>>>>> dev
   }
 
   /**
@@ -49,7 +60,11 @@ class ViewsBlockTest extends ViewsKernelTestBase {
     $plugin_id = 'views_block:test_view_block-block_1';
     $views_block = ViewsBlock::create($this->container, [], $plugin_id, $plugin_definition);
 
+<<<<<<< HEAD
     $this->assertEqual($views_block->getMachineNameSuggestion(), 'views_block__test_view_block_block_1');
+=======
+    $this->assertEquals('views_block__test_view_block_block_1', $views_block->getMachineNameSuggestion());
+>>>>>>> dev
   }
 
   /**
@@ -139,7 +154,11 @@ class ViewsBlockTest extends ViewsKernelTestBase {
     $plugin_id = 'views_block:test_view_block-block_1';
     $views_block = ViewsBlock::create($this->container, [], $plugin_id, $plugin_definition);
 
+<<<<<<< HEAD
     $this->assertEqual($views_block->getPreviewFallbackString(), '"test_view_block::block_1" views block');
+=======
+    $this->assertEquals('"test_view_block::block_1" views block', $views_block->getPreviewFallbackString());
+>>>>>>> dev
   }
 
 }

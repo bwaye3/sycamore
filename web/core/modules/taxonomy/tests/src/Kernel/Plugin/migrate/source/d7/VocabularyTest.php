@@ -15,7 +15,11 @@ class VocabularyTest extends MigrateSqlSourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['taxonomy', 'migrate_drupal'];
+=======
+  protected static $modules = ['taxonomy', 'migrate_drupal'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

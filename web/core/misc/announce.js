@@ -6,9 +6,14 @@
 **/
 
 (function (Drupal, debounce) {
+<<<<<<< HEAD
   var liveElement = void 0;
   var announcements = [];
 
+=======
+  var liveElement;
+  var announcements = [];
+>>>>>>> dev
   Drupal.behaviors.drupalAnnounce = {
     attach: function attach(context) {
       if (!liveElement) {
@@ -25,9 +30,15 @@
   function announce() {
     var text = [];
     var priority = 'polite';
+<<<<<<< HEAD
     var announcement = void 0;
 
     var il = announcements.length;
+=======
+    var announcement;
+    var il = announcements.length;
+
+>>>>>>> dev
     for (var i = 0; i < il; i++) {
       announcement = announcements.pop();
       text.unshift(announcement.text);
@@ -39,6 +50,7 @@
 
     if (text.length) {
       liveElement.innerHTML = '';
+<<<<<<< HEAD
 
       liveElement.setAttribute('aria-busy', 'true');
 
@@ -46,6 +58,11 @@
 
       liveElement.innerHTML = text.join('\n');
 
+=======
+      liveElement.setAttribute('aria-busy', 'true');
+      liveElement.setAttribute('aria-live', priority);
+      liveElement.innerHTML = text.join('\n');
+>>>>>>> dev
       liveElement.setAttribute('aria-busy', 'false');
     }
   }
@@ -55,7 +72,10 @@
       text: text,
       priority: priority
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     return debounce(announce, 200)();
   };
 })(Drupal, Drupal.debounce);

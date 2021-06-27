@@ -21,7 +21,11 @@ class StateFormatterTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'workflows',
     'content_moderation',
     'entity_test',
@@ -31,7 +35,11 @@ class StateFormatterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installEntitySchema('entity_test_rev');
@@ -44,7 +52,11 @@ class StateFormatterTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test the embed field.
+=======
+   * Tests the embed field.
+>>>>>>> dev
    *
    * @dataProvider formatterTestCases
    */
@@ -62,7 +74,11 @@ class StateFormatterTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Test cases for ::
+=======
+   * Test cases for testStateFieldFormatter().
+>>>>>>> dev
    */
   public function formatterTestCases() {
     return [

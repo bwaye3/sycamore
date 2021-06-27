@@ -1,6 +1,9 @@
 name: 'Url_alter tests'
 type: module
 description: 'A support module to test altering the inbound and outbound path.'
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 package: Testing
 version: VERSION

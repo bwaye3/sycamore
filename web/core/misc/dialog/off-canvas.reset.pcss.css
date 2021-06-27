@@ -362,7 +362,11 @@
 #drupal-off-canvas input[type="reset"]:active,
 #drupal-off-canvas input[type="submit"]:active,
 #drupal-off-canvas input[type="button"]:active {
+<<<<<<< HEAD
   border-color: grey;
+=======
+  border-color: gray;
+>>>>>>> dev
   background-image: none;
   box-shadow: none;
 }
@@ -407,7 +411,11 @@
 #drupal-off-canvas input[type="time"][disabled],
 #drupal-off-canvas input[type="url"][disabled],
 #drupal-off-canvas input[type="week"][disabled] {
+<<<<<<< HEAD
   background-color: grey;
+=======
+  background-color: gray;
+>>>>>>> dev
 }
 #drupal-off-canvas input[type="hidden"] {
   visibility: hidden;
@@ -427,7 +435,11 @@
 }
 #drupal-off-canvas input:placeholder,
 #drupal-off-canvas textarea:placeholder {
+<<<<<<< HEAD
   color: grey;
+=======
+  color: gray;
+>>>>>>> dev
 }
 #drupal-off-canvas textarea,
 #drupal-off-canvas select[size],
@@ -460,7 +472,11 @@
   vertical-align: middle;
   text-decoration: none;
   color: black;
+<<<<<<< HEAD
   border: 1px solid grey;
+=======
+  border: 1px solid gray;
+>>>>>>> dev
   background: none;
 }
 #drupal-off-canvas * textarea,
@@ -470,6 +486,7 @@
   padding: 0;
   vertical-align: top;
   color: black;
+<<<<<<< HEAD
   border: 1px solid grey;
   background: white;
 }
@@ -480,3 +497,8 @@
   color: inherit;
   background-color: rgba(175, 175, 175, 0.5);
 }
+=======
+  border: 1px solid gray;
+  background: white;
+}
+>>>>>>> dev

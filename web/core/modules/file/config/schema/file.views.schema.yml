@@ -5,6 +5,7 @@ views.argument.file_fid:
   type: views.argument.numeric
   label: 'File ID'
 
+<<<<<<< HEAD
 views.field.file_extension:
   type: views_field
   label: 'File extension'
@@ -13,6 +14,8 @@ views.field.file_extension:
       type: boolean
       label: 'Detect if tar is part of the extension'
 
+=======
+>>>>>>> dev
 views.field.file:
   type: views_field
   label: 'File'
@@ -21,6 +24,7 @@ views.field.file:
       type: boolean
       label: 'Link this field to download the file'
 
+<<<<<<< HEAD
 views.field.file_filemime:
   type: views.field.file
   label: 'File MIME'
@@ -37,6 +41,8 @@ views.field.file_uri:
       type: boolean
       label: 'Display download path instead of file storage URI'
 
+=======
+>>>>>>> dev
 views.filter.file_status:
   type: views.filter.in_operator
   label: 'File status'

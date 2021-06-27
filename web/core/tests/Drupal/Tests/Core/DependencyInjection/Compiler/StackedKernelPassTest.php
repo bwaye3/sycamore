@@ -28,7 +28,11 @@ class StackedKernelPassTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->stackedKernelPass = new StackedKernelPass();
     $this->containerBuilder = new ContainerBuilder();
   }
@@ -38,7 +42,11 @@ class StackedKernelPassTest extends UnitTestCase {
    */
   public function testProcessWithStackedKernel() {
     $stacked_kernel = new Definition('Stack\StackedHttpKernel');
+<<<<<<< HEAD
 
+=======
+    $stacked_kernel->setPublic(TRUE);
+>>>>>>> dev
     $this->containerBuilder->setDefinition('http_kernel', $stacked_kernel);
     $this->containerBuilder->setDefinition('http_kernel.basic', $this->createMiddlewareServiceDefinition(FALSE, 0));
 
@@ -80,6 +88,10 @@ class StackedKernelPassTest extends UnitTestCase {
    */
   public function testProcessWithHttpKernel() {
     $kernel = new Definition('Symfony\Component\HttpKernel\HttpKernelInterface');
+<<<<<<< HEAD
+=======
+    $kernel->setPublic(TRUE);
+>>>>>>> dev
     $this->containerBuilder->setDefinition('http_kernel', $kernel);
     $this->stackedKernelPass->process($this->containerBuilder);
 
@@ -101,6 +113,10 @@ class StackedKernelPassTest extends UnitTestCase {
    */
   protected function createMiddlewareServiceDefinition($tag = TRUE, $priority = 0) {
     $definition = new Definition('Symfony\Component\HttpKernel\HttpKernelInterface', ['test']);
+<<<<<<< HEAD
+=======
+    $definition->setPublic(TRUE);
+>>>>>>> dev
 
     if ($tag) {
       $definition->addTag('http_middleware', ['priority' => $priority]);

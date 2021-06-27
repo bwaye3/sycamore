@@ -16,7 +16,11 @@ class DateFormatAddForm extends DateFormatFormBase {
    */
   protected function actions(array $form, FormStateInterface $form_state) {
     $actions = parent::actions($form, $form_state);
+<<<<<<< HEAD
     $actions['submit']['#value'] = t('Add format');
+=======
+    $actions['submit']['#value'] = $this->t('Add format');
+>>>>>>> dev
     return $actions;
   }
 

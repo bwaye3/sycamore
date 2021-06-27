@@ -8,7 +8,10 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
+<<<<<<< HEAD
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+=======
+>>>>>>> dev
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -24,7 +27,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
+<<<<<<< HEAD
 class TimestampFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
+=======
+class TimestampFormatter extends FormatterBase {
+>>>>>>> dev
 
   /**
    * The date formatter service.
@@ -121,7 +128,11 @@ class TimestampFormatter extends FormatterBase implements ContainerFactoryPlugin
     $elements['custom_date_format'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Custom date format'),
+<<<<<<< HEAD
       '#description' => $this->t('See <a href="http://php.net/manual/function.date.php" target="_blank">the documentation for PHP date formats</a>.'),
+=======
+      '#description' => $this->t('See <a href="https://www.php.net/manual/datetime.format.php#refsect1-datetime.format-parameters" target="_blank">the documentation for PHP date formats</a>.'),
+>>>>>>> dev
       '#default_value' => $this->getSetting('custom_date_format') ?: '',
     ];
 

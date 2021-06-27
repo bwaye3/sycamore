@@ -3,4 +3,7 @@ type: module
 description: 'Test hooks fired in link generation.'
 package: Testing
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

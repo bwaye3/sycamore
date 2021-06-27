@@ -3,7 +3,11 @@
  * ContentEditable-based in-place editor for plain text content.
  */
 
+<<<<<<< HEAD
 (function($, _, Drupal) {
+=======
+(function ($, _, Drupal) {
+>>>>>>> dev
   Drupal.quickedit.editors.plain_text = Drupal.quickedit.EditorView.extend(
     /** @lends Drupal.quickedit.editors.plain_text# */ {
       /**
@@ -34,7 +38,11 @@
 
         // Sets the state to 'changed' whenever the value changes.
         let previousText = editorModel.get('originalValue');
+<<<<<<< HEAD
         $textElement.on('keyup paste', event => {
+=======
+        $textElement.on('keyup paste', (event) => {
+>>>>>>> dev
           const currentText = $.trim($textElement.text());
           if (previousText !== currentText) {
             previousText = currentText;

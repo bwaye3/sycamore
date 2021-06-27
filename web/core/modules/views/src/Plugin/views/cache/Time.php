@@ -34,6 +34,7 @@ class Time extends CachePluginBase {
   protected $dateFormatter;
 
   /**
+<<<<<<< HEAD
    * The current request.
    *
    * @var \Symfony\Component\HttpFoundation\Request
@@ -41,6 +42,8 @@ class Time extends CachePluginBase {
   protected $request;
 
   /**
+=======
+>>>>>>> dev
    * Constructs a Time cache plugin object.
    *
    * @param array $configuration
@@ -51,17 +54,45 @@ class Time extends CachePluginBase {
    *   The plugin implementation definition.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
+<<<<<<< HEAD
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The current request.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, DateFormatterInterface $date_formatter, Request $request) {
     $this->dateFormatter = $date_formatter;
     $this->request = $request;
+=======
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, DateFormatterInterface $date_formatter) {
+    $this->dateFormatter = $date_formatter;
+    if (func_num_args() == 5 && func_get_arg(4) instanceof Request) {
+      @trigger_error('The request object must not be passed to ' . __METHOD__ . '(). It is deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. See https://www.drupal.org/node/3154016', E_USER_DEPRECATED);
+    }
+>>>>>>> dev
 
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * Returns replacements for deprecated properties.
+   *
+   * @param string $name
+   *   The property name.
+   *
+   * @return mixed
+   *   The value.
+   */
+  public function __get($name) {
+    if ($name === 'request') {
+      @trigger_error('The request property of ' . __CLASS__ . ' is deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. See https://www.drupal.org/node/3154016', E_USER_DEPRECATED);
+      return $this->view->getRequest();
+    }
+  }
+
+  /**
+>>>>>>> dev
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
@@ -69,8 +100,12 @@ class Time extends CachePluginBase {
       $configuration,
       $plugin_id,
       $plugin_definition,
+<<<<<<< HEAD
       $container->get('date.formatter'),
       $container->get('request_stack')->getCurrentRequest()
+=======
+      $container->get('date.formatter')
+>>>>>>> dev
     );
   }
 

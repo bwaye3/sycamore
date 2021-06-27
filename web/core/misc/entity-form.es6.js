@@ -1,9 +1,16 @@
 /**
  * @file
+<<<<<<< HEAD
  * Defines Javascript behaviors for the block_content module.
  */
 
 (function($, Drupal) {
+=======
+ * Defines JavaScript behaviors for the block_content module.
+ */
+
+(function ($, Drupal) {
+>>>>>>> dev
   /**
    * Sets summaries about revision and translation of entities.
    *
@@ -20,7 +27,11 @@
       const $context = $(context);
       $context
         .find('.entity-content-form-revision-information')
+<<<<<<< HEAD
         .drupalSetSummary(context => {
+=======
+        .drupalSetSummary((context) => {
+>>>>>>> dev
           const $revisionContext = $(context);
           const revisionCheckbox = $revisionContext.find(
             '.js-form-item-revision input',
@@ -44,7 +55,11 @@
 
       $context
         .find('details.entity-translation-options')
+<<<<<<< HEAD
         .drupalSetSummary(context => {
+=======
+        .drupalSetSummary((context) => {
+>>>>>>> dev
           const $translationContext = $(context);
           let translate;
           let $checkbox = $translationContext.find(

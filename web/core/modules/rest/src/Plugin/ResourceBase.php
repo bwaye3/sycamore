@@ -4,7 +4,10 @@ namespace Drupal\rest\Plugin;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\PluginBase;
+<<<<<<< HEAD
 use Drupal\Core\Routing\BcRoute;
+=======
+>>>>>>> dev
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Route;
@@ -102,6 +105,7 @@ abstract class ResourceBase extends PluginBase implements ContainerFactoryPlugin
     $definition = $this->getPluginDefinition();
     $canonical_path = isset($definition['uri_paths']['canonical']) ? $definition['uri_paths']['canonical'] : '/' . strtr($this->pluginId, ':', '/') . '/{id}';
     $create_path = isset($definition['uri_paths']['create']) ? $definition['uri_paths']['create'] : '/' . strtr($this->pluginId, ':', '/');
+<<<<<<< HEAD
     // BC: the REST module originally created the POST URL for a resource by
     // reading the 'https://www.drupal.org/link-relations/create' URI path from
     // the plugin annotation. For consistency with entity type definitions, that
@@ -111,6 +115,8 @@ abstract class ResourceBase extends PluginBase implements ContainerFactoryPlugin
       @trigger_error('The "https://www.drupal.org/link-relations/create" string as a RestResource plugin annotation URI path key is deprecated in Drupal 8.4.0, now a valid link relation type name must be specified, so "create" must be specified instead before Drupal 9.0.0. See https://www.drupal.org/node/2737401.', E_USER_DEPRECATED);
       $create_path = $definition['uri_paths']['https://www.drupal.org/link-relations/create'];
     }
+=======
+>>>>>>> dev
 
     $route_name = strtr($this->pluginId, ':', '.');
 
@@ -124,6 +130,7 @@ abstract class ResourceBase extends PluginBase implements ContainerFactoryPlugin
       // Note that '_format' and '_content_type_format' route requirements are
       // added in ResourceRoutes::getRoutesForResourceConfig().
       $collection->add("$route_name.$method", $route);
+<<<<<<< HEAD
 
       // BC: the REST module originally created per-format GET routes, instead
       // of a single route. To minimize the surface of this BC layer, this uses
@@ -135,6 +142,8 @@ abstract class ResourceBase extends PluginBase implements ContainerFactoryPlugin
           $collection->add("$route_name.$method.$format_name", (new BcRoute())->setRequirement('_format', $format_name));
         }
       }
+=======
+>>>>>>> dev
     }
 
     return $collection;

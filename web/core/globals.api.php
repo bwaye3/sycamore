@@ -5,8 +5,11 @@
  * These are the global variables that Drupal uses.
  */
 
+<<<<<<< HEAD
 use Drupal\Component\Utility\DeprecatedArray;
 
+=======
+>>>>>>> dev
 /**
  * The insecure base URL of the Drupal installation.
  *
@@ -62,6 +65,7 @@ global $conf;
 global $config;
 
 /**
+<<<<<<< HEAD
  * The location of file system directories used for site configuration data.
  *
  * @deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Use
@@ -72,11 +76,14 @@ global $config;
 global $config_directories;
 
 /**
+=======
+>>>>>>> dev
  * Store settings and profile information during installation process.
  *
  * @see install_drupal()
  */
 global $install_state;
+<<<<<<< HEAD
 
 /**
  * Array of the number of items per page for each pager.
@@ -133,3 +140,5 @@ $GLOBALS['pager_total'] = new DeprecatedArray([], 'Global variable $pager_total 
  * @see \Drupal\Core\Pager\PagerManagerInterface
  */
 $GLOBALS['pager_total_items'] = new DeprecatedArray([], 'Global variable $pager_total_items is deprecated in drupal:8.8.0 and is removed in drupal:9.0.0. Use \Drupal\Core\Pager\PagerManagerInterface instead. See https://www.drupal.org/node/2779457');
+=======
+>>>>>>> dev

@@ -1,4 +1,7 @@
 name: 'JSON:API test resource type building API'
 type: module
 package: Testing
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev

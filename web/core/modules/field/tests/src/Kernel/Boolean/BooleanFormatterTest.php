@@ -21,7 +21,17 @@ class BooleanFormatterTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['field', 'text', 'entity_test', 'user', 'system'];
+=======
+  protected static $modules = [
+    'field',
+    'text',
+    'entity_test',
+    'user',
+    'system',
+  ];
+>>>>>>> dev
 
   /**
    * @var string
@@ -46,7 +56,11 @@ class BooleanFormatterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->installConfig(['field']);

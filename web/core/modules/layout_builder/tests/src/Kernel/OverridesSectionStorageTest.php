@@ -13,7 +13,10 @@ use Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay;
 use Drupal\layout_builder\Plugin\SectionStorage\OverridesSectionStorage;
 use Drupal\layout_builder\Section;
 use Drupal\layout_builder\SectionComponent;
+<<<<<<< HEAD
 use Drupal\layout_builder\SectionListInterface;
+=======
+>>>>>>> dev
 use Drupal\Tests\user\Traits\UserCreationTrait;
 
 /**
@@ -48,11 +51,18 @@ class OverridesSectionStorageTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     parent::setUp();
 
     $this->setUpCurrentUser();
     $this->installSchema('system', ['key_value_expire']);
+=======
+  protected function setUp(): void {
+    parent::setUp();
+
+    $this->setUpCurrentUser();
+>>>>>>> dev
     $this->installEntitySchema('entity_test');
 
     $definition = $this->container->get('plugin.manager.layout_builder.section_storage')->getDefinition('overrides');
@@ -110,9 +120,15 @@ class OverridesSectionStorageTest extends KernelTestBase {
     // Perform the same checks again but with a non default translation which
     // should always deny access.
     $result = $this->plugin->access('view');
+<<<<<<< HEAD
     $this->assertSame(FALSE, $result);
     $result = $this->plugin->access('view', $account);
     $this->assertSame(FALSE, $result);
+=======
+    $this->assertFalse($result);
+    $result = $this->plugin->access('view', $account);
+    $this->assertFalse($result);
+>>>>>>> dev
   }
 
   /**
@@ -209,6 +225,7 @@ class OverridesSectionStorageTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * @covers ::setSectionList
    *
    * @expectedDeprecation \Drupal\layout_builder\SectionStorageInterface::setSectionList() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. This method should no longer be used. The section list should be derived from context. See https://www.drupal.org/node/3016262.
@@ -222,6 +239,8 @@ class OverridesSectionStorageTest extends KernelTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * @covers ::getDefaultSectionStorage
    */
   public function testGetDefaultSectionStorage() {

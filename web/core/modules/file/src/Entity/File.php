@@ -10,6 +10,10 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\file\FileInterface;
 use Drupal\user\EntityOwnerTrait;
+<<<<<<< HEAD
+=======
+use Symfony\Component\Mime\MimeTypeGuesserInterface;
+>>>>>>> dev
 
 /**
  * Defines the file entity class.
@@ -88,6 +92,7 @@ class File extends ContentEntityBase implements FileInterface {
 
   /**
    * {@inheritdoc}
+<<<<<<< HEAD
    *
    * @see file_url_transform_relative()
    */
@@ -98,6 +103,8 @@ class File extends ContentEntityBase implements FileInterface {
 
   /**
    * {@inheritdoc}
+=======
+>>>>>>> dev
    */
   public function getMimeType() {
     return $this->get('filemime')->value;
@@ -170,7 +177,18 @@ class File extends ContentEntityBase implements FileInterface {
 
     // Automatically detect filemime if not set.
     if (!isset($values['filemime']) && isset($values['uri'])) {
+<<<<<<< HEAD
       $values['filemime'] = \Drupal::service('file.mime_type.guesser')->guess($values['uri']);
+=======
+      $guesser = \Drupal::service('file.mime_type.guesser');
+      if ($guesser instanceof MimeTypeGuesserInterface) {
+        $values['filemime'] = $guesser->guessMimeType($values['uri']);
+      }
+      else {
+        $values['filemime'] = $guesser->guess($values['uri']);
+        @trigger_error('\Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. Implement \Symfony\Component\Mime\MimeTypeGuesserInterface instead. See https://www.drupal.org/node/3133341', E_USER_DEPRECATED);
+      }
+>>>>>>> dev
     }
   }
 

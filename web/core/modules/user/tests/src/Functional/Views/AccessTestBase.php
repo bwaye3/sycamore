@@ -12,7 +12,11 @@ abstract class AccessTestBase extends UserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['block'];
+=======
+  protected static $modules = ['block'];
+>>>>>>> dev
 
   /**
    * Contains a user object that has no special permissions.

@@ -12,6 +12,7 @@ use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
 use Drupal\taxonomy\Entity\Term;
+<<<<<<< HEAD
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\taxonomy\TermInterface;
 use Drupal\taxonomy\VocabularyInterface;
@@ -45,6 +46,9 @@ const TAXONOMY_HIERARCHY_SINGLE = 1;
  * @see https://www.drupal.org/node/2807795
  */
 const TAXONOMY_HIERARCHY_MULTIPLE = 2;
+=======
+use Drupal\taxonomy\TermInterface;
+>>>>>>> dev
 
 /**
  * Implements hook_help().
@@ -81,6 +85,7 @@ function taxonomy_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
+<<<<<<< HEAD
  * Implements hook_entity_type_alter().
  */
 function taxonomy_entity_type_alter(array &$entity_types) {
@@ -91,6 +96,8 @@ function taxonomy_entity_type_alter(array &$entity_types) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Entity URI callback.
  */
 function taxonomy_term_uri($term) {
@@ -142,6 +149,7 @@ function taxonomy_theme() {
 }
 
 /**
+<<<<<<< HEAD
  * Checks the hierarchy flag of a vocabulary.
  *
  * Checks the current parents of all terms in a vocabulary. If no term has
@@ -225,6 +233,8 @@ function taxonomy_term_view_multiple(array $terms, $view_mode = 'full', $langcod
 }
 
 /**
+=======
+>>>>>>> dev
  * Implements hook_theme_suggestions_HOOK().
  */
 function taxonomy_theme_suggestions_taxonomy_term(array $variables) {
@@ -372,6 +382,7 @@ function taxonomy_term_load_multiple_by_name($name, $vocabulary = NULL) {
 }
 
 /**
+<<<<<<< HEAD
  * Load multiple taxonomy terms based on certain conditions.
  *
  * This function should be used whenever you need to load more than one term
@@ -462,6 +473,8 @@ function taxonomy_term_load($tid) {
 }
 
 /**
+=======
+>>>>>>> dev
  * Implodes a list of tags of a certain vocabulary into a string.
  *
  * @see \Drupal\Component\Utility\Tags::explode()

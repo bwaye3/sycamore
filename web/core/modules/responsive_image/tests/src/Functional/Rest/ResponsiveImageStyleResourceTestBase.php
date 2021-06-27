@@ -13,7 +13,11 @@ abstract class ResponsiveImageStyleResourceTestBase extends EntityResourceTestBa
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['responsive_image'];
+=======
+  protected static $modules = ['responsive_image'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -123,10 +127,13 @@ abstract class ResponsiveImageStyleResourceTestBase extends EntityResourceTestBa
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
+<<<<<<< HEAD
     if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
       return parent::getExpectedUnauthorizedAccessMessage($method);
     }
 
+=======
+>>>>>>> dev
     return "The 'administer responsive images' permission is required.";
   }
 

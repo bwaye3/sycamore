@@ -19,7 +19,11 @@ class OptionalContextConditionTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['system', 'user', 'condition_test', 'node'];
+=======
+  protected static $modules = ['system', 'user', 'condition_test', 'node'];
+>>>>>>> dev
 
   /**
    * Tests with both contexts mapped to the same user.

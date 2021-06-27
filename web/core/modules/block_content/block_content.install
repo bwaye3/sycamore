@@ -5,6 +5,7 @@
  * Install, update and uninstall functions for the block_content module.
  */
 
+<<<<<<< HEAD
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
@@ -137,4 +138,11 @@ function block_content_update_8600() {
 
   \Drupal::entityDefinitionUpdateManager()
     ->installFieldStorageDefinition('reusable', 'block_content', 'block_content', $reusable);
+=======
+/**
+ * Implements hook_update_last_removed().
+ */
+function block_content_update_last_removed() {
+  return 8600;
+>>>>>>> dev
 }

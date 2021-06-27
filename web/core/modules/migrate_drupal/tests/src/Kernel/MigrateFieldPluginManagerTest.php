@@ -22,7 +22,11 @@ class MigrateFieldPluginManagerTest extends MigrateDrupalTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'datetime',
     'system',
     'user',
@@ -39,7 +43,11 @@ class MigrateFieldPluginManagerTest extends MigrateDrupalTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
+=======
+  public function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->pluginManager = $this->container->get('plugin.manager.migrate.field');
   }
@@ -105,6 +113,7 @@ class MigrateFieldPluginManagerTest extends MigrateDrupalTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests that deprecated plugins can still be directly created.
    *
    * Tests that a deprecated plugin triggers an error on instantiation. This
@@ -120,6 +129,8 @@ class MigrateFieldPluginManagerTest extends MigrateDrupalTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests that plugins with no explicit weight are given a weight of 0.
    */
   public function testDefaultWeight() {

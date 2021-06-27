@@ -18,9 +18,18 @@ class Link implements RenderableInterface {
   protected $linkGenerator;
 
   /**
+<<<<<<< HEAD
    * The text of the link.
    *
    * @var string
+=======
+   * The link text for the anchor tag as a translated string or render array.
+   * Strings will be sanitized automatically. If you need to output HTML in
+   * the link text, use a render array or an already sanitized string such as
+   * the output of \Drupal\Component\Utility\Xss::filter() or
+   * \Drupal\Component\Render\FormattableMarkup.
+   * @var string|array|\Drupal\Component\Render\MarkupInterface
+>>>>>>> dev
    */
   protected $text;
 
@@ -34,8 +43,17 @@ class Link implements RenderableInterface {
   /**
    * Constructs a new Link object.
    *
+<<<<<<< HEAD
    * @param string $text
    *   The text of the link.
+=======
+   * @param string|array|\Drupal\Component\Render\MarkupInterface $text
+   *   The link text for the anchor tag as a translated string or render array.
+   *   Strings will be sanitized automatically. If you need to output HTML in
+   *   the link text, use a render array or an already sanitized string such as
+   *   the output of \Drupal\Component\Utility\Xss::filter() or
+   *   \Drupal\Component\Render\FormattableMarkup.
+>>>>>>> dev
    * @param \Drupal\Core\Url $url
    *   The url object.
    */
@@ -47,8 +65,17 @@ class Link implements RenderableInterface {
   /**
    * Creates a Link object from a given route name and parameters.
    *
+<<<<<<< HEAD
    * @param string $text
    *   The text of the link.
+=======
+   * @param string|array|\Drupal\Component\Render\MarkupInterface $text
+   *   The link text for the anchor tag as a translated string or render array.
+   *   Strings will be sanitized automatically. If you need to output HTML in
+   *   the link text, use a render array or an already sanitized string such as
+   *   the output of \Drupal\Component\Utility\Xss::filter() or
+   *   \Drupal\Component\Render\FormattableMarkup.
+>>>>>>> dev
    * @param string $route_name
    *   The name of the route
    * @param array $route_parameters
@@ -68,6 +95,13 @@ class Link implements RenderableInterface {
    *
    * @param string|array|\Drupal\Component\Render\MarkupInterface $text
    *   The link text for the anchor tag as a translated string or render array.
+<<<<<<< HEAD
+=======
+   *   Strings will be sanitized automatically. If you need to output HTML in
+   *   the link text, use a render array or an already sanitized string such as
+   *   the output of \Drupal\Component\Utility\Xss::filter() or
+   *   \Drupal\Component\Render\FormattableMarkup.
+>>>>>>> dev
    * @param \Drupal\Core\Url $url
    *   The Url to create the link for.
    *
@@ -80,7 +114,16 @@ class Link implements RenderableInterface {
   /**
    * Returns the text of the link.
    *
+<<<<<<< HEAD
    * @return string
+=======
+   * @return string|array|\Drupal\Component\Render\MarkupInterface
+   *   The link text for the anchor tag as a translated string or render array.
+   *   Strings will be sanitized automatically. If you need to output HTML in
+   *   the link text, use a render array or an already sanitized string such as
+   *   the output of \Drupal\Component\Utility\Xss::filter() or
+   *   \Drupal\Component\Render\FormattableMarkup.
+>>>>>>> dev
    */
   public function getText() {
     return $this->text;
@@ -89,8 +132,17 @@ class Link implements RenderableInterface {
   /**
    * Sets the new text of the link.
    *
+<<<<<<< HEAD
    * @param string $text
    *   The new text.
+=======
+   * @param string|array|\Drupal\Component\Render\MarkupInterface $text
+   *   The link text for the anchor tag as a translated string or render array.
+   *   Strings will be sanitized automatically. If you need to output HTML in
+   *   the link text, use a render array or an already sanitized string such as
+   *   the output of \Drupal\Component\Utility\Xss::filter() or
+   *   \Drupal\Component\Render\FormattableMarkup.
+>>>>>>> dev
    *
    * @return $this
    */

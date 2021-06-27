@@ -3,6 +3,9 @@ type: module
 description: 'Provides the ability to store end dates.'
 package: Field types
 version: VERSION
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 dependencies:
   - drupal:datetime

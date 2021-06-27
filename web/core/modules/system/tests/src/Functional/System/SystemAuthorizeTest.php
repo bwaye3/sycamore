@@ -16,14 +16,22 @@ class SystemAuthorizeTest extends BrowserTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['system_test'];
+=======
+  protected static $modules = ['system_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Create an administrator user.
@@ -48,11 +56,16 @@ class SystemAuthorizeTest extends BrowserTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests the FileTransfer hooks
+=======
+   * Tests the FileTransfer hooks.
+>>>>>>> dev
    */
   public function testFileTransferHooks() {
     $page_title = $this->randomMachineName(16);
     $this->drupalGetAuthorizePHP($page_title);
+<<<<<<< HEAD
     $this->assertTitle("$page_title | Drupal");
     $this->assertNoText('It appears you have reached this page in error.');
     $this->assertText('To continue, provide your server connection details');
@@ -60,6 +73,15 @@ class SystemAuthorizeTest extends BrowserTestBase {
     $this->assertRaw('System Test FileTransfer');
     // Make sure the settings form callback works.
     $this->assertText('System Test Username');
+=======
+    $this->assertSession()->titleEquals("$page_title | Drupal");
+    $this->assertNoText('It appears you have reached this page in error.');
+    $this->assertSession()->pageTextContains('To continue, provide your server connection details');
+    // Make sure we see the new connection method added by system_test.
+    $this->assertRaw('System Test FileTransfer');
+    // Make sure the settings form callback works.
+    $this->assertSession()->pageTextContains('System Test Username');
+>>>>>>> dev
     // Test that \Drupal\Core\Render\BareHtmlPageRenderer adds assets as
     // expected to the first page of the authorize.php script.
     $this->assertRaw('core/misc/states.js');

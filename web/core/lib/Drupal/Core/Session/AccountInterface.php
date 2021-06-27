@@ -108,6 +108,7 @@ interface AccountInterface {
    * @return string
    *   An unsanitized plain-text string with the name of this account that is
    *   used to log in. Only display this name to admins and to the user who owns
+<<<<<<< HEAD
    *   this account, and only in the context of the name used to log in. For
    *   any other display purposes, use
    *   \Drupal\Core\Session\AccountInterface::getDisplayName() instead.
@@ -126,6 +127,8 @@ interface AccountInterface {
    * @return string
    *   An unsanitized plain-text string with the name of this account that is
    *   used to log in. Only display this name to admins and to the user who owns
+=======
+>>>>>>> dev
    *   this account, and only in the context of the name used to login. For
    *   any other display purposes, use
    *   \Drupal\Core\Session\AccountInterface::getDisplayName() instead.

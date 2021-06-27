@@ -6,7 +6,11 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
 
 /**
+<<<<<<< HEAD
  * Defines a item list class for changed fields.
+=======
+ * Defines an item list class for changed fields.
+>>>>>>> dev
  */
 class ChangedFieldItemList extends FieldItemList {
 

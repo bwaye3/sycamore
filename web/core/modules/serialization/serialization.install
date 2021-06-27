@@ -6,6 +6,7 @@
  */
 
 /**
+<<<<<<< HEAD
  * Implements hook_requirements().
  */
 function serialization_requirements($phase) {
@@ -55,4 +56,10 @@ function serialization_update_8401() {
   $config_factory = \Drupal::configFactory();
   $serialization_settings = $config_factory->getEditable('serialization.settings');
   $serialization_settings->set('bc_timestamp_normalizer_unix', TRUE)->save(TRUE);
+=======
+ * Implements hook_update_last_removed().
+ */
+function serialization_update_last_removed() {
+  return 8401;
+>>>>>>> dev
 }

@@ -17,7 +17,11 @@ class NodeImportChangeTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'field',
     'text',
@@ -29,7 +33,11 @@ class NodeImportChangeTest extends KernelTestBase {
   /**
    * Set the default field storage backend for fields created during tests.
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Set default storage backend.
@@ -60,7 +68,11 @@ class NodeImportChangeTest extends KernelTestBase {
 
     // Check that the updated config was correctly imported.
     $node_type = NodeType::load($node_type_id);
+<<<<<<< HEAD
     $this->assertEqual($node_type->label(), $new_label, 'Node type name has been updated.');
+=======
+    $this->assertEquals($new_label, $node_type->label(), 'Node type name has been updated.');
+>>>>>>> dev
   }
 
 }

@@ -18,6 +18,10 @@ use Drupal\Core\Test\RunTests\TestFileParser;
 use Drupal\Core\Test\TestDatabase;
 use Drupal\Core\Test\TestRunnerKernel;
 use Drupal\Core\Test\TestDiscovery;
+<<<<<<< HEAD
+=======
+use Drupal\TestTools\PhpUnitCompatibility\PhpUnit8\ClassWriter;
+>>>>>>> dev
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version;
 use Symfony\Component\Console\Output\ConsoleOutput;
@@ -65,10 +69,19 @@ if ($args['list']) {
   // Display all available tests organized by one @group annotation.
   echo "\nAvailable test groups & classes\n";
   echo "-------------------------------\n\n";
+<<<<<<< HEAD
   try {
     // @todo Use \Drupal\Core\Test\TestDiscovery when we no longer need BC for
     //   hook_simpletest_alter().
     $groups = \Drupal::service('test_discovery')->getTestClasses($args['module']);
+=======
+  $test_discovery = new TestDiscovery(
+    \Drupal::service('app.root'),
+    \Drupal::service('class_loader')
+  );
+  try {
+    $groups = $test_discovery->getTestClasses($args['module']);
+>>>>>>> dev
   }
   catch (Exception $e) {
     error_log((string) $e);
@@ -96,6 +109,7 @@ if ($args['list']) {
 // @see https://www.drupal.org/node/2569585
 if ($args['list-files'] || $args['list-files-json']) {
   // List all files which could be run as tests.
+<<<<<<< HEAD
   $test_discovery = NULL;
   try {
     // @todo Use \Drupal\Core\Test\TestDiscovery when we no longer need BC for
@@ -107,6 +121,12 @@ if ($args['list-files'] || $args['list-files-json']) {
     echo (string) $e;
     exit(SIMPLETEST_SCRIPT_EXIT_EXCEPTION);
   }
+=======
+  $test_discovery = new TestDiscovery(
+    \Drupal::service('app.root'),
+    \Drupal::service('class_loader')
+  );
+>>>>>>> dev
   // TestDiscovery::findAllClassFiles() gives us a classmap similar to a
   // Composer 'classmap' array.
   $test_classes = $test_discovery->findAllClassFiles();
@@ -153,7 +173,11 @@ if ($args['clean']) {
 }
 
 if (!Composer::upgradePHPUnitCheck(Version::id())) {
+<<<<<<< HEAD
   simpletest_script_print_error("PHPUnit testing framework version 7 or greater is required when running on PHP 7.3 or greater. Run the command 'composer run-script drupal-phpunit-upgrade' in order to fix this.");
+=======
+  simpletest_script_print_error("PHPUnit testing framework version 9 or greater is required when running on PHP 7.4 or greater. Run the command 'composer run-script drupal-phpunit-upgrade' in order to fix this.");
+>>>>>>> dev
   exit(SIMPLETEST_SCRIPT_EXIT_FAILURE);
 }
 
@@ -181,12 +205,16 @@ simpletest_script_reporter_timer_stop();
 TestDatabase::releaseAllTestLocks();
 
 // Display results before database is cleared.
+<<<<<<< HEAD
 if ($args['browser']) {
   simpletest_script_open_browser();
 }
 else {
   simpletest_script_reporter_display_results();
 }
+=======
+simpletest_script_reporter_display_results();
+>>>>>>> dev
 
 if ($args['xml']) {
   simpletest_script_reporter_write_xml_results();
@@ -285,11 +313,21 @@ All arguments are long options.
 
   --class     Run tests identified by specific class names, instead of group names.
               A specific test method can be added, for example,
+<<<<<<< HEAD
               'Drupal\book\Tests\BookTest::testBookExport'.
 
   --file      Run tests identified by specific file names, instead of group names.
               Specify the path and the extension
               (i.e. 'core/modules/user/user.test').
+=======
+              'Drupal\book\Tests\BookTest::testBookExport'. This argument must
+              be last on the command line.
+
+  --file      Run tests identified by specific file names, instead of group names.
+              Specify the path and the extension
+              (i.e. 'core/modules/user/user.test'). This argument must be last
+              on the command line.
+>>>>>>> dev
 
   --types
 
@@ -321,10 +359,13 @@ All arguments are long options.
               test database and configuration directories. Use in combination
               with --repeat for debugging random test failures.
 
+<<<<<<< HEAD
   --browser   Deprecated, use --verbose instead. This enforces --keep-results and
               if you want to also view any pages rendered in the simpletest
               browser you need to add --verbose to the command line.
 
+=======
+>>>>>>> dev
   --non-html  Removes escaping from output. Useful for reading results on the
               CLI.
 
@@ -402,7 +443,10 @@ function simpletest_script_parse_args() {
     'repeat' => 1,
     'die-on-fail' => FALSE,
     'suppress-deprecations' => FALSE,
+<<<<<<< HEAD
     'browser' => FALSE,
+=======
+>>>>>>> dev
     // Used internally.
     'test-id' => 0,
     'execute-test' => '',
@@ -453,10 +497,13 @@ function simpletest_script_parse_args() {
     exit(SIMPLETEST_SCRIPT_EXIT_FAILURE);
   }
 
+<<<<<<< HEAD
   if ($args['browser']) {
     simpletest_script_print_error('The --browser option is deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Use --verbose instead. See https://www.drupal.org/node/3083549');
     $args['keep-results'] = TRUE;
   }
+=======
+>>>>>>> dev
   return [$args, $count];
 }
 
@@ -509,6 +556,10 @@ function simpletest_script_init() {
   $autoloader = require_once __DIR__ . '/../../autoload.php';
   // The PHPUnit compatibility layer needs to be available to autoload tests.
   $autoloader->add('Drupal\\TestTools', __DIR__ . '/../tests');
+<<<<<<< HEAD
+=======
+  ClassWriter::mutateTestBase($autoloader);
+>>>>>>> dev
 
   // Get URL from arguments.
   if (!empty($args['url'])) {
@@ -925,9 +976,15 @@ function simpletest_script_command($test_id, $test_class) {
 /**
  * Removes all remnants of a test runner.
  *
+<<<<<<< HEAD
  * In case a (e.g., fatal) error occurs after the test site has been fully setup
  * and the error happens in many tests, the environment that executes the tests
  * can easily run out of memory or disk space. This function ensures that all
+=======
+ * In case a fatal error occurs after the test site has been fully setup and
+ * the error happens in many tests, the environment that executes the tests can
+ * easily run out of memory or disk space. This function ensures that all
+>>>>>>> dev
  * created resources are properly cleaned up after every executed test.
  *
  * This clean-up only exists in this script, since SimpleTest module itself does
@@ -1040,10 +1097,17 @@ function simpletest_script_cleanup($test_id, $test_class, $exitcode) {
 function simpletest_script_get_test_list() {
   global $args;
 
+<<<<<<< HEAD
   // @todo Use \Drupal\Core\Test\TestDiscovery when we no longer need BC for
   //   hook_simpletest_alter().
   /** $test_discovery \Drupal\simpletest\TestDiscovery */
   $test_discovery = \Drupal::service('test_discovery');
+=======
+  $test_discovery = new TestDiscovery(
+    \Drupal::service('app.root'),
+    \Drupal::service('class_loader')
+  );
+>>>>>>> dev
   $types_processed = empty($args['types']);
   $test_list = [];
   if ($args['all'] || $args['module']) {
@@ -1510,7 +1574,11 @@ function simpletest_script_load_messages_by_test_id($test_ids) {
   foreach ($test_id_chunks as $test_id_chunk) {
     try {
       $result_chunk = Database::getConnection('default', 'test-runner')
+<<<<<<< HEAD
         ->query("SELECT * FROM {simpletest} WHERE test_id IN ( :test_ids[] ) ORDER BY test_class, message_id", [
+=======
+        ->query("SELECT * FROM {simpletest} WHERE [test_id] IN ( :test_ids[] ) ORDER BY [test_class], [message_id]", [
+>>>>>>> dev
           ':test_ids[]' => $test_id_chunk,
         ])->fetchAll();
     }
@@ -1525,6 +1593,7 @@ function simpletest_script_load_messages_by_test_id($test_ids) {
 
   return $results;
 }
+<<<<<<< HEAD
 
 /**
  * Display test results.
@@ -1546,3 +1615,5 @@ function simpletest_script_open_browser() {
   }
   simpletest_script_print_error('In order to use the --browser option the Simpletest module must be available. See https://www.drupal.org/node/3083549.');
 }
+=======
+>>>>>>> dev

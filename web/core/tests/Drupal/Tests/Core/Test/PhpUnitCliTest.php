@@ -20,7 +20,11 @@ class PhpUnitCliTest extends UnitTestCase {
     // duplicate namespace errors or so forth. This keeps us from committing
     // tests which don't break under run-tests.sh, but do break under the
     // phpunit test runner tool.
+<<<<<<< HEAD
     $process = new Process('vendor/bin/phpunit --configuration core --verbose --list-tests');
+=======
+    $process = Process::fromShellCommandline('vendor/bin/phpunit --configuration core --verbose --list-tests');
+>>>>>>> dev
     $process->setWorkingDirectory($this->root)
       ->setTimeout(300)
       ->setIdleTimeout(300);

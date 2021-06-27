@@ -17,7 +17,11 @@ class NormalizeTest extends NormalizerTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     FilterFormat::create([
@@ -40,8 +44,11 @@ class NormalizeTest extends NormalizerTestBase {
         ],
       ],
     ])->save();
+<<<<<<< HEAD
 
     \Drupal::service('router.builder')->rebuild();
+=======
+>>>>>>> dev
   }
 
   /**
@@ -180,6 +187,7 @@ class NormalizeTest extends NormalizerTestBase {
     ];
 
     $normalized = $this->serializer->normalize($entity, $this->format);
+<<<<<<< HEAD
     $this->assertEqual($normalized['_links']['self'], $expected_array['_links']['self'], 'self link placed correctly.');
     // @todo Test curies.
     // @todo Test type.
@@ -189,6 +197,17 @@ class NormalizeTest extends NormalizerTestBase {
     $this->assertEqual($normalized['field_test_text'], $expected_array['field_test_text'], 'Field with properties is normalized.');
     $this->assertEqual($normalized['_embedded'][$relation_uri], $expected_array['_embedded'][$relation_uri], 'Entity reference field is normalized.');
     $this->assertEqual($normalized['_links'][$relation_uri], $expected_array['_links'][$relation_uri], 'Links are added for entity reference field.');
+=======
+    $this->assertEquals($expected_array['_links']['self'], $normalized['_links']['self'], 'self link placed correctly.');
+    // @todo Test curies.
+    // @todo Test type.
+    $this->assertEquals($expected_array['id'], $normalized['id'], 'Internal id is exposed.');
+    $this->assertEquals($expected_array['uuid'], $normalized['uuid'], 'Non-translatable fields is normalized.');
+    $this->assertEquals($expected_array['name'], $normalized['name'], 'Translatable field with multiple language values is normalized.');
+    $this->assertEquals($expected_array['field_test_text'], $normalized['field_test_text'], 'Field with properties is normalized.');
+    $this->assertEquals($expected_array['_embedded'][$relation_uri], $normalized['_embedded'][$relation_uri], 'Entity reference field is normalized.');
+    $this->assertEquals($expected_array['_links'][$relation_uri], $normalized['_links'][$relation_uri], 'Links are added for entity reference field.');
+>>>>>>> dev
   }
 
   /**

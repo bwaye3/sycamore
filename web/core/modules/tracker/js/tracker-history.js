@@ -9,7 +9,10 @@
   function processNodeNewIndicators($placeholders) {
     var newNodeString = Drupal.t('new');
     var updatedNodeString = Drupal.t('updated');
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     $placeholders.each(function (index, placeholder) {
       var timestamp = parseInt(placeholder.getAttribute('data-history-node-timestamp'), 10);
       var nodeID = placeholder.getAttribute('data-history-node-id');
@@ -17,7 +20,11 @@
 
       if (timestamp > lastViewTimestamp) {
         var message = lastViewTimestamp === 0 ? newNodeString : updatedNodeString;
+<<<<<<< HEAD
         $(placeholder).append('<span class="marker">' + message + '</span>');
+=======
+        $(placeholder).append("<span class=\"marker\">".concat(message, "</span>"));
+>>>>>>> dev
       }
     });
   }
@@ -33,6 +40,7 @@
         placeholdersToUpdate[nodeID] = placeholder;
       }
     });
+<<<<<<< HEAD
 
     var nodeIDs = Object.keys(placeholdersToUpdate);
     if (nodeIDs.length === 0) {
@@ -42,13 +50,31 @@
       url: Drupal.url('comments/render_new_comments_node_links'),
       type: 'POST',
       data: { 'node_ids[]': nodeIDs },
+=======
+    var nodeIDs = Object.keys(placeholdersToUpdate);
+
+    if (nodeIDs.length === 0) {
+      return;
+    }
+
+    $.ajax({
+      url: Drupal.url('comments/render_new_comments_node_links'),
+      type: 'POST',
+      data: {
+        'node_ids[]': nodeIDs
+      },
+>>>>>>> dev
       dataType: 'json',
       success: function success(results) {
         Object.keys(results || {}).forEach(function (nodeID) {
           if (placeholdersToUpdate.hasOwnProperty(nodeID)) {
             var url = results[nodeID].first_new_comment_link;
             var text = Drupal.formatPlural(results[nodeID].new_comment_count, '1 new', '@count new');
+<<<<<<< HEAD
             $(placeholdersToUpdate[nodeID]).append('<br /><a href="' + url + '">' + text + '</a>');
+=======
+            $(placeholdersToUpdate[nodeID]).append("<br /><a href=\"".concat(url, "\">").concat(text, "</a>"));
+>>>>>>> dev
           }
         });
       }
@@ -61,6 +87,10 @@
       var $nodeNewPlaceholders = $(context).find('[data-history-node-timestamp]').once('history').filter(function () {
         var nodeTimestamp = parseInt(this.getAttribute('data-history-node-timestamp'), 10);
         var nodeID = this.getAttribute('data-history-node-id');
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         if (Drupal.history.needsServerCheck(nodeID, nodeTimestamp)) {
           nodeIDs.push(nodeID);
           return true;
@@ -68,7 +98,10 @@
 
         return false;
       });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       var $newRepliesPlaceholders = $(context).find('[data-history-node-last-comment-timestamp]').once('history').filter(function () {
         var lastCommentTimestamp = parseInt(this.getAttribute('data-history-node-last-comment-timestamp'), 10);
         var nodeTimestamp = parseInt(this.previousSibling.previousSibling.getAttribute('data-history-node-timestamp'), 10);
@@ -76,11 +109,21 @@
         if (lastCommentTimestamp === nodeTimestamp) {
           return false;
         }
+<<<<<<< HEAD
         var nodeID = this.previousSibling.previousSibling.getAttribute('data-history-node-id');
+=======
+
+        var nodeID = this.previousSibling.previousSibling.getAttribute('data-history-node-id');
+
+>>>>>>> dev
         if (Drupal.history.needsServerCheck(nodeID, lastCommentTimestamp)) {
           if (nodeIDs.indexOf(nodeID) === -1) {
             nodeIDs.push(nodeID);
           }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
           return true;
         }
 

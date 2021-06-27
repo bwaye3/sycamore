@@ -28,7 +28,11 @@ class AreaTitleWebTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
+=======
+  protected function setUp($import_test_views = TRUE): void {
+>>>>>>> dev
     parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();
@@ -41,7 +45,11 @@ class AreaTitleWebTest extends ViewTestBase {
     // Confirm that the view has the normal title before making the view return
     // no result.
     $this->drupalGet('test-area-title');
+<<<<<<< HEAD
     $this->assertTitle('test_title_header | Drupal');
+=======
+    $this->assertSession()->titleEquals('test_title_header | Drupal');
+>>>>>>> dev
 
     // Change the view to return no result.
     /** @var \Drupal\views\Entity\View $view */
@@ -60,7 +68,11 @@ class AreaTitleWebTest extends ViewTestBase {
     $view->save();
 
     $this->drupalGet('test-area-title');
+<<<<<<< HEAD
     $this->assertTitle('test_title_empty | Drupal');
+=======
+    $this->assertSession()->titleEquals('test_title_empty | Drupal');
+>>>>>>> dev
 
     // Change the view to return a result instead.
     /** @var \Drupal\views\Entity\View $view */
@@ -79,7 +91,11 @@ class AreaTitleWebTest extends ViewTestBase {
     $view->save();
 
     $this->drupalGet('test-area-title');
+<<<<<<< HEAD
     $this->assertTitle('test_title_header | Drupal');
+=======
+    $this->assertSession()->titleEquals('test_title_header | Drupal');
+>>>>>>> dev
   }
 
 }

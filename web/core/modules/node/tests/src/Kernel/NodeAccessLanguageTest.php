@@ -24,7 +24,11 @@ class NodeAccessLanguageTest extends NodeAccessTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     node_access_test_add_field(NodeType::load('page'));
@@ -53,7 +57,11 @@ class NodeAccessLanguageTest extends NodeAccessTestBase {
     // Creating a public node with langcode Hungarian, will be saved as the
     // fallback in node access table.
     $node_public_hu = $this->drupalCreateNode(['body' => [[]], 'langcode' => 'hu', 'private' => FALSE]);
+<<<<<<< HEAD
     $this->assertTrue($node_public_hu->language()->getId() == 'hu', 'Node created as Hungarian.');
+=======
+    $this->assertSame('hu', $node_public_hu->language()->getId(), 'Node created as Hungarian.');
+>>>>>>> dev
 
     // Tests the default access is provided for the public Hungarian node.
     $this->assertNodeAccess($expected_node_access, $node_public_hu, $web_user);
@@ -67,7 +75,11 @@ class NodeAccessLanguageTest extends NodeAccessTestBase {
       'private' => FALSE,
       'langcode' => LanguageInterface::LANGCODE_NOT_SPECIFIED,
     ]);
+<<<<<<< HEAD
     $this->assertTrue($node_public_no_language->language()->getId() == LanguageInterface::LANGCODE_NOT_SPECIFIED, 'Node created with not specified language.');
+=======
+    $this->assertSame(LanguageInterface::LANGCODE_NOT_SPECIFIED, $node_public_no_language->language()->getId(), 'Node created with not specified language.');
+>>>>>>> dev
 
     // Tests that access is granted if requested with no language.
     $this->assertNodeAccess($expected_node_access, $node_public_no_language, $web_user);
@@ -76,7 +88,11 @@ class NodeAccessLanguageTest extends NodeAccessTestBase {
     \Drupal::entityTypeManager()->getAccessControlHandler('node')->resetCache();
     \Drupal::state()->set('node_access_test_secret_catalan', 1);
     $node_public_ca = $this->drupalCreateNode(['body' => [[]], 'langcode' => 'ca', 'private' => FALSE]);
+<<<<<<< HEAD
     $this->assertTrue($node_public_ca->language()->getId() == 'ca', 'Node created as Catalan.');
+=======
+    $this->assertSame('ca', $node_public_ca->language()->getId(), 'Node created as Catalan.');
+>>>>>>> dev
 
     // Tests that access is granted if requested with no language.
     $this->assertNodeAccess($expected_node_access, $node_public_no_language, $web_user);
@@ -122,7 +138,11 @@ class NodeAccessLanguageTest extends NodeAccessTestBase {
     // Creating a private node with langcode Hungarian, will be saved as the
     // fallback in node access table.
     $node_private_hu = $this->drupalCreateNode(['body' => [[]], 'langcode' => 'hu', 'private' => TRUE]);
+<<<<<<< HEAD
     $this->assertTrue($node_private_hu->language()->getId() == 'hu', 'Node created as Hungarian.');
+=======
+    $this->assertSame('hu', $node_private_hu->language()->getId(), 'Node created as Hungarian.');
+>>>>>>> dev
 
     // Tests the default access is not provided for the private Hungarian node.
     $this->assertNodeAccess($expected_node_access_no_access, $node_private_hu, $web_user);
@@ -136,7 +156,11 @@ class NodeAccessLanguageTest extends NodeAccessTestBase {
       'private' => TRUE,
       'langcode' => LanguageInterface::LANGCODE_NOT_SPECIFIED,
     ]);
+<<<<<<< HEAD
     $this->assertTrue($node_private_no_language->language()->getId() == LanguageInterface::LANGCODE_NOT_SPECIFIED, 'Node created with not specified language.');
+=======
+    $this->assertSame(LanguageInterface::LANGCODE_NOT_SPECIFIED, $node_private_no_language->language()->getId(), 'Node created with not specified language.');
+>>>>>>> dev
 
     // Tests that access is not granted if requested with no language.
     $this->assertNodeAccess($expected_node_access_no_access, $node_private_no_language, $web_user);
@@ -155,7 +179,11 @@ class NodeAccessLanguageTest extends NodeAccessTestBase {
       'node test view',
     ]);
     $node_private_ca = $this->drupalCreateNode(['body' => [[]], 'langcode' => 'ca', 'private' => TRUE]);
+<<<<<<< HEAD
     $this->assertTrue($node_private_ca->language()->getId() == 'ca', 'Node created as Catalan.');
+=======
+    $this->assertSame('ca', $node_private_ca->language()->getId(), 'Node created as Catalan.');
+>>>>>>> dev
 
     // Tests that Catalan is still not accessible to either user.
     $this->assertNodeAccess($expected_node_access_no_access, $node_private_ca, $web_user);
@@ -191,12 +219,20 @@ class NodeAccessLanguageTest extends NodeAccessTestBase {
     // Creating a private node with langcode Hungarian, will be saved as
     // the fallback in node access table.
     $node_private = $this->drupalCreateNode(['body' => [[]], 'langcode' => 'hu', 'private' => TRUE]);
+<<<<<<< HEAD
     $this->assertTrue($node_private->language()->getId() == 'hu', 'Node created as Hungarian.');
+=======
+    $this->assertSame('hu', $node_private->language()->getId(), 'Node created as Hungarian.');
+>>>>>>> dev
 
     // Creating a public node with langcode Hungarian, will be saved as
     // the fallback in node access table.
     $node_public = $this->drupalCreateNode(['body' => [[]], 'langcode' => 'hu', 'private' => FALSE]);
+<<<<<<< HEAD
     $this->assertTrue($node_public->language()->getId() == 'hu', 'Node created as Hungarian.');
+=======
+    $this->assertSame('hu', $node_public->language()->getId(), 'Node created as Hungarian.');
+>>>>>>> dev
 
     // Creating a public node with no special langcode, like when no language
     // module enabled.
@@ -204,7 +240,11 @@ class NodeAccessLanguageTest extends NodeAccessTestBase {
       'private' => FALSE,
       'langcode' => LanguageInterface::LANGCODE_NOT_SPECIFIED,
     ]);
+<<<<<<< HEAD
     $this->assertTrue($node_no_language->language()->getId() == LanguageInterface::LANGCODE_NOT_SPECIFIED, 'Node created with not specified language.');
+=======
+    $this->assertSame(LanguageInterface::LANGCODE_NOT_SPECIFIED, $node_no_language->language()->getId(), 'Node created with not specified language.');
+>>>>>>> dev
 
     $connection = Database::getConnection();
     // Query the nodes table as the web user with the node access tag and no

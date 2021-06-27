@@ -11,19 +11,35 @@
     var $viewsOverride = $modal.find('[data-drupal-views-offset]');
     var $scroll = $modal.find('[data-drupal-views-scroll]');
     var offset = 0;
+<<<<<<< HEAD
     var modalHeight = void 0;
     if ($scroll.length) {
       $modal.closest('.views-ui-dialog').addClass('views-ui-dialog-scroll');
 
       $scroll.css({ overflow: 'visible', height: 'auto' });
+=======
+    var modalHeight;
+
+    if ($scroll.length) {
+      $modal.closest('.views-ui-dialog').addClass('views-ui-dialog-scroll');
+      $scroll.css({
+        overflow: 'visible',
+        height: 'auto'
+      });
+>>>>>>> dev
       modalHeight = $modal.height();
       $viewsOverride.each(function () {
         offset += $(this).outerHeight();
       });
+<<<<<<< HEAD
 
       var scrollOffset = $scroll.outerHeight() - $scroll.height();
       $scroll.height(modalHeight - offset - scrollOffset);
 
+=======
+      var scrollOffset = $scroll.outerHeight() - $scroll.height();
+      $scroll.height(modalHeight - offset - scrollOffset);
+>>>>>>> dev
       $modal.css('overflow', 'hidden');
       $scroll.css('overflow', 'auto');
     }
@@ -32,7 +48,10 @@
   Drupal.behaviors.viewsModalContent = {
     attach: function attach(context) {
       $('body').once('viewsDialog').on('dialogContentResize.viewsDialog', '.ui-dialog-content', handleDialogResize);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       $(context).find('.scroll').once('detailsUpdate').on('click', 'summary', function (e) {
         $(e.currentTarget).trigger('dialogContentResize');
       });

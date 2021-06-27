@@ -6,6 +6,7 @@
  */
 
 /**
+<<<<<<< HEAD
  * Move 'link_domain' from 'rest.settings' to 'hal.settings'.
  */
 function hal_update_8301() {
@@ -42,4 +43,10 @@ function hal_update_8501() {
     ->save(TRUE);
 
   return t('Backwards compatibility mode has been enabled for File entities\' HAL normalization of the "uri" field. Like before, it will continue to return only the absolute file URL. If you want the new behavior, which returns both the stored URI and a root-relative file URL, <a href="https://www.drupal.org/node/2925783">read the change record to learn how to opt in.</a>');
+=======
+ * Implements hook_update_last_removed().
+ */
+function hal_update_last_removed() {
+  return 8501;
+>>>>>>> dev
 }

@@ -146,6 +146,7 @@ interface NodeInterface extends ContentEntityInterface, EntityChangedInterface, 
    */
   public function setRevisionCreationTime($timestamp);
 
+<<<<<<< HEAD
   /**
    * Gets the node revision author.
    *
@@ -175,4 +176,6 @@ interface NodeInterface extends ContentEntityInterface, EntityChangedInterface, 
    */
   public function setRevisionAuthorId($uid);
 
+=======
+>>>>>>> dev
 }

@@ -27,7 +27,11 @@ class ReadOnlyStreamWrapperTest extends FileTestBase {
   protected $classname = 'Drupal\file_test\StreamWrapper\DummyReadOnlyStreamWrapper';
 
   /**
+<<<<<<< HEAD
    * Test read-only specific behavior.
+=======
+   * Tests read-only specific behavior.
+>>>>>>> dev
    */
   public function testReadOnlyBehavior() {
     $type = DummyReadOnlyStreamWrapper::getType();
@@ -38,7 +42,11 @@ class ReadOnlyStreamWrapperTest extends FileTestBase {
 
     // Generate a test file
     $filename = $this->randomMachineName();
+<<<<<<< HEAD
     $site_path = $this->container->get('site.path');
+=======
+    $site_path = $this->container->getParameter('site.path');
+>>>>>>> dev
     $filepath = $site_path . '/files/' . $filename;
     file_put_contents($filepath, $filename);
 

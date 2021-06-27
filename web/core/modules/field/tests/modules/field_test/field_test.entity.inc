@@ -9,7 +9,11 @@
  * Implements hook_entity_type_alter().
  */
 function field_test_entity_type_alter(array &$entity_types) {
+<<<<<<< HEAD
   /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+=======
+  /** @var \Drupal\Core\Entity\EntityTypeInterface[] $entity_types */
+>>>>>>> dev
   foreach (field_test_entity_info_translatable() as $entity_type => $translatable) {
     $entity_types[$entity_type]->set('translatable', $translatable);
   }

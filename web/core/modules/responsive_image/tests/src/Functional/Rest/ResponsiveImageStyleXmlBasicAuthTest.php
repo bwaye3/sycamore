@@ -16,7 +16,11 @@ class ResponsiveImageStyleXmlBasicAuthTest extends ResponsiveImageStyleResourceT
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['basic_auth'];
+=======
+  protected static $modules = ['basic_auth'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

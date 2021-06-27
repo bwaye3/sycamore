@@ -3,7 +3,10 @@
 namespace Drupal\Core\Entity\EntityReferenceSelection;
 
 use Drupal\Component\Plugin\ConfigurableInterface;
+<<<<<<< HEAD
 use Drupal\Component\Plugin\ConfigurablePluginInterface;
+=======
+>>>>>>> dev
 use Drupal\Component\Plugin\DependentPluginInterface;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Database\Query\SelectInterface;
@@ -13,7 +16,11 @@ use Drupal\Core\Plugin\PluginBase;
 /**
  * Provides a base class for configurable selection handlers.
  */
+<<<<<<< HEAD
 abstract class SelectionPluginBase extends PluginBase implements SelectionInterface, ConfigurableInterface, DependentPluginInterface, ConfigurablePluginInterface {
+=======
+abstract class SelectionPluginBase extends PluginBase implements SelectionInterface, ConfigurableInterface, DependentPluginInterface {
+>>>>>>> dev
 
   /**
    * Constructs a new selection object.
@@ -36,8 +43,11 @@ abstract class SelectionPluginBase extends PluginBase implements SelectionInterf
   public function defaultConfiguration() {
     return [
       'target_type' => NULL,
+<<<<<<< HEAD
       // @todo Remove this key in Drupal 9.0.x.
       'handler' => $this->getPluginId(),
+=======
+>>>>>>> dev
       'entity' => NULL,
     ];
   }
@@ -53,17 +63,23 @@ abstract class SelectionPluginBase extends PluginBase implements SelectionInterf
    * {@inheritdoc}
    */
   public function setConfiguration(array $configuration) {
+<<<<<<< HEAD
     // Resolve backward compatibility level configurations, if any.
     $this->resolveBackwardCompatibilityConfiguration($configuration);
 
+=======
+>>>>>>> dev
     // Merge in defaults.
     $this->configuration = NestedArray::mergeDeep(
       $this->defaultConfiguration(),
       $configuration
     );
+<<<<<<< HEAD
 
     // Ensure a backward compatibility level configuration.
     $this->ensureBackwardCompatibilityConfiguration();
+=======
+>>>>>>> dev
   }
 
   /**
@@ -95,6 +111,7 @@ abstract class SelectionPluginBase extends PluginBase implements SelectionInterf
    */
   public function entityQueryAlter(SelectInterface $query) {}
 
+<<<<<<< HEAD
   /**
    * Moves the backward compatibility level configurations in the right place.
    *
@@ -166,4 +183,6 @@ abstract class SelectionPluginBase extends PluginBase implements SelectionInterf
     }
   }
 
+=======
+>>>>>>> dev
 }

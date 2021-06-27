@@ -2,6 +2,10 @@
 
 namespace Drupal\migrate\Plugin\migrate\process;
 
+<<<<<<< HEAD
+=======
+use Drupal\migrate\MigrateException;
+>>>>>>> dev
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
@@ -10,11 +14,21 @@ use Drupal\migrate\Row;
  * Passes the source value to a callback.
  *
  * The callback process plugin allows simple processing of the value, such as
+<<<<<<< HEAD
  * strtolower(). The callable takes the source value as the single mandatory
  * argument. No additional arguments can be passed to the callback.
  *
  * Available configuration keys:
  * - callable: The name of the callable method.
+=======
+ * strtolower(). To pass more than one argument, pass an array as the source
+ * and set the unpack_source option.
+ *
+ * Available configuration keys:
+ * - callable: The name of the callable method.
+ * - unpack_source: (optional) Whether to interpret the source as an array of
+ *   arguments.
+>>>>>>> dev
  *
  * Examples:
  *
@@ -22,7 +36,11 @@ use Drupal\migrate\Row;
  * process:
  *   destination_field:
  *     plugin: callback
+<<<<<<< HEAD
  *     callable: strtolower
+=======
+ *     callable: mb_strtolower
+>>>>>>> dev
  *     source: source_field
  * @endcode
  *
@@ -34,10 +52,36 @@ use Drupal\migrate\Row;
  *     plugin: callback
  *     callable:
  *       - '\Drupal\Component\Utility\Unicode'
+<<<<<<< HEAD
  *       - strtolower
  *     source: source_field
  * @endcode
  *
+=======
+ *       - ucfirst
+ *     source: source_field
+ * @endcode
+ *
+ * An example where the callback accepts more than one argument:
+ *
+ * @code
+ * source:
+ *   plugin: source_plugin_goes_here
+ *   constants:
+ *     slash: /
+ * process:
+ *   field_link_url:
+ *     plugin: callback
+ *     callable: rtrim
+ *     unpack_source: true
+ *     source:
+ *       - url
+ *       - constants/slash
+ * @endcode
+ *
+ * This will remove the trailing '/', if any, from a URL.
+ *
+>>>>>>> dev
  * @see \Drupal\migrate\Plugin\MigrateProcessInterface
  *
  * @MigrateProcessPlugin(
@@ -63,6 +107,15 @@ class Callback extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
+<<<<<<< HEAD
+=======
+    if (!empty($this->configuration['unpack_source'])) {
+      if (!is_array($value)) {
+        throw new MigrateException(sprintf("When 'unpack_source' is set, the source must be an array. Instead it was of type '%s'", gettype($value)));
+      }
+      return call_user_func($this->configuration['callable'], ...$value);
+    }
+>>>>>>> dev
     return call_user_func($this->configuration['callable'], $value);
   }
 

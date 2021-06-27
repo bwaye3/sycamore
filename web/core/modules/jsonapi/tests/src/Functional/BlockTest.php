@@ -16,7 +16,11 @@ class BlockTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['block'];
+=======
+  protected static $modules = ['block'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

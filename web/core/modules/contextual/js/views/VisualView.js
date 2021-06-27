@@ -12,6 +12,10 @@
         event.preventDefault();
         event.target.click();
       };
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       var mapping = {
         'click .trigger': function clickTrigger() {
           this.model.toggleOpen();
@@ -28,6 +32,10 @@
           this.model.focus();
         };
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       return mapping;
     },
     initialize: function initialize() {
@@ -35,9 +43,13 @@
     },
     render: function render() {
       var isOpen = this.model.get('isOpen');
+<<<<<<< HEAD
 
       var isVisible = this.model.get('isLocked') || this.model.get('regionIsHovered') || isOpen;
 
+=======
+      var isVisible = this.model.get('isLocked') || this.model.get('regionIsHovered') || isOpen;
+>>>>>>> dev
       this.$el.toggleClass('open', isOpen).find('.trigger').toggleClass('visually-hidden', !isVisible);
 
       if ('isOpen' in this.model.changed) {

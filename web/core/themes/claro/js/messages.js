@@ -10,6 +10,7 @@
     var text = _ref.text;
     var type = _ref2.type,
         id = _ref2.id;
+<<<<<<< HEAD
 
     var messagesTypes = Drupal.Message.getMessageTypeLabels();
     var messageWrapper = document.createElement('div');
@@ -22,6 +23,16 @@
 
     messageWrapper.innerHTML = '\n    <div class="messages__header">\n      <h2 id="' + id + '-title" class="messages__title">\n        ' + messagesTypes[type] + '\n      </h2>\n    </div>\n    <div class="messages__content">\n      ' + text + '\n    </div>\n  ';
 
+=======
+    var messagesTypes = Drupal.Message.getMessageTypeLabels();
+    var messageWrapper = document.createElement('div');
+    messageWrapper.setAttribute('class', "messages messages--".concat(type));
+    messageWrapper.setAttribute('role', type === 'error' || type === 'warning' ? 'alert' : 'status');
+    messageWrapper.setAttribute('aria-labelledby', "".concat(id, "-title"));
+    messageWrapper.setAttribute('data-drupal-message-id', id);
+    messageWrapper.setAttribute('data-drupal-message-type', type);
+    messageWrapper.innerHTML = "\n    <div class=\"messages__header\">\n      <h2 id=\"".concat(id, "-title\" class=\"messages__title\">\n        ").concat(messagesTypes[type], "\n      </h2>\n    </div>\n    <div class=\"messages__content\">\n      ").concat(text, "\n    </div>\n  ");
+>>>>>>> dev
     return messageWrapper;
   };
 })(Drupal);

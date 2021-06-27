@@ -14,6 +14,7 @@ class IdConflictTest extends MigrateUpgradeExecuteTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
     'file',
     'language',
@@ -26,6 +27,18 @@ class IdConflictTest extends MigrateUpgradeExecuteTestBase {
     'forum',
     'rdf',
     'statistics',
+=======
+  protected static $modules = [
+    'aggregator',
+    'book',
+    'config_translation',
+    'content_translation',
+    'forum',
+    'language',
+    'migrate_drupal_ui',
+    'statistics',
+    'telephone',
+>>>>>>> dev
     // Required for translation migrations.
     'migrate_drupal_multilingual',
   ];
@@ -33,7 +46,11 @@ class IdConflictTest extends MigrateUpgradeExecuteTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->loadFixture(drupal_get_path('module', 'migrate_drupal') . '/tests/fixtures/drupal7.php');
   }
@@ -72,6 +89,7 @@ class IdConflictTest extends MigrateUpgradeExecuteTestBase {
   /**
    * Tests ID Conflict form.
    */
+<<<<<<< HEAD
   public function testMigrateUpgradeExecute() {
     $connection_options = $this->sourceDatabase->getConnectionOptions();
     $this->drupalGet('/upgrade');
@@ -111,6 +129,12 @@ class IdConflictTest extends MigrateUpgradeExecuteTestBase {
     $session->fieldExists('mysql[host]');
 
     $this->drupalPostForm(NULL, $edits, t('Review upgrade'));
+=======
+  public function testIdConflictForm() {
+    // Start the upgrade process.
+    $this->submitCredentialForm();
+
+>>>>>>> dev
     $entity_types = [
       'block_content',
       'menu_link_content',
@@ -120,7 +144,11 @@ class IdConflictTest extends MigrateUpgradeExecuteTestBase {
       'comment',
       'node',
     ];
+<<<<<<< HEAD
     $this->assertIdConflict($session, $entity_types);
+=======
+    $this->assertIdConflictForm($entity_types);
+>>>>>>> dev
   }
 
 }

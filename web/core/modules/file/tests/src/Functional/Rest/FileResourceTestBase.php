@@ -3,18 +3,28 @@
 namespace Drupal\Tests\file\Functional\Rest;
 
 use Drupal\file\Entity\File;
+<<<<<<< HEAD
 use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
+=======
+>>>>>>> dev
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 use Drupal\user\Entity\User;
 
 abstract class FileResourceTestBase extends EntityResourceTestBase {
 
+<<<<<<< HEAD
   use BcTimestampNormalizerUnixTestTrait;
 
   /**
    * {@inheritdoc}
    */
   public static $modules = ['file', 'user'];
+=======
+  /**
+   * {@inheritdoc}
+   */
+  protected static $modules = ['file', 'user'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -63,6 +73,7 @@ abstract class FileResourceTestBase extends EntityResourceTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * {@inheritdoc}
    */
   protected function grantPermissionsToTestedRole(array $permissions) {
@@ -75,6 +86,8 @@ abstract class FileResourceTestBase extends EntityResourceTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Makes the current user the file owner.
    */
   protected function makeCurrentUserFileOwner() {
@@ -109,10 +122,23 @@ abstract class FileResourceTestBase extends EntityResourceTestBase {
   protected function getExpectedNormalizedEntity() {
     return [
       'changed' => [
+<<<<<<< HEAD
         $this->formatExpectedTimestampItemValues($this->entity->getChangedTime()),
       ],
       'created' => [
         $this->formatExpectedTimestampItemValues((int) $this->entity->getCreatedTime()),
+=======
+        [
+          'value' => (new \DateTime())->setTimestamp($this->entity->getChangedTime())->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
+          'format' => \DateTime::RFC3339,
+        ],
+      ],
+      'created' => [
+        [
+          'value' => (new \DateTime())->setTimestamp((int) $this->entity->getCreatedTime())->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
+          'format' => \DateTime::RFC3339,
+        ],
+>>>>>>> dev
       ],
       'fid' => [
         [
@@ -217,6 +243,7 @@ abstract class FileResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected function getExpectedUnauthorizedAccessMessage($method) {
+<<<<<<< HEAD
     if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
       if ($method === 'DELETE') {
         return 'Only the file owner can update or delete the file entity.';
@@ -224,6 +251,8 @@ abstract class FileResourceTestBase extends EntityResourceTestBase {
       return parent::getExpectedUnauthorizedAccessMessage($method);
     }
 
+=======
+>>>>>>> dev
     if ($method === 'GET') {
       return "The 'access content' permission is required.";
     }

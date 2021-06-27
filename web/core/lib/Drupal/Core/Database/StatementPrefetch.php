@@ -186,7 +186,11 @@ class StatementPrefetch implements \Iterator, StatementInterface {
 
     if (!empty($logger)) {
       $query_end = microtime(TRUE);
+<<<<<<< HEAD
       $logger->log($this, $args, $query_end - $query_start);
+=======
+      $logger->log($this, $args, $query_end - $query_start, $query_start);
+>>>>>>> dev
     }
 
     // Initialize the first row in $this->currentRow.
@@ -221,7 +225,11 @@ class StatementPrefetch implements \Iterator, StatementInterface {
    *   A PDOStatement object.
    */
   protected function getStatement($query, &$args = []) {
+<<<<<<< HEAD
     return $this->dbh->prepare($query);
+=======
+    return $this->dbh->prepare($query, $this->driverOptions);
+>>>>>>> dev
   }
 
   /**
@@ -418,7 +426,11 @@ class StatementPrefetch implements \Iterator, StatementInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function fetchObject($class_name = NULL, $constructor_args = []) {
+=======
+  public function fetchObject(string $class_name = NULL, array $constructor_arguments = NULL) {
+>>>>>>> dev
     if (isset($this->currentRow)) {
       if (!isset($class_name)) {
         // Directly cast to an object to avoid a function call.
@@ -428,7 +440,11 @@ class StatementPrefetch implements \Iterator, StatementInterface {
         $this->fetchStyle = \PDO::FETCH_CLASS;
         $this->fetchOptions = [
           'class' => $class_name,
+<<<<<<< HEAD
           'constructor_args' => $constructor_args,
+=======
+          'constructor_args' => $constructor_arguments,
+>>>>>>> dev
         ];
         // Grab the row in the format specified above.
         $result = $this->current();

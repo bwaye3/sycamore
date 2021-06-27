@@ -24,7 +24,11 @@ class PreviewTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'node',
     'views',
     'views_ui',
@@ -39,7 +43,11 @@ class PreviewTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function setUp() {
+=======
+  public function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     ViewTestData::createTestViews(self::class, ['views_test_config']);
@@ -235,7 +243,11 @@ class PreviewTest extends WebDriverTestBase {
     $this->assertTrue(!empty($elements), 'The header label is present.');
 
     // Verify link.
+<<<<<<< HEAD
     $this->assertLinkByHref('preview/page_1?_wrapper_format=drupal_ajax&order=name&sort=desc', 0, 'The output URL is as expected.');
+=======
+    $this->assertSession()->linkByHrefExists('preview/page_1?_wrapper_format=drupal_ajax&order=name&sort=desc', 0, 'The output URL is as expected.');
+>>>>>>> dev
 
     // Click link to sort.
     $elements[0]->click();
@@ -244,7 +256,11 @@ class PreviewTest extends WebDriverTestBase {
     $this->assertNotEmpty($sort_link);
 
     // Verify link.
+<<<<<<< HEAD
     $this->assertLinkByHref('preview/page_1?_wrapper_format=drupal_ajax&order=name&sort=asc', 0, 'The output URL is as expected.');
+=======
+    $this->assertSession()->linkByHrefExists('preview/page_1?_wrapper_format=drupal_ajax&order=name&sort=asc', 0, 'The output URL is as expected.');
+>>>>>>> dev
   }
 
   /**

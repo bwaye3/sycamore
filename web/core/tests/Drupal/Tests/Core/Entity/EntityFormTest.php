@@ -2,10 +2,15 @@
 
 namespace Drupal\Tests\Core\Entity;
 
+<<<<<<< HEAD
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityManager;
+=======
+use Drupal\Core\Entity\EntityForm;
+use Drupal\Core\Entity\EntityInterface;
+>>>>>>> dev
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityType;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -37,7 +42,11 @@ class EntityFormTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     $this->entityForm = new EntityForm();
@@ -229,6 +238,7 @@ class EntityFormTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests that setEntityManager triggers proper deprecation errors.
    *
    * @covers ::setEntityManager
@@ -279,6 +289,8 @@ class EntityFormTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Sets up the storage accessed via the entity type manager in the form.
    *
    * @return \Prophecy\Prophecy\ObjectProphecy

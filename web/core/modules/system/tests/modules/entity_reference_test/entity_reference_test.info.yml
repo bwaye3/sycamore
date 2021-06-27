@@ -1,7 +1,10 @@
 name: "Entity Reference Test"
 type: module
 description: "Support module for the Entity Reference tests."
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 package: Testing
 version: VERSION
 dependencies:

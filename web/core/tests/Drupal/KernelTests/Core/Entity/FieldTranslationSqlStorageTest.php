@@ -46,7 +46,11 @@ class FieldTranslationSqlStorageTest extends EntityLanguageTestBase {
     $this->toggleFieldTranslatability($entity_type, $entity_type);
     $entity = $this->reloadEntity($entity);
     foreach ([$this->fieldName, $this->untranslatableFieldName] as $field_name) {
+<<<<<<< HEAD
       $this->assertEqual($entity->get($field_name)->value, $values[$field_name], 'Field language works as expected after switching translatability.');
+=======
+      $this->assertEquals($values[$field_name], $entity->get($field_name)->value, 'Field language works as expected after switching translatability.');
+>>>>>>> dev
     }
 
     // Test that after disabling field translatability translated values are not
@@ -60,7 +64,11 @@ class FieldTranslationSqlStorageTest extends EntityLanguageTestBase {
     $translation->save();
     $this->toggleFieldTranslatability($entity_type, $entity_type);
     $entity = $this->reloadEntity($entity);
+<<<<<<< HEAD
     $this->assertEqual($entity->getTranslation($this->langcodes[1])->get($this->fieldName)->value, $values[$this->fieldName], 'Existing field translations are not loaded for untranslatable fields.');
+=======
+    $this->assertEquals($values[$this->fieldName], $entity->getTranslation($this->langcodes[1])->get($this->fieldName)->value, 'Existing field translations are not loaded for untranslatable fields.');
+>>>>>>> dev
   }
 
   /**
@@ -98,7 +106,11 @@ class FieldTranslationSqlStorageTest extends EntityLanguageTestBase {
       }
     }
 
+<<<<<<< HEAD
     return $this->assertTrue($status, $message);
+=======
+    $this->assertTrue($status, $message);
+>>>>>>> dev
   }
 
 }

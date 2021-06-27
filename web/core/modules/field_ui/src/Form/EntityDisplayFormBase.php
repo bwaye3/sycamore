@@ -14,7 +14,10 @@ use Drupal\Core\Field\FieldTypePluginManagerInterface;
 use Drupal\Core\Field\PluginSettingsInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+<<<<<<< HEAD
 use Drupal\field_ui\Element\FieldUiTable;
+=======
+>>>>>>> dev
 use Drupal\field_ui\FieldUI;
 
 /**
@@ -77,6 +80,7 @@ abstract class EntityDisplayFormBase extends EntityForm {
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface|null $entity_field_manager
    *   (optional) The entity field manager.
    */
+<<<<<<< HEAD
   public function __construct(FieldTypePluginManagerInterface $field_type_manager, PluginManagerBase $plugin_manager, EntityDisplayRepositoryInterface $entity_display_repository = NULL, EntityFieldManagerInterface $entity_field_manager = NULL) {
     $this->fieldTypes = $field_type_manager->getDefinitions();
     $this->pluginManager = $plugin_manager;
@@ -89,6 +93,12 @@ abstract class EntityDisplayFormBase extends EntityForm {
       @trigger_error('Calling EntityDisplayFormBase::__construct() with the $entity_field_manager argument is supported in Drupal 8.7.0 and will be required before Drupal 9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
       $entity_field_manager = \Drupal::service('entity_field.manager');
     }
+=======
+  public function __construct(FieldTypePluginManagerInterface $field_type_manager, PluginManagerBase $plugin_manager, EntityDisplayRepositoryInterface $entity_display_repository, EntityFieldManagerInterface $entity_field_manager) {
+    $this->fieldTypes = $field_type_manager->getDefinitions();
+    $this->pluginManager = $plugin_manager;
+    $this->entityDisplayRepository = $entity_display_repository;
+>>>>>>> dev
     $this->entityFieldManager = $entity_field_manager;
   }
 
@@ -723,6 +733,7 @@ abstract class EntityDisplayFormBase extends EntityForm {
   }
 
   /**
+<<<<<<< HEAD
    * Performs pre-render tasks on field_ui_table elements.
    *
    * @param array $elements
@@ -756,6 +767,8 @@ abstract class EntityDisplayFormBase extends EntityForm {
   }
 
   /**
+=======
+>>>>>>> dev
    * Returns the extra fields of the entity type and bundle used by this form.
    *
    * @return array

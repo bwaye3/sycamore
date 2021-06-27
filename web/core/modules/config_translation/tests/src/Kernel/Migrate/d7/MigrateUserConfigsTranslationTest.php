@@ -17,7 +17,11 @@ class MigrateUserConfigsTranslationTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'language',
     'locale',
     'config_translation',
@@ -26,7 +30,11 @@ class MigrateUserConfigsTranslationTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->installSchema('locale', [
       'locales_source',
@@ -34,6 +42,12 @@ class MigrateUserConfigsTranslationTest extends MigrateDrupal7TestBase {
       'locales_location',
     ]);
     $this->executeMigrations([
+<<<<<<< HEAD
+=======
+      'language',
+      'd7_user_mail',
+      'd7_user_settings',
+>>>>>>> dev
       'd7_user_mail_translation',
       'd7_user_settings_translation',
     ]);

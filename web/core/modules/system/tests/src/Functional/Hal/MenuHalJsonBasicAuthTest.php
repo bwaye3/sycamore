@@ -15,7 +15,11 @@ class MenuHalJsonBasicAuthTest extends MenuResourceTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['hal', 'basic_auth'];
+=======
+  protected static $modules = ['hal', 'basic_auth'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}

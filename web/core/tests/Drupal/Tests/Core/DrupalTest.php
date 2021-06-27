@@ -9,7 +9,10 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\Query\QueryAggregateInterface;
 use Drupal\Core\Entity\Query\QueryInterface;
 use Drupal\Tests\UnitTestCase;
+<<<<<<< HEAD
 use Drupal\Core\Url;
+=======
+>>>>>>> dev
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -30,7 +33,11 @@ class DrupalTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
       ->setMethods(['get'])
@@ -77,6 +84,7 @@ class DrupalTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests the entityManager() method.
    *
    * @covers ::entityManager
@@ -89,6 +97,8 @@ class DrupalTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests the entityTypeManager() method.
    *
    * @covers ::entityTypeManager
@@ -357,6 +367,7 @@ class DrupalTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests the url() method.
    *
    * @covers ::url
@@ -379,6 +390,8 @@ class DrupalTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests the linkGenerator() method.
    *
    * @covers ::linkGenerator
@@ -389,6 +402,7 @@ class DrupalTest extends UnitTestCase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests the l() method.
    *
    * @covers ::l
@@ -414,6 +428,8 @@ class DrupalTest extends UnitTestCase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests the translation() method.
    *
    * @covers ::translation

@@ -70,6 +70,7 @@ class CommentController extends ControllerBase {
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository service.
    */
+<<<<<<< HEAD
   public function __construct(HttpKernelInterface $http_kernel, CommentManagerInterface $comment_manager, EntityTypeManagerInterface $entity_type_manager, EntityFieldManagerInterface $entity_field_manager = NULL, EntityRepositoryInterface $entity_repository = NULL) {
     $this->httpKernel = $http_kernel;
     $this->commentManager = $comment_manager;
@@ -83,6 +84,13 @@ class CommentController extends ControllerBase {
       @trigger_error('The entity.repository service must be passed to CommentController::__construct(), it is required before Drupal 9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
       $entity_repository = \Drupal::service('entity.repository');
     }
+=======
+  public function __construct(HttpKernelInterface $http_kernel, CommentManagerInterface $comment_manager, EntityTypeManagerInterface $entity_type_manager, EntityFieldManagerInterface $entity_field_manager, EntityRepositoryInterface $entity_repository) {
+    $this->httpKernel = $http_kernel;
+    $this->commentManager = $comment_manager;
+    $this->entityTypeManager = $entity_type_manager;
+    $this->entityFieldManager = $entity_field_manager;
+>>>>>>> dev
     $this->entityRepository = $entity_repository;
   }
 
@@ -250,7 +258,11 @@ class CommentController extends ControllerBase {
         $build['comment_parent'] = $this->entityTypeManager()->getViewBuilder('comment')->view($comment);
       }
 
+<<<<<<< HEAD
       // The comment is in response to a entity.
+=======
+      // The comment is in response to an entity.
+>>>>>>> dev
       elseif ($entity->access('view', $account)) {
         // We make sure the field value isn't set so we don't end up with a
         // redirect loop.

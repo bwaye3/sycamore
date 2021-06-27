@@ -5,7 +5,10 @@ namespace Drupal\views\Plugin\views\argument_default;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Form\FormStateInterface;
+<<<<<<< HEAD
 use Drupal\Core\Path\AliasManagerInterface as CoreAliasManagerInterface;
+=======
+>>>>>>> dev
 use Drupal\Core\Path\CurrentPathStack;
 use Drupal\path_alias\AliasManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -50,6 +53,7 @@ class Raw extends ArgumentDefaultPluginBase implements CacheableDependencyInterf
    * @param \Drupal\Core\Path\CurrentPathStack $current_path
    *   The current path.
    */
+<<<<<<< HEAD
   public function __construct(array $configuration, $plugin_id, $plugin_definition, $alias_manager, CurrentPathStack $current_path) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
@@ -58,6 +62,10 @@ class Raw extends ArgumentDefaultPluginBase implements CacheableDependencyInterf
       $alias_manager = \Drupal::service('path_alias.manager');
     }
 
+=======
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, AliasManagerInterface $alias_manager, CurrentPathStack $current_path) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+>>>>>>> dev
     $this->aliasManager = $alias_manager;
     $this->currentPath = $current_path;
   }

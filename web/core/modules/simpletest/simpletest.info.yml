@@ -1,7 +1,14 @@
 name: Testing
 type: module
+<<<<<<< HEAD
 description: 'Provides a framework for unit and functional testing.'
 package: Core
 version: VERSION
 core: 8.x
 configure: simpletest.settings
+=======
+description: 'Deprecated. SimpleTest has been removed from core.'
+package: Core
+version: VERSION
+hidden: true
+>>>>>>> dev

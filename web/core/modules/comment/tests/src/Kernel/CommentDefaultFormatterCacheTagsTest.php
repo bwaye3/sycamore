@@ -26,14 +26,32 @@ class CommentDefaultFormatterCacheTagsTest extends EntityKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['entity_test', 'comment'];
+=======
+  protected static $modules = ['entity_test', 'comment'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
     parent::setUp();
 
+=======
+  protected function setUp(): void {
+    parent::setUp();
+
+    // Create user 1 so that the user created later in the test has a different
+    // user ID.
+    // @todo Remove in https://www.drupal.org/node/540008.
+    $this->createUser(['uid' => 1, 'name' => 'user1'])->save();
+
+    $this->container->get('module_handler')->loadInclude('comment', 'install');
+    comment_install();
+
+>>>>>>> dev
     $session = new Session();
 
     $request = Request::create('/');
@@ -48,15 +66,22 @@ class CommentDefaultFormatterCacheTagsTest extends EntityKernelTestBase {
     // user does not have access to the 'administer comments' permission, to
     // ensure only published comments are visible to the end user.
     $current_user = $this->container->get('current_user');
+<<<<<<< HEAD
     $current_user->setAccount($this->createUser([], ['access comments']));
+=======
+    $current_user->setAccount($this->createUser([], ['access comments', 'post comments']));
+>>>>>>> dev
 
     // Install tables and config needed to render comments.
     $this->installSchema('comment', ['comment_entity_statistics']);
     $this->installConfig(['system', 'filter', 'comment']);
 
+<<<<<<< HEAD
     // Comment rendering generates links, so build the router.
     $this->container->get('router.builder')->rebuild();
 
+=======
+>>>>>>> dev
     // Set up a field, so that the entity that'll be referenced bubbles up a
     // cache tag when rendering it entirely.
     $this->addDefaultCommentField('entity_test', 'entity_test');
@@ -88,7 +113,11 @@ class CommentDefaultFormatterCacheTagsTest extends EntityKernelTestBase {
       'config:user.settings',
     ];
     sort($expected_cache_tags);
+<<<<<<< HEAD
     $this->assertEqual($build['#cache']['tags'], $expected_cache_tags);
+=======
+    $this->assertEquals($expected_cache_tags, $build['#cache']['tags']);
+>>>>>>> dev
 
     // Create a comment on that entity. Comment loading requires that the uid
     // also exists in the {users} table.
@@ -128,7 +157,11 @@ class CommentDefaultFormatterCacheTagsTest extends EntityKernelTestBase {
       'comment:' . $comment->id(),
       'config:filter.format.plain_text',
       'user_view',
+<<<<<<< HEAD
       'user:2',
+=======
+      'user:' . $user->id(),
+>>>>>>> dev
       'config:core.entity_form_display.comment.comment.default',
       'config:field.field.comment.comment.comment_body',
       'config:field.field.entity_test.entity_test.comment',
@@ -136,7 +169,11 @@ class CommentDefaultFormatterCacheTagsTest extends EntityKernelTestBase {
       'config:user.settings',
     ];
     sort($expected_cache_tags);
+<<<<<<< HEAD
     $this->assertEqual($build['#cache']['tags'], $expected_cache_tags);
+=======
+    $this->assertEquals($expected_cache_tags, $build['#cache']['tags']);
+>>>>>>> dev
 
     // Build a render array with the entity in a sub-element so that lazy
     // builder elements bubble up outside of the entity and we can check that
@@ -149,8 +186,13 @@ class CommentDefaultFormatterCacheTagsTest extends EntityKernelTestBase {
 
     // The entity itself was cached but the top-level element is max-age 0 due
     // to the bubbled up max age due to the lazy-built comment form.
+<<<<<<< HEAD
     $this->assertIdentical(Cache::PERMANENT, $build['entity']['#cache']['max-age']);
     $this->assertIdentical(0, $build['#cache']['max-age'], 'Top level render array has max-age 0');
+=======
+    $this->assertSame(Cache::PERMANENT, $build['entity']['#cache']['max-age']);
+    $this->assertSame(0, $build['#cache']['max-age'], 'Top level render array has max-age 0');
+>>>>>>> dev
 
     // The children (fields) of the entity render array are only built in case
     // of a cache miss.

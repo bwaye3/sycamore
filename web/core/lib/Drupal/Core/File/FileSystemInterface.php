@@ -33,6 +33,23 @@ interface FileSystemInterface {
   const MODIFY_PERMISSIONS = 2;
 
   /**
+<<<<<<< HEAD
+=======
+   * A list of insecure extensions.
+   *
+   * @see \Drupal\Core\File\FileSystemInterface::INSECURE_EXTENSION_REGEX
+   */
+  public const INSECURE_EXTENSIONS = ['phar', 'php', 'pl', 'py', 'cgi', 'asp', 'js'];
+
+  /**
+   * The regex pattern used when checking for insecure file types.
+   *
+   * @see \Drupal\Core\File\FileSystemInterface::INSECURE_EXTENSIONS
+   */
+  public const INSECURE_EXTENSION_REGEX = '/\.(phar|php|pl|py|cgi|asp|js)(\.|$)/i';
+
+  /**
+>>>>>>> dev
    * Moves an uploaded file to a new location.
    *
    * PHP's move_uploaded_file() does not properly support streams if
@@ -233,6 +250,7 @@ interface FileSystemInterface {
   public function tempnam($directory, $prefix);
 
   /**
+<<<<<<< HEAD
    * Returns the scheme of a URI (e.g. a stream).
    *
    * @param string $uri
@@ -273,6 +291,8 @@ interface FileSystemInterface {
   public function validScheme($scheme);
 
   /**
+=======
+>>>>>>> dev
    * Copies a file to a new location without invoking the file API.
    *
    * This is a powerful function that in many ways performs like an advanced

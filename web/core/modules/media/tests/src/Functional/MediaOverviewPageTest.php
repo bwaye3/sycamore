@@ -21,13 +21,21 @@ class MediaOverviewPageTest extends MediaFunctionalTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->drupalLogin($this->nonAdminUser);
   }
 
   /**
+<<<<<<< HEAD
    * Test that the Media overview page (/admin/content/media).
+=======
+   * Tests that the Media overview page (/admin/content/media).
+>>>>>>> dev
    */
   public function testMediaOverviewPage() {
     $assert_session = $this->assertSession();

@@ -68,7 +68,11 @@ function system_token_info() {
   ];
   $date['custom'] = [
     'name' => t("Custom format"),
+<<<<<<< HEAD
     'description' => t('A date in a custom format. See <a href="http://php.net/manual/function.date.php">the PHP documentation</a> for details.'),
+=======
+    'description' => t('A date in a custom format. See <a href="https://www.php.net/manual/datetime.format.php#refsect1-datetime.format-parameters">the PHP documentation</a> for details.'),
+>>>>>>> dev
   ];
   $date['since'] = [
     'name' => t("Time-since"),

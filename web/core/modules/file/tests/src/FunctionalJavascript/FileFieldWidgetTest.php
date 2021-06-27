@@ -40,7 +40,11 @@ class FileFieldWidgetTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->adminUser = $this->drupalCreateUser([
       'access content',
@@ -108,7 +112,11 @@ class FileFieldWidgetTest extends WebDriverTestBase {
             $check_field_name = $field_name;
           }
 
+<<<<<<< HEAD
           $this->assertIdentical($button->getAttribute('name'), $check_field_name . '_' . $key . '_remove_button');
+=======
+          $this->assertSame($check_field_name . '_' . $key . '_remove_button', $button->getAttribute('name'));
+>>>>>>> dev
         }
 
         $button_name = $current_field_name . '_' . $delta . '_remove_button';
@@ -122,6 +130,7 @@ class FileFieldWidgetTest extends WebDriverTestBase {
         // correct name.
         $upload_button_name = $current_field_name . '_' . $remaining . '_upload_button';
         $this->assertNotNull($assert_session->waitForButton($upload_button_name));
+<<<<<<< HEAD
         $buttons = $this->xpath('//input[@type="submit" and @value="Upload" and @name=:name]', [':name' => $upload_button_name]);
         $this->assertCount(1, $buttons, 'The upload button is displayed with the correct name.');
 
@@ -129,6 +138,15 @@ class FileFieldWidgetTest extends WebDriverTestBase {
         $buttons = $this->xpath('//input[@type="submit" and @value="Upload"]');
         $expected = $current_field_name == $field_name ? 1 : 2;
         $this->assertCount($expected, $buttons, 'After removing a file, only one "Upload" button for each possible field is displayed.');
+=======
+        $button = $this->assertSession()->buttonExists($upload_button_name);
+        $this->assertSame('Upload', $button->getValue());
+
+        // Verify that after removing a file, only one "Upload" button for each
+        // possible field is displayed.
+        $expected = $current_field_name == $field_name ? 1 : 2;
+        $this->assertSession()->elementsCount('xpath', '//input[@type="submit" and @value="Upload"]', $expected);
+>>>>>>> dev
       }
     }
   }

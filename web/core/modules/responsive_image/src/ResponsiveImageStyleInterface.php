@@ -129,7 +129,11 @@ interface ResponsiveImageStyleInterface extends ConfigEntityInterface {
   public static function isEmptyImageStyleMapping(array $image_style_mapping);
 
   /**
+<<<<<<< HEAD
    * Adds a image style mapping to the responsive image configuration entity.
+=======
+   * Adds an image style mapping to the responsive image configuration entity.
+>>>>>>> dev
    *
    * @param string $breakpoint_id
    *   The breakpoint ID.

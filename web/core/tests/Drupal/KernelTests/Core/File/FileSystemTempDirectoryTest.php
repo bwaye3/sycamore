@@ -19,7 +19,11 @@ class FileSystemTempDirectoryTest extends KernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = ['system'];
+=======
+  protected static $modules = ['system'];
+>>>>>>> dev
 
   /**
    * The file system under test.
@@ -31,7 +35,11 @@ class FileSystemTempDirectoryTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $stream_wrapper_manager = $this->container->get('stream_wrapper_manager');
     $logger = $this->container->get('logger.channel.file');
@@ -51,6 +59,7 @@ class FileSystemTempDirectoryTest extends KernelTestBase {
   }
 
   /**
+<<<<<<< HEAD
    * Tests 'path.temporary' config deprecation.
    *
    * @group legacy
@@ -68,6 +77,8 @@ class FileSystemTempDirectoryTest extends KernelTestBase {
   }
 
   /**
+=======
+>>>>>>> dev
    * Tests os default fallback.
    *
    * @covers ::getTempDirectory

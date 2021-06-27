@@ -15,7 +15,11 @@ class ContentModerationStateResourceTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['serialization', 'rest', 'content_moderation'];
+=======
+  protected static $modules = ['serialization', 'rest', 'content_moderation'];
+>>>>>>> dev
 
   /**
    * @see \Drupal\content_moderation\Entity\ContentModerationState

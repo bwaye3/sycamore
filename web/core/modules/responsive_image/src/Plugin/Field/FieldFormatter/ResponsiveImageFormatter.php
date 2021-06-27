@@ -7,7 +7,10 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
+<<<<<<< HEAD
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+=======
+>>>>>>> dev
 use Drupal\Core\Url;
 use Drupal\file\FileInterface;
 use Drupal\image\Plugin\Field\FieldFormatter\ImageFormatterBase;
@@ -30,14 +33,22 @@ use Drupal\Core\Utility\LinkGeneratorInterface;
  *   }
  * )
  */
+<<<<<<< HEAD
 class ResponsiveImageFormatter extends ImageFormatterBase implements ContainerFactoryPluginInterface {
+=======
+class ResponsiveImageFormatter extends ImageFormatterBase {
+>>>>>>> dev
 
   /**
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
   protected $responsiveImageStyleStorage;
 
+<<<<<<< HEAD
   /*
+=======
+  /**
+>>>>>>> dev
    * The image style entity storage.
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
@@ -128,6 +139,10 @@ class ResponsiveImageFormatter extends ImageFormatterBase implements ContainerFa
   public function settingsForm(array $form, FormStateInterface $form_state) {
     $responsive_image_options = [];
     $responsive_image_styles = $this->responsiveImageStyleStorage->loadMultiple();
+<<<<<<< HEAD
+=======
+    uasort($responsive_image_styles, '\Drupal\responsive_image\Entity\ResponsiveImageStyle::sort');
+>>>>>>> dev
     if ($responsive_image_styles && !empty($responsive_image_styles)) {
       foreach ($responsive_image_styles as $machine_name => $responsive_image_style) {
         if ($responsive_image_style->hasImageStyleMappings()) {

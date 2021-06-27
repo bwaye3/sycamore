@@ -1,5 +1,8 @@
 type: theme
 base theme: stable
+<<<<<<< HEAD
 core: 8.x
+=======
+>>>>>>> dev
 name: 'Test theme with a too long name'
 version: VERSION

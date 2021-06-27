@@ -20,7 +20,11 @@ class YamlDiscoveryTest extends TestCase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     // Ensure that FileCacheFactory has a prefix.
     FileCacheFactory::setPrefix('prefix');
   }
@@ -54,7 +58,11 @@ class YamlDiscoveryTest extends TestCase {
     $discovery = new YamlDiscovery('test', $directories);
     $data = $discovery->findAll();
 
+<<<<<<< HEAD
     $this->assertEquals(count($data), count($directories));
+=======
+    $this->assertCount(4, $data);
+>>>>>>> dev
     $this->assertArrayHasKey('test_1', $data);
     $this->assertArrayHasKey('test_2', $data);
     $this->assertArrayHasKey('test_3', $data);

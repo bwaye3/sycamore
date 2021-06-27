@@ -80,7 +80,11 @@ class FieldableEntityDefinitionUpdateTest extends EntityKernelTestBase {
    *
    * @var array
    */
+<<<<<<< HEAD
   public static $modules = [
+=======
+  protected static $modules = [
+>>>>>>> dev
     'content_translation',
     'entity_test_update',
     'language',
@@ -89,7 +93,11 @@ class FieldableEntityDefinitionUpdateTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
     $this->entityDefinitionUpdateManager = $this->container->get('entity.definition_update_manager');
     $this->lastInstalledSchemaRepository = $this->container->get('entity.last_installed_schema.repository');
@@ -295,7 +303,11 @@ class FieldableEntityDefinitionUpdateTest extends EntityKernelTestBase {
     // least three times.
     /** @var \Drupal\Core\Entity\TranslatableRevisionableStorageInterface|\Drupal\Core\Entity\EntityStorageInterface $storage */
     $storage = $this->entityTypeManager->getStorage($this->entityTypeId);
+<<<<<<< HEAD
     $next_id = $storage->getQuery()->count()->execute() + 1;
+=======
+    $next_id = $storage->getQuery()->accessCheck(FALSE)->count()->execute() + 1;
+>>>>>>> dev
 
     // Create test entities with two translations and two revisions.
     /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
@@ -410,7 +422,16 @@ class FieldableEntityDefinitionUpdateTest extends EntityKernelTestBase {
     }
 
     if ($revisionable) {
+<<<<<<< HEAD
       $revisions_result = $this->entityTypeManager->getStorage($this->entityTypeId)->getQuery()->allRevisions()->execute();
+=======
+      $revisions_result = $this->entityTypeManager
+        ->getStorage($this->entityTypeId)
+        ->getQuery()
+        ->accessCheck(FALSE)
+        ->allRevisions()
+        ->execute();
+>>>>>>> dev
       $revisions = $this->entityTypeManager->getStorage($this->entityTypeId)->loadMultipleRevisions(array_keys($revisions_result));
       $this->assertCount(6, $revisions);
 

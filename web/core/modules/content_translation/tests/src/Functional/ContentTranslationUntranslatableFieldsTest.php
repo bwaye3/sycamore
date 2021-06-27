@@ -17,7 +17,11 @@ class ContentTranslationUntranslatableFieldsTest extends ContentTranslationPendi
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['field_test'];
+=======
+  protected static $modules = ['field_test'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -27,7 +31,11 @@ class ContentTranslationUntranslatableFieldsTest extends ContentTranslationPendi
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     parent::setUp();
 
     // Configure one field as untranslatable.
@@ -35,7 +43,12 @@ class ContentTranslationUntranslatableFieldsTest extends ContentTranslationPendi
     $edit = [
       'settings[' . $this->entityTypeId . '][' . $this->bundle . '][fields][' . $this->fieldName . ']' => 0,
     ];
+<<<<<<< HEAD
     $this->drupalPostForm('admin/config/regional/content-language', $edit, 'Save configuration');
+=======
+    $this->drupalGet('admin/config/regional/content-language');
+    $this->submitForm($edit, 'Save configuration');
+>>>>>>> dev
 
     /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager */
     $entity_field_manager = $this->container->get('entity_field.manager');
@@ -104,7 +117,11 @@ class ContentTranslationUntranslatableFieldsTest extends ContentTranslationPendi
     $this->assertNotEmpty($this->xpath($field_xpath));
     $this->assertNotEmpty($this->xpath($clue_xpath));
     $this->assertSession()->pageTextContains('Untranslatable-but-visible test field');
+<<<<<<< HEAD
     $this->drupalPostForm(NULL, [], 'Save');
+=======
+    $this->submitForm([], 'Save');
+>>>>>>> dev
 
     // Check that the widget is displayed along with its clue in the edit form
     // for both languages.
@@ -120,7 +137,12 @@ class ContentTranslationUntranslatableFieldsTest extends ContentTranslationPendi
     // language edit forms.
     $settings_key = 'settings[' . $this->entityTypeId . '][' . $this->bundle . '][settings][content_translation][untranslatable_fields_hide]';
     $settings_url = 'admin/config/regional/content-language';
+<<<<<<< HEAD
     $this->drupalPostForm($settings_url, [$settings_key => 1], 'Save configuration');
+=======
+    $this->drupalGet($settings_url);
+    $this->submitForm([$settings_key => 1], 'Save configuration');
+>>>>>>> dev
 
     // Verify that the widget is displayed in the default language edit form,
     // but no clue is displayed.
@@ -145,7 +167,12 @@ class ContentTranslationUntranslatableFieldsTest extends ContentTranslationPendi
 
     // Configure untranslatable field widgets to be displayed on non-default
     // language edit forms.
+<<<<<<< HEAD
     $this->drupalPostForm($settings_url, [$settings_key => 0], 'Save configuration');
+=======
+    $this->drupalGet($settings_url);
+    $this->submitForm([$settings_key => 0], 'Save configuration');
+>>>>>>> dev
 
     // Check that the widget is displayed along with its clue in the edit form
     // for both languages.
@@ -171,12 +198,21 @@ class ContentTranslationUntranslatableFieldsTest extends ContentTranslationPendi
     // Verify that checkboxes on the language content settings page are checked
     // and disabled for moderated bundles.
     $this->drupalGet($settings_url);
+<<<<<<< HEAD
     $input_xpath = '//input[@name="settings[' . $this->entityTypeId . '][' . $this->bundle . '][settings][content_translation][untranslatable_fields_hide]" and @value=1 and @disabled="disabled"]';
     $elements = $this->xpath($input_xpath);
     $this->assertNotEmpty($elements);
     $this->drupalPostForm(NULL, [$settings_key => 0], 'Save configuration');
     $elements = $this->xpath($input_xpath);
     $this->assertNotEmpty($elements);
+=======
+    $field_name = "settings[{$this->entityTypeId}][{$this->bundle}][settings][content_translation][untranslatable_fields_hide]";
+    $this->assertSession()->fieldValueEquals($field_name, 1);
+    $this->assertSession()->fieldDisabled($field_name);
+    $this->submitForm([$settings_key => 0], 'Save configuration');
+    $this->assertSession()->fieldValueEquals($field_name, 1);
+    $this->assertSession()->fieldDisabled($field_name);
+>>>>>>> dev
   }
 
 }

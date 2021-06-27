@@ -118,7 +118,11 @@ class TaxonomyIndexTid extends PrerenderList {
   }
 
   /**
+<<<<<<< HEAD
    * Add this term to the query
+=======
+   * Add this term to the query.
+>>>>>>> dev
    */
   public function query() {
     $this->addAdditionalFields();

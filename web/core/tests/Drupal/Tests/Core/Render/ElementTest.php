@@ -5,7 +5,10 @@ namespace Drupal\Tests\Core\Render;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Tests\UnitTestCase;
 use Drupal\Core\Render\Element;
+<<<<<<< HEAD
 use PHPUnit\Framework\Error\Error;
+=======
+>>>>>>> dev
 
 /**
  * @coversDefaultClass \Drupal\Core\Render\Element
@@ -107,8 +110,13 @@ class ElementTest extends UnitTestCase {
     $element = [
       'foo' => 'bar',
     ];
+<<<<<<< HEAD
     $this->expectException(Error::class);
     $this->expectExceptionMessage('"foo" is an invalid render array key');
+=======
+    $this->expectError();
+    $this->expectErrorMessage('"foo" is an invalid render array key');
+>>>>>>> dev
     Element::children($element);
   }
 

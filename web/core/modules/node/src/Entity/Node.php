@@ -258,6 +258,7 @@ class Node extends EditorialContentEntityBase implements NodeInterface {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public function getRevisionAuthor() {
     @trigger_error(__NAMESPACE__ . '\Node::getRevisionAuthor is deprecated in drupal:8.2.0 and is removed from drupal:9.0.0. Use \Drupal\Core\Entity\RevisionLogInterface::getRevisionUser() instead. See https://www.drupal.org/node/3069750', E_USER_DEPRECATED);
     return $this->getRevisionUser();
@@ -274,6 +275,8 @@ class Node extends EditorialContentEntityBase implements NodeInterface {
   /**
    * {@inheritdoc}
    */
+=======
+>>>>>>> dev
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
     $fields += static::ownerBaseFieldDefinitions($entity_type);
@@ -378,6 +381,7 @@ class Node extends EditorialContentEntityBase implements NodeInterface {
     return $fields;
   }
 
+<<<<<<< HEAD
   /**
    * Default value callback for 'uid' base field definition.
    *
@@ -394,4 +398,6 @@ class Node extends EditorialContentEntityBase implements NodeInterface {
     return [\Drupal::currentUser()->id()];
   }
 
+=======
+>>>>>>> dev
 }

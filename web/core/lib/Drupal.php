@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 /**
  * @file
  * Contains \Drupal.
@@ -8,6 +9,9 @@
 use Drupal\Core\DependencyInjection\ContainerNotInitializedException;
 use Drupal\Core\Messenger\LegacyMessenger;
 use Drupal\Core\Url;
+=======
+use Drupal\Core\DependencyInjection\ContainerNotInitializedException;
+>>>>>>> dev
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -82,7 +86,11 @@ class Drupal {
   /**
    * The current system version.
    */
+<<<<<<< HEAD
   const VERSION = '8.9.16';
+=======
+  const VERSION = '9.2.0';
+>>>>>>> dev
 
   /**
    * Core API compatibility.
@@ -95,6 +103,56 @@ class Drupal {
   const CORE_MINIMUM_SCHEMA_VERSION = 8000;
 
   /**
+<<<<<<< HEAD
+=======
+   * Minimum supported version of PHP.
+   *
+   * Below this version:
+   * - New sites cannot be installed, except from within tests.
+   * - Updates from previous Drupal versions can be run, but users are warned
+   *   that Drupal no longer supports that PHP version.
+   * - An error is shown in the status report that the PHP version is too old.
+   */
+  const MINIMUM_SUPPORTED_PHP = '7.3.0';
+
+  /**
+   * Minimum allowed version of PHP for Drupal to be bootstrapped.
+   *
+   * Below this version:
+   * - The installer cannot be run.
+   * - Updates cannot be run.
+   * - Modules and themes cannot be enabled.
+   * - If a site managed to bypass all of the above, then an error is shown in
+   *   the status report and various fatal errors occur on various pages.
+   *
+   * Note: To prevent the installer from having fatal errors on older versions
+   * of PHP, the value of this constant is hardcoded twice in core/install.php:
+   * - Once as a parameter of version_compare()
+   * - Once in the error message printed to the user immediately after.
+   * Remember to update both whenever this constant is updated.
+   */
+  const MINIMUM_PHP = '7.3.0';
+
+  /**
+   * Minimum recommended value of PHP memory_limit.
+   *
+   * 64M was chosen as a minimum requirement in order to allow for additional
+   * contributed modules to be installed prior to hitting the limit. However,
+   * 40M is the target for the Standard installation profile.
+   */
+  const MINIMUM_PHP_MEMORY_LIMIT = '64M';
+
+  /**
+   * Minimum recommended version of PHP.
+   *
+   * Sites installing Drupal on PHP versions lower than this will see a warning
+   * message, but Drupal can still be installed. Used for (e.g.) PHP versions
+   * that have reached their EOL or will in the near future.
+   */
+  const RECOMMENDED_PHP = '7.4';
+
+  /**
+>>>>>>> dev
    * The currently active container object, or NULL if not initialized yet.
    *
    * @var \Symfony\Component\DependencyInjection\ContainerInterface|null
@@ -178,7 +236,11 @@ class Drupal {
    * @return string
    */
   public static function root() {
+<<<<<<< HEAD
     return static::getContainer()->get('app.root');
+=======
+    return static::getContainer()->getParameter('app.root');
+>>>>>>> dev
   }
 
   /**
@@ -265,6 +327,7 @@ class Drupal {
   }
 
   /**
+<<<<<<< HEAD
    * Retrieves the entity manager service.
    *
    * @return \Drupal\Core\Entity\EntityManagerInterface
@@ -282,6 +345,8 @@ class Drupal {
   }
 
   /**
+=======
+>>>>>>> dev
    * Retrieves the entity type manager.
    *
    * @return \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -553,6 +618,7 @@ class Drupal {
   }
 
   /**
+<<<<<<< HEAD
    * Generates a URL string for a specific route based on the given parameters.
    *
    * This method is a convenience wrapper for generating URL strings for URLs
@@ -592,6 +658,8 @@ class Drupal {
   }
 
   /**
+=======
+>>>>>>> dev
    * Returns the link generator service.
    *
    * @return \Drupal\Core\Utility\LinkGeneratorInterface
@@ -601,6 +669,7 @@ class Drupal {
   }
 
   /**
+<<<<<<< HEAD
    * Renders a link with a given link text and Url object.
    *
    * This method is a convenience wrapper for the link generator service's
@@ -628,6 +697,8 @@ class Drupal {
   }
 
   /**
+=======
+>>>>>>> dev
    * Returns the string translation service.
    *
    * @return \Drupal\Core\StringTranslation\TranslationManager
@@ -783,9 +854,13 @@ class Drupal {
    *   The messenger.
    */
   public static function messenger() {
+<<<<<<< HEAD
     // @todo Replace with service once LegacyMessenger is removed in 9.0.0.
     // @see https://www.drupal.org/node/2928994
     return new LegacyMessenger();
+=======
+    return static::getContainer()->get('messenger');
+>>>>>>> dev
   }
 
 }

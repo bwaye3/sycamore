@@ -33,7 +33,11 @@ class XmlEncoderTest extends UnitTestCase {
    */
   protected $testArray = ['test' => 'test'];
 
+<<<<<<< HEAD
   protected function setUp() {
+=======
+  protected function setUp(): void {
+>>>>>>> dev
     $this->baseEncoder = $this->createMock(BaseXmlEncoder::class);
     $this->encoder = new XmlEncoder();
     $this->encoder->setBaseEncoder($this->baseEncoder);
@@ -86,8 +90,13 @@ class XmlEncoderTest extends UnitTestCase {
     // The serializer should be set on the Drupal encoder, which should then
     // set it on our default encoder.
     $encoder = new XmlEncoder();
+<<<<<<< HEAD
     $serialzer = new Serializer([new GetSetMethodNormalizer()]);
     $encoder->setSerializer($serialzer);
+=======
+    $serializer = new Serializer([new GetSetMethodNormalizer()]);
+    $encoder->setSerializer($serializer);
+>>>>>>> dev
     $base_encoder = $encoder->getBaseEncoder();
     $this->assertInstanceOf(BaseXmlEncoder::class, $base_encoder);
     // Test the encoder.

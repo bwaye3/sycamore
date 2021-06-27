@@ -22,7 +22,11 @@ class RestExportJsonApiUnsupported extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['jsonapi', 'rest_test_views', 'views_ui'];
+=======
+  protected static $modules = ['jsonapi', 'rest_test_views', 'views_ui'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -32,9 +36,15 @@ class RestExportJsonApiUnsupported extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   protected function setUp($import_test_views = TRUE) {
     parent::setUp($import_test_views);
     ViewTestData::createTestViews(get_class($this), ['rest_test_views']);
+=======
+  protected function setUp($import_test_views = TRUE): void {
+    parent::setUp($import_test_views);
+    ViewTestData::createTestViews(static::class, ['rest_test_views']);
+>>>>>>> dev
 
     $this->drupalLogin($this->drupalCreateUser(['administer views']));
   }

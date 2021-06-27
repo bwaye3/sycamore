@@ -130,7 +130,11 @@ abstract class AccountForm extends ContentEntityForm implements TrustedCallbackI
       // To skip the current password field, the user must have logged in via a
       // one-time link and have the token in the URL. Store this in $form_state
       // so it persists even on subsequent Ajax requests.
+<<<<<<< HEAD
       if (!$form_state->get('user_pass_reset') && ($token = $this->getRequest()->get('pass-reset-token'))) {
+=======
+      if (!$form_state->get('user_pass_reset') && ($token = $this->getRequest()->query->get('pass-reset-token'))) {
+>>>>>>> dev
         $session_key = 'pass_reset_' . $account->id();
         $user_pass_reset = isset($_SESSION[$session_key]) && hash_equals($_SESSION[$session_key], $token);
         $form_state->set('user_pass_reset', $user_pass_reset);
@@ -281,7 +285,11 @@ abstract class AccountForm extends ContentEntityForm implements TrustedCallbackI
     $system_date_config = \Drupal::config('system.date');
     $form['timezone'] = [
       '#type' => 'details',
+<<<<<<< HEAD
       '#title' => t('Locale settings'),
+=======
+      '#title' => $this->t('Locale settings'),
+>>>>>>> dev
       '#open' => TRUE,
       '#weight' => 6,
       '#access' => $system_date_config->get('timezone.user.configurable'),
@@ -291,10 +299,17 @@ abstract class AccountForm extends ContentEntityForm implements TrustedCallbackI
     }
     $form['timezone']['timezone'] = [
       '#type' => 'select',
+<<<<<<< HEAD
       '#title' => t('Time zone'),
       '#default_value' => $account->getTimezone() ?: $system_date_config->get('timezone.default'),
       '#options' => system_time_zones($account->id() != $user->id(), TRUE),
       '#description' => t('Select the desired local time and time zone. Dates and times throughout this site will be displayed using this time zone.'),
+=======
+      '#title' => $this->t('Time zone'),
+      '#default_value' => $account->getTimezone() ?: $system_date_config->get('timezone.default'),
+      '#options' => system_time_zones($account->id() != $user->id(), TRUE),
+      '#description' => $this->t('Select the desired local time and time zone. Dates and times throughout this site will be displayed using this time zone.'),
+>>>>>>> dev
     ];
 
     // If not set or selected yet, detect timezone for the current user only.

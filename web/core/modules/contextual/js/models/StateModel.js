@@ -9,6 +9,7 @@
   Drupal.contextual.StateModel = Backbone.Model.extend({
     defaults: {
       title: '',
+<<<<<<< HEAD
 
       regionIsHovered: false,
 
@@ -25,6 +26,21 @@
       if (newIsOpen) {
         this.focus();
       }
+=======
+      regionIsHovered: false,
+      hasFocus: false,
+      isOpen: false,
+      isLocked: false
+    },
+    toggleOpen: function toggleOpen() {
+      var newIsOpen = !this.get('isOpen');
+      this.set('isOpen', newIsOpen);
+
+      if (newIsOpen) {
+        this.focus();
+      }
+
+>>>>>>> dev
       return this;
     },
     close: function close() {
@@ -45,6 +61,10 @@
       if (!this.get('isOpen')) {
         this.set('hasFocus', false);
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
       return this;
     }
   });

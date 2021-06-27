@@ -8,8 +8,12 @@
 (function ($, Drupal, drupalSettings) {
   function findFieldForFormatSelector($formatSelector) {
     var fieldId = $formatSelector.attr('data-editor-for');
+<<<<<<< HEAD
 
     return $('#' + fieldId).get(0);
+=======
+    return $("#".concat(fieldId)).get(0);
+>>>>>>> dev
   }
 
   function filterXssWhenSwitching(field, format, originalFormatID, callback) {
@@ -17,7 +21,11 @@
       callback(field, format);
     } else {
         $.ajax({
+<<<<<<< HEAD
           url: Drupal.url('editor/filter_xss/' + format.format),
+=======
+          url: Drupal.url("editor/filter_xss/".concat(format.format)),
+>>>>>>> dev
           type: 'POST',
           data: {
             value: field.value,
@@ -28,6 +36,10 @@
             if (xssFilteredValue !== false) {
               field.value = xssFilteredValue;
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
             callback(field, format);
           }
         });
@@ -62,13 +74,22 @@
     }
 
     var supportContentFiltering = drupalSettings.editor.formats[newFormatID] && drupalSettings.editor.formats[newFormatID].editorSupportsContentFiltering;
+<<<<<<< HEAD
 
     var hasContent = field.value !== '';
+=======
+    var hasContent = field.value !== '';
+
+>>>>>>> dev
     if (hasContent && supportContentFiltering) {
       var message = Drupal.t('Changing the text format to %text_format will permanently remove content that is not allowed in that text format.<br><br>Save your changes before switching the text format to avoid losing data.', {
         '%text_format': $select.find('option:selected').text()
       });
+<<<<<<< HEAD
       var confirmationDialog = Drupal.dialog('<div>' + message + '</div>', {
+=======
+      var confirmationDialog = Drupal.dialog("<div>".concat(message, "</div>"), {
+>>>>>>> dev
         title: Drupal.t('Change text format?'),
         dialogClass: 'editor-change-text-format-modal',
         resizable: false,
@@ -87,18 +108,27 @@
             confirmationDialog.close();
           }
         }],
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         closeOnEscape: false,
         create: function create() {
           $(this).parent().find('.ui-dialog-titlebar-close').remove();
         },
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         beforeClose: false,
         close: function close(event) {
           $(event.target).remove();
         }
       });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
       confirmationDialog.showModal();
     } else {
       changeTextEditor(field, newFormatID);
@@ -106,7 +136,10 @@
   }
 
   Drupal.editors = {};
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
   Drupal.behaviors.editor = {
     attach: function attach(context, settings) {
       if (!settings.editor) {
@@ -130,12 +163,21 @@
 
         $(field).on('change.editor keypress.editor', function () {
           field.setAttribute('data-editor-value-is-changed', 'true');
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
           $(field).off('.editor');
         });
 
         if ($this.is('select')) {
+<<<<<<< HEAD
           $this.on('change.editorAttach', { field: field }, onTextFormatChange);
+=======
+          $this.on('change.editorAttach', {
+            field: field
+          }, onTextFormatChange);
+>>>>>>> dev
         }
 
         $this.parents('form').on('submit', function (event) {
@@ -150,7 +192,11 @@
       });
     },
     detach: function detach(context, settings, trigger) {
+<<<<<<< HEAD
       var editors = void 0;
+=======
+      var editors;
+>>>>>>> dev
 
       if (trigger === 'serialize') {
         editors = $(context).find('[data-editor-for]').findOnce('editor');
@@ -162,6 +208,10 @@
         var $this = $(this);
         var activeFormatID = $this.val();
         var field = findFieldForFormatSelector($this);
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         if (field && activeFormatID in settings.editor.formats) {
           Drupal.editorDetach(field, settings.editor.formats[activeFormatID], trigger);
         }
@@ -172,10 +222,15 @@
   Drupal.editorAttach = function (field, format) {
     if (format.editor) {
       Drupal.editors[format.editor].attach(field, format);
+<<<<<<< HEAD
 
       Drupal.editors[format.editor].onChange(field, function () {
         $(field).trigger('formUpdated');
 
+=======
+      Drupal.editors[format.editor].onChange(field, function () {
+        $(field).trigger('formUpdated');
+>>>>>>> dev
         field.setAttribute('data-editor-value-is-changed', 'true');
       });
     }

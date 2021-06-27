@@ -67,6 +67,7 @@ class LibraryDiscoveryParser {
    * @param \Drupal\Core\Asset\LibrariesDirectoryFileFinder $libraries_directory_file_finder
    *   The libraries directory file finder.
    */
+<<<<<<< HEAD
   public function __construct($root, ModuleHandlerInterface $module_handler, ThemeManagerInterface $theme_manager, StreamWrapperManagerInterface $stream_wrapper_manager = NULL, LibrariesDirectoryFileFinder $libraries_directory_file_finder = NULL) {
     $this->root = $root;
     $this->moduleHandler = $module_handler;
@@ -75,6 +76,12 @@ class LibraryDiscoveryParser {
       @trigger_error('Calling LibraryDiscoveryParser::__construct() without the $stream_wrapper_manager argument is deprecated in drupal:8.8.0. The $stream_wrapper_manager argument will be required in drupal:9.0.0. See https://www.drupal.org/node/3035273', E_USER_DEPRECATED);
       $stream_wrapper_manager = \Drupal::service('stream_wrapper_manager');
     }
+=======
+  public function __construct($root, ModuleHandlerInterface $module_handler, ThemeManagerInterface $theme_manager, StreamWrapperManagerInterface $stream_wrapper_manager, LibrariesDirectoryFileFinder $libraries_directory_file_finder = NULL) {
+    $this->root = $root;
+    $this->moduleHandler = $module_handler;
+    $this->themeManager = $theme_manager;
+>>>>>>> dev
     $this->streamWrapperManager = $stream_wrapper_manager;
     if (!$libraries_directory_file_finder) {
       @trigger_error('Calling LibraryDiscoveryParser::__construct() without the $libraries_directory_file_finder argument is deprecated in drupal:8.9.0. The $libraries_directory_file_finder argument will be required in drupal:10.0.0. See https://www.drupal.org/node/3099614', E_USER_DEPRECATED);
@@ -386,6 +393,14 @@ class LibraryDiscoveryParser {
       foreach ($libraries as $library_name => $library) {
         // Process libraries overrides.
         if (isset($libraries_overrides["$extension/$library_name"])) {
+<<<<<<< HEAD
+=======
+          if (isset($library['deprecated'])) {
+            $override_message = sprintf('Theme "%s" is overriding a deprecated library.', $extension);
+            $library_deprecation = str_replace('%library_id%', "$extension/$library_name", $library['deprecated']);
+            @trigger_error("$override_message $library_deprecation", E_USER_DEPRECATED);
+          }
+>>>>>>> dev
           // Active theme defines an override for this library.
           $override_definition = $libraries_overrides["$extension/$library_name"];
           if (is_string($override_definition) || $override_definition === FALSE) {
@@ -438,6 +453,7 @@ class LibraryDiscoveryParser {
   }
 
   /**
+<<<<<<< HEAD
    * Wraps \Drupal\Core\StreamWrapper\StreamWrapperManagerInterface::isValidUri().
    *
    * @deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Use
@@ -450,6 +466,8 @@ class LibraryDiscoveryParser {
   }
 
   /**
+=======
+>>>>>>> dev
    * Determines if the supplied string is a valid URI.
    */
   protected function isValidUri($string) {
@@ -463,10 +481,19 @@ class LibraryDiscoveryParser {
    *   The containing library definition.
    * @param array $sub_key
    *   An array containing the sub-keys specifying the library asset, e.g.
+<<<<<<< HEAD
    *   @code['js']@endcode or @code['css', 'component']@endcode
    * @param array $overrides
    *   Specifies the overrides, this is an array where the key is the asset to
    *   be overridden while the value is overriding asset.
+=======
+   *   ['js'] or ['css', 'component'].
+   * @param array $overrides
+   *   Specifies the overrides, this is an array where the key is the asset to
+   *   be overridden while the value is overriding asset.
+   * @param string $theme_path
+   *   The theme or base theme.
+>>>>>>> dev
    */
   protected function setOverrideValue(array &$library, array $sub_key, array $overrides, $theme_path) {
     foreach ($overrides as $original => $replacement) {

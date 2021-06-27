@@ -14,7 +14,11 @@ class NodeTranslationTest extends NodeTest {
   /**
    * {@inheritdoc}
    */
+<<<<<<< HEAD
   public static $modules = ['node', 'user', 'migrate_drupal'];
+=======
+  protected static $modules = ['node', 'user', 'migrate_drupal'];
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
