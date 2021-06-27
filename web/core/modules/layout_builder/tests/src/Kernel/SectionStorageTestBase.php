@@ -14,7 +14,7 @@ abstract class SectionStorageTestBase extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'layout_builder',
     'layout_discovery',
     'layout_test',
@@ -32,6 +32,8 @@ abstract class SectionStorageTestBase extends EntityKernelTestBase {
    */
   protected function setUp() {
     parent::setUp();
+
+    $this->installSchema('system', ['key_value_expire']);
 
     $section_data = [
       new Section('layout_test_plugin', [], [

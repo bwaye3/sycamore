@@ -18,7 +18,7 @@ class Update extends QueryUpdate {
 
     // Because we filter $fields the same way here and in __toString(), the
     // placeholders will all match up properly.
-    $stmt = $this->connection->prepareStatement((string) $this, $this->queryOptions);
+    $stmt = $this->connection->prepareQuery((string) $this);
 
     // Fetch the list of blobs and sequences used on that table.
     $table_information = $this->connection->schema()->queryTableInformation($this->table);
@@ -32,14 +32,14 @@ class Update extends QueryUpdate {
           // We assume that an expression will never happen on a BLOB field,
           // which is a fairly safe assumption to make since in most cases
           // it would be an invalid query anyway.
-          $stmt->getClientStatement()->bindParam($placeholder, $data['arguments'][$placeholder]);
+          $stmt->bindParam($placeholder, $data['arguments'][$placeholder]);
         }
       }
       if ($data['expression'] instanceof SelectInterface) {
         $data['expression']->compile($this->connection, $this);
         $select_query_arguments = $data['expression']->arguments();
         foreach ($select_query_arguments as $placeholder => $argument) {
-          $stmt->getClientStatement()->bindParam($placeholder, $select_query_arguments[$placeholder]);
+          $stmt->bindParam($placeholder, $select_query_arguments[$placeholder]);
         }
       }
       unset($fields[$field]);
@@ -52,11 +52,11 @@ class Update extends QueryUpdate {
         $blobs[$blob_count] = fopen('php://memory', 'a');
         fwrite($blobs[$blob_count], $value);
         rewind($blobs[$blob_count]);
-        $stmt->getClientStatement()->bindParam($placeholder, $blobs[$blob_count], \PDO::PARAM_LOB);
+        $stmt->bindParam($placeholder, $blobs[$blob_count], \PDO::PARAM_LOB);
         ++$blob_count;
       }
       else {
-        $stmt->getClientStatement()->bindParam($placeholder, $fields[$field]);
+        $stmt->bindParam($placeholder, $fields[$field]);
       }
     }
 
@@ -65,7 +65,7 @@ class Update extends QueryUpdate {
 
       $arguments = $this->condition->arguments();
       foreach ($arguments as $placeholder => $value) {
-        $stmt->getClientStatement()->bindParam($placeholder, $arguments[$placeholder]);
+        $stmt->bindParam($placeholder, $arguments[$placeholder]);
       }
     }
 
@@ -75,10 +75,9 @@ class Update extends QueryUpdate {
 
     $this->connection->addSavepoint();
     try {
-      $stmt->execute(NULL, $options);
+      $result = $this->connection->query($stmt, [], $options);
       $this->connection->releaseSavepoint();
-      $stmt->allowRowCount = TRUE;
-      return $stmt->rowCount();
+      return $result;
     }
     catch (\Exception $e) {
       $this->connection->rollbackSavepoint();

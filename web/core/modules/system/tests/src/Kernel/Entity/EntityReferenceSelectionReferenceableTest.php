@@ -41,7 +41,7 @@ class EntityReferenceSelectionReferenceableTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'system',
     'user',
     'field',
@@ -53,7 +53,7 @@ class EntityReferenceSelectionReferenceableTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->installEntitySchema('entity_test_no_label');
@@ -117,7 +117,7 @@ class EntityReferenceSelectionReferenceableTest extends KernelTestBase {
       $this->assertTrue(empty($referenceables[$this->bundle]));
     }
     else {
-      $this->assertCount($count_limited, $referenceables[$this->bundle]);
+      $this->assertSame(count($referenceables[$this->bundle]), $count_limited);
     }
 
     // Test returned items.
@@ -126,7 +126,7 @@ class EntityReferenceSelectionReferenceableTest extends KernelTestBase {
       // entity labels.
       // @see \Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface::getReferenceableEntities()
       $item = is_string($item) ? Html::escape($item) : $item;
-      $this->assertContainsEquals($item, $referenceables[$this->bundle]);
+      $this->assertContains($item, $referenceables[$this->bundle]);
     }
 
     // Test ::countReferenceableEntities().

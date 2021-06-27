@@ -16,7 +16,7 @@ class MigrateTaxonomyTermTranslationTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'content_translation',
     'language',
     'menu_ui',
@@ -34,12 +34,11 @@ class MigrateTaxonomyTermTranslationTest extends MigrateDrupal6TestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->installEntitySchema('taxonomy_term');
     $this->installConfig(static::$modules);
     $this->executeMigrations([
-      'language',
       'd6_node_type',
       'd6_field',
       'd6_taxonomy_vocabulary',

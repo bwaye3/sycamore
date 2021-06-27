@@ -4,8 +4,8 @@ namespace Drupal\Tests\help_topics\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 use Drupal\help_topics\HelpTopicDiscovery;
+use Drupal\Tests\DeprecatedModulesTestTrait;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\AssertionFailedError;
 
 /**
  * Verifies that all core Help topics can be rendered and comply with standards.
@@ -20,13 +20,14 @@ use PHPUnit\Framework\AssertionFailedError;
  */
 class HelpTopicsSyntaxTest extends BrowserTestBase {
 
+  use DeprecatedModulesTestTrait;
+
   /**
    * {@inheritdoc}
    */
   protected static $modules = [
     'help',
     'help_topics',
-    'locale',
   ];
 
   /**
@@ -44,13 +45,14 @@ class HelpTopicsSyntaxTest extends BrowserTestBase {
     // will be defined.
     $module_directories = $this->listDirectories('module');
     $modules_to_install = array_keys($module_directories);
+    $modules_to_install = $this->removeDeprecatedModules($modules_to_install);
     \Drupal::service('module_installer')->install($modules_to_install);
     $theme_directories = $this->listDirectories('theme');
     \Drupal::service('theme_installer')->install(array_keys($theme_directories));
 
     $directories = $module_directories + $theme_directories +
       $this->listDirectories('profile');
-    $directories['core'] = \Drupal::root() . '/core/help_topics';
+    $directories['core'] = \Drupal::service('app.root') . '/core/help_topics';
     $directories['bad_help_topics'] = \Drupal::service('extension.list.module')->getPath('help_topics_test') . '/bad_help_topics/syntax/';
 
     // Filter out directories outside of core. If you want to run this test
@@ -133,7 +135,6 @@ class HelpTopicsSyntaxTest extends BrowserTestBase {
     $body = preg_replace('|---.*---|sU', '', $body);
     $body = preg_replace('|\{\{.*\}\}|sU', '', $body);
     $body = preg_replace('|\{\% set.*\%\}|sU', '', $body);
-    $body = preg_replace('|\{\% endset \%\}|sU', '', $body);
     $body = trim($body);
     $this->assertNotEmpty($body, 'Topic ' . $id . ' Twig file contains some text outside of front matter');
 
@@ -144,40 +145,14 @@ class HelpTopicsSyntaxTest extends BrowserTestBase {
     $text = preg_replace('|\s+|', '', $text);
     $this->assertEmpty($text, 'Topic ' . $id . ' Twig file has all of its text translated');
 
-    // Verify that all of the translated text is locale-safe and valid HTML.
-    $matches = [];
-    preg_match_all('|\{\% trans \%\}(.*)\{\% endtrans \%\}|sU', $body, $matches, PREG_PATTERN_ORDER);
-    foreach ($matches[1] as $string) {
-      $this->assertTrue(locale_string_is_safe($string), 'Topic ' . $id . ' Twig file translatable strings are all exportable');
-      $this->validateHtml($string, $id);
-    }
-
-    // Validate the HTML in the body as a whole.
-    $this->validateHtml($body, $id);
-
-    // Validate the HTML in the body with the translated text replaced by a
-    // dummy string, to verify that HTML syntax is not partly in and partly out
-    // of the translated text.
-    $text = preg_replace('|\{\% trans \%\}.*\{\% endtrans \%\}|sU', 'dummy', $body);
-    $this->validateHtml($text, $id);
-  }
-
-  /**
-   * Validates the HTML and header hierarchy for topic text.
-   *
-   * @param string $body
-   *   Body text to validate.
-   * @param string $id
-   *   ID of help topic (for error messages).
-   */
-  protected function validateHtml(string $body, string $id) {
+    // Load the topic body as HTML and verify that it parses.
     $doc = new \DOMDocument();
     $doc->strictErrorChecking = TRUE;
-    $doc->validateOnParse = FALSE;
+    $doc->validateOnParse = TRUE;
     libxml_use_internal_errors(TRUE);
-    if (!$doc->loadXML('<html><body>' . $body . '</body></html>')) {
+    if (!$doc->loadHTML($body)) {
       foreach (libxml_get_errors() as $error) {
-        $this->fail('Topic ' . $id . ' fails HTML validation: ' . $error->message);
+        $this->fail($error->message);
       }
 
       libxml_clear_errors();
@@ -214,12 +189,10 @@ class HelpTopicsSyntaxTest extends BrowserTestBase {
   protected function verifyBadTopic($id, $definitions) {
     $bad_topic_type = substr($id, 16);
     // Topics should fail verifyTopic() in specific ways.
-    $found_error = FALSE;
     try {
       $this->verifyTopic($id, $definitions, 404);
     }
-    catch (ExpectationFailedException | AssertionFailedError $e) {
-      $found_error = TRUE;
+    catch (ExpectationFailedException $e) {
       $message = $e->getMessage();
       switch ($bad_topic_type) {
         case 'related':
@@ -227,9 +200,7 @@ class HelpTopicsSyntaxTest extends BrowserTestBase {
           break;
 
         case 'bad_html':
-        case 'bad_html2':
-        case 'bad_html3':
-          $this->assertStringContainsString('Opening and ending tag mismatch', $message);
+          $this->assertStringContainsString('Unexpected end tag', $message);
           break;
 
         case 'top_level':
@@ -256,10 +227,6 @@ class HelpTopicsSyntaxTest extends BrowserTestBase {
           // This was an unexpected error.
           throw $e;
       }
-    }
-
-    if (!$found_error) {
-      $this->fail('Bad help topic ' . $bad_topic_type . ' did not fail as expected');
     }
   }
 

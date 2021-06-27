@@ -4,6 +4,7 @@ namespace Drupal\content_moderation\Plugin\views\filter;
 
 use Drupal\content_moderation\Plugin\views\ModerationStateJoinViewsHandlerTrait;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Database\Query\Condition;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -156,7 +157,7 @@ class ModerationStateFilter extends InOperator implements DependentWithRemovalPl
           $entity_base_table_alias = $this->query->addRelationship($entity_base_table, $join, $entity_revision_base_table);
         }
 
-        $bundle_condition = $this->view->query->getConnection()->condition('AND');
+        $bundle_condition = new Condition('AND');
         $bundle_condition->condition("$entity_base_table_alias.{$entity_type->getKey('bundle')}", $moderated_bundles, 'IN');
       }
       // Otherwise, force the query to return an empty result.
@@ -175,11 +176,11 @@ class ModerationStateFilter extends InOperator implements DependentWithRemovalPl
 
     // The values are strings composed from the workflow ID and the state ID, so
     // we need to create a complex WHERE condition.
-    $field = $this->view->query->getConnection()->condition('OR');
+    $field = new Condition('OR');
     foreach ((array) $this->value as $value) {
       list($workflow_id, $state_id) = explode('-', $value, 2);
 
-      $and = $this->view->query->getConnection()->condition('AND');
+      $and = new Condition('AND');
       $and
         ->condition("$this->tableAlias.workflow", $workflow_id, '=')
         ->condition("$this->tableAlias.$this->realField", $state_id, $operator);

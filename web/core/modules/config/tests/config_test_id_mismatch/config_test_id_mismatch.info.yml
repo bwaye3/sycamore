@@ -2,5 +2,6 @@ name: 'Configuration test ID mismatch'
 type: module
 package: Testing
 version: VERSION
+core: 8.x
 dependencies:
   - drupal:config_test

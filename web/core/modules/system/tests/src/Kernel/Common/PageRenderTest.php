@@ -16,6 +16,7 @@ class PageRenderTest extends KernelTestBase {
    */
   public function testHookPageAttachmentsExceptions() {
     $this->enableModules(['common_test', 'system']);
+    \Drupal::service('router.builder')->rebuild();
 
     $this->assertPageRenderHookExceptions('common_test', 'hook_page_attachments');
   }
@@ -25,6 +26,7 @@ class PageRenderTest extends KernelTestBase {
    */
   public function testHookPageAlter() {
     $this->enableModules(['common_test', 'system']);
+    \Drupal::service('router.builder')->rebuild();
 
     $this->assertPageRenderHookExceptions('common_test', 'hook_page_attachments_alter');
   }
@@ -45,8 +47,8 @@ class PageRenderTest extends KernelTestBase {
     $html_renderer->invokePageAttachmentHooks($page);
 
     // Assert that hooks can set cache tags.
-    $this->assertEquals(['example'], $page['#cache']['tags']);
-    $this->assertEquals(['user.permissions'], $page['#cache']['contexts']);
+    $this->assertEqual($page['#cache']['tags'], ['example']);
+    $this->assertEqual($page['#cache']['contexts'], ['user.permissions']);
 
     // Assert an invalid hook implementation doesn't trigger an exception.
     \Drupal::state()->set($module . '.' . $hook . '.descendant_attached', TRUE);
@@ -57,7 +59,7 @@ class PageRenderTest extends KernelTestBase {
       $this->error($assertion);
     }
     catch (\LogicException $e) {
-      $this->assertEquals('Only #attached and #cache may be set in ' . $hook . '().', $e->getMessage());
+      $this->assertEqual($e->getMessage(), 'Only #attached and #cache may be set in ' . $hook . '().');
     }
     \Drupal::state()->set('bc_test.' . $hook . '.descendant_attached', FALSE);
 
@@ -70,7 +72,7 @@ class PageRenderTest extends KernelTestBase {
       $this->error($assertion);
     }
     catch (\LogicException $e) {
-      $this->assertEquals('Only #attached and #cache may be set in ' . $hook . '().', $e->getMessage());
+      $this->assertEqual($e->getMessage(), 'Only #attached and #cache may be set in ' . $hook . '().');
     }
     \Drupal::state()->set($module . '.' . $hook . '.render_array', FALSE);
   }

@@ -19,21 +19,21 @@ use Symfony\Component\Translation\Exception\InvalidResourceException;
 class MoFileLoader extends FileLoader
 {
     /**
-     * Magic used for validating the format of an MO file as well as
+     * Magic used for validating the format of a MO file as well as
      * detecting if the machine used to create that file was little endian.
      */
-    public const MO_LITTLE_ENDIAN_MAGIC = 0x950412de;
+    const MO_LITTLE_ENDIAN_MAGIC = 0x950412de;
 
     /**
-     * Magic used for validating the format of an MO file as well as
+     * Magic used for validating the format of a MO file as well as
      * detecting if the machine used to create that file was big endian.
      */
-    public const MO_BIG_ENDIAN_MAGIC = 0xde120495;
+    const MO_BIG_ENDIAN_MAGIC = 0xde120495;
 
     /**
-     * The size of the header of an MO file in bytes.
+     * The size of the header of a MO file in bytes.
      */
-    public const MO_HEADER_SIZE = 28;
+    const MO_HEADER_SIZE = 28;
 
     /**
      * Parses machine object (MO) format, independent of the machine's endian it
@@ -90,7 +90,7 @@ class MoFileLoader extends FileLoader
             $singularId = fread($stream, $length);
 
             if (false !== strpos($singularId, "\000")) {
-                [$singularId, $pluralId] = explode("\000", $singularId);
+                list($singularId, $pluralId) = explode("\000", $singularId);
             }
 
             fseek($stream, $offsetTranslated + $i * 8);
@@ -129,8 +129,11 @@ class MoFileLoader extends FileLoader
      * Reads an unsigned long from stream respecting endianness.
      *
      * @param resource $stream
+     * @param bool     $isBigEndian
+     *
+     * @return int
      */
-    private function readLong($stream, bool $isBigEndian): int
+    private function readLong($stream, $isBigEndian)
     {
         $result = unpack($isBigEndian ? 'N1' : 'V1', fread($stream, 4));
         $result = current($result);

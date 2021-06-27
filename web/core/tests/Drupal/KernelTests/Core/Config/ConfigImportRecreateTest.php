@@ -26,9 +26,9 @@ class ConfigImportRecreateTest extends KernelTestBase {
    *
    * @var array
    */
-  protected static $modules = ['system', 'field', 'text', 'user', 'node'];
+  public static $modules = ['system', 'field', 'text', 'user', 'node'];
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->installEntitySchema('node');
@@ -98,7 +98,7 @@ class ConfigImportRecreateTest extends KernelTestBase {
     // Verify that there is nothing more to import.
     $this->assertFalse($this->configImporter->reset()->hasUnprocessedConfigurationChanges());
     $content_type = NodeType::load($type_name);
-    $this->assertEquals('Node type one', $content_type->label());
+    $this->assertEqual('Node type one', $content_type->label());
   }
 
 }

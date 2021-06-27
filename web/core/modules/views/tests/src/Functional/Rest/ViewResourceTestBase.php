@@ -10,7 +10,7 @@ abstract class ViewResourceTestBase extends EntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['views', 'views_ui'];
+  public static $modules = ['views', 'views_ui'];
 
   /**
    * {@inheritdoc}
@@ -54,7 +54,7 @@ abstract class ViewResourceTestBase extends EntityResourceTestBase {
         'default' => [
           'display_plugin' => 'default',
           'id' => 'default',
-          'display_title' => 'Default',
+          'display_title' => 'Master',
           'position' => 0,
           'display_options' => [
             'display_extenders' => [],

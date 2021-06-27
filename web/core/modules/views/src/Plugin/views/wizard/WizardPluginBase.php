@@ -6,6 +6,7 @@ use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\UrlGeneratorTrait;
 use Drupal\Core\Url;
 use Drupal\views\Entity\View;
 use Drupal\views\Views;
@@ -35,6 +36,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * base table.
  */
 abstract class WizardPluginBase extends PluginBase implements WizardInterface {
+
+  use UrlGeneratorTrait;
 
   /**
    * The base table connected with the wizard.
@@ -714,7 +717,7 @@ abstract class WizardPluginBase extends PluginBase implements WizardInterface {
    *   arrays of options for that display.
    */
   protected function buildDisplayOptions($form, FormStateInterface $form_state) {
-    // Display: Default
+    // Display: Master
     $display_options['default'] = $this->defaultDisplayOptions();
     $display_options['default'] += [
       'filters' => [],
@@ -765,8 +768,8 @@ abstract class WizardPluginBase extends PluginBase implements WizardInterface {
     // instances.
     $executable = $view->getExecutable();
 
-    // Display: Default
-    $default_display = $executable->newDisplay('default', 'Default', 'default');
+    // Display: Master
+    $default_display = $executable->newDisplay('default', 'Master', 'default');
     foreach ($display_options['default'] as $option => $value) {
       $default_display->setOption($option, $value);
     }

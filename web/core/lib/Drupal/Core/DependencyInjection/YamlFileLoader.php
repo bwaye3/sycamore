@@ -1,7 +1,5 @@
 <?php
-
-// phpcs:ignoreFile Portions of this file are a direct copy of
-// \Symfony\Component\DependencyInjection\Loader\YamlFileLoader.
+// @codingStandardsIgnoreFile
 
 namespace Drupal\Core\DependencyInjection;
 
@@ -122,9 +120,7 @@ class YamlFileLoader
             list($provider, ) = explode('.', $basename, 2);
         }
         foreach ($content['services'] as $id => $service) {
-            if (is_array($service)) {
-              $service['tags'][] = ['name' => '_provider', 'provider' => $provider];
-            }
+            $service['tags'][] = ['name' => '_provider', 'provider' => $provider];
             $this->parseDefinition($id, $service, $file);
         }
     }
@@ -152,22 +148,8 @@ class YamlFileLoader
         }
 
         if (isset($service['alias'])) {
-            $alias = $this->container->setAlias($id, new Alias($service['alias']));
-
-            if (array_key_exists('public', $service)) {
-                $alias->setPublic($service['public']);
-            }
-
-            if (array_key_exists('deprecated', $service)) {
-                if (method_exists($alias, 'getDeprecation')) {
-                    $deprecation = \is_array($service['deprecated']) ? $service['deprecated'] : ['message' => $service['deprecated']];
-                    $alias->setDeprecated($deprecation['package'] ?? '', $deprecation['version'] ?? '', $deprecation['message']);
-                } else {
-                    // @todo Remove when we no longer support Symfony 4 in
-                    // https://www.drupal.org/project/drupal/issues/3197729
-                    $alias->setDeprecated(true, $service['deprecated']);
-                }
-            }
+            $public = !array_key_exists('public', $service) || (bool) $service['public'];
+            $this->container->setAlias($id, new Alias($service['alias'], $public));
 
             return;
         }
@@ -197,23 +179,13 @@ class YamlFileLoader
         if (isset($service['public'])) {
             $definition->setPublic($service['public']);
         }
-        else {
-            $definition->setPublic(true);
-        }
 
         if (isset($service['abstract'])) {
             $definition->setAbstract($service['abstract']);
         }
 
         if (array_key_exists('deprecated', $service)) {
-            if (method_exists($definition, 'getDeprecation')) {
-                $deprecation = \is_array($service['deprecated']) ? $service['deprecated'] : ['message' => $service['deprecated']];
-                $definition->setDeprecated($deprecation['package'] ?? '', $deprecation['version'] ?? '', $deprecation['message']);
-            } else {
-                // @todo Remove when we no longer support Symfony 4 in
-                // https://www.drupal.org/project/drupal/issues/3197729
-                $definition->setDeprecated(true, $service['deprecated']);
-            }
+            $definition->setDeprecated(true, $service['deprecated']);
         }
 
         if (isset($service['factory'])) {
@@ -314,6 +286,24 @@ class YamlFileLoader
 
         if (isset($service['autowire'])) {
             $definition->setAutowired($service['autowire']);
+        }
+
+        if (isset($service['autowiring_types'])) {
+            if (is_string($service['autowiring_types'])) {
+                $definition->addAutowiringType($service['autowiring_types']);
+            } else {
+                if (!is_array($service['autowiring_types'])) {
+                    throw new InvalidArgumentException(sprintf('Parameter "autowiring_types" must be a string or an array for service "%s" in %s. Check your YAML syntax.', $id, $file));
+                }
+
+                foreach ($service['autowiring_types'] as $autowiringType) {
+                    if (!is_string($autowiringType)) {
+                        throw new InvalidArgumentException(sprintf('A "autowiring_types" attribute must be of type string for service "%s" in %s. Check your YAML syntax.', $id, $file));
+                    }
+
+                    $definition->addAutowiringType($autowiringType);
+                }
+            }
         }
 
         $this->container->setDefinition($id, $definition);

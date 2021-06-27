@@ -11,7 +11,7 @@ use Drupal\Tests\migrate_drupal\Kernel\d7\MigrateDrupal7TestBase;
  */
 class MigrateSystemConfigurationTest extends MigrateDrupal7TestBase {
 
-  protected static $modules = ['action', 'file', 'system'];
+  public static $modules = ['action', 'file', 'system'];
 
   protected $expectedConfig = [
     'system.authorize' => [
@@ -94,9 +94,14 @@ class MigrateSystemConfigurationTest extends MigrateDrupal7TestBase {
       'stale_file_threshold' => 2592000,
     ],
     'system.rss' => [
+      'channel' => [
+        'description' => '',
+      ],
       'items' => [
+        'limit' => 27,
         'view_mode' => 'fulltext',
       ],
+      'langcode' => 'en',
     ],
     'system.site' => [
       // uuid is not handled by the migration.
@@ -120,20 +125,8 @@ class MigrateSystemConfigurationTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
-
-    // The system_maintenance migration gets both the Drupal 6 and Drupal 7
-    // site maintenance message. Add a row with the Drupal 6 version of the
-    // maintenance message to confirm that the Drupal 7 variable is selected in
-    // the migration.
-    // See https://www.drupal.org/project/drupal/issues/3096676
-    $this->sourceDatabase->insert('variable')
-      ->fields([
-        'name' => 'site_offline_message',
-        'value' => 's:16:"Drupal 6 message";',
-      ])
-      ->execute();
 
     $migrations = [
       'd7_system_authorize',

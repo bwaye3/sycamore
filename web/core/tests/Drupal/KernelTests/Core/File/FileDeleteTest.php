@@ -20,7 +20,7 @@ class FileDeleteTest extends FileTestBase {
 
     // Delete a regular file
     $this->assertTrue(\Drupal::service('file_system')->delete($uri), 'Deleted worked.');
-    $this->assertFileDoesNotExist($uri);
+    $this->assertFileNotExists($uri);
   }
 
   /**

@@ -3,7 +3,7 @@
  * Attaches behavior for the Editor module.
  */
 
-(function ($, Drupal, drupalSettings) {
+(function($, Drupal, drupalSettings) {
   /**
    * Finds the text area field associated with the given text format selector.
    *
@@ -165,7 +165,10 @@
         // as per http://stackoverflow.com/a/5438771.
         closeOnEscape: false,
         create() {
-          $(this).parent().find('.ui-dialog-titlebar-close').remove();
+          $(this)
+            .parent()
+            .find('.ui-dialog-titlebar-close')
+            .remove();
         },
         beforeClose: false,
         close(event) {
@@ -207,7 +210,7 @@
       $(context)
         .find('[data-editor-for]')
         .once('editor')
-        .each(function () {
+        .each(function() {
           const $this = $(this);
           const field = findFieldForFormatSelector($this);
 
@@ -240,7 +243,7 @@
             $this.on('change.editorAttach', { field }, onTextFormatChange);
           }
           // Detach any editor when the containing form is submitted.
-          $this.parents('form').on('submit', (event) => {
+          $this.parents('form').on('submit', event => {
             // Do not detach if the event was canceled.
             if (event.isDefaultPrevented()) {
               return;
@@ -264,12 +267,16 @@
       if (trigger === 'serialize') {
         // Removing the editor-processed class guarantees that the editor will
         // be reattached. Only do this if we're planning to destroy the editor.
-        editors = $(context).find('[data-editor-for]').findOnce('editor');
+        editors = $(context)
+          .find('[data-editor-for]')
+          .findOnce('editor');
       } else {
-        editors = $(context).find('[data-editor-for]').removeOnce('editor');
+        editors = $(context)
+          .find('[data-editor-for]')
+          .removeOnce('editor');
       }
 
-      editors.each(function () {
+      editors.each(function() {
         const $this = $(this);
         const activeFormatID = $this.val();
         const field = findFieldForFormatSelector($this);
@@ -297,7 +304,7 @@
    *
    * @fires event:formUpdated
    */
-  Drupal.editorAttach = function (field, format) {
+  Drupal.editorAttach = function(field, format) {
     if (format.editor) {
       // Attach the text editor.
       Drupal.editors[format.editor].attach(field, format);
@@ -325,7 +332,7 @@
    * @param {string} trigger
    *   Trigger value from the detach behavior.
    */
-  Drupal.editorDetach = function (field, format, trigger) {
+  Drupal.editorDetach = function(field, format, trigger) {
     if (format.editor) {
       Drupal.editors[format.editor].detach(field, format, trigger);
 

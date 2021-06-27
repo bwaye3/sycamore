@@ -17,7 +17,7 @@ class RdfCommentStorageLoadTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['comment', 'rdf'];
+  public static $modules = ['comment', 'rdf'];
 
   /**
    * Tests rdf_comment_storage_load.

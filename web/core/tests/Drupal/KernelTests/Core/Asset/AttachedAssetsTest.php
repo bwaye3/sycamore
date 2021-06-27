@@ -38,13 +38,14 @@ class AttachedAssetsTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['language', 'common_test', 'system'];
+  public static $modules = ['language', 'simpletest', 'common_test', 'system'];
 
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
+    $this->container->get('router.builder')->rebuild();
 
     $this->assetResolver = $this->container->get('asset.resolver');
     $this->renderer = $this->container->get('renderer');
@@ -55,10 +56,10 @@ class AttachedAssetsTest extends KernelTestBase {
    */
   public function testDefault() {
     $assets = new AttachedAssets();
-    $this->assertEquals([], $this->assetResolver->getCssAssets($assets, FALSE), 'Default CSS is empty.');
+    $this->assertEqual([], $this->assetResolver->getCssAssets($assets, FALSE), 'Default CSS is empty.');
     list($js_assets_header, $js_assets_footer) = $this->assetResolver->getJsAssets($assets, FALSE);
-    $this->assertEquals([], $js_assets_header, 'Default header JavaScript is empty.');
-    $this->assertEquals([], $js_assets_footer, 'Default footer JavaScript is empty.');
+    $this->assertEqual([], $js_assets_header, 'Default header JavaScript is empty.');
+    $this->assertEqual([], $js_assets_footer, 'Default footer JavaScript is empty.');
   }
 
   /**
@@ -100,15 +101,15 @@ class AttachedAssetsTest extends KernelTestBase {
     $build['#attached']['library'][] = 'core/drupalSettings';
     $assets = AttachedAssets::createFromRenderArray($build);
 
-    $this->assertEquals([], $assets->getSettings(), 'JavaScript settings on $assets are empty.');
+    $this->assertEqual([], $assets->getSettings(), 'JavaScript settings on $assets are empty.');
     $javascript = $this->assetResolver->getJsAssets($assets, FALSE)[1];
     $this->assertArrayHasKey('currentPath', $javascript['drupalSettings']['data']['path']);
     $this->assertArrayHasKey('currentPath', $assets->getSettings()['path']);
 
     $assets->setSettings(['drupal' => 'rocks', 'dries' => 280342800]);
     $javascript = $this->assetResolver->getJsAssets($assets, FALSE)[1];
-    $this->assertEquals(280342800, $javascript['drupalSettings']['data']['dries'], 'JavaScript setting is set correctly.');
-    $this->assertEquals('rocks', $javascript['drupalSettings']['data']['drupal'], 'The other JavaScript setting is set correctly.');
+    $this->assertEqual(280342800, $javascript['drupalSettings']['data']['dries'], 'JavaScript setting is set correctly.');
+    $this->assertEqual('rocks', $javascript['drupalSettings']['data']['drupal'], 'The other JavaScript setting is set correctly.');
   }
 
   /**
@@ -174,10 +175,10 @@ class AttachedAssetsTest extends KernelTestBase {
     $this->assertCount(1, $this->assetResolver->getCssAssets($assets, TRUE), 'There is a sole aggregated CSS asset.');
 
     list($header_js, $footer_js) = $this->assetResolver->getJsAssets($assets, TRUE);
-    $this->assertEquals([], \Drupal::service('asset.js.collection_renderer')->render($header_js), 'There are 0 JavaScript assets in the header.');
+    $this->assertEqual([], \Drupal::service('asset.js.collection_renderer')->render($header_js), 'There are 0 JavaScript assets in the header.');
     $rendered_footer_js = \Drupal::service('asset.js.collection_renderer')->render($footer_js);
     $this->assertCount(2, $rendered_footer_js, 'There are 2 JavaScript assets in the footer.');
-    $this->assertEquals('drupal-settings-json', $rendered_footer_js[0]['#attributes']['data-drupal-selector'], 'The first of the two JavaScript assets in the footer has drupal settings.');
+    $this->assertEqual('drupal-settings-json', $rendered_footer_js[0]['#attributes']['data-drupal-selector'], 'The first of the two JavaScript assets in the footer has drupal settings.');
     $this->assertStringStartsWith(base_path(), $rendered_footer_js[1]['#attributes']['src'], 'The second of the two JavaScript assets in the footer has the sole aggregated JavaScript asset.');
   }
 
@@ -208,17 +209,17 @@ class AttachedAssetsTest extends KernelTestBase {
 
     // Test whether the settings for core/drupalSettings are available.
     $this->assertTrue(isset($parsed_settings['path']['baseUrl']), 'drupalSettings.path.baseUrl is present.');
-    $this->assertSame('yarhar', $parsed_settings['path']['pathPrefix'], 'drupalSettings.path.pathPrefix is present and has the correct (overridden) value.');
-    $this->assertSame('', $parsed_settings['path']['currentPath'], 'drupalSettings.path.currentPath is present and has the correct value.');
-    $this->assertFalse($parsed_settings['path']['currentPathIsAdmin'], 'drupalSettings.path.currentPathIsAdmin is present and has the correct value.');
-    $this->assertFalse($parsed_settings['path']['isFront'], 'drupalSettings.path.isFront is present and has the correct value.');
-    $this->assertSame('en', $parsed_settings['path']['currentLanguage'], 'drupalSettings.path.currentLanguage is present and has the correct value.');
+    $this->assertIdentical($parsed_settings['path']['pathPrefix'], 'yarhar', 'drupalSettings.path.pathPrefix is present and has the correct (overridden) value.');
+    $this->assertIdentical($parsed_settings['path']['currentPath'], '', 'drupalSettings.path.currentPath is present and has the correct value.');
+    $this->assertIdentical($parsed_settings['path']['currentPathIsAdmin'], FALSE, 'drupalSettings.path.currentPathIsAdmin is present and has the correct value.');
+    $this->assertIdentical($parsed_settings['path']['isFront'], FALSE, 'drupalSettings.path.isFront is present and has the correct value.');
+    $this->assertIdentical($parsed_settings['path']['currentLanguage'], 'en', 'drupalSettings.path.currentLanguage is present and has the correct value.');
 
     // Tests whether altering JavaScript settings via hook_js_settings_alter()
     // is working as expected.
     // @see common_test_js_settings_alter()
-    $this->assertSame('☃', $parsed_settings['pluralDelimiter']);
-    $this->assertSame('bar', $parsed_settings['foo']);
+    $this->assertIdentical($parsed_settings['pluralDelimiter'], '☃');
+    $this->assertIdentical($parsed_settings['foo'], 'bar');
   }
 
   /**
@@ -251,11 +252,9 @@ class AttachedAssetsTest extends KernelTestBase {
   /**
    * Tests adding JavaScript within conditional comments.
    *
-   * @group legacy
    * @see \Drupal\Core\Render\Element\HtmlTag::preRenderConditionalComments()
    */
   public function testBrowserConditionalComments() {
-    $this->expectDeprecation('Support for IE Conditional Comments is deprecated in drupal:9.1.0 and is removed from drupal:10.0.0. See https://www.drupal.org/node/3102997');
     $default_query_string = $this->container->get('state')->get('system.css_js_query_string') ?: '0';
 
     $build['#attached']['library'][] = 'common_test/browsers';
@@ -318,7 +317,7 @@ class AttachedAssetsTest extends KernelTestBase {
     else {
       $result = [];
     }
-    $this->assertSame($expected_order_js, $result, 'JavaScript is added in the expected weight order.');
+    $this->assertIdentical($result, $expected_order_js, 'JavaScript is added in the expected weight order.');
 
     // Construct the expected result from the regex.
     $expected_order_css = [
@@ -360,7 +359,7 @@ class AttachedAssetsTest extends KernelTestBase {
     else {
       $result = [];
     }
-    $this->assertSame($expected_order_css, $result, 'CSS is added in the expected weight order.');
+    $this->assertIdentical($result, $expected_order_css, 'CSS is added in the expected weight order.');
   }
 
   /**
@@ -376,33 +375,29 @@ class AttachedAssetsTest extends KernelTestBase {
     $js = $this->assetResolver->getJsAssets($assets, FALSE)[1];
     $js_render_array = \Drupal::service('asset.js.collection_renderer')->render($js);
     $rendered_js = $this->renderer->renderPlain($js_render_array);
-    // Verify that lighter CSS assets are rendered first.
-    $this->assertLessThan(strpos($rendered_js, 'first.js'), strpos($rendered_js, 'lighter.css'));
-    // Verify that lighter JavaScript assets are rendered first.
-    $this->assertLessThan(strpos($rendered_js, 'first.js'), strpos($rendered_js, 'lighter.js'));
-    // Verify that a JavaScript file is rendered before jQuery.
-    $this->assertLessThan(strpos($rendered_js, 'core/assets/vendor/jquery/jquery.min.js'), strpos($rendered_js, 'before-jquery.js'));
+    $this->assertTrue(strpos($rendered_js, 'lighter.css') < strpos($rendered_js, 'first.js'), 'Lighter CSS assets are rendered first.');
+    $this->assertTrue(strpos($rendered_js, 'lighter.js') < strpos($rendered_js, 'first.js'), 'Lighter JavaScript assets are rendered first.');
+    $this->assertTrue(strpos($rendered_js, 'before-jquery.js') < strpos($rendered_js, 'core/assets/vendor/jquery/jquery.min.js'), 'Rendering a JavaScript file above jQuery.');
   }
 
   /**
    * Tests altering a JavaScript's weight via hook_js_alter().
    *
-   * @see common_test_js_alter()
+   * @see simpletest_js_alter()
    */
   public function testAlter() {
-    // Add both tableselect.js and alter.js.
+    // Add both tableselect.js and simpletest.js.
     $build['#attached']['library'][] = 'core/drupal.tableselect';
-    $build['#attached']['library'][] = 'common_test/hook_js_alter';
+    $build['#attached']['library'][] = 'simpletest/drupal.simpletest';
     $assets = AttachedAssets::createFromRenderArray($build);
 
-    // Render the JavaScript, testing if alter.js was altered to be before
-    // tableselect.js. See common_test_js_alter() to see where this alteration
+    // Render the JavaScript, testing if simpletest.js was altered to be before
+    // tableselect.js. See simpletest_js_alter() to see where this alteration
     // takes place.
     $js = $this->assetResolver->getJsAssets($assets, FALSE)[1];
     $js_render_array = \Drupal::service('asset.js.collection_renderer')->render($js);
     $rendered_js = $this->renderer->renderPlain($js_render_array);
-    // Verify that JavaScript weight is correctly altered by the alter hook.
-    $this->assertLessThan(strpos($rendered_js, 'core/misc/tableselect.js'), strpos($rendered_js, 'alter.js'));
+    $this->assertTrue(strpos($rendered_js, 'simpletest.js') < strpos($rendered_js, 'core/misc/tableselect.js'), 'Altering JavaScript weight through the alter hook.');
   }
 
   /**
@@ -415,7 +410,7 @@ class AttachedAssetsTest extends KernelTestBase {
     /** @var \Drupal\Core\Asset\LibraryDiscoveryInterface $library_discovery */
     $library_discovery = \Drupal::service('library.discovery');
     $library = $library_discovery->getLibraryByName('core', 'jquery.farbtastic');
-    $this->assertEquals('0.0', $library['version'], 'Registered libraries were altered.');
+    $this->assertEqual($library['version'], '0.0', 'Registered libraries were altered.');
 
     // common_test_library_info_alter() also added a dependency on jQuery Form.
     $build['#attached']['library'][] = 'core/jquery.farbtastic';
@@ -455,7 +450,7 @@ class AttachedAssetsTest extends KernelTestBase {
     /** @var \Drupal\Core\Asset\LibraryDiscoveryInterface $library_discovery */
     $library_discovery = \Drupal::service('library.discovery');
     $farbtastic = $library_discovery->getLibraryByName('common_test', 'jquery.farbtastic');
-    $this->assertEquals('0.1', $farbtastic['version'], 'Alternative libraries can be added to the page.');
+    $this->assertEqual($farbtastic['version'], '0.1', 'Alternative libraries can be added to the page.');
   }
 
   /**

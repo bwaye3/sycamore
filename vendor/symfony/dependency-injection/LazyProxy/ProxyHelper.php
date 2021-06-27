@@ -21,46 +21,44 @@ class ProxyHelper
     /**
      * @return string|null The FQCN or builtin name of the type hint, or null when the type hint references an invalid self|parent context
      */
-    public static function getTypeHint(\ReflectionFunctionAbstract $r, \ReflectionParameter $p = null, bool $noBuiltin = false): ?string
+    public static function getTypeHint(\ReflectionFunctionAbstract $r, \ReflectionParameter $p = null, $noBuiltin = false)
     {
         if ($p instanceof \ReflectionParameter) {
-            $type = $p->getType();
+            if (method_exists($p, 'getType')) {
+                $type = $p->getType();
+            } elseif (preg_match('/^(?:[^ ]++ ){4}([a-zA-Z_\x7F-\xFF][^ ]++)/', $p, $type)) {
+                $name = $type = $type[1];
+
+                if ('callable' === $name || 'array' === $name) {
+                    return $noBuiltin ? null : $name;
+                }
+            }
         } else {
-            $type = $r->getReturnType();
+            $type = method_exists($r, 'getReturnType') ? $r->getReturnType() : null;
         }
         if (!$type) {
             return null;
         }
-
-        $types = [];
-
-        foreach ($type instanceof \ReflectionUnionType ? $type->getTypes() : [$type] as $type) {
-            $name = $type instanceof \ReflectionNamedType ? $type->getName() : (string) $type;
+        if (!\is_string($type)) {
+            $name = $type instanceof \ReflectionNamedType ? $type->getName() : $type->__toString();
 
             if ($type->isBuiltin()) {
-                if (!$noBuiltin) {
-                    $types[] = $name;
-                }
-                continue;
-            }
-
-            $lcName = strtolower($name);
-            $prefix = $noBuiltin ? '' : '\\';
-
-            if ('self' !== $lcName && 'parent' !== $lcName) {
-                $types[] = '' !== $prefix ? $prefix.$name : $name;
-                continue;
-            }
-            if (!$r instanceof \ReflectionMethod) {
-                continue;
-            }
-            if ('self' === $lcName) {
-                $types[] = $prefix.$r->getDeclaringClass()->name;
-            } else {
-                $types[] = ($parent = $r->getDeclaringClass()->getParentClass()) ? $prefix.$parent->name : null;
+                return $noBuiltin ? null : $name;
             }
         }
+        $lcName = strtolower($name);
+        $prefix = $noBuiltin ? '' : '\\';
 
-        return $types ? implode('|', $types) : null;
+        if ('self' !== $lcName && 'parent' !== $lcName) {
+            return $prefix.$name;
+        }
+        if (!$r instanceof \ReflectionMethod) {
+            return null;
+        }
+        if ('self' === $lcName) {
+            return $prefix.$r->getDeclaringClass()->name;
+        }
+
+        return ($parent = $r->getDeclaringClass()->getParentClass()) ? $prefix.$parent->name : null;
     }
 }

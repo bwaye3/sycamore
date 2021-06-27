@@ -71,7 +71,7 @@ class AjaxResponseAttachmentsProcessor implements AttachmentsResponseProcessorIn
   protected $moduleHandler;
 
   /**
-   * Constructs an AjaxResponseAttachmentsProcessor object.
+   * Constructs a AjaxResponseAttachmentsProcessor object.
    *
    * @param \Drupal\Core\Asset\AssetResolverInterface $asset_resolver
    *   An asset resolver.

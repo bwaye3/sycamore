@@ -16,12 +16,12 @@ class IndexPhpTest extends BrowserTestBase {
    */
   protected $defaultTheme = 'stark';
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
   }
 
   /**
-   * Tests index.php handling.
+   * Test index.php handling.
    */
   public function testIndexPhpHandling() {
     $index_php = $GLOBALS['base_url'] . '/index.php';

@@ -383,9 +383,9 @@ abstract class SqlBase extends SourcePluginBase implements ContainerFactoryPlugi
   abstract public function query();
 
   /**
-   * Gets the source count using countQuery().
+   * {@inheritdoc}
    */
-  protected function doCount() {
+  public function count($refresh = FALSE) {
     return (int) $this->query()->countQuery()->execute()->fetchField();
   }
 
@@ -459,13 +459,6 @@ abstract class SqlBase extends SourcePluginBase implements ContainerFactoryPlugi
       }
     }
     return TRUE;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function __sleep() {
-    return array_diff(parent::__sleep(), ['database']);
   }
 
 }

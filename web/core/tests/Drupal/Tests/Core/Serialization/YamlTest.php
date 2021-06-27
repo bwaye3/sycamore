@@ -14,12 +14,12 @@ use Drupal\Tests\UnitTestCase;
 class YamlTest extends UnitTestCase {
 
   /**
-   * Tests that the overridden serializer is called.
+   * Test that the overridden serializer is called.
    *
    * @covers ::getSerializer
    * @runInSeparateProcess
    */
-  public function testGetSerialization() {
+  public function testGetSeralization() {
     new Settings(['yaml_parser_class' => YamlParserProxy::class]);
 
     $this->assertEquals(YamlParserProxy::class, Settings::get('yaml_parser_class'));

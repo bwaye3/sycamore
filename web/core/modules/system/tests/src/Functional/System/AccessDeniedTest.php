@@ -21,7 +21,7 @@ class AccessDeniedTest extends BrowserTestBase {
    *
    * @var array
    */
-  protected static $modules = ['block', 'node', 'system_test'];
+  public static $modules = ['block', 'node', 'system_test'];
 
   /**
    * {@inheritdoc}
@@ -30,7 +30,7 @@ class AccessDeniedTest extends BrowserTestBase {
 
   protected $adminUser;
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->drupalPlaceBlock('page_title_block');
@@ -51,7 +51,7 @@ class AccessDeniedTest extends BrowserTestBase {
 
   public function testAccessDenied() {
     $this->drupalGet('admin');
-    $this->assertSession()->pageTextContains('Access denied');
+    $this->assertText(t('Access denied'), 'Found the default 403 page');
     $this->assertSession()->statusCodeEquals(403);
 
     // Ensure that users without permission are denied access and have the
@@ -60,9 +60,9 @@ class AccessDeniedTest extends BrowserTestBase {
     $this->drupalGet('admin', ['query' => ['foo' => 'bar']]);
 
     $settings = $this->getDrupalSettings();
-    $this->assertEquals('admin', $settings['path']['currentPath']);
-    $this->assertTrue($settings['path']['currentPathIsAdmin']);
-    $this->assertEquals(['foo' => 'bar'], $settings['path']['currentQuery']);
+    $this->assertEqual($settings['path']['currentPath'], 'admin');
+    $this->assertEqual($settings['path']['currentPathIsAdmin'], TRUE);
+    $this->assertEqual($settings['path']['currentQuery'], ['foo' => 'bar']);
 
     $this->drupalLogin($this->adminUser);
 
@@ -70,16 +70,14 @@ class AccessDeniedTest extends BrowserTestBase {
     $edit = [
       'site_403' => 'user/' . $this->adminUser->id(),
     ];
-    $this->drupalGet('admin/config/system/site-information');
-    $this->submitForm($edit, 'Save configuration');
+    $this->drupalPostForm('admin/config/system/site-information', $edit, t('Save configuration'));
     $this->assertRaw(new FormattableMarkup("The path '%path' has to start with a slash.", ['%path' => $edit['site_403']]));
 
     // Use a custom 403 page.
     $edit = [
       'site_403' => '/user/' . $this->adminUser->id(),
     ];
-    $this->drupalGet('admin/config/system/site-information');
-    $this->submitForm($edit, 'Save configuration');
+    $this->drupalPostForm('admin/config/system/site-information', $edit, t('Save configuration'));
 
     // Enable the user login block.
     $block = $this->drupalPlaceBlock('user_login_block', ['id' => 'login']);
@@ -87,23 +85,22 @@ class AccessDeniedTest extends BrowserTestBase {
     // Log out and check that the user login block is shown on custom 403 pages.
     $this->drupalLogout();
     $this->drupalGet('admin');
-    $this->assertSession()->pageTextContains($this->adminUser->getAccountName());
-    $this->assertSession()->pageTextContains('Username');
+    $this->assertText($this->adminUser->getAccountName(), 'Found the custom 403 page');
+    $this->assertText(t('Username'), 'Blocks are shown on the custom 403 page');
 
     // Log back in and remove the custom 403 page.
     $this->drupalLogin($this->adminUser);
     $edit = [
       'site_403' => '',
     ];
-    $this->drupalGet('admin/config/system/site-information');
-    $this->submitForm($edit, 'Save configuration');
+    $this->drupalPostForm('admin/config/system/site-information', $edit, t('Save configuration'));
 
     // Logout and check that the user login block is shown on default 403 pages.
     $this->drupalLogout();
     $this->drupalGet('admin');
-    $this->assertSession()->pageTextContains('Access denied');
+    $this->assertText(t('Access denied'), 'Found the default 403 page');
     $this->assertSession()->statusCodeEquals(403);
-    $this->assertSession()->pageTextContains('Username');
+    $this->assertText(t('Username'), 'Blocks are shown on the default 403 page');
 
     // Log back in, set the custom 403 page to /user/login and remove the block
     $this->drupalLogin($this->adminUser);
@@ -116,11 +113,10 @@ class AccessDeniedTest extends BrowserTestBase {
       'name' => $this->adminUser->getAccountName(),
       'pass' => $this->adminUser->pass_raw,
     ];
-    $this->drupalGet('admin/config/system/site-information');
-    $this->submitForm($edit, 'Log in');
+    $this->drupalPostForm('admin/config/system/site-information', $edit, t('Log in'));
 
     // Check that we're still on the same page.
-    $this->assertSession()->pageTextContains('Basic site settings');
+    $this->assertText(t('Basic site settings'));
   }
 
   /**
@@ -132,14 +128,14 @@ class AccessDeniedTest extends BrowserTestBase {
 
     $this->drupalGet('/system-test/always-denied');
     $this->assertNoText('Admin-only 4xx response');
-    $this->assertSession()->pageTextContains('You are not authorized to access this page.');
+    $this->assertText('You are not authorized to access this page.');
     $this->assertSession()->statusCodeEquals(403);
     // Verify the access cacheability metadata for custom 403 is bubbled.
     $this->assertCacheContext('user.roles');
 
     $this->drupalLogin($this->adminUser);
     $this->drupalGet('/system-test/always-denied');
-    $this->assertSession()->pageTextContains('Admin-only 4xx response');
+    $this->assertText('Admin-only 4xx response');
     $this->assertSession()->statusCodeEquals(403);
     // Verify the access cacheability metadata for custom 403 is bubbled.
     $this->assertCacheContext('user.roles');

@@ -33,7 +33,7 @@ class ConfigCRUDTest extends KernelTestBase {
    *
    * @var array
    */
-  protected static $modules = ['system'];
+  public static $modules = ['system'];
 
   /**
    * Tests CRUD operations.
@@ -50,19 +50,19 @@ class ConfigCRUDTest extends KernelTestBase {
 
     // Create a new configuration object in the default collection.
     $config = $this->config($name);
-    $this->assertTrue($config->isNew());
+    $this->assertIdentical($config->isNew(), TRUE);
 
     $config->set('value', 'initial');
     $config->save();
-    $this->assertFalse($config->isNew());
+    $this->assertIdentical($config->isNew(), FALSE);
 
     // Verify the active configuration contains the saved value.
     $actual_data = $storage->read($name);
-    $this->assertSame(['value' => 'initial'], $actual_data);
+    $this->assertIdentical($actual_data, ['value' => 'initial']);
 
     // Verify the config factory contains the saved value.
     $actual_data = $config_factory->get($name)->getRawData();
-    $this->assertSame(['value' => 'initial'], $actual_data);
+    $this->assertIdentical($actual_data, ['value' => 'initial']);
 
     // Create another instance of the config object using a custom collection.
     $collection_config = new Config(
@@ -77,21 +77,21 @@ class ConfigCRUDTest extends KernelTestBase {
     // Verify that the config factory still returns the right value, from the
     // config instance in the default collection.
     $actual_data = $config_factory->get($name)->getRawData();
-    $this->assertSame(['value' => 'initial'], $actual_data);
+    $this->assertIdentical($actual_data, ['value' => 'initial']);
 
     // Update the configuration object instance.
     $config->set('value', 'instance-update');
     $config->save();
-    $this->assertFalse($config->isNew());
+    $this->assertIdentical($config->isNew(), FALSE);
 
     // Verify the active configuration contains the updated value.
     $actual_data = $storage->read($name);
-    $this->assertSame(['value' => 'instance-update'], $actual_data);
+    $this->assertIdentical($actual_data, ['value' => 'instance-update']);
 
     // Verify a call to $this->config() immediately returns the updated value.
     $new_config = $this->config($name);
-    $this->assertSame($config->get(), $new_config->get());
-    $this->assertFalse($config->isNew());
+    $this->assertIdentical($new_config->get(), $config->get());
+    $this->assertIdentical($config->isNew(), FALSE);
 
     // Pollute the config factory static cache.
     $config_factory->getEditable($name);
@@ -101,55 +101,55 @@ class ConfigCRUDTest extends KernelTestBase {
     // default collection storage.
     $collection_config->delete();
     $actual_config = $config_factory->get($name);
-    $this->assertFalse($actual_config->isNew());
-    $this->assertSame(['value' => 'instance-update'], $actual_config->getRawData());
+    $this->assertIdentical($actual_config->isNew(), FALSE);
+    $this->assertIdentical($actual_config->getRawData(), ['value' => 'instance-update']);
 
     // Delete the configuration object.
     $config->delete();
 
     // Verify the configuration object is empty.
-    $this->assertSame([], $config->get());
-    $this->assertTrue($config->isNew());
+    $this->assertIdentical($config->get(), []);
+    $this->assertIdentical($config->isNew(), TRUE);
 
     // Verify that all copies of the configuration has been removed from the
     // static cache.
-    $this->assertTrue($config_factory->getEditable($name)->isNew());
+    $this->assertIdentical($config_factory->getEditable($name)->isNew(), TRUE);
 
     // Verify the active configuration contains no value.
     $actual_data = $storage->read($name);
-    $this->assertFalse($actual_data);
+    $this->assertIdentical($actual_data, FALSE);
 
     // Verify $this->config() returns no data.
     $new_config = $this->config($name);
-    $this->assertSame($config->get(), $new_config->get());
-    $this->assertTrue($config->isNew());
+    $this->assertIdentical($new_config->get(), $config->get());
+    $this->assertIdentical($config->isNew(), TRUE);
 
     // Re-create the configuration object.
     $config->set('value', 're-created');
     $config->save();
-    $this->assertFalse($config->isNew());
+    $this->assertIdentical($config->isNew(), FALSE);
 
     // Verify the active configuration contains the updated value.
     $actual_data = $storage->read($name);
-    $this->assertSame(['value' => 're-created'], $actual_data);
+    $this->assertIdentical($actual_data, ['value' => 're-created']);
 
     // Verify a call to $this->config() immediately returns the updated value.
     $new_config = $this->config($name);
-    $this->assertSame($config->get(), $new_config->get());
-    $this->assertFalse($config->isNew());
+    $this->assertIdentical($new_config->get(), $config->get());
+    $this->assertIdentical($config->isNew(), FALSE);
 
     // Rename the configuration object.
     $new_name = 'config_test.crud_rename';
     $this->container->get('config.factory')->rename($name, $new_name);
     $renamed_config = $this->config($new_name);
-    $this->assertSame($config->get(), $renamed_config->get());
-    $this->assertFalse($renamed_config->isNew());
+    $this->assertIdentical($renamed_config->get(), $config->get());
+    $this->assertIdentical($renamed_config->isNew(), FALSE);
 
     // Ensure that the old configuration object is removed from both the cache
     // and the configuration storage.
     $config = $this->config($name);
-    $this->assertSame([], $config->get());
-    $this->assertTrue($config->isNew());
+    $this->assertIdentical($config->get(), []);
+    $this->assertIdentical($config->isNew(), TRUE);
 
     // Test renaming when config.factory does not have the object in its static
     // cache.
@@ -162,12 +162,12 @@ class ConfigCRUDTest extends KernelTestBase {
     $new_name = 'config_test.crud_rename_no_cache';
     $config_factory->rename($name, $new_name);
     $renamed_config = $config_factory->get($new_name);
-    $this->assertSame($config->get(), $renamed_config->get());
-    $this->assertFalse($renamed_config->isNew());
+    $this->assertIdentical($renamed_config->get(), $config->get());
+    $this->assertIdentical($renamed_config->isNew(), FALSE);
     // Ensure the overrides static cache has been cleared.
-    $this->assertTrue($config_factory->get($name)->isNew());
+    $this->assertIdentical($config_factory->get($name)->isNew(), TRUE);
     // Ensure the non-overrides static cache has been cleared.
-    $this->assertTrue($config_factory->getEditable($name)->isNew());
+    $this->assertIdentical($config_factory->getEditable($name)->isNew(), TRUE);
 
     // Merge data into the configuration object.
     $new_config = $this->config($new_name);
@@ -177,8 +177,8 @@ class ConfigCRUDTest extends KernelTestBase {
     ];
     $new_config->merge($expected_values);
     $new_config->save();
-    $this->assertSame($expected_values['value'], $new_config->get('value'));
-    $this->assertSame($expected_values['404'], $new_config->get('404'));
+    $this->assertIdentical($new_config->get('value'), $expected_values['value']);
+    $this->assertIdentical($new_config->get('404'), $expected_values['404']);
 
     // Test that getMultiple() does not return new config objects that were
     // previously accessed with get()
@@ -271,6 +271,7 @@ class ConfigCRUDTest extends KernelTestBase {
     $name = 'config_test.types';
     $config = $this->config($name);
     $original_content = file_get_contents(drupal_get_path('module', 'config_test') . '/' . InstallStorage::CONFIG_INSTALL_DIRECTORY . "/$name.yml");
+    $this->verbose('<pre>' . $original_content . "\n" . var_export($storage->read($name), TRUE));
 
     // Verify variable data types are intact.
     $data = [
@@ -281,31 +282,27 @@ class ConfigCRUDTest extends KernelTestBase {
       'float_as_integer' => (float) 1,
       'hex' => 0xC,
       'int' => 99,
-      // Symfony 5.1's YAML parser issues a deprecation when reading octal with
-      // a leading zero, to comply with YAML 1.2. However PECL YAML is still
-      // YAML 1.1 compliant.
-      // @todo: revisit parsing of octal once PECL YAML supports YAML 1.2.
-      // See https://www.drupal.org/project/drupal/issues/3205480
-      // 'octal' => 0775,
+      'octal' => 0775,
       'string' => 'string',
       'string_int' => '1',
     ];
     $data['_core']['default_config_hash'] = Crypt::hashBase64(serialize($data));
-    $this->assertSame($data, $config->get());
+    $this->assertIdentical($config->get(), $data);
 
     // Re-set each key using Config::set().
     foreach ($data as $key => $value) {
       $config->set($key, $value);
     }
     $config->save();
-    $this->assertSame($data, $config->get());
+    $this->assertIdentical($config->get(), $data);
     // Assert the data against the file storage.
-    $this->assertSame($data, $storage->read($name));
+    $this->assertIdentical($storage->read($name), $data);
+    $this->verbose('<pre>' . $name . var_export($storage->read($name), TRUE));
 
     // Set data using config::setData().
     $config->setData($data)->save();
-    $this->assertSame($data, $config->get());
-    $this->assertSame($data, $storage->read($name));
+    $this->assertIdentical($config->get(), $data);
+    $this->assertIdentical($storage->read($name), $data);
 
     // Test that schema type enforcement can be overridden by trusting the data.
     $this->assertSame(99, $config->get('int'));

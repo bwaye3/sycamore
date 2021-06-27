@@ -6,7 +6,7 @@ use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 
 /**
- * Tests the responsive image field UI.
+ * Class ResponsiveImageFieldUiTest.
  *
  * @group responsive_image
  */
@@ -17,7 +17,7 @@ class ResponsiveImageFieldUiTest extends WebDriverTestBase {
    *
    * @var array
    */
-  protected static $modules = [
+  public static $modules = [
     'node',
     'field_ui',
     'image',
@@ -29,7 +29,7 @@ class ResponsiveImageFieldUiTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->drupalPlaceBlock('system_breadcrumb_block');
     // Create a test user.

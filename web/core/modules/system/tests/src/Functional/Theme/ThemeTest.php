@@ -4,7 +4,7 @@ namespace Drupal\Tests\system\Functional\Theme;
 
 use Drupal\Component\Serialization\Json;
 use Drupal\Tests\BrowserTestBase;
-use Drupal\Core\Routing\RouteObjectInterface;
+use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route;
 
@@ -18,7 +18,7 @@ class ThemeTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['theme_test', 'node'];
+  public static $modules = ['theme_test', 'node'];
 
   /**
    * {@inheritdoc}
@@ -28,7 +28,7 @@ class ThemeTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     \Drupal::service('theme_installer')->install(['test_theme']);
   }
@@ -45,7 +45,7 @@ class ThemeTest extends BrowserTestBase {
     drupal_theme_rebuild();
     for ($i = 0; $i < 2; $i++) {
       $this->drupalGet('theme-test/suggestion');
-      $this->assertSession()->pageTextContains('Theme hook implementor=theme-test--suggestion.html.twig. Foo=template_preprocess_theme_test');
+      $this->assertText('Theme hook implementor=theme-test--suggestion.html.twig. Foo=template_preprocess_theme_test', 'Theme hook suggestion ran with data available from a preprocess function for the base hook.');
     }
   }
 
@@ -56,7 +56,7 @@ class ThemeTest extends BrowserTestBase {
     $this->drupalGet('theme-test/priority');
 
     // Ensure that the custom theme negotiator was not able to set the theme.
-    $this->assertNoText('Theme hook implementor=theme-test--suggestion.html.twig. Foo=template_preprocess_theme_test');
+    $this->assertNoText('Theme hook implementor=theme-test--suggestion.html.twig. Foo=template_preprocess_theme_test', 'Theme hook suggestion ran with data available from a preprocess function for the base hook.');
   }
 
   /**
@@ -96,7 +96,7 @@ class ThemeTest extends BrowserTestBase {
     $this->resetAll();
     // Visit page controller and confirm that the theme class is loaded.
     $this->drupalGet('/theme-test/test-theme-class');
-    $this->assertSession()->pageTextContains('Loading ThemeClass was successful.');
+    $this->assertText('Loading ThemeClass was successful.');
   }
 
   /**
@@ -138,7 +138,7 @@ class ThemeTest extends BrowserTestBase {
       ->set('default', 'test_theme')
       ->save();
     $this->drupalGet('theme-test/template-test');
-    $this->assertSession()->pageTextContains('Success: Template overridden.');
+    $this->assertText('Success: Template overridden.', 'Template overridden by defined \'template\' filename.');
   }
 
   /**
@@ -151,7 +151,7 @@ class ThemeTest extends BrowserTestBase {
     $this->drupalGet('');
     $attributes = $this->xpath('/body[@theme_test_page_variable="Page variable is an array."]');
     $this->assertCount(1, $attributes, 'In template_preprocess_html(), the page variable is still an array (not rendered yet).');
-    $this->assertSession()->pageTextContains('theme test page bottom markup');
+    $this->assertText('theme test page bottom markup', 'Modules are able to set the page bottom region.');
   }
 
   /**
@@ -189,7 +189,7 @@ class ThemeTest extends BrowserTestBase {
         'Flamingo',
       ];
       foreach ($expected_values as $key => $value) {
-        $this->assertEquals((string) $value, $items[$key]->getText());
+        $this->assertEqual((string) $value, $items[$key]->getText());
       }
     }
   }

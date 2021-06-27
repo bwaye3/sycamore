@@ -2,7 +2,6 @@
 
 namespace Drupal\Core\DependencyInjection\Compiler;
 
-use Drupal\Component\Utility\Reflection;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Exception\LogicException;
@@ -37,13 +36,6 @@ use Symfony\Component\DependencyInjection\Reference;
  * @see \Drupal\Core\DependencyInjection\Compiler\TaggedHandlersPass::process()
  */
 class TaggedHandlersPass implements CompilerPassInterface {
-
-  /**
-   * Service tag information keyed by tag name.
-   *
-   * @var array
-   */
-  protected $tagCache = [];
 
   /**
    * {@inheritdoc}
@@ -96,22 +88,19 @@ class TaggedHandlersPass implements CompilerPassInterface {
    *   If at least one tagged service is required but none are found.
    */
   public function process(ContainerBuilder $container) {
-    // Avoid using ContainerBuilder::findTaggedServiceIds() as that results in
+    // Avoid using ContainerBuilder::findTaggedServiceIds() as that we result in
     // additional iterations around all the service definitions.
-    foreach ($container->getDefinitions() as $id => $definition) {
-      foreach ($definition->getTags() as $name => $info) {
-        $this->tagCache[$name][$id] = $info;
+    foreach ($container->getDefinitions() as $consumer_id => $definition) {
+      $tags = $definition->getTags();
+      if (isset($tags['service_collector'])) {
+        foreach ($tags['service_collector'] as $pass) {
+          $this->processServiceCollectorPass($pass, $consumer_id, $container);
+        }
       }
-    }
-
-    foreach ($this->tagCache['service_collector'] ?? [] as $consumer_id => $tags) {
-      foreach ($tags as $pass) {
-        $this->processServiceCollectorPass($pass, $consumer_id, $container);
-      }
-    }
-    foreach ($this->tagCache['service_id_collector'] ?? [] as $consumer_id => $tags) {
-      foreach ($tags as $pass) {
-        $this->processServiceIdCollectorPass($pass, $consumer_id, $container);
+      if (isset($tags['service_id_collector'])) {
+        foreach ($tags['service_id_collector'] as $pass) {
+          $this->processServiceIdCollectorPass($pass, $consumer_id, $container);
+        }
       }
     }
   }
@@ -141,9 +130,8 @@ class TaggedHandlersPass implements CompilerPassInterface {
     $priority_pos = NULL;
     $extra_params = [];
     foreach ($params as $pos => $param) {
-      $class = Reflection::getParameterClassName($param);
-      if ($class !== NULL) {
-        $interface = $class;
+      if ($param->getClass()) {
+        $interface = $param->getClass();
       }
       elseif ($param->getName() === 'id') {
         $id_pos = $pos;
@@ -164,11 +152,12 @@ class TaggedHandlersPass implements CompilerPassInterface {
         $method_name,
       ]));
     }
+    $interface = $interface->getName();
 
     // Find all tagged handlers.
     $handlers = [];
     $extra_arguments = [];
-    foreach ($this->tagCache[$tag] ?? [] as $id => $attributes) {
+    foreach ($container->findTaggedServiceIds($tag) as $id => $attributes) {
       // Validate the interface.
       $handler = $container->getDefinition($id);
       if (!is_subclass_of($handler->getClass(), $interface)) {
@@ -228,7 +217,7 @@ class TaggedHandlersPass implements CompilerPassInterface {
 
     // Find all tagged handlers.
     $handlers = [];
-    foreach ($this->tagCache[$tag] ?? [] as $id => $attributes) {
+    foreach ($container->findTaggedServiceIds($tag) as $id => $attributes) {
       $handlers[$id] = isset($attributes[0]['priority']) ? $attributes[0]['priority'] : 0;
     }
 

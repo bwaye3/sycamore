@@ -42,7 +42,7 @@ class ArgumentValidatorTermTest extends TaxonomyTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp($import_test_views = TRUE): void {
+  protected function setUp($import_test_views = TRUE) {
     parent::setUp($import_test_views);
 
     // Add three terms to the 'tags' vocabulary.
@@ -71,7 +71,7 @@ class ArgumentValidatorTermTest extends TaxonomyTestBase {
       $view->argument['tid']->argument_validated = NULL;
     }
 
-    // Pass in an invalid term.
+    // Pass in a invalid term.
     $this->assertFalse($view->argument['tid']->setArgument(rand(1000, 10000)));
     $this->assertEmpty($view->argument['tid']->getTitle());
     $view->argument['tid']->validated_title = NULL;

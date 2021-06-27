@@ -96,7 +96,6 @@ PHP object, or items of a PHP array):
       (even if ``bar`` is the constructor - use ``__construct()`` instead);
     * if not, and if ``foo`` is an object, check that ``getBar`` is a valid method;
     * if not, and if ``foo`` is an object, check that ``isBar`` is a valid method;
-    * if not, and if ``foo`` is an object, check that ``hasBar`` is a valid method;
     * if not, return a ``null`` value.
 
     Twig also supports a specific syntax for accessing items on PHP arrays,
@@ -128,7 +127,7 @@ Global Variables
 
 The following variables are always available in templates:
 
-* ``_self``: references the current template name;
+* ``_self``: references the current template;
 * ``_context``: references the current context;
 * ``_charset``: references the current charset.
 
@@ -179,7 +178,7 @@ filters.
 
 .. note::
 
-    The ``apply`` tag was introduced in Twig 2.9; use the ``filter`` tag with
+    The ``apply`` tag was introduced in Twig 1.40; use the ``filter`` tag with
     previous versions.
 
 Functions
@@ -204,6 +203,9 @@ built-in functions.
 
 Named Arguments
 ---------------
+
+.. versionadded:: 1.12
+    Support for named arguments was added in Twig 1.12.
 
 .. code-block:: twig
 
@@ -256,7 +258,7 @@ blocks.
 For example, to display a list of users provided in a variable called
 ``users``, use the :doc:`for<tags/for>` tag:
 
-.. code-block:: html+twig
+.. code-block:: twig
 
     <h1>Members</h1>
     <ul>
@@ -267,7 +269,7 @@ For example, to display a list of users provided in a variable called
 
 The :doc:`if<tags/if>` tag can be used to test an expression:
 
-.. code-block:: html+twig
+.. code-block:: twig
 
     {% if users|length > 0 %}
         <ul>
@@ -345,7 +347,7 @@ document that might be used for a two-column page:
     <html>
         <head>
             {% block head %}
-                <link rel="stylesheet" href="style.css"/>
+                <link rel="stylesheet" href="style.css" />
                 <title>{% block title %}{% endblock %} - My Webpage</title>
             {% endblock %}
         </head>
@@ -366,7 +368,7 @@ template.
 
 A child template might look like this:
 
-.. code-block:: html+twig
+.. code-block:: twig
 
     {% extends "base.html" %}
 
@@ -396,7 +398,7 @@ It's possible to render the contents of the parent block by using the
 :doc:`parent<functions/parent>` function. This gives back the results of the
 parent block:
 
-.. code-block:: html+twig
+.. code-block:: twig
 
     {% block sidebar %}
         <h3>Table Of Contents</h3>
@@ -494,6 +496,9 @@ For bigger sections it makes sense to mark a block
 Macros
 ------
 
+.. versionadded:: 1.12
+    Support for default argument values was added in Twig 1.12.
+
 Macros are comparable with functions in regular programming languages. They are
 useful to reuse HTML fragments to not repeat yourself. They are described in the
 :doc:`macro<tags/macro>` tag documentation.
@@ -509,9 +514,9 @@ Twig allows expressions everywhere.
 
     The operator precedence is as follows, with the lowest-precedence operators
     listed first: ``?:`` (ternary operator), ``b-and``, ``b-xor``, ``b-or``,
-    ``or``, ``and``, ``==``, ``!=``, ``<=>``, ``<``, ``>``, ``>=``, ``<=``,
-    ``in``, ``matches``, ``starts with``, ``ends with``, ``..``, ``+``, ``-``,
-    ``~``, ``*``, ``/``, ``//``, ``%``, ``is`` (tests), ``**``, ``??``, ``|``
+    ``or``, ``and``, ``==``, ``!=``, ``<``, ``>``, ``>=``, ``<=``, ``in``,
+    ``matches``, ``starts with``, ``ends with``, ``..``, ``+``, ``-``, ``~``,
+    ``*``, ``/``, ``//``, ``%``, ``is`` (tests), ``**``, ``??``, ``|``
     (filters), ``[]``, and ``.``:
 
     .. code-block:: twig
@@ -526,6 +531,9 @@ Twig allows expressions everywhere.
 
 Literals
 ~~~~~~~~
+
+.. versionadded:: 1.5
+    Support for hash keys as names and expressions was added in Twig 1.5.
 
 The simplest form of expressions are literals. Literals are representations
 for PHP types such as strings, numbers, and arrays. The following literals
@@ -554,18 +562,13 @@ exist:
     {# keys as string #}
     { 'foo': 'foo', 'bar': 'bar' }
 
-    {# keys as names (equivalent to the previous hash) #}
+    {# keys as names (equivalent to the previous hash) -- as of Twig 1.5 #}
     { foo: 'foo', bar: 'bar' }
 
     {# keys as integer #}
     { 2: 'foo', 4: 'bar' }
 
-    {# keys can be omitted if it is the same as the variable name #}
-    { foo }
-    {# is equivalent to the following #}
-    { 'foo': foo }
-
-    {# keys as expressions (the expression must be enclosed into parentheses) #}
+    {# keys as expressions (the expression must be enclosed into parentheses) -- as of Twig 1.5 #}
     {% set foo = 'foo' %}
     { (foo): 'foo', (1 + 1): 'bar', (foo ~ 'b'): 'baz' }
 
@@ -725,6 +728,9 @@ tests.
 Other Operators
 ~~~~~~~~~~~~~~~
 
+.. versionadded:: 1.12.0
+    Support for the extended ternary operator was added in Twig 1.12.0.
+
 The following operators don't fit into any of the other categories:
 
 * ``|``: Applies a filter.
@@ -757,6 +763,8 @@ The following operators don't fit into any of the other categories:
   .. code-block:: twig
 
       {{ foo ? 'yes' : 'no' }}
+
+      {# as of Twig 1.12.0 #}
       {{ foo ?: 'no' }} is the same as {{ foo ? foo : 'no' }}
       {{ foo ? 'yes' }} is the same as {{ foo ? 'yes' : '' }}
 
@@ -772,6 +780,9 @@ The following operators don't fit into any of the other categories:
 String Interpolation
 ~~~~~~~~~~~~~~~~~~~~
 
+.. versionadded:: 1.5
+    String interpolation was added in Twig 1.5.
+
 String interpolation (``#{expression}``) allows any valid expression to appear
 within a *double-quoted string*. The result of evaluating that expression is
 inserted into the string:
@@ -786,9 +797,11 @@ inserted into the string:
 Whitespace Control
 ------------------
 
-.. versionadded:: 2.8
+.. versionadded:: 1.1
+    Tag level whitespace control was added in Twig 1.1.
 
-    Tag level line whitespace control was added in Twig 2.8.
+.. versionadded:: 1.39
+    Tag level Line whitespace control was added in Twig 1.39.
 
 The first newline after a template tag is removed automatically (like in PHP).
 Whitespace is not further modified by the template engine, so each whitespace
@@ -810,7 +823,7 @@ The modifiers can be used on either side of the tags like in ``{%-`` or ``-%}``
 and they consume all whitespace for that side of the tag. It is possible to use
 the modifiers on one side of a tag or on both sides:
 
-.. code-block:: html+twig
+.. code-block:: twig
 
     {% set value = 'no spaces' %}
     {#- No leading/trailing whitespace -#}
@@ -836,7 +849,7 @@ the modifiers on one side of a tag or on both sides:
     In addition to the whitespace modifiers, Twig also has a ``spaceless`` filter
     that removes whitespace **between HTML tags**:
 
-    .. code-block:: html+twig
+    .. code-block:: twig
 
         {% apply spaceless %}
             <div>
@@ -846,8 +859,8 @@ the modifiers on one side of a tag or on both sides:
 
         {# output will be <div><strong>foo bar</strong></div> #}
 
-    The ``apply`` tag was introduced in Twig 2.9; use the ``filter`` tag with
-    previous versions.
+    Note that the ``apply`` tag was introduced in Twig 1.40; use the ``filter``
+    tag with previous versions.
 
 Extensions
 ----------

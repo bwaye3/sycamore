@@ -30,7 +30,7 @@ class ActiveWorkspaceUpdateTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->setUpCurrentUser([], ['view any workspace']);

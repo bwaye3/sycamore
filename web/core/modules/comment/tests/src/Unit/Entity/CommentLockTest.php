@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class CommentLockTest extends UnitTestCase {
 
   /**
-   * Tests the lock behavior.
+   * Test the lock behavior.
    */
   public function testLocks() {
     $container = new ContainerBuilder();

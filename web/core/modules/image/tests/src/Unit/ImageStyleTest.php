@@ -40,8 +40,6 @@ class ImageStyleTest extends UnitTestCase {
    *   The image effect ID.
    * @param \Drupal\image\ImageEffectInterface|\PHPUnit\Framework\MockObject\MockObject $image_effect
    *   The image effect used for testing.
-   * @param array $stubs
-   *   An array of additional method names to mock.
    *
    * @return \Drupal\image\ImageStyleInterface
    *   The mocked image style.
@@ -81,7 +79,7 @@ class ImageStyleTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     $this->entityTypeId = $this->randomMachineName();
     $this->provider = $this->randomMachineName();
     $this->entityType = $this->createMock('\Drupal\Core\Entity\EntityTypeInterface');

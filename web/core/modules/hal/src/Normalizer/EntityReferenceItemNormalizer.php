@@ -70,7 +70,7 @@ class EntityReferenceItemNormalizer extends FieldItemNormalizer implements UuidR
       return parent::normalize($field_item, $format, $context);
     }
 
-    /** @var \Drupal\Core\Field\FieldItemInterface $field_item */
+    /** @var $field_item \Drupal\Core\Field\FieldItemInterface */
     $target_entity = $field_item->get('entity')->getValue();
 
     // If the parent entity passed in a langcode, unset it before normalizing

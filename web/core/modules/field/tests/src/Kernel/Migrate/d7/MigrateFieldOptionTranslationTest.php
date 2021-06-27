@@ -14,7 +14,7 @@ class MigrateFieldOptionTranslationTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'comment',
     'config_translation',
     'datetime',
@@ -34,7 +34,7 @@ class MigrateFieldOptionTranslationTest extends MigrateDrupal7TestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->executeMigrations([
       'language',
@@ -80,13 +80,13 @@ class MigrateFieldOptionTranslationTest extends MigrateDrupal7TestBase {
 
     $config_translation = $language_manager->getLanguageConfigOverride('fr', 'field.storage.node.field_rating');
     $allowed_values = [
-      0 => [
+      1 => [
         'label' => 'Haute',
       ],
-      1 => [
+      2 => [
         'label' => 'Moyenne',
       ],
-      2 => [
+      3 => [
         'label' => 'Faible',
       ],
     ];
@@ -94,13 +94,13 @@ class MigrateFieldOptionTranslationTest extends MigrateDrupal7TestBase {
 
     $config_translation = $language_manager->getLanguageConfigOverride('is', 'field.storage.node.field_rating');
     $allowed_values = [
-      0 => [
+      1 => [
         'label' => 'Hár',
       ],
-      1 => [
+      2 => [
         'label' => 'Miðlungs',
       ],
-      2 => [
+      3 => [
         'label' => 'Lágt',
       ],
     ];

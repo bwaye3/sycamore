@@ -27,13 +27,13 @@ class ImportStorageTransformerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->installConfig(['system']);
   }
 
   /**
-   * Tests the import transformation.
+   * Test the import transformation.
    */
   public function testTransform() {
     // Get the raw system.site config and set it in the sync storage.
@@ -61,7 +61,7 @@ class ImportStorageTransformerTest extends KernelTestBase {
   }
 
   /**
-   * Tests that the import transformer throws an exception.
+   * Test that the import transformer throws an exception.
    */
   public function testTransformLocked() {
     // Mock the request lock not being available.
@@ -92,7 +92,7 @@ class ImportStorageTransformerTest extends KernelTestBase {
   }
 
   /**
-   * Tests the import transformer during a running config import.
+   * Test the import transformer during a running config import.
    */
   public function testTransformWhileImporting() {
     // Set up the database table with the current active config.

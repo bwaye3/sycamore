@@ -27,12 +27,12 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
     /**
      * Cache-Control headers that are sent to the final response if they appear in ANY of the responses.
      */
-    private const OVERRIDE_DIRECTIVES = ['private', 'no-cache', 'no-store', 'no-transform', 'must-revalidate', 'proxy-revalidate'];
+    private static $overrideDirectives = ['private', 'no-cache', 'no-store', 'no-transform', 'must-revalidate', 'proxy-revalidate'];
 
     /**
      * Cache-Control headers that are sent to the final response if they appear in ALL of the responses.
      */
-    private const INHERIT_DIRECTIVES = ['public', 'immutable'];
+    private static $inheritDirectives = ['public', 'immutable'];
 
     private $embeddedResponses = 0;
     private $isNotCacheableResponseEmbedded = false;
@@ -60,13 +60,13 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
     {
         ++$this->embeddedResponses;
 
-        foreach (self::OVERRIDE_DIRECTIVES as $directive) {
+        foreach (self::$overrideDirectives as $directive) {
             if ($response->headers->hasCacheControlDirective($directive)) {
                 $this->flagDirectives[$directive] = true;
             }
         }
 
-        foreach (self::INHERIT_DIRECTIVES as $directive) {
+        foreach (self::$inheritDirectives as $directive) {
             if (false !== $this->flagDirectives[$directive]) {
                 $this->flagDirectives[$directive] = $response->headers->hasCacheControlDirective($directive);
             }
@@ -153,8 +153,10 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
      * RFC2616, Section 13.4.
      *
      * @see https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html#sec13.4
+     *
+     * @return bool
      */
-    private function willMakeFinalResponseUncacheable(Response $response): bool
+    private function willMakeFinalResponseUncacheable(Response $response)
     {
         // RFC2616: A response received with a status code of 200, 203, 300, 301 or 410
         // MAY be stored by a cache […] unless a cache-control directive prohibits caching.
@@ -198,8 +200,12 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
      *
      * If the value is lower than the currently stored value, we update the value, to keep a rolling
      * minimal value of each instruction. If the value is NULL, the directive will not be set on the final response.
+     *
+     * @param string   $directive
+     * @param int|null $value
+     * @param int      $age
      */
-    private function storeRelativeAgeDirective(string $directive, ?int $value, int $age)
+    private function storeRelativeAgeDirective($directive, $value, $age)
     {
         if (null === $value) {
             $this->ageDirectives[$directive] = false;

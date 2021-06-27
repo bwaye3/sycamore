@@ -25,7 +25,7 @@ class ValidatorTest extends FileManagedUnitTestBase {
    */
   protected $nonImage;
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->image = File::create();
@@ -40,7 +40,7 @@ class ValidatorTest extends FileManagedUnitTestBase {
   }
 
   /**
-   * Tests the file_validate_extensions() function.
+   * Test the file_validate_extensions() function.
    */
   public function testFileValidateExtensions() {
     $file = File::create(['filename' => 'asdf.txt']);
@@ -97,9 +97,8 @@ class ValidatorTest extends FileManagedUnitTestBase {
       $this->assertCount(0, $errors, 'No errors should be reported when an oversized image can be scaled down.');
 
       $image = $this->container->get('image.factory')->get($this->image->getFileUri());
-      // Verify that the image was scaled to the correct width and height.
-      $this->assertLessThanOrEqual(10, $image->getWidth());
-      $this->assertLessThanOrEqual(5, $image->getHeight());
+      $this->assertTrue($image->getWidth() <= 10, 'Image scaled to correct width.', 'File');
+      $this->assertTrue($image->getHeight() <= 5, 'Image scaled to correct height.', 'File');
 
       // Once again, now with negative width and height to force an error.
       copy('core/misc/druplicon.png', 'temporary://druplicon.png');
@@ -125,7 +124,7 @@ class ValidatorTest extends FileManagedUnitTestBase {
 
     // Add a filename with an allowed length and test it.
     $file->setFilename(str_repeat('x', 240));
-    $this->assertEquals(240, strlen($file->getFilename()));
+    $this->assertEqual(strlen($file->getFilename()), 240);
     $errors = file_validate_name_length($file);
     $this->assertCount(0, $errors, 'No errors reported for 240 length filename.');
 
@@ -141,7 +140,7 @@ class ValidatorTest extends FileManagedUnitTestBase {
   }
 
   /**
-   * Tests file_validate_size().
+   * Test file_validate_size().
    */
   public function testFileValidateSize() {
     // Create a file with a size of 1000 bytes, and quotas of only 1 byte.

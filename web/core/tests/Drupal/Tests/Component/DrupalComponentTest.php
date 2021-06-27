@@ -38,7 +38,6 @@ class DrupalComponentTest extends TestCase {
    *
    * @param $component_path
    *   The path to the component.
-   *
    * @dataProvider \Drupal\Tests\Component\DrupalComponentTest::getComponents
    */
   public function testComponentLicence($component_path) {
@@ -102,14 +101,14 @@ class DrupalComponentTest extends TestCase {
   }
 
   /**
-   * Data provider for testAssertNoCoreUsage().
+   * Data provider for testAssertNoCoreUseage().
    *
    * @return array
-   *   Data for testAssertNoCoreUsage() in the form:
+   *   Data for testAssertNoCoreUseage() in the form:
    *   - TRUE if the test passes, FALSE otherwise.
    *   - File data as a string. This will be used as a virtual file.
    */
-  public function providerAssertNoCoreUsage() {
+  public function providerAssertNoCoreUseage() {
     return [
       [
         TRUE,
@@ -134,9 +133,9 @@ class DrupalComponentTest extends TestCase {
 
   /**
    * @covers \Drupal\Tests\Component\DrupalComponentTest::assertNoCoreUsage
-   * @dataProvider providerAssertNoCoreUsage
+   * @dataProvider providerAssertNoCoreUseage
    */
-  public function testAssertNoCoreUsage($expected_pass, $file_data) {
+  public function testAssertNoCoreUseage($expected_pass, $file_data) {
     // Set up a virtual file to read.
     $vfs_root = vfsStream::setup('root');
     vfsStream::newFile('Test.php')->at($vfs_root)->setContent($file_data);

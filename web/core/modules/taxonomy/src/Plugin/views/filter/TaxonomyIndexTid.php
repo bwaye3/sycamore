@@ -22,11 +22,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class TaxonomyIndexTid extends ManyToOne {
 
-  /**
-   * Stores the exposed input for this filter.
-   *
-   * @var array|null
-   */
+  // Stores the exposed input for this filter.
   public $validated_exposed_input = NULL;
 
   /**
@@ -213,7 +209,6 @@ class TaxonomyIndexTid extends ManyToOne {
       else {
         $options = [];
         $query = \Drupal::entityQuery('taxonomy_term')
-          ->accessCheck(TRUE)
           // @todo Sorting on vocabulary properties -
           //   https://www.drupal.org/node/1821274.
           ->sort('weight')

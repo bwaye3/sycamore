@@ -33,9 +33,9 @@ class HtmlEscapedTextTest extends TestCase {
    */
   public function providerToString() {
     // Checks that invalid multi-byte sequences are escaped.
-    $tests[] = ["Foo\xC0bar", 'Foo�bar', 'Escapes invalid sequence "Foo\xC0bar"'];
+    $tests[] = ["Foo\xC0barbaz", 'Foo�barbaz', 'Escapes invalid sequence "Foo\xC0barbaz"'];
     $tests[] = ["\xc2\"", '�&quot;', 'Escapes invalid sequence "\xc2\""'];
-    $tests[] = ["Foo ÿñ", "Foo ÿñ", 'Does not escape valid sequence "Foo ÿñ"'];
+    $tests[] = ["Fooÿñ", "Fooÿñ", 'Does not escape valid sequence "Fooÿñ"'];
 
     // Checks that special characters are escaped.
     $script_tag = $this->prophesize(MarkupInterface::class);

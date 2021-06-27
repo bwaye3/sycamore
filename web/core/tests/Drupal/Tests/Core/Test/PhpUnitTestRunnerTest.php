@@ -15,7 +15,7 @@ use Drupal\Tests\UnitTestCase;
 class PhpUnitTestRunnerTest extends UnitTestCase {
 
   /**
-   * Tests an error in the test running phase.
+   * Test an error in the test running phase.
    *
    * @covers ::runTests
    */
@@ -71,7 +71,7 @@ class PhpUnitTestRunnerTest extends UnitTestCase {
    */
   public function testPhpUnitCommand() {
     $runner = new PhpUnitTestRunner($this->root, sys_get_temp_dir());
-    $this->assertMatchesRegularExpression('/phpunit/', $runner->phpUnitCommand());
+    $this->assertRegExp('/phpunit/', $runner->phpUnitCommand());
   }
 
   /**

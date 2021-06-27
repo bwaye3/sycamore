@@ -377,8 +377,6 @@ class DataDefinition implements DataDefinitionInterface, \ArrayAccess {
    *   Whether the data value should be internal.
    *
    * @return $this
-   *
-   * @see \Drupal\Core\TypedData\DataDefinitionInterface::isInternal
    */
   public function setInternal($internal) {
     $this->definition['internal'] = $internal;

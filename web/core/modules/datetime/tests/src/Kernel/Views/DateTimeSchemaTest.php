@@ -20,7 +20,7 @@ class DateTimeSchemaTest extends DateTimeHandlerTestBase {
   public static $testViews = ['test_argument_datetime', 'test_filter_datetime', 'test_sort_datetime'];
 
   /**
-   * Tests argument plugin schema.
+   * Test argument plugin schema.
    */
   public function testDateTimeSchema() {
     // Test argument schema.

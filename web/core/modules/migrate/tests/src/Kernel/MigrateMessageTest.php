@@ -22,7 +22,7 @@ class MigrateMessageTest extends KernelTestBase implements MigrateMessageInterfa
    *
    * @var array
    */
-  protected static $modules = ['migrate', 'system'];
+  public static $modules = ['migrate', 'system'];
 
   /**
    * Migration to run.
@@ -41,7 +41,7 @@ class MigrateMessageTest extends KernelTestBase implements MigrateMessageInterfa
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->installConfig(['system']);
@@ -94,7 +94,7 @@ class MigrateMessageTest extends KernelTestBase implements MigrateMessageInterfa
     $executable = new MigrateExecutable($this->migration, $this);
     $executable->import();
     $this->assertCount(1, $this->messages);
-    $this->assertSame("source_message: 'a message' is not an array", reset($this->messages));
+    $this->assertIdentical(reset($this->messages), "source_message: 'a message' is not an array");
   }
 
   /**
@@ -117,9 +117,9 @@ class MigrateMessageTest extends KernelTestBase implements MigrateMessageInterfa
     $count = 0;
     foreach ($this->migration->getIdMap()->getMessages() as $message) {
       ++$count;
-      $this->assertEquals($expected_message, $message);
+      $this->assertEqual($message, $expected_message);
     }
-    $this->assertEquals(1, $count);
+    $this->assertEqual($count, 1);
   }
 
   /**

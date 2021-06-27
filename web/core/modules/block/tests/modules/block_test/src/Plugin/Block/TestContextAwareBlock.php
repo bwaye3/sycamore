@@ -25,7 +25,7 @@ class TestContextAwareBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    /** @var \Drupal\user\UserInterface $user */
+    /** @var $user \Drupal\user\UserInterface */
     $user = $this->getContextValue('user');
     return [
       '#prefix' => '<div id="' . $this->getPluginId() . '--username">',

@@ -8,7 +8,7 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Cache\UseCacheBackendTrait;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\TransferException;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * Retrieves and caches information about oEmbed providers.
@@ -81,7 +81,7 @@ class ProviderRepository implements ProviderRepositoryInterface {
     try {
       $response = $this->httpClient->request('GET', $this->providersUrl);
     }
-    catch (TransferException $e) {
+    catch (RequestException $e) {
       throw new ProviderException("Could not retrieve the oEmbed provider database from $this->providersUrl", NULL, $e);
     }
 

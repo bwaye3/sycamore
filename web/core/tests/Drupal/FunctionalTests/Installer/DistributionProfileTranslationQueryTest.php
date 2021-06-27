@@ -48,9 +48,9 @@ class DistributionProfileTranslationQueryTest extends InstallerTestBase {
       ],
     ];
     // File API functions are not available yet.
-    $path = $this->root . DIRECTORY_SEPARATOR . $this->siteDirectory . '/profiles/my_distro';
+    $path = $this->root . DIRECTORY_SEPARATOR . $this->siteDirectory . '/profiles/mydistro';
     mkdir($path, 0777, TRUE);
-    file_put_contents("$path/my_distro.info.yml", Yaml::encode($this->info));
+    file_put_contents("$path/mydistro.info.yml", Yaml::encode($this->info));
     // Place a custom local translation in the translations directory.
     mkdir($this->root . '/' . $this->siteDirectory . '/files/translations', 0777, TRUE);
     file_put_contents($this->root . '/' . $this->siteDirectory . '/files/translations/drupal-8.0.0.de.po', $this->getPo('de'));
@@ -89,12 +89,13 @@ class DistributionProfileTranslationQueryTest extends InstallerTestBase {
   protected function setUpSettings() {
     // The language should have been automatically detected, all following
     // screens should be translated already.
-    $this->assertSession()->buttonExists('Save and continue de');
+    $elements = $this->xpath('//input[@type="submit"]/@value');
+    $this->assertEqual(current($elements)->getText(), 'Save and continue de');
     $this->translations['Save and continue'] = 'Save and continue de';
 
     // Check the language direction.
     $direction = $this->getSession()->getPage()->find('xpath', '/@dir')->getText();
-    $this->assertEquals('ltr', $direction);
+    $this->assertEqual($direction, 'ltr');
 
     // Verify that the distribution name appears.
     $this->assertRaw($this->info['distribution']['name']);
@@ -110,15 +111,15 @@ class DistributionProfileTranslationQueryTest extends InstallerTestBase {
    * Confirms that the installation succeeded.
    */
   public function testInstalled() {
-    $this->assertSession()->addressEquals('user/1');
+    $this->assertUrl('user/1');
     $this->assertSession()->statusCodeEquals(200);
 
     // Confirm that we are logged-in after installation.
-    $this->assertSession()->pageTextContains($this->rootUser->getDisplayName());
+    $this->assertText($this->rootUser->getDisplayName());
 
     // Verify German was configured but not English.
     $this->drupalGet('admin/config/regional/language');
-    $this->assertSession()->pageTextContains('German');
+    $this->assertText('German');
     $this->assertNoText('English');
   }
 

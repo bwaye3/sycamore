@@ -13,7 +13,7 @@ class StatusReport extends RenderElement {
    * {@inheritdoc}
    */
   public function getInfo() {
-    $class = static::class;
+    $class = get_class($this);
     return [
       '#theme' => 'status_report_grouped',
       '#priorities' => [

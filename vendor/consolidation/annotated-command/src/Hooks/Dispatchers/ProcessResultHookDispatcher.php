@@ -6,8 +6,6 @@ use Consolidation\AnnotatedCommand\AnnotationData;
 use Consolidation\AnnotatedCommand\CommandData;
 use Consolidation\AnnotatedCommand\Hooks\HookManager;
 use Consolidation\AnnotatedCommand\Hooks\ProcessResultInterface;
-use Consolidation\AnnotatedCommand\State\State;
-use Consolidation\AnnotatedCommand\State\StateHelper;
 
 /**
  * Call hooks
@@ -39,14 +37,6 @@ class ProcessResultHookDispatcher extends HookDispatcher implements ProcessResul
     }
 
     protected function callProcessor($processor, $result, CommandData $commandData)
-    {
-        $state = StateHelper::injectIntoCallbackObject($processor, $commandData->input(), $commandData->output());
-        $result = $this->doProcessor($processor, $result, $commandData);
-        $state->restore();
-        return $result;
-    }
-
-    private function doProcessor($processor, $result, CommandData $commandData)
     {
         $processed = null;
         if ($processor instanceof ProcessResultInterface) {

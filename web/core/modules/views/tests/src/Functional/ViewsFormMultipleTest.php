@@ -24,7 +24,7 @@ class ViewsFormMultipleTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp($import_test_views = TRUE): void {
+  protected function setUp($import_test_views = TRUE) {
     parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();
@@ -50,15 +50,15 @@ class ViewsFormMultipleTest extends ViewTestBase {
     // Get the test page.
     $this->drupalGet('views_test_form_multiple');
 
-    $this->assertSession()->pageTextContains('Test base form ID with Views forms and arguments.');
+    $this->assertText('Test base form ID with Views forms and arguments.');
 
     // Submit the forms, validate argument returned in message set by handler.
     // @note There is not a way to specify a specific index for a submit button. So
     // the row index returned is always the last occurrence.
     $this->getSession()->getPage()->pressButton('edit-field-form-button-test-4--2');
-    $this->assertSession()->pageTextContains('The test button at row 4 for test_form_multiple (default) View with args: arg2 was submitted.');
+    $this->assertText('The test button at row 4 for test_form_multiple (default) View with args: arg2 was submitted.');
     $this->getSession()->getPage()->pressButton('edit-field-form-button-test-4');
-    $this->assertSession()->pageTextContains('The test button at row 4 for test_form_multiple (default) View with args: arg1 was submitted.');
+    $this->assertText('The test button at row 4 for test_form_multiple (default) View with args: arg1 was submitted.');
   }
 
 }

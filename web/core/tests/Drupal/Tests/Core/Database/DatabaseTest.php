@@ -35,19 +35,19 @@ class DatabaseTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     $this->additionalClassloader = new ClassLoader();
     $this->additionalClassloader->register();
     // Mock the container so we don't need to mock drupal_valid_test_ua().
     // @see \Drupal\Core\Extension\ExtensionDiscovery::scan()
-    $this->root = dirname(__DIR__, 6);
+    $this->root = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
     $container = $this->createMock(ContainerInterface::class);
     $container->expects($this->any())
       ->method('has')
       ->with('kernel')
       ->willReturn(TRUE);
     $container->expects($this->any())
-      ->method('getParameter')
+      ->method('get')
       ->with('site.path')
       ->willReturn('');
     \Drupal::setContainer($container);
@@ -82,6 +82,11 @@ class DatabaseTest extends UnitTestCase {
    */
   public function testFindDriverAutoloadDirectoryException($expected_message, $namespace, $include_tests) {
     new Settings(['extension_discovery_scan_tests' => $include_tests]);
+    if ($include_tests === FALSE) {
+      // \Drupal\Core\Extension\ExtensionDiscovery::scan() needs
+      // drupal_valid_test_ua().
+      include $this->root . '/core/includes/bootstrap.inc';
+    }
     $this->expectException(\RuntimeException::class);
     $this->expectExceptionMessage($expected_message);
     Database::findDriverAutoloadDirectory($namespace, $this->root);

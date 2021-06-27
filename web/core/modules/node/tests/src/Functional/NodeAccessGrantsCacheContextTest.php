@@ -17,7 +17,7 @@ class NodeAccessGrantsCacheContextTest extends NodeTestBase {
    *
    * @var array
    */
-  protected static $modules = ['node_access_test'];
+  public static $modules = ['node_access_test'];
 
   /**
    * {@inheritdoc}
@@ -37,7 +37,7 @@ class NodeAccessGrantsCacheContextTest extends NodeTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     node_access_rebuild();
@@ -82,7 +82,7 @@ class NodeAccessGrantsCacheContextTest extends NodeTestBase {
       if ($uid > 0) {
         $this->drupalLogin($this->userMapping[$uid]);
       }
-      $this->assertSame($context, $this->container->get('cache_context.user.node_grants')->getContext('view'));
+      $this->assertIdentical($context, $this->container->get('cache_context.user.node_grants')->getContext('view'));
     }
     $this->drupalLogout();
   }

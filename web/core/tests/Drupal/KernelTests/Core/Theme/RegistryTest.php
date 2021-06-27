@@ -21,7 +21,7 @@ class RegistryTest extends KernelTestBase {
    *
    * @var array
    */
-  protected static $modules = ['theme_test', 'system'];
+  public static $modules = ['theme_test', 'system'];
 
   protected $profile = 'testing';
 
@@ -148,7 +148,7 @@ class RegistryTest extends KernelTestBase {
 
     $registry = new Registry($this->root, \Drupal::cache(), \Drupal::lock(), \Drupal::moduleHandler(), $theme_handler, \Drupal::service('theme.initialization'), 'test_theme');
     $registry->setThemeManager(\Drupal::theme());
-    $this->assertEquals('value', $registry->get()['theme_test_template_test']['variables']['additional']);
+    $this->assertEqual('value', $registry->get()['theme_test_template_test']['variables']['additional']);
   }
 
   /**

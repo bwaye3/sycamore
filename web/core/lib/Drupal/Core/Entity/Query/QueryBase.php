@@ -2,6 +2,7 @@
 
 namespace Drupal\Core\Entity\Query;
 
+use Drupal\Core\Database\Query\PagerSelectExtender;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Utility\TableSort;
 
@@ -60,7 +61,7 @@ abstract class QueryBase implements QueryInterface {
   protected $groupBy = [];
 
   /**
-   * Aggregate Conditions.
+   * Aggregate Conditions
    *
    * @var \Drupal\Core\Entity\Query\ConditionAggregateInterface
    */
@@ -95,11 +96,11 @@ abstract class QueryBase implements QueryInterface {
   protected $alterTags;
 
   /**
-   * Whether access check is requested or not.
+   * Whether access check is requested or not. Defaults to TRUE.
    *
-   * @var bool|null
+   * @var bool
    */
-  protected $accessCheck;
+  protected $accessCheck = TRUE;
 
   /**
    * Flag indicating whether to query the current revision or all revisions.
@@ -288,7 +289,10 @@ abstract class QueryBase implements QueryInterface {
     // Even when not using SQL, storing the element PagerSelectExtender is as
     // good as anywhere else.
     if (!isset($element)) {
-      $element = \Drupal::service('pager.manager')->getMaxPagerElementId() + 1;
+      $element = PagerSelectExtender::$maxElement++;
+    }
+    elseif ($element >= PagerSelectExtender::$maxElement) {
+      PagerSelectExtender::$maxElement = $element + 1;
     }
 
     $this->pager = [

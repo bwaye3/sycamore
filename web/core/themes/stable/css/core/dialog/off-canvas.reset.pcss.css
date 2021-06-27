@@ -362,7 +362,7 @@
 #drupal-off-canvas input[type="reset"]:active,
 #drupal-off-canvas input[type="submit"]:active,
 #drupal-off-canvas input[type="button"]:active {
-  border-color: gray;
+  border-color: grey;
   background-image: none;
   box-shadow: none;
 }
@@ -407,7 +407,7 @@
 #drupal-off-canvas input[type="time"][disabled],
 #drupal-off-canvas input[type="url"][disabled],
 #drupal-off-canvas input[type="week"][disabled] {
-  background-color: gray;
+  background-color: grey;
 }
 #drupal-off-canvas input[type="hidden"] {
   visibility: hidden;
@@ -427,7 +427,7 @@
 }
 #drupal-off-canvas input:placeholder,
 #drupal-off-canvas textarea:placeholder {
-  color: gray;
+  color: grey;
 }
 #drupal-off-canvas textarea,
 #drupal-off-canvas select[size],
@@ -460,7 +460,7 @@
   vertical-align: middle;
   text-decoration: none;
   color: black;
-  border: 1px solid gray;
+  border: 1px solid grey;
   background: none;
 }
 #drupal-off-canvas * textarea,
@@ -470,6 +470,13 @@
   padding: 0;
   vertical-align: top;
   color: black;
-  border: 1px solid gray;
+  border: 1px solid grey;
   background: white;
+}
+
+/* To standardize off-canvas selection color. */
+#drupal-off-canvas ::-moz-selection,
+#drupal-off-canvas ::selection {
+  color: inherit;
+  background-color: rgba(175, 175, 175, 0.5);
 }

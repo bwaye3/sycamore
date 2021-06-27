@@ -1019,7 +1019,7 @@ function template_preprocess_views_exposed_form(&$variables) {
  *     exposed input.
  */
 function template_preprocess_views_mini_pager(&$variables) {
-  /** @var \Drupal\Core\Pager\PagerManagerInterface $pager_manager */
+  /* @var $pager_manager \Drupal\Core\Pager\PagerManagerInterface */
   $pager_manager = \Drupal::service('pager.manager');
 
   $tags = &$variables['tags'];

@@ -19,10 +19,10 @@ class OptionsFieldTest extends OptionsFieldUnitTestBase {
    *
    * @var array
    */
-  protected static $modules = ['options'];
+  public static $modules = ['options'];
 
   /**
-   * Tests that allowed values can be updated.
+   * Test that allowed values can be updated.
    */
   public function testUpdateAllowedValues() {
     // All three options appear.

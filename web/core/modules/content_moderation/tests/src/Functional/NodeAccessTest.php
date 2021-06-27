@@ -16,7 +16,7 @@ class NodeAccessTest extends ModerationStateTestBase {
    *
    * @var array
    */
-  protected static $modules = [
+  public static $modules = [
     'content_moderation',
     'block',
     'block_content',
@@ -50,7 +50,7 @@ class NodeAccessTest extends ModerationStateTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->drupalLogin($this->adminUser);
     $this->createContentTypeFromUi('Moderated content', 'moderated_content', FALSE);
@@ -87,10 +87,10 @@ class NodeAccessTest extends ModerationStateTestBase {
     $this->assertSession()->fieldNotExists('Published');
 
     // Create a node to test with.
-    $this->submitForm([
+    $this->drupalPostForm(NULL, [
       'title[0][value]' => 'moderated content',
       'moderation_state[0][state]' => 'draft',
-    ], 'Save');
+    ], t('Save'));
     $node = $this->getNodeByTitle('moderated content');
     if (!$node) {
       $this->fail('Test node was not saved correctly.');
@@ -118,8 +118,9 @@ class NodeAccessTest extends ModerationStateTestBase {
 
     // Publish the node.
     $this->drupalLogin($this->adminUser);
-    $this->drupalGet($edit_path);
-    $this->submitForm(['moderation_state[0][state]' => 'published'], 'Save');
+    $this->drupalPostForm($edit_path, [
+      'moderation_state[0][state]' => 'published',
+    ], t('Save'));
 
     // Ensure access works correctly for anonymous users.
     $this->drupalLogout();
@@ -134,11 +135,10 @@ class NodeAccessTest extends ModerationStateTestBase {
 
     // Create a pending revision for the 'Latest revision' tab.
     $this->drupalLogin($this->adminUser);
-    $this->drupalGet($edit_path);
-    $this->submitForm([
+    $this->drupalPostForm($edit_path, [
       'title[0][value]' => 'moderated content revised',
       'moderation_state[0][state]' => 'draft',
-    ], 'Save');
+    ], t('Save'));
 
     $this->drupalLogin($user);
 
@@ -184,7 +184,7 @@ class NodeAccessTest extends ModerationStateTestBase {
     $this->assertSession()->statusCodeEquals(200);
 
     // Verify the moderation form is in place by publishing the node.
-    $this->submitForm([], 'Apply');
+    $this->drupalPostForm(NULL, [], t('Apply'));
     $node = \Drupal::entityTypeManager()->getStorage('node')->loadUnchanged($node->id());
     $this->assertEquals('published', $node->moderation_state->value);
   }

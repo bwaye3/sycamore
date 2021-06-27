@@ -19,7 +19,7 @@ class FileDeleteRecursiveTest extends FileTestBase {
 
     // Delete the file.
     $this->assertTrue(\Drupal::service('file_system')->deleteRecursive($filepath), 'Function reported success.');
-    $this->assertFileDoesNotExist($filepath);
+    $this->assertFileNotExists($filepath);
   }
 
   /**
@@ -31,7 +31,7 @@ class FileDeleteRecursiveTest extends FileTestBase {
 
     // Delete the directory.
     $this->assertTrue(\Drupal::service('file_system')->deleteRecursive($directory), 'Function reported success.');
-    $this->assertDirectoryDoesNotExist($directory);
+    $this->assertDirectoryNotExists($directory);
   }
 
   /**
@@ -47,9 +47,9 @@ class FileDeleteRecursiveTest extends FileTestBase {
 
     // Delete the directory.
     $this->assertTrue(\Drupal::service('file_system')->deleteRecursive($directory), 'Function reported success.');
-    $this->assertFileDoesNotExist($filepathA);
-    $this->assertFileDoesNotExist($filepathB);
-    $this->assertDirectoryDoesNotExist($directory);
+    $this->assertFileNotExists($filepathA);
+    $this->assertFileNotExists($filepathB);
+    $this->assertDirectoryNotExists($directory);
   }
 
   /**
@@ -66,10 +66,10 @@ class FileDeleteRecursiveTest extends FileTestBase {
 
     // Delete the directory.
     $this->assertTrue(\Drupal::service('file_system')->deleteRecursive($directory), 'Function reported success.');
-    $this->assertFileDoesNotExist($filepathA);
-    $this->assertFileDoesNotExist($filepathB);
-    $this->assertDirectoryDoesNotExist($subdirectory);
-    $this->assertDirectoryDoesNotExist($directory);
+    $this->assertFileNotExists($filepathA);
+    $this->assertFileNotExists($filepathB);
+    $this->assertDirectoryNotExists($subdirectory);
+    $this->assertDirectoryNotExists($directory);
   }
 
 }

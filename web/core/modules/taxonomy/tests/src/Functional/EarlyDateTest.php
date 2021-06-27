@@ -18,14 +18,14 @@ class EarlyDateTest extends TaxonomyTestBase {
    *
    * @var array
    */
-  protected static $modules = ['node', 'datetime'];
+  public static $modules = ['node', 'datetime'];
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     // Create a tags vocabulary for the 'article' content type.
@@ -59,7 +59,7 @@ class EarlyDateTest extends TaxonomyTestBase {
   }
 
   /**
-   * Tests taxonomy functionality with nodes prior to 1970.
+   * Test taxonomy functionality with nodes prior to 1970.
    */
   public function testTaxonomyEarlyDateNode() {
     // Posts an article with a taxonomy term and a date prior to 1970.
@@ -70,11 +70,10 @@ class EarlyDateTest extends TaxonomyTestBase {
     $edit['created[0][value][time]'] = $date->format('H:i:s');
     $edit['body[0][value]'] = $this->randomMachineName();
     $edit['field_tags[target_id]'] = $this->randomMachineName();
-    $this->drupalGet('node/add/article');
-    $this->submitForm($edit, 'Save');
+    $this->drupalPostForm('node/add/article', $edit, t('Save'));
     // Checks that the node has been saved.
     $node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
-    $this->assertEquals($date->getTimestamp(), $node->getCreatedTime(), 'Legacy node was saved with the right date.');
+    $this->assertEqual($node->getCreatedTime(), $date->getTimestamp(), 'Legacy node was saved with the right date.');
   }
 
 }

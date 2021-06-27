@@ -5,7 +5,6 @@ namespace Drupal\Tests\Component\Plugin;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Component\Plugin\Mapper\MapperInterface;
 use Drupal\Component\Plugin\PluginManagerBase;
-use Drupal\Tests\PhpUnitCompatibilityTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -13,8 +12,6 @@ use PHPUnit\Framework\TestCase;
  * @group Plugin
  */
 class PluginManagerBaseTest extends TestCase {
-
-  use PhpUnitCompatibilityTrait;
 
   /**
    * A callback method for mocking FactoryInterface objects.

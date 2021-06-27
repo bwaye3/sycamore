@@ -19,7 +19,14 @@ class GarbageCollectionTest extends KernelTestBase {
    *
    * @var array
    */
-  protected static $modules = ['system'];
+  public static $modules = ['system'];
+
+  protected function setUp() {
+    parent::setUp();
+
+    // These additional tables are necessary due to the call to system_cron().
+    $this->installSchema('system', ['key_value_expire']);
+  }
 
   /**
    * Tests garbage collection.
@@ -53,11 +60,11 @@ class GarbageCollectionTest extends KernelTestBase {
     system_cron();
 
     // Query the database and confirm that the stale records were deleted.
-    $result = $connection->select('key_value_expire', 'kvp')
-      ->fields('kvp', ['name'])
-      ->condition('collection', $collection)
-      ->execute()
-      ->fetchAll();
+    $result = $connection->query(
+      'SELECT name, value FROM {key_value_expire} WHERE collection = :collection',
+      [
+        ':collection' => $collection,
+      ])->fetchAll();
     $this->assertCount(1, $result, 'Only one item remains after garbage collection');
 
   }

@@ -16,14 +16,14 @@ class EngineNyanCatTest extends BrowserTestBase {
    *
    * @var array
    */
-  protected static $modules = ['theme_test'];
+  public static $modules = ['theme_test'];
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     \Drupal::service('theme_installer')->install(['test_theme_nyan_cat_engine']);
   }
@@ -36,7 +36,7 @@ class EngineNyanCatTest extends BrowserTestBase {
       ->set('default', 'test_theme_nyan_cat_engine')
       ->save();
     $this->drupalGet('theme-test/template-test');
-    $this->assertSession()->pageTextContains('Success: Template overridden with Nyan Cat theme. All of them');
+    $this->assertText('Success: Template overridden with Nyan Cat theme. All of them', 'Template overridden by Nyan Cat file.');
   }
 
 }

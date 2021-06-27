@@ -19,14 +19,14 @@ class ThemeLegacyTest extends BrowserTestBase {
    *
    * @var array
    */
-  protected static $modules = ['theme_test', 'theme_legacy_test'];
+  public static $modules = ['theme_test', 'theme_legacy_test'];
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     \Drupal::service('theme_installer')->install(['test_legacy_theme']);
   }
@@ -36,7 +36,7 @@ class ThemeLegacyTest extends BrowserTestBase {
    */
   public function testFunctionOverride() {
     $this->drupalGet('theme-test/function-template-overridden');
-    $this->assertSession()->pageTextContains('Success: Template overrides theme function.', 'Theme function overridden by test_theme template.');
+    $this->assertText('Success: Template overrides theme function.', 'Theme function overridden by test_theme template.');
   }
 
   /**
@@ -44,21 +44,21 @@ class ThemeLegacyTest extends BrowserTestBase {
    */
   public function testThemeFunctionSuggestionsAlter() {
     $this->drupalGet('theme-test/function-suggestion-alter');
-    $this->assertSession()->pageTextContains('Original theme function.');
+    $this->assertText('Original theme function.');
 
     // Install test_theme and test that themes can alter theme suggestions.
     $this->config('system.theme')
       ->set('default', 'test_legacy_theme')
       ->save();
     $this->drupalGet('theme-test/function-suggestion-alter');
-    $this->assertSession()->pageTextContains('Theme function overridden based on new theme suggestion provided by the test_legacy_theme theme.');
+    $this->assertText('Theme function overridden based on new theme suggestion provided by the test_legacy_theme theme.');
 
     // Enable the theme_suggestions_test module to test modules implementing
     // suggestions alter hooks.
     \Drupal::service('module_installer')->install(['theme_legacy_suggestions_test']);
     $this->resetAll();
     $this->drupalGet('theme-test/function-suggestion-alter');
-    $this->assertSession()->pageTextContains('Theme function overridden based on new theme suggestion provided by a module.');
+    $this->assertText('Theme function overridden based on new theme suggestion provided by a module.');
   }
 
   /**
@@ -67,7 +67,7 @@ class ThemeLegacyTest extends BrowserTestBase {
   public function testSuggestionsAlterInclude() {
     // Check the original theme output.
     $this->drupalGet('theme-test/suggestion-alter-include');
-    $this->assertSession()->pageTextContains('Original function before altering theme suggestions.');
+    $this->assertText('Original function before altering theme suggestions.');
 
     // Enable theme_suggestions_test module and make two requests to make sure
     // the include file is always loaded. The file will always be included for
@@ -75,9 +75,9 @@ class ThemeLegacyTest extends BrowserTestBase {
     \Drupal::service('module_installer')->install(['theme_legacy_suggestions_test']);
     $this->resetAll();
     $this->drupalGet('theme-test/suggestion-alter-include');
-    $this->assertSession()->pageTextContains('Function suggested via suggestion alter hook found in include file.', 'Include file loaded for initial request.');
+    $this->assertText('Function suggested via suggestion alter hook found in include file.', 'Include file loaded for initial request.');
     $this->drupalGet('theme-test/suggestion-alter-include');
-    $this->assertSession()->pageTextContains('Function suggested via suggestion alter hook found in include file.', 'Include file loaded for second request.');
+    $this->assertText('Function suggested via suggestion alter hook found in include file.', 'Include file loaded for second request.');
   }
 
 }

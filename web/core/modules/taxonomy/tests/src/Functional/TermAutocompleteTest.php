@@ -21,7 +21,7 @@ class TermAutocompleteTest extends TaxonomyTestBase {
    *
    * @var array
    */
-  protected static $modules = ['node'];
+  public static $modules = ['node'];
 
   /**
    * {@inheritdoc}
@@ -66,7 +66,7 @@ class TermAutocompleteTest extends TaxonomyTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     // Create a vocabulary.
@@ -139,8 +139,8 @@ class TermAutocompleteTest extends TaxonomyTestBase {
 
     // Retrieve the autocomplete url.
     $this->drupalGet('node/add/article');
-    $field = $this->assertSession()->fieldExists("{$this->fieldName}[0][target_id]");
-    $this->autocompleteUrl = $this->getAbsoluteUrl($field->getAttribute('data-autocomplete-path'));
+    $result = $this->xpath('//input[@name="' . $this->fieldName . '[0][target_id]"]');
+    $this->autocompleteUrl = $this->getAbsoluteUrl($result[0]->getAttribute('data-autocomplete-path'));
   }
 
   /**
@@ -228,7 +228,7 @@ class TermAutocompleteTest extends TaxonomyTestBase {
       ['query' => ['q' => 'bbb']]
     );
 
-    $this->assertSame($expected, $data);
+    $this->assertIdentical($expected, $data);
   }
 
 }

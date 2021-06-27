@@ -16,14 +16,14 @@ class PathLanguageUiTest extends PathTestBase {
    *
    * @var array
    */
-  protected static $modules = ['path', 'locale', 'locale_test'];
+  public static $modules = ['path', 'locale', 'locale_test'];
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     // Create and log in user.
@@ -41,13 +41,11 @@ class PathLanguageUiTest extends PathTestBase {
     $edit = [];
     $edit['predefined_langcode'] = 'fr';
 
-    $this->drupalGet('admin/config/regional/language/add');
-    $this->submitForm($edit, 'Add language');
+    $this->drupalPostForm('admin/config/regional/language/add', $edit, t('Add language'));
 
     // Enable URL language detection and selection.
     $edit = ['language_interface[enabled][language-url]' => 1];
-    $this->drupalGet('admin/config/regional/language/detection');
-    $this->submitForm($edit, 'Save settings');
+    $this->drupalPostForm('admin/config/regional/language/detection', $edit, t('Save settings'));
   }
 
   /**
@@ -58,11 +56,10 @@ class PathLanguageUiTest extends PathTestBase {
     $edit = [];
     $edit['path[0][value]'] = '/admin/config/search/path';
     $edit['alias[0][value]'] = '/' . $name;
-    $this->drupalGet('admin/config/search/path/add');
-    $this->submitForm($edit, 'Save');
+    $this->drupalPostForm('admin/config/search/path/add', $edit, t('Save'));
 
     $this->drupalGet($name);
-    $this->assertSession()->pageTextContains('Filter aliases');
+    $this->assertText(t('Filter aliases'), 'Language-neutral URL alias works');
   }
 
   /**
@@ -74,11 +71,10 @@ class PathLanguageUiTest extends PathTestBase {
     $edit['path[0][value]'] = '/admin/config/search/path';
     $edit['alias[0][value]'] = '/' . $name;
     $edit['langcode[0][value]'] = 'en';
-    $this->drupalGet('admin/config/search/path/add');
-    $this->submitForm($edit, 'Save');
+    $this->drupalPostForm('admin/config/search/path/add', $edit, t('Save'));
 
     $this->drupalGet($name);
-    $this->assertSession()->pageTextContains('Filter aliases');
+    $this->assertText(t('Filter aliases'), 'English URL alias works');
   }
 
   /**
@@ -90,15 +86,14 @@ class PathLanguageUiTest extends PathTestBase {
     $edit['path[0][value]'] = '/admin/config/search/path';
     $edit['alias[0][value]'] = '/' . $name;
     $edit['langcode[0][value]'] = 'fr';
-    $this->drupalGet('admin/config/search/path/add');
-    $this->submitForm($edit, 'Save');
+    $this->drupalPostForm('admin/config/search/path/add', $edit, t('Save'));
 
     $this->drupalGet('fr/' . $name);
-    $this->assertSession()->pageTextContains('Filter aliases');
+    $this->assertText(t('Filter aliases'), 'Foreign URL alias works');
   }
 
   /**
-   * Tests language unspecific aliases are shown and saved in the node form.
+   * Test that language unspecific aliases are shown and saved in the node form.
    */
   public function testNotSpecifiedNode() {
     // Create test node.
@@ -111,12 +106,11 @@ class PathLanguageUiTest extends PathTestBase {
       'alias[0][value]' => '/' . $this->getRandomGenerator()->word(8),
       'langcode[0][value]' => LanguageInterface::LANGCODE_NOT_SPECIFIED,
     ];
-    $this->drupalGet('admin/config/search/path/add');
-    $this->submitForm($edit, 'Save');
+    $this->drupalPostForm('admin/config/search/path/add', $edit, t('Save'));
 
     $this->drupalGet($node->toUrl('edit-form'));
     $this->assertSession()->fieldValueEquals('path[0][alias]', $edit['alias[0][value]']);
-    $this->submitForm([], 'Save');
+    $this->drupalPostForm(NULL, [], t('Save'));
 
     $this->drupalGet('admin/config/search/path');
     $this->assertSession()->pageTextContains('None');
@@ -126,7 +120,7 @@ class PathLanguageUiTest extends PathTestBase {
     // aliases are loaded correctly.
     $node = $this->drupalCreateNode();
     $this->drupalget($node->toUrl('edit-form'));
-    $this->submitForm([], 'Save');
+    $this->drupalPostForm(NULL, [], t('Save'));
     $this->assertSession()->pageTextNotContains(t('The alias is already in use.'));
   }
 

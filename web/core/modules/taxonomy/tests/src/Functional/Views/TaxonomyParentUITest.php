@@ -30,15 +30,15 @@ class TaxonomyParentUITest extends UITestBase {
    *
    * @var array
    */
-  protected static $modules = ['taxonomy', 'taxonomy_test_views'];
+  public static $modules = ['taxonomy', 'taxonomy_test_views'];
 
   /**
    * {@inheritdoc}
    */
-  protected function setUp($import_test_views = TRUE): void {
+  protected function setUp($import_test_views = TRUE) {
     parent::setUp($import_test_views);
 
-    ViewTestData::createTestViews(static::class, ['taxonomy_test_views']);
+    ViewTestData::createTestViews(get_class($this), ['taxonomy_test_views']);
   }
 
   /**

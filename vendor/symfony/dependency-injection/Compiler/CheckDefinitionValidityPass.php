@@ -14,7 +14,6 @@ namespace Symfony\Component\DependencyInjection\Compiler;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Exception\EnvParameterException;
 use Symfony\Component\DependencyInjection\Exception\RuntimeException;
-use Symfony\Component\DependencyInjection\Loader\FileLoader;
 
 /**
  * This pass validates each definition individually only taking the information
@@ -39,12 +38,12 @@ class CheckDefinitionValidityPass implements CompilerPassInterface
     {
         foreach ($container->getDefinitions() as $id => $definition) {
             // synthetic service is public
-            if ($definition->isSynthetic() && !$definition->isPublic()) {
+            if ($definition->isSynthetic() && !($definition->isPublic() || $definition->isPrivate())) {
                 throw new RuntimeException(sprintf('A synthetic service ("%s") must be public.', $id));
             }
 
             // non-synthetic, non-abstract service has class
-            if (!$definition->isAbstract() && !$definition->isSynthetic() && !$definition->getClass() && (!$definition->getFactory() || !preg_match(FileLoader::ANONYMOUS_ID_REGEXP, $id))) {
+            if (!$definition->isAbstract() && !$definition->isSynthetic() && !$definition->getClass()) {
                 if ($definition->getFactory()) {
                     throw new RuntimeException(sprintf('Please add the class to service "%s" even if it is constructed by a factory since we might need to add method calls based on compile-time checks.', $id));
                 }

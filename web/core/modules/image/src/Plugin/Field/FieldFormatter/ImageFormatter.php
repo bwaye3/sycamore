@@ -6,6 +6,7 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Link;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\image\Entity\ImageStyle;
@@ -27,7 +28,7 @@ use Drupal\Core\Cache\Cache;
  *   }
  * )
  */
-class ImageFormatter extends ImageFormatterBase {
+class ImageFormatter extends ImageFormatterBase implements ContainerFactoryPluginInterface {
 
   /**
    * The current user.

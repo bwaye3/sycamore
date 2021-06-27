@@ -27,7 +27,7 @@ class DefaultMetatagsTest extends BrowserTestBase {
 
     // Ensure that the charset one is the first metatag.
     $result = $this->xpath('//meta');
-    $this->assertEquals('utf-8', (string) $result[0]->getAttribute('charset'));
+    $this->assertEqual((string) $result[0]->getAttribute('charset'), 'utf-8');
 
     // Ensure that the shortcut icon is on the page.
     $result = $this->xpath('//link[@rel = "shortcut icon"]');

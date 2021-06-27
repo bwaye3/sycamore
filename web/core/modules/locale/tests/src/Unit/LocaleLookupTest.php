@@ -67,7 +67,7 @@ class LocaleLookupTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     $this->storage = $this->createMock('Drupal\locale\StringStorageInterface');
     $this->cache = $this->createMock('Drupal\Core\Cache\CacheBackendInterface');
     $this->lock = $this->createMock('Drupal\Core\Lock\LockBackendInterface');
@@ -134,7 +134,6 @@ class LocaleLookupTest extends UnitTestCase {
    */
   public function testResolveCacheMissWithFallback($langcode, $string, $context, $expected) {
     // These are fake words!
-    // cSpell:disable
     $translations = [
       'en' => [
         'test' => 'test',
@@ -154,7 +153,6 @@ class LocaleLookupTest extends UnitTestCase {
         'missing pl' => 'chybějící pl',
       ],
     ];
-    // cSpell:enable
     $this->storage->expects($this->any())
       ->method('findTranslation')
       ->will($this->returnCallback(function ($argument) use ($translations) {
@@ -191,7 +189,6 @@ class LocaleLookupTest extends UnitTestCase {
    * Provides test data for testResolveCacheMissWithFallback().
    */
   public function resolveCacheMissWithFallbackProvider() {
-    // cSpell:disable
     return [
       ['cs', 'test', 'irrelevant', 'test v české'],
       ['cs', 'fake', 'irrelevant', 'falešný'],
@@ -206,7 +203,6 @@ class LocaleLookupTest extends UnitTestCase {
       ['pl', 'missing cs', 'irrelevant', 'zaginiony czech'],
       ['pl', 'missing both', 'irrelevant', 'missing both'],
     ];
-    // cSpell:enable
   }
 
   /**
@@ -335,50 +331,6 @@ class LocaleLookupTest extends UnitTestCase {
       'no-plural from other language' => [$translations, 'by', 'word3', FALSE],
       'plural' => [$translations, 'by', 'word2', TRUE],
       'plural from other language' => [$translations, 'by', 'word4', TRUE],
-    ];
-  }
-
-  /**
-   * @covers ::getCid
-   *
-   * @dataProvider getCidProvider
-   */
-  public function testGetCid(array $roles, $expected) {
-    $this->user = $this->createMock('Drupal\Core\Session\AccountInterface');
-    $this->user->expects($this->any())
-      ->method('getRoles')
-      ->will($this->returnValue($roles));
-
-    $container = new ContainerBuilder();
-    $container->set('current_user', $this->user);
-    \Drupal::setContainer($container);
-
-    $locale_lookup = $this->getMockBuilder('Drupal\locale\LocaleLookup')
-      ->setConstructorArgs(['en', 'irrelevant', $this->storage, $this->cache, $this->lock, $this->configFactory, $this->languageManager, $this->requestStack])
-      ->getMock();
-
-    $o = new \ReflectionObject($locale_lookup);
-    $method = $o->getMethod('getCid');
-    $method->setAccessible(TRUE);
-    $cid = $method->invoke($locale_lookup, 'getCid');
-
-    $this->assertEquals($expected, $cid);
-  }
-
-  /**
-   * Provides test data for testGetCid().
-   */
-  public function getCidProvider() {
-    return [
-      [
-        ['a'], 'locale:en:irrelevant:a',
-      ],
-      [
-        ['a', 'b'], 'locale:en:irrelevant:a:b',
-      ],
-      [
-        ['b', 'a'], 'locale:en:irrelevant:a:b',
-      ],
     ];
   }
 

@@ -43,13 +43,13 @@ class MediaLibraryAccessTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->installEntitySchema('user');
     $this->installEntitySchema('file');
     $this->installSchema('file', 'file_usage');
-    $this->installSchema('system', ['sequences']);
+    $this->installSchema('system', ['sequences', 'key_value_expire']);
     $this->installEntitySchema('entity_test');
     $this->installEntitySchema('filter_format');
     $this->installEntitySchema('media');

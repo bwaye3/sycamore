@@ -41,7 +41,7 @@ class RealtimeOutputHandlerTest extends TestCase
 
             [
                 '',
-                'No such file or directory',
+                'no/such/file: No such file or directory',
                 ['ls', 'no/such/file'],
                 'LINUX',
             ],
@@ -72,7 +72,7 @@ class RealtimeOutputHandlerTest extends TestCase
             $this->assertEquals('', trim($stderr->fetch()));
         }
         else {
-            $this->assertStringContainsString($expectedStderr, trim($stderr->fetch()));
+            $this->assertContains($expectedStderr, trim($stderr->fetch()));
         }
     }
 }

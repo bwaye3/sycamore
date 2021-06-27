@@ -20,7 +20,7 @@ class MediaUiFunctionalTest extends MediaFunctionalTestBase {
    *
    * @var array
    */
-  protected static $modules = [
+  public static $modules = [
     'block',
     'media_test_source',
   ];
@@ -33,7 +33,7 @@ class MediaUiFunctionalTest extends MediaFunctionalTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->drupalPlaceBlock('local_actions_block');
     $this->drupalPlaceBlock('local_tasks_block');
@@ -67,7 +67,6 @@ class MediaUiFunctionalTest extends MediaFunctionalTestBase {
     $media_id = $this->container->get('entity_type.manager')
       ->getStorage('media')
       ->getQuery()
-      ->accessCheck(FALSE)
       ->execute();
     $media_id = reset($media_id);
     /** @var \Drupal\media\MediaInterface $media */
@@ -140,7 +139,7 @@ class MediaUiFunctionalTest extends MediaFunctionalTestBase {
     $page->clickLink('Delete');
     $assert_session->pageTextContains('This action cannot be undone');
     $page->pressButton('Delete');
-    $media_id = \Drupal::entityQuery('media')->accessCheck(FALSE)->execute();
+    $media_id = \Drupal::entityQuery('media')->execute();
     $this->assertEmpty($media_id);
   }
 
@@ -171,7 +170,7 @@ class MediaUiFunctionalTest extends MediaFunctionalTestBase {
   }
 
   /**
-   * Tests that media in ER fields use the Rendered Entity formatter by default.
+   * Test that media in ER fields use the Rendered Entity formatter by default.
    */
   public function testRenderedEntityReferencedMedia() {
     $page = $this->getSession()->getPage();
@@ -248,8 +247,6 @@ class MediaUiFunctionalTest extends MediaFunctionalTestBase {
    *   one that allows the user to create media and a second that does not.
    * @param bool $list_access
    *   Whether to grant the test user access to list media.
-   * @param string $widget_id
-   *   The widget ID to test.
    *
    * @see media_field_widget_entity_reference_autocomplete_form_alter()
    * @see media_field_widget_multiple_entity_reference_autocomplete_form_alter()
@@ -324,21 +321,19 @@ class MediaUiFunctionalTest extends MediaFunctionalTestBase {
     // Create a media field through the user interface to ensure that the
     // help text handling does not break the default value entry on the field
     // settings form.
-    // Using submitForm() to avoid dealing with JavaScript on the previous
+    // Using drupalPostForm() to avoid dealing with JavaScript on the previous
     // page in the field creation.
     $edit = [
       'new_storage_type' => 'field_ui:entity_reference:media',
       'label' => "Media (cardinality $cardinality)",
       'field_name' => 'media_reference',
     ];
-    $this->drupalGet("admin/structure/types/manage/{$content_type->id()}/fields/add-field");
-    $this->submitForm($edit, 'Save and continue');
+    $this->drupalPostForm("admin/structure/types/manage/{$content_type->id()}/fields/add-field", $edit, 'Save and continue');
     $edit = [];
     foreach ($media_types as $type) {
       $edit["settings[handler_settings][target_bundles][$type]"] = TRUE;
     }
-    $this->drupalGet("admin/structure/types/manage/{$content_type->id()}/fields/node.{$content_type->id()}.field_media_reference");
-    $this->submitForm($edit, "Save settings");
+    $this->drupalPostForm("admin/structure/types/manage/{$content_type->id()}/fields/node.{$content_type->id()}.field_media_reference", $edit, "Save settings");
     \Drupal::entityTypeManager()
       ->getStorage('entity_form_display')
       ->load('node.' . $content_type->id() . '.default')
@@ -449,7 +444,6 @@ class MediaUiFunctionalTest extends MediaFunctionalTestBase {
     $media_id = $this->container->get('entity_type.manager')
       ->getStorage('media')
       ->getQuery()
-      ->accessCheck(FALSE)
       ->execute();
     $media_id = reset($media_id);
     $assert_session->addressEquals("media/$media_id/edit");
@@ -541,7 +535,7 @@ class MediaUiFunctionalTest extends MediaFunctionalTestBase {
   }
 
   /**
-   * Tests the media collection route.
+   * Test the media collection route.
    */
   public function testMediaCollectionRoute() {
     /** @var \Drupal\Core\Entity\EntityStorageInterface $media_storage */

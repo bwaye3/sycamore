@@ -19,7 +19,7 @@ class JsonApiFunctionalTest extends JsonApiFunctionalTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'basic_auth',
   ];
 
@@ -29,7 +29,7 @@ class JsonApiFunctionalTest extends JsonApiFunctionalTestBase {
   protected $defaultTheme = 'stark';
 
   /**
-   * Tests the GET method.
+   * Test the GET method.
    */
   public function testRead() {
     $this->createDefaultContent(61, 5, TRUE, TRUE, static::IS_NOT_MULTILINGUAL, FALSE);
@@ -56,7 +56,7 @@ class JsonApiFunctionalTest extends JsonApiFunctionalTestBase {
       'query' => ['page' => ['offset' => 3]] + $default_sort,
     ]));
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertCount(OffsetPage::SIZE_MAX, $collection_output['data']);
+    $this->assertEquals(OffsetPage::SIZE_MAX, count($collection_output['data']));
     $this->assertStringContainsString('page%5Boffset%5D=53', $collection_output['links']['next']['href']);
     // 3. Load all articles (1st page, 2 items)
     $collection_output = Json::decode($this->drupalGet('/jsonapi/node/article', [
@@ -196,7 +196,7 @@ class JsonApiFunctionalTest extends JsonApiFunctionalTestBase {
     $this->assertCount(1, $non_help_links);
     $link_keys = array_keys($single_output['meta']['omitted']['links']);
     $this->assertSame('help', reset($link_keys));
-    $this->assertMatchesRegularExpression('/^item--[a-zA-Z0-9]{7}$/', next($link_keys));
+    $this->assertRegExp('/^item--[a-zA-Z0-9]{7}$/', next($link_keys));
     $this->nodes[1]->set('status', TRUE);
     $this->nodes[1]->save();
     // 13. Test filtering when using short syntax.
@@ -516,7 +516,7 @@ class JsonApiFunctionalTest extends JsonApiFunctionalTestBase {
   }
 
   /**
-   * Tests the GET method on articles referencing the same tag twice.
+   * Test the GET method on articles referencing the same tag twice.
    */
   public function testReferencingTwiceRead() {
     $this->createDefaultContent(1, 1, FALSE, FALSE, static::IS_NOT_MULTILINGUAL, TRUE);
@@ -530,7 +530,7 @@ class JsonApiFunctionalTest extends JsonApiFunctionalTestBase {
   }
 
   /**
-   * Tests POST, PATCH and DELETE.
+   * Test POST, PATCH and DELETE.
    */
   public function testWrite() {
     $this->config('jsonapi.settings')->set('read_only', FALSE)->save(TRUE);

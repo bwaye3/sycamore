@@ -22,12 +22,12 @@ class NodeTokenReplaceTest extends TokenReplaceKernelTestBase {
    *
    * @var array
    */
-  protected static $modules = ['node', 'filter'];
+  public static $modules = ['node', 'filter'];
 
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->installConfig(['filter', 'node']);
 
@@ -47,7 +47,7 @@ class NodeTokenReplaceTest extends TokenReplaceKernelTestBase {
 
     // Create a user and a node.
     $account = $this->createUser();
-    /** @var \Drupal\node\NodeInterface $node */
+    /* @var $node \Drupal\node\NodeInterface */
     $node = Node::create([
       'type' => 'article',
       'tnid' => 0,
@@ -104,8 +104,8 @@ class NodeTokenReplaceTest extends TokenReplaceKernelTestBase {
     foreach ($tests as $input => $expected) {
       $bubbleable_metadata = new BubbleableMetadata();
       $output = $this->tokenService->replace($input, ['node' => $node], ['langcode' => $this->interfaceLanguage->getId()], $bubbleable_metadata);
-      $this->assertEquals($expected, $output, new FormattableMarkup('Node token %token replaced.', ['%token' => $input]));
-      $this->assertEquals($metadata_tests[$input], $bubbleable_metadata);
+      $this->assertEqual($output, $expected, new FormattableMarkup('Node token %token replaced.', ['%token' => $input]));
+      $this->assertEqual($bubbleable_metadata, $metadata_tests[$input]);
     }
 
     // Repeat for a node without a summary.
@@ -126,7 +126,7 @@ class NodeTokenReplaceTest extends TokenReplaceKernelTestBase {
 
     foreach ($tests as $input => $expected) {
       $output = $this->tokenService->replace($input, ['node' => $node], ['language' => $this->interfaceLanguage]);
-      $this->assertEquals($expected, $output, new FormattableMarkup('Node token %token replaced for node without a summary.', ['%token' => $input]));
+      $this->assertEqual($output, $expected, new FormattableMarkup('Node token %token replaced for node without a summary.', ['%token' => $input]));
     }
   }
 

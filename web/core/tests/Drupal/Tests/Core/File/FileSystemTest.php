@@ -38,7 +38,7 @@ class FileSystemTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $settings = new Settings([]);
@@ -99,7 +99,7 @@ class FileSystemTest extends UnitTestCase {
 
     $this->assertFileExists($uri);
     $this->fileSystem->unlink($uri);
-    $this->assertFileDoesNotExist($uri);
+    $this->assertFileNotExists($uri);
   }
 
   /**

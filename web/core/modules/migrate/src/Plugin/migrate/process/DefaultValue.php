@@ -30,7 +30,6 @@ use Drupal\migrate\Row;
  *       plugin: migration_lookup
  *       migration: users
  *       source: author
- *       no_stub: true
  *     -
  *       plugin: default_value
  *       default_value: 44

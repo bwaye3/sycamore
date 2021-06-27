@@ -72,7 +72,7 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
     'media',
     'node',
     'text',
-    'media_test_embed',
+    'media_test_ckeditor',
   ];
 
   /**
@@ -83,7 +83,7 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     FilterFormat::create([
@@ -218,13 +218,13 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
 
     // There's a second kind of error message that comes from the back end
     // that happens when the media uuid can't be converted to a media preview.
-    // In this case, the error will appear in a the themeable
+    // In this case, the error will appear in a the themable
     // media-embed-error.html template.  We have a hook altering the css
     // classes to test the twi template is working properly and picking up our
     // extra class.
     // @see \Drupal\media\Plugin\Filter\MediaEmbed::renderMissingMediaIndicator()
     // @see core/modules/media/templates/media-embed-error.html.twig
-    // @see media_test_embed_preprocess_media_embed_error()
+    // @see media_test_ckeditor_preprocess_media_embed_error()
     $original_value = $this->host->body->value;
     $this->host->body->value = str_replace($this->media->uuid(), 'invalid_uuid', $original_value);
     $this->host->save();
@@ -267,6 +267,7 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
     $this->config('node.settings')
       ->set('use_admin_theme', TRUE)
       ->save();
+    $this->container->get('router.builder')->rebuild();
 
     // Allow the test user to view the admin theme.
     $this->adminUser->addRole($this->drupalCreateRole(['view the administration theme']));
@@ -280,7 +281,7 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
 
     // Assert that when looking at an embedded entity in the CKEditor Widget,
     // the preview is generated using the default theme, not the admin theme.
-    // @see media_test_embed_entity_view_alter()
+    // @see media_test_ckeditor_entity_view_alter()
     $this->drupalGet($this->host->toUrl('edit-form'));
     $this->waitForEditor();
     $this->assignNameToCkeditorIframe();
@@ -483,7 +484,7 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
   }
 
   /**
-   * Tests the EditorMediaDialog's form elements' #access logic.
+   * Test the EditorMediaDialog's form elements' #access logic.
    */
   public function testDialogAccess() {
     $page = $this->getSession()->getPage();
@@ -652,8 +653,6 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
     $this->waitForEditor();
     $this->assignNameToCkeditorIframe();
     $this->getSession()->switchToIFrame('ckeditor');
-    // Wait for the media preview to load.
-    $this->assertNotEmpty($assert_session->waitForElementVisible('css', 'drupal-media img'));
     // Test that by default no alt attribute is present on the drupal-media
     // element.
     $this->pressEditorButton('source');
@@ -668,7 +667,6 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
     $assert_session->elementAttributeContains('named', ['field', 'attributes[alt]'], 'placeholder', 'default alt');
 
     // Fill in the alt field, submit and return to CKEditor.
-    // cSpell:disable-next-line
     $who_is_zartan = 'Zartan is the leader of the Dreadnoks.';
     $page->fillField('attributes[alt]', $who_is_zartan);
     $this->submitDialog();
@@ -746,7 +744,7 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
   }
 
   /**
-   * Tests that dialog loads appropriate translation's alt text.
+   * Test that dialog loads appropriate translation's alt text.
    */
   public function testTranslationAlt() {
     \Drupal::service('module_installer')->install(['language', 'content_translation']);
@@ -795,7 +793,6 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
     $host->save();
 
     $translation = $host->addTranslation('fr');
-    // cSpell:disable-next-line
     $translation->title = 'Animaux avec des noms étranges';
     $translation->body->value = $host->body->value;
     $translation->body->format = $host->body->format;
@@ -813,20 +810,16 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
     $this->getSession()->switchToIFrame('ckeditor');
 
     // Test that the default alt attribute displays without an override.
-    // cSpell:disable-next-line
     $this->assertNotEmpty($assert_session->waitForElementVisible('xpath', '//img[contains(@alt, "texte alternatif par défaut")]'));
     // Test `aria-label` attribute appears on the widget wrapper.
-    // cSpell:disable-next-line
     $assert_session->elementExists('css', '.cke_widget_drupalmedia[aria-label="Tatou poilu hurlant"]');
     $page->pressButton('Edit media');
     $this->waitForMetadataDialog();
     // Assert that the placeholder is set to the value of the media field's
     // alt text.
-    // cSpell:disable-next-line
     $assert_session->elementAttributeContains('named', ['field', 'attributes[alt]'], 'placeholder', 'texte alternatif par défaut');
 
     // Fill in the alt field in the dialog.
-    // cSpell:disable-next-line
     $qui_est_zartan = 'Zartan est le chef des Dreadnoks.';
     $page->fillField('attributes[alt]', $qui_est_zartan);
     $this->submitDialog();
@@ -1108,7 +1101,7 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
     $this->assignNameToCkeditorIframe();
     $this->getSession()->switchToIFrame('ckeditor');
     // Wait for preview to load.
-    $this->assertNotEmpty($assert_session->waitForElement('css', 'drupal-media img'));
+    $this->assertNotEmpty($img = $assert_session->waitForElement('css', 'drupal-media img'));
     // Assert the drupal-media element starts without a data-align attribute.
     $drupal_media = $assert_session->elementExists('css', 'drupal-media');
     $this->assertFalse($drupal_media->hasAttribute('data-align'));
@@ -1124,7 +1117,7 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
     foreach ($alignments as $alignment) {
       $this->fillFieldInMetadataDialogAndSubmit('attributes[data-align]', $alignment);
       // Wait for preview to load.
-      $this->assertNotEmpty($assert_session->waitForElement('css', 'drupal-media img'));
+      $this->assertNotEmpty($img = $assert_session->waitForElement('css', 'drupal-media img'));
       // Now verify the result. Assert the first element within the
       // <drupal-media> element has the alignment class.
       $selector = sprintf('drupal-media[data-align="%s"] .caption-drupal-media.align-%s', $alignment, $alignment);

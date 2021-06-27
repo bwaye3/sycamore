@@ -6,11 +6,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 use Drupal\migrate\Plugin\migrate\source\DummyQueryTrait;
 
 /**
- * User picture field instance source from database.
- *
- * For available configuration keys, refer to the parent classes:
- * @see \Drupal\migrate\Plugin\migrate\source\SqlBase
- * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
+ * User picture field instance source.
  *
  * @todo Support default picture?
  *

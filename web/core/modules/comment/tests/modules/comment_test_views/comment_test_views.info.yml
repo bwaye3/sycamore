@@ -3,6 +3,7 @@ type: module
 description: 'Provides default views for views comment tests.'
 package: Testing
 version: VERSION
+core: 8.x
 dependencies:
   - drupal:comment
   - drupal:views

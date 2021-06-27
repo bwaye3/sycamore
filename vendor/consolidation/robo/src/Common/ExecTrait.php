@@ -369,13 +369,11 @@ trait ExecTrait
             $this->process->run();
             $this->stopTimer();
             $output = rtrim($this->process->getOutput());
-            $result = new ResultData(
+            return new ResultData(
                 $this->process->getExitCode(),
                 $output,
                 $this->getResultData()
             );
-            $result->provideOutputdata();
-            return $result;
         }
 
         if (!$this->background && $this->isPrinted) {

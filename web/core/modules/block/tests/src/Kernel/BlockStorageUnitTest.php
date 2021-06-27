@@ -21,7 +21,7 @@ class BlockStorageUnitTest extends KernelTestBase {
    *
    * @var array
    */
-  protected static $modules = ['block', 'block_test', 'system'];
+  public static $modules = ['block', 'block_test', 'system'];
 
   /**
    * The block storage.
@@ -30,7 +30,7 @@ class BlockStorageUnitTest extends KernelTestBase {
    */
   protected $controller;
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->controller = $this->container->get('entity_type.manager')->getStorage('block');
@@ -61,7 +61,7 @@ class BlockStorageUnitTest extends KernelTestBase {
       $this->fail('A block without a plugin was created with no exception thrown.');
     }
     catch (PluginException $e) {
-      $this->assertEquals('The block \'\' did not specify a plugin.', $e->getMessage(), 'An exception was thrown when a block was created without a plugin.');
+      $this->assertEqual('The block \'\' did not specify a plugin.', $e->getMessage(), 'An exception was thrown when a block was created without a plugin.');
     }
 
     // Create a block with only required values.
@@ -100,7 +100,7 @@ class BlockStorageUnitTest extends KernelTestBase {
       'visibility' => [],
     ];
 
-    $this->assertSame($expected_properties, $actual_properties);
+    $this->assertIdentical($actual_properties, $expected_properties);
 
     $this->assertInstanceOf(TestHtmlBlock::class, $entity->getPlugin());
   }
@@ -116,7 +116,7 @@ class BlockStorageUnitTest extends KernelTestBase {
     // Verify several properties of the block.
     $this->assertSame('content', $entity->getRegion());
     $this->assertTrue($entity->status());
-    $this->assertEquals('stark', $entity->getTheme());
+    $this->assertEqual($entity->getTheme(), 'stark');
     $this->assertNotEmpty($entity->uuid());
   }
 
@@ -152,7 +152,7 @@ class BlockStorageUnitTest extends KernelTestBase {
 
     $entities = $this->controller->loadMultiple();
     $entity = reset($entities);
-    $this->assertEquals('test_block', $entity->id(), 'The default test block was loaded.');
+    $this->assertEqual($entity->id(), 'test_block', 'The default test block was loaded.');
   }
 
 }

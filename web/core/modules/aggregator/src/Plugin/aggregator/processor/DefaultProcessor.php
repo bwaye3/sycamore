@@ -259,7 +259,6 @@ class DefaultProcessor extends AggregatorPluginSettingsBase implements Processor
       // Delete all items that are older than flush item timer.
       $age = REQUEST_TIME - $aggregator_clear;
       $result = $this->itemStorage->getQuery()
-        ->accessCheck(FALSE)
         ->condition('fid', $feed->id())
         ->condition('timestamp', $age, '<')
         ->execute();

@@ -14,7 +14,7 @@ class TaxonomyTermPagerTest extends TaxonomyTestBase {
    *
    * @var array
    */
-  protected static $modules = ['taxonomy'];
+  public static $modules = ['taxonomy'];
 
   /**
    * {@inheritdoc}
@@ -31,7 +31,7 @@ class TaxonomyTermPagerTest extends TaxonomyTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->drupalLogin($this->drupalCreateUser([
       'administer taxonomy',
@@ -56,8 +56,7 @@ class TaxonomyTermPagerTest extends TaxonomyTestBase {
 
     // Get Page 1.
     $this->drupalGet('admin/structure/taxonomy/manage/' . $this->vocabulary->id() . '/overview');
-    // Pager should not be visible.
-    $this->assertSession()->responseNotMatches('|<nav class="pager" [^>]*>|');
+    $this->assertSession()->responseNotMatches('|<nav class="pager" [^>]*>|', 'Pager is not visible on page 1');
 
     // Create 3 more terms to show pager.
     for ($x = 1; $x <= 3; $x++) {
@@ -66,11 +65,11 @@ class TaxonomyTermPagerTest extends TaxonomyTestBase {
 
     // Ensure that pager is visible on page 1.
     $this->drupalGet('admin/structure/taxonomy/manage/' . $this->vocabulary->id() . '/overview');
-    $this->assertSession()->responseMatches('|<nav class="pager" [^>]*>|');
+    $this->assertPattern('|<nav class="pager" [^>]*>|');
 
     // Ensure that pager is visible on page 2.
     $this->drupalGet('admin/structure/taxonomy/manage/' . $this->vocabulary->id() . '/overview', ['query' => ['page' => 1]]);
-    $this->assertSession()->responseMatches('|<nav class="pager" [^>]*>|');
+    $this->assertPattern('|<nav class="pager" [^>]*>|');
   }
 
 }

@@ -42,7 +42,7 @@ class BuildTestTest extends BuildTestBase {
       'autoload.php',
       'composer.json',
       'index.php',
-      'README.md',
+      'README.txt',
       '.git',
       '.ht.router.php',
     ];

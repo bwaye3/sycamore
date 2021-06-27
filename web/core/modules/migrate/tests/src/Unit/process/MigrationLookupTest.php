@@ -101,7 +101,7 @@ class MigrationLookupTest extends MigrationLookupTestCase {
   }
 
   /**
-   * Tests that valid, but technically empty values are not skipped.
+   * Test that valid, but technically empty values are not skipped.
    *
    * @param mixed $value
    *   A valid value.
@@ -111,6 +111,7 @@ class MigrationLookupTest extends MigrationLookupTestCase {
   public function testNoSkipValid($value) {
     $migration_plugin = $this->prophesize(MigrationInterface::class);
     $migration_plugin_manager = $this->prophesize(MigrationPluginManagerInterface::class);
+    $process_plugin_manager = $this->prophesize(MigratePluginManager::class);
     $id_map = $this->prophesize(MigrateIdMapInterface::class);
     $id_map->lookupDestinationIds([$value])->willReturn([]);
     $migration_plugin->getIdMap()->willReturn($id_map->reveal());

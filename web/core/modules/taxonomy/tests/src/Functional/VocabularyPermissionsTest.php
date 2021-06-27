@@ -16,14 +16,14 @@ class VocabularyPermissionsTest extends TaxonomyTestBase {
    *
    * @var array
    */
-  protected static $modules = ['help'];
+  public static $modules = ['help'];
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->drupalPlaceBlock('page_title_block');
@@ -60,7 +60,7 @@ class VocabularyPermissionsTest extends TaxonomyTestBase {
   }
 
   /**
-   * Tests the vocabulary overview permission.
+   * Test the vocabulary overview permission.
    */
   public function testTaxonomyVocabularyOverviewPermissions() {
     // Create two vocabularies, one with two terms, the other without any term.
@@ -236,17 +236,18 @@ class VocabularyPermissionsTest extends TaxonomyTestBase {
     // Visit the main taxonomy administration page.
     $this->drupalGet('admin/structure/taxonomy/manage/' . $vocabulary->id() . '/add');
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->fieldExists('edit-name-0-value');
+    $this->assertField('edit-name-0-value', 'Add taxonomy term form opened successfully.');
 
     // Submit the term.
     $edit = [];
     $edit['name[0][value]'] = $this->randomMachineName();
 
-    $this->submitForm($edit, 'Save');
-    $this->assertSession()->pageTextContains('Created new term ' . $edit['name[0][value]'] . '.');
+    $this->drupalPostForm(NULL, $edit, t('Save'));
+    $this->assertText(t('Created new term @name.', ['@name' => $edit['name[0][value]']]), 'Term created successfully.');
 
     // Verify that the creation message contains a link to a term.
-    $this->assertSession()->elementExists('xpath', '//div[@data-drupal-messages]//a[contains(@href, "term/")]');
+    $view_link = $this->xpath('//div[@class="messages"]//a[contains(@href, :href)]', [':href' => 'term/']);
+    $this->assert(isset($view_link), 'The message area contains a link to a term');
 
     $terms = \Drupal::entityTypeManager()
       ->getStorage('taxonomy_term')
@@ -256,19 +257,19 @@ class VocabularyPermissionsTest extends TaxonomyTestBase {
     // Edit the term.
     $this->drupalGet('taxonomy/term/' . $term->id() . '/edit');
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->pageTextContains($edit['name[0][value]']);
+    $this->assertText($edit['name[0][value]'], 'Edit taxonomy term form opened successfully.');
 
     $edit['name[0][value]'] = $this->randomMachineName();
-    $this->submitForm($edit, 'Save');
-    $this->assertSession()->pageTextContains('Updated term ' . $edit['name[0][value]'] . '.');
+    $this->drupalPostForm(NULL, $edit, t('Save'));
+    $this->assertText(t('Updated term @name.', ['@name' => $edit['name[0][value]']]), 'Term updated successfully.');
 
     // Delete the vocabulary.
     $this->drupalGet('taxonomy/term/' . $term->id() . '/delete');
-    $this->assertRaw(t('Are you sure you want to delete the @entity-type %label?', ['@entity-type' => 'taxonomy term', '%label' => $edit['name[0][value]']]));
+    $this->assertRaw(t('Are you sure you want to delete the @entity-type %label?', ['@entity-type' => 'taxonomy term', '%label' => $edit['name[0][value]']]), 'Delete taxonomy term form opened successfully.');
 
     // Confirm deletion.
-    $this->submitForm([], 'Delete');
-    $this->assertRaw(t('Deleted term %name.', ['%name' => $edit['name[0][value]']]));
+    $this->drupalPostForm(NULL, NULL, t('Delete'));
+    $this->assertRaw(t('Deleted term %name.', ['%name' => $edit['name[0][value]']]), 'Term deleted.');
 
     // Test as user with "create" permissions.
     $user = $this->drupalCreateUser(["create terms in {$vocabulary->id()}"]);
@@ -285,7 +286,7 @@ class VocabularyPermissionsTest extends TaxonomyTestBase {
     $edit = [];
     $edit['name[0][value]'] = $this->randomMachineName();
 
-    $this->submitForm($edit, 'Save');
+    $this->drupalPostForm(NULL, $edit, t('Save'));
     $assert_session->pageTextContains(t('Created new term @name.', ['@name' => $edit['name[0][value]']]));
 
     $terms = \Drupal::entityTypeManager()
@@ -313,14 +314,15 @@ class VocabularyPermissionsTest extends TaxonomyTestBase {
     // Edit the term.
     $this->drupalGet('taxonomy/term/' . $term->id() . '/edit');
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->pageTextContains($term->getName());
+    $this->assertText($term->getName(), 'Edit taxonomy term form opened successfully.');
 
     $edit['name[0][value]'] = $this->randomMachineName();
-    $this->submitForm($edit, 'Save');
-    $this->assertSession()->pageTextContains('Updated term ' . $edit['name[0][value]'] . '.');
+    $this->drupalPostForm(NULL, $edit, t('Save'));
+    $this->assertText(t('Updated term @name.', ['@name' => $edit['name[0][value]']]), 'Term updated successfully.');
 
     // Verify that the update message contains a link to a term.
-    $this->assertSession()->elementExists('xpath', '//div[@data-drupal-messages]//a[contains(@href, "term/")]');
+    $view_link = $this->xpath('//div[@class="messages"]//a[contains(@href, :href)]', [':href' => 'term/']);
+    $this->assert(isset($view_link), 'The message area contains a link to a term');
 
     // Ensure the term cannot be deleted.
     $this->drupalGet('taxonomy/term/' . $term->id() . '/delete');
@@ -343,11 +345,11 @@ class VocabularyPermissionsTest extends TaxonomyTestBase {
 
     // Delete the vocabulary.
     $this->drupalGet('taxonomy/term/' . $term->id() . '/delete');
-    $this->assertRaw(t('Are you sure you want to delete the @entity-type %label?', ['@entity-type' => 'taxonomy term', '%label' => $term->getName()]));
+    $this->assertRaw(t('Are you sure you want to delete the @entity-type %label?', ['@entity-type' => 'taxonomy term', '%label' => $term->getName()]), 'Delete taxonomy term form opened successfully.');
 
     // Confirm deletion.
-    $this->submitForm([], 'Delete');
-    $this->assertRaw(t('Deleted term %name.', ['%name' => $term->getName()]));
+    $this->drupalPostForm(NULL, NULL, t('Delete'));
+    $this->assertRaw(t('Deleted term %name.', ['%name' => $term->getName()]), 'Term deleted.');
 
     // Test as user without proper permissions.
     $user = $this->drupalCreateUser();

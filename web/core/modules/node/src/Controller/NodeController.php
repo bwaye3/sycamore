@@ -51,9 +51,13 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
    */
-  public function __construct(DateFormatterInterface $date_formatter, RendererInterface $renderer, EntityRepositoryInterface $entity_repository) {
+  public function __construct(DateFormatterInterface $date_formatter, RendererInterface $renderer, EntityRepositoryInterface $entity_repository = NULL) {
     $this->dateFormatter = $date_formatter;
     $this->renderer = $renderer;
+    if (!$entity_repository) {
+      @trigger_error('The entity.repository service must be passed to NodeController::__construct(), it is required before Drupal 9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
+      $entity_repository = \Drupal::service('entity.repository');
+    }
     $this->entityRepository = $entity_repository;
   }
 
@@ -80,7 +84,6 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
    *   type.
    */
   public function addPage() {
-    $definition = $this->entityTypeManager()->getDefinition('node_type');
     $build = [
       '#theme' => 'node_add_list',
       '#cache' => [
@@ -90,10 +93,8 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
 
     $content = [];
 
-    $types = $this->entityTypeManager()->getStorage('node_type')->loadMultiple();
-    uasort($types, [$definition->getClass(), 'sort']);
     // Only use node types the user has access to.
-    foreach ($types as $type) {
+    foreach ($this->entityTypeManager()->getStorage('node_type')->loadMultiple() as $type) {
       $access = $this->entityTypeManager()->getAccessControlHandler('node')->createAccess($type->id(), NULL, [], TRUE);
       if ($access->isAllowed()) {
         $content[$type->id()] = $type;
@@ -110,6 +111,30 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
     $build['#content'] = $content;
 
     return $build;
+  }
+
+  /**
+   * Provides the node submission form.
+   *
+   * @param \Drupal\node\NodeTypeInterface $node_type
+   *   The node type entity for the node.
+   *
+   * @return array
+   *   A node submission form.
+   *
+   * @deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Define
+   *   entity form routes through the _entity_form instead through the
+   *   _controller directive.
+   */
+  public function add(NodeTypeInterface $node_type) {
+    @trigger_error(__METHOD__ . ' is deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Define entity form routes through the _entity_form instead through the _controller directive. See https://www.drupal.org/node/3084856', E_USER_DEPRECATED);
+    $node = $this->entityTypeManager()->getStorage('node')->create([
+      'type' => $node_type->id(),
+    ]);
+
+    $form = $this->entityFormBuilder()->getForm($node);
+
+    return $form;
   }
 
   /**
@@ -300,7 +325,6 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
    */
   protected function getRevisionIds(NodeInterface $node, NodeStorageInterface $node_storage) {
     $result = $node_storage->getQuery()
-      ->accessCheck(TRUE)
       ->allRevisions()
       ->condition($node->getEntityType()->getKey('id'), $node->id())
       ->sort($node->getEntityType()->getKey('revision'), 'DESC')

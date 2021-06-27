@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\ckeditor\Kernel;
 
+use Drupal\ckeditor\Plugin\Editor\CKEditor;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\editor\Entity\Editor;
@@ -19,7 +20,7 @@ class CKEditorTest extends KernelTestBase {
    *
    * @var array
    */
-  protected static $modules = [
+  public static $modules = [
     'system',
     'user',
     'filter',
@@ -42,7 +43,7 @@ class CKEditorTest extends KernelTestBase {
    */
   protected $manager;
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     // Install the Filter module.
@@ -97,7 +98,10 @@ class CKEditorTest extends KernelTestBase {
         'drupallink' => file_url_transform_relative(file_create_url('core/modules/ckeditor/js/plugins/drupallink/plugin.js')),
       ],
     ];
-    $this->assertEquals($expected_config, $this->ckeditor->getJSSettings($editor), 'Generated JS settings are correct for default configuration.');
+    $expected_config = $this->castSafeStrings($expected_config);
+    ksort($expected_config);
+    ksort($expected_config['allowedContent']);
+    $this->assertIdentical($expected_config, $this->castSafeStrings($this->ckeditor->getJSSettings($editor)), 'Generated JS settings are correct for default configuration.');
 
     // Customize the configuration: add button, have two contextually enabled
     // buttons, and configure a CKEditor plugin setting.
@@ -117,7 +121,8 @@ class CKEditorTest extends KernelTestBase {
     $expected_config['drupalExternalPlugins']['llama_contextual'] = file_url_transform_relative(file_create_url('core/modules/ckeditor/tests/modules/js/llama_contextual.js'));
     $expected_config['drupalExternalPlugins']['llama_contextual_and_button'] = file_url_transform_relative(file_create_url('core/modules/ckeditor/tests/modules/js/llama_contextual_and_button.js'));
     $expected_config['contentsCss'][] = file_url_transform_relative(file_create_url('core/modules/ckeditor/tests/modules/ckeditor_test.css')) . $query_string;
-    $this->assertEquals($expected_config, $this->ckeditor->getJSSettings($editor), 'Generated JS settings are correct for customized configuration.');
+    ksort($expected_config);
+    $this->assertIdentical($expected_config, $this->castSafeStrings($this->ckeditor->getJSSettings($editor)), 'Generated JS settings are correct for customized configuration.');
 
     // Change the allowed HTML tags; the "allowedContent" and "format_tags"
     // settings for CKEditor should automatically be updated as well.
@@ -130,7 +135,8 @@ class CKEditorTest extends KernelTestBase {
     $expected_config['allowedContent']['blockquote'] = ['attributes' => 'class', 'styles' => FALSE, 'classes' => TRUE];
     $expected_config['allowedContent']['address'] = ['attributes' => 'class', 'styles' => FALSE, 'classes' => 'foo,bar-*'];
     $expected_config['format_tags'] = 'p;h1;h2;h3;h4;h5;h6;pre';
-    $this->assertEquals($expected_config, $this->ckeditor->getJSSettings($editor), 'Generated JS settings are correct for customized configuration.');
+    ksort($expected_config['allowedContent']);
+    $this->assertIdentical($expected_config, $this->castSafeStrings($this->ckeditor->getJSSettings($editor)), 'Generated JS settings are correct for customized configuration.');
 
     // Disable the filter_html filter: allow *all *tags.
     $format->setFilterConfig('filter_html', ['status' => 0]);
@@ -139,7 +145,7 @@ class CKEditorTest extends KernelTestBase {
     $expected_config['allowedContent'] = TRUE;
     $expected_config['disallowedContent'] = FALSE;
     $expected_config['format_tags'] = 'p;h1;h2;h3;h4;h5;h6;pre';
-    $this->assertEquals($expected_config, $this->ckeditor->getJSSettings($editor), 'Generated JS settings are correct for customized configuration.');
+    $this->assertIdentical($expected_config, $this->castSafeStrings($this->ckeditor->getJSSettings($editor)), 'Generated JS settings are correct for customized configuration.');
 
     // Enable the filter_test_restrict_tags_and_attributes filter.
     $format->setFilterConfig('filter_test_restrict_tags_and_attributes', [
@@ -210,7 +216,10 @@ class CKEditorTest extends KernelTestBase {
       ],
     ];
     $expected_config['format_tags'] = 'p';
-    $this->assertEquals($expected_config, $this->ckeditor->getJSSettings($editor), 'Generated JS settings are correct for customized configuration.');
+    ksort($expected_config);
+    ksort($expected_config['allowedContent']);
+    ksort($expected_config['disallowedContent']);
+    $this->assertIdentical($expected_config, $this->castSafeStrings($this->ckeditor->getJSSettings($editor)), 'Generated JS settings are correct for customized configuration.');
   }
 
   /**
@@ -221,7 +230,7 @@ class CKEditorTest extends KernelTestBase {
 
     // Default toolbar.
     $expected = $this->getDefaultToolbarConfig();
-    $this->assertSame($expected, $this->ckeditor->buildToolbarJSSetting($editor), '"toolbar" configuration part of JS settings built correctly for default toolbar.');
+    $this->assertIdentical($expected, $this->castSafeStrings($this->ckeditor->buildToolbarJSSetting($editor)), '"toolbar" configuration part of JS settings built correctly for default toolbar.');
 
     // Customize the configuration.
     $settings = $editor->getSettings();
@@ -229,7 +238,7 @@ class CKEditorTest extends KernelTestBase {
     $editor->setSettings($settings);
     $editor->save();
     $expected[0]['items'][] = 'Strike';
-    $this->assertEquals($expected, $this->ckeditor->buildToolbarJSSetting($editor), '"toolbar" configuration part of JS settings built correctly for customized toolbar.');
+    $this->assertIdentical($expected, $this->castSafeStrings($this->ckeditor->buildToolbarJSSetting($editor)), '"toolbar" configuration part of JS settings built correctly for customized toolbar.');
 
     // Enable the editor_test module, customize further.
     $this->enableModules(['ckeditor_test']);
@@ -241,7 +250,7 @@ class CKEditorTest extends KernelTestBase {
     $editor->save();
     $expected[0]['name'] = 'JunkScience';
     $expected[0]['items'][] = 'Llama';
-    $this->assertEquals($expected, $this->ckeditor->buildToolbarJSSetting($editor), '"toolbar" configuration part of JS settings built correctly for customized toolbar with contrib module-provided CKEditor plugin.');
+    $this->assertIdentical($expected, $this->castSafeStrings($this->ckeditor->buildToolbarJSSetting($editor)), '"toolbar" configuration part of JS settings built correctly for customized toolbar with contrib module-provided CKEditor plugin.');
   }
 
   /**
@@ -253,12 +262,12 @@ class CKEditorTest extends KernelTestBase {
 
     // Default toolbar.
     $expected = $this->getDefaultContentsCssConfig();
-    $this->assertEquals($expected, $this->ckeditor->buildContentsCssJSSetting($editor), '"contentsCss" configuration part of JS settings built correctly for default toolbar.');
+    $this->assertIdentical($expected, $this->ckeditor->buildContentsCssJSSetting($editor), '"contentsCss" configuration part of JS settings built correctly for default toolbar.');
 
     // Enable the editor_test module, which implements hook_ckeditor_css_alter().
     $this->enableModules(['ckeditor_test']);
     $expected[] = file_url_transform_relative(file_create_url(drupal_get_path('module', 'ckeditor_test') . '/ckeditor_test.css')) . $query_string;
-    $this->assertSame($expected, $this->ckeditor->buildContentsCssJSSetting($editor), '"contentsCss" configuration part of JS settings built correctly while a hook_ckeditor_css_alter() implementation exists.');
+    $this->assertIdentical($expected, $this->ckeditor->buildContentsCssJSSetting($editor), '"contentsCss" configuration part of JS settings built correctly while a hook_ckeditor_css_alter() implementation exists.');
 
     // Enable LlamaCss plugin, which adds an additional CKEditor stylesheet.
     $this->container->get('plugin.manager.editor')->clearCachedDefinitions();
@@ -270,17 +279,18 @@ class CKEditorTest extends KernelTestBase {
     $editor->setSettings($settings);
     $editor->save();
     $expected[] = file_url_transform_relative(file_create_url(drupal_get_path('module', 'ckeditor_test') . '/css/llama.css')) . $query_string;
-    $this->assertSame($expected, $this->ckeditor->buildContentsCssJSSetting($editor), '"contentsCss" configuration part of JS settings built correctly while a CKEditorPluginInterface implementation exists.');
+    $this->assertIdentical($expected, $this->ckeditor->buildContentsCssJSSetting($editor), '"contentsCss" configuration part of JS settings built correctly while a CKEditorPluginInterface implementation exists.');
 
     // Enable the Bartik theme, which specifies a CKEditor stylesheet.
     \Drupal::service('theme_installer')->install(['bartik']);
     $this->config('system.theme')->set('default', 'bartik')->save();
+    $expected[] = file_url_transform_relative(file_create_url('core/themes/classy/css/components/media-embed-error.css')) . $query_string;
     $expected[] = file_url_transform_relative(file_create_url('core/themes/bartik/css/base/elements.css')) . $query_string;
     $expected[] = file_url_transform_relative(file_create_url('core/themes/bartik/css/components/captions.css')) . $query_string;
     $expected[] = file_url_transform_relative(file_create_url('core/themes/bartik/css/components/table.css')) . $query_string;
     $expected[] = file_url_transform_relative(file_create_url('core/themes/bartik/css/components/text-formatted.css')) . $query_string;
     $expected[] = file_url_transform_relative(file_create_url('core/themes/bartik/css/classy/components/media-embed-error.css')) . $query_string;
-    $this->assertSame($expected, $this->ckeditor->buildContentsCssJSSetting($editor), '"contentsCss" configuration part of JS settings built correctly while a theme providing a CKEditor stylesheet exists.');
+    $this->assertIdentical($expected, $this->ckeditor->buildContentsCssJSSetting($editor), '"contentsCss" configuration part of JS settings built correctly while a theme providing a CKEditor stylesheet exists.');
   }
 
   /**
@@ -294,14 +304,14 @@ class CKEditorTest extends KernelTestBase {
     $expected = $this->getDefaultInternalConfig();
     $expected['disallowedContent'] = $this->getDefaultDisallowedContentConfig();
     $expected['allowedContent'] = $this->getDefaultAllowedContentConfig();
-    $this->assertEquals($expected, $internal_plugin->getConfig($editor), '"Internal" plugin configuration built correctly for default toolbar.');
+    $this->assertEqual($expected, $internal_plugin->getConfig($editor), '"Internal" plugin configuration built correctly for default toolbar.');
 
     // Format dropdown/button enabled: new setting should be present.
     $settings = $editor->getSettings();
     $settings['toolbar']['rows'][0][0]['items'][] = 'Format';
     $editor->setSettings($settings);
     $expected['format_tags'] = 'p;h2;h3;h4;h5;h6';
-    $this->assertEquals($expected, $internal_plugin->getConfig($editor), '"Internal" plugin configuration built correctly for customized toolbar.');
+    $this->assertEqual($expected, $internal_plugin->getConfig($editor), '"Internal" plugin configuration built correctly for customized toolbar.');
   }
 
   /**
@@ -318,18 +328,18 @@ class CKEditorTest extends KernelTestBase {
     $editor->setSettings($settings);
     $editor->save();
     $expected['stylesSet'] = [];
-    $this->assertSame($expected, $stylescombo_plugin->getConfig($editor), '"StylesCombo" plugin configuration built correctly for customized toolbar.');
+    $this->assertIdentical($expected, $stylescombo_plugin->getConfig($editor), '"StylesCombo" plugin configuration built correctly for customized toolbar.');
 
     // Configure the optional "styles" setting in odd ways that shouldn't affect
     // the end result.
     $settings['plugins']['stylescombo']['styles'] = "   \n";
     $editor->setSettings($settings);
     $editor->save();
-    $this->assertSame($expected, $stylescombo_plugin->getConfig($editor));
+    $this->assertIdentical($expected, $stylescombo_plugin->getConfig($editor));
     $settings['plugins']['stylescombo']['styles'] = "\r\n  \n  \r  \n ";
     $editor->setSettings($settings);
     $editor->save();
-    $this->assertSame($expected, $stylescombo_plugin->getConfig($editor), '"StylesCombo" plugin configuration built correctly for customized toolbar.');
+    $this->assertIdentical($expected, $stylescombo_plugin->getConfig($editor), '"StylesCombo" plugin configuration built correctly for customized toolbar.');
 
     // Now configure it properly, the end result should change.
     $settings['plugins']['stylescombo']['styles'] = "h1.title|Title\np.mAgical.Callout|Callout";
@@ -339,42 +349,28 @@ class CKEditorTest extends KernelTestBase {
       ['name' => 'Title', 'element' => 'h1', 'attributes' => ['class' => 'title']],
       ['name' => 'Callout', 'element' => 'p', 'attributes' => ['class' => 'mAgical Callout']],
     ];
-    $this->assertSame($expected, $stylescombo_plugin->getConfig($editor), '"StylesCombo" plugin configuration built correctly for customized toolbar.');
+    $this->assertIdentical($expected, $stylescombo_plugin->getConfig($editor), '"StylesCombo" plugin configuration built correctly for customized toolbar.');
 
     // Same configuration, but now interspersed with nonsense. Should yield the
     // same result.
     $settings['plugins']['stylescombo']['styles'] = "  h1 .title   |  Title \r \n\r  \np.mAgical  .Callout|Callout\r";
     $editor->setSettings($settings);
     $editor->save();
-    $this->assertSame($expected, $stylescombo_plugin->getConfig($editor), '"StylesCombo" plugin configuration built correctly for customized toolbar.');
+    $this->assertIdentical($expected, $stylescombo_plugin->getConfig($editor), '"StylesCombo" plugin configuration built correctly for customized toolbar.');
 
     // Slightly different configuration: class names are optional.
     $settings['plugins']['stylescombo']['styles'] = "      h1 |  Title ";
     $editor->setSettings($settings);
     $editor->save();
     $expected['stylesSet'] = [['name' => 'Title', 'element' => 'h1']];
-    $this->assertSame($expected, $stylescombo_plugin->getConfig($editor), '"StylesCombo" plugin configuration built correctly for customized toolbar.');
+    $this->assertIdentical($expected, $stylescombo_plugin->getConfig($editor), '"StylesCombo" plugin configuration built correctly for customized toolbar.');
 
     // Invalid syntax should cause stylesSet to be set to FALSE.
     $settings['plugins']['stylescombo']['styles'] = "h1";
     $editor->setSettings($settings);
     $editor->save();
     $expected['stylesSet'] = FALSE;
-    $this->assertSame($expected, $stylescombo_plugin->getConfig($editor), '"StylesCombo" plugin configuration built correctly for customized toolbar.');
-
-    // Configuration that includes a dash in either the element or class name.
-    $settings['plugins']['stylescombo']['styles'] = "drupal-entity.has-dashes|Allowing Dashes";
-    $editor->setSettings($settings);
-    $editor->save();
-    $expected['stylesSet'] = [
-      [
-        'name' => 'Allowing Dashes',
-        'element' => 'drupal-entity',
-        'attributes' => ['class' => 'has-dashes'],
-      ],
-    ];
-    $this->assertSame($expected, $stylescombo_plugin->getConfig($editor), '"StylesCombo" plugin configuration built correctly for customized toolbar.');
-
+    $this->assertIdentical($expected, $stylescombo_plugin->getConfig($editor), '"StylesCombo" plugin configuration built correctly for customized toolbar.');
   }
 
   /**
@@ -387,15 +383,15 @@ class CKEditorTest extends KernelTestBase {
     $langcodes = $this->ckeditor->getLangcodes();
 
     // Language codes transformed with browser mappings.
-    $this->assertSame('pt', $langcodes['pt-pt'], '"pt" properly resolved');
-    $this->assertSame('zh-cn', $langcodes['zh-hans'], '"zh-hans" properly resolved');
+    $this->assertTrue($langcodes['pt-pt'] == 'pt', '"pt" properly resolved');
+    $this->assertTrue($langcodes['zh-hans'] == 'zh-cn', '"zh-hans" properly resolved');
 
     // Language code both in Drupal and CKEditor.
-    $this->assertSame('gl', $langcodes['gl'], '"gl" properly resolved');
+    $this->assertTrue($langcodes['gl'] == 'gl', '"gl" properly resolved');
 
     // Language codes only in CKEditor.
-    $this->assertSame('en-au', $langcodes['en-au'], '"en-au" properly resolved');
-    $this->assertSame('sr-latn', $langcodes['sr-latn'], '"sr-latn" properly resolved');
+    $this->assertTrue($langcodes['en-au'] == 'en-au', '"en-au" properly resolved');
+    $this->assertTrue($langcodes['sr-latn'] == 'sr-latn', '"sr-latn" properly resolved');
 
     // No locale module, so even though languages are enabled, CKEditor should
     // still be in English.
@@ -421,45 +417,6 @@ class CKEditorTest extends KernelTestBase {
   }
 
   /**
-   * Tests loading of theme's CKEditor stylesheets defined in the .info file.
-   */
-  public function testExternalStylesheets() {
-    /** @var \Drupal\Core\Extension\ThemeInstallerInterface $theme_installer */
-    $theme_installer = \Drupal::service('theme_installer');
-    // Case 1: Install theme which has an absolute external CSS URL.
-    $theme_installer->install(['test_ckeditor_stylesheets_external']);
-    $this->config('system.theme')->set('default', 'test_ckeditor_stylesheets_external')->save();
-    $expected = [
-      'https://fonts.googleapis.com/css?family=Open+Sans',
-    ];
-    $this->assertSame($expected, _ckeditor_theme_css('test_ckeditor_stylesheets_external'));
-
-    // Case 2: Install theme which has an external protocol-relative CSS URL.
-    $theme_installer->install(['test_ckeditor_stylesheets_protocol_relative']);
-    $this->config('system.theme')->set('default', 'test_ckeditor_stylesheets_protocol_relative')->save();
-    $expected = [
-      '//fonts.googleapis.com/css?family=Open+Sans',
-    ];
-    $this->assertSame($expected, _ckeditor_theme_css('test_ckeditor_stylesheets_protocol_relative'));
-
-    // Case 3: Install theme which has a relative CSS URL.
-    $theme_installer->install(['test_ckeditor_stylesheets_relative']);
-    $this->config('system.theme')->set('default', 'test_ckeditor_stylesheets_relative')->save();
-    $expected = [
-      'core/modules/system/tests/themes/test_ckeditor_stylesheets_relative/css/yokotsoko.css',
-    ];
-    $this->assertSame($expected, _ckeditor_theme_css('test_ckeditor_stylesheets_relative'));
-
-    // Case 4: Install theme which has a Drupal root CSS URL.
-    $theme_installer->install(['test_ckeditor_stylesheets_drupal_root']);
-    $this->config('system.theme')->set('default', 'test_ckeditor_stylesheets_drupal_root')->save();
-    $expected = [
-      'core/modules/system/tests/themes/test_ckeditor_stylesheets_drupal_root/css/yokotsoko.css',
-    ];
-    $this->assertSame($expected, _ckeditor_theme_css('test_ckeditor_stylesheets_drupal_root'));
-  }
-
-  /**
    * Assert that CKEditor picks the expected language when French is default.
    *
    * @param string $langcode
@@ -479,7 +436,7 @@ class CKEditorTest extends KernelTestBase {
     // Test that we now get the expected language.
     $editor = Editor::load('filtered_html');
     $settings = $this->ckeditor->getJSSettings($editor);
-    $this->assertEquals($langcode, $settings['language']);
+    $this->assertEqual($settings['language'], $langcode);
   }
 
   protected function getDefaultInternalConfig() {
@@ -546,6 +503,20 @@ class CKEditorTest extends KernelTestBase {
       file_url_transform_relative(file_create_url('core/modules/ckeditor/css/ckeditor-iframe.css')) . $query_string,
       file_url_transform_relative(file_create_url('core/modules/system/css/components/align.module.css')) . $query_string,
     ];
+  }
+
+  /**
+   * @deprecationMessage Calling CKEditor::__construct() without the $state argument is deprecated in drupal:8.8.0. The $state argument is required in drupal:9.0.0. See https://www.drupal.org/node/3075102.
+   * @group legacy
+   */
+  public function testConstructorDeprecation() {
+    $editor = new CKEditor([], 'test', ['provider' => 'test'], $this->container->get('plugin.manager.ckeditor.plugin'), $this->container->get('module_handler'), $this->container->get('language_manager'), $this->container->get('renderer'));
+
+    // Ensure the BC layer injects the correct object.
+    $reflection_object = new \ReflectionObject($editor);
+    $reflection_property = $reflection_object->getProperty('state');
+    $reflection_property->setAccessible(TRUE);
+    $this->assertSame($reflection_property->getValue($editor), $this->container->get('state'));
   }
 
 }

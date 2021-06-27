@@ -8,7 +8,7 @@ namespace Drupal\render_attached_test\Controller;
 class RenderAttachedTestController {
 
   /**
-   * Tests special header and status code rendering.
+   * Test special header and status code rendering.
    *
    * @return array
    *   A render array using features of the 'http_header' directive.
@@ -20,7 +20,7 @@ class RenderAttachedTestController {
   }
 
   /**
-   * Tests attached HTML head rendering.
+   * Test attached HTML head rendering.
    *
    * @return array
    *   A render array using the 'http_head' directive.
@@ -36,7 +36,7 @@ class RenderAttachedTestController {
   }
 
   /**
-   * Tests attached HTML head rendering.
+   * Test attached HTML head rendering.
    *
    * @return array
    *   A render array using the 'html_head' directive.
@@ -58,7 +58,7 @@ class RenderAttachedTestController {
   }
 
   /**
-   * Tests attached feed rendering.
+   * Test attached feed rendering.
    *
    * @return array
    *   A render array using the 'feed' directive.
@@ -70,7 +70,7 @@ class RenderAttachedTestController {
   }
 
   /**
-   * Tests HTTP header rendering for link.
+   * Test HTTP header rendering for link.
    *
    * @return array
    *   A render array using the 'html_head_link' directive.

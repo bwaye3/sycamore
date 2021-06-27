@@ -36,7 +36,7 @@ class MediaLibraryStateTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->installEntitySchema('user');
@@ -365,7 +365,7 @@ class MediaLibraryStateTest extends KernelTestBase {
   }
 
   /**
-   * Tests that hash is unaffected by allowed media type order.
+   * Test that hash is unaffected by allowed media type order.
    */
   public function testHashUnaffectedByMediaTypeOrder() {
     $state1 = MediaLibraryState::create('test', ['file', 'image'], 'image', 2);
@@ -374,7 +374,7 @@ class MediaLibraryStateTest extends KernelTestBase {
   }
 
   /**
-   * Tests that hash is unaffected by opener parameter order.
+   * Test that hash is unaffected by opener parameter order.
    */
   public function testHashUnaffectedByOpenerParamOrder() {
     $state1 = MediaLibraryState::create('test', ['file'], 'file', -1, [

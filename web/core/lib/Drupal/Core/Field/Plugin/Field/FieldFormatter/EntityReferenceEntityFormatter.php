@@ -8,6 +8,7 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -22,7 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
-class EntityReferenceEntityFormatter extends EntityReferenceFormatterBase {
+class EntityReferenceEntityFormatter extends EntityReferenceFormatterBase implements ContainerFactoryPluginInterface {
 
   /**
    * The number of times this formatter allows rendering the same entity.
@@ -65,7 +66,7 @@ class EntityReferenceEntityFormatter extends EntityReferenceFormatterBase {
   protected static $recursiveRenderDepth = [];
 
   /**
-   * Constructs an EntityReferenceEntityFormatter instance.
+   * Constructs a EntityReferenceEntityFormatter instance.
    *
    * @param string $plugin_id
    *   The plugin_id for the formatter.

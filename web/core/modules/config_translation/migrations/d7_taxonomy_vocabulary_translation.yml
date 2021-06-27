@@ -28,5 +28,4 @@ destination:
   destination_module: config_translation
 migration_dependencies:
   required:
-    - language
     - d7_taxonomy_vocabulary

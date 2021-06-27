@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreFile
 
 namespace Drupal\Tests\Component\Annotation\Doctrine\Ticket;
 
@@ -20,7 +21,7 @@ use PHPUnit\Framework\TestCase;
  */
 class DCOM58Test extends TestCase
 {
-    public function setUp(): void
+    public function setUp()
     {
         // Some class named Entity in the global namespace.
         include __DIR__ .'/DCOM58Entity.php';

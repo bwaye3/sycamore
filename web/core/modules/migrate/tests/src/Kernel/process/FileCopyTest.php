@@ -23,7 +23,7 @@ class FileCopyTest extends FileTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['migrate', 'system'];
+  public static $modules = ['migrate', 'system'];
 
   /**
    * The file system service.
@@ -35,14 +35,14 @@ class FileCopyTest extends FileTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->fileSystem = $this->container->get('file_system');
     $this->container->get('stream_wrapper_manager')->registerWrapper('temporary', 'Drupal\Core\StreamWrapper\TemporaryStream', StreamWrapperInterface::LOCAL_NORMAL);
   }
 
   /**
-   * Tests successful imports/copies.
+   * Test successful imports/copies.
    */
   public function testSuccessfulCopies() {
     $file = $this->createUri(NULL, NULL, 'temporary');
@@ -75,7 +75,7 @@ class FileCopyTest extends FileTestBase {
   }
 
   /**
-   * Tests successful file reuse.
+   * Test successful file reuse.
    *
    * @dataProvider providerSuccessfulReuse
    *
@@ -123,7 +123,7 @@ class FileCopyTest extends FileTestBase {
   }
 
   /**
-   * Tests successful moves.
+   * Test successful moves.
    */
   public function testSuccessfulMoves() {
     $file_1 = $this->createUri(NULL, NULL, 'temporary');
@@ -152,13 +152,13 @@ class FileCopyTest extends FileTestBase {
       list($source_path, $destination_path) = $data;
       $actual_destination = $this->doTransform($source_path, $destination_path, ['move' => TRUE]);
       $this->assertFileExists($destination_path);
-      $this->assertFileDoesNotExist($source_path);
+      $this->assertFileNotExists($source_path);
       $this->assertSame($actual_destination, $destination_path, 'The importer returned the moved filename.');
     }
   }
 
   /**
-   * Tests that non-existent files throw an exception.
+   * Test that non-existent files throw an exception.
    */
   public function testNonExistentSourceFile() {
     $source = '/non/existent/file';
@@ -195,7 +195,7 @@ class FileCopyTest extends FileTestBase {
   }
 
   /**
-   * Tests the 'rename' overwrite mode.
+   * Test the 'rename' overwrite mode.
    */
   public function testRenameFile() {
     $source = $this->createUri(NULL, NULL, 'temporary');

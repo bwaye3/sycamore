@@ -11,14 +11,14 @@ use Drupal\Tests\BrowserTestBase;
  */
 class LocaleUpdateDevelopmentReleaseTest extends BrowserTestBase {
 
-  protected static $modules = ['locale', 'locale_test_development_release'];
+  public static $modules = ['locale', 'locale_test_development_release'];
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     module_load_include('compare.inc', 'locale');
     $admin_user = $this->drupalCreateUser([
@@ -28,14 +28,15 @@ class LocaleUpdateDevelopmentReleaseTest extends BrowserTestBase {
       'translate interface',
     ]);
     $this->drupalLogin($admin_user);
-    $this->drupalGet('admin/config/regional/language/add');
-    $this->submitForm(['predefined_langcode' => 'hu'], 'Add language');
+    $this->drupalPostForm('admin/config/regional/language/add', ['predefined_langcode' => 'hu'], t('Add language'));
   }
 
   public function testLocaleUpdateDevelopmentRelease() {
     $projects = locale_translation_build_projects();
-    $this->assertEquals('8.0.x', $projects['drupal']->info['version'], 'The branch of the core dev release.');
-    $this->assertEquals('12.x-10.x', $projects['contrib']->info['version'], 'The branch of the contrib module dev release.');
+    $this->verbose($projects['drupal']->info['version']);
+    $this->assertEqual($projects['drupal']->info['version'], '8.0.x', 'The branch of the core dev release.');
+    $this->verbose($projects['contrib']->info['version']);
+    $this->assertEqual($projects['contrib']->info['version'], '12.x-10.x', 'The branch of the contrib module dev release.');
   }
 
 }

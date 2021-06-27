@@ -251,7 +251,11 @@ $databases = [];
  *   );
  * @endcode
  */
+<<<<<<< HEAD
 $settings['config_sync_directory'] = '../config/sync';
+=======
+# $settings['config_sync_directory'] = '/directory/outside/webroot';
+>>>>>>> parent of 1a5c6b3e5... d9 core
 
 /**
  * Settings:
@@ -779,6 +783,7 @@ $databases['default']['default'] = array (
 );
 
 
+<<<<<<< HEAD
 $settings['trusted_host_patterns'] = [
   '^projectsycamore\.com$',
   '^www\.projectsycamore\.com$',
@@ -787,3 +792,6 @@ $settings['trusted_host_patterns'] = [
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
+=======
+$config_directories['sync'] = '../config/sync';
+>>>>>>> parent of 1a5c6b3e5... d9 core

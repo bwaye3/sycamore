@@ -19,7 +19,7 @@ class ExperimentalHelpTest extends BrowserTestBase {
    *
    * @var array
    */
-  protected static $modules = [
+  public static $modules = [
     'help',
     'experimental_module_test',
     'help_page_test',
@@ -40,7 +40,7 @@ class ExperimentalHelpTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->adminUser = $this->drupalCreateUser(['access administration pages']);
   }
@@ -51,7 +51,7 @@ class ExperimentalHelpTest extends BrowserTestBase {
   public function testExperimentalHelp() {
     $this->drupalLogin($this->adminUser);
     $this->drupalGet('admin/help/experimental_module_test');
-    $this->assertSession()->pageTextContains('This module is experimental.');
+    $this->assertText('This module is experimental.');
 
     // Regular modules should not display the message.
     $this->drupalGet('admin/help/help_page_test');
@@ -59,7 +59,7 @@ class ExperimentalHelpTest extends BrowserTestBase {
 
     // Ensure the actual help page is displayed to avoid a false positive.
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->pageTextContains('online documentation for the Help Page Test module');
+    $this->assertText('online documentation for the Help Page Test module');
   }
 
 }

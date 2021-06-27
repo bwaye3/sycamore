@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\Definition;
  */
 class ServiceConfigurator extends AbstractServiceConfigurator
 {
-    public const FACTORY = 'services';
+    const FACTORY = 'services';
 
     use Traits\AbstractTrait;
     use Traits\ArgumentTrait;
@@ -45,14 +45,12 @@ class ServiceConfigurator extends AbstractServiceConfigurator
     private $container;
     private $instanceof;
     private $allowParent;
-    private $path;
 
-    public function __construct(ContainerBuilder $container, array $instanceof, bool $allowParent, ServicesConfigurator $parent, Definition $definition, $id, array $defaultTags, string $path = null)
+    public function __construct(ContainerBuilder $container, array $instanceof, $allowParent, ServicesConfigurator $parent, Definition $definition, $id, array $defaultTags)
     {
         $this->container = $container;
         $this->instanceof = $instanceof;
         $this->allowParent = $allowParent;
-        $this->path = $path;
 
         parent::__construct($parent, $definition, $id, $defaultTags);
     }

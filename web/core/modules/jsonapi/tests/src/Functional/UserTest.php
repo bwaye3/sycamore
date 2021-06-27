@@ -22,7 +22,7 @@ class UserTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['user', 'jsonapi_test_user'];
+  public static $modules = ['user', 'jsonapi_test_user'];
 
   /**
    * {@inheritdoc}
@@ -364,7 +364,7 @@ class UserTest extends ResourceTestBase {
   public function testGetMailFieldOnlyVisibleToOwner() {
     // Create user B, with the same roles (and hence permissions) as user A.
     $user_a = $this->account;
-    $pass = \Drupal::service('password_generator')->generate();
+    $pass = user_password();
     $user_b = User::create([
       'name' => 'sibling-of-' . $user_a->getAccountName(),
       'mail' => 'sibling-of-' . $user_a->getAccountName() . '@example.com',
@@ -412,22 +412,10 @@ class UserTest extends ResourceTestBase {
     $this->assertArrayNotHasKey('mail', $doc['data'][2]['attributes']);
     $this->assertSame($user_b->uuid(), $doc['data'][count($doc['data']) - 1]['id']);
     $this->assertArrayHasKey('mail', $doc['data'][count($doc['data']) - 1]['attributes']);
-
-    // Now grant permission to view user email addresses and verify.
-    $this->grantPermissionsToTestedRole(['view user email addresses']);
-    // Viewing user A as user B: "mail" field should be accessible.
-    $response = $this->request('GET', $user_a_url, $request_options);
-    $doc = Json::decode((string) $response->getBody());
-    $this->assertArrayHasKey('mail', $doc['data']['attributes']);
-    // Also when looking at the collection.
-    $response = $this->request('GET', $collection_url, $request_options);
-    $doc = Json::decode((string) $response->getBody());
-    $this->assertSame($user_a->uuid(), $doc['data']['2']['id']);
-    $this->assertArrayHasKey('mail', $doc['data'][2]['attributes']);
   }
 
   /**
-   * Tests good error DX when trying to filter users by role.
+   * Test good error DX when trying to filter users by role.
    */
   public function testQueryInvolvingRoles() {
     $this->setUpAuthorization('GET');

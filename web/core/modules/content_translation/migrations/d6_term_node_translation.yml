@@ -47,4 +47,3 @@ migration_dependencies:
     - d6_vocabulary_entity_form_display
     - d6_node
     - d6_node_translation
-    - language

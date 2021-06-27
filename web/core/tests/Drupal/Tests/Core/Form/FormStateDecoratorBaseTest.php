@@ -35,7 +35,7 @@ class FormStateDecoratorBaseTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  public function setUp(): void {
+  public function setUp() {
     parent::setUp();
 
     $this->decoratedFormState = $this->prophesize(FormStateInterface::class);
@@ -182,7 +182,7 @@ class FormStateDecoratorBaseTest extends UnitTestCase {
    */
   public function testSetExecuted() {
     $this->decoratedFormState->setExecuted()
-      ->shouldBeCalled();
+      ->shouldBecalled();
 
     $this->assertSame($this->formStateDecoratorBase, $this->formStateDecoratorBase->setExecuted());
   }
@@ -277,7 +277,7 @@ class FormStateDecoratorBaseTest extends UnitTestCase {
    */
   public function testSetLimitValidationErrors($limit_validation_errors) {
     $this->decoratedFormState->setLimitValidationErrors($limit_validation_errors)
-      ->shouldBeCalled();
+      ->shouldBecalled();
 
     $this->assertSame($this->formStateDecoratorBase, $this->formStateDecoratorBase->setLimitValidationErrors($limit_validation_errors));
   }
@@ -323,7 +323,7 @@ class FormStateDecoratorBaseTest extends UnitTestCase {
    */
   public function testSetMethod($method) {
     $this->decoratedFormState->setMethod($method)
-      ->shouldBeCalled();
+      ->shouldBecalled();
 
     $this->assertSame($this->formStateDecoratorBase, $this->formStateDecoratorBase->setMethod($method));
   }
@@ -340,7 +340,7 @@ class FormStateDecoratorBaseTest extends UnitTestCase {
   public function testIsMethodType($expected_return_value, $method_type) {
     $this->decoratedFormState->isMethodType($method_type)
       ->willReturn($expected_return_value)
-      ->shouldBeCalled();
+      ->shouldBecalled();
 
     $this->assertSame($expected_return_value, $this->formStateDecoratorBase->isMethodType($method_type));
   }
@@ -405,7 +405,7 @@ class FormStateDecoratorBaseTest extends UnitTestCase {
   public function testIsValidationEnforced($must_validate) {
     $this->decoratedFormState->isValidationEnforced()
       ->willReturn($must_validate)
-      ->shouldBeCalled();
+      ->shouldBecalled();
 
     $this->assertSame($must_validate, $this->formStateDecoratorBase->isValidationEnforced());
   }
@@ -463,7 +463,7 @@ class FormStateDecoratorBaseTest extends UnitTestCase {
   public function testIsProcessingInput($process_input) {
     $this->decoratedFormState->isProcessingInput()
       ->willReturn($process_input)
-      ->shouldBeCalled();
+      ->shouldBecalled();
 
     $this->assertSame($process_input, $this->formStateDecoratorBase->isProcessingInput());
   }
@@ -477,7 +477,7 @@ class FormStateDecoratorBaseTest extends UnitTestCase {
    */
   public function testSetProgrammed($programmed) {
     $this->decoratedFormState->setProgrammed($programmed)
-      ->shouldBeCalled();
+      ->shouldBecalled();
 
     $this->assertSame($this->formStateDecoratorBase, $this->formStateDecoratorBase->setProgrammed($programmed));
   }
@@ -492,7 +492,7 @@ class FormStateDecoratorBaseTest extends UnitTestCase {
   public function testIsProgrammed($programmed) {
     $this->decoratedFormState->isProgrammed()
       ->willReturn($programmed)
-      ->shouldBeCalled();
+      ->shouldBecalled();
 
     $this->assertSame($programmed, $this->formStateDecoratorBase->isProgrammed());
   }
@@ -506,7 +506,7 @@ class FormStateDecoratorBaseTest extends UnitTestCase {
    */
   public function testSetProgrammedBypassAccessCheck($programmed_bypass_access_check) {
     $this->decoratedFormState->setProgrammedBypassAccessCheck($programmed_bypass_access_check)
-      ->shouldBeCalled();
+      ->shouldBecalled();
 
     $this->assertSame($this->formStateDecoratorBase, $this->formStateDecoratorBase->setProgrammedBypassAccessCheck($programmed_bypass_access_check));
   }
@@ -824,7 +824,7 @@ class FormStateDecoratorBaseTest extends UnitTestCase {
 
     $this->decoratedFormState->getValidateHandlers()
       ->willReturn($validate_handlers)
-      ->shouldBeCalled();
+      ->shouldBecalled();
 
     $this->assertSame($validate_handlers, $this->formStateDecoratorBase->getValidateHandlers());
   }

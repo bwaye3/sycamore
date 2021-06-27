@@ -21,7 +21,7 @@ class ThemeInstallerTest extends KernelTestBase {
    *
    * @var array
    */
-  protected static $modules = ['system'];
+  public static $modules = ['system'];
 
   /**
    * {@inheritdoc}
@@ -34,7 +34,7 @@ class ThemeInstallerTest extends KernelTestBase {
       ->register('router.dumper', 'Drupal\Core\Routing\NullMatcherDumper');
   }
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->installConfig(['system']);
   }
@@ -52,7 +52,7 @@ class ThemeInstallerTest extends KernelTestBase {
     $this->assertNotEmpty($this->themeHandler()->rebuildThemeData()['stark'], 'ThemeHandler::rebuildThemeData() yields all available themes.');
 
     // theme_get_setting() should return global default theme settings.
-    $this->assertTrue(theme_get_setting('features.favicon'));
+    $this->assertIdentical(theme_get_setting('features.favicon'), TRUE);
   }
 
   /**
@@ -66,16 +66,16 @@ class ThemeInstallerTest extends KernelTestBase {
 
     $this->themeInstaller()->install([$name]);
 
-    $this->assertSame(0, $this->extensionConfig()->get("theme.{$name}"));
+    $this->assertIdentical($this->extensionConfig()->get("theme.$name"), 0);
 
     $themes = $this->themeHandler()->listInfo();
     $this->assertTrue(isset($themes[$name]));
-    $this->assertEquals($name, $themes[$name]->getName());
+    $this->assertEqual($themes[$name]->getName(), $name);
 
     // Verify that test_basetheme.settings is active.
-    $this->assertFalse(theme_get_setting('features.favicon', $name));
-    $this->assertEquals('only', theme_get_setting('base', $name));
-    $this->assertEquals('base', theme_get_setting('override', $name));
+    $this->assertIdentical(theme_get_setting('features.favicon', $name), FALSE);
+    $this->assertEqual(theme_get_setting('base', $name), 'only');
+    $this->assertEqual(theme_get_setting('override', $name), 'base');
   }
 
   /**
@@ -352,7 +352,7 @@ class ThemeInstallerTest extends KernelTestBase {
     $this->themeInstaller()->install([$name]);
     $themes = $this->themeHandler()->listInfo();
     $this->assertTrue(isset($themes[$name]));
-    $this->assertEquals($name, $themes[$name]->getName());
+    $this->assertEqual($themes[$name]->getName(), $name);
     $this->assertNotEmpty($this->config("$name.settings")->get());
   }
 

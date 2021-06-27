@@ -13,6 +13,7 @@ type: theme
 description: 'Theme for testing the theme system'
 version: VERSION
 base theme: classy
+core: 8.x
 logo: images/logo2.svg
 libraries:
   - test_theme/global-styling
@@ -53,9 +54,10 @@ libraries-override:
       component:
         /core/themes/stable/css/core/vertical-tabs.css: public://my_css/vertical-tabs.css
   # Use a protocol-relative URI.
-  core/drupal.displace:
-    js:
-      misc/displace.js: //my-server/my_theme/js/overridden.js
+  core/jquery.ui:
+    css:
+      component:
+        assets/vendor/jquery.ui/themes/base/core.css: //my-server/my_theme/css/jquery_ui.css
   # Use an absolute URI.
   core/jquery.farbtastic:
     css:

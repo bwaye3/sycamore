@@ -45,7 +45,7 @@ class ElementInfoManager extends DefaultPluginManager implements ElementInfoMana
   protected $cacheTagInvalidator;
 
   /**
-   * Constructs an ElementInfoManager object.
+   * Constructs a ElementInfoManager object.
    *
    * @param \Traversable $namespaces
    *   An object that implements \Traversable which contains the root paths

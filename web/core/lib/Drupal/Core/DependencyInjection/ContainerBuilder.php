@@ -1,7 +1,5 @@
 <?php
-
-// phpcs:ignoreFile Portions of this file are a direct copy of
-// \Symfony\Component\DependencyInjection\Container.
+// @codingStandardsIgnoreFile
 
 namespace Drupal\Core\DependencyInjection;
 
@@ -90,11 +88,7 @@ class ContainerBuilder extends SymfonyContainerBuilder {
     if (strtolower($id) !== $id) {
       throw new \InvalidArgumentException("Service ID names must be lowercase: $id");
     }
-    $definition = new Definition($class);
-    // As of Symfony 5.2 all services are private by default, but in Drupal
-    // services are still public by default.
-    $definition->setPublic(TRUE);
-    return $this->setDefinition($id, $definition);
+    return parent::register($id, $class);
   }
 
   /**
@@ -117,8 +111,7 @@ class ContainerBuilder extends SymfonyContainerBuilder {
     // removes services marked as private from the container even if they are
     // also marked as public. Drupal requires services that are public to
     // remain in the container and not be removed.
-    if ($definition->isPublic() && $definition->isPrivate()) {
-      @trigger_error('Not marking service definitions as public is deprecated in drupal:9.2.0 and is required in drupal:10.0.0. Call $definition->setPublic(TRUE) before calling ::setDefinition(). See https://www.drupal.org/node/3194517', E_USER_DEPRECATED);
+    if ($definition->isPublic()) {
       $definition->setPrivate(FALSE);
     }
     return $definition;

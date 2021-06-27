@@ -47,7 +47,7 @@ class CustomAccessCheckTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->controllerResolver = $this->createMock('Drupal\Core\Controller\ControllerResolverInterface');
@@ -56,7 +56,7 @@ class CustomAccessCheckTest extends UnitTestCase {
   }
 
   /**
-   * Tests the access method.
+   * Test the access method.
    */
   public function testAccess() {
     $route_match = $this->createMock('Drupal\Core\Routing\RouteMatchInterface');

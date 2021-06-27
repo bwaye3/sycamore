@@ -103,7 +103,7 @@ function update_authorize_run_install($filetransfer, $project, $updater_name, $l
 
   // @todo Instantiate our Updater to set the human-readable title?
   $batch = [
-    'init_message' => t('Preparing to add'),
+    'init_message' => t('Preparing to install'),
     'operations' => $operations,
     // @todo Use a different finished callback for different messages?
     'finished' => 'update_authorize_install_batch_finished',
@@ -114,7 +114,7 @@ function update_authorize_run_install($filetransfer, $project, $updater_name, $l
   // Since authorize.php has its own method for setting the page title, set it
   // manually here rather than passing it in to batch_set() as would normally
   // be done.
-  \Drupal::request()->getSession()->set('authorize_page_title', t('Adding %project', ['%project' => $project]));
+  \Drupal::request()->getSession()->set('authorize_page_title', t('Installing %project', ['%project' => $project]));
 
   // Invoke the batch via authorize.php.
   return system_authorized_batch_process();
@@ -178,14 +178,13 @@ function update_authorize_batch_copy_project($project, $updater_name, $local_url
     }
   }
   catch (UpdaterException $e) {
-    _update_batch_create_message($context['results']['log'][$project], t('Error adding / updating'), FALSE);
+    _update_batch_create_message($context['results']['log'][$project], t('Error installing / updating'), FALSE);
     _update_batch_create_message($context['results']['log'][$project], $e->getMessage(), FALSE);
     $context['results']['log'][$project]['#abort'] = TRUE;
     return;
   }
 
-  _update_batch_create_message($context['results']['log'][$project], t('Added / updated %project_name successfully', ['%project_name' => $project]));
-
+  _update_batch_create_message($context['results']['log'][$project], t('Installed %project_name successfully', ['%project_name' => $project]));
   if (!empty($tasks)) {
     $context['results']['tasks'] += $tasks;
   }
@@ -307,26 +306,26 @@ function update_authorize_install_batch_finished($success, $results) {
     if ($offline && $maintenance_mode === FALSE) {
       \Drupal::state()->set('system.maintenance_mode', FALSE);
       $page_message = [
-        'message' => t('Files were added successfully. Your site has been taken out of maintenance mode.'),
+        'message' => t('Installation was completed successfully. Your site has been taken out of maintenance mode.'),
         'type' => 'status',
       ];
     }
     else {
       $page_message = [
-        'message' => t('Files were added successfully.'),
+        'message' => t('Installation was completed successfully.'),
         'type' => 'status',
       ];
     }
   }
   elseif (!$success && !$offline) {
     $page_message = [
-      'message' => t('File add failed! See the log below for more information.'),
+      'message' => t('Installation failed! See the log below for more information.'),
       'type' => 'error',
     ];
   }
   else {
     $page_message = [
-      'message' => t('File add failed! See the log below for more information. Your site is still in maintenance mode.'),
+      'message' => t('Installation failed! See the log below for more information. Your site is still in maintenance mode.'),
       'type' => 'error',
     ];
   }

@@ -23,9 +23,9 @@ class CommentItemTest extends FieldKernelTestBase {
    *
    * @var array
    */
-  protected static $modules = ['comment', 'entity_test', 'user'];
+  public static $modules = ['comment', 'entity_test', 'user'];
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->installEntitySchema('comment');
     $this->installSchema('comment', ['comment_entity_statistics']);
@@ -63,7 +63,7 @@ class CommentItemTest extends FieldKernelTestBase {
     ], 'Comment status value in defined range');
 
     $mainProperty = $entity->comment[0]->mainPropertyName();
-    $this->assertEquals('status', $mainProperty);
+    $this->assertEqual('status', $mainProperty);
   }
 
   /**

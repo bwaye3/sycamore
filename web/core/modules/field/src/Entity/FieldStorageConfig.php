@@ -245,9 +245,6 @@ class FieldStorageConfig extends ConfigEntityBase implements FieldStorageConfigI
    *     a 'field_name' property can be accepted in place of 'id'.
    *   - entity_type: required.
    *   - type: required.
-   * @param string $entity_type
-   *   (optional) The entity type on which the field should be created.
-   *   Defaults to "field_storage_config".
    */
   public function __construct(array $values, $entity_type = 'field_storage_config') {
     // Check required properties.
@@ -382,9 +379,9 @@ class FieldStorageConfig extends ConfigEntityBase implements FieldStorageConfigI
     // invokes hook_field_storage_config_update_forbid().
     $module_handler->invokeAll('field_storage_config_update_forbid', [$this, $this->original]);
 
-    // Notify the field storage definition listener. A listener can reject the
-    // definition update as invalid by raising an exception, which stops
-    // execution before the definition is written to config.
+    // Notify the entity manager. A listener can reject the definition
+    // update as invalid by raising an exception, which stops execution before
+    // the definition is written to config.
     \Drupal::service('field_storage_definition.listener')->onFieldStorageDefinitionUpdate($this, $this->original);
   }
 
@@ -635,11 +632,11 @@ class FieldStorageConfig extends ConfigEntityBase implements FieldStorageConfigI
     /** @var \Drupal\Core\Field\FieldTypePluginManager $field_type_manager */
     $field_type_manager = \Drupal::service('plugin.manager.field.field_type');
     $definition = $field_type_manager->getDefinition($this->getType());
-    $enforced_cardinality = isset($definition['cardinality']) ? (int) $definition['cardinality'] : NULL;
+    $enforced_cardinality = isset($definition['cardinality']) ? $definition['cardinality'] : NULL;
 
     // Enforced cardinality is a positive integer or -1.
     if ($enforced_cardinality !== NULL && $enforced_cardinality < 1 && $enforced_cardinality !== FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED) {
-      throw new FieldException("Invalid enforced cardinality '{$definition['cardinality']}'. Allowed values: a positive integer or -1.");
+      throw new FieldException("Invalid enforced cardinality '$enforced_cardinality'. Allowed values: a positive integer or -1.");
     }
 
     return $enforced_cardinality ?: $this->cardinality;
@@ -696,6 +693,13 @@ class FieldStorageConfig extends ConfigEntityBase implements FieldStorageConfigI
    */
   public function getTargetEntityTypeId() {
     return $this->entity_type;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isQueryable() {
+    return TRUE;
   }
 
   /**
@@ -799,7 +803,7 @@ class FieldStorageConfig extends ConfigEntityBase implements FieldStorageConfigI
    * @param string $field_name
    *   Name of the field.
    *
-   * @return \Drupal\field\FieldStorageConfigInterface|null
+   * @return static
    *   The field config entity if one exists for the provided field name,
    *   otherwise NULL.
    */

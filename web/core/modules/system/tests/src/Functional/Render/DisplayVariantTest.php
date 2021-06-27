@@ -16,7 +16,7 @@ class DisplayVariantTest extends BrowserTestBase {
    *
    * @var array
    */
-  protected static $modules = ['display_variant_test'];
+  public static $modules = ['display_variant_test'];
 
   /**
    * {@inheritdoc}
@@ -33,7 +33,7 @@ class DisplayVariantTest extends BrowserTestBase {
     $this->drupalGet('<front>');
     $this->assertRaw('A very important, required value.');
     $this->assertRaw('Explicitly passed in context.');
-    $this->assertSession()->responseHeaderContains('X-Drupal-Cache-Tags', 'custom_cache_tag');
+    $this->assertCacheTag('custom_cache_tag');
   }
 
 }

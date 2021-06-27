@@ -19,7 +19,7 @@ class ConfigurableLanguageTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['language'];
+  public static $modules = ['language'];
 
   /**
    * {@inheritdoc}
@@ -115,7 +115,7 @@ class ConfigurableLanguageTest extends ResourceTestBase {
   }
 
   /**
-   * Tests a GET request for a default config entity, which has a _core key.
+   * Test a GET request for a default config entity, which has a _core key.
    *
    * @see https://www.drupal.org/project/drupal/issues/2915539
    */

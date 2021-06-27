@@ -17,7 +17,7 @@ class EntityViewControllerTest extends BrowserTestBase {
    *
    * @var array
    */
-  protected static $modules = ['entity_test'];
+  public static $modules = ['entity_test'];
 
   /**
    * {@inheritdoc}
@@ -31,7 +31,7 @@ class EntityViewControllerTest extends BrowserTestBase {
    */
   protected $entities = [];
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     // Create some dummy entity_test entities.
     for ($i = 0; $i < 2; $i++) {
@@ -104,7 +104,8 @@ class EntityViewControllerTest extends BrowserTestBase {
     // Browse to the entity and verify that the attribute is rendered in the
     // field item HTML markup.
     $this->drupalGet('entity_test/' . $entity->id());
-    $this->assertSession()->elementTextEquals('xpath', '//div[@data-field-item-attr="foobar"]/p', $test_value);
+    $xpath = $this->xpath('//div[@data-field-item-attr="foobar"]/p[text()=:value]', [':value' => $test_value]);
+    $this->assertNotEmpty($xpath, 'The field item attribute has been found in the rendered output of the field.');
 
     // Enable the RDF module to ensure that two modules can add attributes to
     // the same field item.
@@ -120,7 +121,8 @@ class EntityViewControllerTest extends BrowserTestBase {
     // Browse to the entity and verify that the attributes from both modules
     // are rendered in the field item HTML markup.
     $this->drupalGet('entity_test/' . $entity->id());
-    $this->assertSession()->elementTextEquals('xpath', '//div[@data-field-item-attr="foobar" and @property="schema:text"]/p', $test_value);
+    $xpath = $this->xpath('//div[@data-field-item-attr="foobar" and @property="schema:text"]/p[text()=:value]', [':value' => $test_value]);
+    $this->assertNotEmpty($xpath, 'The field item attributes from both modules have been found in the rendered output of the field.');
   }
 
   /**
@@ -130,7 +132,7 @@ class EntityViewControllerTest extends BrowserTestBase {
     $entity_test = $this->createTestEntity('entity_test_view_builder');
     $entity_test->save();
     $this->drupalGet('entity_test_view_builder/' . $entity_test->id());
-    $this->assertSession()->pageTextContains($entity_test->label());
+    $this->assertText($entity_test->label());
   }
 
   /**

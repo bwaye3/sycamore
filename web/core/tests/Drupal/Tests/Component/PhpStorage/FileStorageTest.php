@@ -4,8 +4,8 @@ namespace Drupal\Tests\Component\PhpStorage;
 
 use Drupal\Component\PhpStorage\FileStorage;
 use Drupal\Component\Utility\Random;
-use Drupal\Tests\Traits\PhpUnitWarnings;
 use org\bovigo\vfs\vfsStreamDirectory;
+use PHPUnit\Framework\Error\Warning;
 
 /**
  * @coversDefaultClass \Drupal\Component\PhpStorage\FileStorage
@@ -13,8 +13,6 @@ use org\bovigo\vfs\vfsStreamDirectory;
  * @group PhpStorage
  */
 class FileStorageTest extends PhpStorageTestBase {
-
-  use PhpUnitWarnings;
 
   /**
    * Standard test settings to pass to storage instances.
@@ -26,7 +24,7 @@ class FileStorageTest extends PhpStorageTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->standardSettings = [
@@ -84,7 +82,7 @@ class FileStorageTest extends PhpStorageTestBase {
 
     $this->assertTrue($php->deleteAll(), 'Delete all reported success');
     $this->assertFalse($php->load($name));
-    $this->assertDirectoryDoesNotExist($this->directory . '/test');
+    $this->assertDirectoryNotExists($this->directory . '/test');
 
     // Should still return TRUE if directory has already been deleted.
     $this->assertTrue($php->deleteAll(), 'Delete all succeeds with nothing to delete');
@@ -101,8 +99,8 @@ class FileStorageTest extends PhpStorageTestBase {
       'bin' => 'test',
     ]);
     $code = "<?php\n echo 'here';";
-    $this->expectWarning();
-    $this->expectWarningMessage('mkdir(): Permission Denied');
+    $this->expectException(Warning::class);
+    $this->expectExceptionMessage('mkdir(): Permission Denied');
     $storage->save('subdirectory/foo.php', $code);
   }
 

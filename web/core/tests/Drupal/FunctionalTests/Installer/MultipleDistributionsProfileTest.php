@@ -75,17 +75,17 @@ class MultipleDistributionsProfileTest extends InstallerTestBase {
    * Confirms that the installation succeeded.
    */
   public function testInstalled() {
-    $this->assertSession()->addressEquals('user/1');
+    $this->assertUrl('user/1');
     $this->assertSession()->statusCodeEquals(200);
     // Confirm that we are logged-in after installation.
-    $this->assertSession()->pageTextContains($this->rootUser->getAccountName());
+    $this->assertText($this->rootUser->getAccountName());
 
     // Confirm that Drupal recognizes this distribution as the current profile.
-    $this->assertEquals('distribution_one', \Drupal::installProfile());
-    $this->assertEquals('distribution_one', $this->config('core.extension')->get('profile'), 'The install profile has been written to core.extension configuration.');
+    $this->assertEqual(\Drupal::installProfile(), 'distribution_one');
+    $this->assertEqual($this->config('core.extension')->get('profile'), 'distribution_one', 'The install profile has been written to core.extension configuration.');
 
     $this->rebuildContainer();
-    $this->assertEquals('distribution_one', \Drupal::installProfile());
+    $this->assertEqual(\Drupal::installProfile(), 'distribution_one');
   }
 
 }

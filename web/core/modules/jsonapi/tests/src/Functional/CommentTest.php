@@ -29,7 +29,7 @@ class CommentTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['comment', 'entity_test'];
+  public static $modules = ['comment', 'entity_test'];
 
   /**
    * {@inheritdoc}
@@ -386,6 +386,13 @@ class CommentTest extends ResourceTestBase {
     // comment access also depends on access to the commented entity type.
     \Drupal::entityTypeManager()->getAccessControlHandler('entity_test')->resetCache();
     return parent::entityAccess($entity, $operation, $account);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function testRelated() {
+    $this->markTestSkipped('Remove this in https://www.drupal.org/project/drupal/issues/2940339');
   }
 
   /**

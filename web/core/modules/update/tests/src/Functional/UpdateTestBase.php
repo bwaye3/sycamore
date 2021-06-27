@@ -106,10 +106,9 @@ abstract class UpdateTestBase extends BrowserTestBase {
    * Runs a series of assertions that are applicable to all update statuses.
    */
   protected function standardTests() {
-    $this->assertSession()->responseContains('<h3>Drupal core</h3>');
-    // Verify that the link to the Drupal project appears.
-    $this->assertRaw(Link::fromTextAndUrl(t('Drupal'), Url::fromUri('http://example.com/project/drupal'))->toString());
-    $this->assertNoText('No available releases found');
+    $this->assertRaw('<h3>' . t('Drupal core') . '</h3>');
+    $this->assertRaw(Link::fromTextAndUrl(t('Drupal'), Url::fromUri('http://example.com/project/drupal'))->toString(), 'Link to the Drupal project appears.');
+    $this->assertNoText(t('No available releases found'));
   }
 
   /**
@@ -141,8 +140,7 @@ abstract class UpdateTestBase extends BrowserTestBase {
       if ($expected_update_message_type === static::SECURITY_UPDATE_REQUIRED) {
         $assert_session->elementTextNotContains('css', $update_element_css_locator, 'Update available');
         $assert_session->elementTextContains('css', $update_element_css_locator, 'Security update required!');
-        // Verify that the error icon is found.
-        $assert_session->responseContains('error.svg');
+        $assert_session->responseContains('error.svg', 'Error icon was found.');
       }
       else {
         $assert_session->elementTextContains('css', $update_element_css_locator, 'Update available');
@@ -264,16 +262,6 @@ abstract class UpdateTestBase extends BrowserTestBase {
   }
 
   /**
-   * Asserts that the update table text does not contain the specified text.
-   *
-   * @param string $text
-   *   The expected text.
-   */
-  protected function assertUpdateTableTextNotContains($text) {
-    $this->assertSession()->elementTextNotContains('css', $this->updateTableLocator, $text);
-  }
-
-  /**
    * Asserts that the update table element HTML contains the specified text.
    *
    * @param string $text
@@ -284,19 +272,6 @@ abstract class UpdateTestBase extends BrowserTestBase {
   protected function assertUpdateTableElementContains($text) {
     $this->assertSession()
       ->elementContains('css', $this->updateTableLocator, $text);
-  }
-
-  /**
-   * Asserts that the update table element HTML contains the specified text.
-   *
-   * @param string $text
-   *   The expected text.
-   *
-   * @see \Behat\Mink\WebAssert::elementNotContains()
-   */
-  protected function assertUpdateTableElementNotContains($text) {
-    $this->assertSession()
-      ->elementNotContains('css', $this->updateTableLocator, $text);
   }
 
   /**

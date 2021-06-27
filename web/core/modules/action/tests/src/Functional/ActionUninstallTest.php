@@ -5,7 +5,7 @@ namespace Drupal\Tests\action\Functional;
 use Drupal\Tests\BrowserTestBase;
 
 /**
- * Tests that uninstalling Actions does not remove other modules' actions.
+ * Tests that uninstalling actions does not remove other module's actions.
  *
  * @group action
  * @see \Drupal\views\Plugin\views\field\BulkForm
@@ -18,7 +18,7 @@ class ActionUninstallTest extends BrowserTestBase {
    *
    * @var array
    */
-  protected static $modules = ['views', 'action'];
+  public static $modules = ['views', 'action'];
 
   /**
    * {@inheritdoc}

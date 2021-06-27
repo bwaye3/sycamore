@@ -13,7 +13,7 @@ use Drupal\Tests\UnitTestCase;
 class ConfigTest extends UnitTestCase {
 
   /**
-   * Tests the import method.
+   * Test the import method.
    */
   public function testImport() {
     $source = [
@@ -60,7 +60,7 @@ class ConfigTest extends UnitTestCase {
   }
 
   /**
-   * Tests the import method.
+   * Test the import method.
    */
   public function testLanguageImport() {
     $source = [

@@ -3,6 +3,7 @@ type: module
 description: 'Provides Settings Tray test functionality.'
 package: Testing
 version: VERSION
+core: 8.x
 dependencies:
   - drupal:block
   - drupal:settings_tray

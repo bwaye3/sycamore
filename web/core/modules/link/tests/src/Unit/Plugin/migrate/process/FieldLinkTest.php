@@ -14,7 +14,7 @@ use Drupal\Tests\UnitTestCase;
 class FieldLinkTest extends UnitTestCase {
 
   /**
-   * Tests the url transformations in the FieldLink process plugin.
+   * Test the url transformations in the FieldLink process plugin.
    *
    * @dataProvider canonicalizeUriDataProvider
    */
@@ -102,7 +102,7 @@ class FieldLinkTest extends UnitTestCase {
   }
 
   /**
-   * Tests the attributes that are deeply serialized are discarded.
+   * Test the attributes that are deeply serialized are discarded.
    */
   public function testCanonicalizeUriSerialized() {
     $link_plugin = new FieldLink([], '', [], $this->createMock(MigrationInterface::class));

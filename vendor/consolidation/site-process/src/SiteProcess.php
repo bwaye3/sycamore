@@ -82,11 +82,6 @@ class SiteProcess extends ProcessBase
      */
     public function setWorkingDirectoryLocal($cd)
     {
-        // Symfony 4 REQUIRES that there be a directory set, and defaults
-        // it to the cwd if it is not set. We will maintain that pattern here.
-        if (!$cd) {
-            $cd = getcwd();
-        }
         return parent::setWorkingDirectory($cd);
     }
 
@@ -196,7 +191,7 @@ class SiteProcess extends ProcessBase
     /**
      * @inheritDoc
      */
-    public function start(callable $callback = null, array $env = [])
+    public function start(callable $callback = null, $env = array())
     {
         $cmd = $this->getCommandLine();
         parent::start($callback, $env);

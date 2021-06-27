@@ -19,12 +19,12 @@ class MigrateFilterFormatTest extends MigrateDrupal7TestBase implements MigrateD
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['filter'];
+  public static $modules = ['filter'];
 
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->installConfig(static::$modules);
     $this->executeMigration('d7_filter_format');

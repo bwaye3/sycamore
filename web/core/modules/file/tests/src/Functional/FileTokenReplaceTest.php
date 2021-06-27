@@ -37,7 +37,6 @@ class FileTokenReplaceTest extends FileFieldTestBase {
 
     $test_file = $this->getTestFile('text');
     // Coping a file to test uploads with non-latin filenames.
-    // cSpell:disable-next-line
     $filename = \Drupal::service('file_system')->dirname($test_file->getFileUri()) . '/текстовый файл.txt';
     $test_file = file_copy($test_file, $filename);
 
@@ -88,8 +87,8 @@ class FileTokenReplaceTest extends FileFieldTestBase {
     foreach ($tests as $input => $expected) {
       $bubbleable_metadata = new BubbleableMetadata();
       $output = $token_service->replace($input, ['file' => $file], ['langcode' => $language_interface->getId()], $bubbleable_metadata);
-      $this->assertEquals($expected, $output, new FormattableMarkup('Sanitized file token %token replaced.', ['%token' => $input]));
-      $this->assertEquals($metadata_tests[$input], $bubbleable_metadata);
+      $this->assertEqual($output, $expected, new FormattableMarkup('Sanitized file token %token replaced.', ['%token' => $input]));
+      $this->assertEqual($bubbleable_metadata, $metadata_tests[$input]);
     }
 
     // Generate and test unsanitized tokens.
@@ -100,7 +99,7 @@ class FileTokenReplaceTest extends FileFieldTestBase {
 
     foreach ($tests as $input => $expected) {
       $output = $token_service->replace($input, ['file' => $file], ['langcode' => $language_interface->getId(), 'sanitize' => FALSE]);
-      $this->assertEquals($expected, $output, new FormattableMarkup('Unsanitized file token %token replaced.', ['%token' => $input]));
+      $this->assertEqual($output, $expected, new FormattableMarkup('Unsanitized file token %token replaced.', ['%token' => $input]));
     }
   }
 

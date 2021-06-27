@@ -39,7 +39,7 @@ class MoveBlockFormTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $page = $this->getSession()->getPage();
     $assert_session = $this->assertSession();
@@ -54,8 +54,11 @@ class MoveBlockFormTest extends WebDriverTestBase {
     ]));
 
     // Enable layout builder.
-    $this->drupalGet(static::FIELD_UI_PREFIX . '/display/default');
-    $this->submitForm(['layout[enabled]' => TRUE], 'Save');
+    $this->drupalPostForm(
+      static::FIELD_UI_PREFIX . '/display/default',
+      ['layout[enabled]' => TRUE],
+      'Save'
+    );
     $page->clickLink('Manage layout');
     $assert_session->addressEquals(static::FIELD_UI_PREFIX . '/display/default/layout');
 

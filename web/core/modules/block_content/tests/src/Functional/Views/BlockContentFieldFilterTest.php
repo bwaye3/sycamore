@@ -15,7 +15,7 @@ class BlockContentFieldFilterTest extends BlockContentTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['language'];
+  public static $modules = ['language'];
 
   /**
    * {@inheritdoc}
@@ -39,7 +39,7 @@ class BlockContentFieldFilterTest extends BlockContentTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp($import_test_views = TRUE): void {
+  public function setUp($import_test_views = TRUE) {
     parent::setUp($import_test_views);
 
     // Add two new languages.
@@ -106,7 +106,7 @@ class BlockContentFieldFilterTest extends BlockContentTestBase {
     $text = $this->getTextContent();
 
     foreach ($counts as $langcode => $count) {
-      $this->assertEquals($count, substr_count($text, $this->blockContentInfos[$langcode]), 'Translation ' . $langcode . ' has count ' . $count . ' with ' . $message);
+      $this->assertEqual(substr_count($text, $this->blockContentInfos[$langcode]), $count, 'Translation ' . $langcode . ' has count ' . $count . ' with ' . $message);
     }
   }
 

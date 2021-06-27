@@ -16,14 +16,14 @@ class MediaEmbedFilterDisabledIntegrationsTest extends MediaEmbedFilterTestBase 
   protected static $modules = [
     'contextual',
     'quickedit',
-    // @see media_test_embed_entity_view_alter()
-    'media_test_embed',
+    // @see media_test_filter_entity_view_alter()
+    'media_test_filter',
   ];
 
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->container->get('current_user')

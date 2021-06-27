@@ -19,6 +19,8 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
  */
 abstract class WidgetBase extends PluginSettingsBase implements WidgetInterface, ContainerFactoryPluginInterface {
 
+  use AllowedTagsXssTrait;
+
   /**
    * The field definition.
    *
@@ -87,7 +89,7 @@ abstract class WidgetBase extends PluginSettingsBase implements WidgetInterface,
       $delta = isset($get_delta) ? $get_delta : 0;
       $element = [
         '#title' => $this->fieldDefinition->getLabel(),
-        '#description' => $this->getFilteredDescription(),
+        '#description' => FieldFilteredMarkup::create(\Drupal::token()->replace($this->fieldDefinition->getDescription())),
       ];
       $element = $this->formSingleElement($items, $delta, $element, $form, $form_state);
 
@@ -119,7 +121,7 @@ abstract class WidgetBase extends PluginSettingsBase implements WidgetInterface,
       'items' => $items,
       'default' => $this->isDefaultValueWidget($form_state),
     ];
-    \Drupal::moduleHandler()->alterDeprecated('Deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use hook_field_widget_complete_form_alter or hook_field_widget_complete_WIDGET_TYPE_form_alter instead. See https://www.drupal.org/node/3180429.', [
+    \Drupal::moduleHandler()->alter([
       'field_widget_multivalue_form',
       'field_widget_multivalue_' . $this->getPluginId() . '_form',
     ], $elements, $form_state, $context);
@@ -127,7 +129,7 @@ abstract class WidgetBase extends PluginSettingsBase implements WidgetInterface,
     // Populate the 'array_parents' information in $form_state->get('field')
     // after the form is built, so that we catch changes in the form structure
     // performed in alter() hooks.
-    $elements['#after_build'][] = [static::class, 'afterBuild'];
+    $elements['#after_build'][] = [get_class($this), 'afterBuild'];
     $elements['#field_name'] = $field_name;
     $elements['#field_parents'] = $parents;
     // Enforce the structure of submitted values.
@@ -135,7 +137,7 @@ abstract class WidgetBase extends PluginSettingsBase implements WidgetInterface,
     // Most widgets need their internal structure preserved in submitted values.
     $elements += ['#tree' => TRUE];
 
-    $field_widget_complete_form = [
+    return [
       // Aid in theming of widgets by rendering a classified container.
       '#type' => 'container',
       // Assign a different parent, to keep the main id for the widget itself.
@@ -149,17 +151,6 @@ abstract class WidgetBase extends PluginSettingsBase implements WidgetInterface,
       ],
       'widget' => $elements,
     ];
-
-    // Allow modules to alter the field widget form element.
-    $context = [
-      'form' => $form,
-      'widget' => $this,
-      'items' => $items,
-      'default' => $this->isDefaultValueWidget($form_state),
-    ];
-    \Drupal::moduleHandler()->alter(['field_widget_complete_form', 'field_widget_complete_' . $this->getPluginId() . '_form'], $field_widget_complete_form, $form_state, $context);
-
-    return $field_widget_complete_form;
   }
 
   /**
@@ -190,7 +181,7 @@ abstract class WidgetBase extends PluginSettingsBase implements WidgetInterface,
     }
 
     $title = $this->fieldDefinition->getLabel();
-    $description = $this->getFilteredDescription();
+    $description = FieldFilteredMarkup::create(\Drupal::token()->replace($this->fieldDefinition->getDescription()));
 
     $elements = [];
 
@@ -264,9 +255,9 @@ abstract class WidgetBase extends PluginSettingsBase implements WidgetInterface,
           '#value' => t('Add another item'),
           '#attributes' => ['class' => ['field-add-more-submit']],
           '#limit_validation_errors' => [array_merge($parents, [$field_name])],
-          '#submit' => [[static::class, 'addMoreSubmit']],
+          '#submit' => [[get_class($this), 'addMoreSubmit']],
           '#ajax' => [
-            'callback' => [static::class, 'addMoreAjax'],
+            'callback' => [get_class($this), 'addMoreAjax'],
             'wrapper' => $wrapper_id,
             'effect' => 'fade',
           ],
@@ -361,8 +352,7 @@ abstract class WidgetBase extends PluginSettingsBase implements WidgetInterface,
         'delta' => $delta,
         'default' => $this->isDefaultValueWidget($form_state),
       ];
-      \Drupal::moduleHandler()->alterDeprecated('Deprecated in drupal:9.2.0 and is removed from drupal:10.0.0. Use hook_field_widget_single_element_form_alter or hook_field_widget_single_element_WIDGET_TYPE_form_alter instead. See https://www.drupal.org/node/3180429.', ['field_widget_form', 'field_widget_' . $this->getPluginId() . '_form'], $element, $form_state, $context);
-      \Drupal::moduleHandler()->alter(['field_widget_single_element_form', 'field_widget_single_element_' . $this->getPluginId() . '_form'], $element, $form_state, $context);
+      \Drupal::moduleHandler()->alter(['field_widget_form', 'field_widget_' . $this->getPluginId() . '_form'], $element, $form_state, $context);
     }
 
     return $element;

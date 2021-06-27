@@ -42,7 +42,7 @@ class ClassLoaderTest extends BrowserTestBase {
     for ($i = 0; $i < 2; $i++) {
       $this->drupalGet('module-test/class-loading');
       $this->assertSession()->statusCodeEquals(200);
-      $this->assertSession()->pageTextContains($this->expected);
+      $this->assertText($this->expected, 'Autoloader loads classes from an enabled module.');
     }
   }
 
@@ -59,7 +59,7 @@ class ClassLoaderTest extends BrowserTestBase {
     for ($i = 0; $i < 2; $i++) {
       $this->drupalGet('module-test/class-loading');
       $this->assertSession()->statusCodeEquals(200);
-      $this->assertNoText($this->expected);
+      $this->assertNoText($this->expected, 'Autoloader does not load classes from a disabled module.');
     }
   }
 
@@ -79,7 +79,7 @@ class ClassLoaderTest extends BrowserTestBase {
     for ($i = 0; $i < 2; $i++) {
       $this->drupalGet('module-test/class-loading');
       $this->assertSession()->statusCodeEquals(200);
-      $this->assertNoText($this->expected);
+      $this->assertNoText($this->expected, 'Autoloader does not load classes from a disabled module.');
     }
   }
 
@@ -92,8 +92,7 @@ class ClassLoaderTest extends BrowserTestBase {
       "modules[module_install_class_loader_test1][enable]" => TRUE,
       "modules[module_install_class_loader_test2][enable]" => TRUE,
     ];
-    $this->drupalGet('admin/modules');
-    $this->submitForm($edit, 'Install');
+    $this->drupalPostForm('admin/modules', $edit, t('Install'));
     $this->rebuildContainer();
     $this->assertTrue(\Drupal::moduleHandler()->moduleExists('module_install_class_loader_test2'), 'The module_install_class_loader_test2 module has been installed.');
   }
@@ -107,8 +106,7 @@ class ClassLoaderTest extends BrowserTestBase {
     $edit = [
       "modules[module_autoload_test][enable]" => TRUE,
     ];
-    $this->drupalGet('admin/modules');
-    $this->submitForm($edit, 'Install');
+    $this->drupalPostForm('admin/modules', $edit, t('Install'));
     $this->assertSession()->statusCodeEquals(200);
     $this->resetAll();
     $this->assertSame(SomeClass::TEST, MODULE_AUTOLOAD_TEST_CONSTANT);

@@ -18,9 +18,8 @@ use Symfony\Component\DependencyInjection\Alias;
  */
 class AliasConfigurator extends AbstractServiceConfigurator
 {
-    public const FACTORY = 'alias';
+    const FACTORY = 'alias';
 
-    use Traits\DeprecateTrait;
     use Traits\PublicTrait;
 
     public function __construct(ServicesConfigurator $parent, Alias $alias)

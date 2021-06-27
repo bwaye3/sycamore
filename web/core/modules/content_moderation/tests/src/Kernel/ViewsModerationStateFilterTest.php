@@ -27,7 +27,7 @@ class ViewsModerationStateFilterTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'content_moderation_test_views',
     'node',
     'content_moderation',
@@ -41,7 +41,7 @@ class ViewsModerationStateFilterTest extends ViewsKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp($import_test_views = TRUE): void {
+  protected function setUp($import_test_views = TRUE) {
     parent::setUp(FALSE);
 
     $this->installEntitySchema('user');
@@ -173,7 +173,7 @@ class ViewsModerationStateFilterTest extends ViewsKernelTestBase {
   }
 
   /**
-   * Tests the moderation filter with a non-translatable entity type.
+   * Test the moderation filter with a non-translatable entity type.
    */
   public function testNonTranslatableEntityType() {
     $workflow = Workflow::load('editorial');

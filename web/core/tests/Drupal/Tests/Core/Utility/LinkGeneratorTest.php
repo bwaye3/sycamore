@@ -68,7 +68,7 @@ class LinkGeneratorTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->urlGenerator = $this->getMockBuilder('\Drupal\Core\Routing\UrlGenerator')
@@ -161,7 +161,7 @@ class LinkGeneratorTest extends UnitTestCase {
   public function testGenerateNoLink() {
     $this->urlGenerator->expects($this->never())
       ->method('generateFromRoute');
-    $this->moduleHandler->expects($this->exactly(2))
+    $this->moduleHandler->expects($this->once())
       ->method('alter')
       ->with('link', $this->isType('array'));
 
@@ -172,14 +172,6 @@ class LinkGeneratorTest extends UnitTestCase {
     $result = $this->linkGenerator->generate('Test', $url);
     $this->assertInstanceOf(GeneratedNoLink::class, $result);
     $this->assertSame('<span>Test</span>', (string) $result);
-
-    // Validate removal of hreflang attributes.
-    $url = Url::fromRoute('<nolink>', [], [
-      'language' => new Language(['id' => 'de']),
-    ]);
-    $url->setUrlGenerator($this->urlGenerator);
-    $result = $this->linkGenerator->generate('Test With Language', $url);
-    $this->assertSame('<span>Test With Language</span>', (string) $result);
   }
 
   /**
@@ -216,7 +208,7 @@ class LinkGeneratorTest extends UnitTestCase {
   public function testGenerateButton() {
     $this->urlGenerator->expects($this->never())
       ->method('generateFromRoute');
-    $this->moduleHandler->expects($this->exactly(2))
+    $this->moduleHandler->expects($this->once())
       ->method('alter')
       ->with('link', $this->isType('array'));
 
@@ -226,14 +218,6 @@ class LinkGeneratorTest extends UnitTestCase {
     $result = $this->linkGenerator->generate('Test', $url);
     $this->assertInstanceOf(GeneratedButton::class, $result);
     $this->assertSame('<button type="button">Test</button>', (string) $result);
-
-    // Validate removal of hreflang attributes.
-    $url = new Url('<button>', [], [
-      'language' => new Language(['id' => 'de']),
-    ]);
-    $url->setUrlGenerator($this->urlGenerator);
-    $result = $this->linkGenerator->generate('Test With Language', $url);
-    $this->assertSame('<button type="button">Test With Language</button>', (string) $result);
   }
 
   /**

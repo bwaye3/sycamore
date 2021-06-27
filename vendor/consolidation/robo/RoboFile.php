@@ -16,8 +16,6 @@ class RoboFile extends \Robo\Tasks
             'coverage' => false
         ])
     {
-        $this->yell("Deprecated: use 'composer test' instead.");
-
         $collection = $this->collectionBuilder();
 
         $taskPHPUnit = $collection->taskPHPUnit();
@@ -105,17 +103,14 @@ class RoboFile extends \Robo\Tasks
             ->push()
             ->run();
 
-        if ($stable) {
-            $this->pharPublish();
-        }
-
         $this->publish();
         $this->taskGitStack()
             ->tag($version)
-            ->push('origin master --tags')
+            ->push('origin 1.x --tags')
             ->run();
 
         if ($stable) {
+            $this->pharPublish();
             $version = $this->incrementVersion($version) . '-dev';
             $this->writeVersion($version);
 
@@ -331,7 +326,7 @@ class RoboFile extends \Robo\Tasks
         return $this->collectionBuilder()
             ->taskGitStack()
                 ->checkout('site')
-                ->merge('master')
+                ->merge('1.x')
             ->completion($this->taskGitStack()->checkout($current_branch))
             ->taskFilesystemStack()
                 ->copy('CHANGELOG.md', 'docs/changelog.md')
@@ -372,6 +367,7 @@ class RoboFile extends \Robo\Tasks
                 ->fromPath(
                     [
                         __DIR__ . '/composer.json',
+                        __DIR__ . '/scripts',
                         __DIR__ . '/src',
                         __DIR__ . '/data'
                     ]
@@ -388,7 +384,7 @@ class RoboFile extends \Robo\Tasks
             ->taskComposerInstall()
                 ->dir($roboBuildDir)
                 ->noScripts()
-                ->printOutput(true)
+                ->printed(true)
                 ->run();
 
         // Exit if the preparation step failed
@@ -477,7 +473,7 @@ class RoboFile extends \Robo\Tasks
                 ->add('robotheme/robo.phar')
                 ->commit('Update robo.phar to ' . \Robo\Robo::VERSION)
                 ->push('origin site')
-                ->checkout('master')
+                ->checkout('1.x')
                 ->run();
     }
 }

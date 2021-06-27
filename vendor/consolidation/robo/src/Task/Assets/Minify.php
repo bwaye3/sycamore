@@ -6,19 +6,19 @@ use Robo\Result;
 use Robo\Task\BaseTask;
 
 /**
- * Minifies an asset file (CSS or JS).
+ * Minifies asset file (CSS or JS).
  *
  * ``` php
  * <?php
- * $this->taskMinify('web/assets/theme.css')
+ * $this->taskMinify( 'web/assets/theme.css' )
  *      ->run()
  * ?>
  * ```
- * Please install additional packages to use this task:
+ * Please install additional dependencies to use:
  *
  * ```
- * composer require patchwork/jsqueeze:^2.0
- * composer require natxet/cssmin:^3.0
+ * "patchwork/jsqueeze": "~1.0",
+ * "natxet/CssMin": "~3.0"
  * ```
  */
 class Minify extends BaseTask
@@ -163,7 +163,7 @@ class Minify extends BaseTask
         switch ($this->type) {
             case 'css':
                 if (!class_exists('\CssMin')) {
-                    return Result::errorMissingPackage($this, 'CssMin', 'natxet/cssmin');
+                    return Result::errorMissingPackage($this, 'CssMin', 'natxet/CssMin');
                 }
 
                 return \CssMin::minify($this->text);

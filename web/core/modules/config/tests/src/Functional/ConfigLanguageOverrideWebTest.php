@@ -18,7 +18,7 @@ class ConfigLanguageOverrideWebTest extends BrowserTestBase {
    *
    * @var array
    */
-  protected static $modules = [
+  public static $modules = [
     'block',
     'language',
     'system',
@@ -32,7 +32,7 @@ class ConfigLanguageOverrideWebTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
   }
 
@@ -55,8 +55,7 @@ class ConfigLanguageOverrideWebTest extends BrowserTestBase {
       'label' => $name,
       'direction' => LanguageInterface::DIRECTION_LTR,
     ];
-    $this->drupalGet('admin/config/regional/language/add');
-    $this->submitForm($edit, 'Add custom language');
+    $this->drupalPostForm('admin/config/regional/language/add', $edit, t('Add custom language'));
     \Drupal::languageManager()
       ->getLanguageConfigOverride($langcode, 'system.site')
       ->set('name', 'XX site name')
@@ -79,7 +78,7 @@ class ConfigLanguageOverrideWebTest extends BrowserTestBase {
     // we access the XX front page.
     // @see \Drupal\Core\PathProcessor::processInbound()
     $this->drupalGet('xx');
-    $this->assertSession()->pageTextContains('XX site name');
+    $this->assertText('XX site name');
 
     // Set the xx language to be the default language and delete the English
     // language so the site is no longer multilingual and confirm configuration
@@ -92,7 +91,7 @@ class ConfigLanguageOverrideWebTest extends BrowserTestBase {
     $this->assertFalse($language_manager->isMultilingual(), 'The test site is monolingual.');
 
     $this->drupalGet('xx');
-    $this->assertSession()->pageTextContains('XX site name');
+    $this->assertText('XX site name');
 
   }
 

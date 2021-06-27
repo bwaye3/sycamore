@@ -2,6 +2,7 @@
 
 namespace Drupal\user\Form;
 
+use Drupal\Core\DependencyInjection\DeprecatedServicePropertyTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -17,6 +18,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @internal
  */
 class UserMultipleCancelConfirm extends ConfirmFormBase {
+  use DeprecatedServicePropertyTrait;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected $deprecatedProperties = ['entityManager' => 'entity.manager'];
 
   /**
    * The temp store factory.
@@ -99,7 +106,7 @@ class UserMultipleCancelConfirm extends ConfirmFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     // Retrieve the accounts to be canceled from the temp store.
-    /** @var \Drupal\user\Entity\User[] $accounts */
+    /* @var \Drupal\user\Entity\User[] $accounts */
     $accounts = $this->tempStoreFactory
       ->get('user_user_operations_cancel')
       ->get($this->currentUser()->id());

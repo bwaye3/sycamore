@@ -7,8 +7,6 @@ use Consolidation\AnnotatedCommand\CommandData;
 use Consolidation\AnnotatedCommand\CommandError;
 use Consolidation\AnnotatedCommand\Hooks\HookManager;
 use Consolidation\AnnotatedCommand\Hooks\ValidatorInterface;
-use Consolidation\AnnotatedCommand\State\State;
-use Consolidation\AnnotatedCommand\State\StateHelper;
 
 /**
  * Call hooks
@@ -37,14 +35,6 @@ class ValidateHookDispatcher extends HookDispatcher implements ValidatorInterfac
     }
 
     protected function callValidator($validator, CommandData $commandData)
-    {
-        $state = StateHelper::injectIntoCallbackObject($validator, $commandData->input(), $commandData->output());
-        $result = $this->doValidator($validator, $commandData);
-        $state->restore();
-        return $result;
-    }
-
-    private function doValidator($validator, CommandData $commandData)
     {
         if ($validator instanceof ValidatorInterface) {
             return $validator->validate($commandData);

@@ -30,7 +30,7 @@ class SearchNodeUpdateAndDeletionTest extends BrowserTestBase {
    */
   public $testUser;
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->drupalCreateContentType(['type' => 'page', 'name' => 'Basic page']);
@@ -62,9 +62,8 @@ class SearchNodeUpdateAndDeletionTest extends BrowserTestBase {
 
     // Search the node to verify it appears in search results
     $edit = ['keys' => 'knights'];
-    $this->drupalGet('search/node');
-    $this->submitForm($edit, 'Search');
-    $this->assertSession()->pageTextContains($node->label());
+    $this->drupalPostForm('search/node', $edit, t('Search'));
+    $this->assertText($node->label());
 
     // Update the node
     $node->body->value = "We want a shrubbery!";
@@ -75,9 +74,8 @@ class SearchNodeUpdateAndDeletionTest extends BrowserTestBase {
 
     // Search again to verify the new text appears in test results.
     $edit = ['keys' => 'shrubbery'];
-    $this->drupalGet('search/node');
-    $this->submitForm($edit, 'Search');
-    $this->assertSession()->pageTextContains($node->label());
+    $this->drupalPostForm('search/node', $edit, t('Search'));
+    $this->assertText($node->label());
   }
 
   /**
@@ -97,9 +95,8 @@ class SearchNodeUpdateAndDeletionTest extends BrowserTestBase {
 
     // Search the node to verify it appears in search results
     $edit = ['keys' => 'dragons'];
-    $this->drupalGet('search/node');
-    $this->submitForm($edit, 'Search');
-    $this->assertSession()->pageTextContains($node->label());
+    $this->drupalPostForm('search/node', $edit, t('Search'));
+    $this->assertText($node->label());
 
     // Get the node info from the search index tables.
     $connection = Database::getConnection();
@@ -109,7 +106,7 @@ class SearchNodeUpdateAndDeletionTest extends BrowserTestBase {
       ->condition('word', 'dragons')
       ->execute()
       ->fetchField();
-    $this->assertNotFalse($search_index_dataset, t('Node info found on the search_index'));
+    $this->assertNotEqual($search_index_dataset, FALSE, t('Node info found on the search_index'));
 
     // Delete the node.
     $node->delete();
@@ -121,11 +118,10 @@ class SearchNodeUpdateAndDeletionTest extends BrowserTestBase {
       ->condition('word', 'dragons')
       ->execute()
       ->fetchField();
-    $this->assertFalse($search_index_dataset, 'Node info successfully removed from search_index');
+    $this->assertFalse($search_index_dataset, t('Node info successfully removed from search_index'));
 
     // Search again to verify the node doesn't appear anymore.
-    $this->drupalGet('search/node');
-    $this->submitForm($edit, 'Search');
+    $this->drupalPostForm('search/node', $edit, t('Search'));
     $this->assertNoText($node->label());
   }
 

@@ -40,7 +40,10 @@
           '<label class="media-library-select-all"></label>',
         ).text(Drupal.t('Select all media'));
         $label.prepend($checkbox);
-        $view.find('.js-media-library-item').first().before($label);
+        $view
+          .find('.js-media-library-item')
+          .first()
+          .before($label);
       }
     },
   };

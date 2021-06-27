@@ -14,7 +14,7 @@ use Drupal\file\Entity\File;
 class SaveDataTest extends FileManagedUnitTestBase {
 
   /**
-   * Tests the file_save_data() function when no filename is provided.
+   * Test the file_save_data() function when no filename is provided.
    */
   public function testWithoutFilename() {
     $contents = $this->randomMachineName(8);
@@ -24,10 +24,10 @@ class SaveDataTest extends FileManagedUnitTestBase {
 
     $stream_wrapper_manager = \Drupal::service('stream_wrapper_manager');
     assert($stream_wrapper_manager instanceof StreamWrapperManagerInterface);
-    $this->assertEquals(\Drupal::config('system.file')->get('default_scheme'), $stream_wrapper_manager::getScheme($result->getFileUri()), "File was placed in Drupal's files directory.");
-    $this->assertEquals(\Drupal::service('file_system')->basename($result->getFileUri()), $result->getFilename(), "Filename was set to the file's basename.");
-    $this->assertEquals($contents, file_get_contents($result->getFileUri()), 'Contents of the file are correct.');
-    $this->assertEquals('application/octet-stream', $result->getMimeType(), 'A MIME type was set.');
+    $this->assertEqual(\Drupal::config('system.file')->get('default_scheme'), $stream_wrapper_manager::getScheme($result->getFileUri()), "File was placed in Drupal's files directory.");
+    $this->assertEqual($result->getFilename(), \Drupal::service('file_system')->basename($result->getFileUri()), "Filename was set to the file's basename.");
+    $this->assertEqual($contents, file_get_contents($result->getFileUri()), 'Contents of the file are correct.');
+    $this->assertEqual($result->getMimeType(), 'application/octet-stream', 'A MIME type was set.');
     $this->assertTrue($result->isPermanent(), "The file's status was set to permanent.");
 
     // Check that the correct hooks were called.
@@ -38,13 +38,12 @@ class SaveDataTest extends FileManagedUnitTestBase {
   }
 
   /**
-   * Tests the file_save_data() function when a filename is provided.
+   * Test the file_save_data() function when a filename is provided.
    */
   public function testWithFilename() {
     $contents = $this->randomMachineName(8);
 
     // Using filename with non-latin characters.
-    // cSpell:disable-next-line
     $filename = 'Текстовый файл.txt';
 
     $result = file_save_data($contents, 'public://' . $filename);
@@ -52,10 +51,10 @@ class SaveDataTest extends FileManagedUnitTestBase {
 
     $stream_wrapper_manager = \Drupal::service('stream_wrapper_manager');
     assert($stream_wrapper_manager instanceof StreamWrapperManagerInterface);
-    $this->assertEquals('public', $stream_wrapper_manager::getScheme($result->getFileUri()), "File was placed in Drupal's files directory.");
-    $this->assertEquals($filename, \Drupal::service('file_system')->basename($result->getFileUri()), 'File was named correctly.');
-    $this->assertEquals($contents, file_get_contents($result->getFileUri()), 'Contents of the file are correct.');
-    $this->assertEquals('text/plain', $result->getMimeType(), 'A MIME type was set.');
+    $this->assertEqual('public', $stream_wrapper_manager::getScheme($result->getFileUri()), "File was placed in Drupal's files directory.");
+    $this->assertEqual($filename, \Drupal::service('file_system')->basename($result->getFileUri()), 'File was named correctly.');
+    $this->assertEqual($contents, file_get_contents($result->getFileUri()), 'Contents of the file are correct.');
+    $this->assertEqual($result->getMimeType(), 'text/plain', 'A MIME type was set.');
     $this->assertTrue($result->isPermanent(), "The file's status was set to permanent.");
 
     // Check that the correct hooks were called.
@@ -66,7 +65,7 @@ class SaveDataTest extends FileManagedUnitTestBase {
   }
 
   /**
-   * Tests file_save_data() when renaming around an existing file.
+   * Test file_save_data() when renaming around an existing file.
    */
   public function testExistingRename() {
     // Setup a file to overwrite.
@@ -78,10 +77,10 @@ class SaveDataTest extends FileManagedUnitTestBase {
 
     $stream_wrapper_manager = \Drupal::service('stream_wrapper_manager');
     assert($stream_wrapper_manager instanceof StreamWrapperManagerInterface);
-    $this->assertEquals('public', $stream_wrapper_manager::getScheme($result->getFileUri()), "File was placed in Drupal's files directory.");
-    $this->assertEquals($existing->getFilename(), $result->getFilename(), 'Filename was set to the basename of the source, rather than that of the renamed file.');
-    $this->assertEquals($contents, file_get_contents($result->getFileUri()), 'Contents of the file are correct.');
-    $this->assertEquals('application/octet-stream', $result->getMimeType(), 'A MIME type was set.');
+    $this->assertEqual('public', $stream_wrapper_manager::getScheme($result->getFileUri()), "File was placed in Drupal's files directory.");
+    $this->assertEqual($result->getFilename(), $existing->getFilename(), 'Filename was set to the basename of the source, rather than that of the renamed file.');
+    $this->assertEqual($contents, file_get_contents($result->getFileUri()), 'Contents of the file are correct.');
+    $this->assertEqual($result->getMimeType(), 'application/octet-stream', 'A MIME type was set.');
     $this->assertTrue($result->isPermanent(), "The file's status was set to permanent.");
 
     // Check that the correct hooks were called.
@@ -96,7 +95,7 @@ class SaveDataTest extends FileManagedUnitTestBase {
   }
 
   /**
-   * Tests file_save_data() when replacing an existing file.
+   * Test file_save_data() when replacing an existing file.
    */
   public function testExistingReplace() {
     // Setup a file to overwrite.
@@ -108,10 +107,10 @@ class SaveDataTest extends FileManagedUnitTestBase {
 
     $stream_wrapper_manager = \Drupal::service('stream_wrapper_manager');
     assert($stream_wrapper_manager instanceof StreamWrapperManagerInterface);
-    $this->assertEquals('public', $stream_wrapper_manager::getScheme($result->getFileUri()), "File was placed in Drupal's files directory.");
-    $this->assertEquals($existing->getFilename(), $result->getFilename(), 'Filename was set to the basename of the existing file, rather than preserving the original name.');
-    $this->assertEquals($contents, file_get_contents($result->getFileUri()), 'Contents of the file are correct.');
-    $this->assertEquals('application/octet-stream', $result->getMimeType(), 'A MIME type was set.');
+    $this->assertEqual('public', $stream_wrapper_manager::getScheme($result->getFileUri()), "File was placed in Drupal's files directory.");
+    $this->assertEqual($result->getFilename(), $existing->getFilename(), 'Filename was set to the basename of the existing file, rather than preserving the original name.');
+    $this->assertEqual($contents, file_get_contents($result->getFileUri()), 'Contents of the file are correct.');
+    $this->assertEqual($result->getMimeType(), 'application/octet-stream', 'A MIME type was set.');
     $this->assertTrue($result->isPermanent(), "The file's status was set to permanent.");
 
     // Check that the correct hooks were called.
@@ -125,7 +124,7 @@ class SaveDataTest extends FileManagedUnitTestBase {
   }
 
   /**
-   * Tests that file_save_data() fails overwriting an existing file.
+   * Test that file_save_data() fails overwriting an existing file.
    */
   public function testExistingError() {
     $contents = $this->randomMachineName(8);
@@ -134,7 +133,7 @@ class SaveDataTest extends FileManagedUnitTestBase {
     // Check the overwrite error.
     $result = file_save_data('asdf', $existing->getFileUri(), FileSystemInterface::EXISTS_ERROR);
     $this->assertFalse($result, 'Overwriting a file fails when FileSystemInterface::EXISTS_ERROR is specified.');
-    $this->assertEquals($contents, file_get_contents($existing->getFileUri()), 'Contents of existing file were unchanged.');
+    $this->assertEqual($contents, file_get_contents($existing->getFileUri()), 'Contents of existing file were unchanged.');
 
     // Check that no hooks were called while failing.
     $this->assertFileHooksCalled([]);

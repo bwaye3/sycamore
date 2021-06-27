@@ -2,6 +2,8 @@
 
 namespace Drupal\FunctionalJavascriptTests\Ajax;
 
+use Drupal\Core\EventSubscriber\MainContentViewSubscriber;
+use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Url;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 
@@ -15,7 +17,7 @@ class AjaxFormCacheTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['ajax_test', 'ajax_forms_test'];
+  public static $modules = ['ajax_test', 'ajax_forms_test'];
 
   /**
    * {@inheritdoc}
@@ -49,6 +51,7 @@ class AjaxFormCacheTest extends WebDriverTestBase {
   public function testBlockForms() {
     $this->container->get('module_installer')->install(['block', 'search']);
     $this->rebuildContainer();
+    $this->container->get('router.builder')->rebuild();
     $this->drupalLogin($this->rootUser);
 
     $this->drupalPlaceBlock('search_form_block', ['weight' => -5]);
@@ -101,8 +104,10 @@ class AjaxFormCacheTest extends WebDriverTestBase {
 
     $url->setOption('query', [
       'foo' => 'bar',
+      FormBuilderInterface::AJAX_FORM_REQUEST => 1,
+      MainContentViewSubscriber::WRAPPER_FORMAT => 'drupal_ajax',
     ]);
-    $this->assertSession()->addressEquals($url);
+    $this->assertUrl($url);
   }
 
 }

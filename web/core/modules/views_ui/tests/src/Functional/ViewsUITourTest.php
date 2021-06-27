@@ -36,9 +36,9 @@ class ViewsUITourTest extends TourTestBase {
    *
    * @var array
    */
-  protected static $modules = ['views_ui', 'tour', 'language', 'locale'];
+  public static $modules = ['views_ui', 'tour', 'language', 'locale'];
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->adminUser = $this->drupalCreateUser([
       'administer views',
@@ -57,8 +57,7 @@ class ViewsUITourTest extends TourTestBase {
     $view['id'] = strtolower($this->randomMachineName(16));
     $view['page[create]'] = 1;
     $view['page[path]'] = $this->randomMachineName(16);
-    $this->drupalGet('admin/structure/views/add');
-    $this->submitForm($view, 'Save and edit');
+    $this->drupalPostForm('admin/structure/views/add', $view, t('Save and edit'));
     $this->assertTourTips();
   }
 
@@ -98,8 +97,11 @@ class ViewsUITourTest extends TourTestBase {
     $view['page[create]'] = 1;
     $view['page[path]'] = $this->randomMachineName(16);
     // Load the page in dutch.
-    $this->drupalGet($langcode . '/admin/structure/views/add');
-    $this->submitForm($view, 'Save and edit');
+    $this->drupalPostForm(
+      $langcode . '/admin/structure/views/add',
+      $view,
+      t('Save and edit')
+    );
     $this->assertTourTips();
   }
 

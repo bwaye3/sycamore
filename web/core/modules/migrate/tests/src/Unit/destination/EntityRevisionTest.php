@@ -43,7 +43,7 @@ class EntityRevisionTest extends UnitTestCase {
    */
   protected $fieldTypeManager;
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     // Setup mocks to be used when creating a revision destination.
@@ -60,7 +60,7 @@ class EntityRevisionTest extends UnitTestCase {
   }
 
   /**
-   * Tests that passed old destination values are used by default.
+   * Test that passed old destination values are used by default.
    *
    * @covers ::getEntity
    */
@@ -78,7 +78,7 @@ class EntityRevisionTest extends UnitTestCase {
   }
 
   /**
-   * Tests that revision updates update.
+   * Test that revision updates update.
    *
    * @covers ::getEntity
    */
@@ -105,7 +105,7 @@ class EntityRevisionTest extends UnitTestCase {
   }
 
   /**
-   * Tests that new revisions are flagged to be written as new.
+   * Test that new revisions are flagged to be written as new.
    *
    * @covers ::getEntity
    */
@@ -135,7 +135,7 @@ class EntityRevisionTest extends UnitTestCase {
   }
 
   /**
-   * Tests entity load failure.
+   * Test entity load failure.
    *
    * @covers ::getEntity
    */
@@ -158,7 +158,7 @@ class EntityRevisionTest extends UnitTestCase {
   }
 
   /**
-   * Tests entity revision save.
+   * Test entity revision save.
    *
    * @covers ::save
    */

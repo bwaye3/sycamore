@@ -20,13 +20,13 @@ class ConcatTest extends MigrateProcessTestCase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     $this->plugin = new TestConcat();
     parent::setUp();
   }
 
   /**
-   * Tests concat works without a delimiter.
+   * Test concat works without a delimiter.
    */
   public function testConcatWithoutDelimiter() {
     $value = $this->plugin->transform(['foo', 'bar'], $this->migrateExecutable, $this->row, 'destination_property');
@@ -34,7 +34,7 @@ class ConcatTest extends MigrateProcessTestCase {
   }
 
   /**
-   * Tests concat fails properly on non-arrays.
+   * Test concat fails properly on non-arrays.
    */
   public function testConcatWithNonArray() {
     $this->expectException(MigrateException::class);
@@ -42,7 +42,7 @@ class ConcatTest extends MigrateProcessTestCase {
   }
 
   /**
-   * Tests concat works without a delimiter.
+   * Test concat works without a delimiter.
    */
   public function testConcatWithDelimiter() {
     $this->plugin->setDelimiter('_');

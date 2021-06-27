@@ -31,8 +31,13 @@ trait AssertPageCacheContextsAndTagsTrait {
    *   The header value, potentially exploded by spaces.
    */
   protected function getCacheHeaderValues($header_name) {
-    $header_value = $this->getSession()->getResponseHeader($header_name);
-    return empty($header_value) ? [] : explode(' ', $header_value);
+    $header_value = $this->drupalGetHeader($header_name);
+    if (empty($header_value)) {
+      return [];
+    }
+    else {
+      return explode(' ', $header_value);
+    }
   }
 
   /**
@@ -42,7 +47,7 @@ trait AssertPageCacheContextsAndTagsTrait {
    *   The expected cache context.
    */
   protected function assertCacheContext($expected_cache_context) {
-    $cache_contexts = explode(' ', $this->getSession()->getResponseHeader('X-Drupal-Cache-Contexts'));
+    $cache_contexts = explode(' ', $this->drupalGetHeader('X-Drupal-Cache-Contexts'));
     $this->assertContains($expected_cache_context, $cache_contexts, "'" . $expected_cache_context . "' is present in the X-Drupal-Cache-Contexts header.");
   }
 
@@ -53,7 +58,7 @@ trait AssertPageCacheContextsAndTagsTrait {
    *   The expected cache context.
    */
   protected function assertNoCacheContext($not_expected_cache_context) {
-    $cache_contexts = explode(' ', $this->getSession()->getResponseHeader('X-Drupal-Cache-Contexts'));
+    $cache_contexts = explode(' ', $this->drupalGetHeader('X-Drupal-Cache-Contexts'));
     $this->assertNotContains($not_expected_cache_context, $cache_contexts, "'" . $not_expected_cache_context . "' is not present in the X-Drupal-Cache-Contexts header.");
   }
 
@@ -74,7 +79,7 @@ trait AssertPageCacheContextsAndTagsTrait {
 
     // Assert cache miss + expected cache contexts + tags.
     $this->drupalGet($absolute_url);
-    $this->assertSession()->responseHeaderEquals('X-Drupal-Cache', 'MISS');
+    $this->assertEqual($this->drupalGetHeader('X-Drupal-Cache'), 'MISS');
     $this->assertCacheTags($expected_tags);
     $this->assertCacheContexts($expected_contexts);
 
@@ -88,7 +93,7 @@ trait AssertPageCacheContextsAndTagsTrait {
     $cid = implode(':', $cid_parts);
     $cache_entry = \Drupal::cache('page')->get($cid);
     sort($cache_entry->tags);
-    $this->assertEquals($expected_tags, $cache_entry->tags);
+    $this->assertEqual($cache_entry->tags, $expected_tags);
   }
 
   /**
@@ -111,7 +116,7 @@ trait AssertPageCacheContextsAndTagsTrait {
     $expected_tags = array_unique($expected_tags);
     sort($expected_tags);
     sort($actual_tags);
-    $this->assertSame($expected_tags, $actual_tags);
+    $this->assertIdentical($actual_tags, $expected_tags);
   }
 
   /**
@@ -141,7 +146,7 @@ trait AssertPageCacheContextsAndTagsTrait {
     $actual_contexts = $this->getCacheHeaderValues('X-Drupal-Cache-Contexts');
     sort($expected_contexts);
     sort($actual_contexts);
-    $this->assertSame($expected_contexts, $actual_contexts, $message ?? '');
+    $this->assertIdentical($actual_contexts, $expected_contexts, $message);
     return $actual_contexts === $expected_contexts;
   }
 
@@ -151,7 +156,8 @@ trait AssertPageCacheContextsAndTagsTrait {
    * @param int $max_age
    */
   protected function assertCacheMaxAge($max_age) {
-    $this->assertSession()->responseHeaderContains('Cache-Control', 'max-age:' . $max_age);
+    $cache_control_header = $this->drupalGetHeader('Cache-Control');
+    $this->assertStringContainsString('max-age:' . $max_age, $cache_control_header);
   }
 
 }

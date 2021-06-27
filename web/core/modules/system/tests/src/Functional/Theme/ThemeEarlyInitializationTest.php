@@ -17,7 +17,7 @@ class ThemeEarlyInitializationTest extends BrowserTestBase {
    *
    * @var array
    */
-  protected static $modules = ['theme_test'];
+  public static $modules = ['theme_test'];
 
   /**
    * {@inheritdoc}
@@ -25,7 +25,7 @@ class ThemeEarlyInitializationTest extends BrowserTestBase {
   protected $defaultTheme = 'classy';
 
   /**
-   * Tests that the theme system can generate output in a request listener.
+   * Test that the theme system can generate output in a request listener.
    */
   public function testRequestListener() {
     $this->drupalGet('theme-test/request-listener');

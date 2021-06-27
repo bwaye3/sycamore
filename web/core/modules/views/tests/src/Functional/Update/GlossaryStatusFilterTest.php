@@ -9,6 +9,7 @@ use Drupal\views\Entity\View;
  * Tests that the status filter is added to the glossary view.
  *
  * @group Update
+ * @group legacy
  */
 class GlossaryStatusFilterTest extends UpdatePathTestBase {
 
@@ -17,7 +18,7 @@ class GlossaryStatusFilterTest extends UpdatePathTestBase {
    */
   protected function setDatabaseDumpFiles() {
     $this->databaseDumpFiles = [
-      __DIR__ . '/../../../../../system/tests/fixtures/update/drupal-9.0.0.filled.standard.php.gz',
+      __DIR__ . '/../../../../../system/tests/fixtures/update/drupal-8.4.0.bare.standard.php.gz',
     ];
   }
 

@@ -24,7 +24,7 @@ class UploadedFile implements UploadedFileInterface
     private $clientFileName;
     private $clientMediaType;
 
-    public function __construct($filePath, $size = null, $error = \UPLOAD_ERR_OK, $clientFileName = null, $clientMediaType = null)
+    public function __construct($filePath, $size = null, $error = UPLOAD_ERR_OK, $clientFileName = null, $clientMediaType = null)
     {
         $this->filePath = $filePath;
         $this->size = $size;
@@ -35,7 +35,7 @@ class UploadedFile implements UploadedFileInterface
 
     public function getStream()
     {
-        return new Stream(file_get_contents($this->filePath));
+        throw new \RuntimeException('No stream is available.');
     }
 
     public function moveTo($targetPath)

@@ -26,7 +26,7 @@ class ClaroPreRender implements TrustedCallbackInterface {
     }
 
     // Wrap single-cardinality widgets with a details element.
-    $single_file_widget = empty($element['#do_not_wrap_in_details']) && !empty($element['#cardinality']) && $element['#cardinality'] === 1;
+    $single_file_widget = !empty($element['#cardinality']) && $element['#cardinality'] === 1;
     if ($single_file_widget && empty($element['#single_wrapped'])) {
       $element['#theme_wrappers']['details'] = [
         '#title' => $element['#title'],
@@ -77,13 +77,7 @@ class ClaroPreRender implements TrustedCallbackInterface {
       $last_group_with_child_key = NULL;
       $last_group_with_child_key_last_child_key = NULL;
 
-      // Only iterate through the parents instead of all the group keys.
-      foreach ($element['#parents'] as $group_key) {
-        // Check parents against groups because we are only looking for group
-        // elements.
-        if (!in_array($group_key, $group_keys)) {
-          continue;
-        }
+      foreach ($group_keys as $group_key) {
         $children_keys = Element::children($element['group']['#groups'][$group_key], TRUE);
 
         foreach ($children_keys as $child_key) {
@@ -116,11 +110,17 @@ class ClaroPreRender implements TrustedCallbackInterface {
   }
 
   /**
-   * Prerender callback for the Operations element.
+   * Prerender callback for Dropbutton element.
+   *
+   * @todo Revisit after https://www.drupal.org/node/3057581 is added.
    */
-  public static function operations($element) {
-    if (empty($element['#dropbutton_type'])) {
-      $element['#dropbutton_type'] = 'extrasmall';
+  public static function dropButton($element) {
+    if (!empty($element['#dropbutton_type']) && is_string($element['#dropbutton_type'])) {
+      $supported_types = ['small', 'extrasmall'];
+
+      if (in_array($element['#dropbutton_type'], $supported_types)) {
+        $element['#attributes']['class'][] = 'dropbutton--' . $element['#dropbutton_type'];
+      }
     }
     return $element;
   }
@@ -199,7 +199,7 @@ class ClaroPreRender implements TrustedCallbackInterface {
     return [
       'managedFile',
       'verticalTabs',
-      'operations',
+      'dropButton',
       'container',
       'textFormat',
       'messagePlaceholder',

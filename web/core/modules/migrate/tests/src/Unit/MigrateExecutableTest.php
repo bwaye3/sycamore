@@ -48,11 +48,11 @@ class MigrateExecutableTest extends MigrateTestCase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->migration = $this->getMigration();
     $this->message = $this->createMock('Drupal\migrate\MigrateMessageInterface');
-    $event_dispatcher = $this->createMock('Symfony\Contracts\EventDispatcher\EventDispatcherInterface');
+    $event_dispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
     $this->executable = new TestMigrateExecutable($this->migration, $this->message, $event_dispatcher);
     $this->executable->setStringTranslation($this->getStringTranslationStub());
   }
@@ -408,7 +408,7 @@ class MigrateExecutableTest extends MigrateTestCase {
     foreach ($expected as $key => $value) {
       $this->assertSame($row->getDestinationProperty($key), $value);
     }
-    $this->assertSame(count($expected), count($row->getDestination()));
+    $this->assertSame(count($row->getDestination()), count($expected));
   }
 
   /**
@@ -478,7 +478,7 @@ class MigrateExecutableTest extends MigrateTestCase {
    *   The mocked migration source.
    */
   protected function getMockSource() {
-    $this->createMock('\Iterator');
+    $iterator = $this->createMock('\Iterator');
 
     $class = 'Drupal\migrate\Plugin\migrate\source\SourcePluginBase';
     $source = $this->getMockBuilder($class)

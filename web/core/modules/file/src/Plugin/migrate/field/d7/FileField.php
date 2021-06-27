@@ -18,16 +18,6 @@ class FileField extends D6FileField {
   /**
    * {@inheritdoc}
    */
-  public function getFieldWidgetMap() {
-    return [
-      'file_mfw' => 'file_generic',
-      'filefield_widget' => 'file_generic',
-    ];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function defineValueProcessPipeline(MigrationInterface $migration, $field_name, $data) {
     $process = [
       'plugin' => 'sub_process',

@@ -18,7 +18,7 @@ class MigrateLanguageContentCommentSettingsNoEntityTranslationTest extends Migra
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'comment',
     'content_translation',
     'language',
@@ -29,13 +29,10 @@ class MigrateLanguageContentCommentSettingsNoEntityTranslationTest extends Migra
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->migrateCommentTypes();
-    $this->executeMigrations([
-      'language',
-      'd7_language_content_comment_settings',
-    ]);
+    $this->executeMigration('d7_language_content_comment_settings');
   }
 
   /**

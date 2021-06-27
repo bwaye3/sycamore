@@ -16,7 +16,7 @@ class ActionListTest extends BrowserTestBase {
    *
    * @var array
    */
-  protected static $modules = ['action'];
+  public static $modules = ['action'];
 
   /**
    * {@inheritdoc}
@@ -31,7 +31,7 @@ class ActionListTest extends BrowserTestBase {
     $this->drupalLogin($this->drupalCreateUser(['administer actions']));
 
     // Ensure the empty text appears on the action list page.
-    /** @var \Drupal\Core\Entity\EntityStorageInterface $storage */
+    /** @var $storage \Drupal\Core\Entity\EntityStorageInterface */
     $storage = $this->container->get('entity_type.manager')->getStorage('action');
     $actions = $storage->loadMultiple();
     $storage->delete($actions);

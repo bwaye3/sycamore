@@ -4,6 +4,7 @@ namespace Drupal\Tests\system\Functional\Cache;
 
 use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
+use Drupal\Component\Render\FormattableMarkup;
 
 /**
  * Provides helper methods for page cache tags tests.
@@ -42,7 +43,8 @@ abstract class PageCacheTagsTestBase extends BrowserTestBase {
    */
   protected function verifyPageCache(Url $url, $hit_or_miss, $tags = FALSE) {
     $this->drupalGet($url);
-    $this->assertSession()->responseHeaderEquals('X-Drupal-Cache', $hit_or_miss);
+    $message = new FormattableMarkup('Page cache @hit_or_miss for %path.', ['@hit_or_miss' => $hit_or_miss, '%path' => $url->toString()]);
+    $this->assertEqual($this->drupalGetHeader('X-Drupal-Cache'), $hit_or_miss, $message);
 
     if ($hit_or_miss === 'HIT' && is_array($tags)) {
       $absolute_url = $url->setAbsolute()->toString();
@@ -52,7 +54,7 @@ abstract class PageCacheTagsTestBase extends BrowserTestBase {
       sort($cache_entry->tags);
       $tags = array_unique($tags);
       sort($tags);
-      $this->assertSame($cache_entry->tags, $tags);
+      $this->assertIdentical($cache_entry->tags, $tags);
     }
   }
 
@@ -66,7 +68,8 @@ abstract class PageCacheTagsTestBase extends BrowserTestBase {
    */
   protected function verifyDynamicPageCache(Url $url, $hit_or_miss) {
     $this->drupalGet($url);
-    $this->assertSession()->responseHeaderEquals('X-Drupal-Dynamic-Cache', $hit_or_miss);
+    $message = new FormattableMarkup('Dynamic page cache @hit_or_miss for %path.', ['@hit_or_miss' => $hit_or_miss, '%path' => $url->toString()]);
+    $this->assertSame($hit_or_miss, $this->getSession()->getResponseHeader('X-Drupal-Dynamic-Cache'), $message);
   }
 
 }

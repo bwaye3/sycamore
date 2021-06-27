@@ -56,7 +56,7 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     FilterFormat::create([
@@ -171,8 +171,8 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
 
     $targetSelector = 'ul.ckeditor-toolbar-group-buttons';
     $buttonSelector = 'li[data-drupal-ckeditor-button-name="DrupalMediaLibrary"]';
-    $this->assertNotEmpty($assert_session->waitForElementVisible('css', $targetSelector));
-    $this->assertNotEmpty($assert_session->elementExists('css', $buttonSelector));
+    $this->assertNotEmpty($target = $assert_session->waitForElementVisible('css', $targetSelector));
+    $this->assertNotEmpty($button = $assert_session->elementExists('css', $buttonSelector));
     $this->sortableTo($buttonSelector, 'ul.ckeditor-available-buttons', $targetSelector);
     $page->pressButton('Save configuration');
     $assert_session->pageTextContains('The Embed media filter must be enabled to use the Insert from Media Library button.');
@@ -278,7 +278,7 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
       'all_media_types' => [],
       'only_image' => ['image' => 'image'],
       'only_arrakis' => ['arrakis' => 'arrakis'],
-      'both_items_checked' => [
+      'both_items_chedked' => [
         'image' => 'image',
         'arrakis' => 'arrakis',
       ],

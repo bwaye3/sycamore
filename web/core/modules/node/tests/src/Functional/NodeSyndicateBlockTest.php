@@ -14,14 +14,14 @@ class NodeSyndicateBlockTest extends NodeTestBase {
    *
    * @var array
    */
-  protected static $modules = ['block'];
+  public static $modules = ['block'];
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
 
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     // Create a user and log in.
@@ -36,7 +36,7 @@ class NodeSyndicateBlockTest extends NodeTestBase {
     // Place the "Syndicate" block and confirm that it is rendered.
     $this->drupalPlaceBlock('node_syndicate_block', ['id' => 'test_syndicate_block']);
     $this->drupalGet('');
-    $this->assertSession()->elementExists('xpath', '//div[@id="block-test-syndicate-block"]/*');
+    $this->assertFieldByXPath('//div[@id="block-test-syndicate-block"]/*', NULL, 'Syndicate block found.');
   }
 
 }

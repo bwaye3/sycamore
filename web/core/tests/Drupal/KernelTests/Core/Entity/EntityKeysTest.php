@@ -13,7 +13,7 @@ use Drupal\entity_test\Entity\EntityTest;
 class EntityKeysTest extends EntityKernelTestBase {
 
   /**
-   * Tests the cache when multiple keys reference a single field.
+   * Test the cache when multiple keys reference a single field.
    *
    * @dataProvider multipleKeysCacheTestCases
    */
