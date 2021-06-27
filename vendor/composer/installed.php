@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '584d2eedfd57aa70ab162e0363a006613e959392',
+        'reference' => '5a9f02269308bd42198d57be10f4a7796531e4aa',
         'name' => 'drupal/recommended-project',
         'dev' => true,
     ),
@@ -1111,15 +1111,6 @@
             'reference' => '8.x-5.1',
             'dev_requirement' => false,
         ),
-        'drupal/migrate_source_csv' => array(
-            'pretty_version' => '3.4.0',
-            'version' => '3.4.0.0',
-            'type' => 'drupal-module',
-            'install_path' => __DIR__ . '/../../web/modules/contrib/migrate_source_csv',
-            'aliases' => array(),
-            'reference' => '8.x-3.4',
-            'dev_requirement' => false,
-        ),
         'drupal/migrate_tools' => array(
             'pretty_version' => 'dev-5.x',
             'version' => 'dev-5.x',
@@ -1236,7 +1227,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '584d2eedfd57aa70ab162e0363a006613e959392',
+            'reference' => '5a9f02269308bd42198d57be10f4a7796531e4aa',
             'dev_requirement' => false,
         ),
         'drupal/responsive_image' => array(
@@ -1488,15 +1479,6 @@
             'reference' => '6.0.4',
             'dev_requirement' => false,
         ),
-        'drupal/wordpress_migrate' => array(
-            'pretty_version' => '3.0.0-alpha4',
-            'version' => '3.0.0.0-alpha4',
-            'type' => 'drupal-module',
-            'install_path' => __DIR__ . '/../../web/modules/contrib/wordpress_migrate',
-            'aliases' => array(),
-            'reference' => '8.x-3.0-alpha4',
-            'dev_requirement' => false,
-        ),
         'drupal/workflows' => array(
             'dev_requirement' => false,
             'replaced' => array(
@@ -1678,15 +1660,6 @@
             'install_path' => __DIR__ . '/../league/container',
             'aliases' => array(),
             'reference' => '8438dc47a0674e3378bcce893a0a04d79a2c22b3',
-            'dev_requirement' => false,
-        ),
-        'league/csv' => array(
-            'pretty_version' => '9.7.1',
-            'version' => '9.7.1.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../league/csv',
-            'aliases' => array(),
-            'reference' => '0ec57e8264ec92565974ead0d1724cf1026e10c1',
             'dev_requirement' => false,
         ),
         'masterminds/html5' => array(
